@@ -54,6 +54,7 @@
 		4D697F3A23EAD74C002F446C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D697F3923EAD74C002F446C /* ProfileViewController.swift */; };
 		4D697F4123EADFF6002F446C /* PhotosCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D697F4023EADFF6002F446C /* PhotosCellView.swift */; };
 		4D697F4323EAE008002F446C /* PhotosCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D697F4223EAE008002F446C /* PhotosCellView.xib */; };
+		5128461623FF070C00B35781 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5128461523FF070B00B35781 /* ARKit.framework */; };
 		9C3D8B1623F3FDAC004A649E /* FacedetectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D8B1523F3FDAC004A649E /* FacedetectorVC.swift */; };
 		9C3D8B1823F42CBC004A649E /* FaceDetection_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D8B1723F42CBC004A649E /* FaceDetection_NewVC.swift */; };
 		9C3F731823F58E1F00DA5151 /* LookingGoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3F731723F58E1E00DA5151 /* LookingGoodVC.swift */; };
@@ -130,6 +131,7 @@
 		4D697F3923EAD74C002F446C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D697F4023EADFF6002F446C /* PhotosCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCellView.swift; sourceTree = "<group>"; };
 		4D697F4223EAE008002F446C /* PhotosCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosCellView.xib; sourceTree = "<group>"; };
+		5128461523FF070B00B35781 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		9C3D8B1523F3FDAC004A649E /* FacedetectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacedetectorVC.swift; sourceTree = "<group>"; };
 		9C3D8B1723F42CBC004A649E /* FaceDetection_NewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetection_NewVC.swift; sourceTree = "<group>"; };
 		9C3F731723F58E1E00DA5151 /* LookingGoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingGoodVC.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5128461623FF070C00B35781 /* ARKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +170,7 @@
 				04A7FBBB23D02509007A4040 /* HushTests */,
 				04A7FBC623D02509007A4040 /* HushUITests */,
 				04A7FBA323D02505007A4040 /* Products */,
+				5128461423FF070B00B35781 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -436,6 +440,14 @@
 				4D697F4223EAE008002F446C /* PhotosCellView.xib */,
 			);
 			path = Photots;
+			sourceTree = "<group>";
+		};
+		5128461423FF070B00B35781 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5128461523FF070B00B35781 /* ARKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
