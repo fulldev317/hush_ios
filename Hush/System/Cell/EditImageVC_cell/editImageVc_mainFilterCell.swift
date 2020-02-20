@@ -2,8 +2,8 @@
 //  editImageVc_mainFilterCell.swift
 //  Hush
 //
-//  Created by RAVI on 22/01/20.
-//  Copyright © 2020 Reveralto. All rights reserved.
+//  Created by Jeep Worker on 07/02/20.
+//  Copyright © 2020 Jeep Worker Ltd. All rights reserved.
 //
 
 import UIKit

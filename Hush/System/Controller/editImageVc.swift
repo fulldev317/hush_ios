@@ -2,8 +2,8 @@
 //  editImageVc.swift
 //  Hush
 //
-//  Created by RAVI on 22/01/20.
-//  Copyright © 2020 Reveralto. All rights reserved.
+//  Created by Jeep Worker on 07/02/20.
+//  Copyright © 2020 Jeep Worker Ltd. All rights reserved.
 //
 
 import UIKit
@@ -81,6 +81,12 @@ class editImageVc: UIViewController {
     }
     
     @IBAction func click_done(_ sender: UIButton) {
+        
+      let story = UIStoryboard(name: "Main", bundle:nil)
+       let vc = story.instantiateViewController(withIdentifier: "CardsTabbarViewController") as! CardsTabbarViewController
+       UIApplication.shared.windows.first?.rootViewController = vc
+       UIApplication.shared.windows.first?.makeKeyAndVisible()
+        
     }
     
     @IBAction func click_reset(_ sender: UIButton) {

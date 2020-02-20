@@ -2,20 +2,24 @@
 //  ForgotPasswordVC.swift
 //  Hush
 //
-//  Created by RAVI on 17/01/20.
-//  Copyright © 2020 Reveralto. All rights reserved.
+//  Created by Jeep Worker on 07/02/20.
+//  Copyright © 2020 Jeep Worker Ltd. All rights reserved.
 //
 
 import UIKit
 
-class ForgotPasswordVC: UIViewController {
+class ForgotPasswordVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var lbl_noAccount: UILabel!
     @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var lbl_error: UILabel!
+    
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        hidekeyboard()
         self.lbl_error.textColor = UIColor(red: 0.949, green: 0.788, blue: 0.298, alpha: 1)
         self.txt_email.attributedPlaceholder = NSAttributedString(string:"Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
@@ -26,10 +30,34 @@ class ForgotPasswordVC: UIViewController {
         myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 86.0/255.0, green: 204.0/255.0, blue: 242.0/255.0, alpha: 1.0), range: NSRange(location:myString.count,length:myString1.count))
         // set label Attribute
         self.lbl_noAccount.attributedText = myMutableString
+        
+        txt_email.delegate = self
+        
+        //for keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //MARK: keyboard hide show
+       @objc func keyboardWillShow(notification:NSNotification){
+           
+           var userInfo = notification.userInfo!
+           var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+           keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+           
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+           contentInset.bottom = keyboardFrame.size.height
+           scrollView.contentInset = contentInset
+       }
+       
+       @objc func keyboardWillHide(notification:NSNotification){
+           
+           let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+           scrollView.contentInset = contentInset
+       }
+    
     @IBAction func click_signUpNow(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(identifier: "LoginVC") as! LoginVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -49,7 +77,7 @@ class ForgotPasswordVC: UIViewController {
 //                return
 //            }
 //        }
-        let vc = self.storyboard?.instantiateViewController(identifier: "resetPasswordVC") as! resetPasswordVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "resetPasswordVC") as! resetPasswordVC
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -63,3 +91,14 @@ class ForgotPasswordVC: UIViewController {
         return emailPred.evaluate(with: email)
     }
 }
+
+extension ForgotPasswordVC : UITableViewDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txt_email
+        {
+            txt_email.resignFirstResponder()
+        }
+        return true
+    }
+}
+

@@ -2,8 +2,8 @@
 //  HushUITests.swift
 //  HushUITests
 //
-//  Created by Golden Worker on 16/01/20.
-//  Copyright © 2020 GoldenWork Ltd. All rights reserved.
+//  Created by Jeep Worker on 07/02/20.
+//  Copyright © 2020 Jeep Worker Ltd. All rights reserved.
 //
 
 import XCTest

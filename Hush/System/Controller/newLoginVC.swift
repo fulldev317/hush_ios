@@ -2,8 +2,8 @@
 //  newLoginVC.swift
 //  Hush
 //
-//  Created by Ravi Padshala on 21/01/20.
-//  Copyright © 2020 Reveralto. All rights reserved.
+//  Created by Jeep Worker on 07/02/20.
+//  Copyright © 2020 Jeep Worker Ltd. All rights reserved.
 //
 
 import UIKit
@@ -28,12 +28,12 @@ class newLoginVC: UIViewController {
     }
     
     @objc func tapFunction() {
-        let vc = self.storyboard?.instantiateViewController(identifier: "LoginVC") as! LoginVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func click_signUPMyEmail(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(identifier: "signInWithEmailVC") as! signInWithEmailVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "signInWithEmailVC") as! signInWithEmailVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -166,7 +166,7 @@
 //    }
 //
 //    @IBAction func click_signUpEmail(_ sender: UIButton) {
-//        let vc = self.storyboard?.instantiateViewController(identifier: "signInWithEmailVC") as! signInWithEmailVC
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "signInWithEmailVC") as! signInWithEmailVC
 //        self.navigationController?.pushViewController(vc, animated: true)
 //    }
 //}
@@ -355,12 +355,12 @@ class LoginVC: UIViewController {
     }
 
     @IBAction func click_login(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(identifier: "newLoginVC") as! newLoginVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "newLoginVC") as! newLoginVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func click_signUpByEmail(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(identifier: "signUpVC") as! signUpVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "signUpVC") as! signUpVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

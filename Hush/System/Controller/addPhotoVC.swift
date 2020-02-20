@@ -2,8 +2,8 @@
 //  addPhotoVC.swift
 //  Hush
 //
-//  Created by RAVI on 21/01/20.
-//  Copyright © 2020 Reveralto. All rights reserved.
+//  Created by Jeep Worker on 07/02/20.
+//  Copyright © 2020 Jeep Worker Ltd. All rights reserved.
 //
 
 import UIKit
@@ -24,18 +24,22 @@ class addPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     func openCamera()
     {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
-        {
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        else
-        {
-            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FacedetectorVC") as! FacedetectorVC
+        self.navigationController?.pushViewController(vc, animated: true)
+
+//        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+//        {
+//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+//            imagePicker.allowsEditing = true
+//            imagePicker.cameraDevice = .front
+//            self.present(imagePicker, animated: true, completion: nil)
+//        }
+//        else
+//        {
+//            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
     }
 
     func openGallary()
@@ -100,9 +104,16 @@ class addPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.selectImage = image
         
         picker.dismiss(animated: true) {
-            let vc = self.storyboard?.instantiateViewController(identifier: "editImageVc") as! editImageVc
-            vc.selectImage = self.selectImage
-            self.navigationController?.pushViewController(vc, animated: true)
+            if picker.sourceType == .camera {
+//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "FaceDetection_NewVC") as! FaceDetection_NewVC
+//                vc.selectImage = self.selectImage
+//                self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "editImageVc") as! editImageVc
+                vc.selectImage = self.selectImage
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
         }
         
 //        pickImageCallback?(image)
