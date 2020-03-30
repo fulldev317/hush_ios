@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B268E2431BF6600265C76 /* AppDelegate.swift */; };
+		154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26902431BF6600265C76 /* SceneDelegate.swift */; };
+		154B26932431BF6600265C76 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26922431BF6600265C76 /* MainView.swift */; };
+		154B26952431BF6800265C76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154B26942431BF6800265C76 /* Assets.xcassets */; };
+		154B26982431BF6800265C76 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154B26972431BF6800265C76 /* Preview Assets.xcassets */; };
+		154B269B2431BF6800265C76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154B26992431BF6800265C76 /* LaunchScreen.storyboard */; };
+		154B26A82431C36B00265C76 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26A72431C36B00265C76 /* SignUpView.swift */; };
+		154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26AA2431CB5A00265C76 /* HapticButton.swift */; };
+		154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26AD2431CB8600265C76 /* Color+Ext.swift */; };
+		154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26AF2431CDE300265C76 /* LoginButtons.swift */; };
+		154B26B22431D06000265C76 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26B12431D06000265C76 /* SignUpPresenter.swift */; };
+		154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26B52431D2A400265C76 /* Font+Ext.swift */; };
+		154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */; };
+		154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */; };
+		154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26BB2431DD7400265C76 /* iOSApp.swift */; };
+		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
+		15E8CCDE2431E35F00A92595 /* MainAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* MainAppScreens.swift */; };
+		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
+		15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15E8CCE12431EE2500A92595 /* SF-Pro-Display-Light.otf */; };
+		15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE32431EFF200A92595 /* SignUpTextField.swift */; };
+		15E8CCE62432053500A92595 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15E8CCE52432053500A92595 /* SF-Pro-Display-Thin.otf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		154B268B2431BF6600265C76 /* Hush-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hush-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		154B268E2431BF6600265C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		154B26902431BF6600265C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		154B26922431BF6600265C76 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		154B26942431BF6800265C76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		154B26972431BF6800265C76 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		154B269A2431BF6800265C76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		154B269C2431BF6800265C76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		154B26A72431C36B00265C76 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		154B26AA2431CB5A00265C76 /* HapticButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticButton.swift; sourceTree = "<group>"; };
+		154B26AD2431CB8600265C76 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		154B26AF2431CDE300265C76 /* LoginButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtons.swift; sourceTree = "<group>"; };
+		154B26B12431D06000265C76 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		154B26B52431D2A400265C76 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
+		154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		154B26BB2431DD7400265C76 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
+		15E8CCDD2431E35F00A92595 /* MainAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppScreens.swift; sourceTree = "<group>"; };
+		15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		15E8CCE12431EE2500A92595 /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
+		15E8CCE32431EFF200A92595 /* SignUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
+		15E8CCE52432053500A92595 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		154B26882431BF6600265C76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		154B26822431BF6600265C76 = {
+			isa = PBXGroup;
+			children = (
+				154B268D2431BF6600265C76 /* Hush-SwiftUI */,
+				154B268C2431BF6600265C76 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		154B268C2431BF6600265C76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				154B268B2431BF6600265C76 /* Hush-SwiftUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		154B268D2431BF6600265C76 /* Hush-SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				154B26AC2431CB7800265C76 /* Extensions */,
+				154B26A92431CB4D00265C76 /* Helpers */,
+				154B26A42431C32500265C76 /* Modules */,
+				154B26A32431C28B00265C76 /* App */,
+				154B26A22431C27500265C76 /* Resources */,
+				154B26922431BF6600265C76 /* MainView.swift */,
+			);
+			path = "Hush-SwiftUI";
+			sourceTree = "<group>";
+		};
+		154B26962431BF6800265C76 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				154B26972431BF6800265C76 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		154B26A22431C27500265C76 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				154B26B32431D25E00265C76 /* Fonts */,
+				154B26942431BF6800265C76 /* Assets.xcassets */,
+				154B26992431BF6800265C76 /* LaunchScreen.storyboard */,
+				154B269C2431BF6800265C76 /* Info.plist */,
+				154B26962431BF6800265C76 /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		154B26A32431C28B00265C76 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				154B268E2431BF6600265C76 /* AppDelegate.swift */,
+				154B26902431BF6600265C76 /* SceneDelegate.swift */,
+				154B26BB2431DD7400265C76 /* iOSApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		154B26A42431C32500265C76 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				15E8CCDD2431E35F00A92595 /* MainAppScreens.swift */,
+				154B26A52431C33500265C76 /* Auth */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		154B26A52431C33500265C76 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				154B26A62431C35600265C76 /* SignUp */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		154B26A62431C35600265C76 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				154B26A72431C36B00265C76 /* SignUpView.swift */,
+				154B26AF2431CDE300265C76 /* LoginButtons.swift */,
+				154B26B12431D06000265C76 /* SignUpPresenter.swift */,
+				15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		154B26A92431CB4D00265C76 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				154B26AA2431CB5A00265C76 /* HapticButton.swift */,
+				15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */,
+				15E8CCE32431EFF200A92595 /* SignUpTextField.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		154B26AC2431CB7800265C76 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				154B26AD2431CB8600265C76 /* Color+Ext.swift */,
+				154B26B52431D2A400265C76 /* Font+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		154B26B32431D25E00265C76 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				15E8CCE12431EE2500A92595 /* SF-Pro-Display-Light.otf */,
+				15E8CCE52432053500A92595 /* SF-Pro-Display-Thin.otf */,
+				154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */,
+				154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		154B268A2431BF6600265C76 /* Hush-SwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 154B269F2431BF6800265C76 /* Build configuration list for PBXNativeTarget "Hush-SwiftUI" */;
+			buildPhases = (
+				154B26872431BF6600265C76 /* Sources */,
+				154B26882431BF6600265C76 /* Frameworks */,
+				154B26892431BF6600265C76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hush-SwiftUI";
+			productName = "Hush-SwiftUI";
+			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		154B26832431BF6600265C76 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = AppServices;
+				TargetAttributes = {
+					154B268A2431BF6600265C76 = {
+						CreatedOnToolsVersion = 11.4;
+					};
+				};
+			};
+			buildConfigurationList = 154B26862431BF6600265C76 /* Build configuration list for PBXProject "Hush-SwiftUI" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 154B26822431BF6600265C76;
+			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				154B268A2431BF6600265C76 /* Hush-SwiftUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		154B26892431BF6600265C76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15E8CCE62432053500A92595 /* SF-Pro-Display-Thin.otf in Resources */,
+				154B269B2431BF6800265C76 /* LaunchScreen.storyboard in Resources */,
+				154B26982431BF6800265C76 /* Preview Assets.xcassets in Resources */,
+				154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */,
+				154B26952431BF6800265C76 /* Assets.xcassets in Resources */,
+				15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */,
+				154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		154B26872431BF6600265C76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */,
+				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
+				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
+				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
+				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
+				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
+				154B26932431BF6600265C76 /* MainView.swift in Sources */,
+				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
+				15E8CCDE2431E35F00A92595 /* MainAppScreens.swift in Sources */,
+				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
+				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
+				154B26B22431D06000265C76 /* SignUpPresenter.swift in Sources */,
+				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
+				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		154B26992431BF6800265C76 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				154B269A2431BF6800265C76 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		154B269D2431BF6800265C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		154B269E2431BF6800265C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		154B26A02431BF6800265C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = NL53BFH4CA;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Hush-SwiftUI/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AppServices.Hush-SwiftUI.dev";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		154B26A12431BF6800265C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = NL53BFH4CA;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Hush-SwiftUI/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AppServices.Hush-SwiftUI.dev";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		154B26862431BF6600265C76 /* Build configuration list for PBXProject "Hush-SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				154B269D2431BF6800265C76 /* Debug */,
+				154B269E2431BF6800265C76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		154B269F2431BF6800265C76 /* Build configuration list for PBXNativeTarget "Hush-SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				154B26A02431BF6800265C76 /* Debug */,
+				154B26A12431BF6800265C76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 154B26832431BF6600265C76 /* Project object */;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Hush-SwiftUI/Hush-SwiftUI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:CoreLogic/CoreLogic.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:hush-ios/Hush.xcodeproj">
+   </FileRef>
+</Workspace>
