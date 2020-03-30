@@ -29,7 +29,7 @@ struct SignUpTextField: View {
                 }
             }
             Rectangle().frame(height: 1).foregroundColor(Color(0x4E596F))
-        }.frame(height: 60)
+        }.frame(height: 50)
     }
 }
 
