@@ -8,71 +8,66 @@
 
 import SwiftUI
 
-protocol SignUpEmailViewPresenter: ObservableObject {
-    
-    var name: String { get set }
-    var username: String { get set }
-    var email: String { get set }
-    var password: String { get set }
-    var hasError: Bool { get set }
-}
-
-class SignUpEmailPresenter: SignUpEmailViewPresenter {
-    
-    @Published var name: String = ""
-    @Published var username: String = ""
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var hasError: Bool = false
-}
-
 struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
     
     @ObservedObject var presenter: Presenter
     @ObservedObject var keyboardObserver = KeyboardObserver()
-    @State var sss = ""
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         ZStack {
             GeometryReader { proxy in
-                ScrollView {
-                    self.body(with: proxy)
-                        .padding(.bottom, self.keyboardObserver.height)
+                ZStack {
+                    ScrollView {
+                        self.body(with: proxy)
+                            .frame(minHeight: proxy.size.height)
+                            .padding(.bottom, self.keyboardObserver.height)
+                    }
                 }
             }
-        }.navigationBarBackButtonHidden(true).background(background())
+        }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).background(background())
     }
     
     private func body(with proxy: GeometryProxy) -> some View {
         
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
+                VStack {
+                    HStack {   HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
+                        Image("onBack_icon").frame(width: 44, height: 44)
+                    }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                Spacer()
                 logo()
                 
                 Text("Sign up with email").foregroundColor(.white).font(.thin(22))
-                    .padding(.bottom, 40).padding(.top, 60)
+                    .frame(maxHeight: 90).frame(minHeight: 60)
                 if presenter.hasError {
                     errorLabel().padding(.bottom, 22)
                 }
                 
+                Spacer()
+                
                 fields().padding(.horizontal, 30)
                 HapticButton(action: { }) {
                     ZStack {
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.white, lineWidth: 1)
                             .foregroundColor(.clear)
-                            .cornerRadius(6)
-                            .border(Color.white, width: 1)
                             .frame(height: 48)
                         Text("SUBMIT").font(.light()).foregroundColor(.white)
                     }.padding(.horizontal, 30)
                 }.padding(.top, 30)
-                .padding(.bottom, 26)
+                    .padding(.bottom, 26)
                 HapticButton(action: { }, label: {
                     Text("Already have an account?")
                         .font(.medium(16))
                         .foregroundColor(.white)
                 })
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 30)
             }
         }
     }
@@ -91,10 +86,16 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
     }
 }
 
+
+// MARK: - Previews
+
 struct SignUpEmail_Previews: PreviewProvider {
+    
     static var previews: some View {
-        NavigationView {
-            SignUpEmail(presenter: SignUpEmailPresenter())
+        Group {
+            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone XS Max"))
+            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone 8"))
+            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone XE"))
         }
     }
 }
