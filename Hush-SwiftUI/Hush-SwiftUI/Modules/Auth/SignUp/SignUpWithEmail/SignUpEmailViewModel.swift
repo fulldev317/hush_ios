@@ -17,7 +17,13 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var hasError: Bool = false
     @Published var showAddPhotoScreen = false
     
-    var addPhotoViewModel = AddPhotosViewModel()
+    let picker: DVImagePicker
+    var addPhotoViewModel: AddPhotosViewModel
+    
+    init() {
+        self.picker = DVImagePicker()
+        self.addPhotoViewModel = AddPhotosViewModel(picker)
+    }
     
     func submit() {
         

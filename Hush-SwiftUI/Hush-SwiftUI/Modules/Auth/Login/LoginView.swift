@@ -11,7 +11,7 @@ import SwiftUI
 struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     
     // MARK: - Properties
-    
+
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
     

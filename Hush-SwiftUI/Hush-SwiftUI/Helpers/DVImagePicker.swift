@@ -10,16 +10,6 @@ import Foundation
 import UIKit
 import Photos
 
-final class Picker: UIImagePickerController {
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationBar.removeFromSuperview()
-        setNavigationBarHidden(false, animated: false)
-    }
-}
-
 class DVImagePicker: NSObject {
     
     enum Result {
@@ -32,11 +22,11 @@ class DVImagePicker: NSObject {
         
         let alertController = UIAlertController(title: "Choose image", message: nil, preferredStyle: .actionSheet)
         
-        alertController.addAction(UIAlertAction(title: "Take a Photo", style: .default) { _ in
-            self.showController(with: .camera, from: vc, result: result)
+        alertController.addAction(UIAlertAction(title: "Take a Photo", style: .default) { [weak self] _ in
+            self?.showController(with: .camera, from: vc, result: result)
         })
-        alertController.addAction(UIAlertAction(title: "Camera Roll", style: .default) { _ in
-            self.showController(with: .photoLibrary, from: vc, result: result)
+        alertController.addAction(UIAlertAction(title: "Camera Roll", style: .default) { [weak self] _ in
+            self?.showController(with: .photoLibrary, from: vc, result: result)
         })
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.viewController = vc
@@ -47,7 +37,7 @@ class DVImagePicker: NSObject {
     
     // MARK: Properties
     
-    private var picker = Picker()
+    private var picker: UIImagePickerController = UIImagePickerController()
     private var viewController: UIViewController!
     private var sourceType:  UIImagePickerController.SourceType!
     private var result: ((Result) -> Void)!
@@ -82,11 +72,11 @@ class DVImagePicker: NSObject {
         if type == .camera {
             
             if AVCaptureDevice.authorizationStatus(for: .video) ==  AVAuthorizationStatus.denied {
-                AVCaptureDevice.requestAccess(for: .video) { (allowed) in
+                AVCaptureDevice.requestAccess(for: .video) { [weak self] (allowed) in
                     if allowed {
-                        self.showPicker(vc)
+                        self?.showPicker(vc)
                     } else {
-                        self.result(.failure)
+                        self?.result(.failure)
                     }
                 }
             }
@@ -98,10 +88,10 @@ class DVImagePicker: NSObject {
             
             if PHPhotoLibrary.authorizationStatus() == .denied || PHPhotoLibrary.authorizationStatus() == .notDetermined {
                 
-                PHPhotoLibrary.requestAuthorization { (status) in
+                PHPhotoLibrary.requestAuthorization { [weak self] (status) in
                     switch status {
-                    case .authorized: self.showPicker(vc)
-                    default: self.result(.failure)
+                    case .authorized: self?.showPicker(vc)
+                    default: self?.result(.failure)
                     }
                 }
             }
@@ -113,8 +103,8 @@ class DVImagePicker: NSObject {
     
     private func showPicker(_ vc: UIViewController) {
         
-        DispatchQueue.main.async {
-            
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             vc.present(self.picker, animated: true)
         }
     }

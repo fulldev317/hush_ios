@@ -1,5 +1,5 @@
 //
-//  LoginWithEmailViewModel.swift
+//  ForgotPasswordViewModel.swift
 //  Hush-SwiftUI
 //
 //  Created Dima Virych on 31.03.2020.
@@ -9,17 +9,14 @@
 import SwiftUI
 import Combine
 
-class LoginWithEmailViewModel: LoginWithEmailViewModeled {
+class ForgotPasswordViewModel: ForgotPasswordViewModeled {
     
     // MARK: - Properties
 
     @Published var email = ""
-    @Published var password = ""
     @Published var hasErrorMessage = false
     @Published var errorMessage = ""
-    @Published var showForgotPassword = false
-    
-    var forgotPasswordViewModel = ForgotPasswordViewModel()
+    @Published var goToRoot = false
     
     func submit() {
         

@@ -19,6 +19,9 @@
 		1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B4442433500C00180D77 /* LoginWithEmailView.swift */; };
 		1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B4452433500C00180D77 /* LoginWithEmailViewModel.swift */; };
 		1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B4462433500C00180D77 /* LoginWithEmailViewModeled.swift */; };
+		1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B44B24335B4F00180D77 /* ForgotPasswordView.swift */; };
+		1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B44C24335B4F00180D77 /* ForgotPasswordViewModel.swift */; };
+		1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B44D24335B4F00180D77 /* ForgotPasswordViewModeled.swift */; };
 		154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B268E2431BF6600265C76 /* AppDelegate.swift */; };
 		154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26902431BF6600265C76 /* SceneDelegate.swift */; };
 		154B26932431BF6600265C76 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26922431BF6600265C76 /* MainView.swift */; };
@@ -57,6 +60,9 @@
 		1546B4442433500C00180D77 /* LoginWithEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailView.swift; sourceTree = "<group>"; };
 		1546B4452433500C00180D77 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		1546B4462433500C00180D77 /* LoginWithEmailViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailViewModeled.swift; sourceTree = "<group>"; };
+		1546B44B24335B4F00180D77 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		1546B44C24335B4F00180D77 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		1546B44D24335B4F00180D77 /* ForgotPasswordViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModeled.swift; sourceTree = "<group>"; };
 		154B268B2431BF6600265C76 /* Hush-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hush-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		154B268E2431BF6600265C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154B26902431BF6600265C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 		1546B4302433400C00180D77 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1546B44A24335B3E00180D77 /* ForgotPassword */,
 				1546B44324334FEB00180D77 /* LoginWithEmail */,
 				1546B43D243340BD00180D77 /* LoginView.swift */,
 				1546B43E243340BD00180D77 /* LoginViewModel.swift */,
@@ -124,6 +131,16 @@
 				1546B4462433500C00180D77 /* LoginWithEmailViewModeled.swift */,
 			);
 			path = LoginWithEmail;
+			sourceTree = "<group>";
+		};
+		1546B44A24335B3E00180D77 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				1546B44B24335B4F00180D77 /* ForgotPasswordView.swift */,
+				1546B44C24335B4F00180D77 /* ForgotPasswordViewModel.swift */,
+				1546B44D24335B4F00180D77 /* ForgotPasswordViewModeled.swift */,
+			);
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		154B26822431BF6600265C76 = {
@@ -339,9 +356,12 @@
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
+				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
+				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
+				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
