@@ -32,16 +32,11 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
         
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
-                VStack {
-                    HStack {   HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
-                        Image("onBack_icon").frame(width: 44, height: 44)
-                    }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
-                        Spacer()
-                    }
-                    Spacer()
-                }
+                
                 Spacer()
+                
                 logo()
+                Spacer()
                 
                 Text("Sign up with email").foregroundColor(.white).font(.thin(22))
                     .frame(maxHeight: 90).frame(minHeight: 60)
@@ -52,15 +47,8 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
                 Spacer()
                 
                 fields().padding(.horizontal, 30)
-                HapticButton(action: { }) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 6)
-                            .stroke(Color.white, lineWidth: 1)
-                            .foregroundColor(.clear)
-                            .frame(height: 48)
-                        Text("SUBMIT").font(.light()).foregroundColor(.white)
-                    }.padding(.horizontal, 30)
-                }.padding(.top, 30)
+                Spacer()
+                submitButton()
                     .padding(.bottom, 26)
                 HapticButton(action: { }, label: {
                     Text("Already have an account?")
@@ -68,6 +56,14 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
                         .foregroundColor(.white)
                 })
                     .padding(.bottom, 30)
+            }
+            VStack {
+                HStack {   HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
+                    Image("onBack_icon").frame(width: 44, height: 44)
+                }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
+                    Spacer()
+                }
+                Spacer()
             }
         }
     }
@@ -84,6 +80,18 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
     private func errorLabel() -> some View {
         Text("Username already taken, try another one").font(.thin()).foregroundColor(Color(0xF2C94C))
     }
+    
+    private func submitButton() -> some View {
+        HapticButton(action: { }) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.white, lineWidth: 1)
+                    .foregroundColor(.clear)
+                    .frame(minHeight: 40, maxHeight: 48)
+                Text("SUBMIT").font(.light()).foregroundColor(.white)
+            }.padding(.horizontal, 30)
+        }
+    }
 }
 
 
@@ -95,7 +103,7 @@ struct SignUpEmail_Previews: PreviewProvider {
         Group {
             NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone XS Max"))
             NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone XE"))
+            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone SE"))
         }
     }
 }
