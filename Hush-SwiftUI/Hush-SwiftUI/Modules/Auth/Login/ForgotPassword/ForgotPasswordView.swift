@@ -1,5 +1,5 @@
 //
-//  LoginWithEmailView.swift
+//  ForgotPasswordView.swift
 //  Hush-SwiftUI
 //
 //  Created Dima Virych on 31.03.2020.
@@ -8,10 +8,11 @@
 
 import SwiftUI
 
-struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppScreens {
+struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppScreens {
+    
     
     // MARK: - Properties
-    
+
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
     @ObservedObject var observer = KeyboardObserver()
@@ -30,7 +31,11 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 }
             }
             onBackButton(mode)
-            NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel), isActive: $viewModel.showForgotPassword, label: { Text("") })
+            NavigationLink(destination:
+                SignUpView(viewModel: SignUpViewModel())
+                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarHidden(true),
+                           isActive: $viewModel.goToRoot, label: { Text("") })
         }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
@@ -46,7 +51,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 logo()
                 Spacer()
                 Spacer()
-                Text("Log in with email")
+                Text("Forgot password")
                     .font(.thin(22))
                     .foregroundColor(.white)
                     .padding(.bottom, 16)
@@ -57,35 +62,34 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                     }.padding(.horizontal, 30)
                 }
                 SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $viewModel.email).padding(.horizontal, 30)
-                SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password).padding(.horizontal, 30)
                 borderedButton(action: viewModel.submit, title: "Submit")
                     .padding(.vertical, 29)
-                resetPasswordButton()
+                popToRoot()
             }
         }
     }
     
-    private func resetPasswordButton() -> some View {
+    private func popToRoot() -> some View {
         
         HapticButton(action: {
-            self.viewModel.showForgotPassword.toggle()
+            self.viewModel.goToRoot.toggle()
         }) {
-            Group { Text("Forgot Pasword? ").foregroundColor(.white) + Text("Reset now!").foregroundColor(Color(0x56cbf2)) }.padding(.bottom, 30)
+            Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }.padding(.bottom, 30)
         }
     }
 }
 
-struct LoginWithEmailView_Previews: PreviewProvider {
+struct ForgotPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                LoginWithEmailView(viewModel: LoginWithEmailViewModel())
+                ForgotPasswordView(viewModel: ForgotPasswordViewModel())
             }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
-                LoginWithEmailView(viewModel: LoginWithEmailViewModel())
+                ForgotPasswordView(viewModel: ForgotPasswordViewModel())
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
-                LoginWithEmailView(viewModel: LoginWithEmailViewModel())
+                ForgotPasswordView(viewModel: ForgotPasswordViewModel())
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
         }
     }

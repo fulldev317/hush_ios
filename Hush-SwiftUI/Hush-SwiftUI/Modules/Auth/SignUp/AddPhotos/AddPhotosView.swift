@@ -41,16 +41,17 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
 }
 
 struct AddPhotosView_Previews: PreviewProvider {
+    private static let picker = DVImagePicker()
     static var previews: some View {
         Group {
             NavigationView {
-                AddPhotosView(viewModel:  AddPhotosViewModel()).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
             NavigationView {
-                AddPhotosView(viewModel:  AddPhotosViewModel()).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
-                AddPhotosView(viewModel:  AddPhotosViewModel()).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
             }.previewDevice(.init(rawValue: "iPhone SE"))
         }
     }

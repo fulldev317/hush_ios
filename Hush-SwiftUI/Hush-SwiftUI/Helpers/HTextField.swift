@@ -16,11 +16,14 @@ struct HTextField: UIViewRepresentable {
     @Binding var text: String
     var textColor: UIColor = .black
     var font: UIFont = .thin(18)
-    
     let isSecure: Bool
+    let coordinator = Coordinator()
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        
+        coordinator.parent = self
+        
+        return coordinator
     }
     
     func makeUIView(context: Context) -> UITextField {
@@ -41,14 +44,11 @@ struct HTextField: UIViewRepresentable {
     
     class Coordinator: NSObject, UITextFieldDelegate {
         
-        var parrent: HTextField
-        init(_ parrent: HTextField) {
-            self.parrent = parrent
-        }
-        
+        var parent: HTextField!
+    
         func textFieldDidEndEditing(_ textField: UITextField) {
             
-            parrent.text = textField.text ?? ""
+            parent.text = textField.text ?? ""
         }
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
