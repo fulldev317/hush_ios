@@ -61,7 +61,7 @@ extension AuthAppScreens {
                     .foregroundColor(.clear)
                     .frame(minHeight: 40, maxHeight: 48)
                 Text(title).font(.light()).foregroundColor(.white)
-            }.padding(.horizontal, 30)
+            }
         }
     }
 }

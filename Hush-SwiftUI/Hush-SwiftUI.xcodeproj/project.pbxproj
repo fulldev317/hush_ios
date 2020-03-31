@@ -22,6 +22,10 @@
 		1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B44B24335B4F00180D77 /* ForgotPasswordView.swift */; };
 		1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B44C24335B4F00180D77 /* ForgotPasswordViewModel.swift */; };
 		1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B44D24335B4F00180D77 /* ForgotPasswordViewModeled.swift */; };
+		1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B45224336B7500180D77 /* GetMoreDetailsView.swift */; };
+		1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B45324336B7500180D77 /* GetMoreDetailsViewModel.swift */; };
+		1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B45424336B7500180D77 /* GetMoreDetailsViewModeled.swift */; };
+		1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B45824336B8C00180D77 /* HSegmentedControl.swift */; };
 		154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B268E2431BF6600265C76 /* AppDelegate.swift */; };
 		154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26902431BF6600265C76 /* SceneDelegate.swift */; };
 		154B26932431BF6600265C76 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26922431BF6600265C76 /* MainView.swift */; };
@@ -63,6 +67,10 @@
 		1546B44B24335B4F00180D77 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		1546B44C24335B4F00180D77 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		1546B44D24335B4F00180D77 /* ForgotPasswordViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModeled.swift; sourceTree = "<group>"; };
+		1546B45224336B7500180D77 /* GetMoreDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoreDetailsView.swift; sourceTree = "<group>"; };
+		1546B45324336B7500180D77 /* GetMoreDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoreDetailsViewModel.swift; sourceTree = "<group>"; };
+		1546B45424336B7500180D77 /* GetMoreDetailsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoreDetailsViewModeled.swift; sourceTree = "<group>"; };
+		1546B45824336B8C00180D77 /* HSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSegmentedControl.swift; sourceTree = "<group>"; };
 		154B268B2431BF6600265C76 /* Hush-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hush-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		154B268E2431BF6600265C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154B26902431BF6600265C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +149,16 @@
 				1546B44D24335B4F00180D77 /* ForgotPasswordViewModeled.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		1546B45124336B6600180D77 /* GetMoreDetails */ = {
+			isa = PBXGroup;
+			children = (
+				1546B45224336B7500180D77 /* GetMoreDetailsView.swift */,
+				1546B45324336B7500180D77 /* GetMoreDetailsViewModel.swift */,
+				1546B45424336B7500180D77 /* GetMoreDetailsViewModeled.swift */,
+			);
+			path = GetMoreDetails;
 			sourceTree = "<group>";
 		};
 		154B26822431BF6600265C76 = {
@@ -223,6 +241,7 @@
 		154B26A62431C35600265C76 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				1546B45124336B6600180D77 /* GetMoreDetails */,
 				1546B42124331D9800180D77 /* AddPhotos */,
 				15E8CCE72432286900A92595 /* SignUpWithEmail */,
 				154B26A72431C36B00265C76 /* SignUpView.swift */,
@@ -241,6 +260,7 @@
 				15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */,
 				15E8CCE32431EFF200A92595 /* SignUpTextField.swift */,
 				1546B42C2433275F00180D77 /* HTextField.swift */,
+				1546B45824336B8C00180D77 /* HSegmentedControl.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -357,8 +377,12 @@
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
+				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
+				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
+				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
+				1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */,
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
