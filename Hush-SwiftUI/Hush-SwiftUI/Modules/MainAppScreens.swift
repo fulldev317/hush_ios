@@ -12,13 +12,13 @@ protocol MainAppScreens {
 
 }
 
-extension MainAppScreens where Self: View {
+extension MainAppScreens {
     
     func logo() -> some View {
         Image("AppLogo")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: 155, height: 190)
+            .frame(width: 130, height: 160)
     }
     
     private var size: CGSize {
@@ -31,5 +31,14 @@ extension MainAppScreens where Self: View {
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea([.top, .bottom])
             .frame(width: size.width, height: size.height)
+    }
+}
+
+struct MainAppScreens_Previews: PreviewProvider, MainAppScreens {
+    static var previews: some View {
+        ZStack {
+            MainAppScreens_Previews().background()
+            MainAppScreens_Previews().logo()
+        }
     }
 }
