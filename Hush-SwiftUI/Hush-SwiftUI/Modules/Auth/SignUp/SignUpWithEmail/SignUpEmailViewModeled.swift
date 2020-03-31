@@ -18,8 +18,10 @@ protocol SignUpEmailViewModeled: ObservableObject {
     var password: String { get set }
     var hasError: Bool { get set }
     var showAddPhotoScreen: Bool { get set }
+    var showLoginScreen: Bool { get set }
     
     var addPhotoViewModel: addPhotoViewModel { get set }
     
     func submit()
+    func login()
 }

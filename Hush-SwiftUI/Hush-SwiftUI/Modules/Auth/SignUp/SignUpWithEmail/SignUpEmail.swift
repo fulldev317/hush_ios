@@ -26,6 +26,9 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
             }
             onBackButton(self.mode)
             NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
+            NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
+                Text("")
+            }
         }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).background(bluredBackground())
     }
     
@@ -51,7 +54,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 Spacer()
                 submitButton()
                     .padding(.bottom, 26)
-                HapticButton(action: { }, label: {
+                HapticButton(action: viewModel.login, label: {
                     Text("Already have an account?")
                         .font(.medium(16))
                         .foregroundColor(.white)
