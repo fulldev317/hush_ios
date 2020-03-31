@@ -46,6 +46,9 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, MainAppScreens {
             NavigationLink(destination: SignUpEmail(viewModel: viewModel.emailPresenter), isActive: $viewModel.showEmailScreen) {
                 Text("")
             }
+            NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
+                Text("")
+            }
         }.background(background())
     }
 }

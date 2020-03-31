@@ -68,9 +68,16 @@ extension MainAppScreens {
 
 struct MainAppScreens_Previews: PreviewProvider, MainAppScreens {
     static var previews: some View {
-        ZStack {
-            MainAppScreens_Previews().background()
-            MainAppScreens_Previews().logo()
+        Group {
+            ZStack {
+                MainAppScreens_Previews().background()
+                MainAppScreens_Previews().logo()
+            }
+            
+            ZStack {
+                MainAppScreens_Previews().bluredBackground()
+                MainAppScreens_Previews().logo()
+            }.previewDevice(.init(rawValue: "iPhone XS Max"))
         }
     }
 }
