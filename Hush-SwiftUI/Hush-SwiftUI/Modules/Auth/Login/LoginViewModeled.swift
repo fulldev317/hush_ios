@@ -10,7 +10,11 @@ import Combine
 
 protocol LoginViewModeled: ObservableObject {
     
-    var message: String { get set }
+    associatedtype loginWithMailViewModel: LoginWithEmailViewModeled
     
-    func updateMessage()
+    var showEmailScreen: Bool { get set }
+    var loginWithMailViewModel: loginWithMailViewModel { get set }
+    
+    func loginWithEmail()
+    
 }

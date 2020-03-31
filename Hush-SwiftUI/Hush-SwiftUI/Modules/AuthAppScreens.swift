@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-protocol MainAppScreens {
+protocol AuthAppScreens {
     
 }
 
-extension MainAppScreens {
+extension AuthAppScreens {
     
     func logo() -> some View {
         Image("AppLogo")
@@ -66,7 +66,7 @@ extension MainAppScreens {
     }
 }
 
-struct MainAppScreens_Previews: PreviewProvider, MainAppScreens {
+struct MainAppScreens_Previews: PreviewProvider, AuthAppScreens {
     static var previews: some View {
         Group {
             ZStack {

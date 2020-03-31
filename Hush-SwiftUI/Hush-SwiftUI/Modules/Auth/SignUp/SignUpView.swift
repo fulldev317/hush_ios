@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SignUpView<ViewModel: SignUpViewModeled>: View, MainAppScreens {
+struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
     
     @State var showSignupButtons = false
     

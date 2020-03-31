@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LoginView<ViewModel: LoginViewModeled>: View, MainAppScreens {
+struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     
     // MARK: - Properties
     
@@ -33,6 +33,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, MainAppScreens {
             }
             
             onBackButton(mode)
+            
+            NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel), isActive: $viewModel.showEmailScreen, label: { Text("") })
         }
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(true)
@@ -50,9 +52,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, MainAppScreens {
     private func buttons() -> some View {
        
         VStack(spacing: 14) {
-            LoginButton(title: "Login with Email", img: Image("mail_icon"), color: Color(0x56CCF2)) {
-//                self.presenter.emailPressed()
-            }.padding(.horizontal, 24)
+            LoginButton(title: "Login with Email", img: Image("mail_icon"), color: Color(0x56CCF2), action: viewModel.loginWithEmail)
+                .padding(.horizontal, 24)
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
 //                self.presenter.facebookPressed()
             }.padding(.horizontal, 24)

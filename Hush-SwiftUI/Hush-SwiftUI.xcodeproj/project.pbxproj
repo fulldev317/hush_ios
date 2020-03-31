@@ -16,6 +16,9 @@
 		1546B440243340BD00180D77 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B43D243340BD00180D77 /* LoginView.swift */; };
 		1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B43E243340BD00180D77 /* LoginViewModel.swift */; };
 		1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B43F243340BD00180D77 /* LoginViewModeled.swift */; };
+		1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B4442433500C00180D77 /* LoginWithEmailView.swift */; };
+		1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B4452433500C00180D77 /* LoginWithEmailViewModel.swift */; };
+		1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B4462433500C00180D77 /* LoginWithEmailViewModeled.swift */; };
 		154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B268E2431BF6600265C76 /* AppDelegate.swift */; };
 		154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26902431BF6600265C76 /* SceneDelegate.swift */; };
 		154B26932431BF6600265C76 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26922431BF6600265C76 /* MainView.swift */; };
@@ -32,7 +35,7 @@
 		154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */; };
 		154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26BB2431DD7400265C76 /* iOSApp.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
-		15E8CCDE2431E35F00A92595 /* MainAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* MainAppScreens.swift */; };
+		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
 		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
 		15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15E8CCE12431EE2500A92595 /* SF-Pro-Display-Light.otf */; };
 		15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE32431EFF200A92595 /* SignUpTextField.swift */; };
@@ -51,6 +54,9 @@
 		1546B43D243340BD00180D77 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1546B43E243340BD00180D77 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1546B43F243340BD00180D77 /* LoginViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModeled.swift; sourceTree = "<group>"; };
+		1546B4442433500C00180D77 /* LoginWithEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailView.swift; sourceTree = "<group>"; };
+		1546B4452433500C00180D77 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
+		1546B4462433500C00180D77 /* LoginWithEmailViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailViewModeled.swift; sourceTree = "<group>"; };
 		154B268B2431BF6600265C76 /* Hush-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hush-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		154B268E2431BF6600265C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154B26902431BF6600265C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +75,7 @@
 		154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		154B26BB2431DD7400265C76 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
-		15E8CCDD2431E35F00A92595 /* MainAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppScreens.swift; sourceTree = "<group>"; };
+		15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppScreens.swift; sourceTree = "<group>"; };
 		15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		15E8CCE12431EE2500A92595 /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
 		15E8CCE32431EFF200A92595 /* SignUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
@@ -102,11 +108,22 @@
 		1546B4302433400C00180D77 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1546B44324334FEB00180D77 /* LoginWithEmail */,
 				1546B43D243340BD00180D77 /* LoginView.swift */,
 				1546B43E243340BD00180D77 /* LoginViewModel.swift */,
 				1546B43F243340BD00180D77 /* LoginViewModeled.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		1546B44324334FEB00180D77 /* LoginWithEmail */ = {
+			isa = PBXGroup;
+			children = (
+				1546B4442433500C00180D77 /* LoginWithEmailView.swift */,
+				1546B4452433500C00180D77 /* LoginWithEmailViewModel.swift */,
+				1546B4462433500C00180D77 /* LoginWithEmailViewModeled.swift */,
+			);
+			path = LoginWithEmail;
 			sourceTree = "<group>";
 		};
 		154B26822431BF6600265C76 = {
@@ -171,7 +188,7 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				15E8CCDD2431E35F00A92595 /* MainAppScreens.swift */,
+				15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */,
 				154B26A52431C33500265C76 /* Auth */,
 			);
 			path = Modules;
@@ -323,15 +340,18 @@
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
+				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
+				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
+				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
-				15E8CCDE2431E35F00A92595 /* MainAppScreens.swift in Sources */,
+				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
 				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
 				15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */,
