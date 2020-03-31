@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SignUpEmailPresenter: SignUpEmailViewPresenter {
+class SignUpEmailViewModel: SignUpEmailViewModeled {
     
     @Published var name: String = ""
     @Published var username: String = ""

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SignUpEmailViewPresenter: ObservableObject {
+protocol SignUpEmailViewModeled: ObservableObject {
     
     var name: String { get set }
     var username: String { get set }

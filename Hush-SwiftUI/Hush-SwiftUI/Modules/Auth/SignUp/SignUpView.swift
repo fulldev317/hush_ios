@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct SignUpView<Presenter: SignUpViewPresenter>: View, MainAppScreens {
+struct SignUpView<ViewModel: SignUpViewModeled>: View, MainAppScreens {
     
     @State var showSignupButtons = false
     
-    @ObservedObject var presenter: Presenter
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         
@@ -34,7 +34,7 @@ struct SignUpView<Presenter: SignUpViewPresenter>: View, MainAppScreens {
                 
                 Spacer()
                 
-                HapticButton(action: presenter.login, label: {
+                HapticButton(action: viewModel.login, label: {
                     Text("Already have an account? Log In")
                         .font(.medium(16))
                         .foregroundColor(.white)
@@ -43,7 +43,7 @@ struct SignUpView<Presenter: SignUpViewPresenter>: View, MainAppScreens {
                 bottomText()
             }
             .padding(.bottom, 20)
-            NavigationLink(destination: SignUpEmail(presenter: presenter.emailPresenter), isActive: $presenter.showEmailScreen) {
+            NavigationLink(destination: SignUpEmail(viewModel: viewModel.emailPresenter), isActive: $viewModel.showEmailScreen) {
                 Text("")
             }
         }.background(background())
@@ -69,7 +69,7 @@ extension SignUpView {
                 }
             }.opacity(showSignupButtons ? 0.5 : 1)
             if showSignupButtons {
-                LoginButtons(presenter: presenter).transition(buttonsTransition())
+                LoginButtons(presenter: viewModel).transition(buttonsTransition())
             }
         }
     }
@@ -102,12 +102,12 @@ extension SignUpView {
     
     private func terms() -> some View {
         
-        Text("Terms & Conditions").underline().onTapGesture(perform: presenter.terms)
+        Text("Terms & Conditions").underline().onTapGesture(perform: viewModel.terms)
     }
     
     private func policy() -> some View {
         
-        Text("Privacy Policy.").underline().onTapGesture(perform: presenter.privacy)
+        Text("Privacy Policy.").underline().onTapGesture(perform: viewModel.privacy)
     }
 }
 
@@ -118,11 +118,11 @@ struct SignUpView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            SignUpView(presenter: SignUpPresenter())
+            SignUpView(viewModel: SignUpViewModel())
                 .previewDevice(.init(rawValue: "iPhone XS Max"))
-            SignUpView(presenter: SignUpPresenter())
+            SignUpView(viewModel: SignUpViewModel())
                 .previewDevice(.init(rawValue: "iPhone 8"))
-            SignUpView(presenter: SignUpPresenter())
+            SignUpView(viewModel: SignUpViewModel())
                 .previewDevice(.init(rawValue: "iPhone SE"))
         }
     }

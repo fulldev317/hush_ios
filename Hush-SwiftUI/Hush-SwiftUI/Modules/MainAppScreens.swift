@@ -32,6 +32,13 @@ extension MainAppScreens {
             .edgesIgnoringSafeArea([.top, .bottom])
             .frame(width: size.width, height: size.height)
     }
+    
+    func bluredBackground() -> some View {
+        ZStack {
+            background().blur(radius: 5, opaque: true)
+            Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
+        }
+    }
 }
 
 struct MainAppScreens_Previews: PreviewProvider, MainAppScreens {

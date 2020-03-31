@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
+struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, MainAppScreens {
     
-    @ObservedObject var presenter: Presenter
+    @ObservedObject var viewModel: ViewModel
     @ObservedObject var keyboardObserver = KeyboardObserver()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -32,7 +32,7 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
                 }
                 Spacer()
             }
-        }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).background(background())
+        }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).background(bluredBackground())
     }
     
     private func body(with proxy: GeometryProxy) -> some View {
@@ -47,7 +47,7 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
                 
                 Text("Sign up with email").foregroundColor(.white).font(.thin(22))
                     .frame(maxHeight: 90).frame(minHeight: 60)
-                if presenter.hasError {
+                if viewModel.hasError {
                     errorLabel().padding(.bottom, 22)
                 }
                 
@@ -69,10 +69,10 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
     
     private func fields() -> some View {
         Group {
-            SignUpTextField(placeholder: "Name", icon: Image("user_icon"), text: $presenter.name)
-            SignUpTextField(placeholder: "Choose a Username", icon: Image("user_icon"), text: $presenter.username)
-            SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $presenter.email)
-            SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $presenter.password)
+            SignUpTextField(placeholder: "Name", icon: Image("user_icon"), text: $viewModel.name)
+            SignUpTextField(placeholder: "Choose a Username", icon: Image("user_icon"), text: $viewModel.username)
+            SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $viewModel.email)
+            SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password)
         }
     }
     
@@ -100,9 +100,9 @@ struct SignUpEmail_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone XS Max"))
-            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView { SignUpEmail(presenter: SignUpEmailPresenter()) }.previewDevice(.init(rawValue: "iPhone SE"))
+            NavigationView { SignUpEmail(viewModel: SignUpEmailViewModel()) }.previewDevice(.init(rawValue: "iPhone XS Max"))
+            NavigationView { SignUpEmail(viewModel: SignUpEmailViewModel()) }.previewDevice(.init(rawValue: "iPhone 8"))
+            NavigationView { SignUpEmail(viewModel: SignUpEmailViewModel()) }.previewDevice(.init(rawValue: "iPhone SE"))
         }
     }
 }

@@ -8,27 +8,11 @@
 
 import SwiftUI
 
-protocol SignUpViewPresenter: ObservableObject {
-    
-    var showEmailScreen: Bool { get set }
-    var emailPresenter: SignUpEmailPresenter { get }
-    
-    func login()
-    func terms()
-    func privacy()
-    
-    func emailPressed()
-    func googlePressed()
-    func facebookPressed()
-    func applePressed()
-    func snapPressed()
-}
-
-class SignUpPresenter: SignUpViewPresenter {
+class SignUpViewModel: SignUpViewModeled {
     
     @Published var showEmailScreen = false
     
-    public let emailPresenter = SignUpEmailPresenter()
+    public let emailPresenter = SignUpEmailViewModel()
     
     func login() {
         
