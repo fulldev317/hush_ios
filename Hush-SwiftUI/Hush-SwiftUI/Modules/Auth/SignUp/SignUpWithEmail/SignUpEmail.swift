@@ -18,12 +18,19 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
         ZStack {
             GeometryReader { proxy in
                 ZStack {
-                    ScrollView {
+                        
                         self.body(with: proxy)
                             .frame(minHeight: proxy.size.height)
                             .padding(.bottom, self.keyboardObserver.height)
-                    }
                 }
+            }
+            VStack {
+                HStack {   HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
+                    Image("onBack_icon").frame(width: 44, height: 44)
+                }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
+                    Spacer()
+                }
+                Spacer()
             }
         }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).background(background())
     }
@@ -56,14 +63,6 @@ struct SignUpEmail<Presenter: SignUpEmailViewPresenter>: View, MainAppScreens {
                         .foregroundColor(.white)
                 })
                     .padding(.bottom, 30)
-            }
-            VStack {
-                HStack {   HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
-                    Image("onBack_icon").frame(width: 44, height: 44)
-                }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
-                    Spacer()
-                }
-                Spacer()
             }
         }
     }

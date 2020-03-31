@@ -58,6 +58,9 @@ struct LoginButton: View {
                         .frame(width: 30, height: 30)
                     Text(title)
                         .font(.medium(20))
+                        .padding(.trailing, 20)
+                        .minimumScaleFactor(0.7)
+                    .lineLimit(1)
                         .foregroundColor(titleColor)
                 }.padding(.leading, 50)
             }
