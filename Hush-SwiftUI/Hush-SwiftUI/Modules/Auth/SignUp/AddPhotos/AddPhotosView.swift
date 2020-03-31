@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, MainAppScreens {
+struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
 
     // MARK: - Properties
     

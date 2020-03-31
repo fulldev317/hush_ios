@@ -13,10 +13,11 @@ class LoginViewModel: LoginViewModeled {
     
     // MARK: - Properties
 
-    @Published var message = "Hellow World!"
+    @Published var showEmailScreen = false
+    var loginWithMailViewModel = LoginWithEmailViewModel()
     
-    func updateMessage() {
-
-        message = "New Message"
+    func loginWithEmail() {
+        
+        showEmailScreen.toggle()
     }
 }

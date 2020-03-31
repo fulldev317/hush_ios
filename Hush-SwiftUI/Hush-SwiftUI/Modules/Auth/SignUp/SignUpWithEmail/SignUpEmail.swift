@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, MainAppScreens {
+struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     
     @ObservedObject var viewModel: ViewModel
     @ObservedObject var keyboardObserver = KeyboardObserver()
@@ -76,7 +76,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, MainAppScreens {
     
     private func submitButton() -> some View {
         
-        borderedButton(action: viewModel.submit, title: "SUBMIT")
+        borderedButton(action: viewModel.submit, title: "Submit")
     }
 }
 
