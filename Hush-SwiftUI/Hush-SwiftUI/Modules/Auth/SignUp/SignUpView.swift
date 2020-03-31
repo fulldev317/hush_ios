@@ -18,9 +18,11 @@ struct SignUpView<Presenter: SignUpViewPresenter>: View, MainAppScreens {
         
         ZStack {
             VStack {
+                Spacer()
                 logo()
-                    .padding(.top, 55)
                     .opacity(showSignupButtons ? 0 : 1)
+                Spacer()
+                Spacer()
                 Spacer()
             }
             VStack {
@@ -84,7 +86,7 @@ extension SignUpView {
     
     private func bottomText() -> some View {
         VStack(spacing: 0) {
-                Text("We dont post anything on Facebook or Snapchat.\n By registering and using Hush you agree to")
+            Text("We dont post anything on Facebook or Snapchat.\n By registering and using Hush you agree to")
             HStack(spacing: 0) {
                 Text(" our ")
                 terms()
@@ -120,6 +122,8 @@ struct SignUpView_Previews: PreviewProvider {
                 .previewDevice(.init(rawValue: "iPhone XS Max"))
             SignUpView(presenter: SignUpPresenter())
                 .previewDevice(.init(rawValue: "iPhone 8"))
+            SignUpView(presenter: SignUpPresenter())
+                .previewDevice(.init(rawValue: "iPhone SE"))
         }
     }
 }

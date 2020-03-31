@@ -23,9 +23,9 @@ struct SignUpTextField: View {
                 icon.resizable().frame(width: 15, height: 15).aspectRatio(contentMode: .fit)
                 
                 if isSecured {
-                    SecureField(placeholder, text: $text)
+                    SecureField(placeholder, text: $text).foregroundColor(.white)
                 } else {
-                    TextField(placeholder, text: $text)
+                    TextField(placeholder, text: $text).foregroundColor(.white)
                 }
             }
             Rectangle().frame(height: 1).foregroundColor(Color(0x4E596F))
