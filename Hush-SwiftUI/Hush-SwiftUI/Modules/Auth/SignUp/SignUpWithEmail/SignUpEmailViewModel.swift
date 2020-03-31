@@ -16,6 +16,7 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var password: String = ""
     @Published var hasError: Bool = false
     @Published var showAddPhotoScreen = false
+    @Published var showLoginScreen = false
     
     let picker: DVImagePicker
     var addPhotoViewModel: AddPhotosViewModel
@@ -28,5 +29,10 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     func submit() {
         
         showAddPhotoScreen.toggle()
+    }
+    
+    func login() {
+        
+        showLoginScreen.toggle()
     }
 }
