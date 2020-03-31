@@ -24,4 +24,6 @@ extension Color {
             opacity: alpha
         )
     }
+    
+    static let hOrange = Color(0xF2C94C)
 }

@@ -24,14 +24,8 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, MainAppScreens {
                             .padding(.bottom, self.keyboardObserver.height)
                 }
             }
-            VStack {
-                HStack {   HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
-                    Image("onBack_icon").frame(width: 44, height: 44)
-                }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
-                    Spacer()
-                }
-                Spacer()
-            }
+            onBackButton(self.mode)
+            NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
         }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).background(bluredBackground())
     }
     
@@ -81,15 +75,8 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, MainAppScreens {
     }
     
     private func submitButton() -> some View {
-        HapticButton(action: { }) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 6)
-                    .stroke(Color.white, lineWidth: 1)
-                    .foregroundColor(.clear)
-                    .frame(minHeight: 40, maxHeight: 48)
-                Text("SUBMIT").font(.light()).foregroundColor(.white)
-            }.padding(.horizontal, 30)
-        }
+        
+        borderedButton(action: viewModel.submit, title: "SUBMIT")
     }
 }
 

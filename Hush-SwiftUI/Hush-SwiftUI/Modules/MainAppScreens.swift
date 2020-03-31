@@ -9,7 +9,7 @@
 import SwiftUI
 
 protocol MainAppScreens {
-
+    
 }
 
 extension MainAppScreens {
@@ -19,6 +19,7 @@ extension MainAppScreens {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 130, height: 160)
+            .foregroundColor(Color(0xF2C94C))
     }
     
     private var size: CGSize {
@@ -37,6 +38,30 @@ extension MainAppScreens {
         ZStack {
             background().blur(radius: 5, opaque: true)
             Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
+        }
+    }
+    
+    func onBackButton(_ presentation: Binding<PresentationMode>) -> some View {
+        
+        VStack {
+            HStack {   HapticButton(action: { presentation.wrappedValue.dismiss() }) {
+                Image("onBack_icon").frame(width: 44, height: 44)
+            }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
+                Spacer()
+            }
+            Spacer()
+        }
+    }
+    
+    func borderedButton(action: @escaping () -> Void, title: String) -> some View {
+        HapticButton(action: action) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.white, lineWidth: 1)
+                    .foregroundColor(.clear)
+                    .frame(minHeight: 40, maxHeight: 48)
+                Text(title).font(.light()).foregroundColor(.white)
+            }.padding(.horizontal, 30)
         }
     }
 }

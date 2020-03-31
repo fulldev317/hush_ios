@@ -10,9 +10,16 @@ import Foundation
 
 protocol SignUpEmailViewModeled: ObservableObject {
     
+    associatedtype addPhotoViewModel: AddPhotosViewModeled
+    
     var name: String { get set }
     var username: String { get set }
     var email: String { get set }
     var password: String { get set }
     var hasError: Bool { get set }
+    var showAddPhotoScreen: Bool { get set }
+    
+    var addPhotoViewModel: addPhotoViewModel { get set }
+    
+    func submit()
 }

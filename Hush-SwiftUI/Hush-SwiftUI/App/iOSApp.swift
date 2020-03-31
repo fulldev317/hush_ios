@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import SwiftUI
 
 struct iOSApp {
+    
+    static var topViewController: UIViewController? {
+        UIApplication.shared.windows.first?.rootViewController
+    }
     
     static func open(_ url: URL) {
         
