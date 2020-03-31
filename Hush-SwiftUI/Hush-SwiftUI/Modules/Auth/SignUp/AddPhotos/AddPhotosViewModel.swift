@@ -6,17 +6,33 @@
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
-import SwiftUI
 import Combine
+import AVFoundation
+import UIKit
 
 class AddPhotosViewModel: AddPhotosViewModeled {
     
     // MARK: - Properties
 
-    @Published var message = "Hellow World!"
+    @Published var messageLabel = "With Hush’s own Filters you can make \nyour photo as private as you like!"
     
-    func updateMessage() {
-
-        message = "New Message"
+    private let defaultMessage = "With Hush’s own Filters you can make \nyour photo as private as you like!"
+    private let picker = DVImagePicker()
+    
+    private var selectedImage: UIImage = UIImage()
+    
+    func addPhotoPressed() {
+        
+        if let vc = iOSApp.topViewController {
+            picker.showActionSheet(from: vc) { result in
+                
+                switch result {
+                case .failure:
+                    self.messageLabel = "You tapped “Don’t Allow” so we need to  take you to settings quick to allow us  access to your Camera Roll.\n\nThen  please return to the app and continue"
+                case let .success(image):
+                    self.selectedImage = image
+                }
+            }
+        }
     }
 }

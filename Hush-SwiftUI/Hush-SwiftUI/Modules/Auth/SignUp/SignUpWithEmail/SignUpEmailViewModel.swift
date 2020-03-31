@@ -15,4 +15,12 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var hasError: Bool = false
+    @Published var showAddPhotoScreen = false
+    
+    var addPhotoViewModel = AddPhotosViewModel()
+    
+    func submit() {
+        
+        showAddPhotoScreen.toggle()
+    }
 }
