@@ -8,6 +8,58 @@
 
 import SwiftUI
 
+struct HTextField: UIViewRepresentable {
+    
+    let placeholder: String
+    var placeholderColor: UIColor = .lightText
+    
+    @Binding var text: String
+    var textColor: UIColor = .black
+    var font: UIFont = .thin(18)
+    
+    let isSecure: Bool
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    func makeUIView(context: Context) -> UITextField {
+        
+        let field = UITextField()
+        field.textColor = textColor
+        field.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: placeholderColor, .font: font])
+        field.isSecureTextEntry = isSecure
+        field.delegate = context.coordinator
+        
+        return field
+    }
+    
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        
+        uiView.text = text
+    }
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        
+        var parrent: HTextField
+        init(_ parrent: HTextField) {
+            self.parrent = parrent
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            
+            parrent.text = textField.text ?? ""
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            
+            textField.resignFirstResponder()
+            
+            return true
+        }
+    }
+}
+
 struct SignUpTextField: View {
     
     let placeholder: String
@@ -22,11 +74,7 @@ struct SignUpTextField: View {
             HStack {
                 icon.resizable().frame(width: 15, height: 15).aspectRatio(contentMode: .fit)
                 
-                if isSecured {
-                    SecureField(placeholder, text: $text).foregroundColor(.white)
-                } else {
-                    TextField(placeholder, text: $text).foregroundColor(.white)
-                }
+                HTextField(placeholder: placeholder, placeholderColor: .white, text: $text, textColor: .white, isSecure: isSecured)
             }
             Rectangle().frame(height: 1).foregroundColor(Color(0x4E596F))
         }.frame(minHeight: 40, maxHeight: 50)

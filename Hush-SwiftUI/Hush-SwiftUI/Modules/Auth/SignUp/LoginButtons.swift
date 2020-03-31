@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LoginButtons<Presenter: SignUpViewPresenter>: View {
+struct LoginButtons<Presenter: SignUpViewModeled>: View {
     
     @ObservedObject var presenter: Presenter
     

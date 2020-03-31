@@ -11,7 +11,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         NavigationView {
-            SignUpView(presenter: SignUpPresenter()).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+            SignUpView(viewModel: SignUpViewModel()).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
         }
     }
 }

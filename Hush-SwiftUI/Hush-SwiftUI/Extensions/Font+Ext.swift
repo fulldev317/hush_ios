@@ -23,3 +23,19 @@ extension Font {
         .custom("SFProDisplay-Thin", size: size)
     }
 }
+
+extension UIFont {
+    
+    static func medium(_ size: CGFloat = 18) -> UIFont {
+        UIFont(name: "SFProDisplay-Medium", size: size)!
+    }
+    static func regular(_ size: CGFloat = 18) -> UIFont {
+        UIFont(name: "SFProDisplay-Regular", size: size)!
+    }
+    static func light(_ size: CGFloat = 18) -> UIFont {
+        UIFont(name: "SFProDisplay-Light", size: size)!
+    }
+    static func thin(_ size: CGFloat = 18) -> UIFont {
+        UIFont(name: "SFProDisplay-Thin", size: size)!
+    }
+}
