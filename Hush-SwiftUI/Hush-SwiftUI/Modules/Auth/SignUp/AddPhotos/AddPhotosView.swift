@@ -31,7 +31,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
                     .font(.thin())
                     .foregroundColor(.hOrange)
                     .multilineTextAlignment(.center)
-                borderedButton(action: viewModel.addPhotoPressed, title: "Add a Photo")
+                borderedButton(action: viewModel.addPhotoPressed, title: "Add a Photo").padding(.horizontal, 30)
                 Spacer()
                 Spacer()
             }

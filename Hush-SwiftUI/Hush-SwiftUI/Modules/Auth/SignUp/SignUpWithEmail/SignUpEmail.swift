@@ -79,7 +79,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     
     private func submitButton() -> some View {
         
-        borderedButton(action: viewModel.submit, title: "Submit")
+        borderedButton(action: viewModel.submit, title: "Submit").padding(.horizontal, 30)
     }
 }
 
