@@ -41,6 +41,13 @@
 		154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */; };
 		154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */; };
 		154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26BB2431DD7400265C76 /* iOSApp.swift */; };
+		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
+		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
+		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
+		158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5C24349433005F6847 /* FaceDetectionViewModel.swift */; };
+		158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5D24349433005F6847 /* FaceDetectionViewModeled.swift */; };
+		158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158A2C6224349509005F6847 /* libFaceDetectionLib.a */; };
+		158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C642434952F005F6847 /* FaceDetectionViewController.swift */; };
 		1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
 		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
@@ -89,6 +96,13 @@
 		154B26B52431D2A400265C76 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		154B26BB2431DD7400265C76 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
+		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
+		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
+		158A2C5C24349433005F6847 /* FaceDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewModel.swift; sourceTree = "<group>"; };
+		158A2C5D24349433005F6847 /* FaceDetectionViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewModeled.swift; sourceTree = "<group>"; };
+		158A2C6224349509005F6847 /* libFaceDetectionLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFaceDetectionLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		158A2C642434952F005F6847 /* FaceDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewController.swift; sourceTree = "<group>"; };
 		1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Keyboard.swift"; sourceTree = "<group>"; };
 		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
 		15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppScreens.swift; sourceTree = "<group>"; };
@@ -105,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +183,7 @@
 			children = (
 				154B268D2431BF6600265C76 /* Hush-SwiftUI */,
 				154B268C2431BF6600265C76 /* Products */,
+				158A2C6124349509005F6847 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +241,7 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				158A2C5A2434940B005F6847 /* FaceDetection */,
 				15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */,
 				154B26A52431C33500265C76 /* Auth */,
 			);
@@ -263,6 +280,8 @@
 				15E8CCE32431EFF200A92595 /* SignUpTextField.swift */,
 				1546B42C2433275F00180D77 /* HTextField.swift */,
 				1546B45824336B8C00180D77 /* HSegmentedControl.swift */,
+				158A2C562434844F005F6847 /* DatePickerField.swift */,
+				158A2C5824348F1F005F6847 /* View+Navigation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -286,6 +305,25 @@
 				154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		158A2C5A2434940B005F6847 /* FaceDetection */ = {
+			isa = PBXGroup;
+			children = (
+				158A2C5B24349433005F6847 /* FaceDetectionView.swift */,
+				158A2C5C24349433005F6847 /* FaceDetectionViewModel.swift */,
+				158A2C5D24349433005F6847 /* FaceDetectionViewModeled.swift */,
+				158A2C642434952F005F6847 /* FaceDetectionViewController.swift */,
+			);
+			path = FaceDetection;
+			sourceTree = "<group>";
+		};
+		158A2C6124349509005F6847 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				158A2C6224349509005F6847 /* libFaceDetectionLib.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		15E8CCE72432286900A92595 /* SignUpWithEmail */ = {
@@ -376,11 +414,15 @@
 				154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */,
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
+				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
+				158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
+				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
+				158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */,
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
@@ -390,6 +432,7 @@
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
 				1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */,
+				158A2C572434844F005F6847 /* DatePickerField.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
@@ -397,6 +440,7 @@
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
+				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,

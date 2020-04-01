@@ -23,11 +23,11 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 }
             }.keyboardAdaptive()
             onBackButton(self.mode)
-            NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
+            NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel).withoutBar(), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
                 Text("")
             }
-        }.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true).background(bluredBackground())
+        }.withoutBar().background(bluredBackground())
     }
     
     private func body(with proxy: GeometryProxy) -> some View {

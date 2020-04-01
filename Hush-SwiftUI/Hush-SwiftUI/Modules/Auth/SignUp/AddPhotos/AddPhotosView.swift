@@ -36,6 +36,9 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
                 Spacer()
             }
             onBackButton(mode)
+            NavigationLink(destination: GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar(), isActive: $viewModel.canGoNext) {
+                Text("")
+            }
             }.background(bluredBackground()).navigationBarHidden(true)
     }
 }
@@ -45,13 +48,13 @@ struct AddPhotosView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
             NavigationView {
-                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
-                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+                AddPhotosView(viewModel:  AddPhotosViewModel(picker)).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone SE"))
         }
     }

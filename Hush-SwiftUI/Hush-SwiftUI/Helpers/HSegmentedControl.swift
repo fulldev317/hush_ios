@@ -14,7 +14,7 @@ struct HSegmentedControl: View {
     var list: [String] = []
     
     var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: 16) {
             ForEach(0..<list.count) { index in
                 self.borderedButton(index)
             }
@@ -35,7 +35,7 @@ struct HSegmentedControl: View {
                     .foregroundColor(.clear)
                     .background(isSelected ? Color.hOrange : Color.clear)
                     .frame(minHeight: 40, maxHeight: 48).cornerRadius(6)
-                Text(title).padding(4).minimumScaleFactor(0.3).lineLimit(1).font(.light()).foregroundColor(isSelected ? .black : .white)
+                Text(title).padding(2).minimumScaleFactor(0.6).lineLimit(1).font(.light()).foregroundColor(isSelected ? .black : .white)
             }
         }
     }

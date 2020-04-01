@@ -15,6 +15,7 @@ class AddPhotosViewModel: AddPhotosViewModeled {
     // MARK: - Properties
 
     @Published var messageLabel = "With Hush’s own Filters you can make \nyour photo as private as you like!"
+    @Published var canGoNext = false
     
     private let defaultMessage = "With Hush’s own Filters you can make \nyour photo as private as you like!"
     weak var picker: DVImagePicker?
@@ -24,7 +25,13 @@ class AddPhotosViewModel: AddPhotosViewModeled {
         self.picker = picker
     }
     
-    private var selectedImage: UIImage = UIImage()
+    private var selectedImage: UIImage = UIImage() {
+        didSet {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.canGoNext.toggle()
+            }
+        }
+    }
     
     func addPhotoPressed() {
         
