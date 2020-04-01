@@ -12,6 +12,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     
     // MARK: - Properties
     
+    @Environment(\.presentationMode) var mode
     @ObservedObject var viewModel: ViewModel
     
     
@@ -23,14 +24,15 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             
             ScrollView {
                 content()
-            }
+            }.keyboardAdaptive()
+            onBackButton(mode)
         }
     }
     
     private func content() -> some View {
         VStack {
             logo()
-                .padding(.bottom, 20)
+                .padding(.vertical, 35)
             Text("Please tell us a little more about you")
                 .font(.thin())
                 .foregroundColor(.white)
@@ -38,14 +40,15 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             Text("Date of Birth")
                 .font(.thin())
                 .foregroundColor(.white)
-            TextField("Enter your date of Birth", text: $viewModel.birthday)
+            DatePickerField(text: $viewModel.birthday)
+                .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
             Text("I am").font(.thin()).foregroundColor(.white)
             HSegmentedControl(selected: $viewModel.selectedGender, list: viewModel.genders).padding(.bottom, 16)
             Text("Looking for").font(.thin()).foregroundColor(.white)
             HSegmentedControl(selected: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
-                .padding(.bottom, 48)
-            borderedButton(action: {}, title: "Submit").padding(.bottom, 75)
+                .padding(.bottom, 28)
+            borderedButton(action: {}, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
     }
 }
@@ -53,9 +56,9 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
 struct GetMoreDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            NavigationView {
-                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel())
-            }.previewDevice(.init(rawValue: "iPhone SE"))
+//            NavigationView {
+//                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
                 GetMoreDetailsView(viewModel: GetMoreDetailsViewModel())
             }.previewDevice(.init(rawValue: "iPhone 8"))

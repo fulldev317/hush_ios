@@ -59,7 +59,7 @@ extension AuthAppScreens {
                 RoundedRectangle(cornerRadius: 6)
                     .stroke(Color.white, lineWidth: 1)
                     .foregroundColor(.clear)
-                    .frame(minHeight: 40, maxHeight: 48)
+                    .frame(minHeight: 45, maxHeight: 48)
                 Text(title).font(.light()).foregroundColor(.white)
             }
         }

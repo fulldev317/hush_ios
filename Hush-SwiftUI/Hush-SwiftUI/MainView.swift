@@ -12,7 +12,8 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-            SignUpView(viewModel: SignUpViewModel()).navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+            FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()
+//            SignUpView(viewModel: SignUpViewModel()).withoutBar()
         }
     }
 }

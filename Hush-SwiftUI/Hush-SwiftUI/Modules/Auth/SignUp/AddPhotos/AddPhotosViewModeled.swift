@@ -11,5 +11,6 @@ import Foundation
 protocol AddPhotosViewModeled: ObservableObject {
     
     var messageLabel: String { get set }
+    var canGoNext: Bool { get set }
     func addPhotoPressed()
 }

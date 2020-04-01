@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Foundation
 
 protocol GetMoreDetailsViewModeled: ObservableObject {
     
