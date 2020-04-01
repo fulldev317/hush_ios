@@ -14,7 +14,6 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
-    @ObservedObject var observer = KeyboardObserver()
     
     
     // MARK: - Lifecycle
@@ -23,12 +22,10 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
         ZStack {
             GeometryReader { proxy in
                 ZStack {
-                        
                         self.body(with: proxy)
                             .frame(minHeight: proxy.size.height)
-                            .padding(.bottom, self.observer.height)
                 }
-            }
+            }.keyboardAdaptive()
             onBackButton(mode)
             NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel), isActive: $viewModel.showForgotPassword, label: { Text("") })
         }

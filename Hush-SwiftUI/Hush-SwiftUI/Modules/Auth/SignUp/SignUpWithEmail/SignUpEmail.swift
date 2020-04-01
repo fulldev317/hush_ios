@@ -11,7 +11,6 @@ import SwiftUI
 struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     
     @ObservedObject var viewModel: ViewModel
-    @ObservedObject var keyboardObserver = KeyboardObserver()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
@@ -21,9 +20,8 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                         
                         self.body(with: proxy)
                             .frame(minHeight: proxy.size.height)
-                            .padding(.bottom, self.keyboardObserver.height)
                 }
-            }
+            }.keyboardAdaptive()
             onBackButton(self.mode)
             NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {

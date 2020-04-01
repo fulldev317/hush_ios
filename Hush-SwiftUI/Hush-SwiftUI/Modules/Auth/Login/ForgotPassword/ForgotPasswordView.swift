@@ -15,7 +15,6 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
 
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
-    @ObservedObject var observer = KeyboardObserver()
     
     
     // MARK: - Lifecycle
@@ -27,9 +26,8 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
                         
                         self.body(with: proxy)
                             .frame(minHeight: proxy.size.height)
-                            .padding(.bottom, self.observer.height)
                 }
-            }
+            }.keyboardAdaptive()
             onBackButton(mode)
             NavigationLink(destination:
                 SignUpView(viewModel: SignUpViewModel())
