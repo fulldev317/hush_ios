@@ -8,9 +8,15 @@
 
 import Combine
 
+extension String: Identifiable {
+    public var id: Int {
+        hashValue
+    }
+}
+
 protocol DiscoveryViewModeled: ObservableObject {
     
-    var message: String { get set }
+    var messages: [String] { get set }
     
-    func updateMessage()
+    func index(_ element: String) -> Int
 }

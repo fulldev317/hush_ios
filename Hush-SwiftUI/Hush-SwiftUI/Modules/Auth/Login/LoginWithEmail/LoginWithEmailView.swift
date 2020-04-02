@@ -28,6 +28,9 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
             }.keyboardAdaptive()
             onBackButton(mode)
             NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel), isActive: $viewModel.showForgotPassword, label: { Text("") })
+            NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: $viewModel.goToLogin) {
+                Text("")
+            }
         }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)

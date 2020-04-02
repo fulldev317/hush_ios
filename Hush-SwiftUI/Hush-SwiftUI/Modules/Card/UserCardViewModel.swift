@@ -13,7 +13,8 @@ class UserCardViewModel: UserCardViewModeled {
     
     // MARK: - Properties
 
-    @Published var image: UIImage
+    @Published var age = 29
+    @Published var image: UIImage = UIImage(named: "image4")!
     @Published var name: String = "Yolanda"
     @Published var selected: Bool = true
     

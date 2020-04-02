@@ -17,13 +17,16 @@ class LookingGoodVC: UIViewController {
     
     @IBOutlet weak var btnDone: UIButton!
     
-    static func create(for image: UIImage) -> LookingGoodVC {
+    static func create(for image: UIImage, completion: (() -> Void)? = nil) -> LookingGoodVC {
         let vc = UIStoryboard(name: "OldFaceDetection", bundle: nil).instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
         vc.userImage = image
+        vc.completion = completion
+        
         return vc
     }
     
     fileprivate var userImage = UIImage()
+    fileprivate var completion: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +42,10 @@ class LookingGoodVC: UIViewController {
     }
     
     @IBAction func actionBack(_ sender: Any) {
-        _ = self.navigationController?.popViewController(animated: true)
+        
     }
     @IBAction func actionDone(_ sender: Any) {
         
-        
+        completion?()
     }
 }

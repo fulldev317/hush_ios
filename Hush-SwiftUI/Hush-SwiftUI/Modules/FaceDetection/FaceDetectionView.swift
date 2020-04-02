@@ -67,10 +67,13 @@ struct OldFD: UIViewControllerRepresentable {
 struct OldGood: UIViewControllerRepresentable {
     
     var image: UIImage
+    @Binding var canGoNext: Bool
     
     func makeUIViewController(context: Context) -> LookingGoodVC {
         
-        LookingGoodVC.create(for: image)
+        LookingGoodVC.create(for: image) {
+            self.canGoNext.toggle()
+        }
     }
 
     func updateUIViewController(_ uiViewController: LookingGoodVC, context: Context) {
@@ -82,8 +85,14 @@ struct OldGood: UIViewControllerRepresentable {
 struct GoodContainer: View  {
     
     var image: UIImage
+    @State var canGoNext = false
     
     var body: some View {
-        OldGood(image: image)
+        ZStack {
+            OldGood(image: image, canGoNext: $canGoNext)
+            NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: $canGoNext) {
+                Text("")
+            }
+        }
     }
 }

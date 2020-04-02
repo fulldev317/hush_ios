@@ -28,27 +28,27 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
                 Image("discoverySelected").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            DiscoveryView(viewModel: DiscoveryViewModel()).tabItem {
+            Text("2").tabItem {
                 
                 Image("bookmarks").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            DiscoveryView(viewModel: DiscoveryViewModel()).tabItem {
+            Text("3").tabItem {
                 
                 Image("cards").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            DiscoveryView(viewModel: DiscoveryViewModel()).tabItem {
+            Text("4").tabItem {
                 
                 Image("messages").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            DiscoveryView(viewModel: DiscoveryViewModel()).tabItem {
+            Text("5").tabItem {
                 
                 Image("user-circle").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            }.accentColor(.hOrange)
+            }.accentColor(.hOrange).withoutBar()
     }
 }
 
