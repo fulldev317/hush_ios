@@ -15,7 +15,16 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
     @ObservedObject var viewModel: ViewModel
     @State var firstSliderFalue = 0.0
     @State var secondSliderFalue = 0.0
-    @State var isToggle = false
+    @State var isToggle = true
+    
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        
+        UIView.appearance().subviews.forEach {
+            $0.isExclusiveTouch = true
+        }
+    }
     
     
     // MARK: - Lifecycle
@@ -23,66 +32,65 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
     var body: some View {
         VStack {
             HStack {
-                Text(viewModel.message).font(.bold(24)).foregroundColor(Color(0x010101))
+                Text("Filter").font(.bold(24)).foregroundColor(Color(0x010101))
                 Spacer()
             }.padding(.bottom, 40)
             VStack {
                 HStack {
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text("Location").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text(viewModel.location).font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x8E8786))
+                    Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
                 HStack {
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text("Gender").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text(viewModel.gender).font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x8E8786))
+                    Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
                 HStack {
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text("Maximum distance").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text("25 Yards").font(.light()).foregroundColor(Color(0x010101))
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
                 Slider(value: $firstSliderFalue, onEditingChanged: { _ in
-                    self.viewModel.dragFlag = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.viewModel.dragFlag = true
-                    }
+//                    self.viewModel.dragFlag = false
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                        self.viewModel.dragFlag = true
+//                    }
                 })
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
                 HStack {
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text("Age range").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
                 Slider(value: $secondSliderFalue, onEditingChanged: { _ in
-                    self.viewModel.dragFlag = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.viewModel.dragFlag = true
-                    }
-                })
+//                    self.viewModel.dragFlag = false
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                        self.viewModel.dragFlag = true
+//                    }
+                    })
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
                 HStack {
-                    Text(viewModel.message).font(.light()).foregroundColor(Color(0x010101))
+                    Text("Online users").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
                     Toggle("", isOn: $isToggle)
                 }

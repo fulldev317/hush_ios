@@ -18,8 +18,8 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @State var showSettings = false
     
     var top: CGFloat {
-        if let _ = UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets.top {
-            return 44
+        if let top = UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets.top {
+            return top
         }
         return 0
     }
@@ -33,11 +33,11 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 
                 UserCardView(viewModel: UserCardViewModel())
                     .background(Rectangle().shadow(color: Color.black.opacity(0.5), radius: 8, x: 0, y: -4))
-                    .rotate(self.viewModel.index(element).isMultiple(of: 3) ? 0 : 5)
+                    .rotate(self.viewModel.index(element).isMultiple(of: 3) ? 0 : -5)
                 
             }
-            }.partialSheet(presented: $showSettings, enabledDrag: viewModel.settingsViewModel.dragFlag, view: {
-                SettingsView(viewModel: self.viewModel.settingsViewModel).frame(height: 500)
+        }.partialSheet(presented: $showSettings, enabledDrag: viewModel.settingsViewModel.dragFlag, viewForGesture: Rectangle().frame(height: 44).foregroundColor(.white), view: {
+                SettingsView(viewModel: self.viewModel.settingsViewModel).frame(height: 400)
             }).withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
     }
     
