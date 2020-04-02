@@ -48,6 +48,15 @@
 		157930822435B77000EE428F /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930812435B77000EE428F /* StickerView.swift */; };
 		157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */; };
 		157930872435B7A000EE428F /* editImageVc_mainFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */; };
+		1579308C2435BDD000EE428F /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930892435BDD000EE428F /* DiscoveryView.swift */; };
+		1579308D2435BDD000EE428F /* DiscoveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579308A2435BDD000EE428F /* DiscoveryViewModel.swift */; };
+		1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579308B2435BDD000EE428F /* DiscoveryViewModeled.swift */; };
+		157930932435BE0100EE428F /* RootTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930902435BE0100EE428F /* RootTabBarView.swift */; };
+		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
+		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
+		1579309A2435C2F100EE428F /* UserCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* UserCardView.swift */; };
+		1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930982435C2F100EE428F /* UserCardViewModel.swift */; };
+		1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930992435C2F100EE428F /* UserCardViewModeled.swift */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
 		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
@@ -110,6 +119,15 @@
 		157930812435B77000EE428F /* StickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StickerView.swift; path = "../../../../../hush-ios/Hush/System/HelperClass/StickerView/StickerView.swift"; sourceTree = "<group>"; };
 		157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editImageVc_mainFilterCell.swift; sourceTree = "<group>"; };
 		157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editImageVc_mainFilterCell.xib; sourceTree = "<group>"; };
+		157930892435BDD000EE428F /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
+		1579308A2435BDD000EE428F /* DiscoveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewModel.swift; sourceTree = "<group>"; };
+		1579308B2435BDD000EE428F /* DiscoveryViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewModeled.swift; sourceTree = "<group>"; };
+		157930902435BE0100EE428F /* RootTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarView.swift; sourceTree = "<group>"; };
+		157930912435BE0100EE428F /* RootTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewModel.swift; sourceTree = "<group>"; };
+		157930922435BE0100EE428F /* RootTabBarViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewModeled.swift; sourceTree = "<group>"; };
+		157930972435C2F100EE428F /* UserCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardView.swift; sourceTree = "<group>"; };
+		157930982435C2F100EE428F /* UserCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewModel.swift; sourceTree = "<group>"; };
+		157930992435C2F100EE428F /* UserCardViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewModeled.swift; sourceTree = "<group>"; };
 		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
@@ -255,8 +273,10 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				157930962435C2E400EE428F /* Card */,
+				1579308F2435BDE800EE428F /* Root */,
+				157930882435BDB600EE428F /* Discovery */,
 				158A2C5A2434940B005F6847 /* FaceDetection */,
-				15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */,
 				154B26A52431C33500265C76 /* Auth */,
 			);
 			path = Modules;
@@ -265,6 +285,7 @@
 		154B26A52431C33500265C76 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */,
 				1546B4302433400C00180D77 /* Login */,
 				154B26A62431C35600265C76 /* SignUp */,
 			);
@@ -342,6 +363,36 @@
 			);
 			name = EditImageVC_cell;
 			path = "../../../../../hush-ios/Hush/System/Cell/EditImageVC_cell";
+			sourceTree = "<group>";
+		};
+		157930882435BDB600EE428F /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				157930892435BDD000EE428F /* DiscoveryView.swift */,
+				1579308A2435BDD000EE428F /* DiscoveryViewModel.swift */,
+				1579308B2435BDD000EE428F /* DiscoveryViewModeled.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		1579308F2435BDE800EE428F /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				157930902435BE0100EE428F /* RootTabBarView.swift */,
+				157930912435BE0100EE428F /* RootTabBarViewModel.swift */,
+				157930922435BE0100EE428F /* RootTabBarViewModeled.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		157930962435C2E400EE428F /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				157930972435C2F100EE428F /* UserCardView.swift */,
+				157930982435C2F100EE428F /* UserCardViewModel.swift */,
+				157930992435C2F100EE428F /* UserCardViewModeled.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 		158A2C5A2434940B005F6847 /* FaceDetection */ = {
@@ -452,9 +503,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */,
+				1579308C2435BDD000EE428F /* DiscoveryView.swift in Sources */,
+				1579308D2435BDD000EE428F /* DiscoveryViewModel.swift in Sources */,
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
+				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
@@ -471,6 +525,7 @@
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
 				1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */,
+				157930932435BE0100EE428F /* RootTabBarView.swift in Sources */,
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
@@ -479,12 +534,16 @@
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
+				157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */,
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
+				1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
+				1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
+				1579309A2435C2F100EE428F /* UserCardView.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
@@ -494,6 +553,7 @@
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
+				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,
 				157930822435B77000EE428F /* StickerView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
