@@ -11,10 +11,12 @@ import SwiftUI
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 
 struct UserCardView<ViewModel: UserCardViewModeled>: View {
-
+    
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
+   
+    private let cardHeight = 280 * (SCREEN_WIDTH / 2 + 20) / 237
     
     
     // MARK: - Lifecycle
@@ -22,8 +24,27 @@ struct UserCardView<ViewModel: UserCardViewModeled>: View {
     var body: some View {
         ZStack {
             Color.white
-            
-        }.frame(width: SCREEN_WIDTH / 2 + 20, height: 280).padding().padding().background(Color.black)
+            VStack {
+                GeometryReader { proxy in
+                    Image(uiImage: self.viewModel.image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: proxy.size.width - 20)
+                        .clipShape(Rectangle())
+                        .padding([.top, .leading, .trailing], 10)
+                }
+                Spacer()
+                HStack {
+                    (Text(viewModel.name) + Text(", ") + Text("\(viewModel.age)")).font(.regular(14)).foregroundColor(Color(0x8E8786))
+                    if viewModel.selected {
+                        Image("red_heart").resizable().aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
+                    } else {
+                        Spacer()
+                    }
+                }.padding(.vertical, 15)
+            }
+        }.frame(width: SCREEN_WIDTH / 2 + 20, height: cardHeight)
     }
 }
 
@@ -31,14 +52,14 @@ struct UserCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                UserCardView(viewModel: UserCardViewModel())
+                UserCardView(viewModel: UserCardViewModel()).padding().padding().background(Color.black)
             }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
-                UserCardView(viewModel: UserCardViewModel())
+                UserCardView(viewModel: UserCardViewModel()).padding().padding().background(Color.black)
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
                 UserCardView(viewModel: UserCardViewModel())
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
+            }.previewDevice(.init(rawValue: "iPhone XS Max")).padding().padding().background(Color.black)
         }
     }
 }

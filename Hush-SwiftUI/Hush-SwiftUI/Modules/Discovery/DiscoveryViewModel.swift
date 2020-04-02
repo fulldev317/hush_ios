@@ -13,10 +13,10 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     
     // MARK: - Properties
 
-    @Published var message = "Hellow World!"
+    @Published var messages = Array(0..<100).map({ _ in UUID().uuidString })
     
-    func updateMessage() {
+    func index(_ element: String) -> Int {
 
-        message = "New Message"
+        messages.index(of: element)!
     }
 }

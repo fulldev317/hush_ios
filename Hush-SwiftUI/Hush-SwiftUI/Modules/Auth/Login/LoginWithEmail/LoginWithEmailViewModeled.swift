@@ -21,5 +21,7 @@ protocol LoginWithEmailViewModeled: ObservableObject {
     var showForgotPassword: Bool { get set }
     var forgotPasswordViewModel: FGViewModel { get set }
     
+    var goToLogin: Bool { get set }
+    
     func submit()
 }

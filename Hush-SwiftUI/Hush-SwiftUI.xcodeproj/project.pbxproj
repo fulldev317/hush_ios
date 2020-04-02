@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,6 +57,9 @@
 		1579309A2435C2F100EE428F /* UserCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* UserCardView.swift */; };
 		1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930982435C2F100EE428F /* UserCardViewModel.swift */; };
 		1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930992435C2F100EE428F /* UserCardViewModeled.swift */; };
+		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
+		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
+		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
 		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
@@ -128,6 +131,8 @@
 		157930972435C2F100EE428F /* UserCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardView.swift; sourceTree = "<group>"; };
 		157930982435C2F100EE428F /* UserCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewModel.swift; sourceTree = "<group>"; };
 		157930992435C2F100EE428F /* UserCardViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewModeled.swift; sourceTree = "<group>"; };
+		157930A02435CE5300EE428F /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
@@ -151,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +333,7 @@
 				154B26AD2431CB8600265C76 /* Color+Ext.swift */,
 				154B26B52431D2A400265C76 /* Font+Ext.swift */,
 				1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */,
+				157930A02435CE5300EE428F /* View+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -334,6 +341,7 @@
 		154B26B32431D25E00265C76 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */,
 				15E8CCE12431EE2500A92595 /* SF-Pro-Display-Light.otf */,
 				15E8CCE52432053500A92595 /* SF-Pro-Display-Thin.otf */,
 				154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */,
@@ -441,6 +449,9 @@
 			dependencies = (
 			);
 			name = "Hush-SwiftUI";
+			packageProductDependencies = (
+				1579309E2435CAFC00EE428F /* QGrid */,
+			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -469,6 +480,9 @@
 				Base,
 			);
 			mainGroup = 154B26822431BF6600265C76;
+			packageReferences = (
+				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -490,6 +504,7 @@
 				154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */,
 				154B26952431BF6800265C76 /* Assets.xcassets in Resources */,
 				15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */,
+				157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */,
 				154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */,
 				1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */,
 			);
@@ -513,6 +528,7 @@
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */,
+				157930A12435CE5300EE428F /* View+Ext.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
 				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
@@ -755,6 +771,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1579309E2435CAFC00EE428F /* QGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
+			productName = QGrid;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 154B26832431BF6600265C76 /* Project object */;
 }

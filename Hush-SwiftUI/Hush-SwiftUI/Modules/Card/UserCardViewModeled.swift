@@ -11,6 +11,7 @@ import UIKit
 
 protocol UserCardViewModeled: ObservableObject {
     
+    var age: Int { get }
     var image: UIImage { get }
     var name: String { get }
     var selected: Bool { get }

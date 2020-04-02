@@ -37,16 +37,16 @@ class AddPhotosViewModel: AddPhotosViewModeled {
         
         canGoNext.toggle()
         return
-        if let vc = iOSApp.topViewController {
-            picker?.showActionSheet(from: vc) { [weak self] result in
-                
-                switch result {
-                case .failure:
-                    self?.messageLabel = "You tapped “Don’t Allow” so we need to  take you to settings quick to allow us  access to your Camera Roll.\n\nThen  please return to the app and continue"
-                case let .success(image):
-                    self?.selectedImage = image
-                }
-            }
-        }
+//        if let vc = iOSApp.topViewController {
+//            picker?.showActionSheet(from: vc) { [weak self] result in
+//                
+//                switch result {
+//                case .failure:
+//                    self?.messageLabel = "You tapped “Don’t Allow” so we need to  take you to settings quick to allow us  access to your Camera Roll.\n\nThen  please return to the app and continue"
+//                case let .success(image):
+//                    self?.selectedImage = image
+//                }
+//            }
+//        }
     }
 }

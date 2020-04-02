@@ -18,10 +18,12 @@ class LoginWithEmailViewModel: LoginWithEmailViewModeled {
     @Published var hasErrorMessage = false
     @Published var errorMessage = ""
     @Published var showForgotPassword = false
+    @Published var goToLogin: Bool = false
     
     var forgotPasswordViewModel = ForgotPasswordViewModel()
     
     func submit() {
         
+        goToLogin.toggle()
     }
 }

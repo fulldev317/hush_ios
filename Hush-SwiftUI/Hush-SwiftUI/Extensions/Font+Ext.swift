@@ -22,6 +22,9 @@ extension Font {
     static func thin(_ size: CGFloat = 18) -> Font {
         .custom("SFProDisplay-Thin", size: size)
     }
+    static func ultraLight(_ size: CGFloat = 18) -> Font {
+        .custom("SFProDisplay-Ultralight", size: size)
+    }
 }
 
 extension UIFont {
@@ -37,5 +40,8 @@ extension UIFont {
     }
     static func thin(_ size: CGFloat = 18) -> UIFont {
         UIFont(name: "SFProDisplay-Thin", size: size)!
+    }
+    static func ultraLight(_ size: CGFloat = 18) -> UIFont {
+        UIFont(name: "SFProDisplay-Ultralight", size: size)!
     }
 }
