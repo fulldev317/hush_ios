@@ -41,6 +41,13 @@
 		154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */; };
 		154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */; };
 		154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26BB2431DD7400265C76 /* iOSApp.swift */; };
+		1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930792435B69C00EE428F /* FacedetectorVC.swift */; };
+		1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579307A2435B69C00EE428F /* LookingGoodVC.swift */; };
+		1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */; };
+		157930802435B73B00EE428F /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579307F2435B73B00EE428F /* UIButtonX.swift */; };
+		157930822435B77000EE428F /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930812435B77000EE428F /* StickerView.swift */; };
+		157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */; };
+		157930872435B7A000EE428F /* editImageVc_mainFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
 		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
@@ -96,6 +103,13 @@
 		154B26B52431D2A400265C76 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		154B26BB2431DD7400265C76 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		157930792435B69C00EE428F /* FacedetectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacedetectorVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/FacedetectorVC.swift"; sourceTree = "<group>"; };
+		1579307A2435B69C00EE428F /* LookingGoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookingGoodVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/LookingGoodVC.swift"; sourceTree = "<group>"; };
+		1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OldFaceDetection.storyboard; sourceTree = "<group>"; };
+		1579307F2435B73B00EE428F /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButtonX.swift; path = "../../../../../hush-ios/Hush/System/HelperClass/DesignLableX/UIButtonX.swift"; sourceTree = "<group>"; };
+		157930812435B77000EE428F /* StickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StickerView.swift; path = "../../../../../hush-ios/Hush/System/HelperClass/StickerView/StickerView.swift"; sourceTree = "<group>"; };
+		157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editImageVc_mainFilterCell.swift; sourceTree = "<group>"; };
+		157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editImageVc_mainFilterCell.xib; sourceTree = "<group>"; };
 		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
@@ -307,9 +321,33 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		157930782435B68000EE428F /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				157930832435B7A000EE428F /* EditImageVC_cell */,
+				157930812435B77000EE428F /* StickerView.swift */,
+				1579307F2435B73B00EE428F /* UIButtonX.swift */,
+				157930792435B69C00EE428F /* FacedetectorVC.swift */,
+				1579307A2435B69C00EE428F /* LookingGoodVC.swift */,
+				1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */,
+			);
+			path = Old;
+			sourceTree = "<group>";
+		};
+		157930832435B7A000EE428F /* EditImageVC_cell */ = {
+			isa = PBXGroup;
+			children = (
+				157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */,
+				157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */,
+			);
+			name = EditImageVC_cell;
+			path = "../../../../../hush-ios/Hush/System/Cell/EditImageVC_cell";
+			sourceTree = "<group>";
+		};
 		158A2C5A2434940B005F6847 /* FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
+				157930782435B68000EE428F /* Old */,
 				158A2C5B24349433005F6847 /* FaceDetectionView.swift */,
 				158A2C5C24349433005F6847 /* FaceDetectionViewModel.swift */,
 				158A2C5D24349433005F6847 /* FaceDetectionViewModeled.swift */,
@@ -397,10 +435,12 @@
 				15E8CCE62432053500A92595 /* SF-Pro-Display-Thin.otf in Resources */,
 				154B269B2431BF6800265C76 /* LaunchScreen.storyboard in Resources */,
 				154B26982431BF6800265C76 /* Preview Assets.xcassets in Resources */,
+				157930872435B7A000EE428F /* editImageVc_mainFilterCell.xib in Resources */,
 				154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */,
 				154B26952431BF6800265C76 /* Assets.xcassets in Resources */,
 				15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */,
 				154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */,
+				1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +462,10 @@
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
 				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
+				1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */,
 				158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */,
+				157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */,
+				1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */,
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
@@ -450,6 +493,8 @@
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
+				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
+				157930822435B77000EE428F /* StickerView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,

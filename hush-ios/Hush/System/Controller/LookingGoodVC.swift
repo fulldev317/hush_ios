@@ -16,7 +16,15 @@ class LookingGoodVC: UIViewController {
     @IBOutlet weak var imgViewFront: UIImageView!
     
     @IBOutlet weak var btnDone: UIButton!
-    var userImage = #imageLiteral(resourceName: "image4")
+    
+    static func create(for image: UIImage) -> LookingGoodVC {
+        let vc = UIStoryboard(name: "OldFaceDetection", bundle: nil).instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
+        vc.userImage = image
+        return vc
+    }
+    
+    fileprivate var userImage = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imgViewBack.image = userImage
@@ -34,20 +42,7 @@ class LookingGoodVC: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     @IBAction func actionDone(_ sender: Any) {
-        let story = UIStoryboard(name: "Main", bundle:nil)
-        let vc = story.instantiateViewController(withIdentifier: "CardsTabbarViewController") as! CardsTabbarViewController
-        UIApplication.shared.windows.first?.rootViewController = vc
-        UIApplication.shared.windows.first?.makeKeyAndVisible()
+        
+        
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

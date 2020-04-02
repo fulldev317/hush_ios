@@ -28,13 +28,15 @@ class AddPhotosViewModel: AddPhotosViewModeled {
     private var selectedImage: UIImage = UIImage() {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.canGoNext.toggle()
+//                self.canGoNext.toggle()
             }
         }
     }
     
     func addPhotoPressed() {
         
+        canGoNext.toggle()
+        return
         if let vc = iOSApp.topViewController {
             picker?.showActionSheet(from: vc) { [weak self] result in
                 
