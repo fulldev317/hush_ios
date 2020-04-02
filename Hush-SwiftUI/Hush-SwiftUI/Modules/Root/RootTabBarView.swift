@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
-
+    
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
@@ -48,7 +48,9 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
                 Image("user-circle").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            }.accentColor(.hOrange).withoutBar()
+        }
+        .accentColor(.hOrange)
+        .withoutBar()
     }
 }
 
