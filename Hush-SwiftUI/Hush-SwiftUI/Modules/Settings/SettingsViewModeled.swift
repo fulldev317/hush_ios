@@ -10,8 +10,10 @@ import Combine
 
 protocol SettingsViewModeled: ObservableObject {
     
+    var gender: String { get set }
     var message: String { get set }
     var dragFlag: Bool { get set }
+    var location: String { get set }
     
     func updateMessage()
 }

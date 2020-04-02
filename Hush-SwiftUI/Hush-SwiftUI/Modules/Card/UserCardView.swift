@@ -16,7 +16,7 @@ struct UserCardView<ViewModel: UserCardViewModeled>: View {
     
     @ObservedObject var viewModel: ViewModel
    
-    private let cardHeight = 280 * (SCREEN_WIDTH / 2 + 20) / 237
+    private let cardHeight = 280 * (SCREEN_WIDTH / 2) / 237
     
     
     // MARK: - Lifecycle
@@ -37,14 +37,15 @@ struct UserCardView<ViewModel: UserCardViewModeled>: View {
                 HStack {
                     (Text(viewModel.name) + Text(", ") + Text("\(viewModel.age)")).font(.regular(14)).foregroundColor(Color(0x8E8786))
                     if viewModel.selected {
+                        Spacer()
                         Image("red_heart").resizable().aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 25)
                     } else {
                         Spacer()
                     }
-                }.padding(.vertical, 15)
+                }.padding(15)
             }
-        }.frame(width: SCREEN_WIDTH / 2 + 20, height: cardHeight)
+        }.frame(width: SCREEN_WIDTH / 2, height: cardHeight)
     }
 }
 
