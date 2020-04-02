@@ -21,7 +21,6 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     var body: some View {
         ZStack {
             bluredBackground()
-                .edgesIgnoringSafeArea(.vertical)
             VStack {
                 Spacer()
                 logo()
@@ -35,9 +34,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             onBackButton(mode)
             
             NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel), isActive: $viewModel.showEmailScreen, label: { Text("") })
-        }
-        .navigationBarTitle("", displayMode: .inline)
-        .navigationBarHidden(true)
+        }.withoutBar()
     }
     
     private func signupButton() -> some View {

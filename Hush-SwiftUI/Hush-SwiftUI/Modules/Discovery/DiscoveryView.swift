@@ -8,19 +8,27 @@
 
 import SwiftUI
 import QGrid
+import PartialSheet
 
 struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
+    @State var showSettings = false
     
+    var top: CGFloat {
+        if let _ = UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets.top {
+            return 44
+        }
+        return 0
+    }
     
     // MARK: - Lifecycle
     
     var body: some View {
         VStack {
-            header()
+            header().padding(.top, top)
             QGrid(viewModel.messages, columns: 2) { element in
                 
                 UserCardView(viewModel: UserCardViewModel())
@@ -28,7 +36,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     .rotate(self.viewModel.index(element).isMultiple(of: 3) ? 0 : 5)
                 
             }
-        }.withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
+            }.partialSheet(presented: $showSettings, enabledDrag: viewModel.settingsViewModel.dragFlag, view: {
+                SettingsView(viewModel: self.viewModel.settingsViewModel).frame(height: 500)
+            }).withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
     }
     
     private func header() -> some View {
@@ -38,7 +48,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 Text("Location").foregroundColor(.white).font(.thin())
             }
             Spacer()
-            HapticButton(action: {}) {
+            HapticButton(action: {
+                self.showSettings = true
+            }) {
                 Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
             }
         }.padding(.leading, 30)

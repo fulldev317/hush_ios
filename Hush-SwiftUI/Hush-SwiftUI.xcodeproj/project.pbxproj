@@ -60,6 +60,11 @@
 		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
+		157930AB2435E62000EE428F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* SettingsView.swift */; };
+		157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A92435E62000EE428F /* SettingsViewModel.swift */; };
+		157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930AA2435E62000EE428F /* SettingsViewModeled.swift */; };
+		157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */; };
+		157930B22435EC3400EE428F /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* PartialSheet */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
 		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
@@ -133,6 +138,10 @@
 		157930992435C2F100EE428F /* UserCardViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewModeled.swift; sourceTree = "<group>"; };
 		157930A02435CE5300EE428F /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
+		157930A82435E62000EE428F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		157930A92435E62000EE428F /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		157930AA2435E62000EE428F /* SettingsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModeled.swift; sourceTree = "<group>"; };
+		157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
@@ -156,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
 				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 			);
@@ -279,6 +289,7 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				157930A72435E60500EE428F /* Settings */,
 				157930962435C2E400EE428F /* Card */,
 				1579308F2435BDE800EE428F /* Root */,
 				157930882435BDB600EE428F /* Discovery */,
@@ -342,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */,
+				157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */,
 				15E8CCE12431EE2500A92595 /* SF-Pro-Display-Light.otf */,
 				15E8CCE52432053500A92595 /* SF-Pro-Display-Thin.otf */,
 				154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */,
@@ -403,6 +415,16 @@
 			path = Card;
 			sourceTree = "<group>";
 		};
+		157930A72435E60500EE428F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				157930A82435E62000EE428F /* SettingsView.swift */,
+				157930A92435E62000EE428F /* SettingsViewModel.swift */,
+				157930AA2435E62000EE428F /* SettingsViewModeled.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		158A2C5A2434940B005F6847 /* FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +473,7 @@
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
 				1579309E2435CAFC00EE428F /* QGrid */,
+				157930B12435EC3400EE428F /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -482,6 +505,7 @@
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
 				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+				157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -507,6 +531,7 @@
 				157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */,
 				154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */,
 				1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */,
+				157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +545,7 @@
 				154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */,
 				1579308C2435BDD000EE428F /* DiscoveryView.swift in Sources */,
 				1579308D2435BDD000EE428F /* DiscoveryViewModel.swift in Sources */,
+				157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */,
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
@@ -554,6 +580,7 @@
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
 				1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
+				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
 				1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
@@ -564,6 +591,7 @@
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
 				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
+				157930AB2435E62000EE428F /* SettingsView.swift in Sources */,
 				15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */,
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
@@ -781,6 +809,14 @@
 				minimumVersion = 0.1.4;
 			};
 		};
+		157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/damienissa/PartialSheet.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -788,6 +824,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
+		};
+		157930B12435EC3400EE428F /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

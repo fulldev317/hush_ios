@@ -16,7 +16,11 @@ extension String: Identifiable {
 
 protocol DiscoveryViewModeled: ObservableObject {
     
+    associatedtype settingsViewModeled: SettingsViewModeled
+    
     var messages: [String] { get set }
+    
+    var settingsViewModel: settingsViewModeled { get set }
     
     func index(_ element: String) -> Int
 }

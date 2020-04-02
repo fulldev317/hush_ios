@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "PartialSheet",
+        "repositoryURL": "https://github.com/damienissa/PartialSheet.git",
+        "state": {
+          "branch": "master",
+          "revision": "e6a98c6812dc669eedd3adde5e696308d81facc3",
+          "version": null
+        }
+      },
+      {
         "package": "QGrid",
         "repositoryURL": "https://github.com/Q-Mobile/QGrid.git",
         "state": {

@@ -25,6 +25,9 @@ extension Font {
     static func ultraLight(_ size: CGFloat = 18) -> Font {
         .custom("SFProDisplay-Ultralight", size: size)
     }
+    static func bold(_ size: CGFloat = 18) -> Font {
+        .custom("SFProDisplay-Bold", size: size)
+    }
 }
 
 extension UIFont {
