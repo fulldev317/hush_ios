@@ -36,6 +36,9 @@ class FacedetectorVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     @IBOutlet weak var btn_done2: UIButtonX!
     @IBOutlet weak var viewCollection: UIView!
     
+    // MARK: - Completion
+    public var completion: ((UIImage) -> Void)?
+    
     var captureImage = false
     var isARVisible = true
     var mainCategroyImageArr = ["19","13","6","12"]
@@ -370,9 +373,10 @@ class FacedetectorVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             //capturePhoto()
             let img2 = self.viewCamera.screenshot
             
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
-            vc.userImage = img2
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
+//            vc.userImage = img2
+//            self.navigationController?.pushViewController(vc, animated: true)
+            completion?(img2)
         }
     }
     

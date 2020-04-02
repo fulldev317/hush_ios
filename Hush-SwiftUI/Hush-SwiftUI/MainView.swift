@@ -12,8 +12,8 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-            FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()
-//            SignUpView(viewModel: SignUpViewModel()).withoutBar()
+//            FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()
+            SignUpView(viewModel: SignUpViewModel()).withoutBar()
         }
     }
 }

@@ -36,7 +36,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
                 Spacer()
             }
             onBackButton(mode)
-            NavigationLink(destination: GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar(), isActive: $viewModel.canGoNext) {
+            NavigationLink(destination: FaceDetectionView(viewModel: FaceDetectionViewModel()), isActive: $viewModel.canGoNext) {
                 Text("")
             }
             }.background(bluredBackground()).navigationBarHidden(true)

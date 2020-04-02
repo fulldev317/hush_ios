@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o3R-5D-cPU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o3R-5D-cPU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1872,7 +1872,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We don't post anything on Facebook or Snapchat." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFU-zq-a7b">
-                                <rect key="frame" x="5" y="799" width="404" height="15"/>
+                                <rect key="frame" x="5" y="798.5" width="404" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="eMD-HQ-7Ly"/>
                                 </constraints>
@@ -1881,13 +1881,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By registering and using Hush you agree to  our Terms &amp; Conditions and Privacy Policy." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fI-eK-OXl">
-                                <rect key="frame" x="5" y="829" width="404" height="33"/>
+                                <rect key="frame" x="5" y="828.5" width="404" height="33.5"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lv-32-Eyu">
-                                <rect key="frame" x="72" y="728" width="270" height="33"/>
+                                <rect key="frame" x="72" y="727.5" width="270" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="8Ym-CU-fjd"/>
                                     <constraint firstAttribute="height" constant="33" id="GzJ-GY-q4J"/>
@@ -1901,7 +1901,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07o-VD-hzB">
-                                <rect key="frame" x="147" y="322" width="120" height="65"/>
+                                <rect key="frame" x="147" y="321.5" width="120" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="Rcz-c3-ofD"/>
                                     <constraint firstAttribute="height" constant="65" id="ZJ6-oY-uas"/>
@@ -1917,7 +1917,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhg-A0-UZS">
-                                <rect key="frame" x="30" y="414" width="354" height="298"/>
+                                <rect key="frame" x="30" y="413.5" width="354" height="298"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7K-5t-tJZ">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="48"/>
@@ -2096,7 +2096,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hush" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5U-kB-Rm0">
-                                                <rect key="frame" x="120.5" y="170" width="173.5" height="96"/>
+                                                <rect key="frame" x="128" y="170" width="158" height="96"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="96" id="8aR-gV-DQS"/>
                                                 </constraints>
@@ -2108,7 +2108,7 @@
                                                 <rect key="frame" x="31" y="515" width="352" height="134"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid email format" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOl-Pq-XXT">
-                                                        <rect key="frame" x="1" y="1" width="157.5" height="21"/>
+                                                        <rect key="frame" x="1" y="1" width="135" height="21"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2117,10 +2117,10 @@
                                                         <rect key="frame" x="0.0" y="101" width="352" height="32"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="QUR-1J-eEX">
-                                                                <rect key="frame" x="1" y="-2.5" width="32" height="36"/>
+                                                                <rect key="frame" x="1" y="6.5" width="16" height="18"/>
                                                             </imageView>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVb-8J-83c">
-                                                                <rect key="frame" x="47" y="1" width="305" height="29"/>
+                                                                <rect key="frame" x="31" y="1" width="321" height="29"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2414,7 +2414,7 @@
                                                 <rect key="frame" x="32" y="582" width="350" height="76"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid email format" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqR-2L-0OP">
-                                                        <rect key="frame" x="1" y="0.0" width="157.5" height="21"/>
+                                                        <rect key="frame" x="1" y="0.0" width="135" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="kOA-BP-36s"/>
                                                         </constraints>
@@ -2426,7 +2426,7 @@
                                                         <rect key="frame" x="0.0" y="43" width="350" height="32"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="1m3-dK-5nz">
-                                                                <rect key="frame" x="1" y="1" width="15" height="30"/>
+                                                                <rect key="frame" x="1" y="8.5" width="15" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="15" id="vpv-0Y-17P"/>
                                                                 </constraints>
@@ -2621,13 +2621,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_heart_white" translatesAutoresizingMaskIntoConstraints="NO" id="YD9-PF-iHj">
-                                                <rect key="frame" x="142" y="75" width="130" height="236"/>
+                                                <rect key="frame" x="142" y="75" width="130" height="118"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="130" id="JOf-XY-RJe"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hush" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqX-fb-98P">
-                                                <rect key="frame" x="120.5" y="316" width="173.5" height="93.5"/>
+                                                <rect key="frame" x="128" y="198" width="158" height="95.5"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="80"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -3669,19 +3669,19 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking Good!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmQ-8w-Voo">
-                                                <rect key="frame" x="60" y="604" width="294" height="42"/>
+                                                <rect key="frame" x="60" y="604" width="294" height="43"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="36"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can always modify later!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qm-i0-MEK">
-                                                <rect key="frame" x="60" y="651" width="294" height="21"/>
+                                                <rect key="frame" x="60" y="652" width="294" height="21"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="18"/>
                                                 <color key="textColor" red="0.94901960784313721" green="0.78823529411764703" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kv0-qj-Drl">
-                                                <rect key="frame" x="35" y="700" width="344" height="48"/>
+                                                <rect key="frame" x="35" y="701" width="344" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="BgX-sA-aji"/>
                                                 </constraints>
