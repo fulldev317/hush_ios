@@ -64,12 +64,7 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
-                Slider(value: $firstSliderFalue, onEditingChanged: { _ in
-//                    self.viewModel.dragFlag = false
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                        self.viewModel.dragFlag = true
-//                    }
-                })
+                Slider(value: $firstSliderFalue)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
@@ -80,12 +75,7 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
-                Slider(value: $secondSliderFalue, onEditingChanged: { _ in
-//                    self.viewModel.dragFlag = false
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                        self.viewModel.dragFlag = true
-//                    }
-                    })
+                Slider(value: $secondSliderFalue)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
@@ -109,7 +99,7 @@ struct SettingsView_Previews: PreviewProvider {
             }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
                 SettingsView(viewModel: SettingsViewModel())
-            }.previewDevice(.init(rawValue: "iPhone 8"))
+                }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
                 SettingsView(viewModel: SettingsViewModel())
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
