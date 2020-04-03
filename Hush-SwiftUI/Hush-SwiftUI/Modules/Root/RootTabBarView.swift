@@ -28,7 +28,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
                 Image("discoverySelected").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            Text("2").tabItem {
+            StoriesView(viewModel: StoriesViewModel()).tabItem {
                 
                 Image("bookmarks").resizable().frame(width: 38, height: 38)
                 Text("")

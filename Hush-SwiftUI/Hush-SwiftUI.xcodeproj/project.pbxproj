@@ -65,6 +65,16 @@
 		157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930AA2435E62000EE428F /* SettingsViewModeled.swift */; };
 		157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */; };
 		157930B22435EC3400EE428F /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* PartialSheet */; };
+		157930E024371D0800EE428F /* StoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DD24371D0800EE428F /* StoryCardsView.swift */; };
+		157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DE24371D0800EE428F /* StoryCardsViewModel.swift */; };
+		157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DF24371D0800EE428F /* StoryCardsViewModeled.swift */; };
+		157930E72437209100EE428F /* StoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930E42437209100EE428F /* StoriesViewModel.swift */; };
+		157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930E52437209100EE428F /* StoriesViewModeled.swift */; };
+		157930E92437209100EE428F /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930E62437209100EE428F /* StoriesView.swift */; };
+		157930EE2437227A00EE428F /* StorieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930EB2437227A00EE428F /* StorieView.swift */; };
+		157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930EC2437227A00EE428F /* StorieViewModel.swift */; };
+		157930F02437227A00EE428F /* StorieViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930ED2437227A00EE428F /* StorieViewModeled.swift */; };
+		157930F2243722F300EE428F /* Image+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F1243722F300EE428F /* Image+Ext.swift */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
 		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
@@ -142,6 +152,16 @@
 		157930A92435E62000EE428F /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		157930AA2435E62000EE428F /* SettingsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModeled.swift; sourceTree = "<group>"; };
 		157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		157930DD24371D0800EE428F /* StoryCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCardsView.swift; sourceTree = "<group>"; };
+		157930DE24371D0800EE428F /* StoryCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCardsViewModel.swift; sourceTree = "<group>"; };
+		157930DF24371D0800EE428F /* StoryCardsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCardsViewModeled.swift; sourceTree = "<group>"; };
+		157930E42437209100EE428F /* StoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewModel.swift; sourceTree = "<group>"; };
+		157930E52437209100EE428F /* StoriesViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewModeled.swift; sourceTree = "<group>"; };
+		157930E62437209100EE428F /* StoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
+		157930EB2437227A00EE428F /* StorieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieView.swift; sourceTree = "<group>"; };
+		157930EC2437227A00EE428F /* StorieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieViewModel.swift; sourceTree = "<group>"; };
+		157930ED2437227A00EE428F /* StorieViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieViewModeled.swift; sourceTree = "<group>"; };
+		157930F1243722F300EE428F /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
@@ -289,6 +309,9 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				157930EA2437225E00EE428F /* Storie */,
+				157930E32437206000EE428F /* Stories */,
+				157930DC24371CEE00EE428F /* StoryCards */,
 				157930A72435E60500EE428F /* Settings */,
 				157930962435C2E400EE428F /* Card */,
 				1579308F2435BDE800EE428F /* Root */,
@@ -345,6 +368,7 @@
 				154B26B52431D2A400265C76 /* Font+Ext.swift */,
 				1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */,
 				157930A02435CE5300EE428F /* View+Ext.swift */,
+				157930F1243722F300EE428F /* Image+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -423,6 +447,36 @@
 				157930AA2435E62000EE428F /* SettingsViewModeled.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		157930DC24371CEE00EE428F /* StoryCards */ = {
+			isa = PBXGroup;
+			children = (
+				157930DD24371D0800EE428F /* StoryCardsView.swift */,
+				157930DE24371D0800EE428F /* StoryCardsViewModel.swift */,
+				157930DF24371D0800EE428F /* StoryCardsViewModeled.swift */,
+			);
+			path = StoryCards;
+			sourceTree = "<group>";
+		};
+		157930E32437206000EE428F /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				157930E62437209100EE428F /* StoriesView.swift */,
+				157930E42437209100EE428F /* StoriesViewModel.swift */,
+				157930E52437209100EE428F /* StoriesViewModeled.swift */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
+		157930EA2437225E00EE428F /* Storie */ = {
+			isa = PBXGroup;
+			children = (
+				157930EB2437227A00EE428F /* StorieView.swift */,
+				157930EC2437227A00EE428F /* StorieViewModel.swift */,
+				157930ED2437227A00EE428F /* StorieViewModeled.swift */,
+			);
+			path = Storie;
 			sourceTree = "<group>";
 		};
 		158A2C5A2434940B005F6847 /* FaceDetection */ = {
@@ -556,6 +610,8 @@
 				158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */,
 				157930A12435CE5300EE428F /* View+Ext.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
+				157930E92437209100EE428F /* StoriesView.swift in Sources */,
+				157930F02437227A00EE428F /* StorieViewModeled.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
 				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
 				1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */,
@@ -565,6 +621,7 @@
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
+				157930F2243722F300EE428F /* Image+Ext.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
 				1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */,
 				157930932435BE0100EE428F /* RootTabBarView.swift in Sources */,
@@ -575,17 +632,22 @@
 				158A2C572434844F005F6847 /* DatePickerField.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
+				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
 				157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */,
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
 				1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
+				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
+				157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */,
 				1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
+				157930EE2437227A00EE428F /* StorieView.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
+				157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */,
 				1579309A2435C2F100EE428F /* UserCardView.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
@@ -597,6 +659,8 @@
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
+				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,
+				157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */,
 				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,
 				157930822435B77000EE428F /* StickerView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,
