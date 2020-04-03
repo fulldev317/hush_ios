@@ -75,6 +75,18 @@
 		157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930EC2437227A00EE428F /* StorieViewModel.swift */; };
 		157930F02437227A00EE428F /* StorieViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930ED2437227A00EE428F /* StorieViewModeled.swift */; };
 		157930F2243722F300EE428F /* Image+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F1243722F300EE428F /* Image+Ext.swift */; };
+		157930F72437324600EE428F /* CardCuraselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F42437324600EE428F /* CardCuraselView.swift */; };
+		157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F52437324600EE428F /* CardCuraselViewModel.swift */; };
+		157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F62437324600EE428F /* CardCuraselViewModeled.swift */; };
+		157930FB2437371800EE428F /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157930FA2437371800EE428F /* Koloda.framework */; };
+		157930FC2437371800EE428F /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 157930FA2437371800EE428F /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930FE243737A800EE428F /* KolodeViewHolder.swift */; };
+		157931012437391300EE428F /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157931002437391200EE428F /* pop.framework */; };
+		157931022437391300EE428F /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 157931002437391200EE428F /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1579310424373C2800EE428F /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579310324373C2800EE428F /* UIView+Ext.swift */; };
+		15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793106243754B500EE428F /* CardCuraselElementView.swift */; };
+		1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793107243754B500EE428F /* CardCuraselElementViewModel.swift */; };
+		1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793108243754B500EE428F /* CardCuraselElementViewModeled.swift */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
 		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
@@ -92,6 +104,21 @@
 		15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */; };
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		157930FD2437371800EE428F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				157931022437391300EE428F /* pop.framework in Embed Frameworks */,
+				157930FC2437371800EE428F /* Koloda.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1546B42424331DC400180D77 /* AddPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosViewModel.swift; sourceTree = "<group>"; };
@@ -162,6 +189,16 @@
 		157930EC2437227A00EE428F /* StorieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieViewModel.swift; sourceTree = "<group>"; };
 		157930ED2437227A00EE428F /* StorieViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieViewModeled.swift; sourceTree = "<group>"; };
 		157930F1243722F300EE428F /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
+		157930F42437324600EE428F /* CardCuraselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselView.swift; sourceTree = "<group>"; };
+		157930F52437324600EE428F /* CardCuraselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselViewModel.swift; sourceTree = "<group>"; };
+		157930F62437324600EE428F /* CardCuraselViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselViewModeled.swift; sourceTree = "<group>"; };
+		157930FA2437371800EE428F /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Vendors/Koloda.framework; sourceTree = "<group>"; };
+		157930FE243737A800EE428F /* KolodeViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodeViewHolder.swift; sourceTree = "<group>"; };
+		157931002437391200EE428F /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Vendors/pop.framework; sourceTree = "<group>"; };
+		1579310324373C2800EE428F /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		15793106243754B500EE428F /* CardCuraselElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementView.swift; sourceTree = "<group>"; };
+		15793107243754B500EE428F /* CardCuraselElementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementViewModel.swift; sourceTree = "<group>"; };
+		15793108243754B500EE428F /* CardCuraselElementViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementViewModeled.swift; sourceTree = "<group>"; };
 		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
@@ -187,6 +224,8 @@
 			files = (
 				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
 				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
+				157931012437391300EE428F /* pop.framework in Frameworks */,
+				157930FB2437371800EE428F /* Koloda.framework in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +348,7 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				157930F32437321800EE428F /* CardCurasel */,
 				157930EA2437225E00EE428F /* Storie */,
 				157930E32437206000EE428F /* Stories */,
 				157930DC24371CEE00EE428F /* StoryCards */,
@@ -357,6 +397,7 @@
 				1546B45824336B8C00180D77 /* HSegmentedControl.swift */,
 				158A2C562434844F005F6847 /* DatePickerField.swift */,
 				158A2C5824348F1F005F6847 /* View+Navigation.swift */,
+				157930FE243737A800EE428F /* KolodeViewHolder.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -364,6 +405,7 @@
 		154B26AC2431CB7800265C76 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1579310324373C2800EE428F /* UIView+Ext.swift */,
 				154B26AD2431CB8600265C76 /* Color+Ext.swift */,
 				154B26B52431D2A400265C76 /* Font+Ext.swift */,
 				1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */,
@@ -479,6 +521,27 @@
 			path = Storie;
 			sourceTree = "<group>";
 		};
+		157930F32437321800EE428F /* CardCurasel */ = {
+			isa = PBXGroup;
+			children = (
+				15793105243754A200EE428F /* CardCuraselElement */,
+				157930F42437324600EE428F /* CardCuraselView.swift */,
+				157930F52437324600EE428F /* CardCuraselViewModel.swift */,
+				157930F62437324600EE428F /* CardCuraselViewModeled.swift */,
+			);
+			path = CardCurasel;
+			sourceTree = "<group>";
+		};
+		15793105243754A200EE428F /* CardCuraselElement */ = {
+			isa = PBXGroup;
+			children = (
+				15793106243754B500EE428F /* CardCuraselElementView.swift */,
+				15793107243754B500EE428F /* CardCuraselElementViewModel.swift */,
+				15793108243754B500EE428F /* CardCuraselElementViewModeled.swift */,
+			);
+			path = CardCuraselElement;
+			sourceTree = "<group>";
+		};
 		158A2C5A2434940B005F6847 /* FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +557,8 @@
 		158A2C6124349509005F6847 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				157931002437391200EE428F /* pop.framework */,
+				157930FA2437371800EE428F /* Koloda.framework */,
 				158A2C6224349509005F6847 /* libFaceDetectionLib.a */,
 			);
 			name = Frameworks;
@@ -519,6 +584,7 @@
 				154B26872431BF6600265C76 /* Sources */,
 				154B26882431BF6600265C76 /* Frameworks */,
 				154B26892431BF6600265C76 /* Resources */,
+				157930FD2437371800EE428F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -601,6 +667,7 @@
 				1579308D2435BDD000EE428F /* DiscoveryViewModel.swift in Sources */,
 				157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */,
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
+				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
@@ -620,11 +687,14 @@
 				1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */,
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
+				157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
+				157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */,
 				157930F2243722F300EE428F /* Image+Ext.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
 				1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */,
 				157930932435BE0100EE428F /* RootTabBarView.swift in Sources */,
+				1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */,
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
@@ -656,16 +726,20 @@
 				157930AB2435E62000EE428F /* SettingsView.swift in Sources */,
 				15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */,
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
+				1579310424373C2800EE428F /* UIView+Ext.swift in Sources */,
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
+				15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
 				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,
 				157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */,
 				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,
+				157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */,
 				157930822435B77000EE428F /* StickerView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
+				157930F72437324600EE428F /* CardCuraselView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +880,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = NL53BFH4CA;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendors",
+				);
 				INFOPLIST_FILE = "Hush-SwiftUI/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -828,6 +906,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = NL53BFH4CA;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendors",
+				);
 				INFOPLIST_FILE = "Hush-SwiftUI/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

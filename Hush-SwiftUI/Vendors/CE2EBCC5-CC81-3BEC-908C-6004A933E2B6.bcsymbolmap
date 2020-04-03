@@ -1,0 +1,1740 @@
+BCSymbolMap Version: 2.0
+-[POPAnimation init]
+-[POPAnimation _init]
+-[POPAnimation _initState]
+-[POPAnimation dealloc]
+-[POPAnimation delegate]
+-[POPAnimation setDelegate:]
+__ZN18_POPAnimationState11setDelegateEP11objc_object
+-[POPAnimation isPaused]
+-[POPAnimation setPaused:]
+__ZN18_POPAnimationState9setPausedEb
+-[POPAnimation repeatCount]
+-[POPAnimation setRepeatCount:]
+-[POPAnimation autoreverses]
+-[POPAnimation setAutoreverses:]
+-[POPAnimation type]
+-[POPAnimation animationDidStartBlock]
+-[POPAnimation setAnimationDidStartBlock:]
+-[POPAnimation animationDidReachToValueBlock]
+-[POPAnimation setAnimationDidReachToValueBlock:]
+-[POPAnimation completionBlock]
+-[POPAnimation setCompletionBlock:]
+-[POPAnimation animationDidApplyBlock]
+-[POPAnimation setAnimationDidApplyBlock:]
+-[POPAnimation name]
+-[POPAnimation setName:]
+-[POPAnimation beginTime]
+-[POPAnimation setBeginTime:]
+-[POPAnimation removedOnCompletion]
+-[POPAnimation setRemovedOnCompletion:]
+-[POPAnimation repeatForever]
+-[POPAnimation setRepeatForever:]
+-[POPAnimation valueForUndefinedKey:]
+-[POPAnimation setValue:forUndefinedKey:]
+-[POPAnimation tracer]
+-[POPAnimation description]
+-[POPAnimation debugDescription]
+-[POPAnimation _advance:currentTime:elapsedTime:]
+-[POPAnimation _appendDescription:debug:]
+-[POPAnimation solver]
+-[POPAnimation setSolver:]
+-[POPAnimation currentValue]
+-[POPAnimation progressMarkers]
+-[POPAnimation setProgressMarkers:]
+-[POPAnimation .cxx_destruct]
+-[NSObject(POP) pop_addAnimation:forKey:]
+-[NSObject(POP) pop_removeAllAnimations]
+-[NSObject(POP) pop_removeAnimationForKey:]
+-[NSObject(POP) pop_animationKeys]
+-[NSObject(POP) pop_animationForKey:]
+-[NSProxy(POP) pop_addAnimation:forKey:]
+-[NSProxy(POP) pop_removeAllAnimations]
+-[NSProxy(POP) pop_removeAnimationForKey:]
+-[NSProxy(POP) pop_animationKeys]
+-[NSProxy(POP) pop_animationForKey:]
+-[POPAnimation(NSCopying) copyWithZone:]
+__ZN18_POPAnimationStateD1Ev
+__ZN18_POPAnimationStateD0Ev
+__ZN18_POPAnimationState14handleDidStartEv
+__ZN18_POPAnimationState6isDoneEv
+__ZN18_POPAnimationState7willRunEbP11objc_object
+__ZN18_POPAnimationState7advanceEddP11objc_object
+__ZN18_POPAnimationState15computeProgressEv
+__ZN18_POPAnimationState16delegateProgressEv
+__ZN18_POPAnimationState13delegateApplyEv
+__ZN18_POPAnimationState5resetEb
+__ZN18_POPAnimationStateD2Ev
+__ZN3POP13ActionEnablerC2Ev
+___clang_call_terminate
+_OBJC_CLASSLIST_REFERENCES_$_
+_OBJC_SELECTOR_REFERENCES_
+_OBJC_SELECTOR_REFERENCES_.2
+_OBJC_CLASSLIST_SUP_REFS_$_
+_OBJC_SELECTOR_REFERENCES_.4
+_OBJC_SELECTOR_REFERENCES_.6
+_OBJC_SELECTOR_REFERENCES_.8
+_OBJC_SELECTOR_REFERENCES_.10
+_OBJC_SELECTOR_REFERENCES_.12
+_OBJC_SELECTOR_REFERENCES_.14
+_OBJC_SELECTOR_REFERENCES_.16
+_OBJC_CLASSLIST_REFERENCES_$_.17
+_OBJC_SELECTOR_REFERENCES_.19
+_OBJC_CLASSLIST_REFERENCES_$_.20
+_OBJC_SELECTOR_REFERENCES_.22
+_OBJC_CLASSLIST_REFERENCES_$_.23
+_OBJC_SELECTOR_REFERENCES_.27
+_OBJC_SELECTOR_REFERENCES_.29
+_OBJC_SELECTOR_REFERENCES_.33
+_OBJC_SELECTOR_REFERENCES_.37
+_OBJC_SELECTOR_REFERENCES_.39
+_OBJC_SELECTOR_REFERENCES_.49
+__OBJC_METACLASS_RO_$_POPAnimation
+__OBJC_$_INSTANCE_METHODS_POPAnimation
+_OBJC_IVAR_$_POPAnimation._solver
+_OBJC_IVAR_$_POPAnimation._currentValue
+_OBJC_IVAR_$_POPAnimation._progressMarkers
+__OBJC_$_INSTANCE_VARIABLES_POPAnimation
+__OBJC_$_PROP_LIST_POPAnimation
+__OBJC_CLASS_RO_$_POPAnimation
+_OBJC_CLASSLIST_REFERENCES_$_.141
+_OBJC_SELECTOR_REFERENCES_.143
+_OBJC_SELECTOR_REFERENCES_.145
+_OBJC_SELECTOR_REFERENCES_.147
+_OBJC_SELECTOR_REFERENCES_.149
+_OBJC_SELECTOR_REFERENCES_.151
+_OBJC_SELECTOR_REFERENCES_.153
+__OBJC_$_CATEGORY_INSTANCE_METHODS_NSObject_$_POP
+__OBJC_$_CATEGORY_NSObject_$_POP
+__OBJC_$_CATEGORY_INSTANCE_METHODS_NSProxy_$_POP
+__OBJC_$_CATEGORY_NSProxy_$_POP
+_OBJC_SELECTOR_REFERENCES_.161
+_OBJC_SELECTOR_REFERENCES_.162
+_OBJC_SELECTOR_REFERENCES_.163
+_OBJC_SELECTOR_REFERENCES_.164
+_OBJC_SELECTOR_REFERENCES_.165
+_OBJC_SELECTOR_REFERENCES_.166
+_OBJC_SELECTOR_REFERENCES_.167
+_OBJC_SELECTOR_REFERENCES_.168
+_OBJC_SELECTOR_REFERENCES_.169
+_OBJC_SELECTOR_REFERENCES_.170
+_OBJC_SELECTOR_REFERENCES_.171
+_OBJC_SELECTOR_REFERENCES_.172
+_OBJC_SELECTOR_REFERENCES_.173
+_OBJC_SELECTOR_REFERENCES_.174
+_OBJC_SELECTOR_REFERENCES_.175
+_OBJC_SELECTOR_REFERENCES_.176
+_OBJC_SELECTOR_REFERENCES_.177
+_OBJC_SELECTOR_REFERENCES_.178
+_OBJC_SELECTOR_REFERENCES_.179
+_OBJC_SELECTOR_REFERENCES_.180
+_OBJC_SELECTOR_REFERENCES_.181
+__OBJC_$_CATEGORY_INSTANCE_METHODS_POPAnimation_$_NSCopying
+__OBJC_$_PROTOCOL_INSTANCE_METHODS_NSCopying
+__OBJC_$_PROTOCOL_METHOD_TYPES_NSCopying
+__OBJC_PROTOCOL_$_NSCopying
+__OBJC_LABEL_PROTOCOL_$_NSCopying
+__OBJC_CATEGORY_PROTOCOLS_$_POPAnimation_$_NSCopying
+__OBJC_$_CATEGORY_POPAnimation_$_NSCopying
+_OBJC_SELECTOR_REFERENCES_.186
+_OBJC_SELECTOR_REFERENCES_.188
+_OBJC_CLASSLIST_REFERENCES_$_.189
+_OBJC_SELECTOR_REFERENCES_.191
+_OBJC_SELECTOR_REFERENCES_.193
+_OBJC_SELECTOR_REFERENCES_.195
+_OBJC_SELECTOR_REFERENCES_.197
+_OBJC_SELECTOR_REFERENCES_.199
+_OBJC_SELECTOR_REFERENCES_.201
+_OBJC_SELECTOR_REFERENCES_.203
+_OBJC_LABEL_CLASS_$
+_OBJC_LABEL_CATEGORY_$
+Apple clang version 11.0.3 (clang-1103.0.32.29)
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPAnimation.mm
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop
+ActionEnabler
+pop/POPAction.h
+~_POPAnimationState
+pop/POPAnimationInternal.h
+reset
+delegateApply
+~ActionEnabler
+delegateProgress
+computeProgress
+advance
+willRun
+isDone
+isCustom
+handleDidStart
+pop/POPAnimation.mm
+POPStringFromBOOL
+pop/POPAnimationRuntime.h
+POPAnimationGetState
+setPaused
+setDelegate
+_POPAnimationState
+-[POPPropertyAnimation _initState]
+-[POPPropertyAnimation isAdditive]
+-[POPPropertyAnimation setAdditive:]
+-[POPPropertyAnimation roundingFactor]
+-[POPPropertyAnimation setRoundingFactor:]
+-[POPPropertyAnimation clampMode]
+-[POPPropertyAnimation setClampMode:]
+-[POPPropertyAnimation property]
+-[POPPropertyAnimation setProperty:]
+-[POPPropertyAnimation progressMarkers]
+-[POPPropertyAnimation setProgressMarkers:]
+__ZN26_POPPropertyAnimationState22updatedProgressMarkersEv
+-[POPPropertyAnimation fromValue]
+-[POPPropertyAnimation setFromValue:]
+-[POPPropertyAnimation toValue]
+-[POPPropertyAnimation setToValue:]
+-[POPPropertyAnimation currentValue]
+__ZN26_POPPropertyAnimationState12currentValueEv
+-[POPPropertyAnimation _appendDescription:debug:]
+-[POPPropertyAnimation(NSCopying) copyWithZone:]
++[POPPropertyAnimation(CustomProperty) animationWithCustomPropertyNamed:readBlock:writeBlock:]
+___94+[POPPropertyAnimation(CustomProperty) animationWithCustomPropertyNamed:readBlock:writeBlock:]_block_invoke
+___copy_helper_block_ea4_20b24b
+___destroy_helper_block_ea4_20s24s
++[POPPropertyAnimation(CustomProperty) animationWithCustomPropertyReadBlock:writeBlock:]
+__ZN26_POPPropertyAnimationStateD1Ev
+__ZN26_POPPropertyAnimationStateD0Ev
+__ZN26_POPPropertyAnimationState6isDoneEv
+__ZN26_POPPropertyAnimationState7willRunEbP11objc_object
+__ZN26_POPPropertyAnimationState15computeProgressEv
+__ZN26_POPPropertyAnimationState16delegateProgressEv
+__ZN26_POPPropertyAnimationState5resetEb
+__ZN26_POPPropertyAnimationState24updatedDynamicsThresholdEv
+__ZN26_POPPropertyAnimationStateD2Ev
+__ZN26_POPPropertyAnimationState15readObjectValueEPNSt3__110shared_ptrIN3POP6VectorEEEP11objc_object
+__ZNSt3__120__shared_ptr_pointerIPN3POP6VectorENS_14default_deleteIS2_EENS_9allocatorIS2_EEED1Ev
+__ZNSt3__120__shared_ptr_pointerIPN3POP6VectorENS_14default_deleteIS2_EENS_9allocatorIS2_EEED0Ev
+__ZNK22ComputeProgressFunctorIN3POP7Vector4IfEEEclERKS2_S5_S5_
+__ZN26_POPPropertyAnimationState21handleDidReachToValueEv
+____ZN26_POPPropertyAnimationState22updatedProgressMarkersEv_block_invoke
+-[POPPropertyAnimation fromValue].cold.1
+-[POPPropertyAnimation setFromValue:].cold.1
+-[POPPropertyAnimation toValue].cold.1
+-[POPPropertyAnimation setToValue:].cold.1
+-[POPPropertyAnimation currentValue].cold.1
+-[POPPropertyAnimation currentValue].cold.2
+__ZN26_POPPropertyAnimationState15computeProgressEv.cold.1
+_OBJC_SELECTOR_REFERENCES_.20
+__OBJC_METACLASS_RO_$_POPPropertyAnimation
+__OBJC_$_INSTANCE_METHODS_POPPropertyAnimation
+__OBJC_$_PROP_LIST_POPPropertyAnimation
+__OBJC_CLASS_RO_$_POPPropertyAnimation
+_OBJC_SELECTOR_REFERENCES_.60
+_OBJC_SELECTOR_REFERENCES_.61
+_OBJC_SELECTOR_REFERENCES_.62
+_OBJC_SELECTOR_REFERENCES_.63
+_OBJC_SELECTOR_REFERENCES_.64
+_OBJC_SELECTOR_REFERENCES_.65
+_OBJC_SELECTOR_REFERENCES_.66
+_OBJC_SELECTOR_REFERENCES_.67
+_OBJC_SELECTOR_REFERENCES_.68
+_OBJC_SELECTOR_REFERENCES_.69
+_OBJC_SELECTOR_REFERENCES_.70
+_OBJC_SELECTOR_REFERENCES_.71
+_OBJC_SELECTOR_REFERENCES_.72
+__OBJC_$_CATEGORY_INSTANCE_METHODS_POPPropertyAnimation_$_NSCopying
+__OBJC_$_CATEGORY_POPPropertyAnimation_$_NSCopying
+_OBJC_SELECTOR_REFERENCES_.76
+_OBJC_SELECTOR_REFERENCES_.78
+_OBJC_SELECTOR_REFERENCES_.80
+___block_descriptor_28_ea4_20bs24bs_e37_v8?0"POPMutableAnimatableProperty"4l
+_OBJC_SELECTOR_REFERENCES_.83
+_OBJC_CLASSLIST_REFERENCES_$_.84
+_OBJC_SELECTOR_REFERENCES_.86
+_OBJC_SELECTOR_REFERENCES_.88
+_OBJC_SELECTOR_REFERENCES_.90
+__OBJC_$_CATEGORY_CLASS_METHODS_POPPropertyAnimation_$_CustomProperty
+__OBJC_$_CATEGORY_POPPropertyAnimation_$_CustomProperty
+_OBJC_SELECTOR_REFERENCES_.96
+_OBJC_SELECTOR_REFERENCES_.98
+_OBJC_CLASSLIST_REFERENCES_$_.99
+_OBJC_SELECTOR_REFERENCES_.101
+_OBJC_SELECTOR_REFERENCES_.103
+_OBJC_SELECTOR_REFERENCES_.105
+_OBJC_SELECTOR_REFERENCES_.107
+__ZZN26_POPPropertyAnimationState15computeProgressEvE4func
+_OBJC_SELECTOR_REFERENCES_.109
+_OBJC_SELECTOR_REFERENCES_.111
+_OBJC_SELECTOR_REFERENCES_.113
+_OBJC_SELECTOR_REFERENCES_.115
+_OBJC_SELECTOR_REFERENCES_.117
+_OBJC_SELECTOR_REFERENCES_.119
+_OBJC_SELECTOR_REFERENCES_.121
+___block_descriptor_24_e24_v16?0"NSNumber"4I8^c12l
+_OBJC_SELECTOR_REFERENCES_.124
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPPropertyAnimation.mm
+pop/POPPropertyAnimationInternal.h
+~shared_ptr
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory
+__release_shared
+__libcpp_atomic_refcount_decrement<long>
+pop/POPPropertyAnimation.mm
+___ZN26_POPPropertyAnimationState22updatedProgressMarkersEv_block_invoke
+handleDidReachToValue
+shared_ptr<POP::Vector>
+operator()
+sqrtr
+pop/POPMath.h
+squaredNorm
+pop/POPVector.h
+operator-
+__on_zero_shared_weak
+deallocate
+__libcpp_deallocate
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/new
+__do_deallocate_handle_size_align
+__do_deallocate_handle_size
+__do_call
+__get_deleter
+second
+__get
+first
+operator==
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeinfo
+__eq
+__on_zero_shared
+~__shared_ptr_pointer
+~unique_ptr
+__shared_ptr_pointer
+__compressed_pair<std::__1::__compressed_pair<POP::Vector *, std::__1::default_delete<POP::Vector> >, std::__1::allocator<POP::Vector> >
+__compressed_pair_elem<std::__1::__compressed_pair<POP::Vector *, std::__1::default_delete<POP::Vector> >, void>
+__shared_weak_count
+__shared_count
+readObjectValue
+__add_shared
+__libcpp_atomic_refcount_increment<long>
+operator=
+swap
+swap<std::__1::__shared_weak_count *>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits
+swap<POP::Vector *>
+shared_ptr
+read_values
+data
+Zero
+Vector4
+~_POPPropertyAnimationState
+updatedDynamicsThreshold
+resetProgressMarkerState
+operator[]
+operator bool
+get
+operator-=
+operator->
+canProgress
+hasValue
+vector4
+operator==<const POP::Vector>
+operator!=<POP::Vector>
+operator==<POP::Vector>
+__destroy_helper_block_ea4_20s24s
+__copy_helper_block_ea4_20b24b
+__94+[POPPropertyAnimation(CustomProperty) animationWithCustomPropertyNamed:readBlock:writeBlock:]_block_invoke
+describe
+currentValue
+shouldRound
+vec_equal
+operator==<const POP::Vector, const POP::Vector>
+updatedProgressMarkers
+_POPPropertyAnimationState
++[POPBasicAnimation animation]
++[POPBasicAnimation animationWithPropertyNamed:]
+-[POPBasicAnimation _initState]
++[POPBasicAnimation linearAnimation]
++[POPBasicAnimation easeInAnimation]
++[POPBasicAnimation easeOutAnimation]
++[POPBasicAnimation easeInEaseOutAnimation]
++[POPBasicAnimation defaultAnimation]
+-[POPBasicAnimation init]
+-[POPBasicAnimation duration]
+-[POPBasicAnimation setDuration:]
+-[POPBasicAnimation timingFunction]
+-[POPBasicAnimation setTimingFunction:]
+__ZN23_POPBasicAnimationState21updatedTimingFunctionEv
+-[POPBasicAnimation _appendDescription:debug:]
+-[POPBasicAnimation(NSCopying) copyWithZone:]
+__ZN23_POPBasicAnimationStateD1Ev
+__ZN23_POPBasicAnimationStateD0Ev
+__ZN23_POPBasicAnimationState6isDoneEv
+__ZN23_POPBasicAnimationState7advanceEddP11objc_object
+__ZN26_POPPropertyAnimationState17clampCurrentValueEj
+_OBJC_CLASSLIST_REFERENCES_$_.7
+_OBJC_SELECTOR_REFERENCES_.9
+_OBJC_SELECTOR_REFERENCES_.11
+_OBJC_SELECTOR_REFERENCES_.13
+_OBJC_SELECTOR_REFERENCES_.15
+_OBJC_SELECTOR_REFERENCES_.17
+__OBJC_$_CLASS_METHODS_POPBasicAnimation
+__OBJC_METACLASS_RO_$_POPBasicAnimation
+__OBJC_$_INSTANCE_METHODS_POPBasicAnimation
+__OBJC_$_PROP_LIST_POPBasicAnimation
+__OBJC_CLASS_RO_$_POPBasicAnimation
+_OBJC_SELECTOR_REFERENCES_.38
+_OBJC_SELECTOR_REFERENCES_.40
+_OBJC_SELECTOR_REFERENCES_.41
+__OBJC_$_CATEGORY_INSTANCE_METHODS_POPBasicAnimation_$_NSCopying
+__OBJC_$_CATEGORY_POPBasicAnimation_$_NSCopying
+_OBJC_SELECTOR_REFERENCES_.45
+_OBJC_SELECTOR_REFERENCES_.47
+_OBJC_CLASSLIST_REFERENCES_$_.48
+_OBJC_SELECTOR_REFERENCES_.50
+_OBJC_SELECTOR_REFERENCES_.52
+_OBJC_SELECTOR_REFERENCES_.54
+_OBJC_SELECTOR_REFERENCES_.56
+_OBJC_SELECTOR_REFERENCES_.58
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPBasicAnimation.mm
+clampCurrentValue
+clampValue
+pop/POPBasicAnimationInternal.h
+interpolate
+~_POPBasicAnimationState
+pop/POPBasicAnimation.mm
+updatedTimingFunction
+llvm.loop.isvectorized
+_POPBasicAnimationState
++[POPCustomAnimation animationWithBlock:]
+-[POPCustomAnimation _init]
+-[POPCustomAnimation beginTime]
+-[POPCustomAnimation _advance:currentTime:elapsedTime:]
+-[POPCustomAnimation _appendDescription:debug:]
+-[POPCustomAnimation currentTime]
+-[POPCustomAnimation elapsedTime]
+-[POPCustomAnimation animate]
+-[POPCustomAnimation setAnimate:]
+-[POPCustomAnimation .cxx_destruct]
+-[POPCustomAnimation(NSCopying) copyWithZone:]
+_OBJC_IVAR_$_POPCustomAnimation._currentTime
+_OBJC_IVAR_$_POPCustomAnimation._elapsedTime
+_OBJC_IVAR_$_POPCustomAnimation._animate
+__OBJC_$_CLASS_METHODS_POPCustomAnimation
+__OBJC_METACLASS_RO_$_POPCustomAnimation
+__OBJC_$_INSTANCE_METHODS_POPCustomAnimation
+__OBJC_$_INSTANCE_VARIABLES_POPCustomAnimation
+__OBJC_$_PROP_LIST_POPCustomAnimation
+__OBJC_CLASS_RO_$_POPCustomAnimation
+_OBJC_SELECTOR_REFERENCES_.32
+__OBJC_$_CATEGORY_INSTANCE_METHODS_POPCustomAnimation_$_NSCopying
+__OBJC_$_CATEGORY_POPCustomAnimation_$_NSCopying
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPCustomAnimation.mm
+pop/POPCustomAnimation.mm
++[POPDecayAnimation animation]
++[POPDecayAnimation animationWithPropertyNamed:]
+-[POPDecayAnimation init]
+-[POPDecayAnimation _initState]
+-[POPDecayAnimation deceleration]
+-[POPDecayAnimation setDeceleration:]
+-[POPDecayAnimation toValue]
+-[POPDecayAnimation duration]
+-[POPDecayAnimation setFromValue:]
+-[POPDecayAnimation setToValue:]
+-[POPDecayAnimation reversedVelocity]
+-[POPDecayAnimation originalVelocity]
+-[POPDecayAnimation velocity]
+-[POPDecayAnimation setVelocity:]
+-[POPDecayAnimation _ensureComputedProperties]
+__ZN23_POPDecayAnimationState15computeDurationEv
+__ZN23_POPDecayAnimationState14computeToValueEv
+-[POPDecayAnimation _invalidateComputedProperties]
+-[POPDecayAnimation _appendDescription:debug:]
+-[POPDecayAnimation(NSCopying) copyWithZone:]
+__ZN23_POPDecayAnimationStateD1Ev
+__ZN23_POPDecayAnimationStateD0Ev
+__ZN23_POPDecayAnimationState6isDoneEv
+__ZN23_POPDecayAnimationState7advanceEddP11objc_object
+__ZL14decay_positionPfS_jdf
+-[POPDecayAnimation toValue].cold.1
+-[POPDecayAnimation originalVelocity].cold.1
+-[POPDecayAnimation velocity].cold.1
+-[POPDecayAnimation setVelocity:].cold.1
+__ZN23_POPDecayAnimationState15computeDurationEv.cold.1
+__ZL22supportedVelocityTypes
+_OBJC_SELECTOR_REFERENCES_.18
+_OBJC_CLASSLIST_REFERENCES_$_.19
+_OBJC_SELECTOR_REFERENCES_.21
+_OBJC_SELECTOR_REFERENCES_.23
+_OBJC_SELECTOR_REFERENCES_.25
+_OBJC_CLASSLIST_REFERENCES_$_.28
+_OBJC_SELECTOR_REFERENCES_.30
+_OBJC_SELECTOR_REFERENCES_.34
+_OBJC_SELECTOR_REFERENCES_.36
+_OBJC_SELECTOR_REFERENCES_.42
+_OBJC_SELECTOR_REFERENCES_.44
+_OBJC_SELECTOR_REFERENCES_.48
+__OBJC_$_CLASS_METHODS_POPDecayAnimation
+__OBJC_METACLASS_RO_$_POPDecayAnimation
+__OBJC_$_INSTANCE_METHODS_POPDecayAnimation
+__OBJC_$_PROP_LIST_POPDecayAnimation
+__OBJC_CLASS_RO_$_POPDecayAnimation
+_OBJC_SELECTOR_REFERENCES_.81
+_OBJC_SELECTOR_REFERENCES_.82
+_OBJC_SELECTOR_REFERENCES_.84
+__OBJC_$_CATEGORY_INSTANCE_METHODS_POPDecayAnimation_$_NSCopying
+__OBJC_$_CATEGORY_POPDecayAnimation_$_NSCopying
+_OBJC_CLASSLIST_REFERENCES_$_.91
+_OBJC_SELECTOR_REFERENCES_.93
+_OBJC_SELECTOR_REFERENCES_.95
+_OBJC_SELECTOR_REFERENCES_.100
+_OBJC_SELECTOR_REFERENCES_.102
+_OBJC_SELECTOR_REFERENCES_.104
+_OBJC_SELECTOR_REFERENCES_.106
+_OBJC_SELECTOR_REFERENCES_.108
+_OBJC_SELECTOR_REFERENCES_.110
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPDecayAnimation.mm
+computeDuration
+pop/POPDecayAnimationInternal.h
+pop/POPDecayAnimation.mm
+decay_position
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/math.h
+vec_data
+~_POPDecayAnimationState
+computeToValue
+operator/
+UIEdgeInsetsMake
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIGeometry.h
+CGSizeMake
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h
+CGRectMake
+CGPointMake
+_POPDecayAnimationState
++[POPSpringAnimation animation]
++[POPSpringAnimation animationWithPropertyNamed:]
+-[POPSpringAnimation _initState]
+-[POPSpringAnimation init]
+__ZN24_POPSpringAnimationState25updatedBouncinessAndSpeedEv
+-[POPSpringAnimation dealloc]
+-[POPSpringAnimation velocity]
+-[POPSpringAnimation setVelocity:]
+-[POPSpringAnimation dynamicsTension]
+-[POPSpringAnimation setDynamicsTension:]
+-[POPSpringAnimation dynamicsFriction]
+-[POPSpringAnimation setDynamicsFriction:]
+-[POPSpringAnimation dynamicsMass]
+-[POPSpringAnimation setDynamicsMass:]
+-[POPSpringAnimation springSpeed]
+-[POPSpringAnimation setSpringSpeed:]
+-[POPSpringAnimation springBounciness]
+-[POPSpringAnimation setSpringBounciness:]
+-[POPSpringAnimation solver]
+-[POPSpringAnimation setSolver:]
+-[POPSpringAnimation _updatedDynamicsTension]
+-[POPSpringAnimation _updatedDynamicsFriction]
+-[POPSpringAnimation _updatedDynamicsMass]
+-[POPSpringAnimation _appendDescription:debug:]
+-[POPSpringAnimation(NSCopying) copyWithZone:]
+__ZN24_POPSpringAnimationStateD1Ev
+__ZN24_POPSpringAnimationStateD0Ev
+__ZN24_POPSpringAnimationState6isDoneEv
+__ZN24_POPSpringAnimationState7advanceEddP11objc_object
+__ZN24_POPSpringAnimationState5resetEb
+__ZN24_POPSpringAnimationState24updatedDynamicsThresholdEv
+__ZN24_POPSpringAnimationState12hasConvergedEv
+__ZN3POP12SpringSolverINS_7Vector4IdEEE12hasConvergedEv
+__ZN3POP12SpringSolverINS_7Vector4IdEEE7advanceERNS_7SSStateIS2_EEdd
+__ZN3POP12SpringSolverINS_7Vector4IdEEE9integrateERNS_7SSStateIS2_EEdd
+__ZN3POP12SpringSolverINS_7Vector4IdEEE8evaluateERKNS_7SSStateIS2_EEddRKNS_12SSDerivativeIS2_EE
+__ZN3POP12SpringSolverINS_7Vector4IdEEE12accelerationERKNS_7SSStateIS2_EEd
+-[POPSpringAnimation velocity].cold.1
+-[POPSpringAnimation setVelocity:].cold.1
+__ZN24_POPSpringAnimationState12hasConvergedEv.cold.1
+_OBJC_SELECTOR_REFERENCES_.24
+_OBJC_SELECTOR_REFERENCES_.26
+_OBJC_SELECTOR_REFERENCES_.28
+__OBJC_$_CLASS_METHODS_POPSpringAnimation
+__OBJC_METACLASS_RO_$_POPSpringAnimation
+__OBJC_$_INSTANCE_METHODS_POPSpringAnimation
+__OBJC_$_PROP_LIST_POPSpringAnimation
+__OBJC_CLASS_RO_$_POPSpringAnimation
+_OBJC_SELECTOR_REFERENCES_.73
+_OBJC_SELECTOR_REFERENCES_.74
+_OBJC_SELECTOR_REFERENCES_.75
+_OBJC_SELECTOR_REFERENCES_.77
+__OBJC_$_CATEGORY_INSTANCE_METHODS_POPSpringAnimation_$_NSCopying
+__OBJC_$_CATEGORY_POPSpringAnimation_$_NSCopying
+_OBJC_CLASSLIST_REFERENCES_$_.87
+_OBJC_SELECTOR_REFERENCES_.89
+_OBJC_SELECTOR_REFERENCES_.91
+_OBJC_SELECTOR_REFERENCES_.97
+_OBJC_SELECTOR_REFERENCES_.99
+_OBJC_CLASSLIST_REFERENCES_$_.106
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPSpringAnimation.mm
+hasConverged
+pop/POPSpringAnimationInternal.h
+pop/POPSpringAnimation.mm
+acceleration
+pop/POPSpringSolver.h
+operator*
+evaluate
+operator+
+integrate
+setThreshold
+setConstants
+operator=<double>
+vector4d
+cast<double>
+started
+~_POPSpringAnimationState
+updatedDynamics
+updatedBouncinessAndSpeed
+SpringSolver
+_POPSpringAnimationState
+__ZL13_staticStates_block_invoke
+__ZL13_staticStates_block_invoke_2
+__ZL13_staticStates_block_invoke_3
+__ZL13_staticStates_block_invoke_4
+__ZL13_staticStates_block_invoke_5
+__ZL13_staticStates_block_invoke_6
+__ZL13_staticStates_block_invoke_7
+__ZL13_staticStates_block_invoke_8
+__ZL13_staticStates_block_invoke_9
+__ZL13_staticStates_block_invoke_10
+__ZL13_staticStates_block_invoke_11
+__ZL13_staticStates_block_invoke_12
+__ZL13_staticStates_block_invoke_13
+__ZL13_staticStates_block_invoke_14
+__ZL13_staticStates_block_invoke_15
+__ZL13_staticStates_block_invoke_16
+__ZL13_staticStates_block_invoke_17
+__ZL13_staticStates_block_invoke_18
+__ZL13_staticStates_block_invoke_19
+__ZL13_staticStates_block_invoke_20
+__ZL13_staticStates_block_invoke_21
+__ZL13_staticStates_block_invoke_22
+__ZL13_staticStates_block_invoke_23
+__ZL13_staticStates_block_invoke_24
+__ZL13_staticStates_block_invoke_25
+__ZL13_staticStates_block_invoke_26
+__ZL13_staticStates_block_invoke_27
+__ZL13_staticStates_block_invoke_28
+__ZL13_staticStates_block_invoke_29
+__ZL13_staticStates_block_invoke_30
+__ZL13_staticStates_block_invoke_31
+__ZL13_staticStates_block_invoke_32
+__ZL13_staticStates_block_invoke_33
+__ZL13_staticStates_block_invoke_34
+__ZL13_staticStates_block_invoke_35
+__ZL13_staticStates_block_invoke_36
+__ZL13_staticStates_block_invoke_37
+__ZL13_staticStates_block_invoke_38
+__ZL13_staticStates_block_invoke_39
+__ZL13_staticStates_block_invoke_40
+__ZL13_staticStates_block_invoke_41
+__ZL13_staticStates_block_invoke_42
+__ZL13_staticStates_block_invoke_43
+__ZL13_staticStates_block_invoke_44
+__ZL13_staticStates_block_invoke_45
+__ZL13_staticStates_block_invoke_46
+__ZL13_staticStates_block_invoke_47
+__ZL13_staticStates_block_invoke_48
+__ZL13_staticStates_block_invoke_49
+__ZL13_staticStates_block_invoke_50
+__ZL13_staticStates_block_invoke_51
+__ZL13_staticStates_block_invoke_52
+__ZL13_staticStates_block_invoke_53
+__ZL13_staticStates_block_invoke_54
+__ZL13_staticStates_block_invoke_55
+__ZL13_staticStates_block_invoke_56
+__ZL13_staticStates_block_invoke_57
+__ZL13_staticStates_block_invoke_58
+__ZL13_staticStates_block_invoke_59
+__ZL13_staticStates_block_invoke_60
+__ZL13_staticStates_block_invoke_61
+__ZL13_staticStates_block_invoke_62
+__ZL13_staticStates_block_invoke_63
+__ZL13_staticStates_block_invoke_64
+__ZL13_staticStates_block_invoke_65
+__ZL13_staticStates_block_invoke_66
+__ZL13_staticStates_block_invoke_67
+__ZL13_staticStates_block_invoke_68
+__ZL13_staticStates_block_invoke_69
+__ZL13_staticStates_block_invoke_70
+__ZL13_staticStates_block_invoke_71
+__ZL13_staticStates_block_invoke_72
+__ZL13_staticStates_block_invoke_73
+__ZL13_staticStates_block_invoke_74
+__ZL13_staticStates_block_invoke_75
+__ZL13_staticStates_block_invoke_76
+__ZL13_staticStates_block_invoke_77
+__ZL13_staticStates_block_invoke_78
+__ZL13_staticStates_block_invoke_79
+__ZL13_staticStates_block_invoke_80
+__ZL13_staticStates_block_invoke_81
+__ZL13_staticStates_block_invoke_82
+__ZL13_staticStates_block_invoke_83
+__ZL13_staticStates_block_invoke_84
+__ZL13_staticStates_block_invoke_85
+__ZL13_staticStates_block_invoke_86
+__ZL13_staticStates_block_invoke_87
+__ZL13_staticStates_block_invoke_88
+__ZL13_staticStates_block_invoke_89
+__ZL13_staticStates_block_invoke_90
+__ZL13_staticStates_block_invoke_91
+__ZL13_staticStates_block_invoke_92
+__ZL13_staticStates_block_invoke_93
+__ZL13_staticStates_block_invoke_94
+__ZL13_staticStates_block_invoke_95
+__ZL13_staticStates_block_invoke_96
+__ZL13_staticStates_block_invoke_97
+__ZL13_staticStates_block_invoke_98
+__ZL13_staticStates_block_invoke_99
+__ZL13_staticStates_block_invoke_100
+__ZL13_staticStates_block_invoke_101
+__ZL13_staticStates_block_invoke_102
+__ZL13_staticStates_block_invoke_103
+__ZL13_staticStates_block_invoke_104
+___cxx_global_array_dtor
+-[POPStaticAnimatableProperty name]
+-[POPStaticAnimatableProperty readBlock]
+-[POPStaticAnimatableProperty writeBlock]
+-[POPStaticAnimatableProperty threshold]
+-[POPConcreteAnimatableProperty initWithName:readBlock:writeBlock:threshold:]
+-[POPConcreteAnimatableProperty name]
+-[POPConcreteAnimatableProperty readBlock]
+-[POPConcreteAnimatableProperty writeBlock]
+-[POPConcreteAnimatableProperty threshold]
+-[POPConcreteAnimatableProperty .cxx_destruct]
+-[POPMutableAnimatableProperty name]
+-[POPMutableAnimatableProperty setName:]
+-[POPMutableAnimatableProperty readBlock]
+-[POPMutableAnimatableProperty setReadBlock:]
+-[POPMutableAnimatableProperty writeBlock]
+-[POPMutableAnimatableProperty setWriteBlock:]
+-[POPMutableAnimatableProperty threshold]
+-[POPMutableAnimatableProperty setThreshold:]
+-[POPMutableAnimatableProperty .cxx_destruct]
+-[POPPlaceholderAnimatableProperty name]
+-[POPPlaceholderAnimatableProperty readBlock]
+-[POPPlaceholderAnimatableProperty writeBlock]
+-[POPPlaceholderAnimatableProperty threshold]
+-[POPPlaceholderAnimatableProperty .cxx_destruct]
++[POPAnimatableProperty initialize]
++[POPAnimatableProperty allocWithZone:]
+-[POPAnimatableProperty copyWithZone:]
+-[POPAnimatableProperty mutableCopyWithZone:]
++[POPAnimatableProperty propertyWithName:]
++[POPAnimatableProperty propertyWithName:initializer:]
+-[POPAnimatableProperty description]
+__GLOBAL__sub_I_POPAnimatableProperty.mm
+___block_descriptor_20_e20_v12?0"CALayer"4^f8l
+___block_literal_global
+___block_descriptor_20_e21_v12?0"CALayer"4r^f8l
+___block_literal_global.105
+___block_literal_global.108
+___block_literal_global.111
+___block_literal_global.114
+_OBJC_SELECTOR_REFERENCES_.116
+___block_literal_global.117
+___block_literal_global.120
+_OBJC_SELECTOR_REFERENCES_.122
+___block_literal_global.123
+_OBJC_SELECTOR_REFERENCES_.125
+___block_literal_global.126
+_OBJC_SELECTOR_REFERENCES_.128
+___block_literal_global.129
+_OBJC_SELECTOR_REFERENCES_.131
+___block_literal_global.132
+_OBJC_SELECTOR_REFERENCES_.134
+___block_literal_global.135
+_OBJC_SELECTOR_REFERENCES_.137
+___block_literal_global.138
+___block_literal_global.139
+___block_literal_global.140
+___block_literal_global.141
+___block_literal_global.142
+_OBJC_SELECTOR_REFERENCES_.144
+___block_literal_global.145
+___block_literal_global.148
+___block_literal_global.149
+___block_literal_global.150
+___block_literal_global.151
+___block_literal_global.152
+___block_literal_global.153
+___block_literal_global.154
+___block_literal_global.155
+___block_literal_global.156
+___block_literal_global.157
+___block_literal_global.158
+___block_literal_global.159
+___block_literal_global.160
+___block_literal_global.161
+___block_literal_global.162
+___block_literal_global.163
+___block_literal_global.164
+___block_literal_global.165
+___block_literal_global.166
+___block_literal_global.167
+___block_literal_global.168
+___block_literal_global.169
+___block_literal_global.170
+___block_literal_global.171
+___block_literal_global.172
+___block_literal_global.175
+___block_literal_global.178
+___block_literal_global.179
+___block_literal_global.180
+___block_literal_global.181
+___block_literal_global.182
+___block_descriptor_20_e12_v12?04r^f8l
+___block_literal_global.184
+___block_literal_global.185
+___block_literal_global.186
+___block_literal_global.187
+_OBJC_SELECTOR_REFERENCES_.189
+___block_literal_global.190
+_OBJC_SELECTOR_REFERENCES_.192
+___block_literal_global.193
+___block_literal_global.196
+_OBJC_SELECTOR_REFERENCES_.198
+___block_literal_global.199
+___block_literal_global.202
+_OBJC_SELECTOR_REFERENCES_.204
+___block_literal_global.205
+_OBJC_SELECTOR_REFERENCES_.207
+___block_literal_global.208
+_OBJC_SELECTOR_REFERENCES_.210
+___block_descriptor_20_e25_v12?0"CAShapeLayer"4^f8l
+___block_literal_global.212
+_OBJC_SELECTOR_REFERENCES_.214
+___block_descriptor_20_e26_v12?0"CAShapeLayer"4r^f8l
+___block_literal_global.216
+_OBJC_SELECTOR_REFERENCES_.218
+___block_literal_global.219
+_OBJC_SELECTOR_REFERENCES_.221
+___block_literal_global.222
+_OBJC_SELECTOR_REFERENCES_.224
+___block_literal_global.225
+_OBJC_SELECTOR_REFERENCES_.227
+___block_literal_global.228
+_OBJC_SELECTOR_REFERENCES_.230
+___block_literal_global.231
+_OBJC_SELECTOR_REFERENCES_.233
+___block_literal_global.234
+_OBJC_SELECTOR_REFERENCES_.236
+___block_literal_global.237
+_OBJC_SELECTOR_REFERENCES_.239
+___block_literal_global.240
+_OBJC_SELECTOR_REFERENCES_.242
+___block_literal_global.243
+_OBJC_SELECTOR_REFERENCES_.245
+___block_literal_global.246
+_OBJC_SELECTOR_REFERENCES_.248
+___block_descriptor_20_e31_v12?0"NSLayoutConstraint"4^f8l
+___block_literal_global.250
+_OBJC_SELECTOR_REFERENCES_.252
+___block_descriptor_20_e32_v12?0"NSLayoutConstraint"4r^f8l
+___block_literal_global.254
+_OBJC_SELECTOR_REFERENCES_.256
+___block_descriptor_20_e19_v12?0"UIView"4^f8l
+___block_literal_global.258
+_OBJC_SELECTOR_REFERENCES_.260
+___block_descriptor_20_e20_v12?0"UIView"4r^f8l
+___block_literal_global.262
+_OBJC_SELECTOR_REFERENCES_.264
+___block_literal_global.265
+___block_literal_global.266
+___block_literal_global.267
+_OBJC_SELECTOR_REFERENCES_.269
+___block_literal_global.270
+_OBJC_SELECTOR_REFERENCES_.272
+___block_literal_global.273
+_OBJC_SELECTOR_REFERENCES_.275
+___block_literal_global.276
+_OBJC_SELECTOR_REFERENCES_.278
+___block_literal_global.279
+_OBJC_SELECTOR_REFERENCES_.281
+___block_literal_global.282
+___block_literal_global.283
+___block_literal_global.284
+___block_literal_global.285
+___block_literal_global.286
+___block_literal_global.287
+_OBJC_SELECTOR_REFERENCES_.289
+___block_literal_global.290
+_OBJC_SELECTOR_REFERENCES_.292
+___block_descriptor_20_e25_v12?0"UIScrollView"4^f8l
+___block_literal_global.294
+_OBJC_SELECTOR_REFERENCES_.296
+___block_descriptor_20_e26_v12?0"UIScrollView"4r^f8l
+___block_literal_global.298
+_OBJC_SELECTOR_REFERENCES_.300
+___block_literal_global.301
+_OBJC_SELECTOR_REFERENCES_.303
+___block_literal_global.304
+_OBJC_SELECTOR_REFERENCES_.306
+___block_literal_global.307
+_OBJC_SELECTOR_REFERENCES_.309
+___block_literal_global.310
+_OBJC_SELECTOR_REFERENCES_.312
+___block_literal_global.313
+_OBJC_SELECTOR_REFERENCES_.315
+___block_literal_global.316
+_OBJC_SELECTOR_REFERENCES_.318
+___block_literal_global.319
+_OBJC_SELECTOR_REFERENCES_.321
+___block_literal_global.322
+_OBJC_SELECTOR_REFERENCES_.324
+___block_descriptor_20_e28_v12?0"UINavigationBar"4^f8l
+___block_literal_global.326
+_OBJC_SELECTOR_REFERENCES_.328
+___block_descriptor_20_e29_v12?0"UINavigationBar"4r^f8l
+___block_literal_global.330
+_OBJC_SELECTOR_REFERENCES_.332
+___block_descriptor_20_e20_v12?0"UILabel"4^f8l
+___block_literal_global.334
+_OBJC_SELECTOR_REFERENCES_.336
+___block_descriptor_20_e21_v12?0"UILabel"4r^f8l
+___block_literal_global.338
+_OBJC_SELECTOR_REFERENCES_.340
+__ZL13_staticStates
+__OBJC_METACLASS_RO_$_POPStaticAnimatableProperty
+__OBJC_$_INSTANCE_METHODS_POPStaticAnimatableProperty
+__OBJC_$_INSTANCE_VARIABLES_POPStaticAnimatableProperty
+__OBJC_CLASS_RO_$_POPStaticAnimatableProperty
+_OBJC_SELECTOR_REFERENCES_.350
+_OBJC_SELECTOR_REFERENCES_.352
+_OBJC_IVAR_$_POPConcreteAnimatableProperty.name
+_OBJC_IVAR_$_POPConcreteAnimatableProperty.readBlock
+_OBJC_IVAR_$_POPConcreteAnimatableProperty.writeBlock
+_OBJC_IVAR_$_POPConcreteAnimatableProperty.threshold
+__OBJC_METACLASS_RO_$_POPConcreteAnimatableProperty
+__OBJC_$_INSTANCE_METHODS_POPConcreteAnimatableProperty
+__OBJC_$_INSTANCE_VARIABLES_POPConcreteAnimatableProperty
+__OBJC_CLASS_RO_$_POPConcreteAnimatableProperty
+_OBJC_IVAR_$_POPMutableAnimatableProperty.name
+_OBJC_IVAR_$_POPMutableAnimatableProperty.readBlock
+_OBJC_IVAR_$_POPMutableAnimatableProperty.writeBlock
+_OBJC_IVAR_$_POPMutableAnimatableProperty.threshold
+__OBJC_METACLASS_RO_$_POPMutableAnimatableProperty
+__OBJC_$_INSTANCE_METHODS_POPMutableAnimatableProperty
+__OBJC_$_INSTANCE_VARIABLES_POPMutableAnimatableProperty
+__OBJC_$_PROP_LIST_POPMutableAnimatableProperty
+__OBJC_CLASS_RO_$_POPMutableAnimatableProperty
+_OBJC_IVAR_$_POPPlaceholderAnimatableProperty.name
+_OBJC_IVAR_$_POPPlaceholderAnimatableProperty.readBlock
+_OBJC_IVAR_$_POPPlaceholderAnimatableProperty.writeBlock
+_OBJC_IVAR_$_POPPlaceholderAnimatableProperty.threshold
+__OBJC_METACLASS_RO_$_POPPlaceholderAnimatableProperty
+__OBJC_$_INSTANCE_METHODS_POPPlaceholderAnimatableProperty
+__OBJC_$_INSTANCE_VARIABLES_POPPlaceholderAnimatableProperty
+__OBJC_CLASS_RO_$_POPPlaceholderAnimatableProperty
+__ZL11placeholder
+_OBJC_SELECTOR_REFERENCES_.381
+_OBJC_CLASSLIST_REFERENCES_$_.382
+_OBJC_CLASSLIST_SUP_REFS_$_.383
+_OBJC_SELECTOR_REFERENCES_.385
+_OBJC_CLASSLIST_REFERENCES_$_.386
+_OBJC_SELECTOR_REFERENCES_.388
+_OBJC_CLASSLIST_REFERENCES_$_.389
+_OBJC_SELECTOR_REFERENCES_.390
+_OBJC_SELECTOR_REFERENCES_.391
+_OBJC_SELECTOR_REFERENCES_.392
+_OBJC_SELECTOR_REFERENCES_.393
+_OBJC_SELECTOR_REFERENCES_.394
+_OBJC_SELECTOR_REFERENCES_.395
+_OBJC_SELECTOR_REFERENCES_.396
+_OBJC_SELECTOR_REFERENCES_.397
+_OBJC_SELECTOR_REFERENCES_.398
+_OBJC_SELECTOR_REFERENCES_.400
+__ZZ54+[POPAnimatableProperty propertyWithName:initializer:]E13_propertyDict
+_OBJC_CLASSLIST_REFERENCES_$_.401
+_OBJC_SELECTOR_REFERENCES_.403
+_OBJC_SELECTOR_REFERENCES_.405
+_OBJC_CLASSLIST_REFERENCES_$_.406
+_OBJC_SELECTOR_REFERENCES_.408
+_OBJC_CLASSLIST_REFERENCES_$_.409
+_OBJC_CLASSLIST_SUP_REFS_$_.412
+_OBJC_SELECTOR_REFERENCES_.414
+_OBJC_SELECTOR_REFERENCES_.416
+__OBJC_$_CLASS_METHODS_POPAnimatableProperty
+__OBJC_$_PROTOCOL_INSTANCE_METHODS_NSMutableCopying
+__OBJC_$_PROTOCOL_METHOD_TYPES_NSMutableCopying
+__OBJC_PROTOCOL_$_NSMutableCopying
+__OBJC_LABEL_PROTOCOL_$_NSMutableCopying
+__OBJC_CLASS_PROTOCOLS_$_POPAnimatableProperty
+__OBJC_METACLASS_RO_$_POPAnimatableProperty
+__OBJC_$_INSTANCE_METHODS_POPAnimatableProperty
+__OBJC_$_PROP_LIST_POPAnimatableProperty
+__OBJC_CLASS_RO_$_POPAnimatableProperty
+_OBJC_SELECTOR_REFERENCES_.431
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPAnimatableProperty.mm
+_GLOBAL__sub_I_POPAnimatableProperty.mm
+__cxx_global_var_init
+pop/POPAnimatableProperty.mm
+staticIndexWithName
+__cxx_global_array_dtor
+~
+_ZL13_staticStates_block_invoke_104
+_ZL13_staticStates_block_invoke_103
+_ZL13_staticStates_block_invoke_102
+_ZL13_staticStates_block_invoke_101
+_ZL13_staticStates_block_invoke_100
+values_to_edge_insets
+pop/POPCGUtils.h
+_ZL13_staticStates_block_invoke_99
+_ZL13_staticStates_block_invoke_98
+_ZL13_staticStates_block_invoke_97
+_ZL13_staticStates_block_invoke_96
+_ZL13_staticStates_block_invoke_95
+_ZL13_staticStates_block_invoke_94
+values_to_size
+_ZL13_staticStates_block_invoke_93
+values_from_size
+_ZL13_staticStates_block_invoke_92
+values_to_point
+_ZL13_staticStates_block_invoke_91
+values_from_point
+_ZL13_staticStates_block_invoke_90
+_ZL13_staticStates_block_invoke_89
+_ZL13_staticStates_block_invoke_88
+_ZL13_staticStates_block_invoke_87
+_ZL13_staticStates_block_invoke_86
+_ZL13_staticStates_block_invoke_85
+_ZL13_staticStates_block_invoke_84
+_ZL13_staticStates_block_invoke_83
+_ZL13_staticStates_block_invoke_82
+values_to_rect
+_ZL13_staticStates_block_invoke_81
+values_from_rect
+_ZL13_staticStates_block_invoke_80
+_ZL13_staticStates_block_invoke_79
+_ZL13_staticStates_block_invoke_78
+_ZL13_staticStates_block_invoke_77
+_ZL13_staticStates_block_invoke_76
+_ZL13_staticStates_block_invoke_75
+_ZL13_staticStates_block_invoke_74
+_ZL13_staticStates_block_invoke_73
+_ZL13_staticStates_block_invoke_72
+_ZL13_staticStates_block_invoke_71
+_ZL13_staticStates_block_invoke_70
+_ZL13_staticStates_block_invoke_69
+_ZL13_staticStates_block_invoke_68
+_ZL13_staticStates_block_invoke_67
+_ZL13_staticStates_block_invoke_66
+_ZL13_staticStates_block_invoke_65
+_ZL13_staticStates_block_invoke_64
+_ZL13_staticStates_block_invoke_63
+_ZL13_staticStates_block_invoke_62
+_ZL13_staticStates_block_invoke_61
+_ZL13_staticStates_block_invoke_60
+_ZL13_staticStates_block_invoke_59
+_ZL13_staticStates_block_invoke_58
+_ZL13_staticStates_block_invoke_57
+_ZL13_staticStates_block_invoke_56
+_ZL13_staticStates_block_invoke_55
+_ZL13_staticStates_block_invoke_54
+_ZL13_staticStates_block_invoke_53
+_ZL13_staticStates_block_invoke_52
+_ZL13_staticStates_block_invoke_51
+_ZL13_staticStates_block_invoke_50
+_ZL13_staticStates_block_invoke_49
+_ZL13_staticStates_block_invoke_48
+_ZL13_staticStates_block_invoke_47
+_ZL13_staticStates_block_invoke_46
+_ZL13_staticStates_block_invoke_45
+_ZL13_staticStates_block_invoke_44
+_ZL13_staticStates_block_invoke_43
+_ZL13_staticStates_block_invoke_42
+_ZL13_staticStates_block_invoke_41
+_ZL13_staticStates_block_invoke_40
+_ZL13_staticStates_block_invoke_39
+_ZL13_staticStates_block_invoke_38
+_ZL13_staticStates_block_invoke_37
+_ZL13_staticStates_block_invoke_36
+_ZL13_staticStates_block_invoke_35
+_ZL13_staticStates_block_invoke_34
+_ZL13_staticStates_block_invoke_33
+_ZL13_staticStates_block_invoke_32
+_ZL13_staticStates_block_invoke_31
+_ZL13_staticStates_block_invoke_30
+_ZL13_staticStates_block_invoke_29
+_ZL13_staticStates_block_invoke_28
+_ZL13_staticStates_block_invoke_27
+_ZL13_staticStates_block_invoke_26
+_ZL13_staticStates_block_invoke_25
+_ZL13_staticStates_block_invoke_24
+_ZL13_staticStates_block_invoke_23
+_ZL13_staticStates_block_invoke_22
+_ZL13_staticStates_block_invoke_21
+_ZL13_staticStates_block_invoke_20
+_ZL13_staticStates_block_invoke_19
+_ZL13_staticStates_block_invoke_18
+_ZL13_staticStates_block_invoke_17
+_ZL13_staticStates_block_invoke_16
+_ZL13_staticStates_block_invoke_15
+_ZL13_staticStates_block_invoke_14
+_ZL13_staticStates_block_invoke_13
+_ZL13_staticStates_block_invoke_12
+_ZL13_staticStates_block_invoke_11
+_ZL13_staticStates_block_invoke_10
+_ZL13_staticStates_block_invoke_9
+_ZL13_staticStates_block_invoke_8
+_ZL13_staticStates_block_invoke_7
+_ZL13_staticStates_block_invoke_6
+_ZL13_staticStates_block_invoke_5
+_ZL13_staticStates_block_invoke_4
+_ZL13_staticStates_block_invoke_3
+_ZL13_staticStates_block_invoke_2
+_ZL13_staticStates_block_invoke
+-[POPAnimationEvent initWithType:time:]
+-[POPAnimationEvent description]
+-[POPAnimationEvent _appendDescription:]
+-[POPAnimationEvent type]
+-[POPAnimationEvent time]
+-[POPAnimationEvent animationDescription]
+-[POPAnimationEvent setAnimationDescription:]
+-[POPAnimationEvent .cxx_destruct]
+-[POPAnimationValueEvent initWithType:time:value:]
+-[POPAnimationValueEvent _appendDescription:]
+-[POPAnimationValueEvent value]
+-[POPAnimationValueEvent velocity]
+-[POPAnimationValueEvent setVelocity:]
+-[POPAnimationValueEvent .cxx_destruct]
+__OBJC_METACLASS_RO_$_POPAnimationEvent
+__OBJC_$_INSTANCE_METHODS_POPAnimationEvent
+_OBJC_IVAR_$_POPAnimationEvent._type
+_OBJC_IVAR_$_POPAnimationEvent._animationDescription
+_OBJC_IVAR_$_POPAnimationEvent._time
+__OBJC_$_INSTANCE_VARIABLES_POPAnimationEvent
+__OBJC_$_PROP_LIST_POPAnimationEvent
+__OBJC_CLASS_RO_$_POPAnimationEvent
+_OBJC_IVAR_$_POPAnimationValueEvent._value
+_OBJC_CLASSLIST_SUP_REFS_$_.40
+_OBJC_IVAR_$_POPAnimationValueEvent._velocity
+__OBJC_METACLASS_RO_$_POPAnimationValueEvent
+__OBJC_$_INSTANCE_METHODS_POPAnimationValueEvent
+__OBJC_$_INSTANCE_VARIABLES_POPAnimationValueEvent
+__OBJC_$_PROP_LIST_POPAnimationValueEvent
+__OBJC_CLASS_RO_$_POPAnimationValueEvent
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPAnimationEvent.mm
+pop/POPAnimationEvent.mm
+stringFromType
+-[CAAnimation(POPAnimationExtras) pop_applyDragCoefficient]
++[POPSpringAnimation(POPAnimationExtras) convertBounciness:speed:toTension:friction:mass:]
++[POPSpringAnimation(POPAnimationExtras) convertTension:friction:toBounciness:speed:]
+__OBJC_$_CATEGORY_INSTANCE_METHODS_CAAnimation_$_POPAnimationExtras
+__OBJC_$_CATEGORY_CAAnimation_$_POPAnimationExtras
+__OBJC_$_CATEGORY_CLASS_METHODS_POPSpringAnimation_$_POPAnimationExtras
+__OBJC_$_CATEGORY_POPSpringAnimation_$_POPAnimationExtras
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPAnimationExtras.mm
+pop/POPAnimationExtras.mm
+POPAnimationDragCoefficient
+__ZL12pointerEqualPKvS0_
+__ZL11pointerHashPKv
+_OBJC_CLASSLIST_REFERENCES_$_.29
+_OBJC_SELECTOR_REFERENCES_.31
+_OBJC_SELECTOR_REFERENCES_.35
+_OBJC_CLASSLIST_REFERENCES_$_.42
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPAnimationRuntime.mm
+POPUnbox
+pop/POPAnimationRuntime.mm
+size
+vectorize
+POPBox
+POPValueTypeToString
+POPSelectValueType
+FBCompareTypeEncoding
+POPDictionaryCreateMutableWeakPointerToStrongObject
+pointerHash
+pointerEqual
+POPDictionaryCreateMutableWeakPointerToWeakPointer
+-[POPAnimationTracer initWithAnimation:]
+-[POPAnimationTracer readPropertyValue:]
+__ZL12create_eventP18POPAnimationTracer21POPAnimationEventTypeP11objc_objectb
+-[POPAnimationTracer writePropertyValue:]
+-[POPAnimationTracer updateToValue:]
+-[POPAnimationTracer updateFromValue:]
+-[POPAnimationTracer updateVelocity:]
+-[POPAnimationTracer updateSpeed:]
+-[POPAnimationTracer updateBounciness:]
+-[POPAnimationTracer updateFriction:]
+-[POPAnimationTracer updateMass:]
+-[POPAnimationTracer updateTension:]
+-[POPAnimationTracer didStart]
+-[POPAnimationTracer didStop:]
+-[POPAnimationTracer didReachToValue:]
+-[POPAnimationTracer autoreversed]
+-[POPAnimationTracer start]
+-[POPAnimationTracer stop]
+-[POPAnimationTracer reset]
+-[POPAnimationTracer allEvents]
+-[POPAnimationTracer writeEvents]
+-[POPAnimationTracer eventsWithType:]
+-[POPAnimationTracer shouldLogAndResetOnCompletion]
+-[POPAnimationTracer setShouldLogAndResetOnCompletion:]
+-[POPAnimationTracer .cxx_destruct]
+_OBJC_CLASSLIST_REFERENCES_$_.9
+__OBJC_METACLASS_RO_$_POPAnimationTracer
+__OBJC_$_INSTANCE_METHODS_POPAnimationTracer
+_OBJC_IVAR_$_POPAnimationTracer._animation
+_OBJC_IVAR_$_POPAnimationTracer._animationState
+_OBJC_IVAR_$_POPAnimationTracer._events
+_OBJC_IVAR_$_POPAnimationTracer._animationHasVelocity
+_OBJC_IVAR_$_POPAnimationTracer._shouldLogAndResetOnCompletion
+__OBJC_$_INSTANCE_VARIABLES_POPAnimationTracer
+__OBJC_$_PROP_LIST_POPAnimationTracer
+__OBJC_CLASS_RO_$_POPAnimationTracer
+_OBJC_CLASSLIST_REFERENCES_$_.73
+_OBJC_CLASSLIST_REFERENCES_$_.76
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPAnimationTracer.mm
+pop/POPAnimationTracer.mm
+create_event
++[POPAnimator sharedAnimator]
+___29+[POPAnimator sharedAnimator]_block_invoke
+-[POPAnimator init]
+-[POPAnimator dealloc]
+-[POPAnimator _processPendingList]
+-[POPAnimator _clearPendingListObserver]
+-[POPAnimator _scheduleProcessPendingList]
+___42-[POPAnimator _scheduleProcessPendingList]_block_invoke
+___copy_helper_block_ea4_20w
+___destroy_helper_block_ea4_20w
+-[POPAnimator _renderTime:items:]
+__ZL17updateDisplayLinkP11POPAnimator
+-[POPAnimator _renderTime:item:]
+__ZL14stopAndCleanupP11POPAnimatorNSt3__110shared_ptrI15POPAnimatorItemEEbb
+__ZN18_POPAnimationState13startIfNeededEP11objc_objectdd
+__ZN18_POPAnimationState4stopEbb
+-[POPAnimator observers]
+-[POPAnimator addAnimation:forObject:key:]
+__ZN15POPAnimatorItemC1EP11objc_objectP8NSStringP12POPAnimation
+-[POPAnimator removeAllAnimationsForObject:]
+-[POPAnimator removeAnimationForObject:key:cleanupDict:]
+__ZL15deleteDictEntryP11POPAnimatorP11objc_objectP8NSStringa
+-[POPAnimator removeAnimationForObject:key:]
+-[POPAnimator animationKeysForObject:]
+-[POPAnimator animationForObject:key:]
+-[POPAnimator refreshPeriod]
+-[POPAnimator _currentRenderTime]
+-[POPAnimator render]
+-[POPAnimator renderTime:]
+-[POPAnimator addObserver:]
+-[POPAnimator removeObserver:]
+-[POPAnimator delegate]
+-[POPAnimator setDelegate:]
+-[POPAnimator disableDisplayLink]
+-[POPAnimator setDisableDisplayLink:]
+-[POPAnimator beginTime]
+-[POPAnimator setBeginTime:]
+-[POPAnimator .cxx_destruct]
+-[POPAnimator .cxx_construct]
+__ZN18_POPAnimationState11advanceTimeEdP11objc_object
+__ZL16updateAnimatableP11objc_objectP26_POPPropertyAnimationStateb
+__ZN26_POPPropertyAnimationState16finalizeProgressEv
+__ZN18_POPAnimationState13handleDidStopEa
+__ZN15POPAnimatorItemC2EP11objc_objectP8NSStringP12POPAnimation
+__ZNSt3__120__shared_ptr_pointerIP15POPAnimatorItemNS_14default_deleteIS1_EENS_9allocatorIS1_EEED1Ev
+__ZNSt3__120__shared_ptr_pointerIP15POPAnimatorItemNS_14default_deleteIS1_EENS_9allocatorIS1_EEED0Ev
+__ZN15POPAnimatorItemD2Ev
+-[POPAnimator _renderTime:items:].cold.1
+__ZN26_POPPropertyAnimationState16finalizeProgressEv.cold.1
+__ZZ29+[POPAnimator sharedAnimator]E9_animator
+__ZZ29+[POPAnimator sharedAnimator]E9onceToken
+___block_descriptor_20_e5_v4?0l
+_OBJC_CLASSLIST_REFERENCES_$_.1
+_OBJC_SELECTOR_REFERENCES_.3
+_OBJC_SELECTOR_REFERENCES_.5
+_OBJC_SELECTOR_REFERENCES_.7
+_OBJC_CLASSLIST_REFERENCES_$_.8
+___block_descriptor_24_ea4_20w_e32_v12?0^{__CFRunLoopObserver=}4L8l
+_OBJC_CLASSLIST_REFERENCES_$_.26
+_OBJC_CLASSLIST_REFERENCES_$_.43
+_OBJC_SELECTOR_REFERENCES_.51
+_OBJC_SELECTOR_REFERENCES_.53
+_OBJC_SELECTOR_REFERENCES_.55
+_OBJC_SELECTOR_REFERENCES_.57
+_OBJC_SELECTOR_REFERENCES_.59
+_OBJC_CLASSLIST_REFERENCES_$_.68
+_OBJC_SELECTOR_REFERENCES_.79
+_OBJC_SELECTOR_REFERENCES_.85
+_OBJC_CLASSLIST_REFERENCES_$_.86
+_OBJC_SELECTOR_REFERENCES_.92
+_OBJC_SELECTOR_REFERENCES_.94
+__OBJC_$_CLASS_METHODS_POPAnimator
+__OBJC_METACLASS_RO_$_POPAnimator
+__OBJC_$_INSTANCE_METHODS_POPAnimator
+_OBJC_IVAR_$_POPAnimator._displayLink
+_OBJC_IVAR_$_POPAnimator._list
+_OBJC_IVAR_$_POPAnimator._dict
+_OBJC_IVAR_$_POPAnimator._observers
+_OBJC_IVAR_$_POPAnimator._pendingList
+_OBJC_IVAR_$_POPAnimator._pendingListObserver
+_OBJC_IVAR_$_POPAnimator._slowMotionStartTime
+_OBJC_IVAR_$_POPAnimator._slowMotionLastTime
+_OBJC_IVAR_$_POPAnimator._slowMotionAccumulator
+_OBJC_IVAR_$_POPAnimator._beginTime
+_OBJC_IVAR_$_POPAnimator._lock
+_OBJC_IVAR_$_POPAnimator._disableDisplayLink
+_OBJC_IVAR_$_POPAnimator._delegate
+__OBJC_$_INSTANCE_VARIABLES_POPAnimator
+__OBJC_$_PROP_LIST_POPAnimator
+__OBJC_CLASS_RO_$_POPAnimator
+_OBJC_SELECTOR_REFERENCES_.182
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPAnimator.mm
+finalizeProgress
+pop/POPAnimator.mm
+~POPAnimatorItem
+shared_ptr<POPAnimatorItem>
+__compressed_pair<std::__1::__compressed_pair<POPAnimatorItem *, std::__1::default_delete<POPAnimatorItem> >, std::__1::allocator<POPAnimatorItem> >
+__compressed_pair_elem<std::__1::__compressed_pair<POPAnimatorItem *, std::__1::default_delete<POPAnimatorItem> >, void>
+~__vector_base
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector
+clear
+__destruct_at_end
+destroy<std::__1::shared_ptr<POPAnimatorItem> >
+__destroy<std::__1::shared_ptr<POPAnimatorItem> >
+destroy
+__vallocate
+__end_cap
+allocate
+__libcpp_allocate
+vector<std::__1::__list_iterator<std::__1::shared_ptr<POPAnimatorItem>, void *> >
+__construct_at_end<std::__1::__list_iterator<std::__1::shared_ptr<POPAnimatorItem>, void *> >
+__construct_range_forward<std::__1::__list_iterator<std::__1::shared_ptr<POPAnimatorItem>, void *>, std::__1::shared_ptr<POPAnimatorItem> *>
+operator!=
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/list
+operator++
+construct<std::__1::shared_ptr<POPAnimatorItem>, std::__1::shared_ptr<POPAnimatorItem> &>
+__construct<std::__1::shared_ptr<POPAnimatorItem>, std::__1::shared_ptr<POPAnimatorItem> &>
+distance<std::__1::__list_iterator<std::__1::shared_ptr<POPAnimatorItem>, void *> >
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator
+__distance<std::__1::__list_iterator<std::__1::shared_ptr<POPAnimatorItem>, void *> >
+__vector_base
+__compressed_pair<nullptr_t, true>
+__compressed_pair_elem<nullptr_t, void>
+list
+~__list_imp
+begin
+__list_imp
+__compressed_pair<int, std::__1::allocator<std::__1::__list_node<std::__1::shared_ptr<POPAnimatorItem>, void *> > >
+__compressed_pair_elem<int, void>
+__list_node_base
+POPAnimatorItem
+handleDidStop
+updateAnimatable
+operator+=
+advanceTime
+__unlink_nodes
+__end_as_link
+empty
+__sz
+__compressed_pair<int, true>
+~list
+deleteDictEntry
+erase
+__as_node
+push_back
+__link_nodes_at_back
+construct<std::__1::shared_ptr<POPAnimatorItem>, const std::__1::shared_ptr<POPAnimatorItem> &>
+__construct<std::__1::shared_ptr<POPAnimatorItem>, const std::__1::shared_ptr<POPAnimatorItem> &>
+__allocate_node
+stop
+isStarted
+startIfNeeded
+stopAndCleanup
+find<std::__1::__list_iterator<std::__1::shared_ptr<POPAnimatorItem>, void *>, std::__1::shared_ptr<POPAnimatorItem> >
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm
+operator==<POPAnimatorItem, POPAnimatorItem>
+applyAnimationToValue
+applyAnimationTime
+updateDisplayLink
+~vector
+operator!=<std::__1::shared_ptr<POPAnimatorItem> *>
+operator==<std::__1::shared_ptr<POPAnimatorItem> *, std::__1::shared_ptr<POPAnimatorItem> *>
+end
+__list_iterator
+__destroy_helper_block_ea4_20w
+__copy_helper_block_ea4_20w
+__42-[POPAnimator _scheduleProcessPendingList]_block_invoke
+__29+[POPAnimator sharedAnimator]_block_invoke
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/usr/include/dispatch/once.h
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPCGUtils.mm
+POPUIColorRGBACreate
+pop/POPCGUtils.mm
+POPCGColorRGBACreate
+POPUIColorGetRGBAComponents
+POPCGColorWithColor
+POPCGColorGetRGBAComponents
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPGeometry.mm
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPLayerExtras.mm
+POPLayerSetSubTranslationXY
+pop/POPLayerExtras.mm
+POPLayerGetSubTranslationXY
+POPLayerSetSubTranslationZ
+POPLayerGetSubTranslationZ
+POPLayerSetSubTranslationY
+POPLayerGetSubTranslationY
+POPLayerSetSubTranslationX
+POPLayerGetSubTranslationX
+POPLayerSetSubScaleXY
+ensureNonZeroValue
+POPLayerGetSubScaleXY
+POPLayerSetRotation
+POPLayerGetRotation
+POPLayerSetRotationZ
+POPLayerGetRotationZ
+POPLayerSetRotationY
+POPLayerGetRotationY
+POPLayerSetRotationX
+POPLayerGetRotationX
+POPLayerSetTranslationXY
+POPLayerGetTranslationXY
+POPLayerSetTranslationZ
+POPLayerGetTranslationZ
+POPLayerSetTranslationY
+POPLayerGetTranslationY
+POPLayerSetTranslationX
+POPLayerGetTranslationX
+POPLayerSetScaleXY
+POPLayerGetScaleXY
+POPLayerSetScaleZ
+POPLayerGetScaleZ
+POPLayerSetScaleY
+POPLayerGetScaleY
+POPLayerSetScaleX
+POPLayerGetScaleX
+__ZN7WebCore10UnitBezier11solveCurveXEdd
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPMath.mm
+solveCurveX
+pop/WebCore/UnitBezier.h
+sampleCurveX
+sampleCurveDerivativeX
+POPQuadraticSolve
+pop/POPMath.mm
+POPBouncy3NoBounce
+b3_friction3
+pow<double, int>
+b3_friction2
+b3_friction1
+POPQuadraticOutInterpolation
+linear_interpolation
+POPProjectNormal
+POPNormalize
+POPTimingFunctionSolve
+solve
+sampleCurveY
+UnitBezier
+POPInterpolateVector
+_OBJC_CLASSLIST_REFERENCES_$_.5
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/POPVector.mm
+toString
+pop/POPVector.mm
+norm
+subRound
+POPSubRound
+new_cg_color
+new_vector
+Vector
+cg_color
+new_cg_affine_transform
+cg_affine_transform
+new_ui_edge_insets
+ui_edge_insets
+new_cg_rect
+cg_rect
+new_cg_size
+cg_size
+vector2r
+new_cg_point
+cg_point
+new_cg_float
+Vector2
+vector4r
+~Vector
+swap<float *>
+swap<unsigned long>
+__ZNK7WebCore20TransformationMatrix23isIdentityOrTranslationEv
+__ZN7WebCoreL14determinant4x4ERA4_A4_Kd
+__ZN7WebCoreL7inverseERA4_A4_KdRA4_A4_d
+__ZNK7WebCore20TransformationMatrix10isIdentityEv
+/Users/dimavirych/Documents/Projects/MrEmel/cart/Carthage/Checkouts/pop/pop/WebCore/TransformationMatrix.cpp
+recompose
+pop/WebCore/TransformationMatrix.cpp
+scale3d
+setM21
+pop/WebCore/TransformationMatrix.h
+TransformationMatrix
+makeIdentity
+setMatrix
+setM31
+setM32
+rad2deg
+decompose
+v3Dot
+v3Cross
+v3Scale
+v3Length
+v3Combine
+v4MulPointByMatrix
+transposeMatrix4
+isIdentity
+blend
+slerp
+blendFloat
+makeAffine
+inverse
+adjoint
+determinant3x3
+determinant2x2
+determinant4x4
+isIdentityOrTranslation
+isInvertible
+multVecMatrix
+applyPerspective
+skew
+deg2rad
+translateRight3d
+translateRight
+translate3d
+translate
+rotate3d
+multiply
+flipY
+scaleNonUniform
+flipX
+rotateFromVector
+rotate
+scale
+operator CATransform3D
+affineTransform
+narrowPrecisionToFloat<double>
+pop/WebCore/FloatConversion.h
+m42
+m41
+m22
+m21
+m12
+m11
+transform3d
+m44
+m43
+m34
+m33
+m32
+m31
+m24
+m23
+m14
+m13
+__ZL15__ARCLite__loadv
+__ZL30add_image_hook_autoreleasepoolPK11mach_headerl
+__ZL34__arclite_objc_autoreleasePoolPushv
+__ZL33__arclite_objc_autoreleasePoolPopPv
+__ZL19patch_lazy_pointersPK11mach_headerP7patch_tm
+__ZL42__arclite_NSArray_objectAtIndexedSubscriptP7NSArrayP13objc_selectorj
+__ZL53__arclite_NSMutableArray_setObject_atIndexedSubscriptP14NSMutableArrayP13objc_selectorP11objc_objectj
+__ZL46__arclite_NSDictionary_objectForKeyedSubscriptP12NSDictionaryP13objc_selectorP11objc_object
+__ZL47__arclite_NSOrderedSet_objectAtIndexedSubscriptP12NSOrderedSetP13objc_selectorj
+__ZL58__arclite_NSMutableOrderedSet_setObject_atIndexedSubscriptP19NSMutableOrderedSetP13objc_selectorP11objc_objectj
+__ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+__ZL18add_image_hook_ARCPK11mach_headerl
+__ZL27__arclite_objc_loadClassrefPP10objc_class
+__ZL36__arclite_object_setInstanceVariableP11objc_objectPKcPv
+__ZL24__arclite_object_setIvarP11objc_objectP9objc_ivarS0_
+__ZL21__arclite_object_copyP11objc_objectm
+__ZL21__arclite_objc_retainP11objc_object
+__ZL26__arclite_objc_retainBlockP11objc_object
+__ZL22__arclite_objc_releaseP11objc_object
+__ZL26__arclite_objc_autoreleaseP11objc_object
+__ZL32__arclite_objc_retainAutoreleaseP11objc_object
+__ZL37__arclite_objc_autoreleaseReturnValueP11objc_object
+__ZL43__arclite_objc_retainAutoreleaseReturnValueP11objc_object
+__ZL44__arclite_objc_retainAutoreleasedReturnValueP11objc_object
+__ZL26__arclite_objc_storeStrongPP11objc_objectS0_
+__ZL22add_image_hook_swiftV1PK11mach_headerl
+__ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+__ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+__ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+__ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+__ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+__ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+__ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+__ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+__ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+__ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+__ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+__ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+__ZL32__arclite_object_getIndexedIvarsP11objc_object
+__ZL23__arclite_objc_getClassPKc
+__ZL27__arclite_objc_getMetaClassPKc
+__ZL31__arclite_objc_getRequiredClassPKc
+__ZL26__arclite_objc_lookUpClassPKc
+__ZL26__arclite_objc_getProtocolPKc
+__ZL23__arclite_class_getNameP10objc_class
+__ZL26__arclite_protocol_getNameP8Protocol
+__ZL37__arclite_objc_copyClassNamesForImagePKcPj
+__ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+__ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+__ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+__ZL14initialize_impP11objc_objectP13objc_selector
+__ZL18allocateMaybeSwiftP18glue_swift_class_tm
+__ZL22copySwiftV1MangledNamePKcb
+__ZL13demangledNamePKcb
+__ZL16scanMangledFieldRPKcS0_S1_Ri
+__ZL30arclite_uninitialized_functionv
+__ZL12cxxConstructP11objc_object
+__ZL20fixStringForCoreDataP11objc_object
+_OBJC_METACLASS_$___ARCLite__
+__ZL24OBJC_CLASS_$___ARCLite__
+__ZL31OBJC_METACLASS_RO_$___ARCLite__
+__non_lazy_classes
+__ZL27OBJC_CLASS_RO_$___ARCLite__
+__ZL11_class_name
+__ZL32OBJC_$_CLASS_METHODS___ARCLite__
+__ZL17_load_method_name
+__ZL17_load_method_type
+__ZL23NSAutoreleasePool_class
+__ZZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+__ZGVZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+__OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteIndexedSubscripting__
+__OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteIndexedSubscripting__
+__OBJC_PROTOCOL_$___ARCLiteIndexedSubscripting__
+__OBJC_LABEL_PROTOCOL_$___ARCLiteIndexedSubscripting__
+__OBJC_PROTOCOL_REFERENCE_$___ARCLiteIndexedSubscripting__
+__OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteKeyedSubscripting__
+__OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteKeyedSubscripting__
+__OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+__OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+__OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+__ZZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZGVZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZL30NSUndoManagerProxy_targetClass
+__ZL29original_NSManagedObject_init
+__ZL40original_NSManagedObject_allocWithEntity
+__ZL35original_NSManagedObject_allocBatch
+__ZL25NSMutableDictionary_class
+__ZL22NSConstantString_class
+__ZL14NSString_class
+__ZL36original_NSKKMS_fastIndexForKnownKey
+__ZL27original_NSKKMS_indexForKey
+__ZL28original_NSKKsD_objectForKey
+__ZL34original_NSKKsD_removeObjectForKey
+__ZL32original_NSKKsD_setObject_forKey
+__ZL40original_NSKKsD_addEntriesFromDictionary
+__ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZL31original_objc_allocateClassPair
+__ZL31original_object_getIndexedIvars
+__ZL22original_objc_getClass
+__ZL26original_objc_getMetaClass
+__ZL30original_objc_getRequiredClass
+__ZL25original_objc_lookUpClass
+__ZL25original_objc_getProtocol
+__ZL22original_class_getName
+__ZL25original_protocol_getName
+__ZL36original_objc_copyClassNamesForImage
+__ZL12demangleLock
+__ZL9Demangled
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ --target=armv7-apple-ios4.3 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -fno-sanitize=vptr -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-objc-interface-ivars -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -D OBJC_OLD_DISPATCH_PROTOTYPES=0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fno-threadsafe-statics -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -Wno-range-loop-analysis -Wno-semicolon-before-method-body -fembed-bitcode=all -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources-normal/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.o -Wno-objc-signed-char-bool-implicit-int-conversion -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -mlinker-version=556.5 -march=armv7a
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76
+fixStringForCoreData
+source/arclite.mm
+cxxConstruct
+arclite_uninitialized_function
+scanMangledField
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.Internal.sdk/usr/include/_ctype.h
+__isctype
+demangledName
+copySwiftV1DemangledName
+copySwiftV1MangledName
+allocateMaybeSwift
+word_align
+isSwift
+initialize_imp
+transcribeProperties
+property_list_nth
+transcribeProtocols
+transcribeMethods
+method_list_nth
+__arclite_objc_copyClassNamesForImage
+__arclite_protocol_getName
+__arclite_class_getName
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+__arclite_objc_getClass
+__arclite_object_getIndexedIvars
+__arclite_objc_allocateClassPair
+metaclass
+__arclite_objc_readClassPair
+transcribeIvars
+ivar_list_nth
+max
+alignment
+ro
+fastFlags
+__arclite_NSKKsD_addEntriesFromDictionary
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+__arclite_NSManagedObject_init
+__arclite_NSUndoManagerProxy_isKindOfClass
+add_image_hook_swiftV1
+patch_t<const char **(const char *, unsigned int *)>
+patch_t<const char *(Protocol *)>
+patch_t<const char *(Class)>
+patch_t<Protocol *(const char *)>
+patch_t<Class (const char *)>
+patch_t<void *(id)>
+patch_t<Class (Class, const char *, unsigned long)>
+patch_t<Class (Class, const objc_image_info *)>
+__arclite_objc_storeStrong
+__arclite_objc_release
+__arclite_objc_retain
+__arclite_objc_retainAutoreleasedReturnValue
+__arclite_objc_retainAutoreleaseReturnValue
+__arclite_objc_autoreleaseReturnValue
+__arclite_objc_retainAutorelease
+__arclite_objc_autorelease
+__arclite_objc_retainBlock
+__arclite_object_copy
+fixupCopiedReferences
+_class_getInstanceStart
+alignedInstanceStart
+__arclite_class_usesAutomaticRetainRelease
+classOrSuperClassesUseARR
+__arclite_object_setIvar
+isScannedOffset
+_ivar_getClass
+__arclite_object_setInstanceVariable
+__arclite_objc_loadClassref
+add_image_hook_ARC
+patch_t<void (id *, id)>
+patch_t<id (id)>
+patch_t<void (id)>
+patch_t<id (id, unsigned long)>
+patch_t<void (id, objc_ivar *, id)>
+patch_t<objc_ivar *(id, const char *, void *)>
+patch_t<Class (Class *)>
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+__arclite_NSMutableOrderedSet_setObject_atIndexedSubscript
+__arclite_NSOrderedSet_objectAtIndexedSubscript
+__arclite_NSDictionary_objectForKeyedSubscript
+__arclite_NSMutableArray_setObject_atIndexedSubscript
+__arclite_NSArray_objectAtIndexedSubscript
+patch_lazy_pointers
+__arclite_objc_autoreleasePoolPop
+__arclite_objc_autoreleasePoolPush
+add_image_hook_autoreleasepool
+patch_t<void (void *)>
+patch_t<void *()>
+__ARCLite__load
+install_swiftV1
+replaceMethod
+install_ARC
+install_dict_nil_value
+addOrReplaceMethod
+keyedGetter
+install_subscripting
+addMethod
+indexedGetter
+install_autoreleasepool

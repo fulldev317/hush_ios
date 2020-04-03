@@ -14,6 +14,7 @@ struct StorieView<ViewModel: StorieViewModeled>: View {
     
     @Environment(\.presentationMode) var mode
     @ObservedObject var viewModel: ViewModel
+    @State var hide = false
     
     
     // MARK: - Lifecycle
@@ -25,18 +26,24 @@ struct StorieView<ViewModel: StorieViewModeled>: View {
                 HapticButton(action: {
                     self.mode.wrappedValue.dismiss()
                 }, label: {
-                    closeBlock()
+                    closeBlock().opacity(hide ? 0 : 1)
                 })
                 Spacer()
-                titleBlock()
+                titleBlock().opacity(hide ? 0 : 1)
             }
             Spacer()
         }
-    .background(
-        Image(uiImage: viewModel.placeholder)
-            .aspectRatio()
-            .edgesIgnoringSafeArea(.all)
+        .background(
+            Image(uiImage: viewModel.placeholder)
+                .aspectRatio()
+                .edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    withAnimation {
+                        self.hide.toggle()
+                    }
+            }
         ).withoutBar()
+            .overlay(storiesCounter().opacity(hide ? 0 : 1))
     }
     
     private func closeBlock() -> some View {
@@ -65,15 +72,33 @@ struct StorieView<ViewModel: StorieViewModeled>: View {
                 }
                 Spacer()
                 Image("messages_icon")
-                .aspectRatio(.fit)
-                .frame(width: 35, height: 35)
+                    .aspectRatio(.fit)
+                    .frame(width: 35, height: 35)
                 Image("heart_icon")
-                .aspectRatio(.fit)
-                .frame(width: 35, height: 35)
+                    .aspectRatio(.fit)
+                    .frame(width: 35, height: 35)
             }.padding(.horizontal, 10)
         }
         .padding(.trailing, 20)
         .padding(.top, 25)
+    }
+    
+    private func storiesCounter() -> some View {
+        
+        VStack {
+            HStack(alignment: .top) {
+                Spacer()
+                VStack {
+                    ForEach(0 ..< viewModel.numberOfStories) { _ in
+                        Rectangle()
+                            .foregroundColor(.hOrange)
+                            .frame(width: 5)
+                            .frame(minHeight: 5, maxHeight: 84)
+                    }
+                }.frame(width: 5, height: 350)
+            }
+            Spacer()
+        }.padding(.top, 100).padding(.trailing, 20)
     }
 }
 
