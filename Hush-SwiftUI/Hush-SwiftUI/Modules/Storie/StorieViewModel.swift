@@ -16,6 +16,7 @@ class StorieViewModel: StorieViewModeled {
     @Published var message = "Hellow World!"
     
     var placeholder: UIImage = UIImage(named: "stories_placeholder")!
+    var numberOfStories: Int = 8
     
     
     func updateMessage() {

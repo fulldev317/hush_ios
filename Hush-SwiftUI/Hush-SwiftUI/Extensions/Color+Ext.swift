@@ -26,4 +26,5 @@ extension Color {
     }
     
     static let hOrange = Color(0xF2C94C)
+    static let hBlack = Color(0x010101)
 }

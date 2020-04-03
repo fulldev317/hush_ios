@@ -13,6 +13,7 @@ protocol StorieViewModeled: ObservableObject {
     
     var message: String { get set }
     var placeholder: UIImage { get }
+    var numberOfStories: Int { get }
     
     func updateMessage()
 }

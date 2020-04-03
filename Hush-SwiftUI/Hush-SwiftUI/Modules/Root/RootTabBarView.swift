@@ -8,6 +8,20 @@
 
 import SwiftUI
 
+protocol AppTabView {
+    var top: CGFloat { get }
+}
+
+extension AppTabView {
+    
+    var top: CGFloat {
+        if let top = UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets.top {
+            return top
+        }
+        return 0
+    }
+}
+
 struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
     
     // MARK: - Properties
@@ -33,7 +47,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
                 Image("bookmarks").resizable().frame(width: 38, height: 38)
                 Text("")
             }
-            Text("3").tabItem {
+            CardCuraselView(viewModel: CardCuraselViewModel()).tabItem {
                 
                 Image("cards").resizable().frame(width: 38, height: 38)
                 Text("")

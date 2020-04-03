@@ -42,7 +42,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View {
                 })
                 
             }
-        }.withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
+            }.withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
     }
     
     private func header() -> some View {
