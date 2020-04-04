@@ -78,11 +78,7 @@
 		157930F72437324600EE428F /* CardCuraselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F42437324600EE428F /* CardCuraselView.swift */; };
 		157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F52437324600EE428F /* CardCuraselViewModel.swift */; };
 		157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F62437324600EE428F /* CardCuraselViewModeled.swift */; };
-		157930FB2437371800EE428F /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157930FA2437371800EE428F /* Koloda.framework */; };
-		157930FC2437371800EE428F /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 157930FA2437371800EE428F /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930FE243737A800EE428F /* KolodeViewHolder.swift */; };
-		157931012437391300EE428F /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157931002437391200EE428F /* pop.framework */; };
-		157931022437391300EE428F /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 157931002437391200EE428F /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1579310424373C2800EE428F /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579310324373C2800EE428F /* UIView+Ext.swift */; };
 		15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793106243754B500EE428F /* CardCuraselElementView.swift */; };
 		1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793107243754B500EE428F /* CardCuraselElementViewModel.swift */; };
@@ -103,17 +99,16 @@
 		15E8CCE62432053500A92595 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15E8CCE52432053500A92595 /* SF-Pro-Display-Thin.otf */; };
 		15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */; };
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
+		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		157930FD2437371800EE428F /* Embed Frameworks */ = {
+		1579310E243772DC00EE428F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				157931022437391300EE428F /* pop.framework in Embed Frameworks */,
-				157930FC2437371800EE428F /* Koloda.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,9 +187,7 @@
 		157930F42437324600EE428F /* CardCuraselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselView.swift; sourceTree = "<group>"; };
 		157930F52437324600EE428F /* CardCuraselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselViewModel.swift; sourceTree = "<group>"; };
 		157930F62437324600EE428F /* CardCuraselViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselViewModeled.swift; sourceTree = "<group>"; };
-		157930FA2437371800EE428F /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Vendors/Koloda.framework; sourceTree = "<group>"; };
 		157930FE243737A800EE428F /* KolodeViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodeViewHolder.swift; sourceTree = "<group>"; };
-		157931002437391200EE428F /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Vendors/pop.framework; sourceTree = "<group>"; };
 		1579310324373C2800EE428F /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		15793106243754B500EE428F /* CardCuraselElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementView.swift; sourceTree = "<group>"; };
 		15793107243754B500EE428F /* CardCuraselElementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementViewModel.swift; sourceTree = "<group>"; };
@@ -215,6 +208,9 @@
 		15E8CCE52432053500A92595 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
 		15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewModeled.swift; sourceTree = "<group>"; };
 		15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewModel.swift; sourceTree = "<group>"; };
+		297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
+		367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,9 +220,8 @@
 			files = (
 				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
 				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
-				157931012437391300EE428F /* pop.framework in Frameworks */,
-				157930FB2437371800EE428F /* Koloda.framework in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
+				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +286,7 @@
 				154B268D2431BF6600265C76 /* Hush-SwiftUI */,
 				154B268C2431BF6600265C76 /* Products */,
 				158A2C6124349509005F6847 /* Frameworks */,
+				319B9CBB34AC2D97DD833815 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -557,9 +553,8 @@
 		158A2C6124349509005F6847 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				157931002437391200EE428F /* pop.framework */,
-				157930FA2437371800EE428F /* Koloda.framework */,
 				158A2C6224349509005F6847 /* libFaceDetectionLib.a */,
+				367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -574,6 +569,15 @@
 			path = SignUpWithEmail;
 			sourceTree = "<group>";
 		};
+		319B9CBB34AC2D97DD833815 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */,
+				5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -581,10 +585,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 154B269F2431BF6800265C76 /* Build configuration list for PBXNativeTarget "Hush-SwiftUI" */;
 			buildPhases = (
+				5A71CE6E35E759BCB37A79ED /* [CP] Check Pods Manifest.lock */,
 				154B26872431BF6600265C76 /* Sources */,
 				154B26882431BF6600265C76 /* Frameworks */,
 				154B26892431BF6600265C76 /* Resources */,
-				157930FD2437371800EE428F /* Embed Frameworks */,
+				1579310E243772DC00EE428F /* Embed Frameworks */,
+				1D113BC4D7DD685343AF40C8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -656,6 +662,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D113BC4D7DD685343AF40C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A71CE6E35E759BCB37A79ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hush-SwiftUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		154B26872431BF6600265C76 /* Sources */ = {
@@ -873,10 +921,11 @@
 		};
 		154B26A02431BF6800265C76 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = NL53BFH4CA;
 				ENABLE_PREVIEWS = YES;
@@ -899,10 +948,11 @@
 		};
 		154B26A12431BF6800265C76 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = NL53BFH4CA;
 				ENABLE_PREVIEWS = YES;

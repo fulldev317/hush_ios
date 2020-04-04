@@ -8,6 +8,9 @@
       location = "group:Hush-SwiftUI/Hush-SwiftUI.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Hush-SwiftUI/Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CoreLogic/CoreLogic.xcodeproj">
    </FileRef>
    <FileRef

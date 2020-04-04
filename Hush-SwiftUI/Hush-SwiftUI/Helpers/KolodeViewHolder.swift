@@ -34,6 +34,7 @@ class OwnKoloda: KolodaView {
         
         alphaValueSemiTransparent = 1
         alphaValueTransparent = 1
+        backgroundCardsScalePercent = 1
     }
     
     override func frameForCard(at index: Int) -> CGRect {
@@ -51,10 +52,11 @@ class OwnKoloda: KolodaView {
 struct KolodaViewHolder<Content: View>: UIViewRepresentable {
     
     let content: (Int) -> Content
+    let moveLeft: (CGFloat) -> Void
+    let moveRight: (CGFloat) -> Void
+    let onEnd: () -> Void
+    
     private var coordinator: Coordinator!
-    var moveLeft: (CGFloat) -> Void
-    var moveRight: (CGFloat) -> Void
-    var onEnd: () -> Void
     
     public init(_ content: @escaping (Int) -> Content, moveLeft: @escaping (CGFloat) -> Void, moveRight: @escaping (CGFloat) -> Void, onEnd: @escaping () -> Void) {
         self.content = content
