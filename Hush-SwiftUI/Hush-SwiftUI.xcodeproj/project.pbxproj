@@ -41,6 +41,22 @@
 		154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */; };
 		154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */; };
 		154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B26BB2431DD7400265C76 /* iOSApp.swift */; };
+		155E2FE7243B069C001D886D /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FE4243B069C001D886D /* MessagesView.swift */; };
+		155E2FE8243B069C001D886D /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FE5243B069C001D886D /* MessagesViewModel.swift */; };
+		155E2FE9243B069C001D886D /* MessagesViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FE6243B069C001D886D /* MessagesViewModeled.swift */; };
+		155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155E2FEF243B0962001D886D /* CoreLogic.framework */; };
+		155E2FF1243B0962001D886D /* CoreLogic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 155E2FEF243B0962001D886D /* CoreLogic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		155E2FF4243B0C2C001D886D /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FF3243B0C2C001D886D /* MessagesCell.swift */; };
+		155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FF8243B0FFC001D886D /* EnvironmentValues+ImageCache.swift */; };
+		155E2FFD243B0FFC001D886D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FF9243B0FFC001D886D /* ImageCache.swift */; };
+		155E2FFE243B0FFC001D886D /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FFA243B0FFC001D886D /* AsyncImage.swift */; };
+		155E2FFF243B0FFC001D886D /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FFB243B0FFC001D886D /* ImageLoader.swift */; };
+		155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3001243B1E93001D886D /* MessageDetailView.swift */; };
+		155E3005243B1E93001D886D /* MessageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3002243B1E93001D886D /* MessageDetailViewModel.swift */; };
+		155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3003243B1E93001D886D /* MessageDetailViewModeled.swift */; };
+		155E3008243B282B001D886D /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3007243B282B001D886D /* RoundedCorners.swift */; };
+		155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3009243B29EF001D886D /* ContentMessageView.swift */; };
+		155E300F243B4132001D886D /* HTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E300E243B4132001D886D /* HTextView.swift */; };
 		1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930792435B69C00EE428F /* FacedetectorVC.swift */; };
 		1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579307A2435B69C00EE428F /* LookingGoodVC.swift */; };
 		1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */; };
@@ -109,6 +125,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				155E2FF1243B0962001D886D /* CoreLogic.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +169,21 @@
 		154B26B52431D2A400265C76 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		154B26B72431D4AD00265C76 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		154B26BB2431DD7400265C76 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		155E2FE4243B069C001D886D /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		155E2FE5243B069C001D886D /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		155E2FE6243B069C001D886D /* MessagesViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModeled.swift; sourceTree = "<group>"; };
+		155E2FEF243B0962001D886D /* CoreLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		155E2FF3243B0C2C001D886D /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
+		155E2FF8243B0FFC001D886D /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
+		155E2FF9243B0FFC001D886D /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		155E2FFA243B0FFC001D886D /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		155E2FFB243B0FFC001D886D /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		155E3001243B1E93001D886D /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
+		155E3002243B1E93001D886D /* MessageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewModel.swift; sourceTree = "<group>"; };
+		155E3003243B1E93001D886D /* MessageDetailViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewModeled.swift; sourceTree = "<group>"; };
+		155E3007243B282B001D886D /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
+		155E3009243B29EF001D886D /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
+		155E300E243B4132001D886D /* HTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTextView.swift; sourceTree = "<group>"; };
 		157930792435B69C00EE428F /* FacedetectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacedetectorVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/FacedetectorVC.swift"; sourceTree = "<group>"; };
 		1579307A2435B69C00EE428F /* LookingGoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookingGoodVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/LookingGoodVC.swift"; sourceTree = "<group>"; };
 		1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OldFaceDetection.storyboard; sourceTree = "<group>"; };
@@ -221,6 +253,7 @@
 				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
 				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
+				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +377,8 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				155E3000243B1E85001D886D /* MessageDetail */,
+				155E2FE3243B0684001D886D /* Messages */,
 				157930F32437321800EE428F /* CardCurasel */,
 				157930EA2437225E00EE428F /* Storie */,
 				157930E32437206000EE428F /* Stories */,
@@ -385,6 +420,7 @@
 		154B26A92431CB4D00265C76 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				155E2FF7243B0FF1001D886D /* AsyncImage */,
 				1546B42E2433316C00180D77 /* DVImagePicker.swift */,
 				154B26AA2431CB5A00265C76 /* HapticButton.swift */,
 				15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */,
@@ -394,6 +430,8 @@
 				158A2C562434844F005F6847 /* DatePickerField.swift */,
 				158A2C5824348F1F005F6847 /* View+Navigation.swift */,
 				157930FE243737A800EE428F /* KolodeViewHolder.swift */,
+				155E3007243B282B001D886D /* RoundedCorners.swift */,
+				155E300E243B4132001D886D /* HTextView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -422,6 +460,55 @@
 				154B26B42431D27F00265C76 /* SF-Pro-Display-Medium.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		155E2FE3243B0684001D886D /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				155E2FF2243B0BFE001D886D /* MessagesCell */,
+				155E2FE4243B069C001D886D /* MessagesView.swift */,
+				155E2FE5243B069C001D886D /* MessagesViewModel.swift */,
+				155E2FE6243B069C001D886D /* MessagesViewModeled.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		155E2FF2243B0BFE001D886D /* MessagesCell */ = {
+			isa = PBXGroup;
+			children = (
+				155E2FF3243B0C2C001D886D /* MessagesCell.swift */,
+			);
+			path = MessagesCell;
+			sourceTree = "<group>";
+		};
+		155E2FF7243B0FF1001D886D /* AsyncImage */ = {
+			isa = PBXGroup;
+			children = (
+				155E2FFA243B0FFC001D886D /* AsyncImage.swift */,
+				155E2FF8243B0FFC001D886D /* EnvironmentValues+ImageCache.swift */,
+				155E2FF9243B0FFC001D886D /* ImageCache.swift */,
+				155E2FFB243B0FFC001D886D /* ImageLoader.swift */,
+			);
+			path = AsyncImage;
+			sourceTree = "<group>";
+		};
+		155E3000243B1E85001D886D /* MessageDetail */ = {
+			isa = PBXGroup;
+			children = (
+				155E300B243B2A18001D886D /* Content */,
+				155E3001243B1E93001D886D /* MessageDetailView.swift */,
+				155E3002243B1E93001D886D /* MessageDetailViewModel.swift */,
+				155E3003243B1E93001D886D /* MessageDetailViewModeled.swift */,
+			);
+			path = MessageDetail;
+			sourceTree = "<group>";
+		};
+		155E300B243B2A18001D886D /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				155E3009243B29EF001D886D /* ContentMessageView.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		157930782435B68000EE428F /* Old */ = {
@@ -553,6 +640,7 @@
 		158A2C6124349509005F6847 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				155E2FEF243B0962001D886D /* CoreLogic.framework */,
 				158A2C6224349509005F6847 /* libFaceDetectionLib.a */,
 				367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */,
 			);
@@ -713,6 +801,7 @@
 				154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */,
 				1579308C2435BDD000EE428F /* DiscoveryView.swift in Sources */,
 				1579308D2435BDD000EE428F /* DiscoveryViewModel.swift in Sources */,
+				155E2FE9243B069C001D886D /* MessagesViewModeled.swift in Sources */,
 				157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */,
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
@@ -722,9 +811,11 @@
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
+				155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */,
 				158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */,
 				157930A12435CE5300EE428F /* View+Ext.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
+				155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */,
 				157930E92437209100EE428F /* StoriesView.swift in Sources */,
 				157930F02437227A00EE428F /* StorieViewModeled.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
@@ -732,6 +823,7 @@
 				1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */,
 				158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */,
 				157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */,
+				155E2FE8243B069C001D886D /* MessagesViewModel.swift in Sources */,
 				1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */,
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
@@ -739,22 +831,28 @@
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
 				157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */,
 				157930F2243722F300EE428F /* Image+Ext.swift in Sources */,
+				155E2FFF243B0FFC001D886D /* ImageLoader.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
 				1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */,
 				157930932435BE0100EE428F /* RootTabBarView.swift in Sources */,
 				1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */,
+				155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */,
+				155E2FF4243B0C2C001D886D /* MessagesCell.swift in Sources */,
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
 				1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */,
+				155E3005243B1E93001D886D /* MessageDetailViewModel.swift in Sources */,
 				158A2C572434844F005F6847 /* DatePickerField.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
+				155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
 				157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */,
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
 				1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */,
+				155E2FE7243B069C001D886D /* MessagesView.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
@@ -766,14 +864,17 @@
 				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
 				157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */,
+				155E2FFE243B0FFC001D886D /* AsyncImage.swift in Sources */,
 				1579309A2435C2F100EE428F /* UserCardView.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
+				155E3008243B282B001D886D /* RoundedCorners.swift in Sources */,
 				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
 				157930AB2435E62000EE428F /* SettingsView.swift in Sources */,
 				15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */,
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
+				155E2FFD243B0FFC001D886D /* ImageCache.swift in Sources */,
 				1579310424373C2800EE428F /* UIView+Ext.swift in Sources */,
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
@@ -783,6 +884,7 @@
 				157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */,
 				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,
 				157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */,
+				155E300F243B4132001D886D /* HTextView.swift in Sources */,
 				157930822435B77000EE428F /* StickerView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,

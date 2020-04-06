@@ -28,6 +28,8 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
     
     @ObservedObject var viewModel: ViewModel
     
+    @State var currentTab = 3
+    
     init(viewModel model: ViewModel) {
         viewModel = model
         UITabBar.appearance().barTintColor = .black
@@ -36,32 +38,32 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
     // MARK: - Lifecycle
     
     var body: some View {
-        TabView {
+        TabView(selection: $currentTab) {
             DiscoveryView(viewModel: DiscoveryViewModel()).tabItem {
                 
                 Image("discoverySelected").resizable().frame(width: 38, height: 38)
                 Text("")
-            }
+            }.tag(0)
             StoriesView(viewModel: StoriesViewModel()).tabItem {
                 
                 Image("bookmarks").resizable().frame(width: 38, height: 38)
                 Text("")
-            }
+            }.tag(1)
             CardCuraselView(viewModel: CardCuraselViewModel()).tabItem {
                 
                 Image("cards").resizable().frame(width: 38, height: 38)
                 Text("")
-            }
-            Text("4").tabItem {
+            }.tag(2)
+            MessagesView(viewModel: MessagesViewModel()).withoutBar().tabItem {
                 
                 Image("messages").resizable().frame(width: 38, height: 38)
                 Text("")
-            }
+            }.tag(3)
             Text("5").tabItem {
                 
                 Image("user-circle").resizable().frame(width: 38, height: 38)
                 Text("")
-            }
+            }.tag(4)
         }
         .accentColor(.hOrange)
         .withoutBar()
