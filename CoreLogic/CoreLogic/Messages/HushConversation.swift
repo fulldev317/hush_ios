@@ -44,6 +44,6 @@ public struct HushConversation {
     
     public mutating func sendMessage(_ message: HushMessage) {
         
-        messages.append(message)
+        messages.insert(message, at: 0)
     }
 }

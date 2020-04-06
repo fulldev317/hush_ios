@@ -38,9 +38,6 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         if uiView.text != self.text {
             uiView.text = self.text
         }
-        if uiView.window != nil, !uiView.isFirstResponder {
-            uiView.becomeFirstResponder()
-        }
         UITextViewWrapper.recalculateHeight(view: uiView, result: $calculatedHeight)
         uiView.isScrollEnabled = calculatedHeight >= 150
     }
@@ -80,9 +77,9 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         }
 
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            if let onDone = self.onDone, text == "\n" {
+            if text == "\n" {
                 textView.resignFirstResponder()
-                onDone()
+                onDone?()
                 return false
             }
             return true
