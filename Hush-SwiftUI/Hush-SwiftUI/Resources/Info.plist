@@ -20,6 +20,11 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Hush will use your Camera for image capturing</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -71,11 +76,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <!--Include to allow all connections (DANGER)-->
-      <key>NSAllowsArbitraryLoads</key>
-          <true/>
-    </dict>
 </dict>
 </plist>

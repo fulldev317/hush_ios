@@ -57,6 +57,7 @@
 		155E3008243B282B001D886D /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3007243B282B001D886D /* RoundedCorners.swift */; };
 		155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3009243B29EF001D886D /* ContentMessageView.swift */; };
 		155E300F243B4132001D886D /* HTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E300E243B4132001D886D /* HTextView.swift */; };
+		155E3011243B496D001D886D /* SendTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3010243B496D001D886D /* SendTextField.swift */; };
 		1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930792435B69C00EE428F /* FacedetectorVC.swift */; };
 		1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579307A2435B69C00EE428F /* LookingGoodVC.swift */; };
 		1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */; };
@@ -184,6 +185,7 @@
 		155E3007243B282B001D886D /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		155E3009243B29EF001D886D /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
 		155E300E243B4132001D886D /* HTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTextView.swift; sourceTree = "<group>"; };
+		155E3010243B496D001D886D /* SendTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTextField.swift; sourceTree = "<group>"; };
 		157930792435B69C00EE428F /* FacedetectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacedetectorVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/FacedetectorVC.swift"; sourceTree = "<group>"; };
 		1579307A2435B69C00EE428F /* LookingGoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookingGoodVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/LookingGoodVC.swift"; sourceTree = "<group>"; };
 		1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OldFaceDetection.storyboard; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				155E3009243B29EF001D886D /* ContentMessageView.swift */,
+				155E3010243B496D001D886D /* SendTextField.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
 				157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */,
 				1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */,
+				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				157930EE2437227A00EE428F /* StorieView.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,

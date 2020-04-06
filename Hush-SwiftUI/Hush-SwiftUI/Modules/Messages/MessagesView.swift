@@ -55,7 +55,8 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                         NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(message)).withoutBar()) {
                             MessagesCell(message: message).padding(.horizontal, 16)
                         }
-                        
+                    }.onDelete { (set) in
+                        print(set)
                     }
                 }
             }
