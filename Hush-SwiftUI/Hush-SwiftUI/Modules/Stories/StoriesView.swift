@@ -10,12 +10,11 @@ import SwiftUI
 import QGrid
 import PartialSheet
 
-struct StoriesView<ViewModel: StoriesViewModeled>: View {
+protocol HeaderedScreen {
     
-    // MARK: - Properties
-    
-    @ObservedObject var viewModel: ViewModel
-    @State var showStorie = false
+}
+
+extension HeaderedScreen {
     
     var top: CGFloat {
         if let top = UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets.top {
@@ -24,11 +23,32 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View {
         return 0
     }
     
+    func header<V: View>(_ list: [V]) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                
+                ForEach(0..<list.count) {
+                    list[$0]
+                }
+            }
+            Spacer()
+        }.padding(.leading, 30)
+    }
+}
+
+struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
+    
+    // MARK: - Properties
+    
+    @ObservedObject var viewModel: ViewModel
+    @State var showStorie = false
+    
     // MARK: - Lifecycle
     
     var body: some View {
         VStack {
-            header().padding(.top, top)
+            header([Text("Stories").foregroundColor(.hOrange).font(.ultraLight(48)),
+            Text("Profiles Nearby").foregroundColor(.white).font(.thin())]).padding(.top, top)
             QGrid(viewModel.messages, columns: 2) { element in
                 
                 HapticButton(action: {
@@ -43,16 +63,6 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View {
                 
             }
             }.withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
-    }
-    
-    private func header() -> some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("Stories").foregroundColor(.hOrange).font(.ultraLight(48))
-                Text("Profiles Nearby").foregroundColor(.white).font(.thin())
-            }
-            Spacer()
-        }.padding(.leading, 30)
     }
 }
 

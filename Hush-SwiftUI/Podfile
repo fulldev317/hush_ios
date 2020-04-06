@@ -6,5 +6,6 @@ target 'Hush-SwiftUI' do
   use_frameworks!
 
   pod 'Koloda'
+  pod 'Fakery'
 
 end

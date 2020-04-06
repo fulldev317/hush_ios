@@ -19,4 +19,6 @@ struct iOSApp {
         
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
+    
+    static let cache = TemporaryImageCache()
 }
