@@ -120,7 +120,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     // MARK: - Premium
     
     var premiumButton: some View {
-        HapticButton(action: {}) {
+        HapticButton(action: {
+            self.app.showPremium.toggle()
+        }) {
             ZStack(alignment: .leading) {
                 Text("Activate Premium")
                     .kerning(-0.41)

@@ -113,6 +113,10 @@
 		15D53C7F243C65C900D62B26 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C7C243C65C900D62B26 /* MyProfileViewModel.swift */; };
 		15D53C80243C65C900D62B26 /* MyProfileViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C7D243C65C900D62B26 /* MyProfileViewModeled.swift */; };
 		15D53C82243C7CA400D62B26 /* HToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C81243C7CA400D62B26 /* HToggleStyle.swift */; };
+		15D53C87243C909600D62B26 /* UpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C84243C909600D62B26 /* UpgradeView.swift */; };
+		15D53C88243C909600D62B26 /* UpgradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C85243C909600D62B26 /* UpgradeViewModel.swift */; };
+		15D53C89243C909600D62B26 /* UpgradeViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */; };
+		15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
 		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
 		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
@@ -244,6 +248,10 @@
 		15D53C7C243C65C900D62B26 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
 		15D53C7D243C65C900D62B26 /* MyProfileViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModeled.swift; sourceTree = "<group>"; };
 		15D53C81243C7CA400D62B26 /* HToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HToggleStyle.swift; sourceTree = "<group>"; };
+		15D53C84243C909600D62B26 /* UpgradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeView.swift; sourceTree = "<group>"; };
+		15D53C85243C909600D62B26 /* UpgradeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeViewModel.swift; sourceTree = "<group>"; };
+		15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeViewModeled.swift; sourceTree = "<group>"; };
+		15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCarusel.swift; sourceTree = "<group>"; };
 		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
 		15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppScreens.swift; sourceTree = "<group>"; };
 		15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
@@ -391,6 +399,7 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				15D53C83243C907400D62B26 /* Upgrade */,
 				15D53C79243C65B800D62B26 /* Profile */,
 				15D53C78243C644100D62B26 /* Messages */,
 				157930F32437321800EE428F /* CardCurasel */,
@@ -696,6 +705,17 @@
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
+		15D53C83243C907400D62B26 /* Upgrade */ = {
+			isa = PBXGroup;
+			children = (
+				15D53C84243C909600D62B26 /* UpgradeView.swift */,
+				15D53C85243C909600D62B26 /* UpgradeViewModel.swift */,
+				15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */,
+				15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */,
+			);
+			path = Upgrade;
+			sourceTree = "<group>";
+		};
 		15E8CCE72432286900A92595 /* SignUpWithEmail */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +900,7 @@
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
 				15D53C80243C65C900D62B26 /* MyProfileViewModeled.swift in Sources */,
 				157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */,
+				15D53C88243C909600D62B26 /* UpgradeViewModel.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
 				157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */,
 				157930F2243722F300EE428F /* Image+Ext.swift in Sources */,
@@ -917,12 +938,14 @@
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
+				15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */,
 				157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */,
 				155E2FFE243B0FFC001D886D /* AsyncImage.swift in Sources */,
 				1579309A2435C2F100EE428F /* UserCardView.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
+				15D53C87243C909600D62B26 /* UpgradeView.swift in Sources */,
 				155E3008243B282B001D886D /* RoundedCorners.swift in Sources */,
 				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
 				15D53C76243C624400D62B26 /* App.swift in Sources */,
@@ -942,6 +965,7 @@
 				157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */,
 				155E300F243B4132001D886D /* HTextView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,
+				15D53C89243C909600D62B26 /* UpgradeViewModeled.swift in Sources */,
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
 				157930F72437324600EE428F /* CardCuraselView.swift in Sources */,

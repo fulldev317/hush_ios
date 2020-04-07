@@ -27,6 +27,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var app: App
     
     @State var currentTab = 2
     
@@ -67,6 +68,9 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
         }
         .accentColor(.hOrange)
         .withoutBar()
+        .sheet(isPresented: $app.showPremium) {
+            UpgradeView(viewModel: UpgradeViewModel())
+        }
     }
 }
 
