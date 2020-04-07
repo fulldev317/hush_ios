@@ -14,7 +14,6 @@ struct StoryCardsView<ViewModel: StoryCardsViewModeled>: View {
     
     @ObservedObject var viewModel: ViewModel
     
-    
     // MARK: - Lifecycle
     
     var body: some View {

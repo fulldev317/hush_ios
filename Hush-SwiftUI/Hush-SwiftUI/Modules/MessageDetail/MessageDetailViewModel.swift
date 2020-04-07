@@ -32,7 +32,7 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     
     func sendMessage(_ text: String) {
         
-        conv.sendMessage(HushMessage(userID: "SELF", text: text, time: Date().timeIntervalSinceNow))
+        conv.sendMessage(HushMessage(userID: "SELF", text: text, time: Date().timeIntervalSince1970))
         changed.toggle()
     }
 }

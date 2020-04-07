@@ -62,7 +62,6 @@
 		1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579307A2435B69C00EE428F /* LookingGoodVC.swift */; };
 		1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */; };
 		157930802435B73B00EE428F /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579307F2435B73B00EE428F /* UIButtonX.swift */; };
-		157930822435B77000EE428F /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930812435B77000EE428F /* StickerView.swift */; };
 		157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */; };
 		157930872435B7A000EE428F /* editImageVc_mainFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */; };
 		1579308C2435BDD000EE428F /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930892435BDD000EE428F /* DiscoveryView.swift */; };
@@ -108,6 +107,8 @@
 		158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158A2C6224349509005F6847 /* libFaceDetectionLib.a */; };
 		158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C642434952F005F6847 /* FaceDetectionViewController.swift */; };
 		1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */; };
+		15D53C74243C60C600D62B26 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C73243C60C600D62B26 /* StickerView.swift */; };
+		15D53C76243C624400D62B26 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C75243C624400D62B26 /* App.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
 		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
 		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
@@ -186,11 +187,10 @@
 		155E3009243B29EF001D886D /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
 		155E300E243B4132001D886D /* HTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTextView.swift; sourceTree = "<group>"; };
 		155E3010243B496D001D886D /* SendTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTextField.swift; sourceTree = "<group>"; };
-		157930792435B69C00EE428F /* FacedetectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacedetectorVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/FacedetectorVC.swift"; sourceTree = "<group>"; };
-		1579307A2435B69C00EE428F /* LookingGoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookingGoodVC.swift; path = "../../../../../hush-ios/Hush/System/Controller/LookingGoodVC.swift"; sourceTree = "<group>"; };
+		157930792435B69C00EE428F /* FacedetectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacedetectorVC.swift; sourceTree = "<group>"; };
+		1579307A2435B69C00EE428F /* LookingGoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookingGoodVC.swift; sourceTree = "<group>"; };
 		1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OldFaceDetection.storyboard; sourceTree = "<group>"; };
-		1579307F2435B73B00EE428F /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButtonX.swift; path = "../../../../../hush-ios/Hush/System/HelperClass/DesignLableX/UIButtonX.swift"; sourceTree = "<group>"; };
-		157930812435B77000EE428F /* StickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StickerView.swift; path = "../../../../../hush-ios/Hush/System/HelperClass/StickerView/StickerView.swift"; sourceTree = "<group>"; };
+		1579307F2435B73B00EE428F /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
 		157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editImageVc_mainFilterCell.swift; sourceTree = "<group>"; };
 		157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editImageVc_mainFilterCell.xib; sourceTree = "<group>"; };
 		157930892435BDD000EE428F /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
@@ -234,6 +234,8 @@
 		158A2C6224349509005F6847 /* libFaceDetectionLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFaceDetectionLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		158A2C642434952F005F6847 /* FaceDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewController.swift; sourceTree = "<group>"; };
 		1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Keyboard.swift"; sourceTree = "<group>"; };
+		15D53C73243C60C600D62B26 /* StickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
+		15D53C75243C624400D62B26 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
 		15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppScreens.swift; sourceTree = "<group>"; };
 		15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
@@ -369,9 +371,11 @@
 		154B26A32431C28B00265C76 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				1579308F2435BDE800EE428F /* Root */,
 				154B268E2431BF6600265C76 /* AppDelegate.swift */,
 				154B26902431BF6600265C76 /* SceneDelegate.swift */,
 				154B26BB2431DD7400265C76 /* iOSApp.swift */,
+				15D53C75243C624400D62B26 /* App.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -382,14 +386,9 @@
 				155E3000243B1E85001D886D /* MessageDetail */,
 				155E2FE3243B0684001D886D /* Messages */,
 				157930F32437321800EE428F /* CardCurasel */,
-				157930EA2437225E00EE428F /* Storie */,
-				157930E32437206000EE428F /* Stories */,
-				157930DC24371CEE00EE428F /* StoryCards */,
-				157930A72435E60500EE428F /* Settings */,
+				15D53C72243C5FE200D62B26 /* Story */,
 				157930962435C2E400EE428F /* Card */,
-				1579308F2435BDE800EE428F /* Root */,
 				157930882435BDB600EE428F /* Discovery */,
-				158A2C5A2434940B005F6847 /* FaceDetection */,
 				154B26A52431C33500265C76 /* Auth */,
 			);
 			path = Modules;
@@ -398,6 +397,7 @@
 		154B26A52431C33500265C76 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				158A2C5A2434940B005F6847 /* FaceDetection */,
 				15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */,
 				1546B4302433400C00180D77 /* Login */,
 				154B26A62431C35600265C76 /* SignUp */,
@@ -518,9 +518,9 @@
 			isa = PBXGroup;
 			children = (
 				157930832435B7A000EE428F /* EditImageVC_cell */,
-				157930812435B77000EE428F /* StickerView.swift */,
 				1579307F2435B73B00EE428F /* UIButtonX.swift */,
 				157930792435B69C00EE428F /* FacedetectorVC.swift */,
+				15D53C73243C60C600D62B26 /* StickerView.swift */,
 				1579307A2435B69C00EE428F /* LookingGoodVC.swift */,
 				1579307D2435B6B200EE428F /* OldFaceDetection.storyboard */,
 			);
@@ -533,13 +533,13 @@
 				157930842435B7A000EE428F /* editImageVc_mainFilterCell.swift */,
 				157930852435B7A000EE428F /* editImageVc_mainFilterCell.xib */,
 			);
-			name = EditImageVC_cell;
-			path = "../../../../../hush-ios/Hush/System/Cell/EditImageVC_cell";
+			path = EditImageVC_cell;
 			sourceTree = "<group>";
 		};
 		157930882435BDB600EE428F /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
+				157930A72435E60500EE428F /* Settings */,
 				157930892435BDD000EE428F /* DiscoveryView.swift */,
 				1579308A2435BDD000EE428F /* DiscoveryViewModel.swift */,
 				1579308B2435BDD000EE428F /* DiscoveryViewModeled.swift */,
@@ -648,6 +648,16 @@
 				367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		15D53C72243C5FE200D62B26 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				157930EA2437225E00EE428F /* Storie */,
+				157930E32437206000EE428F /* Stories */,
+				157930DC24371CEE00EE428F /* StoryCards */,
+			);
+			path = Story;
 			sourceTree = "<group>";
 		};
 		15E8CCE72432286900A92595 /* SignUpWithEmail */ = {
@@ -861,6 +871,7 @@
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
 				157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */,
 				1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */,
+				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				157930EE2437227A00EE428F /* StorieView.swift in Sources */,
@@ -875,6 +886,7 @@
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
 				155E3008243B282B001D886D /* RoundedCorners.swift in Sources */,
 				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
+				15D53C76243C624400D62B26 /* App.swift in Sources */,
 				157930AB2435E62000EE428F /* SettingsView.swift in Sources */,
 				15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */,
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
@@ -889,7 +901,6 @@
 				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,
 				157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */,
 				155E300F243B4132001D886D /* HTextView.swift in Sources */,
-				157930822435B77000EE428F /* StickerView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
