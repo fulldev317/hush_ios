@@ -7,5 +7,6 @@ target 'Hush-SwiftUI' do
 
   pod 'Koloda'
   pod 'Fakery'
+  pod 'SwiftUIPager'
 
 end

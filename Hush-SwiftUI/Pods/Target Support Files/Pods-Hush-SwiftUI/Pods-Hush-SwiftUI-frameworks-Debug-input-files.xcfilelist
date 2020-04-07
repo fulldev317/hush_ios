@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Fakery/Fakery.framework
 ${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework
+${BUILT_PRODUCTS_DIR}/SwiftUIPager/SwiftUIPager.framework
 ${BUILT_PRODUCTS_DIR}/pop/pop.framework
