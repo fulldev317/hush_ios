@@ -14,6 +14,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
+    @Environment(\.app) var app
     
     
     // MARK: - Lifecycle
@@ -45,10 +46,10 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(self.viewModel.messages(), id: \.id) {
-                            ContentMessageView(contentMessage: $0.text, isCurrentUser: $0.userID == "SELF")
+                            ContentMessageView(time: $0.time, contentMessage: $0.text, isCurrentUser: $0.userID == "SELF")
                                 .rotationEffect(.degrees(180))
                         }
-                    }
+                    }.padding(.bottom, 30)
                 }
                 .rotationEffect(.degrees(180))
                 SendTextField(placeholder: "SAD", onsend: {

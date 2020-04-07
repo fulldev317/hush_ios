@@ -10,19 +10,28 @@ import SwiftUI
 
 struct ContentMessageView: View {
     
+    var time: Double
     var contentMessage: String
     var isCurrentUser: Bool
     
     var body: some View {
-        HStack {
-            Text(contentMessage)
-            .padding(10)
-            .foregroundColor(Color.white)
-            Spacer()
-        }
-            .background(background())
-            .padding(.leading, isCurrentUser ? 80 : 30)
-            .padding(.trailing, isCurrentUser ? 30 : 80)
+        HStack(alignment: .bottom, spacing: 20) {
+            
+            if isCurrentUser {
+                Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+            }
+        
+            HStack {
+                Text(contentMessage)
+                    .padding(10)
+                    .foregroundColor(Color.white)
+                Spacer()
+            }.background(background())
+        
+            if !isCurrentUser {
+                Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+            }
+        }.padding(.horizontal, 16)
     }
     
     private func background() -> some View {
@@ -33,13 +42,24 @@ struct ContentMessageView: View {
         
         return RoundedCorners(color: color, tl: 20, tr: 20, bl: bl, br: br)
     }
+    
+    private func getTime() -> String {
+        
+        let date = Date(timeIntervalSince1970: time)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        
+        return formatter.string(from: date)
+    }
 }
 
 struct ContentMessageView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ContentMessageView(contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false)
-            ContentMessageView(contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: true)
+            ContentMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false)
+            ContentMessageView(time: 43547890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: true)
         }
     }
 }
