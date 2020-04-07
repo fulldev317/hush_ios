@@ -14,7 +14,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
-    @Environment(\.app) var app
+    @EnvironmentObject var app: App
     
     
     // MARK: - Lifecycle

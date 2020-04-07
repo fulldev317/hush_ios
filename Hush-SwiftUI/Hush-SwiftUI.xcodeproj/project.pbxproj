@@ -109,6 +109,10 @@
 		1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */; };
 		15D53C74243C60C600D62B26 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C73243C60C600D62B26 /* StickerView.swift */; };
 		15D53C76243C624400D62B26 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C75243C624400D62B26 /* App.swift */; };
+		15D53C7E243C65C900D62B26 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C7B243C65C900D62B26 /* MyProfileView.swift */; };
+		15D53C7F243C65C900D62B26 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C7C243C65C900D62B26 /* MyProfileViewModel.swift */; };
+		15D53C80243C65C900D62B26 /* MyProfileViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C7D243C65C900D62B26 /* MyProfileViewModeled.swift */; };
+		15D53C82243C7CA400D62B26 /* HToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C81243C7CA400D62B26 /* HToggleStyle.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
 		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
 		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
@@ -236,6 +240,10 @@
 		1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Keyboard.swift"; sourceTree = "<group>"; };
 		15D53C73243C60C600D62B26 /* StickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 		15D53C75243C624400D62B26 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		15D53C7B243C65C900D62B26 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		15D53C7C243C65C900D62B26 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
+		15D53C7D243C65C900D62B26 /* MyProfileViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModeled.swift; sourceTree = "<group>"; };
+		15D53C81243C7CA400D62B26 /* HToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HToggleStyle.swift; sourceTree = "<group>"; };
 		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
 		15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppScreens.swift; sourceTree = "<group>"; };
 		15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
@@ -383,8 +391,8 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				155E3000243B1E85001D886D /* MessageDetail */,
-				155E2FE3243B0684001D886D /* Messages */,
+				15D53C79243C65B800D62B26 /* Profile */,
+				15D53C78243C644100D62B26 /* Messages */,
 				157930F32437321800EE428F /* CardCurasel */,
 				15D53C72243C5FE200D62B26 /* Story */,
 				157930962435C2E400EE428F /* Card */,
@@ -434,6 +442,7 @@
 				157930FE243737A800EE428F /* KolodeViewHolder.swift */,
 				155E3007243B282B001D886D /* RoundedCorners.swift */,
 				155E300E243B4132001D886D /* HTextView.swift */,
+				15D53C81243C7CA400D62B26 /* HToggleStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -660,6 +669,33 @@
 			path = Story;
 			sourceTree = "<group>";
 		};
+		15D53C78243C644100D62B26 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				155E3000243B1E85001D886D /* MessageDetail */,
+				155E2FE3243B0684001D886D /* Messages */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		15D53C79243C65B800D62B26 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				15D53C7A243C65BE00D62B26 /* MyProfile */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		15D53C7A243C65BE00D62B26 /* MyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				15D53C7B243C65C900D62B26 /* MyProfileView.swift */,
+				15D53C7C243C65C900D62B26 /* MyProfileViewModel.swift */,
+				15D53C7D243C65C900D62B26 /* MyProfileViewModeled.swift */,
+			);
+			path = MyProfile;
+			sourceTree = "<group>";
+		};
 		15E8CCE72432286900A92595 /* SignUpWithEmail */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,10 +865,12 @@
 				157930A12435CE5300EE428F /* View+Ext.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
 				155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */,
+				15D53C82243C7CA400D62B26 /* HToggleStyle.swift in Sources */,
 				157930E92437209100EE428F /* StoriesView.swift in Sources */,
 				157930F02437227A00EE428F /* StorieViewModeled.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
 				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
+				15D53C7F243C65C900D62B26 /* MyProfileViewModel.swift in Sources */,
 				1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */,
 				158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */,
 				157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */,
@@ -840,6 +878,7 @@
 				1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */,
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
+				15D53C80243C65C900D62B26 /* MyProfileViewModeled.swift in Sources */,
 				157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
 				157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */,
@@ -896,6 +935,7 @@
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
 				15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
+				15D53C7E243C65C900D62B26 /* MyProfileView.swift in Sources */,
 				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,
 				157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */,
 				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,

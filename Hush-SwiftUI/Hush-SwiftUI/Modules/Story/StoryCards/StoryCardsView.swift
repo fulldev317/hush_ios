@@ -18,7 +18,7 @@ struct StoryCardsView<ViewModel: StoryCardsViewModeled>: View {
     
     var body: some View {
         ZStack {
-            UserCardView(viewModel: viewModel).layoutPriority(1)
+            UserCardView(image: viewModel.image, bottomView: bottomView, size: .init(width: (SCREEN_WIDTH / 2), height: 280 * (SCREEN_WIDTH / 2) / 237)).layoutPriority(1)
             VStack {
                 Spacer()
                 HStack {
@@ -35,6 +35,19 @@ struct StoryCardsView<ViewModel: StoryCardsViewModeled>: View {
                 }
             }
         }
+    }
+    
+    var bottomView: some View {
+        HStack {
+            (Text(viewModel.name) + Text(", ") + Text("\(viewModel.age)")).font(.regular(14)).foregroundColor(Color(0x8E8786))
+            if viewModel.selected {
+                Spacer()
+                Image("red_heart").resizable().aspectRatio(contentMode: .fit)
+                .frame(width: 25, height: 25)
+            } else {
+                Spacer()
+            }
+        }.padding(15)
     }
 }
 

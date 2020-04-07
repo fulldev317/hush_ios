@@ -13,7 +13,6 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             SignUpView(viewModel: SignUpViewModel()).withoutBar()
-//            RootTabBarView(viewModel: RootTabBarViewModel()).withoutxBar()
         }
     }
 }
