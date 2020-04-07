@@ -12,7 +12,8 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
     
     // MARK: - Properties
     
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var mode
+    @EnvironmentObject var app: App
     @ObservedObject var viewModel: ViewModel
     
     
@@ -27,8 +28,9 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 }
             }.keyboardAdaptive()
             onBackButton(mode)
+            
             NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel), isActive: $viewModel.showForgotPassword, label: { Text("") })
-            NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: $viewModel.goToLogin) {
+            NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: $app.logedIn) {
                 Text("")
             }
         }
@@ -58,7 +60,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 }
                 SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $viewModel.email).padding(.horizontal, 30)
                 SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password).padding(.horizontal, 30)
-                borderedButton(action: viewModel.submit, title: "Submit")
+                borderedButton(action: { self.app.logedIn.toggle() }, title: "Submit")
                     .padding(.vertical, 29).padding(.horizontal, 30)
                 resetPasswordButton()
             }

@@ -28,7 +28,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
     
     @ObservedObject var viewModel: ViewModel
     
-    @State var currentTab = 3
+    @State var currentTab = 2
     
     init(viewModel model: ViewModel) {
         viewModel = model
@@ -59,7 +59,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
                 Image("messages").resizable().frame(width: 38, height: 38)
                 Text("")
             }.tag(3)
-            Text("5").tabItem {
+            MyProfileView(viewModel: MyProfileViewModel()).withoutBar().tabItem {
                 
                 Image("user-circle").resizable().frame(width: 38, height: 38)
                 Text("")

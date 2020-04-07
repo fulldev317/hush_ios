@@ -10,13 +10,13 @@ import SwiftUI
 
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 
-struct UserCardView<ViewModel: UserCardViewModeled>: View {
+struct UserCardView<Content: View>: View {
     
     // MARK: - Properties
     
-    @ObservedObject var viewModel: ViewModel
-   
-    private let cardHeight = 280 * (SCREEN_WIDTH / 2) / 237
+    var image: UIImage
+    var bottomView: Content
+    var size: CGSize
     
     
     // MARK: - Lifecycle
@@ -26,7 +26,7 @@ struct UserCardView<ViewModel: UserCardViewModeled>: View {
             Color.white
             VStack {
                 GeometryReader { proxy in
-                    Image(uiImage: self.viewModel.image)
+                    Image(uiImage: self.image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: proxy.size.width - 20)
@@ -34,32 +34,39 @@ struct UserCardView<ViewModel: UserCardViewModeled>: View {
                         .padding([.top, .leading, .trailing], 10)
                 }
                 Spacer()
-                HStack {
-                    (Text(viewModel.name) + Text(", ") + Text("\(viewModel.age)")).font(.regular(14)).foregroundColor(Color(0x8E8786))
-                    if viewModel.selected {
-                        Spacer()
-                        Image("red_heart").resizable().aspectRatio(contentMode: .fit)
-                        .frame(width: 25, height: 25)
-                    } else {
-                        Spacer()
-                    }
-                }.padding(15)
+                bottomView
             }
-        }.frame(width: SCREEN_WIDTH / 2, height: cardHeight)
+        }.frame(width: size.width, height: size.height)
     }
 }
 
 struct UserCardView_Previews: PreviewProvider {
+    
+    static let name: String = ""
+    static let isSelected = true
+    static let age = 2
+    static var bottomView: some View {
+        HStack {
+            (Text(name) + Text(", ") + Text("\(age)")).font(.regular(14)).foregroundColor(Color(0x8E8786))
+            if isSelected {
+                Spacer()
+                Image("red_heart").resizable().aspectRatio(contentMode: .fit)
+                .frame(width: 25, height: 25)
+            } else {
+                Spacer()
+            }
+        }.padding(15)
+    }
     static var previews: some View {
         Group {
             NavigationView {
-                UserCardView(viewModel: UserCardViewModel()).padding().padding().background(Color.black)
+                UserCardView(image: UIImage(named: "image3")!, bottomView: bottomView, size: .init(width: 100, height: 100)).padding().padding().background(Color.black)
             }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
-                UserCardView(viewModel: UserCardViewModel()).padding().padding().background(Color.black)
+                UserCardView(image: UIImage(named: "image3")!, bottomView: bottomView, size: .init(width: 100, height: 100)).padding().padding().background(Color.black)
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
-                UserCardView(viewModel: UserCardViewModel())
+                UserCardView(image: UIImage(named: "image3")!, bottomView: bottomView, size: .init(width: 100, height: 100))
             }.previewDevice(.init(rawValue: "iPhone XS Max")).padding().padding().background(Color.black)
         }
     }
