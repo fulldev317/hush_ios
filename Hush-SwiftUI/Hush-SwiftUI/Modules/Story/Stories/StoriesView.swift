@@ -10,18 +10,15 @@ import SwiftUI
 import QGrid
 import PartialSheet
 
+var SafeAreaInsets: UIEdgeInsets {
+    UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets ?? .zero
+}
+
 protocol HeaderedScreen {
     
 }
 
 extension HeaderedScreen {
-    
-    var top: CGFloat {
-        if let top = UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets.top {
-            return top
-        }
-        return 0
-    }
     
     func header<V: View>(_ list: [V]) -> some View {
         HStack {
@@ -46,9 +43,13 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     // MARK: - Lifecycle
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             header([Text("Stories").foregroundColor(.hOrange).font(.ultraLight(48)),
-            Text("Profiles Nearby").foregroundColor(.white).font(.thin())]).padding(.top, top)
+            Text("Profiles Nearby").foregroundColor(.white).font(.thin())])
+                .padding(.bottom, 10)
+            Rectangle()
+            .frame(height: 0.9)
+            .foregroundColor(Color(0x4F4F4F))
             QGrid(viewModel.messages, columns: 2) { element in
                 
                 HapticButton(action: {

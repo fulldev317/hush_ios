@@ -117,6 +117,7 @@
 		15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */; };
 		15D53C8C243DA8F600D62B26 /* UserCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930982435C2F100EE428F /* UserCardViewModel.swift */; };
 		15D53C8D243DA8F800D62B26 /* UserCardViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930992435C2F100EE428F /* UserCardViewModeled.swift */; };
+		15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C8E243DB4EC00D62B26 /* UDProperty.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
 		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
 		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
@@ -252,6 +253,7 @@
 		15D53C85243C909600D62B26 /* UpgradeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeViewModel.swift; sourceTree = "<group>"; };
 		15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeViewModeled.swift; sourceTree = "<group>"; };
 		15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCarusel.swift; sourceTree = "<group>"; };
+		15D53C8E243DB4EC00D62B26 /* UDProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDProperty.swift; sourceTree = "<group>"; };
 		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
 		15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppScreens.swift; sourceTree = "<group>"; };
 		15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 		154B26A92431CB4D00265C76 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				15D53C8E243DB4EC00D62B26 /* UDProperty.swift */,
 				155E2FF7243B0FF1001D886D /* AsyncImage */,
 				1546B42E2433316C00180D77 /* DVImagePicker.swift */,
 				154B26AA2431CB5A00265C76 /* HapticButton.swift */,
@@ -878,6 +881,7 @@
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
+				15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */,
