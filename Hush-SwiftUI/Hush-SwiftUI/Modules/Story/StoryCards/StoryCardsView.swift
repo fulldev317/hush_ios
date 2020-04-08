@@ -18,7 +18,7 @@ struct StoryCardsView<ViewModel: StoryCardsViewModeled>: View {
     
     var body: some View {
         ZStack {
-            UserCardView(image: viewModel.image, bottomView: bottomView, size: .init(width: (SCREEN_WIDTH / 2), height: 280 * (SCREEN_WIDTH / 2) / 237)).layoutPriority(1)
+            PolaroidCard(image: viewModel.image, cardWidth: SCREEN_WIDTH / 2, bottom: bottomView).layoutPriority(1)
             VStack {
                 Spacer()
                 HStack {
