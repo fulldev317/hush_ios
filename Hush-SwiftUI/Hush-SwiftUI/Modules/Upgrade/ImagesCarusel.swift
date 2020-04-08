@@ -9,19 +9,19 @@
 import SwiftUI
 import SwiftUIPager
 
-struct UpgradeUIItem: Equatable {
+struct UpgradeUIItem<Content: View>: Equatable {
     var title: String
-    var image: UIImage
+    var content: Content
     
     static func == (_ l: Self, _ r: Self) -> Bool {
         l.title == r.title
     }
 }
 
-struct ImagesCarusel: View {
+struct ImagesCarusel<Content: View>: View {
     
-    var uiElements: [UpgradeUIItem]
-    @State var current: Int = 2
+    var uiElements: [UpgradeUIItem<Content>]
+    @State var current: Int = 0
     
     var body: some View {
         
@@ -32,9 +32,7 @@ struct ImagesCarusel: View {
                 .animation(.easeInOut(duration: 0.3))
             Pager(page: $current, data: uiElements, id: \.title) { item in
                 
-                Image(uiImage: item.image)
-                .aspectRatio()
-                    .frame(width: 120, height: 130).centred
+                item.content.frame(width: 120, height: 130).centred
             }.onPageChanged { page in
                 UISelectionFeedbackGenerator().selectionChanged()
                 withAnimation {
@@ -50,7 +48,7 @@ struct ImagesCarusel: View {
                 }
             }.padding(.top, 20)
             Spacer()
-        }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
+        }.frame(height: 220)
     }
 }
 
@@ -60,14 +58,14 @@ struct ImagesCarusel_Previews: PreviewProvider {
     
     static var previews: some View {
         ImagesCarusel(uiElements: [
-            UpgradeUIItem(title: "1", image: UIImage(named: "image3")!),
-            UpgradeUIItem(title: "2", image: UIImage(named: "image3")!),
-            UpgradeUIItem(title: "3", image: UIImage(named: "image3")!),
-            UpgradeUIItem(title: "4", image: UIImage(named: "image3")!),
-            UpgradeUIItem(title: "5", image: UIImage(named: "image3")!),
-            UpgradeUIItem(title: "6", image: UIImage(named: "image3")!),
-            UpgradeUIItem(title: "7", image: UIImage(named: "image3")!),
-            UpgradeUIItem(title: "8", image: UIImage(named: "image3")!)
+            UpgradeUIItem(title: "1", content: Image("image3")),
+            UpgradeUIItem(title: "2", content: Image("image3")),
+            UpgradeUIItem(title: "3", content: Image("image3")),
+            UpgradeUIItem(title: "4", content: Image("image3")),
+            UpgradeUIItem(title: "5", content: Image("image3")),
+            UpgradeUIItem(title: "6", content: Image("image3")),
+            UpgradeUIItem(title: "7", content: Image("image3")),
+            UpgradeUIItem(title: "8", content: Image("image3"))
             ])
     }
 }
