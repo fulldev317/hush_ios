@@ -31,20 +31,11 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
             Text("Go Premium")
                 .font(.ultraLight(48))
                 .foregroundColor(.hOrange)
-            ImagesCarusel(uiElements: elements())
+            ImagesCarusel(uiElements: Array(1...8).map {
+                UpgradeUIItem(title: "\($0)", content: PolaroidCard<EmptyView>(image: UIImage(named: "image3")!, cardWidth: 100))
+            })
             Spacer()
         }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
-    }
-    
-    func elements() -> [UpgradeUIItem] {
-        [UpgradeUIItem(title: "1", image: UIImage(named: "image3")!),
-        UpgradeUIItem(title: "2", image: UIImage(named: "image3")!),
-        UpgradeUIItem(title: "3", image: UIImage(named: "image3")!),
-        UpgradeUIItem(title: "4", image: UIImage(named: "image3")!),
-        UpgradeUIItem(title: "5", image: UIImage(named: "image3")!),
-        UpgradeUIItem(title: "6", image: UIImage(named: "image3")!),
-        UpgradeUIItem(title: "7", image: UIImage(named: "image3")!),
-        UpgradeUIItem(title: "8", image: UIImage(named: "image3")!)]
     }
 }
 
