@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
-
+    
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
@@ -19,35 +19,29 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
     
     var body: some View {
         ZStack {
-            Color.white
             VStack {
                 GeometryReader { proxy in
-                    Image(uiImage: self.viewModel.image)
-                        .aspectRatio()
-                        .frame(width: proxy.size.width - 60)
-                        .clipShape(Rectangle())
-                        .padding(30)
+                    PolaroidCard(image: self.viewModel.image, cardWidth: proxy.size.width - 60, bottom: HStack {
+                        Spacer()
+                        VStack {
+                            Text("Tammy, 29").font(.thin(30)).foregroundColor(.hBlack)
+                            Text("Los Angeles").font(.thin()).foregroundColor(.hBlack)
+                        }
+                        Spacer()
+                        HapticButton(action: {
+                            
+                        }, label: {
+                            Image("message_card_icon").aspectRatio().frame(width: 45, height: 45)
+                        })
+                        HapticButton(action: {
+                            
+                        }, label: {
+                            Image("more_card_icon").aspectRatio().frame(width: 45, height: 45)
+                        })
+                        Spacer()
+                    }.padding(.vertical)
+                    ).background(Color.white.shadow(radius: 8))
                 }
-                
-                HStack {
-                    Spacer()
-                    VStack {
-                        Text("Tammy, 29").font(.thin(30)).foregroundColor(.hBlack)
-                        Text("Los Angeles").font(.thin()).foregroundColor(.hBlack)
-                    }
-                    Spacer()
-                    HapticButton(action: {
-                        
-                    }, label: {
-                        Image("message_card_icon").aspectRatio().frame(width: 45, height: 45)
-                    })
-                    HapticButton(action: {
-                        
-                    }, label: {
-                        Image("more_card_icon").aspectRatio().frame(width: 45, height: 45)
-                    })
-                    Spacer()
-                }.padding(.bottom, 50)
             }
         }
     }

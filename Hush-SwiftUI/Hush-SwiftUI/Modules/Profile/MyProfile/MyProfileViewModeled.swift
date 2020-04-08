@@ -11,6 +11,7 @@ import Combine
 protocol MyProfileViewModeled: ObservableObject {
     
     var message: String { get set }
+    var basicsViewModel: BioViewMode { get set }
     
     func updateMessage()
 }

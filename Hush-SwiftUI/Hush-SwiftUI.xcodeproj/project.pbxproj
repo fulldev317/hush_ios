@@ -118,6 +118,7 @@
 		15D53C8C243DA8F600D62B26 /* UserCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930982435C2F100EE428F /* UserCardViewModel.swift */; };
 		15D53C8D243DA8F800D62B26 /* UserCardViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930992435C2F100EE428F /* UserCardViewModeled.swift */; };
 		15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C8E243DB4EC00D62B26 /* UDProperty.swift */; };
+		15D53C91243DCE1200D62B26 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C90243DCE1200D62B26 /* PickerTextField.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
 		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
 		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
@@ -254,6 +255,7 @@
 		15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeViewModeled.swift; sourceTree = "<group>"; };
 		15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCarusel.swift; sourceTree = "<group>"; };
 		15D53C8E243DB4EC00D62B26 /* UDProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDProperty.swift; sourceTree = "<group>"; };
+		15D53C90243DCE1200D62B26 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmail.swift; sourceTree = "<group>"; };
 		15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppScreens.swift; sourceTree = "<group>"; };
 		15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
@@ -401,7 +403,6 @@
 		154B26A42431C32500265C76 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				15D53C83243C907400D62B26 /* Upgrade */,
 				15D53C79243C65B800D62B26 /* Profile */,
 				15D53C78243C644100D62B26 /* Messages */,
 				157930F32437321800EE428F /* CardCurasel */,
@@ -455,6 +456,7 @@
 				155E3007243B282B001D886D /* RoundedCorners.swift */,
 				155E300E243B4132001D886D /* HTextView.swift */,
 				15D53C81243C7CA400D62B26 /* HToggleStyle.swift */,
+				15D53C90243DCE1200D62B26 /* PickerTextField.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -693,6 +695,7 @@
 		15D53C79243C65B800D62B26 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				15D53C83243C907400D62B26 /* Upgrade */,
 				15D53C7A243C65BE00D62B26 /* MyProfile */,
 			);
 			path = Profile;
@@ -973,6 +976,7 @@
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
 				157930F72437324600EE428F /* CardCuraselView.swift in Sources */,
+				15D53C91243DCE1200D62B26 /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

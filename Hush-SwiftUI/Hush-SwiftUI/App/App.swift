@@ -13,5 +13,7 @@ class App: ObservableObject {
     
     @Published var logedIn = true
     @Published var showPremium = false
-    @Published var showTabbar = true
+    @Published var onProfileEditing = false
+    
+    let profile = MyProfileViewModel()
 }
