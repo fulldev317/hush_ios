@@ -10,9 +10,15 @@ import SwiftUI
 
 struct MainView: View {
     
+    @EnvironmentObject var app: App
+    
     var body: some View {
         NavigationView {
-            SignUpView(viewModel: SignUpViewModel()).withoutBar()
+            if app.logedIn {
+                RootTabBarView(viewModel: RootTabBarViewModel()).withoutBar()
+            } else {
+                SignUpView(viewModel: SignUpViewModel()).withoutBar()
+            }
         }
     }
 }

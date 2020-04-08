@@ -44,7 +44,6 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
         ScrollView {
         VStack(spacing: 16) {
             header([Text("Messages").font(.thin(48)).foregroundColor(.hOrange)])
-                .padding(.top, top)
                 .padding(.bottom, 25)
             Rectangle().frame(height: 0.9).foregroundColor(Color(0x4F4F4F))
             TextField("Search...", text: $viewModel.searchQuery).foregroundColor(Color(0x9B9B9B))

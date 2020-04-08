@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View, AppTabView {
+struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View {
     
     // MARK: - Properties
     
@@ -32,7 +32,6 @@ struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View, AppTabView {
         ZStack {
             VStack {
                 header()
-                    .padding(.top, top)
                     .padding(.bottom, 50)
                 Spacer()
                 KolodaViewHolder({

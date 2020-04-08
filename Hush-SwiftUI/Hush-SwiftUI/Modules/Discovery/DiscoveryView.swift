@@ -17,18 +17,14 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @ObservedObject var viewModel: ViewModel
     @State var showSettings = false
     
-    var top: CGFloat {
-        if let top = UIApplication.shared.windows.first?.rootViewController?.view.safeAreaInsets.top {
-            return top
-        }
-        return 0
-    }
-    
     // MARK: - Lifecycle
     
     var body: some View {
-        VStack {
-            header().padding(.top, top)
+        VStack(spacing: 0) {
+            header()
+            Rectangle()
+            .frame(height: 0.9)
+            .foregroundColor(Color(0x4F4F4F))
             QGrid(viewModel.messages, columns: 2) { element in
                 
                 PolaroidCard(image: UIImage(named: "image3")!, cardWidth: SCREEN_WIDTH / 2, bottom: self.bottomView(element))

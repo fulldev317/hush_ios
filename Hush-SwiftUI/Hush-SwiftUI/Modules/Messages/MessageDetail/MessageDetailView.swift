@@ -55,7 +55,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                 SendTextField(placeholder: "SAD", onsend: {
                     self.viewModel.sendMessage($0)
                 }).padding(.horizontal, 15)
-            }.keyboardAdaptive().padding(.top, top + 20)
+            }.keyboardAdaptive()
             
             header([Text(viewModel.name()).font(.thin(48)).foregroundColor(.hOrange)])
         }.background(Color.hBlack.edgesIgnoringSafeArea(.all))

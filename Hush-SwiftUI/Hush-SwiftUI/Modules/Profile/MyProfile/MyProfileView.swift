@@ -30,17 +30,15 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     var body: some View {
         ZStack(alignment: .top) {
-            VStack {
-                ScrollView {
-                    scrollContent
-                }
-            }.keyboardAdaptive().padding(.top, top + 100)
-            VStack(spacing: 10) {
+            VStack(spacing: 0) {
                 HStack {
                     header([Text("My Profile")
                         .font(.thin(48))
                         .foregroundColor(.hOrange)])
-                    HapticButton(action: {}) {
+                        .padding(.bottom)
+                    HapticButton(action: {
+                        self.app.showTabbar = !self.app.showTabbar
+                    }) {
                         Image("editProfile_icon")
                             .aspectRatio(.fit)
                             .frame(width: 30, height: 30).padding(.trailing, 26)
@@ -50,7 +48,10 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 Rectangle()
                     .frame(height: 0.9)
                     .foregroundColor(Color(0x4F4F4F))
-            }.padding(.top, top)
+                ScrollView {
+                    scrollContent
+                }.keyboardAdaptive()
+            }
         }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }
     
@@ -90,7 +91,6 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                             .aspectRatio(.fit)
                             .frame(width: 25, height: 25)
                             .padding(.trailing, 20)
-                            .padding(.bottom, 10)
                             .foregroundColor(Color(0xE0E0E0))
                     })
                 }
@@ -121,7 +121,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             ZStack(alignment: .leading) {
                 Text("Activate Premium")
                     .kerning(-0.41)
-                    .font(.bold(24))
+                    .font(.bold(22))
                     .padding(.all, 20)
                     .padding(.leading, 65)
                     .padding(.trailing, 25)
@@ -218,7 +218,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 }
                 
                 HapticButton(action: {
-                    self.app.logedIn.toggle()
+                    self.app.logedIn = false
                 }) {
                     Text("Logout").font(.regular(17)).foregroundColor(.white)
                 }.padding(.vertical, 30)
