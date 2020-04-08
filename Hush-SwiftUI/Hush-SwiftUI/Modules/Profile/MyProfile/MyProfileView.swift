@@ -37,7 +37,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         .foregroundColor(.hOrange)])
                         .padding(.bottom)
                     HapticButton(action: {
-                        self.app.showTabbar = !self.app.showTabbar
+                        withAnimation {
+                            self.app.onProfileEditing = !self.app.onProfileEditing
+                        }
                     }) {
                         Image("editProfile_icon")
                             .aspectRatio(.fit)
@@ -60,16 +62,20 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         VStack(alignment: .leading, spacing: 45) {
             imagesView
                 .padding(.top, 30)
-            Text("Username, 32")
+            Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
                 .foregroundColor(.white)
                 .centred
-            premiumButton
-            profileActivity
+            if !app.onProfileEditing {
+                premiumButton.animation(.spring())
+                profileActivity.animation(.spring())
+            }
             profileBasics
-            notifications
-            legal
-        }
+            if !app.onProfileEditing {
+                notifications.animation(.spring())
+                legal.animation(.spring())
+            }
+        }.padding(.vertical, 30 + SafeAreaInsets.bottom)
     }
     
     // MARK: - Image
@@ -95,7 +101,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     })
                 }
                 .frame(height: bigCardSize.height - bigCardSize.width))
-                .rotationEffect(.degrees(-5))
+            .rotationEffect(.degrees(-5))
         }
     }
     var smallCardSize: CGSize {
@@ -142,10 +148,10 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("New Friends", value: "0")
-                tableRow("Visited my Profile", value: "0")
-                tableRow("Likes me", value: "0")
-                tableRow("My likes", value: "0")
+                tableRow("New Friends", value: $viewModel.basicsViewModel.username)
+                tableRow("Visited my Profile", value: $viewModel.basicsViewModel.username)
+                tableRow("Likes me", value: $viewModel.basicsViewModel.username)
+                tableRow("My likes", value: $viewModel.basicsViewModel.username)
             }
         }.padding(.horizontal, 36)
     }
@@ -160,17 +166,24 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("User Name", value: "username")
-                tableRow("Premium User", value: "Yes")
-                tableRow("Verified?", value: "No")
-                tableRow("Age", value: "25")
-                tableRow("Gender", value: "Female")
-                tableRow("Sexuality", value: "No Data")
-                tableRow("Living", value: "No Data")
+                tableRow("User Name", value: $viewModel.basicsViewModel.username)
+                tableRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
+                tableRow("Verified?", value: $viewModel.basicsViewModel.username)
+                tableRow("Age", value: $viewModel.basicsViewModel.username)
+                tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender, titles: Gender) {
+                    self.$viewModel.basicsViewModel.gender.wrappedValue = $0
+                }
+                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality, titles: Gender) {
+                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = $0
+                }
+                tableRow("Living", value: $viewModel.basicsViewModel.username)
                 tableRow("Bio", value: nil)
-                Text("kasfhla;klsdjfk;lsdjfla;sdfjlasdfas;ldfjas;dlfjadls;fjads;jas")
-                    .font(.regular(17)).foregroundColor(.white)
-                tableRow("Language", value: "English")
+                if app.onProfileEditing {
+                    TextField("Bio", text: $viewModel.basicsViewModel.bio).multilineTextAlignment(.leading).font(.regular(17)).foregroundColor(.white)
+                } else {
+                    Text(viewModel.basicsViewModel.bio).font(.regular(17)).foregroundColor(.white)
+                }
+                tableRow("Language", value: $viewModel.basicsViewModel.language)
             }
         }.padding(.horizontal, 36)
     }
@@ -221,7 +234,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.app.logedIn = false
                 }) {
                     Text("Logout").font(.regular(17)).foregroundColor(.white)
-                }.padding(.vertical, 30)
+                }
             }
         }
         .padding(.leading, 36)
@@ -231,12 +244,28 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     // MARK: - Helper
     
-    private func tableRow(_ title: String, value: String?) -> some View {
+    private func tableRow(_ title: String, value: Binding<String>?) -> some View {
         HStack {
             Text(title).font(.regular(17)).foregroundColor(.white)
             Spacer()
             if value != nil {
-                Text(value!).font(.regular(17)).foregroundColor(.white)
+                if app.onProfileEditing {
+                    TextField(title, text: value!).multilineTextAlignment(.trailing).font(.regular(17)).foregroundColor(.white)
+                } else {
+                    Text(value!.wrappedValue).font(.regular(17)).foregroundColor(.white)
+                }
+            }
+        }
+    }
+    private func tablePickerRow(_ title: String, selected: String, titles: [String], picked: @escaping (String) -> Void) -> some View {
+        HStack {
+            Text(title).font(.regular(17)).foregroundColor(.white)
+            Spacer()
+            if app.onProfileEditing {
+                PickerTextField(title: selected, titles: titles, picked: picked)
+                
+            } else {
+                Text(selected).font(.regular(17)).foregroundColor(.white)
             }
         }
     }
@@ -259,7 +288,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 Image("arrow_next_icon")
                     .aspectRatio(.fit)
                     .foregroundColor(.white)
-                .frame(width: 15, height: 15)
+                    .frame(width: 15, height: 15)
             }
         }
     }
@@ -269,13 +298,13 @@ struct MyProfileView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                MyProfileView(viewModel: MyProfileViewModel()).withoutBar()
+                MyProfileView(viewModel: MyProfileViewModel()).withoutBar().environmentObject(App())
             }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
-                MyProfileView(viewModel: MyProfileViewModel()).withoutBar()
+                MyProfileView(viewModel: MyProfileViewModel()).withoutBar().environmentObject(App())
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
-                MyProfileView(viewModel: MyProfileViewModel()).withoutBar()
+                MyProfileView(viewModel: MyProfileViewModel()).withoutBar().environmentObject(App())
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
         }
     }

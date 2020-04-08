@@ -53,6 +53,7 @@ extension UIView {
         let vc = UIHostingController(rootView: view)
         vc.view.backgroundColor = .clear
         vc.view.frame = frame
+        backgroundColor = .clear
         addSubview(vc.view)
     }
     #endif

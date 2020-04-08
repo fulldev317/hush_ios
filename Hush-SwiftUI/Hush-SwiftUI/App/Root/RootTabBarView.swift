@@ -52,14 +52,14 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
                         Image("messages").resizable().frame(width: 38, height: 38)
                         Text("")
                     }.tag(3)
-                    MyProfileView(viewModel: MyProfileViewModel()).withoutBar().tabItem {
+                    MyProfileView(viewModel: self.app.profile).withoutBar().tabItem {
                         
                         Image("user-circle").resizable().frame(width: 38, height: 38)
                         Text("")
                     }.tag(4)
                 }
-                .frame(width: proxy.size.width, height: proxy.size.height + (self.app.showTabbar ? 0 : self.bottom))
-                .padding(.top, (self.app.showTabbar ? 0 : self.bottom))
+                .frame(width: proxy.size.width, height: proxy.size.height + (!self.app.onProfileEditing ? 0 : self.bottom))
+                .padding(.top, (!self.app.onProfileEditing ? 0 : self.bottom))
                 .accentColor(.hOrange)
                 .sheet(isPresented: self.$app.showPremium) {
                     UpgradeView(viewModel: UpgradeViewModel())

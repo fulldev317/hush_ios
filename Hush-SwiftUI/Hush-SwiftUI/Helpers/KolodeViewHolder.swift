@@ -103,7 +103,7 @@ extension KolodaViewHolder {
         func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
             
             let view = UIView(frame: koloda.frameForCard(at: index))
-            view.backgroundColor = .white
+            view.backgroundColor = .clear
             view.rotate(angle: index.isMultiple(of: 2) ? 5 : -5)
             view.addSubview(parent.content(index))
             

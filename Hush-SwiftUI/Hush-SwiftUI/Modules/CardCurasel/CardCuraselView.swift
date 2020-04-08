@@ -36,7 +36,6 @@ struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View {
                 Spacer()
                 KolodaViewHolder({
                     CardCuraselElementView(viewModel: self.viewModel.viewModel(for: $0))
-                        .background(Color.white.shadow(radius: 8))
                 }, moveLeft: { percent in
                     withAnimation {
                         self.percent = percent
