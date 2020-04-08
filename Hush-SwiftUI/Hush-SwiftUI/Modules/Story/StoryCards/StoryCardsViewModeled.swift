@@ -8,7 +8,7 @@
 
 import Combine
 
-protocol StoryCardsViewModeled: ObservableObject, UserCardViewModeled {
+protocol StoryCardsViewModeled: UserCardViewModeled {
     
 
 }

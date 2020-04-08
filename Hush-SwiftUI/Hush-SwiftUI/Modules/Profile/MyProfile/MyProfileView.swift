@@ -76,17 +76,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     var imagesView: some View {
         ZStack {
             HStack {
-                UserCardView(image: UIImage(named: "image3")!,
-                             bottomView: Text("")
-                                .frame(height: smallCardSize.height - smallCardSize.width),
-                             size: smallCardSize)
+                PolaroidCard<EmptyView>(image: UIImage(named: "image3")!, cardWidth: smallCardSize.width)
                     .rotationEffect(.degrees(5))
                 Spacer()
-                UserCardView(image: UIImage(named: "image3")!, bottomView: Text("")
-                    .frame(height: smallCardSize.height - smallCardSize.width), size: smallCardSize).rotationEffect(.degrees(5))
+                PolaroidCard<EmptyView>(image: UIImage(named: "image3")!, cardWidth: smallCardSize.width).rotationEffect(.degrees(5))
                 
             }.padding(.horizontal, 37)
-            UserCardView(image: UIImage(named: "image3")!, bottomView:
+            PolaroidCard(image: UIImage(named: "image3")!, cardWidth: bigCardSize.width, bottom:
                 HStack {
                     Spacer()
                     HapticButton(action: {}, label: {
@@ -98,8 +94,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                             .foregroundColor(Color(0xE0E0E0))
                     })
                 }
-                .frame(height: bigCardSize.height - bigCardSize.width),
-                         size: bigCardSize)
+                .frame(height: bigCardSize.height - bigCardSize.width))
                 .rotationEffect(.degrees(-5))
         }
     }

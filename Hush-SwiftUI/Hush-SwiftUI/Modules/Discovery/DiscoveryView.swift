@@ -31,7 +31,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
             header().padding(.top, top)
             QGrid(viewModel.messages, columns: 2) { element in
                 
-                UserCardView(image: UIImage(named: "image3")!, bottomView: self.bottomView(element), size: .init(width: (SCREEN_WIDTH / 2), height: 280 * (SCREEN_WIDTH / 2) / 237))
+                PolaroidCard(image: UIImage(named: "image3")!, cardWidth: SCREEN_WIDTH / 2, bottom: self.bottomView(element))
                     .background(Rectangle().shadow(color: Color.black.opacity(0.5), radius: 8, x: 0, y: -4))
                     .rotate(self.viewModel.index(element).isMultiple(of: 3) ? 0 : -5)
                 

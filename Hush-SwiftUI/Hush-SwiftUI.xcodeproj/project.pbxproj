@@ -70,9 +70,7 @@
 		157930932435BE0100EE428F /* RootTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930902435BE0100EE428F /* RootTabBarView.swift */; };
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
-		1579309A2435C2F100EE428F /* UserCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* UserCardView.swift */; };
-		1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930982435C2F100EE428F /* UserCardViewModel.swift */; };
-		1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930992435C2F100EE428F /* UserCardViewModeled.swift */; };
+		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
 		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
@@ -117,6 +115,8 @@
 		15D53C88243C909600D62B26 /* UpgradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C85243C909600D62B26 /* UpgradeViewModel.swift */; };
 		15D53C89243C909600D62B26 /* UpgradeViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */; };
 		15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */; };
+		15D53C8C243DA8F600D62B26 /* UserCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930982435C2F100EE428F /* UserCardViewModel.swift */; };
+		15D53C8D243DA8F800D62B26 /* UserCardViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930992435C2F100EE428F /* UserCardViewModeled.swift */; };
 		15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDB2431E1D400A92595 /* SignUpEmail.swift */; };
 		15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDD2431E35F00A92595 /* AuthAppScreens.swift */; };
 		15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */; };
@@ -207,7 +207,7 @@
 		157930902435BE0100EE428F /* RootTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarView.swift; sourceTree = "<group>"; };
 		157930912435BE0100EE428F /* RootTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewModel.swift; sourceTree = "<group>"; };
 		157930922435BE0100EE428F /* RootTabBarViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewModeled.swift; sourceTree = "<group>"; };
-		157930972435C2F100EE428F /* UserCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardView.swift; sourceTree = "<group>"; };
+		157930972435C2F100EE428F /* PolaroidCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolaroidCard.swift; sourceTree = "<group>"; };
 		157930982435C2F100EE428F /* UserCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewModel.swift; sourceTree = "<group>"; };
 		157930992435C2F100EE428F /* UserCardViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewModeled.swift; sourceTree = "<group>"; };
 		157930A02435CE5300EE428F /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
@@ -578,9 +578,9 @@
 		157930962435C2E400EE428F /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				157930972435C2F100EE428F /* UserCardView.swift */,
 				157930982435C2F100EE428F /* UserCardViewModel.swift */,
 				157930992435C2F100EE428F /* UserCardViewModeled.swift */,
+				157930972435C2F100EE428F /* PolaroidCard.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -892,6 +892,7 @@
 				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
 				15D53C7F243C65C900D62B26 /* MyProfileViewModel.swift in Sources */,
 				1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */,
+				15D53C8C243DA8F600D62B26 /* UserCardViewModel.swift in Sources */,
 				158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */,
 				157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */,
 				155E2FE8243B069C001D886D /* MessagesViewModel.swift in Sources */,
@@ -918,19 +919,18 @@
 				155E3005243B1E93001D886D /* MessageDetailViewModel.swift in Sources */,
 				158A2C572434844F005F6847 /* DatePickerField.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
+				15D53C8D243DA8F800D62B26 /* UserCardViewModeled.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
 				155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
 				157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */,
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
-				1579309C2435C2F100EE428F /* UserCardViewModeled.swift in Sources */,
 				155E2FE7243B069C001D886D /* MessagesView.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
 				157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */,
-				1579309B2435C2F100EE428F /* UserCardViewModel.swift in Sources */,
 				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
@@ -941,7 +941,7 @@
 				15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */,
 				157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */,
 				155E2FFE243B0FFC001D886D /* AsyncImage.swift in Sources */,
-				1579309A2435C2F100EE428F /* UserCardView.swift in Sources */,
+				1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
