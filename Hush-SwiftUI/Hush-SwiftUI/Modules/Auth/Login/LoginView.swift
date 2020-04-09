@@ -20,7 +20,6 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     
     var body: some View {
         ZStack {
-            background()
             VStack {
                 Spacer()
                 logo()
@@ -34,7 +33,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             onBackButton(mode)
             
             NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel), isActive: $viewModel.showEmailScreen, label: { Text("") })
-        }.withoutBar()
+            }.withoutBar().background(background())
     }
     
     private func signupButton() -> some View {
@@ -68,14 +67,14 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                LoginView(viewModel: LoginViewModel())
+                LoginView(viewModel: LoginViewModel()).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
                 LoginView(viewModel: LoginViewModel())
-            }.previewDevice(.init(rawValue: "iPhone 8"))
+            }.previewDevice(.init(rawValue: "iPhone 8")).withoutBar()
             NavigationView {
                 LoginView(viewModel: LoginViewModel())
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
+            }.previewDevice(.init(rawValue: "iPhone XS Max")).withoutBar()
         }
     }
 }
