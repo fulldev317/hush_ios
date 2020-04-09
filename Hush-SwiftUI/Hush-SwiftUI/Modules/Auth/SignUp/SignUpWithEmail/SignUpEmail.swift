@@ -27,7 +27,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
                 Text("")
             }
-        }.withoutBar().background(bluredBackground())
+        }.withoutBar().background(background())
     }
     
     private func body(with proxy: GeometryProxy) -> some View {

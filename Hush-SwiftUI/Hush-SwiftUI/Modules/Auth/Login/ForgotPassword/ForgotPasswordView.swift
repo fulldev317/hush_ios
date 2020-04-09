@@ -43,7 +43,7 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
         
         ZStack {
             
-            bluredBackground()
+            background()
             VStack {
                 Spacer()
                 logo()

@@ -11,7 +11,7 @@ import SwiftUI
 
 class App: ObservableObject {
     
-    @Published var logedIn = true
+    @Published var logedIn = false
     @Published var showPremium = false
     @Published var onProfileEditing = false
     

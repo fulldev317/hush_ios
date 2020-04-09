@@ -42,7 +42,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
         
         ZStack {
             
-            bluredBackground()
+            background()
             VStack {
                 Spacer()
                 logo()

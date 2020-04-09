@@ -34,13 +34,6 @@ extension AuthAppScreens {
             .frame(width: size.width, height: size.height)
     }
     
-    func bluredBackground() -> some View {
-        ZStack {
-            background().blur(radius: 5, opaque: true)
-            Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
-        }
-    }
-    
     func onBackButton(_ presentation: Binding<PresentationMode>) -> some View {
         
         VStack {
@@ -75,7 +68,7 @@ struct MainAppScreens_Previews: PreviewProvider, AuthAppScreens {
             }
             
             ZStack {
-                MainAppScreens_Previews().bluredBackground()
+                MainAppScreens_Previews().background()
                 MainAppScreens_Previews().logo()
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
         }
