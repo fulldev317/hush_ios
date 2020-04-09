@@ -376,6 +376,7 @@ class FacedetectorVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
 //            vc.userImage = img2
 //            self.navigationController?.pushViewController(vc, animated: true)
+            captureSession.stopRunning()
             completion?(img2)
         }
     }

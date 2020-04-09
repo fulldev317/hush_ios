@@ -14,19 +14,19 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     
     @Environment(\.presentationMode) var mode
     @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var app: App
     
     
     // MARK: - Lifecycle
     
     var body: some View {
         ZStack {
-            background()
-            
             ScrollView {
                 content()
             }.keyboardAdaptive()
             onBackButton(mode)
-        }
+            NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: self.$app.logedIn, label: { Text("") })
+        }.background(background())
     }
     
     private func content() -> some View {
@@ -48,7 +48,9 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             Text("Looking for").font(.thin()).foregroundColor(.white)
             HSegmentedControl(selected: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
                 .padding(.bottom, 28)
-            borderedButton(action: {}, title: "Submit").padding(.bottom, 55)
+            borderedButton(action: {
+                self.app.logedIn = true
+            }, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
     }
 }
@@ -56,14 +58,14 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
 struct GetMoreDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-//            NavigationView {
-//                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
-                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel())
+                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
+            }.previewDevice(.init(rawValue: "iPhone SE"))
+            NavigationView {
+                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
-                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel())
+                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
         }
     }
