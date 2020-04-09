@@ -39,7 +39,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
             NavigationLink(destination: FaceDetectionView(viewModel: FaceDetectionViewModel()), isActive: $viewModel.canGoNext) {
                 Text("")
             }
-            }.background(bluredBackground()).navigationBarHidden(true)
+            }.background(background()).navigationBarHidden(true)
     }
 }
 

@@ -20,7 +20,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     
     var body: some View {
         ZStack {
-            bluredBackground()
+            background()
             
             ScrollView {
                 content()

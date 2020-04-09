@@ -20,7 +20,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     
     var body: some View {
         ZStack {
-            bluredBackground()
+            background()
             VStack {
                 Spacer()
                 logo()
