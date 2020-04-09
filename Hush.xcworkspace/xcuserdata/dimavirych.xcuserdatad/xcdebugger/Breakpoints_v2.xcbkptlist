@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "517E4615-D836-450F-AD5D-E4B94E29F133"
+            uuid = "3B269C70-C17B-4876-81F7-C03D8BCC9BC4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Hush-SwiftUI/Hush-SwiftUI/Modules/Auth/SignUp/GetMoreDetails/GetMoreDetailsView.swift"
+            filePath = "Hush-SwiftUI/Hush-SwiftUI/Modules/Auth/FaceDetection/Old/FacedetectorVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "content()"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
+            landmarkName = "getImageFromSampleBuffer(sampleBuffer:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -37,7 +37,10 @@ extension AuthAppScreens {
     func onBackButton(_ presentation: Binding<PresentationMode>) -> some View {
         
         VStack {
-            HStack {   HapticButton(action: { presentation.wrappedValue.dismiss() }) {
+            HStack {   HapticButton(action: {
+                presentation.wrappedValue.dismiss()
+                
+            }) {
                 Image("onBack_icon").frame(width: 44, height: 44)
             }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
                 Spacer()

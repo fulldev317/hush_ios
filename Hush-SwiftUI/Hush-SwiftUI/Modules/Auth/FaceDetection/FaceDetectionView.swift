@@ -13,17 +13,24 @@ struct FaceDetectionView<ViewModel: FaceDetectionViewModeled>: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
-    @State var image: UIImage?
+    #if (arch(i386) || arch(x86_64))
+    @State var image = UIImage(named: "image3")
     @State var showGood = true
+    #else
+    @State var image: UIImage?
+    @State var showGood = false
+    #endif
     
     
     // MARK: - Lifecycle
     
     var body: some View {
         ZStack {
-            OldFD(image: $image).edgesIgnoringSafeArea(.all)
+            #if !(arch(i386) || arch(x86_64))
+            OldFD(image: $image, showGood: $showGood).edgesIgnoringSafeArea(.all)
+            #endif
             if image != nil {
-                NavigationLink(destination: GoodContainer(image: image!), isActive: $showGood, label: {
+                NavigationLink(destination: GoodContainer(image: image!).withoutBar(), isActive: $showGood, label: {
                     Text("")
                 })
             }
@@ -49,17 +56,20 @@ struct FaceDetectionView_Previews: PreviewProvider {
 struct OldFD: UIViewControllerRepresentable {
     
     var vc = UIStoryboard(name: "OldFaceDetection", bundle: nil).instantiateViewController(withIdentifier: "FacedetectorVC") as! FacedetectorVC
+    
     @Binding var image: UIImage?
+    @Binding var showGood: Bool
     
     func makeUIViewController(context: Context) -> FacedetectorVC {
         vc.completion = {
             self.image = $0
+            self.showGood = true
         }
         return vc
     }
-
+    
     func updateUIViewController(_ uiViewController: FacedetectorVC, context: Context) {
-
+        
         
     }
 }
@@ -75,9 +85,9 @@ struct OldGood: UIViewControllerRepresentable {
             self.canGoNext.toggle()
         }
     }
-
+    
     func updateUIViewController(_ uiViewController: LookingGoodVC, context: Context) {
-
+        
         
     }
 }
@@ -89,8 +99,8 @@ struct GoodContainer: View  {
     
     var body: some View {
         ZStack {
-            OldGood(image: image, canGoNext: $canGoNext)
-            NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: $canGoNext) {
+            OldGood(image: image, canGoNext: $canGoNext).edgesIgnoringSafeArea(.all)
+            NavigationLink(destination: GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar(), isActive: $canGoNext) {
                 Text("")
             }
         }
