@@ -44,12 +44,6 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     
     var body: some View {
         VStack(spacing: 0) {
-            header([Text("Stories").foregroundColor(.hOrange).font(.ultraLight(48)),
-            Text("Profiles Nearby").foregroundColor(.white).font(.thin())])
-                .padding(.bottom, 10)
-            Rectangle()
-            .frame(height: 0.9)
-            .foregroundColor(Color(0x4F4F4F))
             QGrid(viewModel.messages, columns: 2) { element in
                 
                 HapticButton(action: {

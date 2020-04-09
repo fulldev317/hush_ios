@@ -30,9 +30,6 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
             onBackButton(mode)
             
             NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel), isActive: $viewModel.showForgotPassword, label: { Text("") })
-            NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: $app.logedIn) {
-                Text("")
-            }
         }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)

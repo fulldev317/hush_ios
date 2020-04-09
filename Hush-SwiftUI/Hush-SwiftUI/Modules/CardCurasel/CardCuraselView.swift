@@ -31,10 +31,6 @@ struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View {
     var body: some View {
         ZStack {
             VStack {
-                header()
-                    .padding(.top, SafeAreaInsets.top)
-                    .padding(.bottom, 50)
-                Spacer()
                 KolodaViewHolder({ index in
                     CardCuraselElementView(viewModel: self.viewModel.viewModel(for: index))
                 }, moveLeft: { percent in
@@ -56,7 +52,7 @@ struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View {
                         self.showClose = false
                         self.showHeart = false
                     }
-                }
+                }.frame(width: SCREEN_WIDTH)
             }
             Rectangle().foregroundColor(Color.black.opacity(opacity))
             HStack {
@@ -69,18 +65,7 @@ struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View {
                     Image("heart_icon").aspectRatio(.fit).frame(width: 100, height: 100).opacity(opacity)
                 }
             }
-            }.withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
-    }
-    
-    private func header() -> some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("Photo").foregroundColor(.hOrange).font(.bold(48))
-                    +
-                    Text("Booth").foregroundColor(.white).font(.ultraLight(48))
-            }
-            Spacer()
-        }.padding(.leading, 30)
+        }
     }
 }
 

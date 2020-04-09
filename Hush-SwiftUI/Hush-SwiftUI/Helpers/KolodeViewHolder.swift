@@ -45,6 +45,7 @@ class OwnKoloda: KolodaView {
                        y: hh > 0 ? hh : 0,
                        width: w,
                        height: h)
+        
         return frame
     }
 }

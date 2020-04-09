@@ -11,6 +11,6 @@ import SwiftUI
 extension View {
     
     func withoutBar() -> some View {
-        self.navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
+        navigationBarTitle("", displayMode: .inline).navigationBarHidden(true)
     }
 }

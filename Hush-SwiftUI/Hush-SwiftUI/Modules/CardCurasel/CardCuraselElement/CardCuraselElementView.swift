@@ -22,7 +22,7 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
         ZStack {
             VStack {
                 GeometryReader { proxy in
-                    PolaroidCard(image: self.viewModel.image, cardWidth: proxy.size.width - 60, bottom: HStack {
+                    PolaroidCard(image: self.viewModel.image, cardWidth: SCREEN_WIDTH, bottom: HStack {
                         Spacer()
                         VStack {
                             Text("Tammy, 29").font(.thin(30)).foregroundColor(.hBlack)
@@ -42,8 +42,6 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
                     ).background(Color.white.shadow(radius: 8))
                 }
             }
-        }.sheet(isPresented: $showUpgrade) {
-            UpgradeView(viewModel: UpgradeViewModel())
         }
     }
 }
