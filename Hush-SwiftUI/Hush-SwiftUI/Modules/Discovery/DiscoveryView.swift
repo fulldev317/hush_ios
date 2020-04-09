@@ -27,10 +27,11 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
             .foregroundColor(Color(0x4F4F4F))
             QGrid(viewModel.messages, columns: 2) { element in
                 
-                PolaroidCard(image: UIImage(named: "image3")!, cardWidth: SCREEN_WIDTH / 2, bottom: self.bottomView(element))
+                NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar()) {
+                    PolaroidCard(image: UIImage(named: "image3")!, cardWidth: SCREEN_WIDTH / 2, bottom: self.bottomView(element))
                     .background(Rectangle().shadow(color: Color.black.opacity(0.5), radius: 8, x: 0, y: -4))
                     .rotate(self.viewModel.index(element).isMultiple(of: 3) ? 0 : -5)
-                
+                }.buttonStyle(PlainButtonStyle())
             }
         }.partialSheet(presented: $showSettings, enabledDrag: viewModel.settingsViewModel.dragFlag, viewForGesture: Rectangle().frame(height: 44).foregroundColor(.white), view: {
                 SettingsView(viewModel: self.viewModel.settingsViewModel).frame(height: 400)

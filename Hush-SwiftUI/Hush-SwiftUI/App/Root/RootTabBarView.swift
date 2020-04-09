@@ -15,7 +15,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View {
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     
-    @State var currentTab = 4
+    @State var currentTab = 2
     
     var bottom: CGFloat {
         (44 + SafeAreaInsets.bottom + SafeAreaInsets.top)

@@ -105,6 +105,9 @@
 		158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158A2C6224349509005F6847 /* libFaceDetectionLib.a */; };
 		158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C642434952F005F6847 /* FaceDetectionViewController.swift */; };
 		1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */; };
+		15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B890A9243EEA1300069804 /* UserProfileView.swift */; };
+		15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B890AA243EEA1300069804 /* UserProfileViewModel.swift */; };
+		15B890AE243EEA1300069804 /* UserProfileViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B890AB243EEA1300069804 /* UserProfileViewModeled.swift */; };
 		15D53C74243C60C600D62B26 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C73243C60C600D62B26 /* StickerView.swift */; };
 		15D53C76243C624400D62B26 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C75243C624400D62B26 /* App.swift */; };
 		15D53C7E243C65C900D62B26 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C7B243C65C900D62B26 /* MyProfileView.swift */; };
@@ -244,6 +247,9 @@
 		158A2C6224349509005F6847 /* libFaceDetectionLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFaceDetectionLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		158A2C642434952F005F6847 /* FaceDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewController.swift; sourceTree = "<group>"; };
 		1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Keyboard.swift"; sourceTree = "<group>"; };
+		15B890A9243EEA1300069804 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		15B890AA243EEA1300069804 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		15B890AB243EEA1300069804 /* UserProfileViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModeled.swift; sourceTree = "<group>"; };
 		15D53C73243C60C600D62B26 /* StickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 		15D53C75243C624400D62B26 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		15D53C7B243C65C900D62B26 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
@@ -673,6 +679,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		15B890A8243EE9F300069804 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				15B890A9243EEA1300069804 /* UserProfileView.swift */,
+				15B890AA243EEA1300069804 /* UserProfileViewModel.swift */,
+				15B890AB243EEA1300069804 /* UserProfileViewModeled.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		15D53C72243C5FE200D62B26 /* Story */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +711,7 @@
 		15D53C79243C65B800D62B26 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				15B890A8243EE9F300069804 /* UserProfile */,
 				15D53C83243C907400D62B26 /* Upgrade */,
 				15D53C7A243C65BE00D62B26 /* MyProfile */,
 			);
@@ -909,6 +926,7 @@
 				15D53C80243C65C900D62B26 /* MyProfileViewModeled.swift in Sources */,
 				157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */,
 				15D53C88243C909600D62B26 /* UpgradeViewModel.swift in Sources */,
+				15B890AE243EEA1300069804 /* UserProfileViewModeled.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
 				157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */,
 				157930F2243722F300EE428F /* Image+Ext.swift in Sources */,
@@ -938,11 +956,13 @@
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
 				157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */,
+				15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */,
 				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				157930EE2437227A00EE428F /* StorieView.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
+				15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */,
 				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
 				15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */,
