@@ -41,8 +41,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
         HapticButton(action: {
             self.mode.wrappedValue.dismiss()
         }) {
-            Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }.padding(.bottom, 30)
-        }
+            Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }
+        }.padding(.bottom, SafeAreaInsets.bottom + 30)
     }
     
     private func buttons() -> some View {
