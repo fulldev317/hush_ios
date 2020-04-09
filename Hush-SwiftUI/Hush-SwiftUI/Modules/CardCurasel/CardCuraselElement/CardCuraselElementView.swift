@@ -13,6 +13,7 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
+    @State var showUpgrade = false
     
     
     // MARK: - Lifecycle
@@ -29,20 +30,20 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
                         }
                         Spacer()
                         HapticButton(action: {
-                            
-                        }, label: {
+                            self.showUpgrade = true
+                        }, label: {                            
                             Image("message_card_icon").aspectRatio().frame(width: 45, height: 45)
                         })
-                        HapticButton(action: {
-                            
-                        }, label: {
+                        NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar()) {
                             Image("more_card_icon").aspectRatio().frame(width: 45, height: 45)
-                        })
+                        }.buttonStyle(PlainButtonStyle())
                         Spacer()
                     }.padding(.vertical)
                     ).background(Color.white.shadow(radius: 8))
                 }
             }
+        }.sheet(isPresented: $showUpgrade) {
+            UpgradeView(viewModel: UpgradeViewModel())
         }
     }
 }
