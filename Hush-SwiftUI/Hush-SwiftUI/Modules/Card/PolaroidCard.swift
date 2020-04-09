@@ -46,8 +46,6 @@ struct PolaroidCard<Content: View>: View {
                     .padding([.leading, .top, .trailing], (cardWidth - imgSide) / 2)
                     .clipShape(Squere(x: (cardWidth - imgSide) / 2, y: (cardWidth - imgSide) / 2, side: imgSide))
                 
-                
-                
                 bottom
             }
         }.frame(width: cardWidth, height: height)

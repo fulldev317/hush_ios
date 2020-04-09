@@ -7,10 +7,11 @@
 //
 
 import Combine
+import SwiftUI
 
 protocol UpgradeViewModeled: ObservableObject {
     
     var message: String { get set }
-    
+    var uiElements: [UpgradeUIItem<AnyView>] { get }
     func updateMessage()
 }

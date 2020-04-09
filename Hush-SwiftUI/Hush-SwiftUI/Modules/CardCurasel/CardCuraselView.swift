@@ -34,8 +34,10 @@ struct CardCuraselView<ViewModel: CardCuraselViewModeled>: View {
                 header()
                     .padding(.bottom, 50)
                 Spacer()
-                KolodaViewHolder({
-                    CardCuraselElementView(viewModel: self.viewModel.viewModel(for: $0))
+                KolodaViewHolder({ index in
+                    NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar()) {
+                        CardCuraselElementView(viewModel: self.viewModel.viewModel(for: index))
+                    }.buttonStyle(PlainButtonStyle())
                 }, moveLeft: { percent in
                     withAnimation {
                         self.percent = percent

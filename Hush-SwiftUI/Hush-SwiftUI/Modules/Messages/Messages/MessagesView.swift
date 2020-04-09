@@ -53,7 +53,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                     ForEach(viewModel.items) { message in
                         NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(message)).withoutBar()) {
                             MessagesCell(message: message).padding(.horizontal, 16)
-                        }
+                        }.buttonStyle(PlainButtonStyle())
                     }.onDelete { (set) in
                         print(set)
                     }

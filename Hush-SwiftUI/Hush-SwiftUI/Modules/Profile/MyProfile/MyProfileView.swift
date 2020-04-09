@@ -168,15 +168,21 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             VStack(spacing: 25) {
                 tableRow("User Name", value: $viewModel.basicsViewModel.username)
                 tableRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
-                tableRow("Verified?", value: $viewModel.basicsViewModel.username)
-                tableRow("Age", value: $viewModel.basicsViewModel.username)
+                tableRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
+                tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
+                    let now = Date()
+                    let calendar = Calendar.current
+                    let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+                    let age = ageComponents.year!
+                    self.$viewModel.basicsViewModel.age.wrappedValue = "\(age)"
+                }
                 tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender, titles: Gender) {
                     self.$viewModel.basicsViewModel.gender.wrappedValue = $0
                 }
                 tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality, titles: Gender) {
                     self.$viewModel.basicsViewModel.sexuality.wrappedValue = $0
                 }
-                tableRow("Living", value: $viewModel.basicsViewModel.username)
+                tableRow("Living", value: $viewModel.basicsViewModel.living)
                 tableRow("Bio", value: nil)
                 if app.onProfileEditing {
                     TextField("Bio", text: $viewModel.basicsViewModel.bio).multilineTextAlignment(.leading).font(.regular(17)).foregroundColor(.white)
@@ -263,6 +269,19 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             Spacer()
             if app.onProfileEditing {
                 PickerTextField(title: selected, titles: titles, picked: picked)
+                
+            } else {
+                Text(selected).font(.regular(17)).foregroundColor(.white)
+            }
+        }
+    }
+    
+    private func tablePickerRow(_ title: String, selected: String, picked: @escaping (Date) -> Void) -> some View {
+        HStack {
+            Text(title).font(.regular(17)).foregroundColor(.white)
+            Spacer()
+            if app.onProfileEditing {
+                DateTextField(title: selected, picked: picked)
                 
             } else {
                 Text(selected).font(.regular(17)).foregroundColor(.white)

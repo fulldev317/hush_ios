@@ -21,8 +21,8 @@ public struct HapticButton<Label: View>: View {
     public var body: some View {
         
         Button(action: {
-            self.feedback()
-            self.action()
+                self.feedback()
+                self.action()
         }, label: {
             label
             }).buttonStyle(PlainButtonStyle())

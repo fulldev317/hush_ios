@@ -86,3 +86,53 @@ struct PickerTextField_Previews: PreviewProvider {
         }
     }
 }
+
+
+struct DateTextField: UIViewRepresentable {
+    
+    var title: String
+    var picked: (Date) -> Void
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(picked: picked)
+    }
+    
+    func makeUIView(context: Context) -> UITextField {
+        let field = UITextField()
+        field.inputView = context.coordinator.inputView
+        field.textAlignment = .right
+        field.textColor = .white
+        
+        return field
+    }
+    
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        
+        uiView.text = title
+    }
+}
+
+
+extension DateTextField {
+    
+    class Coordinator: NSObject {
+        
+        private var picked: (Date) -> Void
+        var inputView: UIDatePicker {
+            let picker = UIDatePicker()
+            picker.datePickerMode = .date
+            picker.maximumDate = Date()
+            picker.addTarget(self, action: #selector(changed(_:)), for: .valueChanged)
+            
+            return picker
+        }
+        
+        init(picked: @escaping (Date) -> Void) {
+            self.picked = picked
+        }
+        
+        @objc private func changed(_ picker: UIDatePicker) {
+            picked(picker.date)
+        }
+    }
+}
