@@ -13,7 +13,7 @@ struct MainView: View {
     @EnvironmentObject var app: App
     
     var body: some View {
-        NavigationView {
+        Group {
             if app.logedIn {
                 RootTabBarView(viewModel: RootTabBarViewModel()).withoutBar()
             } else {

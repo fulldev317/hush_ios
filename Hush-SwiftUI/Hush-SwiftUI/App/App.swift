@@ -11,9 +11,15 @@ import SwiftUI
 
 class App: ObservableObject {
     
-    @Published var logedIn = false
+    @Published var logedIn = false {
+        didSet {
+            notlogged = !logedIn
+        }
+    }
     @Published var showPremium = false
     @Published var onProfileEditing = false
+    @Published var notlogged = true
     
     let profile = MyProfileViewModel()
+    let discovery = DiscoveryViewModel()
 }

@@ -15,16 +15,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
-    @State var showSettings = false
+    
     
     // MARK: - Lifecycle
     
     var body: some View {
         VStack(spacing: 0) {
-            header()
-            Rectangle()
-            .frame(height: 0.9)
-            .foregroundColor(Color(0x4F4F4F))
+            
             QGrid(viewModel.messages, columns: 2) { element in
                 
                 NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar()) {
@@ -33,9 +30,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     .rotate(self.viewModel.index(element).isMultiple(of: 3) ? 0 : -5)
                 }.buttonStyle(PlainButtonStyle())
             }
-        }.partialSheet(presented: $showSettings, enabledDrag: viewModel.settingsViewModel.dragFlag, viewForGesture: Rectangle().frame(height: 44).foregroundColor(.white), view: {
-                SettingsView(viewModel: self.viewModel.settingsViewModel).frame(height: 400)
-            }).withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
+        }
     }
     
     #warning("Please update viewModel")
@@ -52,20 +47,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         }.padding(15)
     }
     
-    private func header() -> some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("Discovery").foregroundColor(.hOrange).font(.ultraLight(48))
-                Text("Location").foregroundColor(.white).font(.thin())
-            }
-            Spacer()
-            HapticButton(action: {
-                self.showSettings = true
-            }) {
-                Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
-            }
-        }.padding(.leading, 30)
-    }
+    
 }
 
 struct DiscoveryView_Previews: PreviewProvider {
