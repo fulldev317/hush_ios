@@ -18,9 +18,9 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
         
         ZStack {
             VStack {
-                Spacer()
                 logo()
-                    .opacity(showSignupButtons ? 0 : 1)
+                    .opacity(showSignupButtons ? 0.3 : 1)
+                    .padding(.top, 55)
                 Spacer()
                 Spacer()
                 Spacer()
