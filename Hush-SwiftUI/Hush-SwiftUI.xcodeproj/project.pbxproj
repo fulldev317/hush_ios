@@ -132,6 +132,7 @@
 		15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */; };
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
+		895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895D0C62245C59D600C6BE9B /* ImagePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -275,6 +276,7 @@
 		297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		895D0C62245C59D600C6BE9B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +301,7 @@
 				1546B42524331DC400180D77 /* AddPhotosView.swift */,
 				1546B42424331DC400180D77 /* AddPhotosViewModel.swift */,
 				1546B42A24331EB900180D77 /* AddPhotosViewModeled.swift */,
+				895D0C62245C59D600C6BE9B /* ImagePickerView.swift */,
 			);
 			path = AddPhotos;
 			sourceTree = "<group>";
@@ -974,6 +977,7 @@
 				15B890B0243F5D1000069804 /* HeaderedView.swift in Sources */,
 				1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
+				895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
 				15D53C87243C909600D62B26 /* UpgradeView.swift in Sources */,

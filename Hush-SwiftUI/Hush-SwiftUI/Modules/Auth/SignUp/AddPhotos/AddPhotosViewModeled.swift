@@ -6,11 +6,11 @@
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol AddPhotosViewModeled: ObservableObject {
     
     var messageLabel: String { get set }
     var canGoNext: Bool { get set }
-    func addPhotoPressed()
+    var selectedImage: UIImage? { get set }
 }

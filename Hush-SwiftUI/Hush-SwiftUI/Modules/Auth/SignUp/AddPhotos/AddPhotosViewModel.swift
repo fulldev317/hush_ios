@@ -16,37 +16,15 @@ class AddPhotosViewModel: AddPhotosViewModeled {
 
     @Published var messageLabel = "With Hush’s own Filters you can make \nyour photo as private as you like!"
     @Published var canGoNext = false
+    @Published var selectedImage: UIImage?
     
-    private let defaultMessage = "With Hush’s own Filters you can make \nyour photo as private as you like!"
-    weak var picker: DVImagePicker?
+    var disposals = Set<AnyCancellable>()
     
-    init(_ picker: DVImagePicker) {
-        
-        self.picker = picker
-    }
-    
-    private var selectedImage: UIImage = UIImage() {
-        didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                self.canGoNext.toggle()
-            }
-        }
-    }
-    
-    func addPhotoPressed() {
-        
-        canGoNext.toggle()
-        return
-//        if let vc = iOSApp.topViewController {
-//            picker?.showActionSheet(from: vc) { [weak self] result in
-//                
-//                switch result {
-//                case .failure:
-//                    self?.messageLabel = "You tapped “Don’t Allow” so we need to  take you to settings quick to allow us  access to your Camera Roll.\n\nThen  please return to the app and continue"
-//                case let .success(image):
-//                    self?.selectedImage = image
-//                }
-//            }
-//        }
+    init() {
+        $selectedImage
+            .map { $0 != nil }
+            .removeDuplicates()
+            .assign(to: \.canGoNext, on: self)
+        .store(in: &disposals)
     }
 }
