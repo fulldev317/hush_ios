@@ -36,15 +36,16 @@ extension Publishers {
 
 struct KeyboardAdaptive: ViewModifier {
     
+    let keyboardPresented: Binding<Bool>?
     @State private var bottomPadding: CGFloat = 0
     
     func body(content: Content) -> some View {
-        
         GeometryReader { geometry in
             content
                 .padding(.bottom, self.bottomPadding)
                 .onReceive(Publishers.keyboardHeight) { keyboardHeight in
                     self.bottomPadding = keyboardHeight
+                    self.keyboardPresented?.wrappedValue = !keyboardHeight.isZero
             }
             .animation(.easeOut(duration: 0.16))
         }
@@ -52,9 +53,7 @@ struct KeyboardAdaptive: ViewModifier {
 }
 
 extension View {
-   
-    func keyboardAdaptive() -> some View {
-    
-        ModifiedContent(content: self, modifier: KeyboardAdaptive())
+    func keyboardAdaptive(_ keyboardPresented: Binding<Bool>? = nil) -> some View {
+        ModifiedContent(content: self, modifier: KeyboardAdaptive(keyboardPresented: keyboardPresented))
     }
 }

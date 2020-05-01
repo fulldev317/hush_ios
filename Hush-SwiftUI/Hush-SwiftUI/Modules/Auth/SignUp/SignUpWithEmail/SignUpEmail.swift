@@ -12,6 +12,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @State private var keyboardPresented: Bool = false
     
     var body: some View {
         ZStack {
@@ -21,7 +22,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                         self.body(with: proxy)
                             .frame(minHeight: proxy.size.height)
                 }
-            }.keyboardAdaptive()
+            }.keyboardAdaptive($keyboardPresented)
             onBackButton(self.mode)
             NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel).withoutBar(), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
@@ -38,6 +39,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 Spacer()
                 
                 logo()
+                    .opacity(keyboardPresented ? 0 : 1)
                 Spacer()
                 
                 Text("Sign up with email").foregroundColor(.white).font(.thin(22))

@@ -17,17 +17,11 @@ struct LoginButtons<Presenter: SignUpViewModeled>: View {
             LoginButton(title: "Sign Up with Email", img: Image("mail_icon"), color: Color(0x56CCF2)) {
                 self.presenter.emailPressed()
             }.padding(.horizontal, 24)
-            LoginButton(title: "Connect with Google", img: Image("google_icon"), color: Color(0xFB4949)) {
-                self.presenter.googlePressed()
-            }.padding(.horizontal, 24)
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
                 self.presenter.facebookPressed()
             }.padding(.horizontal, 24)
             LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
                 self.presenter.applePressed()
-            }.padding(.horizontal, 24)
-            LoginButton(title: "Continue with Snapchat", titleColor: .black, img: Image("snap_icon"), color: Color(0xFFFC01)) {
-                self.presenter.snapPressed()
             }.padding(.horizontal, 24)
         }
     }
@@ -65,5 +59,11 @@ struct LoginButton: View {
                 }.padding(.leading, 50)
             }
         }
+    }
+}
+
+struct LoginButtons_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginButtons(presenter: SignUpViewModel())
     }
 }
