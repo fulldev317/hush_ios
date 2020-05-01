@@ -18,13 +18,7 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var showAddPhotoScreen = false
     @Published var showLoginScreen = false
     
-    let picker: DVImagePicker
-    var addPhotoViewModel: AddPhotosViewModel
-    
-    init() {
-        self.picker = DVImagePicker()
-        self.addPhotoViewModel = AddPhotosViewModel(picker)
-    }
+    var addPhotoViewModel = AddPhotosViewModel()
     
     func submit() {
         
