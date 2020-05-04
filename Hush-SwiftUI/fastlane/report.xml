@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.079328">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000822">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: register_devices" time="1.740057">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: update_code_signing_settings" time="0.099232">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: build_app" time="89.506846">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: diawi" time="1.710387">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
