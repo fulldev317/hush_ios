@@ -59,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     } else {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
                     }
-                    }.environmentObject(self.app)
+                }.environmentObject(self.app)
             )
         }
     }
