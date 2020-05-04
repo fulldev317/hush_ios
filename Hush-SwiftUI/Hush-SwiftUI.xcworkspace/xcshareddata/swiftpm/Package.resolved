@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "PartialSheet",
+        "repositoryURL": "https://github.com/damienissa/PartialSheet.git",
+        "state": {
+          "branch": "master",
+          "revision": "0c131c13d51b55600af570da08de9d5beefed9cc",
+          "version": null
+        }
+      },
+      {
+        "package": "QGrid",
+        "repositoryURL": "https://github.com/Q-Mobile/QGrid.git",
+        "state": {
+          "branch": null,
+          "revision": "804e59f8cb9f66b226685e9369fb82029742b83a",
+          "version": "0.1.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
