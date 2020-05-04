@@ -138,6 +138,8 @@
 		8993C763245D917500E8F765 /* PermissionDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C762245D917400E8F765 /* PermissionDeniedView.swift */; };
 		8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7652460079400E8F765 /* Combine+Ext.swift */; };
 		8993C7692460100300E8F765 /* NewFaceDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7682460100300E8F765 /* NewFaceDetection.swift */; };
+		89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */; };
+		89DCC131246075CB000A0BCB /* NewFaceDetectionViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC130246075CB000A0BCB /* NewFaceDetectionViewModeled.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -287,6 +289,8 @@
 		8993C762245D917400E8F765 /* PermissionDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDeniedView.swift; sourceTree = "<group>"; };
 		8993C7652460079400E8F765 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
 		8993C7682460100300E8F765 /* NewFaceDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetection.swift; sourceTree = "<group>"; };
+		89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModel.swift; sourceTree = "<group>"; };
+		89DCC130246075CB000A0BCB /* NewFaceDetectionViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModeled.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -781,6 +785,8 @@
 			isa = PBXGroup;
 			children = (
 				8993C7682460100300E8F765 /* NewFaceDetection.swift */,
+				89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */,
+				89DCC130246075CB000A0BCB /* NewFaceDetectionViewModeled.swift */,
 				893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */,
 				893E6CE9246043D300ECE788 /* MaskSlider.swift */,
 			);
@@ -925,6 +931,7 @@
 				155E2FE9243B069C001D886D /* MessagesViewModeled.swift in Sources */,
 				157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */,
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
+				89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */,
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
@@ -1017,6 +1024,7 @@
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
 				155E2FFD243B0FFC001D886D /* ImageCache.swift in Sources */,
 				1579310424373C2800EE428F /* UIView+Ext.swift in Sources */,
+				89DCC131246075CB000A0BCB /* NewFaceDetectionViewModeled.swift in Sources */,
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
 				15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */,

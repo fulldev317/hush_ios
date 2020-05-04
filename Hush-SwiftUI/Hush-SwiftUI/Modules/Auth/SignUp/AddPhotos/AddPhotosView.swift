@@ -34,7 +34,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
                 Spacer()
             }
             onBackButton(mode)
-            NavigationLink(destination: FaceDetectionView(viewModel: FaceDetectionViewModel()),
+            NavigationLink(destination: FaceDetectionView(viewModel: FaceDetectionViewModel()),//NewFaceDetection(viewModel: NewFaceDetectionViewModel()),
                            isActive: $viewModel.canGoToAR,
                            label: EmptyView.init)
             

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MaskSlider: UIViewRepresentable {
     @Binding var value: CGFloat
@@ -22,12 +23,38 @@ struct MaskSlider: UIViewRepresentable {
         
         slider.minimumValue = 0
         slider.maximumValue = 1
+        slider.isContinuous = false
         
+        slider.addTarget(context.coordinator, action: #selector(Coordinator.sliderValueChanged), for: .valueChanged)
         return slider
     }
     
     func updateUIView(_ slider: UISlider, context: Context) {
         slider.value = Float(value)
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator($value)
+    }
+    
+    class Coordinator {
+        @Binding var value: CGFloat
+        init(_ value: Binding<CGFloat>) {
+            _value = value
+        }
+        
+        @objc func sliderValueChanged(slider: UISlider, event: UIEvent) {
+            let value = slider.value
+            if let touchEvent = event.allTouches?.first {
+                switch touchEvent.phase {
+                case .ended:
+                    slider.value = value.rounded()
+                    self.value = CGFloat(value.rounded())
+                default:
+                    break
+                }
+            }
+        }
     }
 }
 
