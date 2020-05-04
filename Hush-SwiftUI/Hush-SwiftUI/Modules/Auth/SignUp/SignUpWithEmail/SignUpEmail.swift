@@ -35,11 +35,9 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
         
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
-                
-                Spacer()
-                
                 logo()
                     .opacity(keyboardPresented ? 0 : 1)
+                    .padding(.top, 55)
                 Spacer()
                 
                 Text("Sign up with email").foregroundColor(.white).font(.thin(22))

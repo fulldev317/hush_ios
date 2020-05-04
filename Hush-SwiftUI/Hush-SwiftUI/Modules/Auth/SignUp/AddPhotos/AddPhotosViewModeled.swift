@@ -13,4 +13,15 @@ protocol AddPhotosViewModeled: ObservableObject {
     var messageLabel: String { get set }
     var canGoNext: Bool { get set }
     var selectedImage: UIImage? { get set }
+    
+    var pickerSourceType: UIImagePickerController.SourceType { get set }
+    var isPermissionDenied: Bool { get set }
+    var isPickerPresented: Bool { get set }
+    var isPickerSheetPresented: Bool { get set }
+    
+    func appear()
+    func disappear()
+    func takePhoto()
+    func cameraRoll()
+    func addPhoto()
 }

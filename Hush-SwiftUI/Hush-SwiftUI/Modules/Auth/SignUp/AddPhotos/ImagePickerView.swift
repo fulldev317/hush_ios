@@ -51,6 +51,6 @@ struct ImagePickerView: UIViewControllerRepresentable {
 
 struct ImagePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ImagePickerView(source: .photoLibrary, image: .constant(nil), isPresented: .constant(true))
+        ImagePickerView(source: .photoLibrary, image: .constant(nil), isPresented: .constant(false))
     }
 }
