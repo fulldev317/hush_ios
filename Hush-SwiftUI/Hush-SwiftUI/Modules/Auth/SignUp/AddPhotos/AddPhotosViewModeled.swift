@@ -11,6 +11,7 @@ import UIKit
 protocol AddPhotosViewModeled: ObservableObject {
     
     var messageLabel: String { get set }
+    var canGoToAR: Bool { get set }
     var canGoNext: Bool { get set }
     var selectedImage: UIImage? { get set }
     

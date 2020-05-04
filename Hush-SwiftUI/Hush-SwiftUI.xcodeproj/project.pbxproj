@@ -71,14 +71,14 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
+		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* SettingsView.swift */; };
 		157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A92435E62000EE428F /* SettingsViewModel.swift */; };
 		157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930AA2435E62000EE428F /* SettingsViewModeled.swift */; };
 		157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */; };
-		157930B22435EC3400EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* SwiftPackageProductDependency */; };
+		157930B22435EC3400EE428F /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* PartialSheet */; };
 		157930E024371D0800EE428F /* StoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DD24371D0800EE428F /* StoryCardsView.swift */; };
 		157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DE24371D0800EE428F /* StoryCardsViewModel.swift */; };
 		157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DF24371D0800EE428F /* StoryCardsViewModeled.swift */; };
@@ -132,6 +132,8 @@
 		15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */; };
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
+		893E6CEA246043D300ECE788 /* MaskSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CE9246043D300ECE788 /* MaskSlider.swift */; };
+		893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */; };
 		895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895D0C62245C59D600C6BE9B /* ImagePickerView.swift */; };
 		8993C763245D917500E8F765 /* PermissionDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C762245D917400E8F765 /* PermissionDeniedView.swift */; };
 		8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7652460079400E8F765 /* Combine+Ext.swift */; };
@@ -279,6 +281,8 @@
 		297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		893E6CE9246043D300ECE788 /* MaskSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSlider.swift; sourceTree = "<group>"; };
+		893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFaceDetectorView.swift; sourceTree = "<group>"; };
 		895D0C62245C59D600C6BE9B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		8993C762245D917400E8F765 /* PermissionDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDeniedView.swift; sourceTree = "<group>"; };
 		8993C7652460079400E8F765 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
@@ -290,8 +294,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				157930B22435EC3400EE428F /* BuildFile in Frameworks */,
-				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
+				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
+				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
@@ -777,6 +781,8 @@
 			isa = PBXGroup;
 			children = (
 				8993C7682460100300E8F765 /* NewFaceDetection.swift */,
+				893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */,
+				893E6CE9246043D300ECE788 /* MaskSlider.swift */,
 			);
 			path = NewFaceDetection;
 			sourceTree = "<group>";
@@ -801,8 +807,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
-				157930B12435EC3400EE428F /* SwiftPackageProductDependency */,
+				1579309E2435CAFC00EE428F /* QGrid */,
+				157930B12435EC3400EE428F /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -833,8 +839,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
-				157930B02435EC3400EE428F /* RemoteSwiftPackageReference */,
+				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+				157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -929,6 +935,7 @@
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */,
 				158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */,
+				893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */,
 				157930A12435CE5300EE428F /* View+Ext.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
 				155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */,
@@ -948,6 +955,7 @@
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
 				15D53C80243C65C900D62B26 /* MyProfileViewModeled.swift in Sources */,
 				157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */,
+				893E6CEA246043D300ECE788 /* MaskSlider.swift in Sources */,
 				15D53C88243C909600D62B26 /* UpgradeViewModel.swift in Sources */,
 				15B890AE243EEA1300069804 /* UserProfileViewModeled.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
@@ -1161,6 +1169,7 @@
 			baseConfigurationReference = 297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
@@ -1178,6 +1187,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppServices.Hush-SwiftUI.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1188,6 +1198,7 @@
 			baseConfigurationReference = 5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
@@ -1205,6 +1216,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppServices.Hush-SwiftUI.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1234,7 +1246,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
+		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1242,7 +1254,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		157930B02435EC3400EE428F /* RemoteSwiftPackageReference */ = {
+		157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/damienissa/PartialSheet.git";
 			requirement = {
@@ -1253,14 +1265,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
+		1579309E2435CAFC00EE428F /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
+			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
 		};
-		157930B12435EC3400EE428F /* SwiftPackageProductDependency */ = {
+		157930B12435EC3400EE428F /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 157930B02435EC3400EE428F /* RemoteSwiftPackageReference */;
+			package = 157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */

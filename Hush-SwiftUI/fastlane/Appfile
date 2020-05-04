@@ -1,2 +1,2 @@
-app_identifier("com.AppServices.Hush-SwiftUI.dev") # The bundle identifier of your app
+app_identifier("com.AppServices.Hush-SwiftUI.dev")
 apple_id("mr.robot.vys@gmail.com")

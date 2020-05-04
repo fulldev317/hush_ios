@@ -35,10 +35,20 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
             }
             onBackButton(mode)
             NavigationLink(destination: FaceDetectionView(viewModel: FaceDetectionViewModel()),
-                           isActive: $viewModel.canGoNext, label: EmptyView.init)
+                           isActive: $viewModel.canGoToAR,
+                           label: EmptyView.init)
+            
+            if viewModel.selectedImage != nil {
+                NavigationLink(
+                    destination: GoodContainer(image: viewModel.selectedImage!),
+                    isActive: $viewModel.canGoNext,
+                    label: EmptyView.init
+                )
+            }
             
             NavigationLink(destination: PermissionDeniedView(type: viewModel.pickerSourceType),
-                           isActive: $viewModel.isPermissionDenied, label: EmptyView.init)
+                           isActive: $viewModel.isPermissionDenied,
+                           label: EmptyView.init)
         }.background(background()).navigationBarHidden(true)
         .actionSheet(isPresented: $viewModel.isPickerSheetPresented) {
             ActionSheet(title: Text("Provide a context for the actions."), message: nil, buttons: [
