@@ -13,6 +13,7 @@ struct NewFaceDetection: View, AuthAppScreens {
     
     @State private var maskOpacity: CGFloat = 0.5
     @State private var selectedMaskCollection: Int?
+    @State private var selectedMask: Int?
     
     var body: some View {
         ZStack {
@@ -30,10 +31,14 @@ struct NewFaceDetection: View, AuthAppScreens {
                                             .resizable()
                                             .scaledToFill()
                                             .frame(width: 90, height: 90)
+                                            .onTapGesture {
+                                                self.selectedMask = i
+                                                self.selectedMaskCollection = nil
+                                            }
                                     }.rotationEffect(.radians(.pi), anchor: .center)
                                 }
                             }.rotationEffect(.radians(.pi), anchor: .center)
-                            .opacity(i == 1 ? 1 : 0)
+                            .opacity(i == self.selectedMaskCollection ? 1 : 0)
                         }
                     }, alignment: .bottom)
                 
@@ -55,6 +60,9 @@ struct NewFaceDetection: View, AuthAppScreens {
                                     .scaledToFill()
                                     .frame(width: 90, height: 90)
                                     .shadow(color: .white, radius: 30, x: 0, y: 4)
+                                    .onTapGesture {
+                                        self.selectedMaskCollection = i - 1
+                                    }
                             }
                             
                             Button(action: {}) {
@@ -87,40 +95,6 @@ struct NewFaceDetection: View, AuthAppScreens {
                 .frame(height: 44))
             .padding(.horizontal)
                 .opacity(0.5)
-    }
-}
-
-struct MaskSlider: UIViewRepresentable {
-    @Binding var value: CGFloat
-    
-    func makeUIView(context: Context) -> UISlider {
-        let slider = UISlider()
-        slider.thumbTintColor = UIColor.black
-        slider.tintColor = UIColor.black.withAlphaComponent(0.6)
-        
-        slider.maximumValueImage = UIImage(named: "maskEnabled")?.withTintColor(.black)
-        slider.minimumValueImage = UIImage(named: "maskDisabled")?.withTintColor(.black)
-        
-        slider.minimumValue = 0
-        slider.maximumValue = 1
-        
-        return slider
-    }
-    
-    func updateUIView(_ slider: UISlider, context: Context) {
-        slider.value = Float(value)
-    }
-}
-
-struct ARFaceDetectorView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .black
-        return vc
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        
     }
 }
 

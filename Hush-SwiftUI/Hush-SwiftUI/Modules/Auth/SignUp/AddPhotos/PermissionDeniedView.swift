@@ -22,10 +22,19 @@ struct PermissionDeniedView: View, AuthAppScreens {
                 Text("Whoops!")
                     .font(.thin(22))
                     .foregroundColor(.white)
-                Text("You tapped “Don’t Allow” so we need to take you to settings quick to allow us access to your Camera Roll.")
-                    .font(.thin(18))
-                    .foregroundColor(Color(UIColor(red: 0.949, green: 0.788, blue: 0.298, alpha: 1)))
-                    .frame(width: 300)
+                
+                if type == .photoLibrary {
+                    Text("You tapped “Don’t Allow” so we need to take you to settings quick to allow us access to your Camera Roll.")
+                        .font(.thin(18))
+                        .foregroundColor(Color(UIColor(red: 0.949, green: 0.788, blue: 0.298, alpha: 1)))
+                        .frame(width: 300)
+                } else if type == .camera {
+                    Text("You tapped “Don’t Allow” so we need to take you to settings quick to allow us access to your Camera.")
+                        .font(.thin(18))
+                        .foregroundColor(Color(UIColor(red: 0.949, green: 0.788, blue: 0.298, alpha: 1)))
+                        .frame(width: 300)
+                }
+                
                 Text("Then  please return to the app and continue")
                     .font(.thin(22))
                     .foregroundColor(.white)
