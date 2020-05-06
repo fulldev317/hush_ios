@@ -14,7 +14,7 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
     
     @Published var visibleCategories: [MaskCategory] = Array(MaskCategory.allCases[..<3])
     @Published var selectedCategory: MaskCategory?
-    @Published var maskImage: UIImage?
+    @Published var mask: Mask?
     
     @Published var shouldTakeImage: Bool = false
     @Published var capturedImage: UIImage?
@@ -25,12 +25,12 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
     private var disposals = Set<AnyCancellable>()
     
     func reset() {
-        maskImage = nil
+        mask = nil
         selectedCategory = nil
     }
     
     func done() {
-        
+        shouldTakeImage = true
     }
     
     func nextCategories() {
@@ -52,7 +52,7 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
     }
     
     func selectMask(_ name: String) {
-        maskImage = UIImage(named: name)
+        mask = Mask(name: name, category: selectedCategory!)
         selectedCategory = nil
     }
 }

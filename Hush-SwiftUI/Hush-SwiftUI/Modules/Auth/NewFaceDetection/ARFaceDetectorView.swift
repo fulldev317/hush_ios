@@ -11,7 +11,7 @@ import AVFoundation
 import Vision
 
 struct ARFaceDetectorView: UIViewControllerRepresentable {
-    let maskImage: UIImage?
+    let mask: Mask?
     let maskEnabled: Bool
     let shouldTakeImage: Bool
     @Binding var capturedImage: UIImage?
@@ -21,7 +21,7 @@ struct ARFaceDetectorView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ faceTrackingViewController: FaceTrackingViewController, context: Context) {
-        faceTrackingViewController.maskImage = maskImage
+        faceTrackingViewController.mask = mask
         faceTrackingViewController.maskEnabled = maskEnabled
         faceTrackingViewController.captureCompletion = shouldTakeImage ?
             { self.capturedImage = $0 } : nil
@@ -29,7 +29,7 @@ struct ARFaceDetectorView: UIViewControllerRepresentable {
 }
 
 final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
-    fileprivate var maskImage: UIImage?
+    fileprivate var mask: Mask?
     fileprivate var maskEnabled = false
     fileprivate var captureCompletion: ((UIImage) -> Void)?
     
@@ -48,6 +48,7 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     private var detectionOverlayLayer: CALayer?
     private var detectedFaceRectangleShapeLayer: CAShapeLayer?
     private var detectedFaceLandmarksShapeLayer: CAShapeLayer?
+    private let imageView = UIImageView()
     
     // Vision requests
     private var detectionRequests: [VNDetectFaceRectanglesRequest]?
@@ -146,6 +147,8 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         
         let videoDataOutput = AVCaptureVideoDataOutput()
         videoDataOutput.alwaysDiscardsLateVideoFrames = true
+        
+        videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
         
         // Create a serial dispatch queue used for the sample buffer delegate as well as when a still image is captured.
         // A serial dispatch queue must be used to guarantee that video frames will be delivered in order.
@@ -393,41 +396,125 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         }
     }
     
+    lazy var screenImageView: UIImageView = {
+        let imvw = UIImageView()
+        imvw.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imvw)
+        
+        NSLayoutConstraint.activate([
+            view.trailingAnchor.constraint(equalTo: imvw.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: imvw.bottomAnchor),
+            imvw.widthAnchor.constraint(equalToConstant: 100),
+            imvw.heightAnchor.constraint(equalToConstant: 200)
+        ])
+        
+        imvw.contentMode = .scaleAspectFill
+        return imvw
+    }()
+    
     fileprivate func addIndicators(to faceRectanglePath: CGMutablePath, faceLandmarksPath: CGMutablePath, for faceObservation: VNFaceObservation) {
         let displaySize = self.captureDeviceResolution
         
         let faceBounds = VNImageRectForNormalizedRect(faceObservation.boundingBox, Int(displaySize.width), Int(displaySize.height))
-        faceRectanglePath.addRect(faceBounds)
+//        faceRectanglePath.addRect(faceBounds)
         
         if let landmarks = faceObservation.landmarks {
             // Landmarks are relative to -- and normalized within --- face bounds
-            let affineTransform = CGAffineTransform(translationX: faceBounds.origin.x, y: faceBounds.origin.y)
-                .scaledBy(x: faceBounds.size.width, y: faceBounds.size.height)
+//            let affineTransform = CGAffineTransform(translationX: faceBounds.origin.x, y: faceBounds.origin.y)
+//                .scaledBy(x: faceBounds.size.width, y: faceBounds.size.height)
+//
+//            // Treat eyebrows and lines as open-ended regions when drawing paths.
+//            let openLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
+//                landmarks.leftEyebrow,
+//                landmarks.rightEyebrow,
+//                landmarks.faceContour,
+//                landmarks.noseCrest,
+//                landmarks.medianLine,
+//            ]
+//            for openLandmarkRegion in openLandmarkRegions where openLandmarkRegion != nil {
+//                self.addPoints(in: openLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: false)
+//            }
+//
+//            // Draw eyes, lips, and nose as closed regions.
+//            let closedLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
+//                landmarks.leftEye,
+//                landmarks.rightEye,
+//                landmarks.outerLips,
+//                landmarks.innerLips,
+//                landmarks.nose,
+//            ]
+//            for closedLandmarkRegion in closedLandmarkRegions where closedLandmarkRegion != nil {
+//                self.addPoints(in: closedLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: true)
+//            }
+//
+//            func drawPupil(_ pupil: CGPoint) {
+//                let size = CGFloat(0.1)
+//                let rect = CGRect(origin: pupil, size: CGSize(width: size, height: size)).offsetBy(dx: -size / 2, dy: -size / 2)
+//                faceLandmarksPath.addEllipse(in: rect, transform: affineTransform)
+//            }
             
-            // Treat eyebrows and lines as open-ended regions when drawing paths.
-            let openLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
-                landmarks.leftEyebrow,
-                landmarks.rightEyebrow,
-                landmarks.faceContour,
-                landmarks.noseCrest,
-                landmarks.medianLine
-            ]
-            for openLandmarkRegion in openLandmarkRegions where openLandmarkRegion != nil {
-                self.addPoints(in: openLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: false)
-            }
-            
-            // Draw eyes, lips, and nose as closed regions.
-            let closedLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
-                landmarks.leftEye,
-                landmarks.rightEye,
-                landmarks.outerLips,
-                landmarks.innerLips,
-                landmarks.nose
-            ]
-            for closedLandmarkRegion in closedLandmarkRegions where closedLandmarkRegion != nil {
-                self.addPoints(in: closedLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: true)
+            if let leftPupil = landmarks.leftPupil?.normalizedPoints.first,
+                let rightPupil = landmarks.rightPupil?.normalizedPoints.first {
+                
+//                drawPupil(leftPupil)
+//                drawPupil(rightPupil)
+                
+                let angle = atan((leftPupil.y - rightPupil.y) / (leftPupil.x - rightPupil.x))
+                if maskEnabled, let maskImage = mask?.image, let category = mask?.category {
+                    let insets: UIEdgeInsets
+                    switch category {
+                    case .ball:
+                        let v: CGFloat = 500
+                        let h: CGFloat = 200
+                        insets = UIEdgeInsets(top: v, left: -h, bottom: -v, right: -h)
+                    case .funny:
+                        let v: CGFloat = 300
+                        let h: CGFloat = 200
+                        insets = UIEdgeInsets(top: v, left: -h, bottom: -v, right: -h)
+                    case .glasses:
+                        let v: CGFloat = 200
+                        let h: CGFloat = 100
+                        insets = UIEdgeInsets(top: v, left: -h, bottom: -v, right: -h)
+                    case .ancient:
+                        let v: CGFloat = 350
+                        let h: CGFloat = 50
+                        insets = UIEdgeInsets(top: -v / 4, left: -h, bottom: -v, right: -h)
+                    }
+                    
+                    imageView.frame = faceBounds.inset(by: insets)
+                    
+                    imageView.layer.removeFromSuperlayer()
+                    imageView.image = maskImage.rotate(radians: -angle)
+                    imageView.contentMode = .scaleAspectFill
+                    imageView.transform = detectionOverlayLayer!.affineTransform().inverted()
+                    detectionOverlayLayer!.addSublayer(imageView.layer)
+                    
+//                    screenImageView.image = screenshot
+                    
+//                    if let completion = captureCompletion, let sc = screenshot {
+//                        completion(sc)
+//                        session?.stopRunning()
+//                    }
+                } else {
+                    imageView.layer.removeFromSuperlayer()
+                }
             }
         }
+    }
+    
+    private var lastCaptureImage: UIImage?
+    private var screenshot: UIImage? {
+        guard let lastCaptureImage = lastCaptureImage else { return nil }
+        UIGraphicsBeginImageContext(lastCaptureImage.size)
+        let context = UIGraphicsGetCurrentContext()
+//        lastCaptureImage.draw(at: .zero)
+//        lastCaptureImage?.draw(at: .zero)
+//        detectionOverlayLayer?.render(in: context!)
+        detectionOverlayLayer?.render(in: context!)
+//        view.layer.render(in: context!)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenShot
     }
     
     /// - Tag: DrawPaths
@@ -454,12 +541,6 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         faceRectangleShapeLayer.path = faceRectanglePath
         faceLandmarksShapeLayer.path = faceLandmarksPath
         
-        if maskEnabled, let maskImage = maskImage {
-            let layer = CALayer()
-            layer.contents = maskImage.cgImage
-            faceRectangleShapeLayer.addSublayer(layer)
-        }
-        
         self.updateLayerGeometry()
         
         CATransaction.commit()
@@ -469,7 +550,6 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     /// - Tag: PerformRequests
     // Handle delegate method callback on receiving a sample buffer.
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        
         var requestHandlerOptions: [VNImageOption: AnyObject] = [:]
         
         let cameraIntrinsicData = CMGetAttachment(sampleBuffer, key: kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, attachmentModeOut: nil)
@@ -557,6 +637,16 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
                 // Perform all UI updates (drawing) on the main queue, not the background queue on which this handler is being called.
                 DispatchQueue.main.async {
                     self.drawFaceObservations(results)
+                    
+                    let ciImg = CIImage(cvPixelBuffer: pixelBuffer)
+                    let imgWidth = ciImg.extent.width
+                    let imgHeight = ciImg.extent.height
+                    let rec = CGRect(x: 0, y: 0, width: imgHeight, height: imgWidth)
+                    if let cgImage = CIContext().createCGImage(ciImg.oriented(.leftMirrored), from: CGRect(origin: .zero, size: ciImg.extent.size)) {
+                        self.lastCaptureImage = UIImage(cgImage: cgImage)
+                    }
+                    
+//                    self.lastCaptureImage = self.imageFromSampleBuffer(sampleBuffer: sampleBuffer)
                 }
             })
             
@@ -586,14 +676,71 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     }
 }
 
-extension FaceTrackingViewController: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if let error = error {
-            print(error.localizedDescription)
-        }
+extension UIImage {
+    func rotate(radians: CGFloat) -> UIImage {
+        let rotatedSize = CGRect(origin: .zero, size: size)
+            .applying(CGAffineTransform(rotationAngle: radians))
+            .integral.size
         
-        if let completion = captureCompletion, let cgImage = photo.cgImageRepresentation()?.takeRetainedValue() {
-            completion(UIImage(cgImage: cgImage))
+//        UIGraphicsBeginImageContext(rotatedSize)
+        UIGraphicsBeginImageContextWithOptions(rotatedSize, false, UIScreen.main.scale)
+        if let context = UIGraphicsGetCurrentContext() {
+            let origin = CGPoint(x: rotatedSize.width / 2.0,
+                                 y: rotatedSize.height / 2.0)
+            
+            context.translateBy(x: origin.x, y: origin.y)
+            context.rotate(by: radians)
+            
+            let imageRect = CGRect(x: -origin.x, y: -origin.y, width: rotatedSize.width, height: rotatedSize.height)
+            let drawRect = ResizingBehavior.aspectFit.apply(
+                rect: CGRect(x: 0, y: 0, width: size.width, height: size.height),
+                target: imageRect)
+            
+            draw(in: drawRect)
+            let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return rotatedImage ?? self
+        }
+
+        return self
+    }
+    
+    enum ResizingBehavior: Int {
+        case aspectFit /// The content is proportionally resized to fit into the target rectangle.
+        case aspectFill /// The content is proportionally resized to completely fill the target rectangle.
+        case stretch /// The content is stretched to match the entire target rectangle.
+        case center /// The content is centered in the target rectangle, but it is NOT resized.
+
+        public func apply(rect: CGRect, target: CGRect) -> CGRect {
+            if rect == target || target == CGRect.zero {
+                return rect
+            }
+
+            var scales = CGSize.zero
+            scales.width = abs(target.width / rect.width)
+            scales.height = abs(target.height / rect.height)
+
+            switch self {
+                case .aspectFit:
+                    scales.width = min(scales.width, scales.height)
+                    scales.height = scales.width
+                case .aspectFill:
+                    scales.width = max(scales.width, scales.height)
+                    scales.height = scales.width
+                case .stretch:
+                    break
+                case .center:
+                    scales.width = 1
+                    scales.height = 1
+            }
+
+            var result = rect.standardized
+            result.size.width *= scales.width
+            result.size.height *= scales.height
+            result.origin.x = target.minX + (target.width - result.width) / 2
+            result.origin.y = target.minY + (target.height - result.height) / 2
+            return result
         }
     }
 }
