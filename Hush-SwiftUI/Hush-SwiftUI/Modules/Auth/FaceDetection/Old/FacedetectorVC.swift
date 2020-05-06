@@ -490,7 +490,7 @@ class FacedetectorVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             var final = CGPoint()
             if selectedMainCategoryTag == 1  {
                 final = CGPoint.init(x: screenBoundingBox.width/2+screenBoundingBox.origin.x, y: screenBoundingBox.origin.y+screenBoundingBox.height/2-10)
-                //imageLayer.contentsGravity = .resize
+//                imageLayer.contentsGravity = .resize
                 imageLayer.frame = CGRect(x: final.x, y: final.y , width: screenBoundingBox.width, height: (screenBoundingBox.height))
 
             }else if selectedMainCategoryTag == 2 {
@@ -506,7 +506,7 @@ class FacedetectorVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                     imageLayer.bounds = CGRect(x: final.x, y: final.y , width: screenBoundingBox.width, height: (screenBoundingBox.height))
 
                 }
-//                imageLayer.contentsGravity = .resizeAspect
+//                imageLayer.contentsGravity = .resizeAspectFill
 
                 
             }else if selectedMainCategoryTag == 3 {

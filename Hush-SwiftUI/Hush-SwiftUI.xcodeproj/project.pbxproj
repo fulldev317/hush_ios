@@ -71,14 +71,14 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
+		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* SettingsView.swift */; };
 		157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A92435E62000EE428F /* SettingsViewModel.swift */; };
 		157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930AA2435E62000EE428F /* SettingsViewModeled.swift */; };
 		157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */; };
-		157930B22435EC3400EE428F /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* PartialSheet */; };
+		157930B22435EC3400EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* SwiftPackageProductDependency */; };
 		157930E024371D0800EE428F /* StoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DD24371D0800EE428F /* StoryCardsView.swift */; };
 		157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DE24371D0800EE428F /* StoryCardsViewModel.swift */; };
 		157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DF24371D0800EE428F /* StoryCardsViewModeled.swift */; };
@@ -298,8 +298,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
-				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
+				157930B22435EC3400EE428F /* BuildFile in Frameworks */,
+				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
@@ -813,8 +813,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* QGrid */,
-				157930B12435EC3400EE428F /* PartialSheet */,
+				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
+				157930B12435EC3400EE428F /* SwiftPackageProductDependency */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -845,8 +845,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
-				157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
+				157930B02435EC3400EE428F /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -1254,7 +1254,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
+		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1262,7 +1262,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+		157930B02435EC3400EE428F /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/damienissa/PartialSheet.git";
 			requirement = {
@@ -1273,14 +1273,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* QGrid */ = {
+		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
+			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
 			productName = QGrid;
 		};
-		157930B12435EC3400EE428F /* PartialSheet */ = {
+		157930B12435EC3400EE428F /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			package = 157930B02435EC3400EE428F /* RemoteSwiftPackageReference */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
