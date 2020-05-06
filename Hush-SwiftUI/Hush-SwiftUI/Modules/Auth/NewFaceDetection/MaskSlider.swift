@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct MaskSlider: UIViewRepresentable {
-    @Binding var value: CGFloat
+    @Binding var isEnabled: Bool
     
     func makeUIView(context: Context) -> UISlider {
         let slider = UISlider()
@@ -23,43 +23,31 @@ struct MaskSlider: UIViewRepresentable {
         
         slider.minimumValue = 0
         slider.maximumValue = 1
-        slider.isContinuous = false
         
         slider.addTarget(context.coordinator, action: #selector(Coordinator.sliderValueChanged), for: .valueChanged)
         return slider
     }
     
     func updateUIView(_ slider: UISlider, context: Context) {
-        slider.value = Float(value)
+        slider.value = isEnabled ? slider.maximumValue : slider.minimumValue
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator($value)
+        Coordinator($isEnabled)
     }
     
     class Coordinator {
-        @Binding var value: CGFloat
-        init(_ value: Binding<CGFloat>) {
-            _value = value
+        @Binding var isEnabled: Bool
+        
+        init(_ isEnabled: Binding<Bool>) {
+            _isEnabled = isEnabled
         }
         
         @objc func sliderValueChanged(slider: UISlider, event: UIEvent) {
-            let value = slider.value
-            if let touchEvent = event.allTouches?.first {
-                switch touchEvent.phase {
-                case .ended:
-                    slider.value = value.rounded()
-                    self.value = CGFloat(value.rounded())
-                default:
-                    break
-                }
-            }
+            guard event.allTouches?.first?.phase == .ended else { return }
+            let roundedValue = slider.value.rounded()
+            isEnabled = roundedValue > 0.5
+            slider.value = roundedValue
         }
-    }
-}
-
-struct MaskSlider_Previews: PreviewProvider {
-    static var previews: some View {
-        MaskSlider(value: .constant(0.5))
     }
 }

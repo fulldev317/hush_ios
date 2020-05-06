@@ -4,6 +4,9 @@ default_platform(:ios)
 platform :ios do
   desc "Upload Hush-SwiftUI to diawi."
   lane :diawi_upload do
+    devices
+    sync
+
     build_app(
       workspace: "../Hush.xcworkspace",
       scheme: "Hush-SwiftUI",
@@ -15,5 +18,25 @@ platform :ios do
     )
 
     diawi(find_by_udid: false, wall_of_apps: false)
+  end
+
+  desc "Register devices."
+  lane :devices do
+    register_devices(
+      devices: {
+        "John Booker's iPhone XS" => "00008020-000D25422686002E",
+        "John Booker's iPhone 6s" => "abf088836fc8617a580867180e192c56103a68f5",
+        "John Booker's device" => "abb80e8ce11829fbf0b6e9ad458f73b04dfaf430"
+      }
+    )
+  end
+
+  lane :sync do
+    sh("rm ~/Library/MobileDevice/Provisioning\\ Profiles/*")
+
+    update_code_signing_settings(
+      use_automatic_signing: true,
+      path: "Hush-SwiftUI.xcodeproj"
+    )
   end
 end

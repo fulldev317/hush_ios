@@ -12,6 +12,9 @@ import Vision
 
 struct ARFaceDetectorView: UIViewControllerRepresentable {
     let maskImage: UIImage?
+    let maskEnabled: Bool
+    let shouldTakeImage: Bool
+    @Binding var capturedImage: UIImage?
     
     func makeUIViewController(context: Context) -> FaceTrackingViewController {
         FaceTrackingViewController()
@@ -19,11 +22,16 @@ struct ARFaceDetectorView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ faceTrackingViewController: FaceTrackingViewController, context: Context) {
         faceTrackingViewController.maskImage = maskImage
+        faceTrackingViewController.maskEnabled = maskEnabled
+        faceTrackingViewController.captureCompletion = shouldTakeImage ?
+            { self.capturedImage = $0 } : nil
     }
 }
 
 final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     fileprivate var maskImage: UIImage?
+    fileprivate var maskEnabled = false
+    fileprivate var captureCompletion: ((UIImage) -> Void)?
     
     // AVCapture variables to hold sequence data
     private var session: AVCaptureSession?
@@ -51,11 +59,9 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.session = self.setupAVCaptureSession()
-        
-        self.prepareVisionRequest()
-        
-        self.session?.startRunning()
+        session = setupAVCaptureSession()
+        prepareVisionRequest()
+        session?.startRunning()
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,17 +80,16 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         let captureSession = AVCaptureSession()
         do {
             let inputDevice = try self.configureFrontCamera(for: captureSession)
-            self.configureVideoDataOutput(for: inputDevice.device, resolution: inputDevice.resolution, captureSession: captureSession)
-            self.designatePreviewLayer(for: captureSession)
+            configureVideoDataOutput(for: inputDevice.device, resolution: inputDevice.resolution, captureSession: captureSession)
+            designatePreviewLayer(for: captureSession)
             return captureSession
         } catch let executionError as NSError {
-            self.presentError(executionError)
+            presentError(executionError)
         } catch {
-            self.presentErrorAlert(message: "An unexpected failure has occured")
+            presentErrorAlert(message: "An unexpected failure has occured")
         }
         
-        self.teardownAVCapture()
-        
+        teardownAVCapture()
         return nil
     }
     
@@ -199,17 +204,19 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     
     fileprivate func presentErrorAlert(withTitle title: String = "Unexpected Failure", message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        self.present(alertController, animated: true)
+        let ok = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(ok)
+        present(alertController, animated: true)
     }
     
     fileprivate func presentError(_ error: NSError) {
-        self.presentErrorAlert(withTitle: "Failed with error \(error.code)", message: error.localizedDescription)
+        presentErrorAlert(withTitle: "Failed with error \(error.code)", message: error.localizedDescription)
     }
     
     // MARK: Helper Methods for Handling Device Orientation & EXIF
     
     fileprivate func radiansForDegrees(_ degrees: CGFloat) -> CGFloat {
-        return CGFloat(Double(degrees) * Double.pi / 180.0)
+        CGFloat(Double(degrees) * Double.pi / 180.0)
     }
     
     func exifOrientationForDeviceOrientation(_ deviceOrientation: UIDeviceOrientation) -> CGImagePropertyOrientation {
@@ -230,27 +237,25 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     }
     
     func exifOrientationForCurrentDeviceOrientation() -> CGImagePropertyOrientation {
-        return exifOrientationForDeviceOrientation(UIDevice.current.orientation)
+        exifOrientationForDeviceOrientation(UIDevice.current.orientation)
     }
     
     // MARK: Performing Vision Requests
     
     /// - Tag: WriteCompletionHandler
     fileprivate func prepareVisionRequest() {
-        
         //self.trackingRequests = []
         var requests = [VNTrackObjectRequest]()
         
         let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in
-            
             if error != nil {
                 print("FaceDetection error: \(String(describing: error)).")
             }
             
             guard let faceDetectionRequest = request as? VNDetectFaceRectanglesRequest,
-                let results = faceDetectionRequest.results as? [VNFaceObservation] else {
-                    return
-            }
+                let results = faceDetectionRequest.results as? [VNFaceObservation]
+            else { return }
+            
             DispatchQueue.main.async {
                 // Add the observations to the tracking list
                 for observation in results {
@@ -262,11 +267,9 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         })
         
         // Start with detection.  Find face, then track it.
-        self.detectionRequests = [faceDetectionRequest]
-        
-        self.sequenceRequestHandler = VNSequenceRequestHandler()
-        
-        self.setupVisionDrawingLayers()
+        detectionRequests = [faceDetectionRequest]
+        sequenceRequestHandler = VNSequenceRequestHandler()
+        setupVisionDrawingLayers()
     }
     
     // MARK: Drawing Vision Observations
@@ -285,8 +288,7 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         let normalizedCenterPoint = CGPoint(x: 0.5, y: 0.5)
         
         guard let rootLayer = self.rootLayer else {
-            self.presentErrorAlert(message: "view was not property initialized")
-            return
+            return presentErrorAlert(message: "view was not property initialized")
         }
         
         let overlayLayer = CALayer()
@@ -322,11 +324,11 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         faceRectangleShapeLayer.addSublayer(faceLandmarksShapeLayer)
         rootLayer.addSublayer(overlayLayer)
         
-        self.detectionOverlayLayer = overlayLayer
-        self.detectedFaceRectangleShapeLayer = faceRectangleShapeLayer
-        self.detectedFaceLandmarksShapeLayer = faceLandmarksShapeLayer
+        detectionOverlayLayer = overlayLayer
+        detectedFaceRectangleShapeLayer = faceRectangleShapeLayer
+        detectedFaceLandmarksShapeLayer = faceLandmarksShapeLayer
         
-        self.updateLayerGeometry()
+        updateLayerGeometry()
     }
     
     fileprivate func updateLayerGeometry() {
@@ -452,6 +454,12 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         faceRectangleShapeLayer.path = faceRectanglePath
         faceLandmarksShapeLayer.path = faceLandmarksPath
         
+        if maskEnabled, let maskImage = maskImage {
+            let layer = CALayer()
+            layer.contents = maskImage.cgImage
+            faceRectangleShapeLayer.addSublayer(layer)
+        }
+        
         self.updateLayerGeometry()
         
         CATransaction.commit()
@@ -574,6 +582,18 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
             } catch let error as NSError {
                 NSLog("Failed to perform FaceLandmarkRequest: %@", error)
             }
+        }
+    }
+}
+
+extension FaceTrackingViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let error = error {
+            print(error.localizedDescription)
+        }
+        
+        if let completion = captureCompletion, let cgImage = photo.cgImageRepresentation()?.takeRetainedValue() {
+            completion(UIImage(cgImage: cgImage))
         }
     }
 }

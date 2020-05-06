@@ -21,6 +21,16 @@ or alternatively using `brew cask install fastlane`
 fastlane ios diawi_upload
 ```
 Upload Hush-SwiftUI to diawi.
+### ios devices
+```
+fastlane ios devices
+```
+Register devices.
+### ios sync
+```
+fastlane ios sync
+```
+
 
 ----
 
