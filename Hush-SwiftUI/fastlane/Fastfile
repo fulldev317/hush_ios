@@ -10,6 +10,7 @@ platform :ios do
     build_app(
       workspace: "../Hush.xcworkspace",
       scheme: "Hush-SwiftUI",
+      export_xcargs: "-allowProvisioningUpdates",
       silent: true,
       clean: true,
       export_options: {
