@@ -17,13 +17,17 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     
     var body: some View {
         VStack(spacing: 0) {
-            arView
-            maskMenu
+            if viewModel.capturedImage != nil {
+                Image(uiImage: viewModel.capturedImage!)
+            } else {
+                arView
+                maskMenu
+            }
         }.background(Color.black.edgesIgnoringSafeArea(.all))
     }
     
     private var arView: some View {
-        ARFaceDetectorView(maskImage: viewModel.maskImage,
+        ARFaceDetectorView(mask: viewModel.mask,
                            maskEnabled: maskEnabled,
                            shouldTakeImage: viewModel.shouldTakeImage,
                            capturedImage: $viewModel.capturedImage)
@@ -72,7 +76,7 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
             Spacer()
 
             HStack(spacing: 11) {
-                if maskEnabled || viewModel.maskImage != nil {
+                if maskEnabled || viewModel.mask != nil {
                     borderedButton(action: reset, title: "Reset")
                 }
                 

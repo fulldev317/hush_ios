@@ -33,13 +33,17 @@ enum MaskCategory: Int, CaseIterable {
     }
 }
 
-struct ARInfo {
-    var maskEnabled: Bool
-    var maskImage: UIImage?
+struct Mask {
+    let name: String
+    let category: MaskCategory
+    
+    var image: UIImage {
+        UIImage(named: name)!
+    }
 }
 
 protocol NewFaceDetectionViewModeled: ObservableObject {
-    var maskImage: UIImage? { get set }
+    var mask: Mask? { get set }
     var maskCategories: [MaskCategory] { get }
     var visibleCategories: [MaskCategory] { get }
     var selectedCategory: MaskCategory? { get set }
