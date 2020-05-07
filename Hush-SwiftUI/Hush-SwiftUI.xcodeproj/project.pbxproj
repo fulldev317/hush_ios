@@ -71,14 +71,14 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
+		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* SettingsView.swift */; };
 		157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A92435E62000EE428F /* SettingsViewModel.swift */; };
 		157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930AA2435E62000EE428F /* SettingsViewModeled.swift */; };
 		157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */; };
-		157930B22435EC3400EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* SwiftPackageProductDependency */; };
+		157930B22435EC3400EE428F /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* PartialSheet */; };
 		157930E024371D0800EE428F /* StoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DD24371D0800EE428F /* StoryCardsView.swift */; };
 		157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DE24371D0800EE428F /* StoryCardsViewModel.swift */; };
 		157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DF24371D0800EE428F /* StoryCardsViewModeled.swift */; };
@@ -134,7 +134,11 @@
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
 		893E6CEA246043D300ECE788 /* MaskSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CE9246043D300ECE788 /* MaskSlider.swift */; };
 		893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */; };
+		894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421232464ACC10025D843 /* ResetPasswordViewModel.swift */; };
+		894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */; };
 		895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895D0C62245C59D600C6BE9B /* ImagePickerView.swift */; };
+		896DDEFD2464956A00AC0F95 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896DDEFC2464956A00AC0F95 /* Size.swift */; };
+		896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896DDEFF2464A92F00AC0F95 /* ResetPasswordView.swift */; };
 		8993C763245D917500E8F765 /* PermissionDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C762245D917400E8F765 /* PermissionDeniedView.swift */; };
 		8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7652460079400E8F765 /* Combine+Ext.swift */; };
 		8993C7692460100300E8F765 /* NewFaceDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7682460100300E8F765 /* NewFaceDetection.swift */; };
@@ -285,7 +289,11 @@
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		893E6CE9246043D300ECE788 /* MaskSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSlider.swift; sourceTree = "<group>"; };
 		893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFaceDetectorView.swift; sourceTree = "<group>"; };
+		894421232464ACC10025D843 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModeled.swift; sourceTree = "<group>"; };
 		895D0C62245C59D600C6BE9B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		896DDEFC2464956A00AC0F95 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		896DDEFF2464A92F00AC0F95 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		8993C762245D917400E8F765 /* PermissionDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDeniedView.swift; sourceTree = "<group>"; };
 		8993C7652460079400E8F765 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
 		8993C7682460100300E8F765 /* NewFaceDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetection.swift; sourceTree = "<group>"; };
@@ -298,8 +306,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				157930B22435EC3400EE428F /* BuildFile in Frameworks */,
-				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
+				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
+				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
@@ -324,6 +332,7 @@
 		1546B4302433400C00180D77 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				896DDEFE2464A92500AC0F95 /* ResetPassword */,
 				1546B44A24335B3E00180D77 /* ForgotPassword */,
 				1546B44324334FEB00180D77 /* LoginWithEmail */,
 				1546B43D243340BD00180D77 /* LoginView.swift */,
@@ -469,8 +478,9 @@
 		154B26A92431CB4D00265C76 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				15D53C8E243DB4EC00D62B26 /* UDProperty.swift */,
+				896DDEFB2464955A00AC0F95 /* Preferences */,
 				155E2FF7243B0FF1001D886D /* AsyncImage */,
+				15D53C8E243DB4EC00D62B26 /* UDProperty.swift */,
 				1546B42E2433316C00180D77 /* DVImagePicker.swift */,
 				154B26AA2431CB5A00265C76 /* HapticButton.swift */,
 				15E8CCDF2431E74300A92595 /* KeyboardObserver.swift */,
@@ -781,6 +791,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		896DDEFB2464955A00AC0F95 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				896DDEFC2464956A00AC0F95 /* Size.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		896DDEFE2464A92500AC0F95 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				896DDEFF2464A92F00AC0F95 /* ResetPasswordView.swift */,
+				894421232464ACC10025D843 /* ResetPasswordViewModel.swift */,
+				894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
 		8993C76724600FF300E8F765 /* NewFaceDetection */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,8 +841,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
-				157930B12435EC3400EE428F /* SwiftPackageProductDependency */,
+				1579309E2435CAFC00EE428F /* QGrid */,
+				157930B12435EC3400EE428F /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -845,8 +873,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
-				157930B02435EC3400EE428F /* RemoteSwiftPackageReference */,
+				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+				157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -935,6 +963,7 @@
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
+				894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */,
@@ -984,6 +1013,7 @@
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
 				15D53C8D243DA8F800D62B26 /* UserCardViewModeled.swift in Sources */,
 				8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */,
+				894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
 				155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */,
@@ -1028,6 +1058,8 @@
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
 				15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */,
+				896DDEFD2464956A00AC0F95 /* Size.swift in Sources */,
+				896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
 				15D53C7E243C65C900D62B26 /* MyProfileView.swift in Sources */,
 				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,
@@ -1254,7 +1286,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
+		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1262,7 +1294,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		157930B02435EC3400EE428F /* RemoteSwiftPackageReference */ = {
+		157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/damienissa/PartialSheet.git";
 			requirement = {
@@ -1273,14 +1305,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
+		1579309E2435CAFC00EE428F /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
+			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
 		};
-		157930B12435EC3400EE428F /* SwiftPackageProductDependency */ = {
+		157930B12435EC3400EE428F /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 157930B02435EC3400EE428F /* RemoteSwiftPackageReference */;
+			package = 157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */

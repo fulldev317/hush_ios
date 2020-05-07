@@ -20,7 +20,10 @@ struct SignUpTextField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                icon.resizable().frame(width: 15, height: 15).aspectRatio(contentMode: .fit)
+                icon.resizable()
+                    .scaledToFit()
+                    .frame(width: 15, height: 15)
+                    .aspectRatio(contentMode: .fit)
                 
                 HTextField(placeholder: placeholder, placeholderColor: .white, text: $text, textColor: .white, isSecure: isSecured)
             }.padding(.top, 8)

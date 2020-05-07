@@ -27,13 +27,17 @@ extension AuthAppScreens {
     }
     
     func background() -> some View {
-        ZStack {
-            Image("SignUp-background")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: size.width, height: size.height)
-            Color.black.opacity(0.2)
-        }.edgesIgnoringSafeArea(.all)
+        Image("SignUp-background")
+            .resizable()
+            .scaledToFill()
+            .frame(width: UIScreen.main.bounds.width)
+            .overlay(Color.black.opacity(0.2))
+            .edgesIgnoringSafeArea(.all)
+//        ZStack {
+//
+//
+//                .edgesIgnoringSafeArea(.all)
+//        }
     }
     
     func onBackButton(_ presentation: Binding<PresentationMode>) -> some View {

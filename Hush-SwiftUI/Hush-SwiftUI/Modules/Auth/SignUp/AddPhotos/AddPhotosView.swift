@@ -49,7 +49,8 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
             NavigationLink(destination: PermissionDeniedView(type: viewModel.pickerSourceType),
                            isActive: $viewModel.isPermissionDenied,
                            label: EmptyView.init)
-        }.background(background()).navigationBarHidden(true)
+        }.background(background())
+            .navigationBarHidden(true)
         .actionSheet(isPresented: $viewModel.isPickerSheetPresented) {
             ActionSheet(title: Text("Provide a context for the actions."), message: nil, buttons: [
                 .default(Text("Take a Photo"), action: viewModel.takePhoto),

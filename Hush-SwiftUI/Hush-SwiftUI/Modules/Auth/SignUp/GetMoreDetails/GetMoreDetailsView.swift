@@ -16,6 +16,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     
+    @State private var size: CGSize = .zero
+    
     
     // MARK: - Lifecycle
     
@@ -23,8 +25,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
         ZStack {
             ScrollView {
                 content()
+                .overlay(onBackButton(mode))
             }.keyboardAdaptive()
-            onBackButton(mode)
             NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: self.$app.logedIn, label: { Text("") })
         }.background(background())
     }
@@ -43,21 +45,38 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             DatePickerField(text: $viewModel.birthday)
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
-            Text("I am").font(.thin()).foregroundColor(.white)
-            HSegmentedControl(selected: $viewModel.selectedGender, list: viewModel.genders).padding(.bottom, 16)
-            Text("Looking for").font(.thin()).foregroundColor(.white)
-            HSegmentedControl(selected: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
-                .padding(.bottom, 28)
+                
+            pickers
+            
             borderedButton(action: {
                 self.app.logedIn = true
             }, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
+    }
+    
+    var pickers: some View {
+        Group {
+            Text("How do you describe yourself?").font(.thin()).foregroundColor(.white)
+            HSegmentedControl(selected: $viewModel.selectedGender, list: viewModel.genders)
+                .padding(.bottom, 16)
+            
+            Text("Would like to meet new").font(.thin()).foregroundColor(.white)
+            HSegmentedControl(selected: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+                .padding(.bottom, 28)
+            
+            Text("Finally, tell us what are you here for?").font(.thin()).foregroundColor(.white)
+            HSegmentedControl(selected: $viewModel.selectedWhatFor, list: viewModel.whatFors)
+                .padding(.bottom, 28)
+        }
     }
 }
 
 struct GetMoreDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            NavigationView {
+                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
+            }
             NavigationView {
                 GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone SE"))
@@ -67,6 +86,6 @@ struct GetMoreDetailsView_Previews: PreviewProvider {
             NavigationView {
                 GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
-        }
+        }.environmentObject(App())
     }
 }

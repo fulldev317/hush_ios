@@ -25,8 +25,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
                 logo()
                 Spacer()
                 Spacer()
-                buttons()
-                Spacer()
+                buttons().padding(.bottom, 30)
                 signupButton()
             }
             
@@ -49,17 +48,13 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
        
         VStack(spacing: 14) {
             LoginButton(title: "Login with Email", img: Image("mail_icon"), color: Color(0x56CCF2), action: viewModel.loginWithEmail)
-                .padding(.horizontal, 24)
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
 //                self.presenter.facebookPressed()
-            }.padding(.horizontal, 24)
+            }
             LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
 //                self.presenter.applePressed()
-            }.padding(.horizontal, 24)
-            LoginButton(title: "Continue with Snapchat", titleColor: .black, img: Image("snap_icon"), color: Color(0xFFFC01)) {
-//                self.presenter.snapPressed()
-            }.padding(.horizontal, 24)
-        }
+            }
+        }.padding(.horizontal, 30)
     }
 }
 
@@ -69,12 +64,12 @@ struct LoginView_Previews: PreviewProvider {
             NavigationView {
                 LoginView(viewModel: LoginViewModel()).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone SE"))
-            NavigationView {
-                LoginView(viewModel: LoginViewModel())
-            }.previewDevice(.init(rawValue: "iPhone 8")).withoutBar()
-            NavigationView {
-                LoginView(viewModel: LoginViewModel())
-            }.previewDevice(.init(rawValue: "iPhone XS Max")).withoutBar()
+//            NavigationView {
+//                LoginView(viewModel: LoginViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone 8")).withoutBar()
+//            NavigationView {
+//                LoginView(viewModel: LoginViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone XS Max")).withoutBar()
         }
     }
 }

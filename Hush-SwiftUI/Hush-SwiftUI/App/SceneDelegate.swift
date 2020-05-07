@@ -59,6 +59,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     } else {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
                     }
+                    
+//                    NewFaceDetection(viewModel: NewFaceDetectionViewModel()).withoutBar()
+//                    FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()
                 }.environmentObject(self.app)
             )
         }

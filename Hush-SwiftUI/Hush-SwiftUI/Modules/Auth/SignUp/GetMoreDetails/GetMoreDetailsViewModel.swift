@@ -12,7 +12,10 @@ import Combine
 class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     
     // MARK: - Properties
-
+    
+    @Published var whatFors: [String] = ["Fun", "Chat", "Hookup", "Date"]
+    @Published var selectedWhatFor: Int = 0
+    
     @Published var genders: [String] = ["Male", "Female", "Couple", "Gay"]
     @Published var selectedGender: Int = 0
     

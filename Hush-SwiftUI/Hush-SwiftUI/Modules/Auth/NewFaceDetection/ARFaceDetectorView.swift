@@ -28,7 +28,7 @@ struct ARFaceDetectorView: UIViewControllerRepresentable {
     }
 }
 
-final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
     fileprivate var mask: Mask?
     fileprivate var maskEnabled = false
     fileprivate var captureCompletion: ((UIImage) -> Void)?
@@ -38,6 +38,7 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     private var previewLayer: AVCaptureVideoPreviewLayer?
     
     private var videoDataOutput: AVCaptureVideoDataOutput?
+    private var stillImageOutput = AVCapturePhotoOutput()
     private var videoDataOutputQueue: DispatchQueue?
     
     private var captureDevice: AVCaptureDevice?
@@ -159,6 +160,10 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
             captureSession.addOutput(videoDataOutput)
         }
         
+        if captureSession.canAddOutput(stillImageOutput) {
+            captureSession.addOutput(stillImageOutput)
+        }
+        
         videoDataOutput.connection(with: .video)?.isEnabled = true
         
         if let captureConnection = videoDataOutput.connection(with: AVMediaType.video) {
@@ -173,6 +178,47 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         self.captureDevice = inputDevice
         self.captureDeviceResolution = resolution
     }
+    
+//    func capturePhoto() {
+//        //        takeScreenshot(true)
+//        //        return
+//        //        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 0)
+//        //        guard let context = UIGraphicsGetCurrentContext() else { return }
+//        //        view.layer.render(in: context)
+//        //        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return }
+//        //        UIGraphicsEndImageContext()
+//        //
+//        //        //Save it to the camera roll
+//        //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+//        //
+//        //        return
+//
+//        let settings = AVCapturePhotoSettings()
+//        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+//        let previewFormat = [
+//            kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+//            kCVPixelBufferWidthKey as String: 160,
+//            kCVPixelBufferHeightKey as String: 160
+//        ]
+//        settings.previewPhotoFormat = previewFormat
+//        stillImageOutput.capturePhoto(with: settings, delegate: self)
+//    }
+    
+//    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+//        if let sampleBuffer = photoSampleBuffer, let previewBuffer = previewPhotoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
+//                    let immg = UIImage(data: dataImage)!
+////                    self.imgViewUser.image = immg.fixedOrientation()
+////                    self.imgViewUser.isHidden = false
+//                    //capturePhoto()
+//                    imageView.image = screenshot
+//
+//        //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
+//        //            vc.userImage = img2
+//        //            self.navigationController?.pushViewController(vc, animated: true)
+////                    captureSession.stopRunning()
+////                    completion?(img2)
+//                }
+//    }
     
     /// - Tag: DesignatePreviewLayer
     fileprivate func designatePreviewLayer(for captureSession: AVCaptureSession) {
@@ -404,13 +450,17 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         NSLayoutConstraint.activate([
             view.trailingAnchor.constraint(equalTo: imvw.trailingAnchor),
             view.bottomAnchor.constraint(equalTo: imvw.bottomAnchor),
-            imvw.widthAnchor.constraint(equalToConstant: 100),
-            imvw.heightAnchor.constraint(equalToConstant: 200)
+            view.leadingAnchor.constraint(equalTo: imvw.leadingAnchor),
+            view.topAnchor.constraint(equalTo: imvw.topAnchor),
+//            imvw.widthAnchor.constraint(equalToConstant: 100),
+//            imvw.heightAnchor.constraint(equalToConstant: 200)
         ])
         
         imvw.contentMode = .scaleAspectFill
         return imvw
     }()
+    
+    
     
     fileprivate func addIndicators(to faceRectanglePath: CGMutablePath, faceLandmarksPath: CGMutablePath, for faceObservation: VNFaceObservation) {
         let displaySize = self.captureDeviceResolution
@@ -489,12 +539,10 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
                     imageView.transform = detectionOverlayLayer!.affineTransform().inverted()
                     detectionOverlayLayer!.addSublayer(imageView.layer)
                     
-//                    screenImageView.image = screenshot
-                    
-//                    if let completion = captureCompletion, let sc = screenshot {
-//                        completion(sc)
-//                        session?.stopRunning()
-//                    }
+                    if let completion = captureCompletion, let screenshot = screenshot {
+                        screenImageView.image = screenshot
+                        session?.stopRunning()
+                    }
                 } else {
                     imageView.layer.removeFromSuperlayer()
                 }
@@ -503,15 +551,38 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     }
     
     private var lastCaptureImage: UIImage?
+    private let screenshotLayer = CALayer()
+//    private lazy var captureImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.isHidden = false
+//        imageView.contentMode = .scaleAspectFill
+//        view.addSubview(imageView)
+//
+//        NSLayoutConstraint.activate([
+//            view.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+//            view.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+//            view.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+//            view.topAnchor.constraint(equalTo: imageView.topAnchor),
+//        ])
+//
+//        return imageView
+//    }()
+//
     private var screenshot: UIImage? {
-        guard let lastCaptureImage = lastCaptureImage else { return nil }
-        UIGraphicsBeginImageContext(lastCaptureImage.size)
-        let context = UIGraphicsGetCurrentContext()
-//        lastCaptureImage.draw(at: .zero)
-//        lastCaptureImage?.draw(at: .zero)
-//        detectionOverlayLayer?.render(in: context!)
-        detectionOverlayLayer?.render(in: context!)
-//        view.layer.render(in: context!)
+        let imageLayer = CALayer()
+        imageLayer.frame = view.bounds
+        imageLayer.contents = lastCaptureImage?.cgImage
+//        imageLayer.contentsGravity = .resizeAspectFill
+        
+        screenshotLayer.frame = detectionOverlayLayer!.bounds
+        screenshotLayer.addSublayer(imageLayer)
+        screenshotLayer.addSublayer(detectionOverlayLayer!)
+        
+        UIGraphicsBeginImageContext(view.bounds.size)
+        let context = UIGraphicsGetCurrentContext()!
+        
+        screenshotLayer.render(in: context)
+        
         let screenShot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return screenShot
