@@ -49,7 +49,7 @@ struct LoginButton: View {
                         .foregroundColor(titleColor)
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.white)
-                        .frame(width: 30, height: 30)
+                        .frame(width: 20, height: 20)
                     Text(title)
                         .font(.medium(20))
                         .padding(.trailing, 20)

@@ -78,10 +78,11 @@ struct OldGood: UIViewControllerRepresentable {
     
     var image: UIImage
     @Binding var canGoNext: Bool
+    @Environment(\.presentationMode) var presentationMode
     
     func makeUIViewController(context: Context) -> LookingGoodVC {
         
-        LookingGoodVC.create(for: image) {
+        LookingGoodVC.create(for: image, dismiss: presentationMode) {
             self.canGoNext.toggle()
         }
     }
@@ -92,10 +93,11 @@ struct OldGood: UIViewControllerRepresentable {
     }
 }
 
-struct GoodContainer: View  {
+struct GoodContainer: View, AuthAppScreens {
     
     var image: UIImage
     @State var canGoNext = false
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {

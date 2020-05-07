@@ -11,6 +11,9 @@ import Foundation
 
 protocol GetMoreDetailsViewModeled: ObservableObject {
     
+    var whatFors: [String] { get set }
+    var selectedWhatFor: Int { get set }
+    
     var genders: [String] { get set }
     var selectedGender: Int { get set }
     

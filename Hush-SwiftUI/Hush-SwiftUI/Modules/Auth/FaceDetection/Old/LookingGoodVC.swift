@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class LookingGoodVC: UIViewController {
 
@@ -16,11 +17,13 @@ class LookingGoodVC: UIViewController {
     @IBOutlet weak var imgViewFront: UIImageView!
     
     @IBOutlet weak var btnDone: UIButton!
+    var dismiss: Binding<PresentationMode>?
     
-    static func create(for image: UIImage, completion: (() -> Void)? = nil) -> LookingGoodVC {
+    static func create(for image: UIImage, dismiss: Binding<PresentationMode>, completion: (() -> Void)? = nil) -> LookingGoodVC {
         let vc = UIStoryboard(name: "OldFaceDetection", bundle: nil).instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
         vc.userImage = image
         vc.completion = completion
+        vc.dismiss = dismiss
         
         return vc
     }
@@ -42,8 +45,9 @@ class LookingGoodVC: UIViewController {
     }
     
     @IBAction func actionBack(_ sender: Any) {
-        
+        dismiss?.wrappedValue.dismiss()
     }
+    
     @IBAction func actionDone(_ sender: Any) {
         
         completion?()

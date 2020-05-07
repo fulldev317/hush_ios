@@ -34,7 +34,7 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
                     .navigationBarTitle("", displayMode: .inline)
                     .navigationBarHidden(true),
                            isActive: $viewModel.goToRoot, label: { Text("") })
-        }
+        }.background(background())
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
     }
@@ -42,8 +42,6 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
     func body(with: GeometryProxy) -> some View {
         
         ZStack {
-            
-            background()
             VStack {
                 Spacer()
                 logo()
@@ -72,8 +70,8 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
         HapticButton(action: {
             self.viewModel.goToRoot.toggle()
         }) {
-            Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }.padding(.bottom, 30)
-        }
+            Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }
+        }.padding(.bottom, 36)
     }
 }
 

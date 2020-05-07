@@ -19,6 +19,8 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
         VStack(spacing: 0) {
             if viewModel.capturedImage != nil {
                 Image(uiImage: viewModel.capturedImage!)
+                    .resizable()
+                    .scaledToFit()
             } else {
                 arView
                 maskMenu

@@ -22,14 +22,13 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
                     .opacity(showSignupButtons ? 0.3 : 1)
                     .padding(.top, 55)
                 Spacer()
-                Spacer()
-                Spacer()
             }
             VStack {
                 Spacer()
                 signupButton()
                     .padding(.bottom, showSignupButtons ? 140 : 220)
             }
+            
             VStack(spacing: 28) {
                 
                 Spacer()
@@ -41,14 +40,10 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
                 })
                 
                 bottomText()
-            }
-            .padding(.bottom, 20)
-            NavigationLink(destination: SignUpEmail(viewModel: viewModel.emailPresenter), isActive: $viewModel.showEmailScreen) {
-                Text("")
-            }
-            NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
-                Text("")
-            }
+            }.padding(.bottom, 20)
+            
+            NavigationLink(destination: SignUpEmail(viewModel: viewModel.emailPresenter), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
+            NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen, label: EmptyView.init)
         }.background(background())
     }
 }

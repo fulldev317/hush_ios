@@ -21,25 +21,6 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
     
     var body: some View {
         ZStack {
-            GeometryReader { proxy in
-                ZStack {
-                        self.body(with: proxy)
-                            .frame(minHeight: proxy.size.height)
-                }
-            }.keyboardAdaptive()
-            onBackButton(mode)
-            
-            NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel), isActive: $viewModel.showForgotPassword, label: { Text("") })
-        }
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarHidden(true)
-    }
-    
-    func body(with: GeometryProxy) -> some View {
-        
-        ZStack {
-            
-            background()
             VStack {
                 Spacer()
                 logo()
@@ -49,30 +30,42 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                     .font(.thin(22))
                     .foregroundColor(.white)
                     .padding(.bottom, 16)
+                
                 if viewModel.hasErrorMessage {
                     HStack {
                         Text(viewModel.errorMessage).font(.thin()).foregroundColor(.hOrange)
                         Spacer()
-                    }.padding(.horizontal, 30)
+                    }.padding(.horizontal, 36)
                 }
+                
                 SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $viewModel.email).padding(.horizontal, 30)
                 SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password).padding(.horizontal, 30)
+                
                 borderedButton(action: {
                     self.app.logedIn = true
-                    
                 }, title: "Submit")
-                    .padding(.vertical, 29).padding(.horizontal, 30)
+                    .padding(.vertical, 29)
+                    .padding(.horizontal, 30)
+                
                 resetPasswordButton()
-            }
-        }
+                    .padding(.bottom, 36)
+            }.keyboardAdaptive()
+            
+            onBackButton(mode)
+        }.background(NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel),
+                                    isActive: $viewModel.showForgotPassword,
+                                    label: EmptyView.init))
+        .background(background())
+            
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarHidden(true)
     }
     
     private func resetPasswordButton() -> some View {
-        
         HapticButton(action: {
             self.viewModel.showForgotPassword.toggle()
         }) {
-            Group { Text("Forgot Pasword? ").foregroundColor(.white) + Text("Reset now!").foregroundColor(Color(0x56cbf2)) }.padding(.bottom, 30)
+            Text("Forgot Pasword? ").foregroundColor(.white) + Text("Reset now!").foregroundColor(Color(0x56cbf2))
         }
     }
 }

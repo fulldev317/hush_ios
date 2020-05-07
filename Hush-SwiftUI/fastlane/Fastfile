@@ -15,7 +15,7 @@ platform :ios do
       clean: true,
       export_options: {
         method: "ad-hoc",
-        "signingStyle": "automatic"
+        signingStyle: "automatic"
       }
     )
 
