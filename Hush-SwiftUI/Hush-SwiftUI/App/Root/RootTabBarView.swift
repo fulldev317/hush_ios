@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
@@ -14,6 +15,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
     
     @State var currentTab = 2
     @State var showSettings = false
@@ -97,7 +99,9 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
                 Spacer()
                 HapticButton(action: {
-                    self.showSettings.toggle()
+                    self.partialSheetManager.showPartialSheet {
+                        SettingsView(viewModel: self.app.discovery.settingsViewModel).fixedSize(horizontal: false, vertical: true)
+                    }
                 }) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
@@ -105,9 +109,9 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         }, content: {
             DiscoveryView(viewModel:  self.app.discovery)
         }).padding(.top, 0)
-            .partialSheet(presented: $showSettings, enabledDrag: app.discovery.settingsViewModel.dragFlag, viewForGesture: Rectangle().frame(height: 44).foregroundColor(.white), view: {
-                SettingsView(viewModel: self.app.discovery.settingsViewModel).frame(height: 400)
-            }).withoutBar().background(Color.black.edgesIgnoringSafeArea(.all))
+        .addPartialSheet()
+        .withoutBar()
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
 
