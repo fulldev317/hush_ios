@@ -5,47 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.064885">
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.119155">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.00087">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.001024">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.000891">
+      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.000751">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: register_devices" time="16.39134">
+      <testcase classname="fastlane.lanes" name="3: register_devices" time="7.588942">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001843">
+      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001923">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.008123">
+      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.019296">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.095652">
+      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.133593">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: build_app" time="106.29882">
+      <testcase classname="fastlane.lanes" name="7: build_app" time="124.408091">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: diawi" time="23.78921">
+      <testcase classname="fastlane.lanes" name="8: diawi" time="154.750461">
         
       </testcase>
     

@@ -12,11 +12,19 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
     
     // MARK: - Properties
     
-    @ObservedObject var viewModel: ViewModel
-    @State var firstSliderFalue = 0.0
-    @State var secondSliderFalue = 0.0
-    @State var isToggle = true
+    @ObservedObject private var viewModel: ViewModel
+    @State private var firstSliderFalue = 0.0
+    @State private var secondSliderFalue = 0.0
+    @State private var isToggle = true
+    @State private var ageSliderLower = 0.0
+    @State private var ageSliderUpper = 1.0
+    private var lowerAge: String {
+        String(Int(18 + (99 - 18) * ageSliderLower))
+    }
     
+    private var upperAge: String {
+        String(Int(18 + (99 - 18) * ageSliderUpper))
+    }
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -64,9 +72,9 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
-                Slider(value: $firstSliderFalue)
+                SingleSlider(value: $firstSliderFalue)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
-            }
+            }.animation(nil)
             VStack {
                 HStack {
                     Text("Age range").font(.light()).foregroundColor(Color(0x010101))
@@ -75,7 +83,19 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
-                Slider(value: $secondSliderFalue)
+                ZStack {
+                    HStack {
+                        Text(lowerAge)
+                        Spacer()
+                        Text(upperAge)
+                    }
+                    
+                    HStack {
+                        Text("99").opacity(0)
+                        DoubleSlider(lower: $ageSliderLower, upper: $ageSliderUpper)
+                        Text("99").opacity(0)
+                    }
+                }.font(.light(18)).animation(nil)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {

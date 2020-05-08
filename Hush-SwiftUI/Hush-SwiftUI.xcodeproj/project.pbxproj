@@ -78,7 +78,6 @@
 		157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A92435E62000EE428F /* SettingsViewModel.swift */; };
 		157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930AA2435E62000EE428F /* SettingsViewModeled.swift */; };
 		157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930AE2435E68400EE428F /* SF-Pro-Display-Bold.otf */; };
-		157930B22435EC3400EE428F /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 157930B12435EC3400EE428F /* PartialSheet */; };
 		157930E024371D0800EE428F /* StoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DD24371D0800EE428F /* StoryCardsView.swift */; };
 		157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DE24371D0800EE428F /* StoryCardsViewModel.swift */; };
 		157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930DF24371D0800EE428F /* StoryCardsViewModeled.swift */; };
@@ -136,12 +135,16 @@
 		893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */; };
 		894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421232464ACC10025D843 /* ResetPasswordViewModel.swift */; };
 		894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */; };
+		89442128246578C90025D843 /* DoubleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89442127246578C90025D843 /* DoubleSlider.swift */; };
 		895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895D0C62245C59D600C6BE9B /* ImagePickerView.swift */; };
 		896DDEFD2464956A00AC0F95 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896DDEFC2464956A00AC0F95 /* Size.swift */; };
 		896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896DDEFF2464A92F00AC0F95 /* ResetPasswordView.swift */; };
 		8993C763245D917500E8F765 /* PermissionDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C762245D917400E8F765 /* PermissionDeniedView.swift */; };
 		8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7652460079400E8F765 /* Combine+Ext.swift */; };
 		8993C7692460100300E8F765 /* NewFaceDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7682460100300E8F765 /* NewFaceDetection.swift */; };
+		89C77B252465E61600705899 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* PartialSheet */; };
+		89C77B272465EC3700705899 /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B262465EC3700705899 /* SingleSlider.swift */; };
+		89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B282465EC6900705899 /* SliderViewProtocol.swift */; };
 		89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */; };
 		89DCC131246075CB000A0BCB /* NewFaceDetectionViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC130246075CB000A0BCB /* NewFaceDetectionViewModeled.swift */; };
 /* End PBXBuildFile section */
@@ -291,12 +294,15 @@
 		893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFaceDetectorView.swift; sourceTree = "<group>"; };
 		894421232464ACC10025D843 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModeled.swift; sourceTree = "<group>"; };
+		89442127246578C90025D843 /* DoubleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleSlider.swift; sourceTree = "<group>"; };
 		895D0C62245C59D600C6BE9B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		896DDEFC2464956A00AC0F95 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		896DDEFF2464A92F00AC0F95 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		8993C762245D917400E8F765 /* PermissionDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDeniedView.swift; sourceTree = "<group>"; };
 		8993C7652460079400E8F765 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
 		8993C7682460100300E8F765 /* NewFaceDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetection.swift; sourceTree = "<group>"; };
+		89C77B262465EC3700705899 /* SingleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSlider.swift; sourceTree = "<group>"; };
+		89C77B282465EC6900705899 /* SliderViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewProtocol.swift; sourceTree = "<group>"; };
 		89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModel.swift; sourceTree = "<group>"; };
 		89DCC130246075CB000A0BCB /* NewFaceDetectionViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModeled.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -306,11 +312,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				157930B22435EC3400EE428F /* PartialSheet in Frameworks */,
 				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
+				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +501,7 @@
 				15D53C81243C7CA400D62B26 /* HToggleStyle.swift */,
 				15D53C90243DCE1200D62B26 /* PickerTextField.swift */,
 				15B890AF243F5D1000069804 /* HeaderedView.swift */,
+				89C77B2A2465F1E500705899 /* Sliders */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -821,6 +828,16 @@
 			path = NewFaceDetection;
 			sourceTree = "<group>";
 		};
+		89C77B2A2465F1E500705899 /* Sliders */ = {
+			isa = PBXGroup;
+			children = (
+				89C77B282465EC6900705899 /* SliderViewProtocol.swift */,
+				89C77B262465EC3700705899 /* SingleSlider.swift */,
+				89442127246578C90025D843 /* DoubleSlider.swift */,
+			);
+			path = Sliders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -842,7 +859,7 @@
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
 				1579309E2435CAFC00EE428F /* QGrid */,
-				157930B12435EC3400EE428F /* PartialSheet */,
+				89C77B242465E61600705899 /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -874,7 +891,7 @@
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
 				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
-				157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -1029,6 +1046,7 @@
 				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
+				89C77B272465EC3700705899 /* SingleSlider.swift in Sources */,
 				157930EE2437227A00EE428F /* StorieView.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */,
@@ -1044,6 +1062,7 @@
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
 				15D53C87243C909600D62B26 /* UpgradeView.swift in Sources */,
+				89442128246578C90025D843 /* DoubleSlider.swift in Sources */,
 				155E3008243B282B001D886D /* RoundedCorners.swift in Sources */,
 				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
 				15D53C76243C624400D62B26 /* App.swift in Sources */,
@@ -1055,6 +1074,7 @@
 				155E2FFD243B0FFC001D886D /* ImageCache.swift in Sources */,
 				1579310424373C2800EE428F /* UIView+Ext.swift in Sources */,
 				89DCC131246075CB000A0BCB /* NewFaceDetectionViewModeled.swift in Sources */,
+				89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */,
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
 				15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */,
@@ -1294,12 +1314,12 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+		89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/damienissa/PartialSheet.git";
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1310,9 +1330,9 @@
 			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
 		};
-		157930B12435EC3400EE428F /* PartialSheet */ = {
+		89C77B242465E61600705899 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 157930B02435EC3400EE428F /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			package = 89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
