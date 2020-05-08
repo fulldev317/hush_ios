@@ -100,7 +100,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 Spacer()
                 HapticButton(action: {
                     self.partialSheetManager.showPartialSheet {
-                        SettingsView(viewModel: self.app.discovery.settingsViewModel).fixedSize(horizontal: false, vertical: true)
+                        SettingsView(viewModel: self.app.discovery.settingsViewModel)
                     }
                 }) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
