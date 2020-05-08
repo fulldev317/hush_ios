@@ -107,7 +107,9 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }.padding(.top, 20)
             Spacer()
-        }.padding(.horizontal, 20).withoutBar()
+        }.padding(.horizontal, 20)
+        .frame(height: 500)
+        .withoutBar()
     }
 }
 
