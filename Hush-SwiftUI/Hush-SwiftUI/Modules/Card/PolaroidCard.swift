@@ -40,6 +40,7 @@ struct PolaroidCard<Content: View>: View {
         ZStack(alignment: .top) {
             Rectangle()
                 .foregroundColor(.white)
+                .shadow(color: Color.black.opacity(0.4), radius: 8, x: 0, y: 4)
             VStack(spacing: 0) {
                 Image(uiImage: image)
                     .aspectRatio()
