@@ -49,7 +49,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     }
     
     func trailing(_ j: Int) -> CGFloat {
-        j % 2 == 0 ? 0 : 25
+        j % 2 == 0 ? 0 : 23
     }
     
     func isRotated(_ i: Int, _ j: Int) -> Bool {
