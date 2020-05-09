@@ -5,47 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.119155">
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.092457">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.001024">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000851">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.000751">
+      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.000778">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: register_devices" time="7.588942">
+      <testcase classname="fastlane.lanes" name="3: register_devices" time="3.426063">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001923">
+      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001985">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.019296">
+      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.013329">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.133593">
+      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.127025">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: build_app" time="124.408091">
+      <testcase classname="fastlane.lanes" name="7: build_app" time="102.524491">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: diawi" time="154.750461">
+      <testcase classname="fastlane.lanes" name="8: diawi" time="14.437158">
         
       </testcase>
     
