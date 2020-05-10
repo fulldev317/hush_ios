@@ -21,7 +21,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: -20) {
-                ForEach(0..<10, id: \.self) {
+                ForEach(0..<(viewModel.discoveries.count / 2), id: \.self) {
                     self.row(at: $0)
                 }
             }
@@ -34,9 +34,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 PolaroidCard(
                     image: UIImage(named: "image3")!,
                     cardWidth: SCREEN_WIDTH / 2 + 15,
-                    bottom: self.bottomView("")
-                        .padding(.leading, self.leading(j))
-                        .padding(.trailing, self.trailing(j))
+                    bottom: self.bottomView(i, j)
                 ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
                 .zIndex(Double(i % 2 == 0 ? j : -j))
                 .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
@@ -56,30 +54,26 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         let index = i * 2 + j
         return index % 4 == 0 || stride(from: 3, through: index, by: 4).contains(index)
     }
-        
-//        VStack(spacing: 0) {
-//            QGrid(viewModel.messages, columns: 2) { element in
-//
-//                NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar()) {
-//                    PolaroidCard(image: UIImage(named: "image3")!, cardWidth: SCREEN_WIDTH / 2, bottom: self.bottomView(element))
-//                    .background(Rectangle().shadow(color: Color.black.opacity(0.5), radius: 8, x: 0, y: -4))
-//                    .rotate(self.viewModel.index(element).isMultiple(of: 3) ? 0 : -5)
-//                }.buttonStyle(PlainButtonStyle())
-//            }
-//        }
     
     #warning("Please update viewModel")
-    func bottomView(_ viewModel: String) -> some View {
-        HStack {
-            (Text("Emily") + Text(", ") + Text("\(29)")).font(.regular(14)).foregroundColor(Color(0x8E8786))
-            if true {
-                Spacer()
-                Image("red_heart").resizable().aspectRatio(contentMode: .fit)
-                .frame(width: 25, height: 25)
-            } else {
-                Spacer()
+    func bottomView(_ i: Int, _ j: Int) -> some View {
+        let discovery = viewModel.discovery(i, j)
+        return HStack {
+            (Text(discovery.name) + Text(", ") + Text("\(discovery.age)"))
+                .font(.regular(14))
+                .foregroundColor(Color(0x8E8786))
+            Spacer()
+            Button(action: { self.viewModel.like(i, j) }) {
+                Image("red_heart")
+                    .resizable()
+                    .renderingMode(discovery.liked ? .original : .template)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
+                    .foregroundColor(.gray)
             }
         }.padding(15)
+        .padding(.leading, self.leading(j))
+        .padding(.trailing, self.trailing(j))
     }
     
     

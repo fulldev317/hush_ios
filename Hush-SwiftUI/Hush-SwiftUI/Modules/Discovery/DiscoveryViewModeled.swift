@@ -15,12 +15,11 @@ extension String: Identifiable {
 }
 
 protocol DiscoveryViewModeled: ObservableObject {
+    associatedtype Settings: SettingsViewModeled
+    typealias Discovery = (name: String, age: Int, liked: Bool)
     
-    associatedtype settingsViewModeled: SettingsViewModeled
-    
-    var messages: [String] { get set }
-    
-    var settingsViewModel: settingsViewModeled { get set }
-    
-    func index(_ element: String) -> Int
+    var discoveries: [(name: String, age: Int, liked: Bool)] { get set }
+    var settingsViewModel: Settings { get set }
+    func discovery(_ i: Int, _ j: Int) -> Discovery
+    func like(_ i: Int, _ j: Int)
 }

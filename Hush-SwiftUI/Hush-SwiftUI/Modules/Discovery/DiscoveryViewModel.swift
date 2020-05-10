@@ -12,13 +12,21 @@ import Combine
 class DiscoveryViewModel: DiscoveryViewModeled {
 
     // MARK: - Properties
-
-    @Published var messages = Array(0..<100).map({ _ in UUID().uuidString })
     
+    @Published var discoveries: [(name: String, age: Int, liked: Bool)] = []
     var settingsViewModel = SettingsViewModel()
     
-    func index(_ element: String) -> Int {
-
-        messages.firstIndex(of: element)!
+    init() {
+        for i in 18...99 {
+            discoveries.append((name: "Emily", age: i, liked: false))
+        }
+    }
+    
+    func discovery(_ i: Int, _ j: Int) -> Discovery {
+        discoveries[i * 2 + j]
+    }
+    
+    func like(_ i: Int, _ j: Int) {
+        discoveries[i * 2 + j].liked.toggle()
     }
 }
