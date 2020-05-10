@@ -17,8 +17,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     @EnvironmentObject var app: App
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     
-    @State var currentTab = 2
-    @State var showSettings = false
+    @State var currentTab = 0//2
     
     init(viewModel model: ViewModel) {
         viewModel = model
@@ -98,11 +97,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     Text("Location").foregroundColor(.white).font(.thin()).padding(.leading, 30)
                 }
                 Spacer()
-                HapticButton(action: {
-                    self.partialSheetManager.showPartialSheet {
-                        SettingsView(viewModel: self.app.discovery.settingsViewModel)
-                    }
-                }) {
+                HapticButton(action: self.showSettings) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
             }
@@ -112,21 +107,39 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         .addPartialSheet()
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
+        .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
+            UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
+                self.app.discovery.settingsViewModel.gender = gender
+            }
+        } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
+        .onAppear {
+            self.app.discovery.settingsViewModel.selectLocationCompletion = self.showSettings
+        }
+    }
+    
+    func showSettings() {
+        partialSheetManager.showPartialSheet {
+            SettingsView(viewModel: self.app.discovery.settingsViewModel)
+        }
     }
 }
 
 struct RootTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            NavigationView {
-                RootTabBarView(viewModel: RootTabBarViewModel())
-            }.previewDevice(.init(rawValue: "iPhone SE"))
-            NavigationView {
-                RootTabBarView(viewModel: RootTabBarViewModel())
-            }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView {
-                RootTabBarView(viewModel: RootTabBarViewModel())
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-        }
+        NavigationView {
+            RootTabBarView(viewModel: RootTabBarViewModel())
+        }.environmentObject(App())
+        .environmentObject(PartialSheetManager())
+//        Group {
+//            NavigationView {
+//                RootTabBarView(viewModel: RootTabBarViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone SE"))
+//            NavigationView {
+//                RootTabBarView(viewModel: RootTabBarViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone 8"))
+//            NavigationView {
+//                RootTabBarView(viewModel: RootTabBarViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone XS Max"))
+//        }
     }
 }

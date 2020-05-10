@@ -71,7 +71,7 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
+		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* SettingsView.swift */; };
@@ -133,6 +133,7 @@
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
 		893E6CEA246043D300ECE788 /* MaskSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CE9246043D300ECE788 /* MaskSlider.swift */; };
 		893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */; };
+		8941DE0F246836E000DC8F5C /* AlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941DE0E246836E000DC8F5C /* AlertWrapper.swift */; };
 		894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421232464ACC10025D843 /* ResetPasswordViewModel.swift */; };
 		894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */; };
 		89442128246578C90025D843 /* DoubleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89442127246578C90025D843 /* DoubleSlider.swift */; };
@@ -142,7 +143,12 @@
 		8993C763245D917500E8F765 /* PermissionDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C762245D917400E8F765 /* PermissionDeniedView.swift */; };
 		8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7652460079400E8F765 /* Combine+Ext.swift */; };
 		8993C7692460100300E8F765 /* NewFaceDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993C7682460100300E8F765 /* NewFaceDetection.swift */; };
-		89C77B252465E61600705899 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* SwiftPackageProductDependency */; };
+		8993D79E24685603002E636D /* SelectLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D79D24685603002E636D /* SelectLocation.swift */; };
+		8993D7A024685B17002E636D /* FirstResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D79F24685B17002E636D /* FirstResponderTextField.swift */; };
+		8993D7A3246868C1002E636D /* AppearenceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7A2246868C1002E636D /* AppearenceModifier.swift */; };
+		8993D7A6246890C3002E636D /* SelectLocationViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7A5246890C3002E636D /* SelectLocationViewModeled.swift */; };
+		8993D7A8246890CA002E636D /* SelectLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7A7246890CA002E636D /* SelectLocationViewModel.swift */; };
+		89C77B252465E61600705899 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* PartialSheet */; };
 		89C77B272465EC3700705899 /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B262465EC3700705899 /* SingleSlider.swift */; };
 		89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B282465EC6900705899 /* SliderViewProtocol.swift */; };
 		89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */; };
@@ -292,6 +298,7 @@
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		893E6CE9246043D300ECE788 /* MaskSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSlider.swift; sourceTree = "<group>"; };
 		893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFaceDetectorView.swift; sourceTree = "<group>"; };
+		8941DE0E246836E000DC8F5C /* AlertWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWrapper.swift; sourceTree = "<group>"; };
 		894421232464ACC10025D843 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModeled.swift; sourceTree = "<group>"; };
 		89442127246578C90025D843 /* DoubleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleSlider.swift; sourceTree = "<group>"; };
@@ -301,6 +308,11 @@
 		8993C762245D917400E8F765 /* PermissionDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDeniedView.swift; sourceTree = "<group>"; };
 		8993C7652460079400E8F765 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
 		8993C7682460100300E8F765 /* NewFaceDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetection.swift; sourceTree = "<group>"; };
+		8993D79D24685603002E636D /* SelectLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocation.swift; sourceTree = "<group>"; };
+		8993D79F24685B17002E636D /* FirstResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponderTextField.swift; sourceTree = "<group>"; };
+		8993D7A2246868C1002E636D /* AppearenceModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearenceModifier.swift; sourceTree = "<group>"; };
+		8993D7A5246890C3002E636D /* SelectLocationViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewModeled.swift; sourceTree = "<group>"; };
+		8993D7A7246890CA002E636D /* SelectLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewModel.swift; sourceTree = "<group>"; };
 		89C77B262465EC3700705899 /* SingleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSlider.swift; sourceTree = "<group>"; };
 		89C77B282465EC6900705899 /* SliderViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewProtocol.swift; sourceTree = "<group>"; };
 		89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModel.swift; sourceTree = "<group>"; };
@@ -312,11 +324,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
+				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
-				89C77B252465E61600705899 /* BuildFile in Frameworks */,
+				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +496,7 @@
 		154B26A92431CB4D00265C76 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8993D7A124686884002E636D /* ViewModifiers */,
 				896DDEFB2464955A00AC0F95 /* Preferences */,
 				155E2FF7243B0FF1001D886D /* AsyncImage */,
 				15D53C8E243DB4EC00D62B26 /* UDProperty.swift */,
@@ -501,6 +514,8 @@
 				15D53C81243C7CA400D62B26 /* HToggleStyle.swift */,
 				15D53C90243DCE1200D62B26 /* PickerTextField.swift */,
 				15B890AF243F5D1000069804 /* HeaderedView.swift */,
+				8941DE0E246836E000DC8F5C /* AlertWrapper.swift */,
+				8993D79F24685B17002E636D /* FirstResponderTextField.swift */,
 				89C77B2A2465F1E500705899 /* Sliders */,
 			);
 			path = Helpers;
@@ -639,6 +654,7 @@
 		157930A72435E60500EE428F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				8993D7A4246890AE002E636D /* SelectLocation */,
 				157930A82435E62000EE428F /* SettingsView.swift */,
 				157930A92435E62000EE428F /* SettingsViewModel.swift */,
 				157930AA2435E62000EE428F /* SettingsViewModeled.swift */,
@@ -828,6 +844,24 @@
 			path = NewFaceDetection;
 			sourceTree = "<group>";
 		};
+		8993D7A124686884002E636D /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				8993D7A2246868C1002E636D /* AppearenceModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		8993D7A4246890AE002E636D /* SelectLocation */ = {
+			isa = PBXGroup;
+			children = (
+				8993D79D24685603002E636D /* SelectLocation.swift */,
+				8993D7A7246890CA002E636D /* SelectLocationViewModel.swift */,
+				8993D7A5246890C3002E636D /* SelectLocationViewModeled.swift */,
+			);
+			path = SelectLocation;
+			sourceTree = "<group>";
+		};
 		89C77B2A2465F1E500705899 /* Sliders */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,8 +892,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
-				89C77B242465E61600705899 /* SwiftPackageProductDependency */,
+				1579309E2435CAFC00EE428F /* QGrid */,
+				89C77B242465E61600705899 /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -890,8 +924,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
-				89C77B232465E61600705899 /* RemoteSwiftPackageReference */,
+				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+				89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -972,6 +1006,7 @@
 			files = (
 				154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */,
 				1579308C2435BDD000EE428F /* DiscoveryView.swift in Sources */,
+				8941DE0F246836E000DC8F5C /* AlertWrapper.swift in Sources */,
 				1579308D2435BDD000EE428F /* DiscoveryViewModel.swift in Sources */,
 				155E2FE9243B069C001D886D /* MessagesViewModeled.swift in Sources */,
 				157930AC2435E62000EE428F /* SettingsViewModel.swift in Sources */,
@@ -1012,6 +1047,7 @@
 				15D53C88243C909600D62B26 /* UpgradeViewModel.swift in Sources */,
 				15B890AE243EEA1300069804 /* UserProfileViewModeled.swift in Sources */,
 				1546B45024335B4F00180D77 /* ForgotPasswordViewModeled.swift in Sources */,
+				8993D7A024685B17002E636D /* FirstResponderTextField.swift in Sources */,
 				157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */,
 				157930F2243722F300EE428F /* Image+Ext.swift in Sources */,
 				155E2FFF243B0FFC001D886D /* ImageLoader.swift in Sources */,
@@ -1025,6 +1061,7 @@
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
 				1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */,
+				8993D7A8246890CA002E636D /* SelectLocationViewModel.swift in Sources */,
 				155E3005243B1E93001D886D /* MessageDetailViewModel.swift in Sources */,
 				158A2C572434844F005F6847 /* DatePickerField.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
@@ -1041,10 +1078,12 @@
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
+				8993D7A3246868C1002E636D /* AppearenceModifier.swift in Sources */,
 				157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */,
 				15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */,
 				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
+				8993D79E24685603002E636D /* SelectLocation.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				89C77B272465EC3700705899 /* SingleSlider.swift in Sources */,
 				157930EE2437227A00EE428F /* StorieView.swift in Sources */,
@@ -1070,6 +1109,7 @@
 				8993C763245D917500E8F765 /* PermissionDeniedView.swift in Sources */,
 				157930AB2435E62000EE428F /* SettingsView.swift in Sources */,
 				15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */,
+				8993D7A6246890C3002E636D /* SelectLocationViewModeled.swift in Sources */,
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
 				155E2FFD243B0FFC001D886D /* ImageCache.swift in Sources */,
 				1579310424373C2800EE428F /* UIView+Ext.swift in Sources */,
@@ -1306,7 +1346,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
+		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1314,7 +1354,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		89C77B232465E61600705899 /* RemoteSwiftPackageReference */ = {
+		89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
 			requirement = {
@@ -1325,14 +1365,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
+		1579309E2435CAFC00EE428F /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
+			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
 		};
-		89C77B242465E61600705899 /* SwiftPackageProductDependency */ = {
+		89C77B242465E61600705899 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89C77B232465E61600705899 /* RemoteSwiftPackageReference */;
+			package = 89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
