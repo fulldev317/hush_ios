@@ -9,8 +9,6 @@
 import SwiftUI
 import Combine
 
-let Gender: [String] = ["Male","Female", "Couple", "Gay"]
-
 class MyProfileViewModel: MyProfileViewModeled {
     
     // MARK: - Properties
@@ -30,8 +28,8 @@ class BioViewMode: ObservableObject {
     @Published var isPremium = "Yes"
     @Published var isVerified = "No"
     @Published var age = "21"
-    @Published var gender = Gender.first!
-    @Published var sexuality = "No"
+    @Published var gender = Gender.male
+    @Published var sexuality = Gender.female
     @Published var living = "No"
     @Published var bio = "No"
     @Published var language = "English"

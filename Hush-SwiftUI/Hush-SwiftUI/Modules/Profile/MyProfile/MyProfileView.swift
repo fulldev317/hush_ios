@@ -176,11 +176,11 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     let age = ageComponents.year!
                     self.$viewModel.basicsViewModel.age.wrappedValue = "\(age)"
                 }
-                tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender, titles: Gender) {
-                    self.$viewModel.basicsViewModel.gender.wrappedValue = $0
+                tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
+                    self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: $0.lowercased())!
                 }
-                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality, titles: Gender) {
-                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = $0
+                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Gender.allTitles) {
+                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Gender(rawValue: $0.lowercased())!
                 }
                 tableRow("Living", value: $viewModel.basicsViewModel.living)
                 tableRow("Bio", value: nil)

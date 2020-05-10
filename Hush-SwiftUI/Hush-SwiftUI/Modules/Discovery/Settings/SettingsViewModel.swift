@@ -13,10 +13,11 @@ class SettingsViewModel: SettingsViewModeled {
     
     // MARK: - Properties
 
-    @Published var gender = "Male"
+    @Published var gender = Gender.male
     @Published var message = "Hellow World!"
     @Published var dragFlag: Bool = true
     @Published var location: String = "Los Angeles"
+    @Published var selectLocationCompletion: (() -> Void)?
     
     func updateMessage() {
 

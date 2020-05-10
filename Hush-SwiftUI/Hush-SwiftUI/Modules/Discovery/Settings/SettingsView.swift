@@ -7,17 +7,21 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct SettingsView<ViewModel: SettingsViewModeled>: View {
     
     // MARK: - Properties
     
     @ObservedObject private var viewModel: ViewModel
+    @EnvironmentObject private var app: App
+    @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @State private var firstSliderFalue = 0.0
     @State private var secondSliderFalue = 0.0
     @State private var isToggle = true
     @State private var ageSliderLower = 0.0
     @State private var ageSliderUpper = 1.0
+    
     private var lowerAge: String {
         String(Int(18 + (99 - 18) * ageSliderLower))
     }
@@ -47,9 +51,17 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 HStack {
                     Text("Location").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.location).font(.light()).foregroundColor(Color(0x010101))
+                    Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
+                    Button(action: {
+                        self.partialSheetManager.showPartialSheet({
+                            self.app.isFirstResponder = false
+                        }, content: {
+                            SelectLocation(viewModel: SelectLocationViewModel(self.viewModel))
+                        })
+                    }) {
+                        Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
+                    }
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
@@ -57,9 +69,13 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 HStack {
                     Text("Gender").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text(viewModel.gender).font(.light()).foregroundColor(Color(0x010101))
+                    Text(viewModel.gender.title).font(.light()).foregroundColor(Color(0x010101)).animation(nil)
                     Spacer()
-                    Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
+                    Button(action: {
+                        self.app.selectingGender.toggle()
+                    }) {
+                        Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
+                    }
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
@@ -67,8 +83,10 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                 HStack {
                     Text("Maximum distance").font(.light()).foregroundColor(Color(0x010101))
                     Spacer()
-                    Text("25 Yards").font(.light()).foregroundColor(Color(0x010101))
-                }
+                    Text(maxDistance)
+                        .font(.light())
+                        .foregroundColor(Color(0x010101))
+                }.animation(nil)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
@@ -111,20 +129,26 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
         .frame(height: 500)
         .withoutBar()
     }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            NavigationView {
-                SettingsView(viewModel: SettingsViewModel())
-            }.previewDevice(.init(rawValue: "iPhone SE"))
-            NavigationView {
-                SettingsView(viewModel: SettingsViewModel())
-                }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView {
-                SettingsView(viewModel: SettingsViewModel())
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-        }
+    
+    var maxDistance: String {
+        let miles = 10 + firstSliderFalue * 80
+        let kilometers = miles * 1.6
+        return String(format: "%.f Miles (%.fkm)", miles, kilometers)
     }
 }
+
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            NavigationView {
+//                SettingsView(viewModel: SettingsViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone SE"))
+//            NavigationView {
+//                SettingsView(viewModel: SettingsViewModel())
+//                }.previewDevice(.init(rawValue: "iPhone 8"))
+//            NavigationView {
+//                SettingsView(viewModel: SettingsViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone XS Max"))
+//        }
+//    }
+//}
