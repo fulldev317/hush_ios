@@ -5,47 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.108207">
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.098396">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000849">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000868">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.000895">
+      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.001074">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: register_devices" time="3.053361">
+      <testcase classname="fastlane.lanes" name="3: register_devices" time="12.116053">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001853">
+      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001881">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.013">
+      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.015042">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.125886">
+      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.136207">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: build_app" time="107.35157">
+      <testcase classname="fastlane.lanes" name="7: build_app" time="117.982243">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: diawi" time="9.740838">
+      <testcase classname="fastlane.lanes" name="8: diawi" time="5.277726">
         
       </testcase>
     

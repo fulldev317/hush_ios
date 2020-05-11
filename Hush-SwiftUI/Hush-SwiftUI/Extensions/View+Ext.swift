@@ -15,3 +15,9 @@ extension View {
         transformEffect(.init(rotationAngle: angle / 180.0 * CGFloat.pi))
     }
 }
+
+extension View {
+    func frame(_ proxy: GeometryProxy, alignment: Alignment = .center) -> some View {
+        frame(width: proxy.size.width, height: proxy.size.height, alignment: alignment)
+    }
+}

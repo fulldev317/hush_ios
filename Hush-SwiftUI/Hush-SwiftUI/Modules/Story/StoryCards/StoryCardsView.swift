@@ -63,6 +63,6 @@ struct StoryCardsView_Previews: PreviewProvider {
             NavigationView {
                 StoryCardsView(viewModel: StoryCardsViewModel())
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
-        }
+        }.previewEnvironment()
     }
 }

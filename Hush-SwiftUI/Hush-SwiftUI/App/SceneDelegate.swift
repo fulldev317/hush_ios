@@ -61,7 +61,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
 //                    }
                     
-                    RootTabBarView(viewModel: RootTabBarViewModel()).withoutBar()
+                    RootTabBarView(viewModel: RootTabBarViewModel())
+                        .hostModalPresenter()
+                        .withoutBar()
                     
 //                    NewFaceDetection(viewModel: NewFaceDetectionViewModel()).withoutBar()
 //                    FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()
