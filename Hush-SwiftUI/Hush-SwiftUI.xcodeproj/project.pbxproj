@@ -148,6 +148,10 @@
 		8993D7A3246868C1002E636D /* AppearenceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7A2246868C1002E636D /* AppearenceModifier.swift */; };
 		8993D7A6246890C3002E636D /* SelectLocationViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7A5246890C3002E636D /* SelectLocationViewModeled.swift */; };
 		8993D7A8246890CA002E636D /* SelectLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7A7246890CA002E636D /* SelectLocationViewModel.swift */; };
+		8993D7AA246958AC002E636D /* View+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7A9246958AC002E636D /* View+Env.swift */; };
+		8993D7AC246961B6002E636D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7AB246961B6002E636D /* TabBarView.swift */; };
+		8993D7AF2469A970002E636D /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7AE2469A970002E636D /* StoryView.swift */; };
+		8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */; };
 		89C77B252465E61600705899 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* PartialSheet */; };
 		89C77B272465EC3700705899 /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B262465EC3700705899 /* SingleSlider.swift */; };
 		89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B282465EC6900705899 /* SliderViewProtocol.swift */; };
@@ -313,6 +317,10 @@
 		8993D7A2246868C1002E636D /* AppearenceModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearenceModifier.swift; sourceTree = "<group>"; };
 		8993D7A5246890C3002E636D /* SelectLocationViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewModeled.swift; sourceTree = "<group>"; };
 		8993D7A7246890CA002E636D /* SelectLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewModel.swift; sourceTree = "<group>"; };
+		8993D7A9246958AC002E636D /* View+Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Env.swift"; sourceTree = "<group>"; };
+		8993D7AB246961B6002E636D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		8993D7AE2469A970002E636D /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
+		8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresenterWrapper.swift; sourceTree = "<group>"; };
 		89C77B262465EC3700705899 /* SingleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSlider.swift; sourceTree = "<group>"; };
 		89C77B282465EC6900705899 /* SliderViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewProtocol.swift; sourceTree = "<group>"; };
 		89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModel.swift; sourceTree = "<group>"; };
@@ -515,7 +523,9 @@
 				15D53C90243DCE1200D62B26 /* PickerTextField.swift */,
 				15B890AF243F5D1000069804 /* HeaderedView.swift */,
 				8941DE0E246836E000DC8F5C /* AlertWrapper.swift */,
+				8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */,
 				8993D79F24685B17002E636D /* FirstResponderTextField.swift */,
+				8993D7AB246961B6002E636D /* TabBarView.swift */,
 				89C77B2A2465F1E500705899 /* Sliders */,
 			);
 			path = Helpers;
@@ -531,6 +541,7 @@
 				157930A02435CE5300EE428F /* View+Ext.swift */,
 				157930F1243722F300EE428F /* Image+Ext.swift */,
 				8993C7652460079400E8F765 /* Combine+Ext.swift */,
+				8993D7A9246958AC002E636D /* View+Env.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -748,6 +759,7 @@
 		15D53C72243C5FE200D62B26 /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				8993D7AD2469A964002E636D /* Story */,
 				157930EA2437225E00EE428F /* Storie */,
 				157930E32437206000EE428F /* Stories */,
 				157930DC24371CEE00EE428F /* StoryCards */,
@@ -860,6 +872,14 @@
 				8993D7A5246890C3002E636D /* SelectLocationViewModeled.swift */,
 			);
 			path = SelectLocation;
+			sourceTree = "<group>";
+		};
+		8993D7AD2469A964002E636D /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				8993D7AE2469A970002E636D /* StoryView.swift */,
+			);
+			path = Story;
 			sourceTree = "<group>";
 		};
 		89C77B2A2465F1E500705899 /* Sliders */ = {
@@ -1015,6 +1035,7 @@
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
+				8993D7AC246961B6002E636D /* TabBarView.swift in Sources */,
 				894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
@@ -1056,6 +1077,7 @@
 				157930932435BE0100EE428F /* RootTabBarView.swift in Sources */,
 				1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */,
 				155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */,
+				8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */,
 				155E2FF4243B0C2C001D886D /* MessagesCell.swift in Sources */,
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
@@ -1069,6 +1091,7 @@
 				8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */,
 				894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
+				8993D7AF2469A970002E636D /* StoryView.swift in Sources */,
 				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
 				155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
@@ -1076,6 +1099,7 @@
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
 				155E2FE7243B069C001D886D /* MessagesView.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
+				8993D7AA246958AC002E636D /* View+Env.swift in Sources */,
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* SettingsViewModeled.swift in Sources */,
 				8993D7A3246868C1002E636D /* AppearenceModifier.swift in Sources */,

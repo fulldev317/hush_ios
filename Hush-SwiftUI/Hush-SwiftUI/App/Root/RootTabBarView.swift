@@ -17,7 +17,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     @EnvironmentObject var app: App
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     
-    @State var currentTab = 0//2
+    @State var currentTab = HushTabs.stories
     
     init(viewModel model: ViewModel) {
         viewModel = model
@@ -29,34 +29,27 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     var body: some View {
         GeometryReader { proxy in
-            TabView(selection: self.$currentTab) {
-                self.discovery().tabItem {
-                    
-                    Image("discoverySelected").resizable().frame(width: 38, height: 38)
-                    Text("")
-                }.tag(0)
-                self.stories().tabItem {
-                    
-                    Image("bookmarks").resizable().frame(width: 38, height: 38)
-                    Text("")
-                }.tag(1)
-                self.photoBoth().tabItem {
-                    
-                    Image("cards").resizable().frame(width: 38, height: 38)
-                    Text("")
-                }.tag(2)
-                MessagesView(viewModel: MessagesViewModel()).withoutBar().tabItem {
-                    
-                    Image("messages").resizable().frame(width: 38, height: 38)
-                    Text("")
-                }.tag(3)
-                MyProfileView(viewModel: self.app.profile).withoutBar().tabItem {
-                    
-                    Image("user-circle").resizable().frame(width: 38, height: 38)
-                    Text("")
-                }.tag(4)
-            }
-            .frame(width: proxy.size.width, height: proxy.size.height)
+            TabBarView(selectedTab: self.$currentTab) {
+                if self.currentTab == .discoveries {
+                    self.discovery()
+                }
+
+                if self.currentTab == .stories {
+                    self.stories()
+                }
+
+                if self.currentTab == .carusel {
+                    self.photoBoth()
+                }
+
+                if self.currentTab == .chats {
+                    MessagesView(viewModel: MessagesViewModel())
+                }
+
+                if self.currentTab == .profile {
+                    MyProfileView(viewModel: self.app.profile)
+                }
+            }.frame(width: proxy.size.width, height: proxy.size.height)
             .accentColor(.hOrange)
             .sheet(isPresented: self.$app.showPremium) {
                 UpgradeView(viewModel: UpgradeViewModel())
@@ -79,9 +72,15 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     func stories() -> some View {
         
         HeaderedView(header: {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Stories").foregroundColor(.hOrange).font(.ultraLight(48)).padding(.leading, 30)
-                Text("Profiles Nearby").foregroundColor(.white).font(.thin()).padding(.leading, 30)
+            HStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("Story Wall").foregroundColor(.hOrange).font(.ultraLight(48)).padding(.leading, 30)
+                    Text("User stories near you").foregroundColor(.white).font(.thin()).padding(.leading, 30)
+                }
+                Spacer()
+                HapticButton(action: self.showDiscoverySettings) {
+                    Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
+                }
             }
         }, content: {
             StoriesView(viewModel: StoriesViewModel())
@@ -97,7 +96,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     Text("Location").foregroundColor(.white).font(.thin()).padding(.leading, 30)
                 }
                 Spacer()
-                HapticButton(action: self.showSettings) {
+                HapticButton(action: self.showDiscoverySettings) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
             }
@@ -113,11 +112,11 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         .onAppear {
-            self.app.discovery.settingsViewModel.selectLocationCompletion = self.showSettings
+            self.app.discovery.settingsViewModel.selectLocationCompletion = self.showDiscoverySettings
         }
     }
     
-    func showSettings() {
+    func showDiscoverySettings() {
         partialSheetManager.showPartialSheet {
             SettingsView(viewModel: self.app.discovery.settingsViewModel)
         }
@@ -126,20 +125,16 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
 
 struct RootTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            RootTabBarView(viewModel: RootTabBarViewModel())
-        }.environmentObject(App())
-        .environmentObject(PartialSheetManager())
-//        Group {
-//            NavigationView {
-//                RootTabBarView(viewModel: RootTabBarViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone SE"))
-//            NavigationView {
-//                RootTabBarView(viewModel: RootTabBarViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone 8"))
+        Group {
+            NavigationView {
+                RootTabBarView(viewModel: RootTabBarViewModel())
+            }
 //            NavigationView {
 //                RootTabBarView(viewModel: RootTabBarViewModel())
 //            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-//        }
+//            NavigationView {
+//                RootTabBarView(viewModel: RootTabBarViewModel())
+//            }.previewDevice(.init(rawValue: "iPhone 8"))
+        }.previewEnvironment()
     }
 }

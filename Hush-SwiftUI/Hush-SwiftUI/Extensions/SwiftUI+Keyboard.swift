@@ -12,25 +12,20 @@ import UIKit
 import SwiftUI
 
 extension Notification {
-    
     var keyboardHeight: CGFloat {
-        
         (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
     }
 }
 
 extension Publishers {
-
     static var keyboardHeight: AnyPublisher<CGFloat, Never> {
-        
-        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)
-            .map { $0.keyboardHeight }
-        
-        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
-            .map { _ in CGFloat(0) }
-    
-        return MergeMany(willShow, willHide)
-            .eraseToAnyPublisher()
+        let willShow = NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification).map {
+            $0.keyboardHeight
+        }
+        let willHide = NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification).map { _ in
+            CGFloat()
+        }
+        return Merge(willShow, willHide).eraseToAnyPublisher()
     }
 }
 
@@ -52,8 +47,24 @@ struct KeyboardAdaptive: ViewModifier {
     }
 }
 
+struct KeyboardObserving: ViewModifier {
+    let keyboardHeight: Binding<CGFloat>
+    
+    func body(content: Content) -> some View {
+        content
+            .background(Color.clear)
+            .onReceive(Publishers.keyboardHeight) { keyboardHeight in
+                self.keyboardHeight.wrappedValue = keyboardHeight
+            }   
+    }
+}
+
 extension View {
     func keyboardAdaptive(_ keyboardPresented: Binding<Bool>? = nil) -> some View {
         ModifiedContent(content: self, modifier: KeyboardAdaptive(keyboardPresented: keyboardPresented))
+    }
+    
+    func observeKeyboardHeight(_ observer: Binding<CGFloat>) -> some View {
+        ModifiedContent(content: self, modifier: KeyboardObserving(keyboardHeight: observer))
     }
 }
