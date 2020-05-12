@@ -62,7 +62,6 @@ class DVImagePicker: NSObject {
         
         picker.delegate = self
         picker.modalPresentationStyle = .overFullScreen
-        picker.modalTransitionStyle = .crossDissolve
         
         checkMediaAccess(type: type, from: vc)
     }
