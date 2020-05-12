@@ -38,7 +38,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
-    @State var userStory: UIImage?
+    @State var userStories: [UIImage] = []
     @EnvironmentObject var modalPresenterManager: ModalPresenterManager
     private let imagePicker = DVImagePicker()
     
@@ -50,7 +50,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                 ForEach(0...10, id: \.self) { i in
                     HStack(spacing: -2) {
                         ForEach(0..<3, id: \.self) { j in
-                            UserStoryView(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStory == nil, storyImage: self.userStory)
+                            UserStoryView(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last)
                                 .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
                                 .zIndex(j == 1 ? 3 : 0)
                                 .offset(self.offset(row: i, column: j))
@@ -92,21 +92,21 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     
     func showStory() {
         modalPresenterManager.present(style: .overFullScreen) {
-            StoryView()
+            StoryView(viewModel: StoryViewModel())
         }
     }
     
-    func showMyStory() {
+    func showMyStory(lastPick: Bool) {
         modalPresenterManager.present(style: .overFullScreen) {
-            StoryView(userStory: self.userStory)
+            StoryView(viewModel: MyStoryViewModel(userStories, isLastPick: lastPick))
         }
     }
     
     func showStoryPicker() {
-        let viewStory = UIAlertAction(title: "View Story", style: .default) { _ in self.showMyStory() }
+        let viewStory = UIAlertAction(title: "View Story", style: .default) { _ in self.showMyStory(lastPick: false) }
         let uploadStory = UIAlertAction(title: "Upload Story", style: .default) { _ in self.pickStory() }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        viewStory.isEnabled = userStory != nil
+        viewStory.isEnabled = !userStories.isEmpty
         let alert = TextAlert(style: .actionSheet, title: "Your Story Options", message: nil, actions: [
             viewStory,
             uploadStory,
@@ -119,8 +119,10 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     func pickStory() {
         imagePicker.showActionSheet(from: modalPresenterManager.presenter!) { result in
             guard case let .success(image) = result else { return }
-            self.userStory = image
-            self.modalPresenterManager.dismiss(completion: self.showMyStory)
+            self.userStories.append(image)
+            self.modalPresenterManager.dismiss {
+                self.showMyStory(lastPick: true)
+            }
         }
     }
 }

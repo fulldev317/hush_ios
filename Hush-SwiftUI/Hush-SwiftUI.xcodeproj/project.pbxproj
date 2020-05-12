@@ -71,7 +71,7 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
+		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* SettingsView.swift */; };
@@ -137,6 +137,9 @@
 		894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421232464ACC10025D843 /* ResetPasswordViewModel.swift */; };
 		894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */; };
 		89442128246578C90025D843 /* DoubleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89442127246578C90025D843 /* DoubleSlider.swift */; };
+		89559FFB246AB94000223FB7 /* StoryViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89559FFA246AB93F00223FB7 /* StoryViewModeled.swift */; };
+		89559FFD246AB95300223FB7 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89559FFC246AB95300223FB7 /* StoryViewModel.swift */; };
+		89559FFF246ABF2A00223FB7 /* MyStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89559FFE246ABF2A00223FB7 /* MyStoryViewModel.swift */; };
 		895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895D0C62245C59D600C6BE9B /* ImagePickerView.swift */; };
 		896DDEFD2464956A00AC0F95 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896DDEFC2464956A00AC0F95 /* Size.swift */; };
 		896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896DDEFF2464A92F00AC0F95 /* ResetPasswordView.swift */; };
@@ -152,7 +155,7 @@
 		8993D7AC246961B6002E636D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7AB246961B6002E636D /* TabBarView.swift */; };
 		8993D7AF2469A970002E636D /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7AE2469A970002E636D /* StoryView.swift */; };
 		8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */; };
-		89C77B252465E61600705899 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* SwiftPackageProductDependency */; };
+		89C77B252465E61600705899 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* PartialSheet */; };
 		89C77B272465EC3700705899 /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B262465EC3700705899 /* SingleSlider.swift */; };
 		89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B282465EC6900705899 /* SliderViewProtocol.swift */; };
 		89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */; };
@@ -306,6 +309,9 @@
 		894421232464ACC10025D843 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		894421252464ACEC0025D843 /* ResetPasswordViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModeled.swift; sourceTree = "<group>"; };
 		89442127246578C90025D843 /* DoubleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleSlider.swift; sourceTree = "<group>"; };
+		89559FFA246AB93F00223FB7 /* StoryViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModeled.swift; sourceTree = "<group>"; };
+		89559FFC246AB95300223FB7 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
+		89559FFE246ABF2A00223FB7 /* MyStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryViewModel.swift; sourceTree = "<group>"; };
 		895D0C62245C59D600C6BE9B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		896DDEFC2464956A00AC0F95 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		896DDEFF2464A92F00AC0F95 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
@@ -332,11 +338,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
+				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
-				89C77B252465E61600705899 /* BuildFile in Frameworks */,
+				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +884,9 @@
 			isa = PBXGroup;
 			children = (
 				8993D7AE2469A970002E636D /* StoryView.swift */,
+				89559FFC246AB95300223FB7 /* StoryViewModel.swift */,
+				89559FFE246ABF2A00223FB7 /* MyStoryViewModel.swift */,
+				89559FFA246AB93F00223FB7 /* StoryViewModeled.swift */,
 			);
 			path = Story;
 			sourceTree = "<group>";
@@ -912,8 +921,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
-				89C77B242465E61600705899 /* SwiftPackageProductDependency */,
+				1579309E2435CAFC00EE428F /* QGrid */,
+				89C77B242465E61600705899 /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -944,8 +953,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
-				89C77B232465E61600705899 /* RemoteSwiftPackageReference */,
+				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+				89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -1042,6 +1051,7 @@
 				15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
+				89559FFD246AB95300223FB7 /* StoryViewModel.swift in Sources */,
 				155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */,
 				158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */,
 				893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */,
@@ -1059,6 +1069,7 @@
 				158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */,
 				157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */,
 				155E2FE8243B069C001D886D /* MessagesViewModel.swift in Sources */,
+				89559FFF246ABF2A00223FB7 /* MyStoryViewModel.swift in Sources */,
 				1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */,
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
 				1546B45524336B7500180D77 /* GetMoreDetailsView.swift in Sources */,
@@ -1107,6 +1118,7 @@
 				15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */,
 				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
+				89559FFB246AB94000223FB7 /* StoryViewModeled.swift in Sources */,
 				8993D79E24685603002E636D /* SelectLocation.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				89C77B272465EC3700705899 /* SingleSlider.swift in Sources */,
@@ -1370,7 +1382,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
+		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1378,7 +1390,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		89C77B232465E61600705899 /* RemoteSwiftPackageReference */ = {
+		89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
 			requirement = {
@@ -1389,14 +1401,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
+		1579309E2435CAFC00EE428F /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
+			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
 		};
-		89C77B242465E61600705899 /* SwiftPackageProductDependency */ = {
+		89C77B242465E61600705899 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89C77B232465E61600705899 /* RemoteSwiftPackageReference */;
+			package = 89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */

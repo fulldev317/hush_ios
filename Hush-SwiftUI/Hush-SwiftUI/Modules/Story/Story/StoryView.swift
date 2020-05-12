@@ -8,14 +8,12 @@
 
 import SwiftUI
 
-struct StoryView: View {
-    var userStory: UIImage?
-    @State var currentStory = 0
-    @State var storyItems = ["stories_placeholder", "story1", "story2", "story3"]
-    @State var message = ""
+struct StoryView<ViewModel: StoryViewModeled>: View {
     @State private var keyboardHeight: CGFloat = 0
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var modalPresenterManager: ModalPresenterManager
+    @Environment(\.presentationMode) private var presentationMode
+    @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
+    
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         GeometryReader(content: content)
@@ -23,15 +21,15 @@ struct StoryView: View {
     
     private func content(_ proxy: GeometryProxy) -> some View {
         ZStack {
-            (userStory == nil ? Image(storyItems[currentStory]) : Image(uiImage: userStory!))
+            viewModel.stories[viewModel.currentStoryIndex]
                 .resizable()
                 .scaledToFill()
                 .clipped()
                 .edgesIgnoringSafeArea(.all)
                 .frame(proxy)
                 .onTapGesture {
-                    if self.currentStory < self.storyItems.count - 1, self.userStory == nil {
-                        self.currentStory += 1
+                    if self.viewModel.canTapNext {
+                        self.viewModel.showNext()
                     } else {
                         self.modalPresenterManager.dismiss()
                     }
@@ -64,9 +62,9 @@ struct StoryView: View {
                 HStack {
                     Spacer()
                     VStack {
-                        ForEach((userStory == nil ? storyItems.indices : 0..<1), id: \.self) { i in
+                        ForEach(viewModel.stories.indices, id: \.self) { i in
                             Rectangle()
-                                .foregroundColor(i <= self.currentStory ? .hOrange : Color.white.opacity(0.5))
+                                .foregroundColor(i <= self.viewModel.currentStoryIndex ? .hOrange : Color.white.opacity(0.5))
                                 .frame(width: 5)
                                 .frame(maxHeight: 84)
                         }
@@ -95,10 +93,10 @@ struct StoryView: View {
                             .foregroundColor(Color(0xF2F2F2).opacity(0.5))
                         
                         HStack {
-                            TextField("", text: $message)
+                            TextField("", text: $viewModel.storyMessage)
                                 .font(.system(size: 17))
                                 .background(Text("Say something")
-                                    .opacity(message.isEmpty ? 1 : 0), alignment: .leading)
+                                    .opacity(viewModel.storyMessage.isEmpty ? 1 : 0), alignment: .leading)
                                 .foregroundColor(Color.black.opacity(0.5))
                             Spacer()
                             Button(action: {}) {
@@ -122,6 +120,6 @@ struct StoryView: View {
 
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-        StoryView()
+        StoryView(viewModel: StoryViewModel())
     }
 }

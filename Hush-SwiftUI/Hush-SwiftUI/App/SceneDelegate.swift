@@ -63,6 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     
                     RootTabBarView(viewModel: RootTabBarViewModel())
                         .hostModalPresenter()
+                        .edgesIgnoringSafeArea(.all)
                         .withoutBar()
                     
 //                    NewFaceDetection(viewModel: NewFaceDetectionViewModel()).withoutBar()
