@@ -19,6 +19,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     @EnvironmentObject var modalPresenterManager: ModalPresenterManager
     
     @State var currentTab = HushTabs.stories
+    @State var isFirstLaunch = true
     
     init(viewModel model: ViewModel) {
         viewModel = model
@@ -57,6 +58,16 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
             }.onAppear {
                 self.app.discovery.settingsViewModel.closeAPISelectorCompletion = self.showDiscoverySettings
                 self.app.stories.settingsViewModel.closeAPISelectorCompletion = self.showStoriesSettings
+            }
+            .overlay(self.photoBothOverlay)
+        }
+    }
+    
+    var photoBothOverlay: some View {
+        Group {
+            if isFirstLaunch && currentTab == .carusel {
+                CardCaruselTutorialView()
+                    .onTapGesture { self.isFirstLaunch.toggle() }
             }
         }
     }
