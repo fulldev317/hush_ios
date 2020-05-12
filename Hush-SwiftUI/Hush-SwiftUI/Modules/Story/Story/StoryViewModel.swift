@@ -11,5 +11,7 @@ import SwiftUI
 class StoryViewModel: StoryViewModeled {
     @Published var currentStoryIndex: Int = 0
     @Published var storyMessage: String = ""
-    @Published var stories: [Image] = ["stories_placeholder", "story1", "story2", "story3"].map { Image($0) } 
+    @Published var stories: [Image] = ["stories_placeholder", "story1", "story2", "story3"].map { Image($0) }
+    let canSendMessages = true
+    let canReport = true
 }

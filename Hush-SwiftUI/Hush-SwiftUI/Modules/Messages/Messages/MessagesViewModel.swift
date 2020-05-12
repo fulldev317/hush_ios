@@ -40,6 +40,16 @@ class MessagesViewModel: MessagesViewModeled {
         
         storage.getMessages().count
     }
+    
+    func createConversation(message: String) {
+        storage.storage.insert(HushConversation(
+            username: storage.faker.name.firstName(),
+            text: message,
+            imageURL: storage.faker.internet.image(width: 100, height: 100),
+            time: Date().timeIntervalSince1970,
+            messages: [HushMessage(userID: "SELF", text: message, time: Date().timeIntervalSince1970)]
+        ), at: 0)
+    }
 }
 
 
@@ -70,6 +80,6 @@ fileprivate class FakeStorage: HushConversationsStorage {
         }
     }
     
-    private let faker = Faker()
-    private var storage: [HushConversation] = []
+    fileprivate let faker = Faker()
+    fileprivate var storage: [HushConversation] = []
 }

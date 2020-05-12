@@ -84,9 +84,6 @@
 		157930E72437209100EE428F /* StoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930E42437209100EE428F /* StoriesViewModel.swift */; };
 		157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930E52437209100EE428F /* StoriesViewModeled.swift */; };
 		157930E92437209100EE428F /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930E62437209100EE428F /* StoriesView.swift */; };
-		157930EE2437227A00EE428F /* StorieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930EB2437227A00EE428F /* StorieView.swift */; };
-		157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930EC2437227A00EE428F /* StorieViewModel.swift */; };
-		157930F02437227A00EE428F /* StorieViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930ED2437227A00EE428F /* StorieViewModeled.swift */; };
 		157930F2243722F300EE428F /* Image+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F1243722F300EE428F /* Image+Ext.swift */; };
 		157930F72437324600EE428F /* CardCuraselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F42437324600EE428F /* CardCuraselView.swift */; };
 		157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F52437324600EE428F /* CardCuraselViewModel.swift */; };
@@ -133,6 +130,7 @@
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
 		8928ED7B246AEA2D004D3073 /* StoriesSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */; };
 		8928ED7D246AEA32004D3073 /* StoriesSettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */; };
+		8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8936B110246B303B001F9254 /* UIApplicationExtensions.swift */; };
 		893E6CEA246043D300ECE788 /* MaskSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CE9246043D300ECE788 /* MaskSlider.swift */; };
 		893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */; };
 		8941DE0F246836E000DC8F5C /* AlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941DE0E246836E000DC8F5C /* AlertWrapper.swift */; };
@@ -260,9 +258,6 @@
 		157930E42437209100EE428F /* StoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewModel.swift; sourceTree = "<group>"; };
 		157930E52437209100EE428F /* StoriesViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewModeled.swift; sourceTree = "<group>"; };
 		157930E62437209100EE428F /* StoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
-		157930EB2437227A00EE428F /* StorieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieView.swift; sourceTree = "<group>"; };
-		157930EC2437227A00EE428F /* StorieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieViewModel.swift; sourceTree = "<group>"; };
-		157930ED2437227A00EE428F /* StorieViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorieViewModeled.swift; sourceTree = "<group>"; };
 		157930F1243722F300EE428F /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		157930F42437324600EE428F /* CardCuraselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselView.swift; sourceTree = "<group>"; };
 		157930F52437324600EE428F /* CardCuraselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselViewModel.swift; sourceTree = "<group>"; };
@@ -309,6 +304,7 @@
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModel.swift; sourceTree = "<group>"; };
 		8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModeled.swift; sourceTree = "<group>"; };
+		8936B110246B303B001F9254 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		893E6CE9246043D300ECE788 /* MaskSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSlider.swift; sourceTree = "<group>"; };
 		893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFaceDetectorView.swift; sourceTree = "<group>"; };
 		8941DE0E246836E000DC8F5C /* AlertWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWrapper.swift; sourceTree = "<group>"; };
@@ -558,6 +554,7 @@
 				157930F1243722F300EE428F /* Image+Ext.swift */,
 				8993C7652460079400E8F765 /* Combine+Ext.swift */,
 				8993D7A9246958AC002E636D /* View+Env.swift */,
+				8936B110246B303B001F9254 /* UIApplicationExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -708,16 +705,6 @@
 			path = Stories;
 			sourceTree = "<group>";
 		};
-		157930EA2437225E00EE428F /* Storie */ = {
-			isa = PBXGroup;
-			children = (
-				157930EB2437227A00EE428F /* StorieView.swift */,
-				157930EC2437227A00EE428F /* StorieViewModel.swift */,
-				157930ED2437227A00EE428F /* StorieViewModeled.swift */,
-			);
-			path = Storie;
-			sourceTree = "<group>";
-		};
 		157930F32437321800EE428F /* CardCurasel */ = {
 			isa = PBXGroup;
 			children = (
@@ -776,7 +763,6 @@
 			children = (
 				8955A000246AD1F400223FB7 /* Settings */,
 				8993D7AD2469A964002E636D /* Story */,
-				157930EA2437225E00EE428F /* Storie */,
 				157930E32437206000EE428F /* Stories */,
 				157930DC24371CEE00EE428F /* StoryCards */,
 			);
@@ -1073,6 +1059,7 @@
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
+				8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */,
 				8993D7AC246961B6002E636D /* TabBarView.swift in Sources */,
 				894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
@@ -1089,7 +1076,6 @@
 				155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */,
 				15D53C82243C7CA400D62B26 /* HToggleStyle.swift in Sources */,
 				157930E92437209100EE428F /* StoriesView.swift in Sources */,
-				157930F02437227A00EE428F /* StorieViewModeled.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
 				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
 				15D53C7F243C65C900D62B26 /* MyProfileViewModel.swift in Sources */,
@@ -1153,7 +1139,6 @@
 				89559FFB246AB94000223FB7 /* StoryViewModeled.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				89C77B272465EC3700705899 /* SingleSlider.swift in Sources */,
-				157930EE2437227A00EE428F /* StorieView.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */,
 				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
@@ -1190,7 +1175,6 @@
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
 				15D53C7E243C65C900D62B26 /* MyProfileView.swift in Sources */,
 				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,
-				157930EF2437227A00EE428F /* StorieViewModel.swift in Sources */,
 				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,
 				157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */,
 				155E300F243B4132001D886D /* HTextView.swift in Sources */,

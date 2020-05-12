@@ -26,5 +26,6 @@ class App: ObservableObject {
     let profile = MyProfileViewModel()
     let discovery = DiscoveryViewModel()
     let stories = StoriesViewModel()
+    let messages = MessagesViewModel()
     
 }

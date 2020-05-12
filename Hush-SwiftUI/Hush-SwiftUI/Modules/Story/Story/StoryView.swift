@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct StoryView<ViewModel: StoryViewModeled>: View {
+    @ObservedObject var viewModel: ViewModel
+    
     @State private var keyboardHeight: CGFloat = 0
+    @State private var showReport = false
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
-    
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject private var app: App
     
     var body: some View {
         GeometryReader(content: content)
@@ -77,45 +79,62 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                 Spacer()
                 
                 VStack {
-                    HStack {
-                        Spacer()
-                        Button(action: {}) {
-                            Image(systemName: "ellipsis")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                .padding()
-                        }.shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
-                        .padding(.trailing)
+                    if viewModel.canReport {
+                        HStack {
+                            Spacer()
+                            Button(action: { self.showReport.toggle() }) {
+                                Image(systemName: "ellipsis")
+                                    .font(.largeTitle)
+                                    .foregroundColor(.white)
+                                    .padding()
+                            }.shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
+                            .padding(.trailing)
+                        }
                     }
                     
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundColor(Color(0xF2F2F2).opacity(0.5))
-                        
-                        HStack {
-                            TextField("", text: $viewModel.storyMessage)
-                                .font(.system(size: 17))
-                                .background(Text("Say something")
-                                    .opacity(viewModel.storyMessage.isEmpty ? 1 : 0), alignment: .leading)
-                                .foregroundColor(Color.black.opacity(0.5))
-                            Spacer()
-                            Button(action: {}) {
-                                Image("paperplane")
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 8)
-                            }
-                        }.padding(.leading, 14)
-                        .offset(x: 0, y: 2)
-                    }.padding(.leading, 21)
-                    .padding(.trailing, 16)
-                    .frame(height: 40)
-                    .padding(.bottom)
-                    .offset(x: 0, y: -keyboardHeight)
-                    .animation(.default)
-                    .observeKeyboardHeight($keyboardHeight)
+                    if viewModel.canSendMessages {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .foregroundColor(Color(0xF2F2F2).opacity(0.5))
+                            
+                            HStack {
+                                TextField("", text: $viewModel.storyMessage)
+                                    .font(.system(size: 17))
+                                    .background(
+                                        Text("Say something")
+                                            .opacity(viewModel.storyMessage.isEmpty ? 1 : 0),
+                                        alignment: .leading
+                                    ).foregroundColor(Color.black.opacity(0.5))
+                                Spacer()
+                                Button(action: sendMessage) {
+                                    Image("paperplane")
+                                        .padding(.horizontal, 14)
+                                        .padding(.vertical, 8)
+                                }.disabled(viewModel.storyMessage.isEmpty)
+                            }.padding(.leading, 14)
+                            .offset(x: 0, y: 2)
+                        }.padding(.leading, 21)
+                        .padding(.trailing, 16)
+                        .frame(height: 40)
+                        .padding(.bottom)
+                        .offset(x: 0, y: -keyboardHeight)
+                        .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
+                    }
                 }
             }
+        }.actionSheet(isPresented: $showReport) {
+            ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
+                .default(Text("Block User"), action: self.viewModel.blockUser),
+                .default(Text("Report Profile"), action: self.viewModel.reportProfile),
+                .cancel()
+            ])
         }
+    }
+    
+    private func sendMessage() {
+        app.messages.createConversation(message: viewModel.storyMessage)
+        viewModel.storyMessage = ""
+        UIApplication.shared.endEditing()
     }
 }
 

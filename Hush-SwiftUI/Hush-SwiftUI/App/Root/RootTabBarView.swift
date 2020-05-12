@@ -44,7 +44,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
 
                 if self.currentTab == .chats {
-                    MessagesView(viewModel: MessagesViewModel())
+                    MessagesView(viewModel: self.app.messages)
                 }
 
                 if self.currentTab == .profile {
