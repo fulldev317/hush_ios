@@ -17,4 +17,5 @@ protocol MessagesViewModeled: ObservableObject {
     
     func item(at index: Int) -> HushConversation
     func numberOfItems() -> Int
+    func createConversation(message: String)
 }

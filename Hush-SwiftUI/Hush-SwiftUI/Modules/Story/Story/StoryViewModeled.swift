@@ -12,8 +12,12 @@ protocol StoryViewModeled: ObservableObject {
     var currentStoryIndex: Int { get set }
     var storyMessage: String { get set }
     var stories: [Image] { get }
+    var canSendMessages: Bool { get }
+    var canReport: Bool { get }
     
     func showNext()
+    func blockUser()
+    func reportProfile()
 }
 
 extension StoryViewModeled {
@@ -24,4 +28,9 @@ extension StoryViewModeled {
     func showNext() {
         currentStoryIndex += 1
     }
+}
+
+extension StoryViewModeled {
+    func blockUser() {}
+    func reportProfile() {}
 }

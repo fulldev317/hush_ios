@@ -40,6 +40,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     @ObservedObject var viewModel: ViewModel
     @State var userStories: [UIImage] = []
     @EnvironmentObject var modalPresenterManager: ModalPresenterManager
+    @EnvironmentObject var app: App
     private let imagePicker = DVImagePicker()
     
     // MARK: - Lifecycle
@@ -92,7 +93,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     
     func showStory() {
         modalPresenterManager.present(style: .overFullScreen) {
-            StoryView(viewModel: StoryViewModel())
+            StoryView(viewModel: StoryViewModel()).environmentObject(self.app)
         }
     }
     

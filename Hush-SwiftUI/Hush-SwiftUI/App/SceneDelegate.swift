@@ -68,8 +68,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     
 //                    NewFaceDetection(viewModel: NewFaceDetectionViewModel()).withoutBar()
 //                    FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()
-                }.environmentObject(self.app)
+                }
                 .environmentObject(PartialSheetManager())
+                .environmentObject(self.app)
             )
         }
     }

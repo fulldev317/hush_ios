@@ -12,6 +12,8 @@ class MyStoryViewModel: StoryViewModeled {
     @Published var currentStoryIndex: Int = 0
     @Published var storyMessage: String = ""
     @Published var stories: [Image] = []
+    let canSendMessages = false
+    let canReport = false
     
     init(_ stories: [UIImage], isLastPick: Bool) {
         self.stories = stories.map(Image.init)

@@ -49,12 +49,15 @@ struct KeyboardAdaptive: ViewModifier {
 
 struct KeyboardObserving: ViewModifier {
     let keyboardHeight: Binding<CGFloat>
+    let animation: Animation?
     
     func body(content: Content) -> some View {
         content
             .background(Color.clear)
             .onReceive(Publishers.keyboardHeight) { keyboardHeight in
-                self.keyboardHeight.wrappedValue = keyboardHeight
+                withAnimation(self.animation) {
+                    self.keyboardHeight.wrappedValue = keyboardHeight
+                }
             }   
     }
 }
@@ -64,7 +67,7 @@ extension View {
         ModifiedContent(content: self, modifier: KeyboardAdaptive(keyboardPresented: keyboardPresented))
     }
     
-    func observeKeyboardHeight(_ observer: Binding<CGFloat>) -> some View {
-        ModifiedContent(content: self, modifier: KeyboardObserving(keyboardHeight: observer))
+    func observeKeyboardHeight(_ observer: Binding<CGFloat>, withAnimation animation: Animation? = nil) -> some View {
+        ModifiedContent(content: self, modifier: KeyboardObserving(keyboardHeight: observer, animation: animation))
     }
 }

@@ -35,6 +35,7 @@ struct MessagesCell: View {
                     .lineLimit(2)
                 Spacer()
             }.padding(.horizontal, 20)
+            Spacer()
             VStack {
                 Text("08:23AM").font(.regular(13)).foregroundColor(Color(0xACB1C0))
                 Spacer()
