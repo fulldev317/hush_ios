@@ -15,7 +15,7 @@ extension String: Identifiable {
 }
 
 protocol DiscoveryViewModeled: ObservableObject {
-    associatedtype Settings: SettingsViewModeled
+    associatedtype Settings: DiscoveriesSettingsViewModeled
     typealias Discovery = (name: String, age: Int, liked: Bool)
     
     var discoveries: [(name: String, age: Int, liked: Bool)] { get set }

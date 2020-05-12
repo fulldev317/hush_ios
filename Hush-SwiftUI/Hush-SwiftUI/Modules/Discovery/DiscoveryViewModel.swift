@@ -14,7 +14,7 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     // MARK: - Properties
     
     @Published var discoveries: [(name: String, age: Int, liked: Bool)] = []
-    var settingsViewModel = SettingsViewModel()
+    var settingsViewModel = DiscoveriesSettingsViewModel()
     
     init() {
         for i in 18...99 {

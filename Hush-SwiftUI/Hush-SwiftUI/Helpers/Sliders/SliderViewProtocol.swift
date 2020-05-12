@@ -14,10 +14,16 @@ extension SliderViewProtocol {
     var knob: some View {
         Circle()
             .fill(Color.white)
-            .border(Color.black.opacity(0.04), width: 0.5)
             .frame(width: knobSide, height: knobSide)
+            .overlay(Circle().stroke(Color.black.opacity(0.04), lineWidth: 0.5))
             .shadow(color: Color(UIColor.black.withAlphaComponent(0.15)), radius: 8, x: 0, y: 3)
             .shadow(color: Color(UIColor.black.withAlphaComponent(0.16)), radius: 1, x: 0, y: 1)
             .shadow(color: Color(UIColor.black.withAlphaComponent(0.1)), radius: 1, x: 0, y: 3)
+    }
+}
+
+struct SliderViewProtocol_Previews: PreviewProvider {
+    static var previews: some View {
+        SingleSlider_Previews.previews
     }
 }

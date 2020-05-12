@@ -1,18 +1,18 @@
 //
-//  SelectLocation.swift
+//  TextQuerySelectorView.swift
 //  Hush-SwiftUI
 //
-//  Created by Serge Vysotsky on 10.05.2020.
+//  Created by Serge Vysotsky on 12.05.2020.
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
 import SwiftUI
 import PartialSheet
 
-struct SelectLocation<ViewModel: SelectLocationViewModeled>: View {
-    @ObservedObject var viewModel: ViewModel
-    @EnvironmentObject private var partialSheetManager: PartialSheetManager
+struct TextQuerySelectorView<Provider: TextQueryAPIProvider>: View {
+    @ObservedObject var provider: Provider
     @EnvironmentObject private var app: App
+    @EnvironmentObject private var partialSheetManager: PartialSheetManager
     
     var body: some View {
         VStack {
@@ -24,8 +24,8 @@ struct SelectLocation<ViewModel: SelectLocationViewModeled>: View {
             
             HStack {
                 FirstResponderTextField(
-                    title: "Type your city",
-                    text: $viewModel.query,
+                    title: provider.inputTitle,
+                    text: $provider.query,
                     isFirstResponder: $app.isFirstResponder,
                     textColor: UIColor(0x8E8786),
                     font: .light(17)
@@ -33,7 +33,7 @@ struct SelectLocation<ViewModel: SelectLocationViewModeled>: View {
                 .padding(.horizontal, 5)
                 .onAppear { self.app.isFirstResponder = true }
                 
-                Button(action: {}) {
+                Button(action: close) {
                     Text("Cancel")
                         .font(.light())
                     .offset(x: 0, y: -10)
@@ -46,26 +46,27 @@ struct SelectLocation<ViewModel: SelectLocationViewModeled>: View {
                 .padding(.horizontal, 20)
             
             HStack {
-                Text(viewModel.searchResult)
+                Text(provider.searchResult)
                     .foregroundColor(Color(0x8E8786))
                     .font(.light())
-                    .onTapGesture {
-                        self.viewModel.settingsViewModel.location = self.viewModel.searchResult
-                        self.app.isFirstResponder = false
-                        self.partialSheetManager.closePartialSheet()
-                        self.viewModel.settingsViewModel.selectLocationCompletion?()
-                }
+                    .onTapGesture(perform: select)
                 Spacer()
             }.padding(.horizontal, 20)
-        }
+        }.animation(nil)
     }
-}
-
-struct SelectLocation_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            RootTabBarView(viewModel: RootTabBarViewModel())
-        }.environmentObject(App())
-        .environmentObject(PartialSheetManager())
+    
+    private func select() {
+        closeSheet()
+        provider.select(provider.searchResult)
+    }
+    
+    private func close() {
+        closeSheet()
+        provider.close()
+    }
+    
+    private func closeSheet() {
+        app.isFirstResponder = false
+        partialSheetManager.closePartialSheet()
     }
 }

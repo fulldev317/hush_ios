@@ -15,13 +15,21 @@ struct DoubleSlider: View, SliderViewProtocol {
     private let minimumValue: Double = 0
     private let maximumValue: Double = 1
     
-    @State private var lowerSavedProgress: Double = 0
-    @State private var upperSavedProgress: Double = 0
+    @State private var lowerSavedProgress: Double
+    @State private var upperSavedProgress: Double
     
     @State private var lowerTranslation: CGSize = .zero
     @State private var upperTranslation: CGSize = .zero
     
     @State private var size: CGSize = .zero
+    
+    init(lower: Binding<Double>, upper: Binding<Double>) {
+        _lower = lower
+        _upper = upper
+        
+        _lowerSavedProgress = State(initialValue: lower.wrappedValue)
+        _upperSavedProgress = State(initialValue: 1 - upper.wrappedValue)
+    }
     
     var body: some View {
         ZStack {
@@ -81,9 +89,18 @@ private extension DoubleSlider {
 }
 
 struct UISliderView_Previews: PreviewProvider {
+    struct Content: View {
+        @State var lower = 0.2
+        @State var upper = 0.5
+        
+        var body: some View {
+            DoubleSlider(lower: $lower, upper: $upper)
+                .padding()
+        }
+    }
+    
     static var previews: some View {
-        DoubleSlider(lower: .constant(0.2), upper: .constant(0.6))
-            .padding()
+        Content()
             .previewLayout(.sizeThatFits)
     }
 }
