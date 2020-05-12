@@ -39,14 +39,26 @@ private struct ModalPresenterWrapper: UIViewControllerRepresentable {
 class ModalPresenterManager: ObservableObject {
     fileprivate var wrapperCoordinator: ModalPresenterWrapper.Coordinator?
     
-    func present<Content: View>(style: UIModalPresentationStyle = .automatic, @ViewBuilder content: () -> Content) {
+    func present<Content: View>(style: UIModalPresentationStyle = .automatic, animated: Bool = true, completion: (() -> Void)? = nil, @ViewBuilder content: () -> Content) {
         let contentViewController = UIHostingController(rootView: content().environmentObject(self))
         contentViewController.modalPresentationStyle = style
-        wrapperCoordinator?.controller?.present(contentViewController, animated: true)
+        present(style: style, controller: contentViewController, animated: animated, completion: completion)
+    }
+    
+    func present(style: UIModalPresentationStyle = .automatic, controller: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
+        wrapperCoordinator?.controller?.present(controller, animated: animated, completion: completion)
+    }
+    
+    func dismiss(animated: Bool = true, completion: (() -> Void)?) {
+        wrapperCoordinator?.controller?.dismiss(animated: animated, completion: completion)
     }
     
     func dismiss() {
-        wrapperCoordinator?.controller?.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    var presenter: UIViewController? {
+        wrapperCoordinator?.controller
     }
 }
 

@@ -38,9 +38,9 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
-    @State var isFirstStory = true
-    @State var presentStoryPicker = false
+    @State var userStory: UIImage?
     @EnvironmentObject var modalPresenterManager: ModalPresenterManager
+    private let imagePicker = DVImagePicker()
     
     // MARK: - Lifecycle
     
@@ -50,7 +50,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                 ForEach(0...10, id: \.self) { i in
                     HStack(spacing: -2) {
                         ForEach(0..<3, id: \.self) { j in
-                            UserStoryView(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.isFirstStory)
+                            UserStoryView(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStory == nil, storyImage: self.userStory)
                                 .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
                                 .zIndex(j == 1 ? 3 : 0)
                                 .offset(self.offset(row: i, column: j))
@@ -61,20 +61,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                     .frame(width: SCREEN_WIDTH)
                 }
             }.padding(.top, 22)
-        }.actionSheet(isPresented: $presentStoryPicker) {
-            ActionSheet(title: Text("Your Story Options"), message: nil, buttons: [
-                .default(Text("View Story")) {
-                    self.showStory()
-                },
-                .default(Text("Upload Story")) {
-                    
-                },
-                .cancel()
-            ])
         }
-//        .background(
-//            NavigationLink(destination: StoryView(), isActive: $showStory, label: EmptyView.init)
-//        )
     }
     
     private func zIndex(row i: Int) -> Double {
@@ -97,15 +84,43 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     
     func handleTap(_ i: Int, _ j: Int) {
         if i == 0 && j == 0 {
-            presentStoryPicker = true
+            showStoryPicker()
         } else {
             showStory()
         }
     }
     
     func showStory() {
-        self.modalPresenterManager.present(style: .overFullScreen) {
+        modalPresenterManager.present(style: .overFullScreen) {
             StoryView()
+        }
+    }
+    
+    func showMyStory() {
+        modalPresenterManager.present(style: .overFullScreen) {
+            StoryView(userStory: self.userStory)
+        }
+    }
+    
+    func showStoryPicker() {
+        let viewStory = UIAlertAction(title: "View Story", style: .default) { _ in self.showMyStory() }
+        let uploadStory = UIAlertAction(title: "Upload Story", style: .default) { _ in self.pickStory() }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        viewStory.isEnabled = userStory != nil
+        let alert = TextAlert(style: .actionSheet, title: "Your Story Options", message: nil, actions: [
+            viewStory,
+            uploadStory,
+            cancel
+        ])
+        
+        modalPresenterManager.present(controller: UIAlertController(alert: alert))
+    }
+    
+    func pickStory() {
+        imagePicker.showActionSheet(from: modalPresenterManager.presenter!) { result in
+            guard case let .success(image) = result else { return }
+            self.userStory = image
+            self.modalPresenterManager.dismiss(completion: self.showMyStory)
         }
     }
 }
@@ -114,6 +129,7 @@ struct UserStoryView: View {
     let username: String
     let isMyStory: Bool
     let isFirstStory: Bool
+    let storyImage: UIImage?
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -122,7 +138,7 @@ struct UserStoryView: View {
             
             VStack(spacing: 0) {
                 GeometryReader { proxy in
-                    Image("stories_placeholder")
+                    (self.storyImage == nil || !self.isMyStory ? Image("stories_placeholder") : Image(uiImage: self.storyImage!))
                         .resizable()
                         .scaledToFill()
                 }.clipped()

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct StoryView: View {
+    var userStory: UIImage?
     @State var currentStory = 0
     @State var storyItems = ["stories_placeholder", "story1", "story2", "story3"]
     @State var message = ""
@@ -22,14 +23,14 @@ struct StoryView: View {
     
     private func content(_ proxy: GeometryProxy) -> some View {
         ZStack {
-            Image(storyItems[currentStory])
+            (userStory == nil ? Image(storyItems[currentStory]) : Image(uiImage: userStory!))
                 .resizable()
                 .scaledToFill()
                 .clipped()
                 .edgesIgnoringSafeArea(.all)
                 .frame(proxy)
                 .onTapGesture {
-                    if self.currentStory < self.storyItems.count - 1 {
+                    if self.currentStory < self.storyItems.count - 1, self.userStory == nil {
                         self.currentStory += 1
                     } else {
                         self.modalPresenterManager.dismiss()
@@ -63,11 +64,14 @@ struct StoryView: View {
                 HStack {
                     Spacer()
                     VStack {
-                        ForEach(storyItems.indices, id: \.self) { i in
+                        ForEach((userStory == nil ? storyItems.indices : 0..<1), id: \.self) { i in
                             Rectangle()
                                 .foregroundColor(i <= self.currentStory ? .hOrange : Color.white.opacity(0.5))
                                 .frame(width: 5)
+                                .frame(maxHeight: 84)
                         }
+                        
+                        Spacer()
                     }.padding(.trailing, 25)
                     .frame(height: proxy.size.height / 2)
                 }
