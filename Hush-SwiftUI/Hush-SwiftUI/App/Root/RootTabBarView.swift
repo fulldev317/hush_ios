@@ -18,8 +18,8 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     @EnvironmentObject var modalPresenterManager: ModalPresenterManager
     
-    @State var currentTab = HushTabs.stories
-    @State var isFirstLaunch = true
+    @State var currentTab = HushTabs.carusel
+    @ObservedObject var isFirstLaunch = UserDefault(.isFirstLaunch, default: true)
     
     init(viewModel model: ViewModel) {
         viewModel = model
@@ -41,7 +41,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
 
                 if self.currentTab == .carusel {
-                    self.photoBoth()
+                    self.photoBooth()
                 }
 
                 if self.currentTab == .chats {
@@ -59,26 +59,24 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 self.app.discovery.settingsViewModel.closeAPISelectorCompletion = self.showDiscoverySettings
                 self.app.stories.settingsViewModel.closeAPISelectorCompletion = self.showStoriesSettings
             }
-            .overlay(self.photoBothOverlay)
+            .overlay(self.photoBoothOverlay)
         }
     }
     
-    var photoBothOverlay: some View {
+    var photoBoothOverlay: some View {
         Group {
-            if isFirstLaunch && currentTab == .carusel {
+            if isFirstLaunch.wrappedValue && currentTab == .carusel {
                 CardCaruselTutorialView()
-                    .onTapGesture { self.isFirstLaunch.toggle() }
+                    .onTapGesture { self.isFirstLaunch.wrappedValue.toggle() }
             }
         }
     }
     
-    func photoBoth() -> some View {
+    func photoBooth() -> some View {
         HeaderedView(header: {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Photo").foregroundColor(.hOrange).font(.bold(48))
-                +
-                Text("Booth").foregroundColor(.white).font(.ultraLight(48))
-            }
+                Text("PhotoBooth").foregroundColor(.hOrange).font(.ultraLight(48))
+            }.padding()
         }, content: {
             CardCuraselView(viewModel: CardCuraselViewModel())
         })
