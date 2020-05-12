@@ -1,5 +1,5 @@
 //
-//  SettingsViewModeled.swift
+//  DiscoveriesSettingsViewModeled.swift
 //  Hush-SwiftUI
 //
 //  Created Dima Virych on 02.04.2020.
@@ -13,17 +13,18 @@ enum Gender: String, CaseIterable {
     case female
     case lesbian
     case gay
+    case everyone
     
     var title: String { rawValue.capitalized }
     static let allTitles = allCases.map { $0.title }
 }
 
-protocol SettingsViewModeled: ObservableObject {
+protocol DiscoveriesSettingsViewModeled: ObservableObject {
     var gender: Gender { get set }
     var message: String { get set }
     var dragFlag: Bool { get set }
     var location: String { get set }
-    var selectLocationCompletion: (() -> Void)? { get set }
+    var closeAPISelectorCompletion: (() -> Void)? { get set }
     
     func updateMessage()
 }

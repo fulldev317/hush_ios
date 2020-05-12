@@ -10,9 +10,14 @@ import SwiftUI
 
 struct SingleSlider: View, SliderViewProtocol {
     @Binding var value: Double
-    @State private var savedValue: Double = 0
+    @State private var savedValue: Double
     @State private var translation: CGSize = .zero
     @State private var size: CGSize = .zero
+    
+    init(value outerValue: Binding<Double>) {
+        _value = outerValue
+        _savedValue = State<Double>(initialValue: outerValue.wrappedValue)
+    }
     
     var body: some View {
         ZStack {
@@ -51,9 +56,17 @@ private extension SingleSlider {
 }
 
 struct SingleSlider_Previews: PreviewProvider {
+    struct Content: View {
+        @State var slider = 1.0
+        
+        var body: some View {
+            SingleSlider(value: $slider)
+                .padding()
+        }
+    }
+    
     static var previews: some View {
-        SingleSlider(value: .constant(0.3))
-            .padding()
+        Content()
             .previewLayout(.sizeThatFits)
     }
 }

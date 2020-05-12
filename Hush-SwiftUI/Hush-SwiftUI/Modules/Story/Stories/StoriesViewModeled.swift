@@ -9,8 +9,6 @@
 import Combine
 
 protocol StoriesViewModeled: ObservableObject {
-    
-    var messages: [String] { get set }
-    
-    func index(_ element: String) -> Int
+    associatedtype Settings: StoriesSettingsViewModeled
+    var settingsViewModel: Settings { get }
 }

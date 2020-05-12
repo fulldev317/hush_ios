@@ -16,6 +16,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     @EnvironmentObject var partialSheetManager: PartialSheetManager
+    @EnvironmentObject var modalPresenterManager: ModalPresenterManager
     
     @State var currentTab = HushTabs.stories
     
@@ -53,6 +54,9 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
             .accentColor(.hOrange)
             .sheet(isPresented: self.$app.showPremium) {
                 UpgradeView(viewModel: UpgradeViewModel())
+            }.onAppear {
+                self.app.discovery.settingsViewModel.closeAPISelectorCompletion = self.showDiscoverySettings
+                self.app.stories.settingsViewModel.closeAPISelectorCompletion = self.showStoriesSettings
             }
         }
     }
@@ -78,13 +82,13 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     Text("User stories near you").foregroundColor(.white).font(.thin()).padding(.leading, 30)
                 }
                 Spacer()
-                HapticButton(action: self.showDiscoverySettings) {
+                HapticButton(action: self.showStoriesSettings) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
             }
         }, content: {
             StoriesView(viewModel: StoriesViewModel())
-        })
+        }).addPartialSheet()
     }
     
     func discovery() -> some View {
@@ -103,7 +107,6 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         }, content: {
             DiscoveryView(viewModel:  self.app.discovery)
         }).padding(.top, 0)
-        .addPartialSheet()
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
@@ -111,14 +114,18 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 self.app.discovery.settingsViewModel.gender = gender
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
-        .onAppear {
-            self.app.discovery.settingsViewModel.selectLocationCompletion = self.showDiscoverySettings
-        }
+        .addPartialSheet()
     }
     
     func showDiscoverySettings() {
         partialSheetManager.showPartialSheet {
-            SettingsView(viewModel: self.app.discovery.settingsViewModel)
+            DiscoveriesSettingsView(viewModel: self.app.discovery.settingsViewModel)
+        }
+    }
+    
+    func showStoriesSettings() {
+        partialSheetManager.showPartialSheet {
+            StoriesSettingsView(viewModel: self.app.stories.settingsViewModel)
         }
     }
 }

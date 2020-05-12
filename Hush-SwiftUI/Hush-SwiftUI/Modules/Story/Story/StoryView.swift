@@ -109,6 +109,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                     }.padding(.leading, 21)
                     .padding(.trailing, 16)
                     .frame(height: 40)
+                    .padding(.bottom)
                     .offset(x: 0, y: -keyboardHeight)
                     .animation(.default)
                     .observeKeyboardHeight($keyboardHeight)

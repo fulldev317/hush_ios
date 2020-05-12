@@ -1,5 +1,5 @@
 //
-//  SettingsView.swift
+//  DiscoveriesSettingsView.swift
 //  Hush-SwiftUI
 //
 //  Created Dima Virych on 02.04.2020.
@@ -9,7 +9,7 @@
 import SwiftUI
 import PartialSheet
 
-struct SettingsView<ViewModel: SettingsViewModeled>: View {
+struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View {
     
     // MARK: - Properties
     
@@ -57,7 +57,13 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
                         self.partialSheetManager.showPartialSheet({
                             self.app.isFirstResponder = false
                         }, content: {
-                            SelectLocation(viewModel: SelectLocationViewModel(self.viewModel))
+                            TextQuerySelectorView(provider: SelectLocationAPI { newLocation in
+                                if let result = newLocation {
+                                    self.viewModel.location = result
+                                }
+                                
+                                self.viewModel.closeAPISelectorCompletion?()
+                            })
                         })
                     }) {
                         Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
@@ -141,7 +147,7 @@ struct SettingsView<ViewModel: SettingsViewModeled>: View {
 //    static var previews: some View {
 //        Group {
 //            NavigationView {
-//                SettingsView(viewModel: SettingsViewModel())
+//                DiscoveriesSettingsView(viewModel: DiscoveriesSettingsViewModel())
 //            }.previewDevice(.init(rawValue: "iPhone SE"))
 //            NavigationView {
 //                SettingsView(viewModel: SettingsViewModel())
