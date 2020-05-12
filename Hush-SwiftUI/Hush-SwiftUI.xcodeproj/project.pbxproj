@@ -131,6 +131,7 @@
 		8928ED7B246AEA2D004D3073 /* StoriesSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */; };
 		8928ED7D246AEA32004D3073 /* StoriesSettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */; };
 		8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8936B110246B303B001F9254 /* UIApplicationExtensions.swift */; };
+		8936B113246B321A001F9254 /* CardCaruselTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8936B112246B321A001F9254 /* CardCaruselTutorialView.swift */; };
 		893E6CEA246043D300ECE788 /* MaskSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CE9246043D300ECE788 /* MaskSlider.swift */; };
 		893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */; };
 		8941DE0F246836E000DC8F5C /* AlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941DE0E246836E000DC8F5C /* AlertWrapper.swift */; };
@@ -305,6 +306,7 @@
 		8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModel.swift; sourceTree = "<group>"; };
 		8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModeled.swift; sourceTree = "<group>"; };
 		8936B110246B303B001F9254 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
+		8936B112246B321A001F9254 /* CardCaruselTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCaruselTutorialView.swift; sourceTree = "<group>"; };
 		893E6CE9246043D300ECE788 /* MaskSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSlider.swift; sourceTree = "<group>"; };
 		893E6CEB2460441700ECE788 /* ARFaceDetectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFaceDetectorView.swift; sourceTree = "<group>"; };
 		8941DE0E246836E000DC8F5C /* AlertWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWrapper.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				157930F42437324600EE428F /* CardCuraselView.swift */,
 				157930F52437324600EE428F /* CardCuraselViewModel.swift */,
 				157930F62437324600EE428F /* CardCuraselViewModeled.swift */,
+				8936B112246B321A001F9254 /* CardCaruselTutorialView.swift */,
 			);
 			path = CardCurasel;
 			sourceTree = "<group>";
@@ -1062,6 +1065,7 @@
 				8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */,
 				8993D7AC246961B6002E636D /* TabBarView.swift in Sources */,
 				894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */,
+				8936B113246B321A001F9254 /* CardCaruselTutorialView.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */,
