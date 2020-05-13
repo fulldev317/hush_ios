@@ -34,6 +34,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     // MARK: - Properties
     
     @State var currentPage = 0
+    @State var shouldReport = false
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
     
@@ -52,15 +53,26 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
         GeometryReader { proxy in
             VStack {
                 HStack {
-                    HapticButton(action: {
-                        self.mode.wrappedValue.dismiss()
-                    }) {
-                        Image("arrow_next_icon").aspectRatio().frame(width: 15, height: 15).foregroundColor(.white).rotationEffect(.degrees(180))
-                    }.padding(.leading, 20)
-                    self.header([
-                        Text("Wendy").font(.ultraLight(48)).foregroundColor(.hOrange),
-                        Text("Wendy").font(.thin()).foregroundColor(.white)
-                    ])
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Wendy").font(.ultraLight(48)).foregroundColor(.hOrange)
+                        HStack(spacing: 10) {
+                            Button(action: { self.mode.wrappedValue.dismiss() }) {
+                                Image("onBack_icon")
+                            }.buttonStyle(PlainButtonStyle())
+                            
+                            Text("Los Angeles").font(.thin()).foregroundColor(.white)
+                            Spacer()
+                        }
+                    }.padding(.horizontal)
+                    
+                    Spacer()
+                    
+                    VStack(spacing: 14) {
+                        Circle().fill(Color(0x6FCF97)).square(22)
+                        Image("verified_user_badge")
+                    }.padding(.vertical)
+                    .padding(.trailing, 23)
+                    .offset(x: 0, y: 4)
                 }.padding(.top, SafeAreaInsets.top)
                 ZStack {
                     Pager(page: self.$currentPage, data: self.viewModel.photos.map { IMG(image: $0) }) { img in
@@ -73,21 +85,28 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     }
                     .itemSpacing(30)
                     .padding(0)
+                    .overlay(Button(action: { self.shouldReport.toggle() }) {
+                        Image(systemName: "ellipsis")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, 23)
+                    }, alignment: .topTrailing)
                     VStack {
                         Spacer()
                         Rectangle()
                             .foregroundColor(.clear).frame(height: 130 + SafeAreaInsets.bottom)
                             .background(LinearGradient(gradient: .init(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top))
                     }.edgesIgnoringSafeArea(.bottom)
-                    VStack {
+                    VStack(spacing: 0) {
                         Spacer()
                         HStack {
                             ForEach(0..<self.viewModel.photos.count) {
-                                Circle().foregroundColor( $0 == self.currentPage ? .hOrange : Color.white.opacity(0.3)).frame(width: 10, height: 10)
+                                Circle().foregroundColor( $0 == self.currentPage ? .hOrange : Color.white.opacity(0.3)).square(7)
                             }
-                        }
+                        }.padding(.bottom, 16)
+                        
                         HapticButton(action: self.viewModel.switchMode) {
-                            
                             VStack(spacing: 25) {
                                 HStack(spacing: 25) {
                                     Image("msg_profile_icon")
@@ -104,6 +123,12 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     }.padding(20)
                 }.frame(width: proxy.size.width)
             }
+        }.actionSheet(isPresented: $shouldReport) {
+            ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
+                .default(Text("Block User"), action: {}),
+                .default(Text("Report Profile"), action: {}),
+                .cancel()
+            ])
         }
     }
     
@@ -208,16 +233,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            NavigationView {
-                UserProfileView(viewModel: UserProfileViewModel()).withoutBar()
-            }.previewDevice(.init(rawValue: "iPhone SE"))
-            NavigationView {
-                UserProfileView(viewModel: UserProfileViewModel()).withoutBar()
-            }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView {
-                UserProfileView(viewModel: UserProfileViewModel()).withoutBar()
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-        }
+        NavigationView {
+            UserProfileView(viewModel: UserProfileViewModel()).withoutBar()
+        }.previewEnvironment()
     }
 }
