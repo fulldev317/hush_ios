@@ -15,7 +15,8 @@ class MessagesViewModel: MessagesViewModeled {
     
     
     // MARK: - Properties
-
+    
+    @Published var filter: MessagesFilter = .all
     @Published var message = "Hellow World!"
     
     var searchQuery: String = ""
@@ -49,6 +50,11 @@ class MessagesViewModel: MessagesViewModeled {
             time: Date().timeIntervalSince1970,
             messages: [HushMessage(userID: "SELF", text: message, time: Date().timeIntervalSince1970)]
         ), at: 0)
+    }
+    
+    func deleteContersation(atOffsets offsets: IndexSet) {
+        objectWillChange.send()
+        storage.storage.remove(atOffsets: offsets)
     }
 }
 

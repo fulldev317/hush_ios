@@ -9,8 +9,25 @@
 import Combine
 import CoreLogic
 
-protocol MessagesViewModeled: ObservableObject {
+enum MessagesFilter: CaseIterable {
+    case all
+    case notRead
+    case usersOnline
     
+    var title: String {
+        switch self {
+        case .all:
+            return "All"
+        case .notRead:
+            return "Not Read"
+        case .usersOnline:
+            return "Users Online"
+        }
+    }
+}
+
+protocol MessagesViewModeled: ObservableObject {
+    var filter: MessagesFilter { get set }
     var searchQuery: String { get set }
     var items: [HushConversation] { get }
     var message: String { get set }
@@ -18,4 +35,5 @@ protocol MessagesViewModeled: ObservableObject {
     func item(at index: Int) -> HushConversation
     func numberOfItems() -> Int
     func createConversation(message: String)
+    func deleteContersation(atOffsets offsets: IndexSet)
 }

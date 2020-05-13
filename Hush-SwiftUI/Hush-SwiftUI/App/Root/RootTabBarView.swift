@@ -20,6 +20,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     @State var currentTab = HushTabs.carusel
     @ObservedObject var isFirstLaunch = UserDefault(.isFirstLaunch, default: true)
+    @State private var selectMessagesFilter = false
     
     init(viewModel model: ViewModel) {
         viewModel = model
@@ -38,7 +39,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     NavigationView {
                         CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
                     }.zIndex(self.currentTab == .carusel ? 1 : 0)
-                    MessagesView(viewModel: self.app.messages).zIndex(self.currentTab == .chats ? 1 : 0)
+                    self.messages().zIndex(self.currentTab == .chats ? 1 : 0)
                     MyProfileView(viewModel: self.app.profile).zIndex(self.currentTab == .profile ? 1 : 0)
                 }
             }.frame(width: proxy.size.width, height: proxy.size.height)
@@ -63,6 +64,28 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         }.onAppear {
             // force refresh layout
             self.isFirstLaunch.objectWillChange.send()
+        }
+    }
+    
+    func messages() -> some View {
+        NavigationView {
+            VStack {
+                HStack {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Messages").foregroundColor(.hOrange).font(.ultraLight(48))
+                    }.padding(30)
+                    Spacer()
+                    HapticButton(action: { self.selectMessagesFilter.toggle() }) {
+                        Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
+                    }
+                }
+                
+                MessagesView(viewModel: app.messages)
+            }.withoutBar()
+        }.actionSheet(isPresented: $selectMessagesFilter) {
+            ActionSheet(title: Text("Filter Messages"), message: nil, buttons: MessagesFilter.allCases.map { filter in
+                .default(Text(filter.title), action: { self.app.messages.filter = filter })
+            } + [.cancel()])
         }
     }
     

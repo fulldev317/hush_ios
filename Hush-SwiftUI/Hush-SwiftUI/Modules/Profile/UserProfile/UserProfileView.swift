@@ -37,15 +37,27 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     @State var shouldReport = false
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
+    @State var unlockedImage = 0
+    @State var unlockedStory = -1
     
     
     // MARK: - Lifecycle
     
     var body: some View {
-        
-        switch viewModel.mode {
-        case .photo: return AnyView(photoView.background(Color.hBlack).edgesIgnoringSafeArea(.all)).withoutBar()
-        case .info: return AnyView(infoView.background(Color.hBlack.edgesIgnoringSafeArea(.all))).withoutBar()
+        Group {
+            if viewModel.mode == .photo {
+                photoView.background(Color.hBlack).edgesIgnoringSafeArea(.all).withoutBar()
+            }
+            
+            if viewModel.mode == .info {
+                infoView.background(Color.hBlack.edgesIgnoringSafeArea(.all)).withoutBar()
+            }
+        }.actionSheet(isPresented: $shouldReport) {
+            ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
+                .default(Text("Block User"), action: {}),
+                .default(Text("Report Profile"), action: {}),
+                .cancel()
+            ])
         }
     }
     
@@ -123,12 +135,6 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     }.padding(20)
                 }.frame(width: proxy.size.width)
             }
-        }.actionSheet(isPresented: $shouldReport) {
-            ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
-                .default(Text("Block User"), action: {}),
-                .default(Text("Report Profile"), action: {}),
-                .cancel()
-            ])
         }
     }
     
@@ -157,53 +163,66 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     Spacer()
                 }.frame(height: 44 + SafeAreaInsets.top)
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 25) {
+                    VStack(alignment: .leading, spacing: 20) {
                         self.textBlock("About Me", subTitle: self.viewModel.aboutMe)
                         self.textBlock("Current Location", subTitle: self.viewModel.location)
-                        self.carusel("Photos", images: self.viewModel.photos)
-                        self.carusel("Stories", images: self.viewModel.stories)
+                        self.carusel("Photos", unlocked: self.$unlockedImage, images: self.viewModel.photos).padding(.vertical, -10)
+                        self.carusel("Stories", unlocked: self.$unlockedStory, images: self.viewModel.stories)
                         HStack {
-                            VStack(spacing: 25) {
+                            VStack(alignment: .leading, spacing: 25) {
                                 self.textBlock("Looking For", subTitle: self.viewModel.aboutMe)
                                 self.textBlock("Sexuality", subTitle: self.viewModel.aboutMe)
                                 self.textBlock("Body Type", subTitle: self.viewModel.aboutMe)
                             }
-                            VStack(spacing: 25) {
+                            
+                            Spacer()
+                            
+                            VStack(alignment: .leading, spacing: 25) {
                                 self.textBlock("Smoking", subTitle: self.viewModel.aboutMe)
                                 self.textBlock("Ethnicity", subTitle: self.viewModel.aboutMe)
                                 self.textBlock("Living", subTitle: self.viewModel.aboutMe)
                             }
+                            
+                            Spacer()
                         }
                         
-                        HStack(spacing: 30) {
-                            Spacer()
-                            HapticButton(action: {}) {
-                                Image("msg_profile_icon")
+                        VStack(spacing: 0) {
+                            HStack(spacing: 30) {
+                                Spacer()
+                                HapticButton(action: {}) {
+                                    Image("msg_profile_icon")
+                                        .aspectRatio(.fit)
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(.hOrange)
+                                        .padding(20)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 32.5)
+                                                .stroke(Color.hOrange, lineWidth: 3)
+                                        )
+                                    
+                                }
+                                HapticButton(action: {}) {
+                                    Image("heart_profile_icon")
                                     .aspectRatio(.fit)
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(.hOrange)
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(.hOrange)
                                     .padding(20)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 32.5)
                                             .stroke(Color.hOrange, lineWidth: 3)
                                     )
-                                
+                                }
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            
+                            Button(action: { self.shouldReport.toggle() }) {
+                                Text("Block or report profile")
+                                    .font(.regular(14))
+                                    .foregroundColor(.white)
                             }
-                            HapticButton(action: {}) {
-                                Image("heart_profile_icon")
-                                .aspectRatio(.fit)
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(.hOrange)
-                                .padding(20)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 32.5)
-                                        .stroke(Color.hOrange, lineWidth: 3)
-                                )
-                            }
-                            Spacer()
-                        }.padding(.bottom, 30)
+                        }.padding(.top, 5)
                     }
-                }.padding(.horizontal)
+                }.padding(.horizontal, 25)
             }
         }
     }
@@ -216,18 +235,36 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
         }
     }
     
-    func carusel(_ title: String, images: [UIImage]) -> some View {
-        
-        VStack(alignment: .leading) {
+    func carusel(_ title: String, unlocked: Binding<Int>, images: [UIImage]) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
             Text(title).font(.regular(24)).foregroundColor(.white)
             ScrollView(.horizontal) {
-                HStack {
-                    ForEach(0 ..< images.count) {
-                        PolaroidCard<EmptyView>(image: images[$0], cardWidth: 92).rotationEffect(.degrees($0.isMultiple(of: 2) ? 5 : -5))
+                HStack(spacing: 15) {
+                    ForEach(0 ..< images.count) { index in
+                        PolaroidCard<EmptyView>(
+                            image: images[index],
+                            cardWidth: 92,
+                            overlay: Color.black.aspectRatio(1, contentMode: .fit)
+                                .opacity(index <= unlocked.wrappedValue ? 0 : 1)
+                                .overlay(Text("+")
+                                    .font(.ultraLight(48))
+                                    .foregroundColor(.hOrange)
+                                    .offset(x: 0, y: -4)
+                                    .opacity(self.caruselItemEnabledForOpening(index, unlockedIndex: unlocked.wrappedValue) ? 1 : 0)).onTapGesture {
+                                        if self.caruselItemEnabledForOpening(index, unlockedIndex: unlocked.wrappedValue) {
+                                            unlocked.wrappedValue += 1
+                                        }
+                            }
+                        ).rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
                     }
                 }.padding(.vertical, 15)
+                    .padding(.horizontal, 5)
             }
         }
+    }
+    
+    func caruselItemEnabledForOpening(_ index: Int, unlockedIndex: Int) -> Bool {
+        index == unlockedIndex + 1
     }
 }
 

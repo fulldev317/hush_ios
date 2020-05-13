@@ -36,30 +36,44 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
-    
+    @State private var selectedMessage: HushConversation?
     
     // MARK: - Lifecycle
     
     var body: some View {
-        ScrollView {
-        VStack(spacing: 16) {
-            header([Text("Messages").font(.thin(48)).foregroundColor(.hOrange)])
-                .padding(.bottom, 25)
-            Rectangle().frame(height: 0.9).foregroundColor(Color(0x4F4F4F))
-            TextField("Search...", text: $viewModel.searchQuery).foregroundColor(Color(0x9B9B9B))
-                .textFieldStyle(SearchTextFieldStyle())
-            
-                VStack(spacing: 0) {
-                    ForEach(viewModel.items) { message in
-                        NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(message)).withoutBar()) {
-                            MessagesCell(message: message).padding(.horizontal, 16)
-                        }.buttonStyle(PlainButtonStyle())
-                    }.onDelete { (set) in
-                        print(set)
-                    }
-                }
+        ZStack {
+            if selectedMessage != nil {
+                NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(selectedMessage!))
+                    .withoutBar()
+                    .onDisappear { self.selectedMessage = nil }, isActive: .constant(true), label: EmptyView.init)
             }
-        }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
+            
+            VStack(spacing: 0) {
+                List {
+                    TextField("Search...", text: $viewModel.searchQuery).foregroundColor(Color(0x9B9B9B))
+                        .textFieldStyle(SearchTextFieldStyle())
+                        .listRowBackground(Color.black)
+                        .padding(.bottom)
+                        .listRowInsets(.init())
+                    
+                    ForEach(viewModel.items) { message in
+    //                    NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(message)).withoutBar()) {
+    //
+    //                    }.buttonStyle(PlainButtonStyle())
+                        MessagesCell(message: message).padding(.horizontal, 16)
+                        .listRowInsets(.init())
+                            .onTapGesture {
+                                self.selectedMessage = message
+                        }
+                        }.onDelete(perform: self.viewModel.deleteContersation)
+                        .background(Color.black)
+                }.listStyle(DefaultListStyle())
+                .withoutBar()
+                .background(Color.black)
+                    .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+                    .appearenceModifier(path: \UITableView.separatorStyle, value: .none)
+            }
+        }
     }
 }
 
@@ -68,13 +82,7 @@ struct MessagesView_Previews: PreviewProvider {
         Group {
             NavigationView {
                 MessagesView(viewModel: MessagesViewModel())
-            }.previewDevice(.init(rawValue: "iPhone SE"))
-            NavigationView {
-                MessagesView(viewModel: MessagesViewModel())
-            }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView {
-                MessagesView(viewModel: MessagesViewModel())
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
+            }
         }
     }
 }

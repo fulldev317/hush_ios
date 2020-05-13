@@ -13,14 +13,10 @@ struct ContentMessageView: View {
     var time: Double
     var contentMessage: String
     var isCurrentUser: Bool
+    let shouldShowDate: Bool
     
     var body: some View {
-        HStack(alignment: .bottom, spacing: 20) {
-            
-            if isCurrentUser {
-                Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
-            }
-        
+        VStack(alignment: isCurrentUser ? .trailing : .leading, spacing: 4) {
             HStack {
                 Text(contentMessage)
                     .padding(10)
@@ -28,8 +24,12 @@ struct ContentMessageView: View {
                 Spacer()
             }.background(background())
         
-            if !isCurrentUser {
-                Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+            if shouldShowDate {
+                if !isCurrentUser {
+                    Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+                } else {
+                    (Text(getTime()) + Text(" | Delivered")).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+                }
             }
         }.padding(.horizontal, 16)
     }
@@ -47,7 +47,7 @@ struct ContentMessageView: View {
         
         let date = Date(timeIntervalSince1970: time)
         let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
+        formatter.dateFormat = "MM:dd:yyyy HH:MM"
         formatter.amSymbol = "AM"
         formatter.pmSymbol = "PM"
         
@@ -57,9 +57,10 @@ struct ContentMessageView: View {
 
 struct ContentMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            ContentMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false)
-            ContentMessageView(time: 43547890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: true)
-        }
+        VStack(spacing: 10) {
+            ContentMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false, shouldShowDate: false).padding(.trailing, 70)
+            ContentMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false, shouldShowDate: true).padding(.trailing, 70)
+            ContentMessageView(time: 43547890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: true, shouldShowDate: true).padding(.leading, 70)
+        }.background(Color.black).previewLayout(.sizeThatFits)
     }
 }
