@@ -25,13 +25,20 @@ struct SendTextField: View {
                 self.onsend(self.text)
                 self.text = ""
             }) {
-                Text("Send")
-                    .font(.regular(17))
-                    .foregroundColor(Color(0x9B9B9B))
+                Image("paperplane")
+                    .renderingMode(.template)
+                    .foregroundColor(.white)
+                    .padding()
             }
         }
-        .padding(.horizontal, 15)
+        .padding(.leading, 15)
         .frame(height: height)
         .background(Color(0x4F4F4F).cornerRadius(8))
+    }
+}
+
+struct SendTextField_Previews: PreviewProvider {
+    static var previews: some View {
+        SendTextField(placeholder: "SAD", onsend: {_ in}).previewLayout(.sizeThatFits)
     }
 }

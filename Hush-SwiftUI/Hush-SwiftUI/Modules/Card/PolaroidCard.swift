@@ -26,6 +26,7 @@ struct PolaroidCard<Content: View>: View {
     
     var image: UIImage
     var cardWidth: CGFloat
+    var overlay: AnyView = AnyView(EmptyView())
     var bottom: Content = EmptyView() as! Content
     
     private let cardDimention: CGFloat = 3.5 / 4.2
@@ -44,6 +45,7 @@ struct PolaroidCard<Content: View>: View {
             VStack(spacing: 0) {
                 Image(uiImage: image)
                     .aspectRatio()
+                    .overlay(overlay)
                     .frame(width: imgSide, height: imgSide)
                     .padding([.leading, .top, .trailing], (cardWidth - imgSide) / 2)
                     .clipShape(Squere(x: (cardWidth - imgSide) / 2, y: (cardWidth - imgSide) / 2, side: imgSide))
@@ -51,6 +53,12 @@ struct PolaroidCard<Content: View>: View {
                 bottom
             }
         }.frame(width: cardWidth, height: height)
+    }
+}
+
+extension PolaroidCard {
+    init<Overlay: View>(image: UIImage, cardWidth: CGFloat, overlay: Overlay) {
+        self.init(image: image, cardWidth: cardWidth, overlay: AnyView(overlay), bottom: EmptyView() as! Content)
     }
 }
 
