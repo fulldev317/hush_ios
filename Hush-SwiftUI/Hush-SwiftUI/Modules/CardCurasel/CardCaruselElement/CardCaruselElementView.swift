@@ -73,6 +73,5 @@ struct CardCaruselElement_Previews: PreviewProvider {
     static var previews: some View {
         CardCaruselElementView(rotation: .degrees(5))
             .padding()
-//            .scaleEffect(0.6)
     }
 }

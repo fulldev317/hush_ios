@@ -48,8 +48,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func offset(_ card: Int) -> CGFloat {
-        print(card, card - cardIndex)
-        return -10 * CGFloat((card - cardIndex) % 3)
+        -10 * CGFloat((card - cardIndex) % 3)
     }
     
     private func flyAwayOffset(_ index: Int) -> CGFloat {

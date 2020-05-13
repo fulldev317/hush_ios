@@ -32,24 +32,14 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     var body: some View {
         GeometryReader { proxy in
             TabBarView(selectedTab: self.$currentTab) {
-                if self.currentTab == .discoveries {
-                    self.discovery()
-                }
-
-                if self.currentTab == .stories {
-                    self.stories()
-                }
-
-                if self.currentTab == .carusel {
-                    CardCaruselView(viewModel: CardCuraselViewModel())
-                }
-
-                if self.currentTab == .chats {
-                    MessagesView(viewModel: self.app.messages)
-                }
-
-                if self.currentTab == .profile {
-                    MyProfileView(viewModel: self.app.profile)
+                ZStack {
+                    self.discovery().zIndex(self.currentTab == .discoveries ? 1 : 0)
+                    self.stories().zIndex(self.currentTab == .stories ? 1 : 0)
+                    NavigationView {
+                        CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
+                    }.zIndex(self.currentTab == .carusel ? 1 : 0)
+                    MessagesView(viewModel: self.app.messages).zIndex(self.currentTab == .chats ? 1 : 0)
+                    MyProfileView(viewModel: self.app.profile).zIndex(self.currentTab == .profile ? 1 : 0)
                 }
             }.frame(width: proxy.size.width, height: proxy.size.height)
             .accentColor(.hOrange)
@@ -77,21 +67,21 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     }
     
     func stories() -> some View {
-        
-        HeaderedView(header: {
+        VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Story Wall").foregroundColor(.hOrange).font(.ultraLight(48)).padding(.leading, 30)
-                    Text("User stories near you").foregroundColor(.white).font(.thin()).padding(.leading, 30)
-                }
+                    Text("Story Wall").foregroundColor(.hOrange).font(.ultraLight(48))
+                    Text("User stories near you").foregroundColor(.white).font(.thin())
+                }.padding(30)
                 Spacer()
                 HapticButton(action: self.showStoriesSettings) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
             }
-        }, content: {
+            
             StoriesView(viewModel: StoriesViewModel())
-        }).addPartialSheet()
+        }.addPartialSheet()
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
     
     func discovery() -> some View {
