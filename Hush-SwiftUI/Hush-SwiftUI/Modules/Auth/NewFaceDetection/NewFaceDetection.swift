@@ -14,25 +14,29 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     
     // SwiftUI bug doesn't allow to move this to ViewModel
     @State private var maskEnabled = false
+    @State private var sessionRunning = false
     
     var body: some View {
         ZStack {
             if viewModel.capturedImage != nil {
-                NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!), isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
+                NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!).withoutBar().onAppear {
+                    self.sessionRunning = false
+                }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
             }
             
             VStack(spacing: 0) {
-                arView
+                arView.onAppear { self.sessionRunning = true; self.viewModel.shouldTakeImage = false; self.viewModel.capturedImage = nil }
                 maskMenu
             }.background(Color.black.edgesIgnoringSafeArea(.all))
-        }
+        }.withoutBar()
     }
     
     private var arView: some View {
         ARFaceDetectorView(mask: viewModel.mask,
                            maskEnabled: maskEnabled,
                            shouldTakeImage: viewModel.shouldTakeImage,
-                           capturedImage: $viewModel.capturedImage)
+                           capturedImage: $viewModel.capturedImage,
+                           sessionRunning: $sessionRunning)
             .edgesIgnoringSafeArea(.top)
             .overlay(slider, alignment: .bottom)
             .overlay(categoryImages, alignment: .bottom)

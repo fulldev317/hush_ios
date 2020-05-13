@@ -15,6 +15,7 @@ struct ARFaceDetectorView: UIViewControllerRepresentable {
     let maskEnabled: Bool
     let shouldTakeImage: Bool
     @Binding var capturedImage: UIImage?
+    @Binding var sessionRunning: Bool
     
     func makeUIViewController(context: Context) -> FaceTrackingViewController {
         FaceTrackingViewController()
@@ -25,6 +26,15 @@ struct ARFaceDetectorView: UIViewControllerRepresentable {
         faceTrackingViewController.maskEnabled = maskEnabled
         faceTrackingViewController.captureCompletion = shouldTakeImage ?
             { self.capturedImage = $0 } : nil
+        
+        if sessionRunning && faceTrackingViewController.session?.isRunning != true {
+            faceTrackingViewController.viewDidLoad()
+        }
+        
+        if !sessionRunning && faceTrackingViewController.session?.isRunning != false {
+            faceTrackingViewController.session?.stopRunning()
+            faceTrackingViewController.didReceiveMemoryWarning()
+        }
     }
 }
 
@@ -34,7 +44,7 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     fileprivate var captureCompletion: ((UIImage) -> Void)?
     
     // AVCapture variables to hold sequence data
-    private var session: AVCaptureSession?
+    fileprivate var session: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
     
     private var videoDataOutput: AVCaptureVideoDataOutput?
@@ -543,6 +553,7 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
                         screenImageView.image = screenshot
                         session?.stopRunning()
                         completion(screenshot)
+                        captureCompletion = nil
                     }
                 } else {
                     imageView.layer.removeFromSuperlayer()
