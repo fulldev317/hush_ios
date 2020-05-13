@@ -16,10 +16,10 @@ typealias KolodaView = Koloda.KolodaView
 class OwnKoloda: KolodaView {
     
     var w: CGFloat {
-        SCREEN_WIDTH * 510 / 447
+        SCREEN_WIDTH
     }
     var h: CGFloat {
-        w
+        w * 511 / 628
     }
     
     override init(frame: CGRect) {
@@ -105,7 +105,11 @@ extension KolodaViewHolder {
             
             let view = UIView(frame: koloda.frameForCard(at: index))
             view.backgroundColor = .clear
-            view.rotate(angle: index.isMultiple(of: 2) ? 5 : -5)
+            view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//            view.rotate(angle: index.isMultiple(of: 2) ? 5 : -5)
+            
+            let radians = 5 / 180.0 * CGFloat.pi
+            view.transform = CGAffineTransform(rotationAngle: index.isMultiple(of: 2) ? radians : -radians).scaledBy(x: 1.2, y: 1.2).translatedBy(x: 0, y: -20)
             view.addSubview(parent.content(index))
             
             return view
@@ -136,3 +140,4 @@ extension KolodaViewHolder {
         }
     }
 }
+

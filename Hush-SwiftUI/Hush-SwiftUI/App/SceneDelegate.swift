@@ -56,7 +56,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.rootViewController = UIHostingController(rootView:
                 NavigationView {
 //                    if bool {
-//                        RootTabBarView(viewModel: RootTabBarViewModel()).withoutBar()
+//                        RootTabBarView(viewModel: RootTabBarViewModel())
+//                            .hostModalPresenter()
+//                            .edgesIgnoringSafeArea(.all)
+//                            .withoutBar()
 //                    } else {
 //                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
 //                    }

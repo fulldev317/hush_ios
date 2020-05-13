@@ -41,7 +41,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
 
                 if self.currentTab == .carusel {
-                    self.photoBooth()
+                    CardCaruselView(viewModel: CardCuraselViewModel())
                 }
 
                 if self.currentTab == .chats {
@@ -60,6 +60,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 self.app.stories.settingsViewModel.closeAPISelectorCompletion = self.showStoriesSettings
             }
             .overlay(self.photoBoothOverlay)
+            .withoutBar()
         }
     }
     
@@ -69,17 +70,10 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 CardCaruselTutorialView()
                     .onTapGesture { self.isFirstLaunch.wrappedValue.toggle() }
             }
+        }.onAppear {
+            // force refresh layout
+            self.isFirstLaunch.objectWillChange.send()
         }
-    }
-    
-    func photoBooth() -> some View {
-        HeaderedView(header: {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("PhotoBooth").foregroundColor(.hOrange).font(.ultraLight(48))
-            }.padding()
-        }, content: {
-            CardCuraselView(viewModel: CardCuraselViewModel())
-        })
     }
     
     func stories() -> some View {
