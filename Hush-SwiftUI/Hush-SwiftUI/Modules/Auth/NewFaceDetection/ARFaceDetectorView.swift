@@ -542,6 +542,7 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
                     if let completion = captureCompletion, let screenshot = screenshot {
                         screenImageView.image = screenshot
                         session?.stopRunning()
+                        completion(screenshot)
                     }
                 } else {
                     imageView.layer.removeFromSuperlayer()
@@ -552,30 +553,15 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
     
     private var lastCaptureImage: UIImage?
     private let screenshotLayer = CALayer()
-//    private lazy var captureImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.isHidden = false
-//        imageView.contentMode = .scaleAspectFill
-//        view.addSubview(imageView)
-//
-//        NSLayoutConstraint.activate([
-//            view.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-//            view.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-//            view.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-//            view.topAnchor.constraint(equalTo: imageView.topAnchor),
-//        ])
-//
-//        return imageView
-//    }()
-//
     private var screenshot: UIImage? {
-        let imageLayer = CALayer()
-        imageLayer.frame = view.bounds
-        imageLayer.contents = lastCaptureImage?.cgImage
-//        imageLayer.contentsGravity = .resizeAspectFill
+        guard let lastCaptureImage = lastCaptureImage else { return nil }
+        
+        let imageView = UIImageView(image: lastCaptureImage)
+        imageView.contentMode = .scaleAspectFill
+        imageView.frame = view.bounds
         
         screenshotLayer.frame = detectionOverlayLayer!.bounds
-        screenshotLayer.addSublayer(imageLayer)
+        screenshotLayer.addSublayer(imageView.layer)
         screenshotLayer.addSublayer(detectionOverlayLayer!)
         
         UIGraphicsBeginImageContext(view.bounds.size)
@@ -583,9 +569,9 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
         
         screenshotLayer.render(in: context)
         
-        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return screenShot
+        return screenshot
     }
     
     /// - Tag: DrawPaths
@@ -713,7 +699,7 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
                     let imgWidth = ciImg.extent.width
                     let imgHeight = ciImg.extent.height
                     let rec = CGRect(x: 0, y: 0, width: imgHeight, height: imgWidth)
-                    if let cgImage = CIContext().createCGImage(ciImg.oriented(.leftMirrored), from: CGRect(origin: .zero, size: ciImg.extent.size)) {
+                    if let cgImage = CIContext().createCGImage(ciImg.oriented(.leftMirrored), from: rec) {
                         self.lastCaptureImage = UIImage(cgImage: cgImage)
                     }
                     
