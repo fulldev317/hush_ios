@@ -16,16 +16,16 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     @State private var maskEnabled = false
     
     var body: some View {
-        VStack(spacing: 0) {
+        ZStack {
             if viewModel.capturedImage != nil {
-                Image(uiImage: viewModel.capturedImage!)
-                    .resizable()
-                    .scaledToFit()
-            } else {
+                NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!), isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
+            }
+            
+            VStack(spacing: 0) {
                 arView
                 maskMenu
-            }
-        }.background(Color.black.edgesIgnoringSafeArea(.all))
+            }.background(Color.black.edgesIgnoringSafeArea(.all))
+        }
     }
     
     private var arView: some View {

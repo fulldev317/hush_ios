@@ -55,19 +55,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         pub = app.$logedIn.sink { bool in
             self.window?.rootViewController = UIHostingController(rootView:
                 NavigationView {
-//                    if bool {
-//                        RootTabBarView(viewModel: RootTabBarViewModel())
-//                            .hostModalPresenter()
-//                            .edgesIgnoringSafeArea(.all)
-//                            .withoutBar()
-//                    } else {
-//                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
-//                    }
+                    if bool {
+                        RootTabBarView(viewModel: RootTabBarViewModel())
+                            .hostModalPresenter()
+                            .edgesIgnoringSafeArea(.all)
+                            .withoutBar()
+                    } else {
+                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                    }
                     
-                    RootTabBarView(viewModel: RootTabBarViewModel())
-                        .hostModalPresenter()
-                        .edgesIgnoringSafeArea(.all)
-                        .withoutBar()
+//                    RootTabBarView(viewModel: RootTabBarViewModel())
+//                        .hostModalPresenter()
+//                        .edgesIgnoringSafeArea(.all)
+//                        .withoutBar()
                     
 //                    NewFaceDetection(viewModel: NewFaceDetectionViewModel()).withoutBar()
 //                    FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()
