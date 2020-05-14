@@ -7,7 +7,7 @@
 //
 
 import Combine
-import CoreLogic
+import Foundation
 
 enum MessagesFilter: CaseIterable {
     case all

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import CoreLogic
 
 struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
     

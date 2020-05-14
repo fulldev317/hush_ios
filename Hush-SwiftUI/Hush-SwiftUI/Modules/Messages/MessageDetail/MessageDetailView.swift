@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import CoreLogic
 
 struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScreen {
     
@@ -48,17 +47,14 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
             ScrollView {
                 VStack(spacing: 10) {
                     ForEach(self.viewModel.messages(), id: \.id) { message in
-                        ContentMessageView(time: message.time, contentMessage: message.text, isCurrentUser: message.userID == "SELF", shouldShowDate: self.messageShouldShowDate(message))
-                            .rotationEffect(.degrees(180))
-                            .padding(message.userID == "SELF" ? .trailing : .leading, 70)
+                        self.viewForMessage(message)
                     }
                 }.padding(.bottom, 30)
             }
             .rotationEffect(.degrees(180))
             
-            SendTextField(placeholder: "SAD", onsend: {
-                self.viewModel.sendMessage($0)
-            }).padding(.horizontal, 15)
+            SendTextField(placeholder: "SAD", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
+                .padding(.horizontal, 15)
 
             Spacer(minLength: keyboardHeight - 70)
         }
@@ -66,9 +62,41 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
         .background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }
     
+    private func viewForMessage(_ message: HushMessage) -> some View {
+        Group {
+            if message.isText {
+                viewForTextMessage(message)
+            }
+            
+            if message.isImage {
+                viewForImageMessage(message)
+            }
+        }
+    }
+    
+    private func viewForTextMessage(_ message: HushMessage) -> some View {
+        guard case let .text(textMessage) = message else { fatalError() }
+        return ContentTextMessageView(
+            time: message.time,
+            contentMessage: textMessage.text,
+            isCurrentUser: message.userID == "SELF",
+            shouldShowDate: self.messageShouldShowDate(message)
+        ).rotationEffect(.degrees(180))
+        .padding(message.userID == "SELF" ? .trailing : .leading, 70)
+        
+    }
+    
+    private func viewForImageMessage(_ message: HushMessage) -> some View {
+        guard case let .image(imageMessage) = message else { fatalError() }
+        return ContentImageMessageView(image: imageMessage.image, time: message.createdAt, isCurrentUser: true, shouldShowDate: self.messageShouldShowDate(message))
+            .rotationEffect(.degrees(180))
+            .padding(message.userID == "SELF" ? .trailing : .leading, 70)
+        
+    }
+    
     func messageShouldShowDate(_ message: HushMessage) -> Bool {
         let messages = viewModel.messages()
-        guard let index = messages.firstIndex(where: { $0.id == message.id }), index > 0 else { return true }
+        guard let index = messages.firstIndex(of: message), index > 0 else { return true }
         return messages[index - 1].userID != message.userID
     }
 }

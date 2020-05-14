@@ -12,12 +12,26 @@ struct SendTextField: View {
     
     let placeholder: String
     let onsend: (String) -> Void
+    let onimage: (UIImage) -> Void
     
     @State private var text: String = ""
     @State private var height: CGFloat = 40
+    @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
+    private let imagePicker = DVImagePicker()
     
     var body: some View {
         HStack {
+            HapticButton(action: {
+                self.imagePicker.showActionSheet(from: self.modalPresenterManager.presenter!) { result in
+                    guard case let .success(image) = result else { return }
+                    self.onimage(image)
+                }
+            }) {
+                Image("send_photo")
+                    .renderingMode(.template)
+                    .foregroundColor(.white)
+                    .padding()
+            }
             MultilineTextField(placeholder, text: $text, height: $height)
                 .padding(.vertical, 20)
                 .foregroundColor(.white)
@@ -29,9 +43,8 @@ struct SendTextField: View {
                     .renderingMode(.template)
                     .foregroundColor(.white)
                     .padding()
-            }
+            }.disabled(text.isEmpty)
         }
-        .padding(.leading, 15)
         .frame(height: height)
         .background(Color(0x4F4F4F).cornerRadius(8))
     }
@@ -39,6 +52,6 @@ struct SendTextField: View {
 
 struct SendTextField_Previews: PreviewProvider {
     static var previews: some View {
-        SendTextField(placeholder: "SAD", onsend: {_ in}).previewLayout(.sizeThatFits)
+        SendTextField(placeholder: "SAD", onsend: {_ in}, onimage: {_ in}).previewLayout(.sizeThatFits)
     }
 }

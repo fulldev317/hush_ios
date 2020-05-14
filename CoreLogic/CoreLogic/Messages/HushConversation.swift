@@ -6,44 +6,66 @@
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
-public struct HushMessage {
+import UIKit
+
+private protocol HushMessageProtocol {
+    var id: String { get }
+    var userID: String { get }
+    var time: Date { get }
+}
+
+struct HushTextMessage: Hashable, Equatable, HushMessageProtocol {
+    var id: String = UUID().uuidString
+    var userID: String
+    var text: String
+    var time: Date = Date()
+}
+
+struct HushImageMessage: Hashable, Equatable, HushMessageProtocol {
+    var id: String = UUID().uuidString
+    var userID: String
+    var image: UIImage
+    var time: Date = Date()
+}
+
+enum HushMessage: Hashable, Equatable {
+    case text(HushTextMessage)
+    case image(HushImageMessage)
     
-    public let id: String
-    public let userID: String
-    public let text: String
-    public let time: Double
+    var id: String { messageDetail(at: \.id) }
+    var userID: String { messageDetail(at: \.userID) }
+    var time: TimeInterval { messageDetail(at: \.time).timeIntervalSince1970 }
+    var createdAt: Date { messageDetail(at: \.time) }
     
-    public init(_ id: String = UUID().uuidString, userID: String, text: String, time: Double) {
-        self.id = id
-        self.userID = userID
-        self.text = text
-        self.time = time
+    var isText: Bool {
+        guard case .text = self else { return false }
+        return true
+    }
+    
+    var isImage: Bool {
+        guard case .image = self else { return false }
+        return true
+    }
+    
+    private func messageDetail<Target>(at keyPath: KeyPath<HushMessageProtocol, Target>) -> Target {
+        switch self {
+        case let .text(message): return message[keyPath: keyPath]
+        case let .image(message): return message[keyPath: keyPath]
+        }
     }
 }
 
-public struct HushConversation {
-    
-    public let id: String
-    public let username: String
-    public let text: String
-    public let imageURL: String
-    public let time: Double
-    public var messages: [HushMessage]
-    
-    public init(_ id: String = UUID().uuidString, username: String, text: String, imageURL: String, time: Double, messages: [HushMessage]) {
-        
-        self.id = id
-        self.username = username
-        self.text = text
-        self.imageURL = imageURL
-        self.time = time
-        self.messages = messages
-    }
+struct HushConversation: Hashable, Equatable {
+    var id: String = UUID().uuidString
+    var username: String
+    var text: String
+    var imageURL: String
+    var time: Date = Date()
+    var messages: [HushMessage]
     
     // TODO: - Temp solution
     
-    public mutating func sendMessage(_ message: HushMessage) {
-        
+    mutating func sendMessage(_ message: HushMessage) {
         messages.insert(message, at: 0)
     }
 }

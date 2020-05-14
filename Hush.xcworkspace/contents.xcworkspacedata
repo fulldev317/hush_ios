@@ -11,9 +11,6 @@
       location = "group:Hush-SwiftUI/Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:CoreLogic/CoreLogic.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:hush-ios/Hush.xcodeproj">
    </FileRef>
 </Workspace>

@@ -8,31 +8,36 @@
 
 import SwiftUI
 import Combine
-import CoreLogic
 
 class MessageDetailViewModel: MessageDetailViewModeled {
     
-    @Published var changed = false
+    @Published private var changed = false
     
     // MARK: - Properties
 
-    var conv: HushConversation!
+    var conversation: HushConversation!
     
     init(_ conversation: HushConversation) {
-        self.conv = conversation
+        self.conversation = conversation
     }
     
     func messages() -> [HushMessage] {
-        conv.messages
+        conversation.messages
     }
     
     func name() -> String {
-        conv.username
+        conversation.username
     }
     
     func sendMessage(_ text: String) {
-        
-        conv.sendMessage(HushMessage(userID: "SELF", text: text, time: Date().timeIntervalSince1970))
+        let message = HushTextMessage(userID: "SELF", text: text)
+        conversation.sendMessage(.text(message))
+        changed.toggle()
+    }
+    
+    func sendImage(_ image: UIImage) {
+        let message = HushImageMessage(userID: "SELF", image: image)
+        conversation.sendMessage(.image(message))
         changed.toggle()
     }
 }
