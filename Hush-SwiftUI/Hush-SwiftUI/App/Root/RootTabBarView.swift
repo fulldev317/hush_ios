@@ -34,7 +34,16 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         GeometryReader { proxy in
             TabBarView(selectedTab: self.$currentTab) {
                 ZStack {
-                    self.discovery().zIndex(self.currentTab == .discoveries ? 1 : 0)
+                    if self.currentTab == .chats {
+                        Color.clear.onAppear {
+                            UNUserNotificationCenter.current()
+                                .requestAuthorization(options: [.alert, .sound]) { _, _ in }
+                        }
+                    }
+                    
+                    NavigationView {
+                        self.discovery().withoutBar()
+                    }.zIndex(self.currentTab == .discoveries ? 1 : 0)
                     self.stories().zIndex(self.currentTab == .stories ? 1 : 0)
                     NavigationView {
                         CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
@@ -69,16 +78,16 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     func messages() -> some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 20) {
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Messages").foregroundColor(.hOrange).font(.ultraLight(48))
-                    }.padding(30)
+                    }.padding(.leading, 25)
                     Spacer()
                     HapticButton(action: { self.selectMessagesFilter.toggle() }) {
                         Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                     }
-                }
+                }.padding(.top, -10)
                 
                 MessagesView(viewModel: app.messages)
             }.withoutBar()
@@ -90,12 +99,12 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     }
     
     func stories() -> some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Story Wall").foregroundColor(.hOrange).font(.ultraLight(48))
                     Text("User stories near you").foregroundColor(.white).font(.thin())
-                }.padding(30)
+                }.padding(.leading, 25)
                 Spacer()
                 HapticButton(action: self.showStoriesSettings) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
@@ -108,21 +117,20 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     }
     
     func discovery() -> some View {
-        
-        HeaderedView(header: {
+        VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Discovery").foregroundColor(.hOrange).font(.ultraLight(48)).padding(.leading, 30)
-                    Text("Location").foregroundColor(.white).font(.thin()).padding(.leading, 30)
+                    Text("Discovery").foregroundColor(.hOrange).font(.ultraLight(48))
+                    Text("Location").foregroundColor(.white).font(.thin())
                 }
                 Spacer()
                 HapticButton(action: self.showDiscoverySettings) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
-            }
-        }, content: {
+            }.padding(.leading, 25)
+            
             DiscoveryView(viewModel:  self.app.discovery)
-        }).padding(.top, 0)
+        }.frame(width: SCREEN_WIDTH)
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
@@ -148,16 +156,11 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
 
 struct RootTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            NavigationView {
-                RootTabBarView(viewModel: RootTabBarViewModel())
-            }
-//            NavigationView {
-//                RootTabBarView(viewModel: RootTabBarViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-//            NavigationView {
-//                RootTabBarView(viewModel: RootTabBarViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone 8"))
+        NavigationView {
+            RootTabBarView(viewModel: RootTabBarViewModel())
+                .hostModalPresenter()
+                .edgesIgnoringSafeArea(.all)
+                .withoutBar()
         }.previewEnvironment()
     }
 }

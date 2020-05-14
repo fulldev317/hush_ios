@@ -10,8 +10,19 @@ import SwiftUI
 
 struct HSegmentedControl: View {
     
-    @Binding var selected: Int
-    var list: [String] = []
+    private var selected: Binding<Int>?
+    private var selectedList: Binding<Set<Int>>?
+    private var list: [String] = []
+    
+    init(selected: Binding<Int>, list: [String]) {
+        self.selected = selected
+        self.list = list
+    }
+    
+    init(selectedList: Binding<Set<Int>>, list: [String]) {
+        self.selectedList = selectedList
+        self.list = list
+    }
     
     var body: some View {
         HStack(spacing: 16) {
@@ -21,13 +32,30 @@ struct HSegmentedControl: View {
         }
     }
     
+    private func isIndexSelected(_ index: Int) -> Bool {
+        if let selected = selected {
+            return selected.wrappedValue == index
+        } else if let selectedList = selectedList {
+            return selectedList.wrappedValue.contains(index)
+        } else {
+            fatalError()
+        }
+    }
+    
     func borderedButton(_ index: Int) -> some View {
        
         let title = list[index]
-        let isSelected = index == selected
+        let isSelected = isIndexSelected(index)
         
         return HapticButton(action: {
-            self.selected = index
+            self.selected?.wrappedValue = index
+            
+            guard let selectedList = self.selectedList else { return }
+            if selectedList.wrappedValue.contains(index) {
+                selectedList.wrappedValue.remove(index)
+            } else {
+                selectedList.wrappedValue.insert(index)
+            }
         }) {
             ZStack {
                 RoundedRectangle(cornerRadius: 6)
@@ -35,7 +63,13 @@ struct HSegmentedControl: View {
                     .foregroundColor(.clear)
                     .background(isSelected ? Color.hOrange : Color.clear)
                     .frame(minHeight: 40, maxHeight: 48).cornerRadius(6)
-                Text(title).padding(2).minimumScaleFactor(0.6).lineLimit(1).font(.light()).foregroundColor(isSelected ? .black : .white)
+                Text(title)
+                    .kerning(1)
+                    .padding(2)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
+                    .font(.light())
+                    .foregroundColor(isSelected ? .black : .white)
             }
         }
     }
@@ -48,7 +82,7 @@ struct HSegmentedControl_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
-            HSegmentedControl(selected: $selected, list: ["1", "2", "3", "4"])
+            HSegmentedControl(selected: $selected, list: ["Male", "Female", "Couple", "Gay"])
         }
     }
 }

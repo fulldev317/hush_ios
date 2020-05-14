@@ -71,7 +71,7 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
+		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* DiscoveriesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* DiscoveriesSettingsView.swift */; };
@@ -160,7 +160,9 @@
 		8993D7AC246961B6002E636D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7AB246961B6002E636D /* TabBarView.swift */; };
 		8993D7AF2469A970002E636D /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7AE2469A970002E636D /* StoryView.swift */; };
 		8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */; };
-		89C77B252465E61600705899 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* SwiftPackageProductDependency */; };
+		89B551FF246D4A41004DC7C6 /* DeviceScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B551FE246D4A41004DC7C6 /* DeviceScale.swift */; };
+		89B55202246D9F96004DC7C6 /* Zero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55201246D9F96004DC7C6 /* Zero.swift */; };
+		89C77B252465E61600705899 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* PartialSheet */; };
 		89C77B272465EC3700705899 /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B262465EC3700705899 /* SingleSlider.swift */; };
 		89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B282465EC6900705899 /* SliderViewProtocol.swift */; };
 		89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */; };
@@ -337,6 +339,8 @@
 		8993D7AB246961B6002E636D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		8993D7AE2469A970002E636D /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresenterWrapper.swift; sourceTree = "<group>"; };
+		89B551FE246D4A41004DC7C6 /* DeviceScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScale.swift; sourceTree = "<group>"; };
+		89B55201246D9F96004DC7C6 /* Zero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zero.swift; sourceTree = "<group>"; };
 		89C77B262465EC3700705899 /* SingleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSlider.swift; sourceTree = "<group>"; };
 		89C77B282465EC6900705899 /* SliderViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewProtocol.swift; sourceTree = "<group>"; };
 		89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModel.swift; sourceTree = "<group>"; };
@@ -348,11 +352,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
+				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
-				89C77B252465E61600705899 /* BuildFile in Frameworks */,
+				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +525,8 @@
 		154B26A92431CB4D00265C76 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				89B55200246D9F8E004DC7C6 /* Shapes */,
+				89B551FD246D4A39004DC7C6 /* Environment */,
 				8936B114246B40E8001F9254 /* UserDefault */,
 				8993D7A124686884002E636D /* ViewModifiers */,
 				896DDEFB2464955A00AC0F95 /* Preferences */,
@@ -930,6 +936,22 @@
 			path = Story;
 			sourceTree = "<group>";
 		};
+		89B551FD246D4A39004DC7C6 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				89B551FE246D4A41004DC7C6 /* DeviceScale.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		89B55200246D9F8E004DC7C6 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				89B55201246D9F96004DC7C6 /* Zero.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
 		89C77B2A2465F1E500705899 /* Sliders */ = {
 			isa = PBXGroup;
 			children = (
@@ -960,8 +982,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
-				89C77B242465E61600705899 /* SwiftPackageProductDependency */,
+				1579309E2435CAFC00EE428F /* QGrid */,
+				89C77B242465E61600705899 /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -992,8 +1014,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
-				89C77B232465E61600705899 /* RemoteSwiftPackageReference */,
+				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+				89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -1088,6 +1110,7 @@
 				8993D7AC246961B6002E636D /* TabBarView.swift in Sources */,
 				894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */,
 				8970B5F2246BFFF200740B92 /* CardCaruselElementView.swift in Sources */,
+				89B55202246D9F96004DC7C6 /* Zero.swift in Sources */,
 				8936B113246B321A001F9254 /* CardCaruselTutorialView.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
@@ -1168,6 +1191,7 @@
 				8936B116246B40FA001F9254 /* UserDefault.swift in Sources */,
 				89C77B272465EC3700705899 /* SingleSlider.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
+				89B551FF246D4A41004DC7C6 /* DeviceScale.swift in Sources */,
 				15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */,
 				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				8955A002246AD29400223FB7 /* StoriesSettingsView.swift in Sources */,
@@ -1426,7 +1450,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
+		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1434,7 +1458,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		89C77B232465E61600705899 /* RemoteSwiftPackageReference */ = {
+		89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
 			requirement = {
@@ -1445,14 +1469,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
+		1579309E2435CAFC00EE428F /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
+			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
 		};
-		89C77B242465E61600705899 /* SwiftPackageProductDependency */ = {
+		89C77B242465E61600705899 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89C77B232465E61600705899 /* RemoteSwiftPackageReference */;
+			package = 89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */

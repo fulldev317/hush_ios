@@ -61,7 +61,7 @@ struct CardCaruselElementView: View {
                 }.buttonStyle(PlainButtonStyle())
                 
                 NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(), isActive: self.$showUserProfile) {
-                    Image("more_card_icon").aspectRatio().frame(width: 45, height: 45)
+                    Image("profile_icon_carusel").aspectRatio().frame(width: 45, height: 45)
                 }.buttonStyle(PlainButtonStyle())
             }.padding()
         }.padding(.horizontal, 70 * deviceScale)
@@ -72,6 +72,7 @@ struct CardCaruselElementView: View {
 struct CardCaruselElement_Previews: PreviewProvider {
     static var previews: some View {
         CardCaruselElementView(rotation: .degrees(5))
+            .previewEnvironment()
             .padding()
     }
 }

@@ -132,7 +132,8 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             }.padding(.top, 20)
             Spacer()
         }.padding(.horizontal, 20)
-        .frame(height: 500)
+//        .frame(height: 500)
+        .fixedSize(horizontal: false, vertical: true)
         .withoutBar()
     }
     

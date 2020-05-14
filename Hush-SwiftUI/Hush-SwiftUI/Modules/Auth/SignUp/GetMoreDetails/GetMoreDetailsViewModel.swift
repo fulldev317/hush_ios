@@ -14,13 +14,13 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     // MARK: - Properties
     
     @Published var whatFors: [String] = ["Fun", "Chat", "Hookup", "Date"]
-    @Published var selectedWhatFor: Int = 0
+    @Published var selectedWhatFor: Set<Int> = []
     
-    @Published var genders: [String] = ["Male", "Female", "Couple", "Gay"]
+    @Published var genders: [String] = ["Male", "Female", "A Couple", "Gay"]
     @Published var selectedGender: Int = 0
     
-    @Published var lookingFors: [String] = ["Male", "Female", "Couple", "Gay"]
-    @Published var selectedLookingFors: Int = 0
+    @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
+    @Published var selectedLookingFors: Set<Int> = []
     
     @Published var birthday: String = ""
     

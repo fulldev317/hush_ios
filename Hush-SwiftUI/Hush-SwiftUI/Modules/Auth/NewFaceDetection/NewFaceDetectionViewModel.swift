@@ -55,4 +55,12 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
         mask = Mask(name: name, category: selectedCategory!)
         selectedCategory = nil
     }
+    
+    func selectCategory(_ category: MaskCategory) {
+        if selectedCategory == category {
+            selectedCategory = nil
+        } else {
+            selectedCategory = category
+        }
+    }
 }

@@ -55,7 +55,11 @@ struct KeyboardObserving: ViewModifier {
         content
             .background(Color.clear)
             .onReceive(Publishers.keyboardHeight) { keyboardHeight in
-                withAnimation(self.animation) {
+                if let animation = self.animation {
+                    withAnimation(animation) {
+                        self.keyboardHeight.wrappedValue = keyboardHeight
+                    }
+                } else {
                     self.keyboardHeight.wrappedValue = keyboardHeight
                 }
             }   

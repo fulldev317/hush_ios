@@ -60,5 +60,6 @@ protocol NewFaceDetectionViewModeled: ObservableObject {
     func reset()
     func done()
     
+    func selectCategory(_ category: MaskCategory)
     func selectMask(_ name: String)
 }
