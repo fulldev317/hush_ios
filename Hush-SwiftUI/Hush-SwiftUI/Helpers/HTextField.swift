@@ -30,7 +30,7 @@ struct HTextField: UIViewRepresentable {
         
         let field = UITextField()
         field.textColor = textColor
-        field.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: placeholderColor, .font: font])
+        field.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: placeholderColor, .font: font, .kern: 1])
         field.isSecureTextEntry = isSecure
         field.delegate = context.coordinator
         

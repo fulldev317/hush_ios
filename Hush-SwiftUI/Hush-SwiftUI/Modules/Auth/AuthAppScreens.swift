@@ -59,7 +59,7 @@ extension AuthAppScreens {
         HapticButton(action: action) {
             ZStack {
                 RoundedRectangle(cornerRadius: 6)
-                    .stroke(Color.white, lineWidth: 1)
+                    .stroke(Color.white, lineWidth: 0.5)
                     .foregroundColor(.clear)
                     .frame(minHeight: 45, maxHeight: 48)
                 Text(title).font(.light()).foregroundColor(.white)

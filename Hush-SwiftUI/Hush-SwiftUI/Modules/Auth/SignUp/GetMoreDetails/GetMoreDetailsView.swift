@@ -47,7 +47,6 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
                 
             pickers
-            
             borderedButton(action: {
                 self.app.logedIn = true
             }, title: "Submit").padding(.bottom, 55)
@@ -55,37 +54,29 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     }
     
     var pickers: some View {
-        Group {
-            Text("How do you describe yourself?").font(.thin()).foregroundColor(.white)
-            HSegmentedControl(selected: $viewModel.selectedGender, list: viewModel.genders)
-                .padding(.bottom, 16)
+        VStack(spacing: 20) {
+            VStack(spacing: 8) {
+                Text("How do you describe yourself?").font(.thin()).foregroundColor(.white)
+                HSegmentedControl(selected: $viewModel.selectedGender, list: viewModel.genders)
+            }
             
-            Text("Would like to meet new").font(.thin()).foregroundColor(.white)
-            HSegmentedControl(selected: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
-                .padding(.bottom, 28)
+            VStack(spacing: 8) {
+                Text("Would like to meet new").font(.thin()).foregroundColor(.white)
+                HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+            }
             
-            Text("Finally, tell us what are you here for?").font(.thin()).foregroundColor(.white)
-            HSegmentedControl(selected: $viewModel.selectedWhatFor, list: viewModel.whatFors)
-                .padding(.bottom, 28)
-        }
+            VStack(spacing: 8) {
+                Text("Finally, tell us what are you here for?").font(.thin()).foregroundColor(.white)
+                HSegmentedControl(selectedList: $viewModel.selectedWhatFor, list: viewModel.whatFors)
+            }
+        }.padding(.bottom, 30)
     }
 }
 
 struct GetMoreDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            NavigationView {
-                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
-            }
-            NavigationView {
-                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
-            }.previewDevice(.init(rawValue: "iPhone SE"))
-            NavigationView {
-                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
-            }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView {
-                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-        }.environmentObject(App())
+        NavigationView {
+            GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
+        }.previewEnvironment()
     }
 }

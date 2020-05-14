@@ -5,42 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.086005">
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.059219">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.001256">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000817">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.002618">
+      <testcase classname="fastlane.lanes" name="2: Switch to ios devices lane" time="0.000786">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: register_devices" time="4.212953">
+      <testcase classname="fastlane.lanes" name="3: register_devices" time="11.16657">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001843">
+      <testcase classname="fastlane.lanes" name="4: Switch to ios sync lane" time="0.001764">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.011715">
+      <testcase classname="fastlane.lanes" name="5: rm ~/Library/MobileDevice/Provisioning\ Profiles/*" time="0.010332">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.128154">
+      <testcase classname="fastlane.lanes" name="6: update_code_signing_settings" time="0.111">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: build_app" time="95.084043">
+      <testcase classname="fastlane.lanes" name="7: build_app" time="112.63486">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="8: diawi" time="5.489282">
         
       </testcase>
     

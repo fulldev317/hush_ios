@@ -15,6 +15,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
+    @State private var showsUserProfile = false
     
     // MARK: - Lifecycle
     
@@ -24,22 +25,32 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 ForEach(0..<(viewModel.discoveries.count / 2), id: \.self) {
                     self.row(at: $0)
                 }
-            }
-        }
+            }.padding(.top, 10)
+        }.background(
+            NavigationLink(
+                destination: UserProfileView(viewModel: UserProfileViewModel()),
+                isActive: $showsUserProfile,
+                label: EmptyView.init
+            )
+        )
     }
      
     func row(at i: Int) -> some View {
         HStack(spacing: -18) {
             ForEach(0..<2, id: \.self) { j in
-                PolaroidCard(
-                    image: UIImage(named: "image3")!,
-                    cardWidth: SCREEN_WIDTH / 2 + 15,
-                    bottom: self.bottomView(i, j)
-                ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
-                .zIndex(Double(i % 2 == 0 ? j : -j))
-                .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
+                self.polaroidCard(i, j).tapGesture(toggls: self.$showsUserProfile)
             }
         }.zIndex(Double(100 - i))
+    }
+    
+    func polaroidCard(_ i: Int, _ j: Int) -> some View {
+        PolaroidCard(
+            image: UIImage(named: "image3")!,
+            cardWidth: SCREEN_WIDTH / 2 + 15,
+            bottom: self.bottomView(i, j)
+        ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
+        .zIndex(Double(i % 2 == 0 ? j : -j))
+        .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
     }
     
     func leading(_ j: Int) -> CGFloat {

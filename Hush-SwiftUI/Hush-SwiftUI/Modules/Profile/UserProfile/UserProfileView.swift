@@ -35,10 +35,16 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     
     @State var currentPage = 0
     @State var shouldReport = false
+    @State var goToMessage = false
+    @State var liked = false
+    @State var profileTapped = false
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
-    @State var unlockedImage = 0
-    @State var unlockedStory = -1
+    @EnvironmentObject var app: App
+    
+    
+    @State var unlockedImages: Set<Int> = [0]
+    @State var unlockedStories: Set<Int> = []
     
     
     // MARK: - Lifecycle
@@ -58,24 +64,25 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                 .default(Text("Report Profile"), action: {}),
                 .cancel()
             ])
-        }
+        }.background(NavigationLink(
+            destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(),
+            isActive: self.$goToMessage,
+            label: EmptyView.init
+        ))
     }
     
     var photoView: some View {
         GeometryReader { proxy in
             VStack {
-                HStack {
+                HStack(alignment: .top) {
+                    Button(action: { self.mode.wrappedValue.dismiss() }) {
+                        Image("onBack_icon").padding()
+                    }.buttonStyle(PlainButtonStyle())
+                    
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Wendy").font(.ultraLight(48)).foregroundColor(.hOrange)
-                        HStack(spacing: 10) {
-                            Button(action: { self.mode.wrappedValue.dismiss() }) {
-                                Image("onBack_icon")
-                            }.buttonStyle(PlainButtonStyle())
-                            
-                            Text("Los Angeles").font(.thin()).foregroundColor(.white)
-                            Spacer()
-                        }
-                    }.padding(.horizontal)
+                        Text("Los Angeles").font(.thin()).foregroundColor(.white)
+                    }
                     
                     Spacer()
                     
@@ -85,7 +92,9 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     }.padding(.vertical)
                     .padding(.trailing, 23)
                     .offset(x: 0, y: 4)
-                }.padding(.top, SafeAreaInsets.top)
+                }.padding(.leading, 10)
+                    .padding(.top, SafeAreaInsets.top)
+                
                 ZStack {
                     Pager(page: self.$currentPage, data: self.viewModel.photos.map { IMG(image: $0) }) { img in
                         GeometryReader { pr in
@@ -104,12 +113,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             .padding(.vertical, 16)
                             .padding(.horizontal, 23)
                     }, alignment: .topTrailing)
-                    VStack {
-                        Spacer()
-                        Rectangle()
-                            .foregroundColor(.clear).frame(height: 130 + SafeAreaInsets.bottom)
-                            .background(LinearGradient(gradient: .init(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top))
-                    }.edgesIgnoringSafeArea(.bottom)
+                    self.overlay
                     VStack(spacing: 0) {
                         Spacer()
                         HStack {
@@ -118,18 +122,30 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             }
                         }.padding(.bottom, 16)
                         
-                        HapticButton(action: self.viewModel.switchMode) {
-                            VStack(spacing: 25) {
-                                HStack(spacing: 25) {
-                                    Image("msg_profile_icon")
-                                        .aspectRatio(.fit).frame(width: 25, height: 25).foregroundColor(.white)
-                                    Image("heart_profile_icon")
-                                        .aspectRatio(.fit).frame(width: 30, height: 30).foregroundColor(.white)
-                                    Image("profile_icon")
-                                        .aspectRatio(.fit).frame(width: 25, height: 25).foregroundColor(.white)
+                        VStack(spacing: 10) {
+                            HStack(spacing: 25) {
+                                HapticButton(action: { self.goToMessage.toggle() }) {
+                                    Image("profile_message")
+                                        .foregroundColor(.white)
                                 }
-                                Image("arrow_down_icon")
-                                    .aspectRatio(.fit).frame(width: 25, height: 25).foregroundColor(.white)
+                                
+                                HapticButton(action: { self.liked.toggle() }) {
+                                    Image("profile_heart")
+                                        .renderingMode(.template)
+                                        .foregroundColor(self.liked ? .red : .white)
+                                }
+                                
+                                HapticButton(action: { self.profileTapped.toggle() }) {
+                                    Image("profile_profile")
+                                        .renderingMode(.template)
+                                        .foregroundColor(self.profileTapped ? .red : .white)
+                                }
+                            }
+                            HapticButton(action: self.viewModel.switchMode) {
+                                Image("profile_chevron_down")
+                                    .foregroundColor(.white)
+                                .padding()
+                                .offset(x: -2, y: 0)
                             }
                         }
                     }.padding(20)
@@ -138,36 +154,44 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
         }
     }
     
+    var overlay: some View {
+        LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .center).contentShape(Zero())
+    }
+    
     var infoView: some View {
         GeometryReader { proxy in
             VStack(alignment: .leading) {
-                VStack {
-                    HapticButton(action: self.viewModel.switchMode) {
-                        
-                        ZStack {
-                            HStack(spacing: 25) {
-                                Image("msg_profile_icon")
-                                    .aspectRatio(.fit).frame(width: 25, height: 25).foregroundColor(.white)
-                                Image("heart_profile_icon")
-                                    .aspectRatio(.fit).frame(width: 30, height: 30).foregroundColor(.white)
-                                Image("profile_icon")
-                                    .aspectRatio(.fit).frame(width: 25, height: 25).foregroundColor(.white)
-                            }
-                            HStack {
-                                Spacer()
-                                Image("arrow_down_icon")
-                                    .aspectRatio(.fit).frame(width: 25, height: 25).foregroundColor(.white).padding(.horizontal, 25).rotationEffect(.degrees(180))
-                            }
-                        }
+                HStack(spacing: 25) {
+                    Spacer()
+                    HapticButton(action: { self.goToMessage.toggle() }) {
+                        Image("profile_message")
+                            .foregroundColor(.white)
+                    }
+                    
+                    HapticButton(action: { self.liked.toggle() }) {
+                        Image("profile_heart")
+                            .renderingMode(.template)
+                            .foregroundColor(self.liked ? .red : .white)
+                    }
+                    
+                    HapticButton(action: { self.profileTapped.toggle() }) {
+                        Image("profile_profile")
+                            .renderingMode(.template)
+                            .foregroundColor(self.profileTapped ? .red : .white)
                     }
                     Spacer()
-                }.frame(height: 44 + SafeAreaInsets.top)
+                }.padding()
+                    .overlay(HapticButton(action: self.viewModel.switchMode) {
+                        Image("profile_chevron_down").foregroundColor(.white)
+                            .rotationEffect(.radians(.pi), anchor: .center)
+                            .padding(24)
+                    }, alignment: .trailing)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
                         self.textBlock("About Me", subTitle: self.viewModel.aboutMe)
                         self.textBlock("Current Location", subTitle: self.viewModel.location)
-                        self.carusel("Photos", unlocked: self.$unlockedImage, images: self.viewModel.photos).padding(.vertical, -10)
-                        self.carusel("Stories", unlocked: self.$unlockedStory, images: self.viewModel.stories)
+                        self.carusel("Photos", unlocked: self.$unlockedImages, images: self.viewModel.photos).padding(.vertical, -10)
+                        self.carusel("Stories", unlocked: self.$unlockedStories, images: self.viewModel.stories)
                         HStack {
                             VStack(alignment: .leading, spacing: 25) {
                                 self.textBlock("Looking For", subTitle: self.viewModel.aboutMe)
@@ -235,7 +259,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
         }
     }
     
-    func carusel(_ title: String, unlocked: Binding<Int>, images: [UIImage]) -> some View {
+    func carusel(_ title: String, unlocked: Binding<Set<Int>>, images: [UIImage]) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title).font(.regular(24)).foregroundColor(.white)
             ScrollView(.horizontal) {
@@ -245,33 +269,31 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             image: images[index],
                             cardWidth: 92,
                             overlay: Color.black.aspectRatio(1, contentMode: .fit)
-                                .opacity(index <= unlocked.wrappedValue ? 0 : 1)
-                                .overlay(Text("+")
-                                    .font(.ultraLight(48))
-                                    .foregroundColor(.hOrange)
-                                    .offset(x: 0, y: -4)
-                                    .opacity(self.caruselItemEnabledForOpening(index, unlockedIndex: unlocked.wrappedValue) ? 1 : 0)).onTapGesture {
-                                        if self.caruselItemEnabledForOpening(index, unlockedIndex: unlocked.wrappedValue) {
-                                            unlocked.wrappedValue += 1
-                                        }
+                                .opacity(unlocked.wrappedValue.contains(index) ? 0 : 1)
+                        ).overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
+                        .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
+                        .onTapGesture {
+                            if unlocked.wrappedValue.contains(index) {
+                                unlocked.wrappedValue.remove(index)
+                            } else {
+                                unlocked.wrappedValue.insert(index)
                             }
-                        ).rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
+                        }.animation(.default)
                     }
                 }.padding(.vertical, 15)
                     .padding(.horizontal, 5)
             }
         }
     }
-    
-    func caruselItemEnabledForOpening(_ index: Int, unlockedIndex: Int) -> Bool {
-        index == unlockedIndex + 1
-    }
 }
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserProfileView(viewModel: UserProfileViewModel()).withoutBar()
-        }.previewEnvironment()
+            UserProfileView(viewModel: UserProfileViewModel())
+                .previewEnvironment()
+                .hostModalPresenter()
+                .withoutBar()
+        }
     }
 }

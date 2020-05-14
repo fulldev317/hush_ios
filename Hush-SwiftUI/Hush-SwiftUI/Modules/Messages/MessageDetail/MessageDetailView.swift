@@ -22,9 +22,9 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: -15) {
-                Text(viewModel.name()).font(.thin(48)).foregroundColor(.hOrange)
-                HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Long username").font(.thin(48)).foregroundColor(.hOrange)
+                HStack(alignment: .top) {
                     HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
                         HStack(spacing: 23) {
                             Image("onBack_icon")
@@ -43,7 +43,8 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                             .padding(.trailing, 9),
                         alignment: .topTrailing)
                 }
-            }.padding([.horizontal, .top])
+            }.padding([.horizontal])
+            
             ScrollView {
                 VStack(spacing: 10) {
                     ForEach(self.viewModel.messages(), id: \.id) { message in
@@ -54,11 +55,13 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                 }.padding(.bottom, 30)
             }
             .rotationEffect(.degrees(180))
+            
             SendTextField(placeholder: "SAD", onsend: {
                 self.viewModel.sendMessage($0)
             }).padding(.horizontal, 15)
-        }//.keyboardAdaptive()
-        .offset(x: 0, y: keyboardHeight == 0 ? 0 : -keyboardHeight + 70)
+
+            Spacer(minLength: keyboardHeight - 70)
+        }
         .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
         .background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }

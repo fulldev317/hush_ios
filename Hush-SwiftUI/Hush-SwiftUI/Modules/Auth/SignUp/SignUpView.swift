@@ -60,8 +60,9 @@ extension SignUpView {
                 if !showSignupButtons {
                     Image("arrowUp_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
                 }
-                Text("SignUp")
+                Text("Sign Up")
                     .foregroundColor(.white)
+                    .font(.medium(24))
                 if showSignupButtons {
                     Image("arrowDown_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
                 }
@@ -69,7 +70,7 @@ extension SignUpView {
             if showSignupButtons {
                 LoginButtons(presenter: viewModel).transition(buttonsTransition())
             }
-        }
+        }.frame(maxWidth: .infinity)
     }
     
     private func buttonsTransition() -> AnyTransition {
@@ -113,15 +114,7 @@ extension SignUpView {
 // MARK: - Previews
 
 struct SignUpView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        Group {
-            SignUpView(viewModel: SignUpViewModel())
-                .previewDevice(.init(rawValue: "iPhone XS Max"))
-            SignUpView(viewModel: SignUpViewModel())
-                .previewDevice(.init(rawValue: "iPhone 8"))
-            SignUpView(viewModel: SignUpViewModel())
-                .previewDevice(.init(rawValue: "iPhone SE"))
-        }
+        SignUpView(viewModel: SignUpViewModel())
     }
 }

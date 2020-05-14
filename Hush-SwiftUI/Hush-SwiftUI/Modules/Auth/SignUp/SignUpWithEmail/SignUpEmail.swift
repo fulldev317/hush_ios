@@ -13,6 +13,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var keyboardPresented: Bool = false
+    @State private var keyboardHeight: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -22,13 +23,14 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                         self.body(with: proxy)
                             .frame(minHeight: proxy.size.height)
                 }
-            }.keyboardAdaptive($keyboardPresented)
+            }.offset(x: 0, y: -keyboardHeight)
             onBackButton(self.mode)
             NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel).withoutBar(), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
                 Text("")
             }
         }.withoutBar().background(background())
+        .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
     }
     
     private func body(with proxy: GeometryProxy) -> some View {
@@ -87,10 +89,6 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
 struct SignUpEmail_Previews: PreviewProvider {
     
     static var previews: some View {
-        Group {
-            NavigationView { SignUpEmail(viewModel: SignUpEmailViewModel()) }.previewDevice(.init(rawValue: "iPhone XS Max"))
-            NavigationView { SignUpEmail(viewModel: SignUpEmailViewModel()) }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView { SignUpEmail(viewModel: SignUpEmailViewModel()) }.previewDevice(.init(rawValue: "iPhone SE"))
-        }
+        NavigationView { SignUpEmail(viewModel: SignUpEmailViewModel()) }
     }
 }

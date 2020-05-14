@@ -57,9 +57,10 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                     ForEach(viewModel.visibleCategories, id: \.self) { category in
                         MaskImage(name: category.categoryImage)
                             .frame(maxWidth: 90, maxHeight: 90)
+                            .offset(x: 0, y: category.offset)
                             .shadow(color: .white, radius: 30, x: 0, y: 4)
                             .onTapGesture {
-                                self.viewModel.selectedCategory = category
+                                self.viewModel.selectCategory(category)
                             }
                     }
                     
@@ -78,6 +79,8 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                         .padding()
                 }.disabled(!viewModel.canGoNextCategories)
             }.padding(.horizontal)
+            .opacity(maskEnabled ? 1 : 0.3)
+            .disabled(!maskEnabled)
 
             Spacer()
 
@@ -86,7 +89,7 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                     borderedButton(action: reset, title: "Reset")
                 }
                 
-                borderedButton(action: viewModel.done, title: "Done")
+                borderedButton(action: viewModel.done, title: "Done").disabled(!maskEnabled)
             }.padding(.horizontal, 32)
             .padding(.bottom)
         }.aspectRatio(414 / 239, contentMode: .fit)
@@ -130,6 +133,21 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     }
 }
 
+private extension MaskCategory {
+    var offset: CGFloat {
+        switch self {
+        case .ball:
+            return -20
+        case .funny:
+            return -5
+        case .glasses:
+            return 0
+        case .ancient:
+            return 15
+        }
+    }
+}
+
 struct MaskImage: View {
     let name: String
     
@@ -142,21 +160,9 @@ struct MaskImage: View {
 
 struct NewFaceDetection_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            NavigationView {
-                NewFaceDetection(viewModel: NewFaceDetectionViewModel())
-                    .withoutBar()
-            }
-            
-            NavigationView {
-                NewFaceDetection(viewModel: NewFaceDetectionViewModel())
-                    .withoutBar()
-            }.previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-            
-            NavigationView {
-                NewFaceDetection(viewModel: NewFaceDetectionViewModel())
-                    .withoutBar()
-            }.previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+        NavigationView {
+            NewFaceDetection(viewModel: NewFaceDetectionViewModel())
+                .withoutBar()
         }
     }
 }

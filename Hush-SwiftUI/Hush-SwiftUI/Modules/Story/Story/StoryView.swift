@@ -13,12 +13,21 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
     
     @State private var keyboardHeight: CGFloat = 0
     @State private var showReport = false
+    @State private var likedStory = false
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
     @EnvironmentObject private var app: App
     
     var body: some View {
         GeometryReader(content: content)
+    }
+    
+    var dragToClose: some Gesture {
+        DragGesture(minimumDistance: 50, coordinateSpace: .global).onChanged { value in
+            if value.translation.height > 50 {
+                self.modalPresenterManager.dismiss()
+            }
+        }
     }
     
     private func content(_ proxy: GeometryProxy) -> some View {
@@ -47,19 +56,19 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         .background(Circle().fill(Color.white).padding(-5))
                     Spacer()
                     VStack(alignment: .leading) {
-                        Text("Long Username").font(.bold(24))
+                        Text("Long Username").font(.bold(24)).lineLimit(1)
                         Text("21 minutes ago").font(.regular())
                     }.shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
-                    Spacer()
-                    Button(action: {}) {
+                    Button(action: { self.likedStory.toggle() }) {
                         Image("heart_icon")
+                            .foregroundColor(likedStory ? .red : .white)
+                            .padding(20)
                     }
-                    Spacer()
                     Button(action: modalPresenterManager.dismiss) {
-                        Image("close_icon")
+                        Image("close_icon").padding(20)
                     }
                 }.foregroundColor(.white)
-                .padding(.horizontal, 20)
+                .padding(.leading, 20)
                 
                 HStack {
                     Spacer()
@@ -128,7 +137,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                 .default(Text("Report Profile"), action: self.viewModel.reportProfile),
                 .cancel()
             ])
-        }
+        }.gesture(dragToClose)
     }
     
     private func sendMessage() {
@@ -141,5 +150,8 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
         StoryView(viewModel: StoryViewModel())
+            .previewEnvironment()
+            .hostModalPresenter()
+            .edgesIgnoringSafeArea(.all)
     }
 }

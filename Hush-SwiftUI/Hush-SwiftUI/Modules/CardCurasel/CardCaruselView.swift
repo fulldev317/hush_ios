@@ -90,19 +90,11 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 Text("PhotoBooth")
                     .font(.ultraLight(48))
                     .foregroundColor(.hOrange)
-            }.padding()
+            }.padding(.leading, 25)
             Spacer()
-            
             ZStack {
                 ForEach((cardIndex..<(cardIndex + 3)).reversed(), id: \.self) { index in
-                    CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5))
-                        .offset(index == self.cardIndex ? self.translation : .zero)
-                        .offset(x: 0, y: self.offset(index))
-                        .gesture(index == self.cardIndex ? self.topCardDrag : nil)
-                        .offset(x: self.flyAwayOffset(index), y: 0)
-                        .transition(.opacity)
-                        .rotationEffect(.degrees(index == self.cardIndex ? self.degrees : 0), anchor: .bottom)
-                        .animation(self.shouldAnimate ? .easeOut(duration: 0.3) : nil)
+                    self.caruselElement(index)
                 }
             }.frame(width: SCREEN_WIDTH)
         }.overlay(overlay)
@@ -111,6 +103,17 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 self.shouldAnimate = true
             }
         }
+    }
+    
+    private func caruselElement(_ index: Int) -> some View {
+        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5))
+            .offset(index == self.cardIndex ? self.translation : .zero)
+            .offset(x: 0, y: self.offset(index))
+            .gesture(index == self.cardIndex ? self.topCardDrag : nil)
+            .offset(x: self.flyAwayOffset(index), y: 0)
+            .transition(.opacity)
+            .rotationEffect(.degrees(index == self.cardIndex ? self.degrees : 0), anchor: .bottom)
+            .animation(self.shouldAnimate ? .easeOut(duration: 0.3) : nil)
     }
     
     private var overlay: some View {

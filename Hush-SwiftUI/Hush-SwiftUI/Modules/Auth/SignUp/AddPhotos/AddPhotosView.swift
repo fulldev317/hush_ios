@@ -52,7 +52,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
         }.background(background())
             .navigationBarHidden(true)
         .actionSheet(isPresented: $viewModel.isPickerSheetPresented) {
-            ActionSheet(title: Text("Provide a context for the actions."), message: nil, buttons: [
+            ActionSheet(title: Text("Choose how to submit a photo"), message: nil, buttons: [
                 .default(Text("Take a Photo"), action: viewModel.takePhoto),
                 .default(Text("Camera Roll"), action: viewModel.cameraRoll),
                 .cancel()
