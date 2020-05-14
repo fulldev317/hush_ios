@@ -1,5 +1,5 @@
 //
-//  ContentMessageView.swift
+//  ContentTextMessageView.swift
 //  Hush-SwiftUI
 //
 //  Created by Dima Virych on 06.04.2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentMessageView: View {
+struct ContentTextMessageView: View {
     
     var time: Double
     var contentMessage: String
@@ -58,9 +58,9 @@ struct ContentMessageView: View {
 struct ContentMessageView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 10) {
-            ContentMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false, shouldShowDate: false).padding(.trailing, 70)
-            ContentMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false, shouldShowDate: true).padding(.trailing, 70)
-            ContentMessageView(time: 43547890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: true, shouldShowDate: true).padding(.leading, 70)
+            ContentTextMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false, shouldShowDate: false).padding(.trailing, 70)
+            ContentTextMessageView(time: 43567890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: false, shouldShowDate: true).padding(.trailing, 70)
+            ContentTextMessageView(time: 43547890, contentMessage: "Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend Hi, I am your friend", isCurrentUser: true, shouldShowDate: true).padding(.leading, 70)
         }.background(Color.black).previewLayout(.sizeThatFits)
     }
 }

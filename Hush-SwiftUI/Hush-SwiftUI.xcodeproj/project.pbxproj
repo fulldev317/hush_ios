@@ -44,8 +44,6 @@
 		155E2FE7243B069C001D886D /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FE4243B069C001D886D /* MessagesView.swift */; };
 		155E2FE8243B069C001D886D /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FE5243B069C001D886D /* MessagesViewModel.swift */; };
 		155E2FE9243B069C001D886D /* MessagesViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FE6243B069C001D886D /* MessagesViewModeled.swift */; };
-		155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155E2FEF243B0962001D886D /* CoreLogic.framework */; };
-		155E2FF1243B0962001D886D /* CoreLogic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 155E2FEF243B0962001D886D /* CoreLogic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		155E2FF4243B0C2C001D886D /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FF3243B0C2C001D886D /* MessagesCell.swift */; };
 		155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FF8243B0FFC001D886D /* EnvironmentValues+ImageCache.swift */; };
 		155E2FFD243B0FFC001D886D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E2FF9243B0FFC001D886D /* ImageCache.swift */; };
@@ -55,7 +53,7 @@
 		155E3005243B1E93001D886D /* MessageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3002243B1E93001D886D /* MessageDetailViewModel.swift */; };
 		155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3003243B1E93001D886D /* MessageDetailViewModeled.swift */; };
 		155E3008243B282B001D886D /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3007243B282B001D886D /* RoundedCorners.swift */; };
-		155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3009243B29EF001D886D /* ContentMessageView.swift */; };
+		155E300A243B29EF001D886D /* ContentTextMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3009243B29EF001D886D /* ContentTextMessageView.swift */; };
 		155E300F243B4132001D886D /* HTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E300E243B4132001D886D /* HTextView.swift */; };
 		155E3011243B496D001D886D /* SendTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E3010243B496D001D886D /* SendTextField.swift */; };
 		1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930792435B69C00EE428F /* FacedetectorVC.swift */; };
@@ -71,7 +69,7 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
+		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* DiscoveriesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* DiscoveriesSettingsView.swift */; };
@@ -162,26 +160,15 @@
 		8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */; };
 		89B551FF246D4A41004DC7C6 /* DeviceScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B551FE246D4A41004DC7C6 /* DeviceScale.swift */; };
 		89B55202246D9F96004DC7C6 /* Zero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55201246D9F96004DC7C6 /* Zero.swift */; };
-		89C77B252465E61600705899 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* PartialSheet */; };
+		89B55207246DDEE1004DC7C6 /* HushConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55205246DDEE0004DC7C6 /* HushConversation.swift */; };
+		89B55208246DDEE1004DC7C6 /* HushConversationsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55206246DDEE0004DC7C6 /* HushConversationsStorage.swift */; };
+		89B5520A246DEA13004DC7C6 /* ContentImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55209246DEA13004DC7C6 /* ContentImageMessageView.swift */; };
+		89C77B252465E61600705899 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* SwiftPackageProductDependency */; };
 		89C77B272465EC3700705899 /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B262465EC3700705899 /* SingleSlider.swift */; };
 		89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B282465EC6900705899 /* SliderViewProtocol.swift */; };
 		89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */; };
 		89DCC131246075CB000A0BCB /* NewFaceDetectionViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC130246075CB000A0BCB /* NewFaceDetectionViewModeled.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		1579310E243772DC00EE428F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				155E2FF1243B0962001D886D /* CoreLogic.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1546B42424331DC400180D77 /* AddPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosViewModel.swift; sourceTree = "<group>"; };
@@ -233,7 +220,7 @@
 		155E3002243B1E93001D886D /* MessageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewModel.swift; sourceTree = "<group>"; };
 		155E3003243B1E93001D886D /* MessageDetailViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewModeled.swift; sourceTree = "<group>"; };
 		155E3007243B282B001D886D /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
-		155E3009243B29EF001D886D /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
+		155E3009243B29EF001D886D /* ContentTextMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextMessageView.swift; sourceTree = "<group>"; };
 		155E300E243B4132001D886D /* HTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTextView.swift; sourceTree = "<group>"; };
 		155E3010243B496D001D886D /* SendTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTextField.swift; sourceTree = "<group>"; };
 		157930792435B69C00EE428F /* FacedetectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacedetectorVC.swift; sourceTree = "<group>"; };
@@ -341,6 +328,9 @@
 		8993D7B02469D2D7002E636D /* ModalPresenterWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresenterWrapper.swift; sourceTree = "<group>"; };
 		89B551FE246D4A41004DC7C6 /* DeviceScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScale.swift; sourceTree = "<group>"; };
 		89B55201246D9F96004DC7C6 /* Zero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zero.swift; sourceTree = "<group>"; };
+		89B55205246DDEE0004DC7C6 /* HushConversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushConversation.swift; sourceTree = "<group>"; };
+		89B55206246DDEE0004DC7C6 /* HushConversationsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushConversationsStorage.swift; sourceTree = "<group>"; };
+		89B55209246DEA13004DC7C6 /* ContentImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentImageMessageView.swift; sourceTree = "<group>"; };
 		89C77B262465EC3700705899 /* SingleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSlider.swift; sourceTree = "<group>"; };
 		89C77B282465EC6900705899 /* SliderViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewProtocol.swift; sourceTree = "<group>"; };
 		89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceDetectionViewModel.swift; sourceTree = "<group>"; };
@@ -352,11 +342,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
+				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
-				155E2FF0243B0962001D886D /* CoreLogic.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
-				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
+				89C77B252465E61600705899 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +428,7 @@
 		154B268D2431BF6600265C76 /* Hush-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				89B55203246DDED5004DC7C6 /* Model */,
 				8928ED79246AEA0B004D3073 /* API */,
 				154B26AC2431CB7800265C76 /* Extensions */,
 				154B26A92431CB4D00265C76 /* Helpers */,
@@ -629,7 +619,8 @@
 		155E300B243B2A18001D886D /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				155E3009243B29EF001D886D /* ContentMessageView.swift */,
+				155E3009243B29EF001D886D /* ContentTextMessageView.swift */,
+				89B55209246DEA13004DC7C6 /* ContentImageMessageView.swift */,
 				155E3010243B496D001D886D /* SendTextField.swift */,
 			);
 			path = Content;
@@ -952,6 +943,24 @@
 			path = Shapes;
 			sourceTree = "<group>";
 		};
+		89B55203246DDED5004DC7C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				89B55204246DDEE0004DC7C6 /* Messages */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		89B55204246DDEE0004DC7C6 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				89B55205246DDEE0004DC7C6 /* HushConversation.swift */,
+				89B55206246DDEE0004DC7C6 /* HushConversationsStorage.swift */,
+			);
+			name = Messages;
+			path = ../../../CoreLogic/CoreLogic/Messages;
+			sourceTree = "<group>";
+		};
 		89C77B2A2465F1E500705899 /* Sliders */ = {
 			isa = PBXGroup;
 			children = (
@@ -973,7 +982,6 @@
 				154B26872431BF6600265C76 /* Sources */,
 				154B26882431BF6600265C76 /* Frameworks */,
 				154B26892431BF6600265C76 /* Resources */,
-				1579310E243772DC00EE428F /* Embed Frameworks */,
 				1D113BC4D7DD685343AF40C8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -982,8 +990,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* QGrid */,
-				89C77B242465E61600705899 /* PartialSheet */,
+				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
+				89C77B242465E61600705899 /* SwiftPackageProductDependency */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -1014,8 +1022,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
-				89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
+				89C77B232465E61600705899 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -1156,6 +1164,7 @@
 				155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */,
 				8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */,
 				155E2FF4243B0C2C001D886D /* MessagesCell.swift in Sources */,
+				89B5520A246DEA13004DC7C6 /* ContentImageMessageView.swift in Sources */,
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
@@ -1170,14 +1179,16 @@
 				8955A00A246ADE9900223FB7 /* TextQueryAPIProvider.swift in Sources */,
 				8993D7AF2469A970002E636D /* StoryView.swift in Sources */,
 				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
-				155E300A243B29EF001D886D /* ContentMessageView.swift in Sources */,
+				155E300A243B29EF001D886D /* ContentTextMessageView.swift in Sources */,
 				8955A006246ADD4100223FB7 /* TextQuerySelectorView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
 				157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */,
+				89B55208246DDEE1004DC7C6 /* HushConversationsStorage.swift in Sources */,
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
 				155E2FE7243B069C001D886D /* MessagesView.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
 				8993D7AA246958AC002E636D /* View+Env.swift in Sources */,
+				89B55207246DDEE1004DC7C6 /* HushConversation.swift in Sources */,
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* DiscoveriesSettingsViewModeled.swift in Sources */,
 				8993D7A3246868C1002E636D /* AppearenceModifier.swift in Sources */,
@@ -1450,7 +1461,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
+		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1458,7 +1469,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+		89C77B232465E61600705899 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
 			requirement = {
@@ -1469,14 +1480,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* QGrid */ = {
+		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
+			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
 			productName = QGrid;
 		};
-		89C77B242465E61600705899 /* PartialSheet */ = {
+		89C77B242465E61600705899 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			package = 89C77B232465E61600705899 /* RemoteSwiftPackageReference */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */

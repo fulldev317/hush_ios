@@ -86,7 +86,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     Spacer()
                     HapticButton(action: { self.selectMessagesFilter.toggle() }) {
                         Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
-                    }
+                    }.offset(x: 0, y: 10)
                 }.padding(.top, -10)
                 
                 MessagesView(viewModel: app.messages)

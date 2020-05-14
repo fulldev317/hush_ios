@@ -6,8 +6,7 @@
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
-public protocol HushConversationsStorage {
-    
+protocol HushConversationsStorage {    
     func getMessages() -> [HushConversation]
     func search(by query: String) -> [HushConversation]
     func delete(message: HushConversation)

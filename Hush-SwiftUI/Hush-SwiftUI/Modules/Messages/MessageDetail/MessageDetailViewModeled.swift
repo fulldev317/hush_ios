@@ -7,11 +7,12 @@
 //
 
 import Combine
-import CoreLogic
+import UIKit
 
 protocol MessageDetailViewModeled: ObservableObject {
     
     func messages() -> [HushMessage]
     func name() -> String
     func sendMessage(_ text: String)
+    func sendImage(_ image: UIImage)
 }

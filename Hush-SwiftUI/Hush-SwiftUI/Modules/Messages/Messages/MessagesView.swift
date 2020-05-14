@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import CoreLogic
 
 struct SearchTextFieldStyle: TextFieldStyle {
     
@@ -57,9 +56,6 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                         .listRowInsets(.init())
                     
                     ForEach(viewModel.items) { message in
-    //                    NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(message)).withoutBar()) {
-    //
-    //                    }.buttonStyle(PlainButtonStyle())
                         MessagesCell(message: message).padding(.horizontal, 16)
                         .listRowInsets(.init())
                             .onTapGesture {

@@ -8,7 +8,6 @@
 
 import SwiftUI
 import Combine
-import CoreLogic
 import Fakery
 
 class MessagesViewModel: MessagesViewModeled {
@@ -47,8 +46,7 @@ class MessagesViewModel: MessagesViewModeled {
             username: storage.faker.name.firstName(),
             text: message,
             imageURL: storage.faker.internet.image(width: 100, height: 100),
-            time: Date().timeIntervalSince1970,
-            messages: [HushMessage(userID: "SELF", text: message, time: Date().timeIntervalSince1970)]
+            messages: [.text(HushTextMessage(userID: "SELF", text: message))]
         ), at: 0)
     }
     
@@ -80,8 +78,8 @@ fileprivate class FakeStorage: HushConversationsStorage {
     
     init() {
         storage = Array(0..<10).map { _ in
-            HushConversation(username: faker.name.firstName(), text: faker.lorem.paragraph(), imageURL: faker.internet.image(), time: faker.date.birthday(2, 55).timeIntervalSince1970, messages: Array(0..<10).map {
-                HushMessage(userID: $0.isMultiple(of: 3) ? "SELF" : "DEF", text: faker.lorem.paragraph(), time: faker.date.birthday(2, 55).timeIntervalSince1970)
+            HushConversation(username: faker.name.firstName(), text: faker.lorem.paragraph(), imageURL: faker.internet.image(width: 100, height: 100), time: faker.date.birthday(2, 10), messages: (0..<10).map { i in
+                .text(HushTextMessage(userID: i.isMultiple(of: 3) ? "SELF" : "DEF", text: faker.lorem.paragraph()))
             })
         }
     }
