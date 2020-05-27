@@ -8,5 +8,7 @@ target 'Hush-SwiftUI' do
   pod 'Koloda'
   pod 'Fakery'
   pod 'SwiftUIPager'
+  pod 'Alamofire', '~> 4.8.2'
+  pod 'SwiftyJSON', '~> 5.0.0'
 
 end

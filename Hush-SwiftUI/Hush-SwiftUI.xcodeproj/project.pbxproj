@@ -69,7 +69,7 @@
 		157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930912435BE0100EE428F /* RootTabBarViewModel.swift */; };
 		157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930922435BE0100EE428F /* RootTabBarViewModeled.swift */; };
 		1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930972435C2F100EE428F /* PolaroidCard.swift */; };
-		1579309F2435CAFC00EE428F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */; };
+		1579309F2435CAFC00EE428F /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 1579309E2435CAFC00EE428F /* QGrid */; };
 		157930A12435CE5300EE428F /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A02435CE5300EE428F /* View+Ext.swift */; };
 		157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 157930A22435D31C00EE428F /* SF-Pro-Display-Ultralight.otf */; };
 		157930AB2435E62000EE428F /* DiscoveriesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930A82435E62000EE428F /* DiscoveriesSettingsView.swift */; };
@@ -126,6 +126,10 @@
 		15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */; };
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
+		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
+		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
+		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
+		73917912247F0FE9002AF4A9 /* ChatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73917911247F0FE9002AF4A9 /* ChatAPI.swift */; };
 		8928ED7B246AEA2D004D3073 /* StoriesSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */; };
 		8928ED7D246AEA32004D3073 /* StoriesSettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */; };
 		8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8936B110246B303B001F9254 /* UIApplicationExtensions.swift */; };
@@ -163,7 +167,7 @@
 		89B55207246DDEE1004DC7C6 /* HushConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55205246DDEE0004DC7C6 /* HushConversation.swift */; };
 		89B55208246DDEE1004DC7C6 /* HushConversationsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55206246DDEE0004DC7C6 /* HushConversationsStorage.swift */; };
 		89B5520A246DEA13004DC7C6 /* ContentImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B55209246DEA13004DC7C6 /* ContentImageMessageView.swift */; };
-		89C77B252465E61600705899 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* SwiftPackageProductDependency */; };
+		89C77B252465E61600705899 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 89C77B242465E61600705899 /* PartialSheet */; };
 		89C77B272465EC3700705899 /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B262465EC3700705899 /* SingleSlider.swift */; };
 		89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C77B282465EC6900705899 /* SliderViewProtocol.swift */; };
 		89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCC12E2460750E000A0BCB /* NewFaceDetectionViewModel.swift */; };
@@ -294,6 +298,10 @@
 		297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		7391790F247F0DCC002AF4A9 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		73917911247F0FE9002AF4A9 /* ChatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPI.swift; sourceTree = "<group>"; };
 		8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModel.swift; sourceTree = "<group>"; };
 		8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModeled.swift; sourceTree = "<group>"; };
 		8936B110246B303B001F9254 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
@@ -342,10 +350,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1579309F2435CAFC00EE428F /* BuildFile in Frameworks */,
+				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
-				89C77B252465E61600705899 /* BuildFile in Frameworks */,
+				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +847,10 @@
 			children = (
 				894BBF00246AE82600F62F7C /* UsernamesAPI.swift */,
 				8955A007246ADE3400223FB7 /* SelectLocationAPI.swift */,
+				7391790D247F04C1002AF4A9 /* BaseAPI.swift */,
+				7391790B247F02A3002AF4A9 /* AuthAPI.swift */,
+				7391790F247F0DCC002AF4A9 /* UserAPI.swift */,
+				73917911247F0FE9002AF4A9 /* ChatAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -990,8 +1002,8 @@
 			);
 			name = "Hush-SwiftUI";
 			packageProductDependencies = (
-				1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */,
-				89C77B242465E61600705899 /* SwiftPackageProductDependency */,
+				1579309E2435CAFC00EE428F /* QGrid */,
+				89C77B242465E61600705899 /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
 			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
@@ -1022,8 +1034,8 @@
 			);
 			mainGroup = 154B26822431BF6600265C76;
 			packageReferences = (
-				1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */,
-				89C77B232465E61600705899 /* RemoteSwiftPackageReference */,
+				1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */,
+				89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 154B268C2431BF6600265C76 /* Products */;
 			projectDirPath = "";
@@ -1104,12 +1116,14 @@
 			files = (
 				154B26AB2431CB5A00265C76 /* HapticButton.swift in Sources */,
 				1579308C2435BDD000EE428F /* DiscoveryView.swift in Sources */,
+				73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */,
 				8941DE0F246836E000DC8F5C /* AlertWrapper.swift in Sources */,
 				1579308D2435BDD000EE428F /* DiscoveryViewModel.swift in Sources */,
 				894BBF01246AE82600F62F7C /* UsernamesAPI.swift in Sources */,
 				155E2FE9243B069C001D886D /* MessagesViewModeled.swift in Sources */,
 				157930AC2435E62000EE428F /* DiscoveriesSettingsViewModel.swift in Sources */,
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
+				7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */,
 				89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */,
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
@@ -1162,6 +1176,7 @@
 				1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */,
 				8928ED7B246AEA2D004D3073 /* StoriesSettingsViewModel.swift in Sources */,
 				155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */,
+				73917912247F0FE9002AF4A9 /* ChatAPI.swift in Sources */,
 				8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */,
 				155E2FF4243B0C2C001D886D /* MessagesCell.swift in Sources */,
 				89B5520A246DEA13004DC7C6 /* ContentImageMessageView.swift in Sources */,
@@ -1182,6 +1197,7 @@
 				155E300A243B29EF001D886D /* ContentTextMessageView.swift in Sources */,
 				8955A006246ADD4100223FB7 /* TextQuerySelectorView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
+				7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */,
 				157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */,
 				89B55208246DDEE1004DC7C6 /* HushConversationsStorage.swift in Sources */,
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
@@ -1388,7 +1404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = Y2589WJ83E;
+				DEVELOPMENT_TEAM = 353VU8LTU5;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1417,7 +1433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = Y2589WJ83E;
+				DEVELOPMENT_TEAM = 353VU8LTU5;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1461,7 +1477,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */ = {
+		1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid.git";
 			requirement = {
@@ -1469,7 +1485,7 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		89C77B232465E61600705899 /* RemoteSwiftPackageReference */ = {
+		89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
 			requirement = {
@@ -1480,14 +1496,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1579309E2435CAFC00EE428F /* SwiftPackageProductDependency */ = {
+		1579309E2435CAFC00EE428F /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1579309D2435CAFC00EE428F /* RemoteSwiftPackageReference */;
+			package = 1579309D2435CAFC00EE428F /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
 		};
-		89C77B242465E61600705899 /* SwiftPackageProductDependency */ = {
+		89C77B242465E61600705899 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89C77B232465E61600705899 /* RemoteSwiftPackageReference */;
+			package = 89C77B232465E61600705899 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
