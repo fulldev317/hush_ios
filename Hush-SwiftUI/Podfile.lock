@@ -1,28 +1,36 @@
 PODS:
+  - Alamofire (4.8.2)
   - Fakery (4.1.1)
   - Koloda (5.0):
     - pop (~> 1.0)
   - pop (1.0.12)
   - SwiftUIPager (1.4.0)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.8.2)
   - Fakery
   - Koloda
   - SwiftUIPager
+  - SwiftyJSON (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Fakery
     - Koloda
     - pop
     - SwiftUIPager
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SwiftUIPager: 87780e1c33ea432d326eebfecfcfa33877bfa848
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: e2299e11155f094de98fb83d04ec12b633d1bc9b
+PODFILE CHECKSUM: bda9e3faa912651e26cf53f954b4d839af47e7bd
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.2
