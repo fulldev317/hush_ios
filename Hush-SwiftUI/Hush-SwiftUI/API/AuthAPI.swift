@@ -34,13 +34,12 @@ class AuthAPI: BaseAPI {
                     }
                     completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func register(email: String, password: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: Double, longitude: Double) {
+    func register(email: String, password: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: Double, longitude: Double, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let parameters: Parameters = ["action": "register",
                                       "reg_email": email,
                                       "reg_pass": password,
@@ -62,19 +61,21 @@ class AuthAPI: BaseAPI {
                 
                 switch response.result {
                 case .success(let json):
+                    var user: User?
+                    var error: APIError?
                     if json["error"].int == 0 {
-                        let _ = User.parseFromJson(json["user"])
+                        user = User.parseFromJson(json["user"])
                     } else {
-                        let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func logout() {
+    func logout(completion: @escaping () -> Void) {
         let parameters: Parameters = ["action": "logout",
                                       "query": deviceUUID]
         
@@ -84,16 +85,14 @@ class AuthAPI: BaseAPI {
                 
                 switch response.result {
                 case .success:
-                    //TODO
-                    break
+                    completion()
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func facebookConnect(facebookId: String, email: String, name: String, gender: String) {
+    func facebookConnect(facebookId: String, email: String, name: String, gender: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         var parameters: Parameters = ["action": "fbconnect"]
         
         let query = [facebookId, email, name, gender, deviceUUID, "herefor"]
@@ -105,14 +104,16 @@ class AuthAPI: BaseAPI {
                 
                 switch response.result {
                 case .success(let json):
+                    var user: User?
+                    var error: APIError?
                     if json["error"].int == 0 {
-                        let _ = User.parseFromJson(json["user"])
+                        user = User.parseFromJson(json["user"])
                     } else {
-                        let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }

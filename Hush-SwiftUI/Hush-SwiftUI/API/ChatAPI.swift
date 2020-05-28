@@ -14,7 +14,7 @@ class ChatAPI: BaseAPI {
     
     static let shared: ChatAPI = ChatAPI()
     
-    func messageRead() {
+    func messageRead(completion: @escaping () -> Void) {
         let userId: String = "user_id"
         let parameters: Parameters = ["action": "getChat",
                                       "id": userId]
@@ -25,11 +25,9 @@ class ChatAPI: BaseAPI {
                 
                 switch response.result {
                 case .success:
-                    //TODO
-                    break
+                    completion()
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
