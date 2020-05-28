@@ -14,23 +14,26 @@ class AuthAPI: BaseAPI {
     
     static let shared: AuthAPI = AuthAPI()
     
-    func login(email: String, password: String) {
+    func login(email: String, password: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let parameters: Parameters = ["action": "login",
                                       "login_email": email,
                                       "login_pass": password,
                                       "dID": deviceUUID]
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success(let json):
-                    let json = json as! JSON
+                    var user: User?
+                    var error: APIError?
                     if json["error"].int == 0 {
-                        let _ = User.parseFromJson(json["user"])
+                        user = User.parseFromJson(json["user"])
                     } else {
-                        let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                case .failure(let err):
+                    completion(user, error)
+                case .failure:
                     //TODO
                     break
                 }
@@ -55,10 +58,10 @@ class AuthAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success(let json):
-                    let json = json as! JSON
                     if json["error"].int == 0 {
                         let _ = User.parseFromJson(json["user"])
                     } else {
@@ -77,7 +80,8 @@ class AuthAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -97,10 +101,10 @@ class AuthAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success(let json):
-                    let json = json as! JSON
                     if json["error"].int == 0 {
                         let _ = User.parseFromJson(json["user"])
                     } else {

@@ -21,10 +21,10 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success(let json):
-                    let json = json as! JSON
                     if json["error"].int == 0 {
                         let _ = User.parseFromJson(json["user"])
                     } else {
@@ -44,7 +44,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -63,7 +64,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -84,7 +86,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -105,7 +108,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -126,7 +130,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -147,7 +152,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -168,7 +174,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -189,7 +196,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -210,7 +218,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -231,7 +240,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -284,7 +294,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -305,7 +316,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -326,7 +338,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
@@ -347,7 +360,8 @@ class UserAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO

@@ -21,7 +21,8 @@ class ChatAPI: BaseAPI {
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
             .validate(contentType: ["application/json"])
-            .responseJSON { response in
+            .responseSwiftyJson { response in
+                
                 switch response.result {
                 case .success:
                     //TODO
