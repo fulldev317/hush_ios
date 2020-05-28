@@ -126,10 +126,16 @@
 		15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */; };
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
+		7354C347247FA59B007D6FA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354C346247FA59B007D6FA5 /* User.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
 		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
 		73917912247F0FE9002AF4A9 /* ChatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73917911247F0FE9002AF4A9 /* ChatAPI.swift */; };
+		73D44AF2247FAD7100FB01BA /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D44AF1247FAD7100FB01BA /* Photo.swift */; };
+		73D44AF4247FAE2700FB01BA /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D44AF3247FAE2700FB01BA /* Notifications.swift */; };
+		73D44AF6247FB3DB00FB01BA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D44AF5247FB3DB00FB01BA /* APIError.swift */; };
+		73E7C158247FC0460077F5E1 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E7C157247FC0460077F5E1 /* Spotlight.swift */; };
+		73E7C15A247FC10A0077F5E1 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E7C159247FC10A0077F5E1 /* Match.swift */; };
 		8928ED7B246AEA2D004D3073 /* StoriesSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */; };
 		8928ED7D246AEA32004D3073 /* StoriesSettingsViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */; };
 		8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8936B110246B303B001F9254 /* UIApplicationExtensions.swift */; };
@@ -298,10 +304,16 @@
 		297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		7354C346247FA59B007D6FA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		7391790F247F0DCC002AF4A9 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		73917911247F0FE9002AF4A9 /* ChatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPI.swift; sourceTree = "<group>"; };
+		73D44AF1247FAD7100FB01BA /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		73D44AF3247FAE2700FB01BA /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		73D44AF5247FB3DB00FB01BA /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		73E7C157247FC0460077F5E1 /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
+		73E7C159247FC10A0077F5E1 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		8928ED7A246AEA2D004D3073 /* StoriesSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModel.swift; sourceTree = "<group>"; };
 		8928ED7C246AEA32004D3073 /* StoriesSettingsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesSettingsViewModeled.swift; sourceTree = "<group>"; };
 		8936B110246B303B001F9254 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
@@ -436,6 +448,7 @@
 		154B268D2431BF6600265C76 /* Hush-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7354C345247FA586007D6FA5 /* Models */,
 				89B55203246DDED5004DC7C6 /* Model */,
 				8928ED79246AEA0B004D3073 /* API */,
 				154B26AC2431CB7800265C76 /* Extensions */,
@@ -842,6 +855,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7354C345247FA586007D6FA5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				73D44AF5247FB3DB00FB01BA /* APIError.swift */,
+				7354C346247FA59B007D6FA5 /* User.swift */,
+				73D44AF1247FAD7100FB01BA /* Photo.swift */,
+				73D44AF3247FAE2700FB01BA /* Notifications.swift */,
+				73E7C157247FC0460077F5E1 /* Spotlight.swift */,
+				73E7C159247FC10A0077F5E1 /* Match.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8928ED79246AEA0B004D3073 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -1146,7 +1172,10 @@
 				157930A12435CE5300EE428F /* View+Ext.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
 				155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */,
+				73E7C158247FC0460077F5E1 /* Spotlight.swift in Sources */,
+				7354C347247FA59B007D6FA5 /* User.swift in Sources */,
 				15D53C82243C7CA400D62B26 /* HToggleStyle.swift in Sources */,
+				73E7C15A247FC10A0077F5E1 /* Match.swift in Sources */,
 				157930E92437209100EE428F /* StoriesView.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
 				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
@@ -1201,6 +1230,7 @@
 				157930942435BE0100EE428F /* RootTabBarViewModel.swift in Sources */,
 				89B55208246DDEE1004DC7C6 /* HushConversationsStorage.swift in Sources */,
 				1546B4492433500C00180D77 /* LoginWithEmailViewModeled.swift in Sources */,
+				73D44AF2247FAD7100FB01BA /* Photo.swift in Sources */,
 				155E2FE7243B069C001D886D /* MessagesView.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
 				8993D7AA246958AC002E636D /* View+Env.swift in Sources */,
@@ -1213,6 +1243,7 @@
 				15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */,
 				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
+				73D44AF4247FAE2700FB01BA /* Notifications.swift in Sources */,
 				89559FFB246AB94000223FB7 /* StoryViewModeled.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				8936B116246B40FA001F9254 /* UserDefault.swift in Sources */,
@@ -1235,6 +1266,7 @@
 				15D53C87243C909600D62B26 /* UpgradeView.swift in Sources */,
 				89442128246578C90025D843 /* DoubleSlider.swift in Sources */,
 				155E3008243B282B001D886D /* RoundedCorners.swift in Sources */,
+				73D44AF6247FB3DB00FB01BA /* APIError.swift in Sources */,
 				15E8CCE42431EFF200A92595 /* SignUpTextField.swift in Sources */,
 				15D53C76243C624400D62B26 /* App.swift in Sources */,
 				8993C7692460100300E8F765 /* NewFaceDetection.swift in Sources */,
