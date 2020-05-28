@@ -17,16 +17,13 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var hasError: Bool = false
     @Published var showAddPhotoScreen = false
     @Published var showLoginScreen = false
-    
-    var addPhotoViewModel = AddPhotosViewModel()
-    
-    func submit() {
         
+    func submit() {
         showAddPhotoScreen.toggle()
     }
     
     func login() {
-        
+    
         showLoginScreen.toggle()
     }
 }

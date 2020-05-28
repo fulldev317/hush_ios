@@ -9,12 +9,9 @@
 import Foundation
 
 protocol SignUpViewModeled: ObservableObject {
-    
-    associatedtype EmailViewModel: SignUpEmailViewModeled
-    
+        
     var showEmailScreen: Bool { get set }
     var showLoginScreen: Bool { get set }
-    var emailPresenter: EmailViewModel { get }
     
     func login()
     func terms()

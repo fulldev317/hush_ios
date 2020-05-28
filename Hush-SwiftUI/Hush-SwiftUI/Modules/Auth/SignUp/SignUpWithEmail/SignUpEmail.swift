@@ -25,7 +25,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 }
             }.offset(x: 0, y: -keyboardHeight)
             onBackButton(self.mode)
-            NavigationLink(destination: AddPhotosView(viewModel: viewModel.addPhotoViewModel).withoutBar(), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
+            NavigationLink(destination: AddPhotosView(viewModel: AddPhotosViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password)).withoutBar(), isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
                 Text("")
             }

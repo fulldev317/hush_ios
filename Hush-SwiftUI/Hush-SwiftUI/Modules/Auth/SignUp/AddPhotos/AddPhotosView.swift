@@ -73,7 +73,7 @@ struct AddPhotosView_Previews: PreviewProvider {
     private static let picker = DVImagePicker()
     static var previews: some View {
         NavigationView {
-            AddPhotosView(viewModel:  AddPhotosViewModel())
+            AddPhotosView(viewModel: AddPhotosViewModel(name: "", username: "", email: "", password: ""))
                 .withoutBar()
         }
     }

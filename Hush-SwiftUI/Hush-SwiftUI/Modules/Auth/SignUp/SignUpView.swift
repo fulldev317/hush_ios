@@ -42,7 +42,7 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
                 bottomText()
             }.padding(.bottom, 20)
             
-            NavigationLink(destination: SignUpEmail(viewModel: viewModel.emailPresenter), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
+            NavigationLink(destination: SignUpEmail(viewModel: SignUpEmailViewModel()), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen, label: EmptyView.init)
         }.background(background())
     }
