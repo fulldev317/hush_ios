@@ -23,7 +23,9 @@ class LoginWithEmailViewModel: LoginWithEmailViewModeled {
     var forgotPasswordViewModel = ForgotPasswordViewModel()
     
     func submit() {
-        AuthAPI.shared.login(email: email, password: password)
+        AuthAPI.shared.login(email: email, password: password) { (user, error) in
+            
+        }
         //goToLogin.toggle()
     }
 }

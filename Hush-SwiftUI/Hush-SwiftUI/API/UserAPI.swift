@@ -14,7 +14,7 @@ class UserAPI: BaseAPI {
     
     static let shared: UserAPI = UserAPI()
     
-    func userProfile() {
+    func userProfile(completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         let parameters: Parameters = ["action": "userProfile",
                                       "id": userId]
@@ -25,19 +25,21 @@ class UserAPI: BaseAPI {
                 
                 switch response.result {
                 case .success(let json):
+                    var user: User?
+                    var error: APIError?
                     if json["error"].int == 0 {
-                        let _ = User.parseFromJson(json["user"])
+                        user = User.parseFromJson(json["user"])
                     } else {
-                        let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func unreadMessageCount() {
+    func unreadMessageCount(completion: @escaping (_ unreadMessages: Int?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         let parameters: Parameters = ["action": "unreadMessageCount",
                                       "id": userId]
@@ -47,17 +49,22 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var unreadMessages: Int?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        unreadMessages = Int(json["unreadMessageCount"].string ?? "0") ?? 0
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(unreadMessages, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func messageRead() {
+    func messageRead(completion: @escaping () -> Void) {
         let userId: String = "user_id"
         let parameters: Parameters = ["action": "messageRead",
                                       "id": userId]
@@ -67,17 +74,15 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    completion()
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateSRadius(radius: Double) {
+    func updateSRadius(radius: Double, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateSRadius"]
         
@@ -89,17 +94,22 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        user = User.parseFromJson(json["user"])
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateGender(gender: String) {
+    func updateGender(gender: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateGender"]
         
@@ -111,17 +121,22 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        user = User.parseFromJson(json["user"])
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateUserLanguage(language: String) {
+    func updateUserLanguage(language: String, completion: @escaping (_ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateUserLanguage"]
         
@@ -133,17 +148,19 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int != 0 {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateUserBio(bio: String, postBioUrl: String) {
+    func updateUserBio(bio: String, postBioUrl: String, completion: @escaping (_ urlMessage: String?, _ url: String?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateUserBio"]
         
@@ -155,39 +172,24 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var urlMessage: String?
+                    var url: String?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        urlMessage = json["urlMessage"].string
+                        url = json["url"].string
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(urlMessage, url, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateUserGender(gender: String) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateUserGender"]
-        
-        let query: [Any] = [userId, gender]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success:
-                    //TODO
-                    break
-                case .failure:
-                    //TODO
-                    break
-                }
-        }
-    }
-    
-    func deletePhoto(photoId: String) {
+    func deletePhoto(photoId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "deletePhoto"]
         
@@ -199,17 +201,22 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        user = User.parseFromJson(json["user"])
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func deleteStoryAlbum(albumId: String) {
+    func deleteStoryAlbum(albumId: String, completion: @escaping (_ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "deleteStoryAlbum"]
         
@@ -221,17 +228,19 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int != 0 {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateUserProfilePhoto(photoId: String) {
+    func updateUserProfilePhoto(photoId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateUserProfilePhoto"]
         
@@ -243,17 +252,22 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        user = User.parseFromJson(json["user"])
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateUser(age: String?, birthday: String?, city: String?, country: String?, gender: String?, latitude: Double?, longitude: Double?, premium: Bool?, name: String?, verified: Bool?) {
+    func updateUser(age: String?, birthday: String?, city: String?, country: String?, gender: String?, latitude: Double?, longitude: Double?, premium: Bool?, name: String?, verified: Bool?, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateUser"]
         
@@ -297,17 +311,22 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        user = User.parseFromJson(json["user"])
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateUserExtended(questionId: String, answer: String) {
+    func updateUserExtended(questionId: String, answer: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateUserExtended"]
         
@@ -319,17 +338,23 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        user = User.parseFromJson(json["user"])
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
+                    
                 }
         }
     }
     
-    func updateAge(minAge: Int, maxAge: Int) {
+    func updateAge(minAge: Int, maxAge: Int, completion: @escaping (_ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateAge"]
         
@@ -341,17 +366,19 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int != 0 {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
     
-    func updateLocation(latitude: Double, longitude: Double, city: String, country: String) {
+    func updateLocation(latitude: Double, longitude: Double, city: String, country: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         var parameters: Parameters = ["action": "updateLocation"]
         
@@ -363,12 +390,17 @@ class UserAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        user = User.parseFromJson(json["user"])
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
                 case .failure:
-                    //TODO
-                    break
+                    print("API CALL FAILED")
                 }
         }
     }
