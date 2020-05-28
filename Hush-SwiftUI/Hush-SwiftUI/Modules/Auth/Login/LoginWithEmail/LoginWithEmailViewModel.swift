@@ -24,8 +24,15 @@ class LoginWithEmailViewModel: LoginWithEmailViewModeled {
     
     func submit() {
         AuthAPI.shared.login(email: email, password: password) { (user, error) in
-            
+            if let error = error {
+                self.hasErrorMessage = true
+                self.errorMessage = error.message
+            } else if let user = user {
+                self.hasErrorMessage = false
+                self.errorMessage = ""
+                //todo: save user info in preferences for instance
+                //goToLogin.toggle()
+            }
         }
-        //goToLogin.toggle()
     }
 }
