@@ -77,7 +77,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
 struct GetMoreDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            GetMoreDetailsView(viewModel: GetMoreDetailsViewModel()).withoutBar()
+            GetMoreDetailsView(viewModel: GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
         }.previewEnvironment()
     }
 }

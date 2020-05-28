@@ -11,6 +11,20 @@ import Combine
 
 class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     
+    var name: String
+    var username: String
+    var email: String
+    var password: String
+    var image: UIImage
+    
+    init(name: String, username: String, email: String, password: String, image: UIImage) {
+        self.name = name
+        self.username = username
+        self.email = email
+        self.password = password
+        self.image = image
+    }
+    
     // MARK: - Properties
     
     @Published var whatFors: [String] = ["Fun", "Chat", "Hookup", "Date"]
@@ -22,7 +36,7 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
     @Published var selectedLookingFors: Set<Int> = []
     
-    @Published var birthday: String = ""
+    @Published var birthday = "" 
     
     func updateMessage() {
 

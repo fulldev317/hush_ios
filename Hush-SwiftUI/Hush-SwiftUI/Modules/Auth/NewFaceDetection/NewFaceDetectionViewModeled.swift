@@ -62,4 +62,10 @@ protocol NewFaceDetectionViewModeled: ObservableObject {
     
     func selectCategory(_ category: MaskCategory)
     func selectMask(_ name: String)
+    
+    // data from previous screens
+      var name: String { get set }
+      var username: String { get set }
+      var email: String { get set }
+      var password: String { get set }
 }

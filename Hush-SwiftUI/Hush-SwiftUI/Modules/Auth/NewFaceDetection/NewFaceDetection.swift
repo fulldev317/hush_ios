@@ -19,7 +19,7 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     var body: some View {
         ZStack {
             if viewModel.capturedImage != nil {
-                NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!).withoutBar().onAppear {
+                NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password).withoutBar().onAppear {
                     self.sessionRunning = false
                 }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
             }
@@ -161,7 +161,7 @@ struct MaskImage: View {
 struct NewFaceDetection_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            NewFaceDetection(viewModel: NewFaceDetectionViewModel())
+            NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: ""))
                 .withoutBar()
         }
     }
