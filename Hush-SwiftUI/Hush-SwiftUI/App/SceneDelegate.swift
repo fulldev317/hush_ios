@@ -63,14 +63,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     } else {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
                     }
-                    
-                    /*RootTabBarView(viewModel: RootTabBarViewModel())
-                        .hostModalPresenter()
-                        .edgesIgnoringSafeArea(.all)
-                        .withoutBar()*/
-                    
-                    /*NewFaceDetection(viewModel: NewFaceDetectionViewModel()).withoutBar()
-                    FaceDetectionView(viewModel: FaceDetectionViewModel()).withoutBar()*/
                 }
                 .environmentObject(PartialSheetManager())
                 .environmentObject(self.app)

@@ -56,11 +56,13 @@ class AddPhotosViewModel: AddPhotosViewModeled {
     func takePhoto() {
         cameraPickerSelected = true
         isPickerSheetPresented = false
+        subscribe()
     }
     
     func cameraRoll() {
         libraryPickerSelected = true
         isPickerSheetPresented = false
+        subscribe()
     }
     
     func addPhoto() {
@@ -149,7 +151,9 @@ extension AddPhotosViewModel {
             .store(in: &disposals)
         
         $libraryPickerSelected
-            .combineLatest(deniedLibraryAccess) { $0 && !$1 }
+            .combineLatest(deniedLibraryAccess) {
+                $0 && !$1
+            }
             .assign(to: \.isPickerPresented, on: self)
             .store(in: &disposals)
         
