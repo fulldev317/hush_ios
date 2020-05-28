@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E13EBD624805627003E0959 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
+		0E13EBD724805627003E0959 /* FaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5C24349433005F6847 /* FaceDetectionViewModel.swift */; };
+		0E13EBD824805627003E0959 /* FaceDetectionViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5D24349433005F6847 /* FaceDetectionViewModeled.swift */; };
+		0E13EBD924805627003E0959 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C642434952F005F6847 /* FaceDetectionViewController.swift */; };
 		1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B42424331DC400180D77 /* AddPhotosViewModel.swift */; };
 		1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B42524331DC400180D77 /* AddPhotosView.swift */; };
 		1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546B42824331E7400180D77 /* SignUpViewModeled.swift */; };
@@ -93,11 +97,7 @@
 		1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793108243754B500EE428F /* CardCuraselElementViewModeled.swift */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
-		158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5B24349433005F6847 /* FaceDetectionView.swift */; };
-		158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5C24349433005F6847 /* FaceDetectionViewModel.swift */; };
-		158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5D24349433005F6847 /* FaceDetectionViewModeled.swift */; };
 		158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158A2C6224349509005F6847 /* libFaceDetectionLib.a */; };
-		158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C642434952F005F6847 /* FaceDetectionViewController.swift */; };
 		1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593AA2524346CC2004FAE5D /* SwiftUI+Keyboard.swift */; };
 		15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B890A9243EEA1300069804 /* UserProfileView.swift */; };
 		15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B890AA243EEA1300069804 /* UserProfileViewModel.swift */; };
@@ -1153,7 +1153,6 @@
 				89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */,
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
-				158A2C6024349433005F6847 /* FaceDetectionViewModeled.swift in Sources */,
 				8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */,
 				8993D7AC246961B6002E636D /* TabBarView.swift in Sources */,
 				894421242464ACC10025D843 /* ResetPasswordViewModel.swift in Sources */,
@@ -1164,6 +1163,7 @@
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
+				0E13EBD924805627003E0959 /* FaceDetectionViewController.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				89559FFD246AB95300223FB7 /* StoryViewModel.swift in Sources */,
 				155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */,
@@ -1178,11 +1178,10 @@
 				73E7C15A247FC10A0077F5E1 /* Match.swift in Sources */,
 				157930E92437209100EE428F /* StoriesView.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
-				158A2C5F24349433005F6847 /* FaceDetectionViewModel.swift in Sources */,
 				15D53C7F243C65C900D62B26 /* MyProfileViewModel.swift in Sources */,
 				1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */,
+				0E13EBD724805627003E0959 /* FaceDetectionViewModel.swift in Sources */,
 				15D53C8C243DA8F600D62B26 /* UserCardViewModel.swift in Sources */,
-				158A2C652434952F005F6847 /* FaceDetectionViewController.swift in Sources */,
 				157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */,
 				155E2FE8243B069C001D886D /* MessagesViewModel.swift in Sources */,
 				89559FFF246ABF2A00223FB7 /* MyStoryViewModel.swift in Sources */,
@@ -1251,7 +1250,6 @@
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				89B551FF246D4A41004DC7C6 /* DeviceScale.swift in Sources */,
 				15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */,
-				158A2C5E24349433005F6847 /* FaceDetectionView.swift in Sources */,
 				8955A002246AD29400223FB7 /* StoriesSettingsView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
 				15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */,
@@ -1281,6 +1279,7 @@
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
 				15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */,
+				0E13EBD624805627003E0959 /* FaceDetectionView.swift in Sources */,
 				896DDEFD2464956A00AC0F95 /* Size.swift in Sources */,
 				896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
@@ -1295,6 +1294,7 @@
 				8928ED7D246AEA32004D3073 /* StoriesSettingsViewModeled.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
 				157930F72437324600EE428F /* CardCaruselView.swift in Sources */,
+				0E13EBD824805627003E0959 /* FaceDetectionViewModeled.swift in Sources */,
 				15D53C91243DCE1200D62B26 /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,13 +34,13 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
                 Spacer()
             }
             onBackButton(mode)
-            NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel()),//FaceDetectionView(viewModel: FaceDetectionViewModel()),
+            NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password)),
                            isActive: $viewModel.canGoToAR,
                            label: EmptyView.init)
             
             if viewModel.selectedImage != nil {
                 NavigationLink(
-                    destination: GoodContainer(image: viewModel.selectedImage!),
+                    destination: GoodContainer(image: viewModel.selectedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password),
                     isActive: $viewModel.canGoNext,
                     label: EmptyView.init
                 )
