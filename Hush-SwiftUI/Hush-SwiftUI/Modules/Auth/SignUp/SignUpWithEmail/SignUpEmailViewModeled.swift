@@ -9,9 +9,7 @@
 import Foundation
 
 protocol SignUpEmailViewModeled: ObservableObject {
-    
-    associatedtype addPhotoViewModel: AddPhotosViewModeled
-    
+        
     var name: String { get set }
     var username: String { get set }
     var email: String { get set }
@@ -19,9 +17,7 @@ protocol SignUpEmailViewModeled: ObservableObject {
     var hasError: Bool { get set }
     var showAddPhotoScreen: Bool { get set }
     var showLoginScreen: Bool { get set }
-    
-    var addPhotoViewModel: addPhotoViewModel { get set }
-    
+        
     func submit()
     func login()
 }

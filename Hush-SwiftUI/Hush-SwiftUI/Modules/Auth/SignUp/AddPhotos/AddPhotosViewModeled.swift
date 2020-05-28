@@ -25,4 +25,11 @@ protocol AddPhotosViewModeled: ObservableObject {
     func takePhoto()
     func cameraRoll()
     func addPhoto()
+    
+    // data from previous screens
+    var name: String { get set }
+    var username: String { get set }
+    var email: String { get set }
+    var password: String { get set }
+    
 }

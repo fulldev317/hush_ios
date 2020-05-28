@@ -48,7 +48,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 
             pickers
             borderedButton(action: {
-                self.app.logedIn = true
+                //self.app.logedIn = true
+                self.viewModel.signup()
             }, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
     }

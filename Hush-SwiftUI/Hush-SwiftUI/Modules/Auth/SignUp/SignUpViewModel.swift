@@ -12,9 +12,7 @@ class SignUpViewModel: SignUpViewModeled {
     
     @Published var showEmailScreen = false
     @Published var showLoginScreen = false
-    
-    public let emailPresenter = SignUpEmailViewModel()
-    
+        
     func login() {
         
         showLoginScreen.toggle()

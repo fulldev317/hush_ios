@@ -28,4 +28,9 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
 
         
     }
+    
+    func signup() {
+        /*AuthAPI.shared.register(email: <#T##String#>, password: <#T##String#>, name: <#T##String#>, gender: <#T##String#>, birthday: <#T##String#>, lookingFor: <#T##String#>, photo: <#T##String#>, thumb: <#T##String#>, city: <#T##String#>, country: <#T##String#>, latitude: <#T##Double#>, longitude: <#T##Double#>, completion: <#T##(User?, APIError?) -> Void#>)*/
+    }
+    
 }

@@ -13,6 +13,18 @@ import UIKit
 
 class AddPhotosViewModel: AddPhotosViewModeled {
     
+    var name: String
+    var username: String
+    var email: String
+    var password: String
+    
+    init(name: String, username: String, email: String, password: String) {
+        self.name = name
+        self.username = username
+        self.email = email
+        self.password = password
+    }
+        
     // MARK: - Properties
 
     @Published var messageLabel = "With Hush’s own Filters you can make \nyour photo as private as you like!"

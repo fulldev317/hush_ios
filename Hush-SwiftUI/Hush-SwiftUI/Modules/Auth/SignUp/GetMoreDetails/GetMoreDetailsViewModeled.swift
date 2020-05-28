@@ -23,4 +23,6 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var birthday: String { get set }
     
     func updateMessage()
+
+    func signup()
 }
