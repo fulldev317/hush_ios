@@ -39,7 +39,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 }
                 
                 SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $viewModel.email).padding(.horizontal, 30)
-                SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon")/*, isSecured: true*/, text: $viewModel.password).padding(.horizontal, 30)
+                SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password).padding(.horizontal, 30)
                 
                 borderedButton(action: {
                     //self.app.logedIn = true
