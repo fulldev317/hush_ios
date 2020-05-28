@@ -24,9 +24,13 @@ class AuthAPI: BaseAPI {
             .validate(contentType: ["application/json"])
             .responseJSON { response in
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    let json = json as! JSON
+                    if json["error"].int == 0 {
+                        let _ = User.parseFromJson(json["user"])
+                    } else {
+                        let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
                 case .failure:
                     //TODO
                     break
@@ -35,8 +39,6 @@ class AuthAPI: BaseAPI {
     }
     
     func register(email: String, password: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: Double, longitude: Double) {
-        let uuid: String = UIDevice.current.identifierForVendor!.uuidString
-        
         let parameters: Parameters = ["action": "register",
                                       "reg_email": email,
                                       "reg_pass": password,
@@ -56,9 +58,13 @@ class AuthAPI: BaseAPI {
             .validate(contentType: ["application/json"])
             .responseJSON { response in
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    let json = json as! JSON
+                    if json["error"].int == 0 {
+                        let _ = User.parseFromJson(json["user"])
+                    } else {
+                        let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
                 case .failure:
                     //TODO
                     break
@@ -94,9 +100,13 @@ class AuthAPI: BaseAPI {
             .validate(contentType: ["application/json"])
             .responseJSON { response in
                 switch response.result {
-                case .success:
-                    //TODO
-                    break
+                case .success(let json):
+                    let json = json as! JSON
+                    if json["error"].int == 0 {
+                        let _ = User.parseFromJson(json["user"])
+                    } else {
+                        let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
                 case .failure:
                     //TODO
                     break
