@@ -46,8 +46,7 @@ struct HTextField: UIViewRepresentable {
         
         var parent: HTextField!
     
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            
+        func textFieldDidChangeSelection(_ textField: UITextField) {            
             parent.text = textField.text ?? ""
         }
         

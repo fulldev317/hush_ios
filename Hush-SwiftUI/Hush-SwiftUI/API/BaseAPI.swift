@@ -12,7 +12,7 @@ import Alamofire
 class BaseAPI {
     
     internal let deviceUUID: String = UIDevice.current.identifierForVendor!.uuidString
-    internal let endpoint: String  = "https://www.hushsite.com/requests/api/"
+    internal let endpoint: String  = "https://www.hushsite.com/requests/api.php"
     internal let api: SessionManager
     
     init() {

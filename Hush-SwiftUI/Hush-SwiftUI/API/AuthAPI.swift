@@ -20,8 +20,7 @@ class AuthAPI: BaseAPI {
                                       "login_pass": password,
                                       "dID": deviceUUID]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .responseJSON { response in
                 switch response.result {
                 case .success(let json):
@@ -31,7 +30,7 @@ class AuthAPI: BaseAPI {
                     } else {
                         let _ = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                case .failure:
+                case .failure(let err):
                     //TODO
                     break
                 }
