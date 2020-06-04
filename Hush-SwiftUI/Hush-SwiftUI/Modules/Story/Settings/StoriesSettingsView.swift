@@ -20,12 +20,12 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
         VStack {
             Spacer()
             HStack {
-                Text("Filter").font(.bold(24)).foregroundColor(Color(0x010101))
+                Text("Filter").font(.bold(24))
                 Spacer()
             }.padding(.bottom, 40)
             VStack {
                 HStack {
-                    Text("Search").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Search").font(.light())
                     Spacer()
                     Button(action: {
                         self.partialSheetManager.showPartialSheet({
@@ -46,9 +46,9 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
             }
             VStack {
                 HStack {
-                    Text("Location").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Location").font(.light())
                     Spacer()
-                    Text("Los Angeles").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Los Angeles").font(.light())
                     Spacer()
                     Button(action: {
                         self.partialSheetManager.showPartialSheet({
@@ -70,9 +70,9 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
             }
             VStack {
                 HStack {
-                    Text("Show Me").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Show Me").font(.light())
                     Spacer()
-                    Text(viewModel.genderDescription).font(.light()).foregroundColor(Color(0x010101)).animation(nil)
+                    Text(viewModel.genderDescription).font(.light())
                     Spacer()
                     Button(action: selectGender) {
                         Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
@@ -82,11 +82,10 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
             }
             VStack {
                 HStack {
-                    Text("Maximum distance").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Maximum distance").font(.light())
                     Spacer()
                     Text(viewModel.maxDistanceDescription)
                         .font(.light())
-                        .foregroundColor(Color(0x010101))
                 }.animation(nil)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
@@ -96,7 +95,7 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
             }.animation(nil)
             VStack {
                 HStack {
-                    Text("Age range").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Age range").font(.light())
                     Spacer()
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
@@ -119,7 +118,7 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
             }
             VStack {
                 HStack {
-                    Text("Online users").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Online users").font(.light())
                     Spacer()
                     Toggle("", isOn: $viewModel.onlineUsers)
                 }
@@ -140,6 +139,10 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
 
 struct StoriesSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        StoriesSettingsView(viewModel: StoriesSettingsViewModel())
+        Group {
+            StoriesSettingsView(viewModel: StoriesSettingsViewModel()).environment(\.colorScheme, .light)
+        
+            StoriesSettingsView(viewModel: StoriesSettingsViewModel()).environment(\.colorScheme, .dark)
+        }
     }
 }
