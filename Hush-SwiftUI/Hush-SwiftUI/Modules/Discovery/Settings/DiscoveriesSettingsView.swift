@@ -16,6 +16,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     @ObservedObject private var viewModel: ViewModel
     @EnvironmentObject private var app: App
     @EnvironmentObject private var partialSheetManager: PartialSheetManager
+    @Environment(\.colorScheme) var colorScheme
     @State private var firstSliderFalue = 0.0
     @State private var secondSliderFalue = 0.0
     @State private var isToggle = true
@@ -42,16 +43,17 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     // MARK: - Lifecycle
     
     var body: some View {
+
         VStack {
             HStack {
-                Text("Filter").font(.bold(24)).foregroundColor(Color(0x010101))
+                Text("Filter").font(.bold(24))
                 Spacer()
             }.padding(.bottom, 40)
             VStack {
                 HStack {
-                    Text("Location").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Location").font(.light())
                     Spacer()
-                    Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light()).foregroundColor(Color(0x010101))
+                    Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light())
                     Spacer()
                     Button(action: {
                         self.partialSheetManager.showPartialSheet({
@@ -73,9 +75,9 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             }
             VStack {
                 HStack {
-                    Text("Gender").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Gender").font(.light())
                     Spacer()
-                    Text(viewModel.gender.title).font(.light()).foregroundColor(Color(0x010101)).animation(nil)
+                    Text(viewModel.gender.title).font(.light())
                     Spacer()
                     Button(action: {
                         self.app.selectingGender.toggle()
@@ -87,11 +89,10 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             }
             VStack {
                 HStack {
-                    Text("Maximum distance").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Maximum distance").font(.light())
                     Spacer()
                     Text(maxDistance)
                         .font(.light())
-                        .foregroundColor(Color(0x010101))
                 }.animation(nil)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
@@ -101,7 +102,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             }.animation(nil)
             VStack {
                 HStack {
-                    Text("Age range").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Age range").font(.light())
                     Spacer()
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
@@ -124,7 +125,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             }
             VStack {
                 HStack {
-                    Text("Online users").font(.light()).foregroundColor(Color(0x010101))
+                    Text("Online users").font(.light())
                     Spacer()
                     Toggle("", isOn: $isToggle)
                 }
@@ -159,3 +160,15 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
 //        }
 //    }
 //}
+
+struct DiscoveriesSettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+
+            DiscoveriesSettingsView(viewModel: DiscoveriesSettingsViewModel()).environment(\.colorScheme, .light)
+                   
+        
+            DiscoveriesSettingsView(viewModel: DiscoveriesSettingsViewModel()).environment(\.colorScheme, .dark)
+        }
+    }
+}
