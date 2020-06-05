@@ -41,10 +41,14 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                             self.app.onProfileEditing = !self.app.onProfileEditing
                         }
                     }) {
-                        Image("editProfile_icon")
-                            .aspectRatio(.fit)
-                            .frame(width: 30, height: 30).padding(.trailing, 26)
-                            .foregroundColor(.white)
+                        Text("Edit")
+                            .font(.regular(17))
+                            .foregroundColor(Color.white)
+                            .padding(.all)
+//                        Image("editProfile_icon")
+//                            .aspectRatio(.fit)
+//                            .frame(width: 30, height: 30).padding(.trailing, 26)
+//                            .foregroundColor(.white)
                     }
                 }
 //                Rectangle()
@@ -127,13 +131,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             ZStack(alignment: .leading) {
                 Text("Activate Premium")
                     .kerning(-0.41)
-                    .font(.bold(22))
+                    .font(.regular(22))
                     .padding(.all, 20)
-                    .padding(.leading, 65)
-                    .padding(.trailing, 25)
+                    .padding(.leading, 60)
+                    .padding(.trailing, 50)
                     .background(Color.hOrange.cornerRadius(8))
                     .frame(height: 54)
-                Image("premiumMask_icon").padding(.bottom, 30)
+                Image("unlock").padding(.leading, 25)
             }
         }.centred
     }
@@ -143,15 +147,23 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     var profileActivity: some View {
         
-        VStack(alignment: .leading, spacing: 25) {
+        VStack(alignment: .leading, spacing: 30) {
             Text("Profile Activity")
                 .font(.regular(28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("New Friends", value: $viewModel.basicsViewModel.username)
-                tableRow("Visited my Profile", value: $viewModel.basicsViewModel.username)
-                tableRow("Likes me", value: $viewModel.basicsViewModel.username)
-                tableRow("My likes", value: $viewModel.basicsViewModel.username)
+                tableRow("Matches", "0") {
+                    
+                }
+                tableRow("Visited my Profile", "0") {
+                    
+                }
+                tableRow("Likes me", "0") {
+                    
+                }
+                tableRow("My likes", "0") {
+                    
+                }
             }
         }.padding(.horizontal, 36)
     }
@@ -304,6 +316,21 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 Text(title).font(.regular(17)).foregroundColor(.white)
                 Spacer()
                 
+                Image("arrow_next_icon")
+                    .aspectRatio(.fit)
+                    .foregroundColor(.white)
+                    .frame(width: 15, height: 15)
+            }
+        }
+    }
+    
+    private func tableRow(_ title: String, _ value: String, _ action: @escaping () -> Void) -> some View {
+        HapticButton(action: action) {
+            HStack {
+                Text(title).font(.regular(17)).foregroundColor(.white)
+                Spacer()
+                Text(value).font(.regular(17)).foregroundColor(.white).padding(.trailing, 5)
+
                 Image("arrow_next_icon")
                     .aspectRatio(.fit)
                     .foregroundColor(.white)
