@@ -31,7 +31,7 @@ class BioViewMode: ObservableObject {
     @Published var gender = Gender.male
     @Published var sexuality = Gender.female
     @Published var living = "No"
-    @Published var bio = "No"
+    @Published var bio = "Hi, I'm Jack, 18 years old and I'm from London, Unite Kindom"
     @Published var language = "English"
     
     init() {
