@@ -96,7 +96,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 ForEach((cardIndex..<(cardIndex + 3)).reversed(), id: \.self) { index in
                     self.caruselElement(index)
                 }
-            }.frame(width: SCREEN_WIDTH)
+            }.frame(width: SCREEN_WIDTH).padding(.bottom, 20)
         }.overlay(overlay)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

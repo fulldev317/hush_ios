@@ -36,7 +36,7 @@ struct CardCaruselElementView: View {
                 
                 Spacer()
             }
-        }.frame(width: 511 * deviceScale, height: 628 * deviceScale)
+        }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 628 : 470) * deviceScale)
         .overlay(overlay.rotationEffect(rotation), alignment: .bottom)
         .rotationEffect(-rotation)
         .tapGesture(toggls: $showUserProfile)
@@ -49,29 +49,35 @@ struct CardCaruselElementView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Text("Verylongname goes here")
-                        Text("29")
-                    }.font(.thin(30)).lineLimit(1)
-                    Text("Los Angeles").font(.thin(18))
+                            .foregroundColor(Color.black)
+                        Text("29").foregroundColor(Color.black)
+                    }.font(.thin(ISiPhoneX ? 30 : 24)).lineLimit(1)
+                    Text("Los Angeles").font(.thin(ISiPhoneX ? 18 : 16)).foregroundColor(Color.black)
                     Circle().fill(Color(0x6FCF97)).square(15)
                         .padding(.top, 4)
-                }
+                }.padding(.leading, ISiPhoneX ? 0 : rotation.degrees > 0 ? 20 : -10 )
                 
-                NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(), isActive: self.$showMessages) {
-                    Image("message_card_icon").aspectRatio().frame(width: 45, height: 45)
-                }.buttonStyle(PlainButtonStyle())
+                VStack {
+                    NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(), isActive: self.$showMessages) {
+                        Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
+                    }.buttonStyle(PlainButtonStyle())
+                }.padding(.bottom, 10)
                 
-                NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(), isActive: self.$showUserProfile) {
-                    Image("profile_icon_carusel").aspectRatio().frame(width: 45, height: 45)
-                }.buttonStyle(PlainButtonStyle())
-            }.padding()
-        }.padding(.horizontal, 70 * deviceScale)
+                VStack {
+                    NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(), isActive: self.$showUserProfile) {
+                        Image("profile_icon_carusel").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
+                    }.buttonStyle(PlainButtonStyle())
+                }.padding(.bottom, 10).padding(.trailing, ISiPhoneX ? 0 : 15)
+                
+            }.padding(.bottom, ISiPhoneX ? 20 : 0).padding(.horizontal, 5).rotationEffect(-rotation)
+        }.padding(.horizontal, ISiPhoneX ? 70 * deviceScale : 0)
         .padding(.vertical)
     }
 }
 
 struct CardCaruselElement_Previews: PreviewProvider {
     static var previews: some View {
-        CardCaruselElementView(rotation: .degrees(5))
+        CardCaruselElementView(rotation: .degrees(-5))
             .previewEnvironment()
             .padding()
     }
