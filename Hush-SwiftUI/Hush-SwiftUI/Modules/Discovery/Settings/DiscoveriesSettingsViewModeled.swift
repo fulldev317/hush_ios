@@ -13,7 +13,7 @@ enum Gender: String, CaseIterable {
     case female
     case lesbian
     case gay
-    case everyone
+    //case everyone
     
     var title: String { rawValue.capitalized }
     static let allTitles = allCases.map { $0.title }

@@ -24,10 +24,15 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                 }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
             }
             
+            onBackButton(mode)
+            
             VStack(spacing: 0) {
                 arView.onAppear { self.sessionRunning = true; self.viewModel.shouldTakeImage = false; self.viewModel.capturedImage = nil }
                 maskMenu
+
             }.background(Color.black.edgesIgnoringSafeArea(.all))
+                .padding(.top, 80)
+
         }.withoutBar()
     }
     
