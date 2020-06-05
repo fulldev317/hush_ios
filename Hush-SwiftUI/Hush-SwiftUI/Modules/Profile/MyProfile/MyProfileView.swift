@@ -47,9 +47,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                             .foregroundColor(.white)
                     }
                 }
-                Rectangle()
-                    .frame(height: 0.9)
-                    .foregroundColor(Color(0x4F4F4F))
+//                Rectangle()
+//                    .frame(height: 0.9)
+//                    .foregroundColor(Color(0x4F4F4F))
                 ScrollView {
                     scrollContent
                 }.keyboardAdaptive()
@@ -59,9 +59,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     var scrollContent: some View {
         
-        VStack(alignment: .leading, spacing: 45) {
+        VStack(alignment: .leading, spacing: 25) {
             imagesView
-                .padding(.top, 30)
+                .padding(.top, 0)
             Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
                 .foregroundColor(.white)
@@ -75,7 +75,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 notifications.animation(.spring())
                 legal.animation(.spring())
             }
-        }.padding(.vertical, 30 + SafeAreaInsets.bottom)
+        }.padding(.vertical, 10 + SafeAreaInsets.bottom)
     }
     
     // MARK: - Image

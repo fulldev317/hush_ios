@@ -25,7 +25,7 @@ struct HSegmentedControl: View {
     }
     
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 4) {
             ForEach(0..<list.count) { index in
                 self.borderedButton(index)
             }

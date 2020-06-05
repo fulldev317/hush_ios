@@ -122,7 +122,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             }
                         }.padding(.bottom, 16)
                         
-                        VStack(spacing: 10) {
+                        VStack(spacing: 0) {
                             HStack(spacing: 25) {
                                 HapticButton(action: { self.goToMessage.toggle() }) {
                                     Image("profile_message")
@@ -148,7 +148,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 .offset(x: -2, y: 0)
                             }
                         }
-                    }.padding(20)
+                    }.padding(10)
                 }.frame(width: proxy.size.width)
             }
         }

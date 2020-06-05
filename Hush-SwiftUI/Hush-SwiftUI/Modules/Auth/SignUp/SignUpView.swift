@@ -85,7 +85,7 @@ extension SignUpView {
     
     private func bottomText() -> some View {
         VStack(spacing: 0) {
-            Text("We dont post anything on Facebook or Snapchat.\n By registering and using Hush you agree to")
+            Text("We dont post anything on Facebook.\n By registering and using Hush you agree to")
             HStack(spacing: 0) {
                 Text(" our ")
                 terms()
