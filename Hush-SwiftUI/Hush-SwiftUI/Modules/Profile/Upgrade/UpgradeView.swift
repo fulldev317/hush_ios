@@ -14,7 +14,9 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
     
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
-    
+    @State var oneWeek = false
+    @State var threeMonth = false
+    @State var twelveMonth = true
     
     // MARK: - Lifecycle
     
@@ -37,24 +39,39 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                 VStack {
                     ZStack {
                         Rectangle().foregroundColor(.hOrange).frame(height: 50)
+                            .onTapGesture {
+                                self.oneWeek = true
+                                self.threeMonth = false
+                                self.twelveMonth = false
+                        }
                         HStack {
                             Text("1 Week ").font(.bold()) + Text("Trial").font(.light())
                             Spacer()
                             Text("$14,99")
                                 .padding(.trailing, 90)
                         }.padding(.leading, 15)
-                    }.opacity(0.6)
+                    }.opacity(oneWeek ? 1.0 : 0.6)
                     ZStack {
                         Rectangle().foregroundColor(.hOrange).frame(height: 50)
+                        .onTapGesture {
+                            self.oneWeek = false
+                            self.threeMonth = true
+                            self.twelveMonth = false
+                        }
                         HStack {
                             Text("3 Month ").font(.bold()) + Text("Premium").font(.light())
                             Spacer()
                             Text("$47,99")
                                 .padding(.trailing, 90)
                         }.padding(.leading, 15)
-                    }.opacity(0.6)
+                    }.opacity(threeMonth ? 1.0 : 0.6)
                     ZStack {
                         Rectangle().foregroundColor(.hOrange).frame(height: 50)
+                            .onTapGesture {
+                                self.oneWeek = false
+                                self.threeMonth = false
+                                self.twelveMonth = true
+                        }
                         HStack {
                             Spacer()
                             Rectangle().foregroundColor(Color(0x27AE60)).frame(width: 80, height: 50)
@@ -71,7 +88,7 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                             Text("$78,99")
                                 .padding(.trailing, 90)
                         }.padding(.leading, 15)
-                    }
+                    }.opacity(twelveMonth ? 1.0 : 0.6)
                     ZStack {
                         Rectangle().foregroundColor(Color(0x27AE60)).frame(height: 50)
                         Text("Continue")
