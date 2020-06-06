@@ -124,7 +124,10 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         
                         VStack(spacing: 0) {
                             HStack(spacing: 25) {
-                                HapticButton(action: { self.goToMessage.toggle() }) {
+                                HapticButton(action: {
+                                    self.app.showPremium.toggle()
+                                    //self.goToMessage.toggle()
+                                }) {
                                     Image("profile_message")
                                         .foregroundColor(.white)
                                 }
@@ -213,7 +216,9 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         VStack(spacing: 0) {
                             HStack(spacing: 30) {
                                 Spacer()
-                                HapticButton(action: {}) {
+                                HapticButton(action: {
+                                    self.app.showPremium.toggle()
+                                }) {
                                     Image("msg_profile_icon")
                                         .aspectRatio(.fit)
                                         .frame(width: 25, height: 25)

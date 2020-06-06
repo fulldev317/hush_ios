@@ -32,7 +32,7 @@ struct ImagesCarusel<Content: View>: View {
                 .animation(.easeInOut(duration: 0.3))
             Pager(page: $current, data: uiElements, id: \.title) { item in
                 
-                item.content.frame(width: 120, height: 130).centred
+                item.content.frame(width: 202, height: 164).centred
             }.onPageChanged { page in
                 UISelectionFeedbackGenerator().selectionChanged()
                 withAnimation {
@@ -41,14 +41,14 @@ struct ImagesCarusel<Content: View>: View {
             }
             .itemSpacing(10)
             .padding(20)
-            .frame(height: 130)
+            .frame(height: 164)
             HStack {
                 ForEach(0..<uiElements.count) {
                     Circle().foregroundColor( $0 == self.current ? .hOrange : Color.white.opacity(0.3)).frame(width: 10, height: 10)
                 }
             }.padding(.top, 20)
             Spacer()
-        }.frame(height: 220)
+        }.frame(height: 254)
     }
 }
 
