@@ -136,6 +136,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     .padding(.leading, 60)
                     .padding(.trailing, 50)
                     .background(Color.hOrange.cornerRadius(8))
+                    .foregroundColor(Color.black)
                     .frame(height: 54)
                 Image("unlock").padding(.leading, 25)
             }
