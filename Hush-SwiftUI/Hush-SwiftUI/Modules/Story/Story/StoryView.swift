@@ -17,7 +17,9 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
     @EnvironmentObject private var app: App
-    
+    @State private var showsUserProfile = false
+    @Environment(\.presentationMode) var mode
+
     var body: some View {
         GeometryReader(content: content)
     }
@@ -25,13 +27,14 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
     var dragToClose: some Gesture {
         DragGesture(minimumDistance: 50, coordinateSpace: .global).onChanged { value in
             if value.translation.height > 50 {
-                self.modalPresenterManager.dismiss()
+                //self.modalPresenterManager.dismiss()
             }
         }
     }
     
     private func content(_ proxy: GeometryProxy) -> some View {
         ZStack {
+            
             viewModel.stories[viewModel.currentStoryIndex]
                 .resizable()
                 .scaledToFill()
@@ -42,18 +45,21 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                     if self.viewModel.canTapNext {
                         self.viewModel.showNext()
                     } else {
-                        self.modalPresenterManager.dismiss()
+                        //self.modalPresenterManager.dismiss()
                     }
                 }
             
             VStack {
                 HStack(spacing: 0) {
-                    Image("image4")
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 52, height: 52)
-                        .background(Circle().fill(Color.white).padding(-5))
+                    VStack {
+                        Image("image4")
+                           .resizable()
+                           .scaledToFill()
+                           .clipShape(Circle())
+                           .frame(width: 52, height: 52)
+                           .background(Circle().fill(Color.white).padding(-5))
+                    }.tapGesture(toggls: $showsUserProfile)
+                    
                     Spacer()
                     VStack(alignment: .leading) {
                         Text("Long Username").font(.bold(24)).lineLimit(1)
@@ -64,9 +70,15 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                             .foregroundColor(likedStory ? .red : .white)
                             .padding(20)
                     }
-                    Button(action: modalPresenterManager.dismiss) {
+                    Button(action: {
+                         self.mode.wrappedValue.dismiss()
+                    }) {
                         Image("close_icon").padding(20)
                     }
+//                    Button(action: modalPresenterManager.dismiss) {
+//                        Image("close_icon").padding(20)
+//                    }
+                    
                 }.foregroundColor(.white)
                 .padding(.leading, 20)
                 
@@ -131,6 +143,14 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                     }
                 }
             }
+            .background(
+                NavigationLink(
+                    destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(),
+                    isActive: $showsUserProfile,
+                    label: EmptyView.init
+                )
+            )
+            
         }.actionSheet(isPresented: $showReport) {
             ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
                 .default(Text("Block User"), action: self.viewModel.blockUser),
@@ -138,6 +158,15 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                 .cancel()
             ])
         }.gesture(dragToClose)
+        
+//        .background(
+//            NavigationView {
+//                NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(), isActive: .constant(true)) {
+//                  Text("Press on me")
+//               }.buttonStyle(PlainButtonStyle())
+//            }
+//        )
+        
     }
     
     private func sendMessage() {

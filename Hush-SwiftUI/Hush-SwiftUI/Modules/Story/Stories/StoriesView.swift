@@ -42,7 +42,8 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     @EnvironmentObject var modalPresenterManager: ModalPresenterManager
     @EnvironmentObject var app: App
     private let imagePicker = DVImagePicker()
-    
+    @State private var showsUserProfile = false
+
     // MARK: - Lifecycle
     
     var body: some View {
@@ -55,14 +56,23 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                                 .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
                                 .zIndex(j == 1 ? 3 : 0)
                                 .offset(self.offset(row: i, column: j))
-                                .onTapGesture { self.handleTap(i, j) }
+                                .onTapGesture {
+                                    self.handleTap(i, j)
+                                    
+                            }
                         }
                     }.zIndex(self.zIndex(row: i))
                     .padding(.horizontal, 22)
                     .frame(width: SCREEN_WIDTH)
                 }
             }.padding(.top, 22)
-        }
+        }.background(
+            NavigationLink(
+                destination: StoryView(viewModel: StoryViewModel()).environmentObject(self.app).withoutBar(),
+                isActive: $showsUserProfile,
+                label: EmptyView.init
+            )
+        )
     }
     
     private func zIndex(row i: Int) -> Double {
@@ -92,9 +102,11 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     }
     
     func showStory() {
-        modalPresenterManager.present(style: .overFullScreen) {
-            StoryView(viewModel: StoryViewModel()).environmentObject(self.app)
-        }
+        self.showsUserProfile = true
+        //self.tapGesture(toggls: self.$showsUserProfile)
+//        modalPresenterManager.present(style: .overFullScreen) {
+//            StoryView(viewModel: StoryViewModel()).environmentObject(self.app)
+//        }
     }
     
     func showMyStory(lastPick: Bool) {
