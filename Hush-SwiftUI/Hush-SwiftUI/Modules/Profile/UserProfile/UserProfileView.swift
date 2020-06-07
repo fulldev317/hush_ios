@@ -138,10 +138,12 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                         .foregroundColor(self.liked ? .red : .white)
                                 }
                                 
-                                HapticButton(action: { self.profileTapped.toggle() }) {
+                                HapticButton(action:
+                                    self.viewModel.switchMode) {
                                     Image("profile_profile")
                                         .renderingMode(.template)
-                                        .foregroundColor(self.profileTapped ? .red : .white)
+                                        .foregroundColor(.white)
+                                            //self.profileTapped ? .red : .white)
                                 }
                             }
                             HapticButton(action: self.viewModel.switchMode) {
@@ -177,10 +179,14 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             .foregroundColor(self.liked ? .red : .white)
                     }
                     
-                    HapticButton(action: { self.profileTapped.toggle() }) {
+                    HapticButton(action:                        self.viewModel.switchMode
+                        //{
+                        //self.profileTapped.toggle()
+                        //}
+                    ) {
                         Image("profile_profile")
                             .renderingMode(.template)
-                            .foregroundColor(self.profileTapped ? .red : .white)
+                            .foregroundColor(.white)
                     }
                     Spacer()
                 }.padding()
