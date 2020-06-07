@@ -68,8 +68,10 @@ struct CardCaruselElementView: View {
                         Image("profile_icon_carusel").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                     }.buttonStyle(PlainButtonStyle())
                 }.padding(.bottom, 10).padding(.trailing, ISiPhoneX ? 0 : 15)
-                
-            }.padding(.bottom, ISiPhoneX ? 20 : 0).padding(.horizontal, 5).rotationEffect(-rotation)
+            }.padding(.bottom, ISiPhoneX ? 10 : 10)
+                .padding(.horizontal, 5)
+                .padding(.leading, 0)
+            
         }.padding(.horizontal, ISiPhoneX ? 70 * deviceScale : 0)
         .padding(.vertical)
     }
