@@ -36,7 +36,7 @@ struct CardCaruselElementView: View {
                 
                 Spacer()
             }
-        }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 628 : 470) * deviceScale)
+        }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 610 : 470) * deviceScale)
         .overlay(overlay.rotationEffect(rotation), alignment: .bottom)
         .rotationEffect(-rotation)
         .tapGesture(toggls: $showUserProfile)
