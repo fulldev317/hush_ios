@@ -36,7 +36,9 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     
     @ObservedObject var viewModel: ViewModel
     @State private var selectedMessage: HushConversation?
-    
+    @State private var keyboardPresented: Bool = false
+    @State private var keyboardHeight: CGFloat = 0
+
     // MARK: - Lifecycle
     
     var body: some View {
@@ -47,29 +49,43 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                     .onDisappear { self.selectedMessage = nil }, isActive: .constant(true), label: EmptyView.init)
             }
             
+            
             VStack(spacing: 0) {
-                List {
-                    TextField("Search...", text: $viewModel.searchQuery).foregroundColor(Color(0x9B9B9B))
-                        .textFieldStyle(SearchTextFieldStyle())
-                        .listRowBackground(Color.black)
-                        .padding(.bottom)
-                        .listRowInsets(.init())
+                TextField("Search...", text: $viewModel.searchQuery)        .foregroundColor(Color.white)
+                    .textFieldStyle(SearchTextFieldStyle())
+                    .listRowBackground(Color.black)
+                    .padding(.bottom)
+                    .listRowInsets(.init())
+
+                ZStack {
+                    List {
+                        ForEach(viewModel.items) { message in
+                            MessagesCell(message: message).padding(.horizontal, 16)
+                            .listRowInsets(.init())
+                                .onTapGesture {
+                                    self.selectedMessage = message
+                            }
+                            }.onDelete(perform: self.viewModel.deleteContersation)
+                            .background(Color.black)
+                    }.listStyle(DefaultListStyle())
+                    .withoutBar()
+                    .background(Color.black)
+                        .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+                        .appearenceModifier(path: \UITableView.separatorStyle, value: .none)
                     
-                    ForEach(viewModel.items) { message in
-                        MessagesCell(message: message).padding(.horizontal, 16)
-                        .listRowInsets(.init())
-                            .onTapGesture {
-                                self.selectedMessage = message
+                    if (keyboardHeight > 0) {
+                        VStack {
+                            Spacer()
                         }
-                        }.onDelete(perform: self.viewModel.deleteContersation)
-                        .background(Color.black)
-                }.listStyle(DefaultListStyle())
-                .withoutBar()
-                .background(Color.black)
-                    .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
-                    .appearenceModifier(path: \UITableView.separatorStyle, value: .none)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        .background(Color.black.opacity(0.04))
+                        .onTapGesture {
+                            UIApplication.shared.endEditing()
+                        }
+                    }
+                }                
             }
-        }
+        }.observeKeyboardHeight($keyboardHeight, withAnimation: .default)
     }
 }
 
