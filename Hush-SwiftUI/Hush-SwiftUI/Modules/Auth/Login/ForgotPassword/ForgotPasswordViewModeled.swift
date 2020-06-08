@@ -14,6 +14,7 @@ protocol ForgotPasswordViewModeled: ObservableObject {
     var hasErrorMessage: Bool { get set }
     var errorMessage: String { get set }
     var goToRoot: Bool { get set }
-    
+    var showResetPassword: Bool { get set }
+
     func submit()
 }
