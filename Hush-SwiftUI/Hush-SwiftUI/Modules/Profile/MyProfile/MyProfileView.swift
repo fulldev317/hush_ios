@@ -25,6 +25,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     @State var showMatchesView = false
+    @State var showVisitedMeView = false
+    @State var showLikesMeView = false
+    @State var showMyLikeView = false
 
     
     // MARK: - Lifecycle
@@ -158,20 +161,41 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.showMatchesView.toggle()
                 }.background(
                     NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel()).environmentObject(self.app).withoutBar(),
+                        destination: MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image5").environmentObject(self.app).withoutBar(),
                         isActive: $showMatchesView,
                         label: EmptyView.init
                     )
                 )
+                
                 tableRow("Visited my Profile", "0") {
-                    
-                }
+                    self.showVisitedMeView.toggle()
+                }.background(
+                    NavigationLink(
+                        destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", image_url: "image2").environmentObject(self.app).withoutBar(),
+                       isActive: $showVisitedMeView,
+                       label: EmptyView.init
+                    )
+                )
+                
                 tableRow("Likes me", "0") {
-                    
-                }
+                    self.showLikesMeView.toggle()
+                }.background(
+                    NavigationLink(
+                        destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", image_url: "image3").environmentObject(self.app).withoutBar(),
+                       isActive: $showLikesMeView,
+                       label: EmptyView.init
+                    )
+                )
+                
                 tableRow("My likes", "0") {
-                    
-                }
+                    self.showMyLikeView.toggle()
+                }.background(
+                    NavigationLink(
+                        destination: MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image4").environmentObject(self.app).withoutBar(),
+                       isActive: $showMyLikeView,
+                       label: EmptyView.init
+                    )
+                )
             }
         }.padding(.horizontal, 36)
     }
