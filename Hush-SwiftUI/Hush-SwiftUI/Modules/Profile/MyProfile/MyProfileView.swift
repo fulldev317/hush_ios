@@ -24,7 +24,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
-    
+    @State var showMatchesView = false
+
     
     // MARK: - Lifecycle
     
@@ -154,8 +155,14 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
                 tableRow("Matches", "0") {
-                    
-                }
+                    self.showMatchesView.toggle()
+                }.background(
+                    NavigationLink(
+                        destination: MatchView(viewModel: MatchViewModel()).environmentObject(self.app).withoutBar(),
+                        isActive: $showMatchesView,
+                        label: EmptyView.init
+                    )
+                )
                 tableRow("Visited my Profile", "0") {
                     
                 }

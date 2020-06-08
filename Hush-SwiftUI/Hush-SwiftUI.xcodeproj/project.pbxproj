@@ -126,6 +126,9 @@
 		15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCE82432287B00A92595 /* SignUpEmailViewModeled.swift */; };
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
+		536419DE248E693B002D7A4F /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DB248E693B002D7A4F /* MatchViewModel.swift */; };
+		536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DC248E693B002D7A4F /* MatchViewModeled.swift */; };
+		536419E0248E693B002D7A4F /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DD248E693B002D7A4F /* MatchView.swift */; };
 		7354C347247FA59B007D6FA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354C346247FA59B007D6FA5 /* User.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
@@ -303,6 +306,9 @@
 		15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewModel.swift; sourceTree = "<group>"; };
 		297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		536419DB248E693B002D7A4F /* MatchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
+		536419DC248E693B002D7A4F /* MatchViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModeled.swift; sourceTree = "<group>"; };
+		536419DD248E693B002D7A4F /* MatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7354C346247FA59B007D6FA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -502,6 +508,7 @@
 				15D53C72243C5FE200D62B26 /* Story */,
 				157930962435C2E400EE428F /* Card */,
 				157930882435BDB600EE428F /* Discovery */,
+				536419D4248E434A002D7A4F /* Match */,
 				154B26A52431C33500265C76 /* Auth */,
 			);
 			path = Modules;
@@ -853,6 +860,16 @@
 				5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		536419D4248E434A002D7A4F /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				536419DD248E693B002D7A4F /* MatchView.swift */,
+				536419DB248E693B002D7A4F /* MatchViewModel.swift */,
+				536419DC248E693B002D7A4F /* MatchViewModeled.swift */,
+			);
+			path = Match;
 			sourceTree = "<group>";
 		};
 		7354C345247FA586007D6FA5 /* Models */ = {
@@ -1245,6 +1262,7 @@
 				73D44AF4247FAE2700FB01BA /* Notifications.swift in Sources */,
 				89559FFB246AB94000223FB7 /* StoryViewModeled.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
+				536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */,
 				8936B116246B40FA001F9254 /* UserDefault.swift in Sources */,
 				89C77B272465EC3700705899 /* SingleSlider.swift in Sources */,
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
@@ -1252,6 +1270,7 @@
 				15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */,
 				8955A002246AD29400223FB7 /* StoriesSettingsView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
+				536419DE248E693B002D7A4F /* MatchViewModel.swift in Sources */,
 				15D53C8B243C90DC00D62B26 /* ImagesCarusel.swift in Sources */,
 				157930E124371D0800EE428F /* StoryCardsViewModel.swift in Sources */,
 				155E2FFE243B0FFC001D886D /* AsyncImage.swift in Sources */,
@@ -1271,6 +1290,7 @@
 				8993C763245D917500E8F765 /* PermissionDeniedView.swift in Sources */,
 				157930AB2435E62000EE428F /* DiscoveriesSettingsView.swift in Sources */,
 				15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */,
+				536419E0248E693B002D7A4F /* MatchView.swift in Sources */,
 				154B26B02431CDE300265C76 /* LoginButtons.swift in Sources */,
 				155E2FFD243B0FFC001D886D /* ImageCache.swift in Sources */,
 				1579310424373C2800EE428F /* UIView+Ext.swift in Sources */,
