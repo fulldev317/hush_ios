@@ -38,7 +38,7 @@ class UpgradeMessageViewModel: UpgradeViewModeled {
     private func profile_image(_ index: Int) -> AnyView {
         AnyView(
             ZStack {
-                Image("image3").aspectRatio(.fit).padding(.horizontal, 5)
+                Image("image3").aspectRatio(.fit).padding(.horizontal, 10)
                 Image("swipe\(index)").aspectRatio(.fit)
             }
         )
