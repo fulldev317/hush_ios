@@ -58,11 +58,16 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
                     }.padding(.horizontal, 30)
                 }
                 SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $viewModel.email).padding(.horizontal, 30)
-                borderedButton(action: viewModel.submit, title: "Submit")
+                borderedButton(action: {
+                    //viewModel.submit
+                    self.viewModel.showResetPassword.toggle()
+                }, title: "Submit")
                     .padding(.vertical, 29).padding(.horizontal, 30)
                 popToRoot()
             }
-        }
+        }.background(NavigationLink(destination: ResetPasswordView(viewModel: ResetPasswordViewModel()),
+        isActive: $viewModel.showResetPassword,
+        label: EmptyView.init))
     }
     
     private func popToRoot() -> some View {
