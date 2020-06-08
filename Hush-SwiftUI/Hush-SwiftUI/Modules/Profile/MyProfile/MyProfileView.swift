@@ -28,6 +28,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @State var showVisitedMeView = false
     @State var showLikesMeView = false
     @State var showMyLikeView = false
+    @State private var height: CGFloat = 50
 
     
     // MARK: - Lifecycle
@@ -45,7 +46,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                             self.app.onProfileEditing = !self.app.onProfileEditing
                         }
                     }) {
-                        Text("Edit")
+                        Text(self.app.onProfileEditing ? "Done" : "Edit")
                             .font(.regular(17))
                             .foregroundColor(Color.white)
                             .padding(.all)
@@ -229,7 +230,11 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 tableRow("Living", value: $viewModel.basicsViewModel.living)
                 tableRow("Bio", value: nil)
                 if app.onProfileEditing {
-                    TextField("Bio", text: $viewModel.basicsViewModel.bio).multilineTextAlignment(.leading).font(.regular(17)).foregroundColor(.white)
+                    
+                    MultilineTextField("Bio", text: $viewModel.basicsViewModel.bio, height: $height)
+                                 .foregroundColor(.white)
+                    
+//                    TextField("Bio", text: $viewModel.basicsViewModel.bio).multilineTextAlignment(.leading).font(.regular(17)).foregroundColor(.white)
                 } else {
                     Text(viewModel.basicsViewModel.bio).font(.regular(17)).foregroundColor(.white)
                 }
