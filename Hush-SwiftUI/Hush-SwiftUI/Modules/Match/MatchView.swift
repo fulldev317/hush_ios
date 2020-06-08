@@ -2,7 +2,7 @@
 //  MatchView.swift
 //  Hush-SwiftUI
 //
-//  Created Dima Virych on 06.08.2020.
+//  Created Maksym on 06.08.2020.
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
@@ -13,10 +13,13 @@ import PartialSheet
 struct MatchView<ViewModel: MatchViewModeled>: View {
     
     // MARK: - Properties
-    
     @ObservedObject var viewModel: ViewModel
+    let title: String
+    let image_url: String
+    
     @State private var showsUserProfile = false
     @Environment(\.presentationMode) var mode
+
 
     // MARK: - Lifecycle
     
@@ -24,7 +27,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         
         VStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Matches").font(.thin(48)).foregroundColor(.hOrange)
+                Text(title).font(.thin(48)).foregroundColor(.hOrange)
                 HStack(alignment: .top) {
                    HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
                        HStack(spacing: 23) {
@@ -63,7 +66,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     
     func polaroidCard(_ i: Int, _ j: Int) -> some View {
         PolaroidCard(
-            image: UIImage(named: "image3")!,
+            image: UIImage(named: image_url)!,
             cardWidth: SCREEN_WIDTH / 2 + 15,
             bottom: self.bottomView(i, j)
         ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
@@ -111,7 +114,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
 struct MatchesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MatchView(viewModel: MatchViewModel())
+            MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image1")
         }
     }
 }

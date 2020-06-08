@@ -2,7 +2,7 @@
 //  MatchViewModeled.swift
 //  Hush-SwiftUI
 //
-//  Created Dima Virych on 06.08.2020.
+//  Created Maksym on 06.08.2020.
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
