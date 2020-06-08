@@ -62,7 +62,7 @@ struct HSegmentedControl: View {
                     .stroke(isSelected ? Color.clear : Color.white, lineWidth: 1)
                     .foregroundColor(.clear)
                     .background(isSelected ? Color.hOrange : Color.clear)
-                    .frame(minHeight: 40, maxHeight: 48).cornerRadius(6)
+                    .frame(minHeight: 36, maxHeight: 38).cornerRadius(6)
                 Text(title)
                     .kerning(1)
                     .padding(2)

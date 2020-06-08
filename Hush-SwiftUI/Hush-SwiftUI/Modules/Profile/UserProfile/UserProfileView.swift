@@ -36,6 +36,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     @State var currentPage = 0
     @State var shouldReport = false
     @State var goToMessage = false
+    @State var showUpgrade = false
     @State var liked = false
     @State var profileTapped = false
     @ObservedObject var viewModel: ViewModel
@@ -65,6 +66,11 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                 .cancel()
             ])
         }.background(NavigationLink(
+            destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
+            isActive: self.$showUpgrade,
+            label: EmptyView.init
+        ))
+        .background(NavigationLink(
             destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(),
             isActive: self.$goToMessage,
             label: EmptyView.init
@@ -124,19 +130,6 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         
                         VStack(spacing: 0) {
                             HStack(spacing: 25) {
-                                HapticButton(action: {
-                                    self.app.showPremium.toggle()
-                                    //self.goToMessage.toggle()
-                                }) {
-                                    Image("profile_message")
-                                        .foregroundColor(.white)
-                                }
-                                
-                                HapticButton(action: { self.liked.toggle() }) {
-                                    Image("profile_heart")
-                                        .renderingMode(.template)
-                                        .foregroundColor(self.liked ? .red : .white)
-                                }
                                 
                                 HapticButton(action:
                                     self.viewModel.switchMode) {
@@ -144,13 +137,29 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                         .renderingMode(.template)
                                         .foregroundColor(.white)
                                             //self.profileTapped ? .red : .white)
+                                }.padding(.leading, 10)
+                               
+                                HapticButton(action: { self.liked.toggle() }) {
+                                    Image("profile_heart")
+                                        .renderingMode(.template)
+                                        .foregroundColor(self.liked ? .red : .white)
                                 }
+                                
+                                HapticButton(action: {
+                                    self.showUpgrade.toggle()
+                                    //self.goToMessage.toggle()
+                                    }) {
+                                    Image("profile_message")
+                                       .foregroundColor(.white)
+                                }.padding(.trailing, 10).padding(.vertical, 5)
+                            
                             }
+                            
                             HapticButton(action: self.viewModel.switchMode) {
                                 Image("profile_chevron_down")
                                     .foregroundColor(.white)
                                 .padding()
-                                .offset(x: -2, y: 0)
+                                .offset(x: 0, y: 0)
                             }
                         }
                     }.padding(10)

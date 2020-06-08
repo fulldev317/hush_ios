@@ -66,6 +66,6 @@ struct ImagesCarusel_Previews: PreviewProvider {
             UpgradeUIItem(title: "6", content: Image("image3")),
             UpgradeUIItem(title: "7", content: Image("image3")),
             UpgradeUIItem(title: "8", content: Image("image3"))
-            ])
+        ]).colorScheme(.dark)
     }
 }

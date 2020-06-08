@@ -15,9 +15,9 @@ class UserProfileViewModel: UserProfileViewModeled {
 
     @Published var mode: UserProfileMode = .photo
     
-    var aboutMe = "Hellow World!"
-    var location = "Hellow World!"
-    let photos: [UIImage] = Array(0..<20).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
+    var aboutMe = "Hello World!"
+    var location = "Hello World!"
+    let photos: [UIImage] = Array(0..<3).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
     let stories: [UIImage] = Array(0..<20).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
     
     func updateMessage() {
