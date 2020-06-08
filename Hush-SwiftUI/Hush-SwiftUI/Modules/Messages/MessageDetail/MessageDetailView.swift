@@ -53,7 +53,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
             }
             .rotationEffect(.degrees(180))
             
-            SendTextField(placeholder: "SAD", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
+            SendTextField(placeholder: "Type your Message", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
                 .padding(.horizontal, 15)
 
             Spacer(minLength: keyboardHeight - 70)

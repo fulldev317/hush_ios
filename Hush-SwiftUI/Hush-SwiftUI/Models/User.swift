@@ -180,6 +180,9 @@ class User {
         for (_, subJson):(String, JSON) in json["photos"] {
             let photo = Photo.parseFromJson(subJson)
             user.photos.append(photo)
+            if (user.photos.count == 3) {
+                break
+            }
         }
         user.notifications = Notifications.parseFromJson(json["notification"])
         return user

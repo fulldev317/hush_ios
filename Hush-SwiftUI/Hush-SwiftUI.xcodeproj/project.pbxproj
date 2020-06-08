@@ -129,6 +129,7 @@
 		536419DE248E693B002D7A4F /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DB248E693B002D7A4F /* MatchViewModel.swift */; };
 		536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DC248E693B002D7A4F /* MatchViewModeled.swift */; };
 		536419E0248E693B002D7A4F /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DD248E693B002D7A4F /* MatchView.swift */; };
+		536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */; };
 		7354C347247FA59B007D6FA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354C346247FA59B007D6FA5 /* User.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
@@ -309,6 +310,7 @@
 		536419DB248E693B002D7A4F /* MatchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		536419DC248E693B002D7A4F /* MatchViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModeled.swift; sourceTree = "<group>"; };
 		536419DD248E693B002D7A4F /* MatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeMessageViewModel.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7354C346247FA59B007D6FA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 			children = (
 				15D53C84243C909600D62B26 /* UpgradeView.swift */,
 				15D53C85243C909600D62B26 /* UpgradeViewModel.swift */,
+				536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */,
 				15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */,
 				15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */,
 			);
@@ -1302,6 +1305,7 @@
 				0E13EBD624805627003E0959 /* FaceDetectionView.swift in Sources */,
 				896DDEFD2464956A00AC0F95 /* Size.swift in Sources */,
 				896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */,
+				536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
 				15D53C7E243C65C900D62B26 /* MyProfileView.swift in Sources */,
 				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,

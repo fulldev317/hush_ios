@@ -51,7 +51,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
             
             
             VStack(spacing: 0) {
-                TextField("Search...", text: $viewModel.searchQuery)        .foregroundColor(Color.white)
+                TextField("Search...", text: $viewModel.searchQuery)
                     .textFieldStyle(SearchTextFieldStyle())
                     .listRowBackground(Color.black)
                     .padding(.bottom)
