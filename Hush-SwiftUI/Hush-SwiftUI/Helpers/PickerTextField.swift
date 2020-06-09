@@ -130,10 +130,9 @@ struct DateTextField: UIViewRepresentable {
     
     var title: String
     var picked: (Date) -> Void
-    var editabled: (Bool) -> Void
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(picked: picked, editabled: editabled, textField: UITextField(), selectedDate: Date())
+        Coordinator(picked: picked, textField: UITextField(), selectedDate: Date())
     }
     
     func makeUIView(context: Context) -> UITextField {
@@ -162,7 +161,6 @@ extension DateTextField {
     class Coordinator: NSObject {
         var textField: UITextField
         private var picked: (Date) -> Void
-        private var editabled: (Bool) -> Void
         private var selectedDate: Date
         
         var inputView: UIDatePicker {
@@ -200,9 +198,8 @@ extension DateTextField {
             textField.resignFirstResponder()
         }
         
-        init(picked: @escaping (Date) -> Void, editabled: @escaping (Bool) -> Void, textField: UITextField, selectedDate: Date ) {
+        init(picked: @escaping (Date) -> Void, textField: UITextField, selectedDate: Date ) {
             self.picked = picked
-            self.editabled = editabled
             self.textField = textField
             self.selectedDate = selectedDate
         }

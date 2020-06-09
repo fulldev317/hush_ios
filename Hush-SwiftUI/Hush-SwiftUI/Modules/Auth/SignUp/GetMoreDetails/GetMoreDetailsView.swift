@@ -39,13 +39,24 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 .font(.thin())
                 .foregroundColor(.white)
                 .padding(.bottom, 20)
-            Text("Date of Birth")
-                .font(.thin())
-                .foregroundColor(.white)
-            DatePickerField(text: $viewModel.birthday)
+//            Text("Date of Birth")
+//                .font(.thin())
+//                .foregroundColor(.white)
+            DatePickerField(text: $viewModel.birthday )
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
-                
+            
+            CustomTextField(
+                placeholder: Text("Enter your Location").foregroundColor(.white).font(.regular(18)),
+                text: $viewModel.location
+            )
+//            ZStack {
+//
+//                TextField("Enter your Location", text: $viewModel.location).font(.regular(17)).foregroundColor(.white)
+//                    .padding(.horizontal, 16)
+//                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
+            
+ //           }
             pickers
             borderedButton(action: {
                 //self.app.logedIn = true
