@@ -16,6 +16,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     @ObservedObject var viewModel: ViewModel
     let title: String
     let image_url: String
+    let blured: Bool
     
     @State private var showsUserProfile = false
     @Environment(\.presentationMode) var mode
@@ -68,7 +69,8 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         PolaroidCard(
             image: UIImage(named: image_url)!,
             cardWidth: SCREEN_WIDTH / 2 + 15,
-            bottom: self.bottomView(i, j)
+            bottom: self.bottomView(i, j),
+            blured: blured
         ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
         .zIndex(Double(i % 2 == 0 ? j : -j))
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
@@ -93,6 +95,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         return HStack {
             (Text(match.name) + Text(", ") + Text("\(match.age)"))
                 .font(.regular(14))
+                .blur(radius: blured ? 2 : 0)
                 .foregroundColor(Color(0x8E8786))
             Spacer()
             Button(action: { self.viewModel.like(i, j) }) {
@@ -114,7 +117,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
 struct MatchesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image1")
+            MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image1", blured: true)
         }
     }
 }

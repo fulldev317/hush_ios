@@ -29,6 +29,7 @@ struct PolaroidCard<Content: View>: View {
     var cardWidth: CGFloat
     var overlay: AnyView = AnyView(EmptyView())
     var bottom: Content = EmptyView() as! Content
+    var blured: Bool = false
     
     private let cardDimention: CGFloat = 3.5 / 4.2
     private var height: CGFloat {
@@ -49,6 +50,7 @@ struct PolaroidCard<Content: View>: View {
                     .overlay(overlay)
                     .frame(width: imgSide, height: imgSide)
                     .padding([.leading, .top, .trailing], (cardWidth - imgSide) / 2)
+                    .blur(radius: blured ? (cardWidth - imgSide) / 3 : 0)
                     .clipShape(Squere(x: (cardWidth - imgSide) / 2, y: (cardWidth - imgSide) / 2, side: imgSide))
                 
                 bottom
