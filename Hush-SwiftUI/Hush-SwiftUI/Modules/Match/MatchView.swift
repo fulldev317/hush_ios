@@ -19,6 +19,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     let blured: Bool
     
     @State private var showsUserProfile = false
+    @State private var showUpgrade = false
     @Environment(\.presentationMode) var mode
 
 
@@ -52,6 +53,13 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                   isActive: $showsUserProfile,
                   label: EmptyView.init
                 )
+            ).background(
+                NavigationLink(
+                    destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
+                    isActive: $showUpgrade,
+                    label: EmptyView.init
+                )
+                
             )
        }
        .background(Color.hBlack.edgesIgnoringSafeArea(.all))
@@ -74,6 +82,11 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
         .zIndex(Double(i % 2 == 0 ? j : -j))
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
+        .onTapGesture {
+            if (self.blured) {
+                self.showUpgrade.toggle()
+            }
+        }
     }
     
     func leading(_ j: Int) -> CGFloat {
