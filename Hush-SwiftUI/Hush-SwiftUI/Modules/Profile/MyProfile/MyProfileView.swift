@@ -162,7 +162,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.showMatchesView.toggle()
                 }.background(
                     NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image5").environmentObject(self.app).withoutBar(),
+                        destination: MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image5", blured: false).environmentObject(self.app).withoutBar(),
                         isActive: $showMatchesView,
                         label: EmptyView.init
                     )
@@ -172,7 +172,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.showVisitedMeView.toggle()
                 }.background(
                     NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", image_url: "image2").environmentObject(self.app).withoutBar(),
+                        destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", image_url: "image2", blured: true).environmentObject(self.app).withoutBar(),
                        isActive: $showVisitedMeView,
                        label: EmptyView.init
                     )
@@ -182,7 +182,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.showLikesMeView.toggle()
                 }.background(
                     NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", image_url: "image3").environmentObject(self.app).withoutBar(),
+                        destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", image_url: "image3", blured: true).environmentObject(self.app).withoutBar(),
                        isActive: $showLikesMeView,
                        label: EmptyView.init
                     )
@@ -192,7 +192,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.showMyLikeView.toggle()
                 }.background(
                     NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "My Likes", image_url: "image4").environmentObject(self.app).withoutBar(),
+                        destination: MatchView(viewModel: MatchViewModel(), title: "My Likes", image_url: "image4", blured: false).environmentObject(self.app).withoutBar(),
                        isActive: $showMyLikeView,
                        label: EmptyView.init
                     )
