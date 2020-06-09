@@ -98,7 +98,7 @@ extension AddPhotosViewModel {
     private func resetView() {
         refreshPermissions()
         cameraPickerSelected = false
-        libraryPickerSelected = false
+        //libraryPickerSelected = false
         isPickerPresented = false
         pickedSourceType = nil
     }
@@ -114,12 +114,12 @@ extension AddPhotosViewModel {
             .removeDuplicates()
             .assign(to: \.canGoNext, on: self)
             .store(in: &disposals)
-        
-        $cameraPickerSelected.combineLatest($libraryPickerSelected)
-            .map { $0 || $1 }
-            .assign(to: \.isPickerSheetPresented, on: self)
-            .store(in: &disposals)
-        
+
+//        $cameraPickerSelected.combineLatest($libraryPickerSelected)
+//            .map { $0 || $1 }
+//            .assign(to: \.isPickerSheetPresented, on: self)
+//            .store(in: &disposals)
+
         let allowedCameraAccess = $cameraAuthorizationStatus.map { $0 == .authorized }
         let deniedCameraAccess = $cameraAuthorizationStatus.map { $0 == .denied }
         let deniedLibraryAccess = $libraryAuthorizationStatus.map { $0 == .denied }
@@ -130,15 +130,17 @@ extension AddPhotosViewModel {
             .assign(to: \.isPermissionDenied, on: self)
             .store(in: &disposals)
         
-        $cameraPickerSelected
-            .map { _ in UIImagePickerController.SourceType.camera }
-            .assign(to: \.pickedSourceType, on: self)
-            .store(in: &disposals)
-        
-        $libraryPickerSelected
-            .map { _ in UIImagePickerController.SourceType.photoLibrary }
-            .assign(to: \.pickedSourceType, on: self)
-            .store(in: &disposals)
+        if (cameraPickerSelected) {
+            $cameraPickerSelected
+                .map { _ in UIImagePickerController.SourceType.camera }
+                .assign(to: \.pickedSourceType, on: self)
+                .store(in: &disposals)
+        } else if (libraryPickerSelected){
+            $libraryPickerSelected
+                .map { _ in UIImagePickerController.SourceType.photoLibrary }
+                .assign(to: \.pickedSourceType, on: self)
+                .store(in: &disposals)
+        }
         
         $pickedSourceType
             .compactMap { $0 }
