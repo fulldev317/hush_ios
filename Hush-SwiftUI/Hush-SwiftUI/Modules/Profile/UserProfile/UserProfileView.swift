@@ -137,7 +137,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                         .renderingMode(.template)
                                         .foregroundColor(.white)
                                             //self.profileTapped ? .red : .white)
-                                }.padding(.leading, 10)
+                                }
                                
                                 HapticButton(action: { self.liked.toggle() }) {
                                     Image("profile_heart")
@@ -150,8 +150,10 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                     //self.goToMessage.toggle()
                                     }) {
                                     Image("profile_message")
-                                       .foregroundColor(.white)
-                                }.padding(.trailing, 10).padding(.vertical, 5)
+                                        .resizable()
+                                        .foregroundColor(.white).aspectRatio(contentMode: .fill)
+                                        .frame(width: 34, height: 34)
+                                }
                             
                             }
                             
