@@ -13,6 +13,7 @@ struct PickerTextField: UIViewRepresentable {
     var title: String
     var titles: [String]
     var picked: (String) -> Void
+    var editabled: (Bool) -> Void
 
     func makeCoordinator() -> Coordinator {
         Coordinator(titles: titles, picked: picked)
@@ -21,6 +22,7 @@ struct PickerTextField: UIViewRepresentable {
     func makeUIView(context: Context) -> UITextField {
         let field = UITextField()
         field.inputView = context.coordinator.inputView
+        field.inputAccessoryView = context.coordinator.toolBarView
         field.textAlignment = .right
         field.textColor = .white
         
@@ -45,6 +47,18 @@ extension PickerTextField {
             picker.delegate = self
 
             return picker
+        }
+        
+        var toolBarView: UIToolbar {
+            let toolbar = UIToolbar()
+            return toolbar
+        }
+        
+        @objc func donePicker() {
+        }
+        
+        @objc func cancelPicker() {
+            
         }
         
         init(titles: [String], picked: @escaping (String) -> Void) {
@@ -82,6 +96,8 @@ struct PickerTextField_Previews: PreviewProvider {
             Text(str)
             PickerTextField(title: str, titles: ["1", "2", "3"], picked: { s in
                 self.str = s
+            }, editabled: { b in
+                
             })
         }
     }
@@ -92,16 +108,21 @@ struct DateTextField: UIViewRepresentable {
     
     var title: String
     var picked: (Date) -> Void
-
+    var editabled: (Bool) -> Void
+    
     func makeCoordinator() -> Coordinator {
-        Coordinator(picked: picked)
+        Coordinator(picked: picked, editabled: editabled, textField: UITextField(), selectedDate: Date())
     }
     
     func makeUIView(context: Context) -> UITextField {
         let field = UITextField()
         field.inputView = context.coordinator.inputView
+        field.inputAccessoryView = context.coordinator.toolBarView
         field.textAlignment = .right
         field.textColor = .white
+        field.resignFirstResponder()
+        
+        context.coordinator.textField = field
         
         return field
     }
@@ -110,14 +131,18 @@ struct DateTextField: UIViewRepresentable {
         
         uiView.text = title
     }
+    
 }
 
 
 extension DateTextField {
     
     class Coordinator: NSObject {
-        
+        var textField: UITextField
         private var picked: (Date) -> Void
+        private var editabled: (Bool) -> Void
+        private var selectedDate: Date
+        
         var inputView: UIDatePicker {
             let picker = UIDatePicker()
             picker.datePickerMode = .date
@@ -127,12 +152,42 @@ extension DateTextField {
             return picker
         }
         
-        init(picked: @escaping (Date) -> Void) {
+        var toolBarView: UIToolbar {
+            let toolbar = UIToolbar()
+            toolbar.barStyle = UIBarStyle.default
+            toolbar.isTranslucent = true
+            toolbar.tintColor = UIColor(red: 10/255, green: 132/255, blue: 255/255, alpha: 1)
+            toolbar.sizeToFit()
+            
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.donePicker))
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelPicker))
+
+            toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            toolbar.isUserInteractionEnabled = true
+            
+            return toolbar
+        }
+        
+        @objc func donePicker() {
+            picked(selectedDate)
+            textField.resignFirstResponder()
+        }
+        
+        @objc func cancelPicker() {
+            textField.resignFirstResponder()
+        }
+        
+        init(picked: @escaping (Date) -> Void, editabled: @escaping (Bool) -> Void, textField: UITextField, selectedDate: Date ) {
             self.picked = picked
+            self.editabled = editabled
+            self.textField = textField
+            self.selectedDate = selectedDate
         }
         
         @objc private func changed(_ picker: UIDatePicker) {
-            picked(picker.date)
+            selectedDate = picker.date
+            //picked(picker.date)
         }
     }
 }
