@@ -318,7 +318,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             Spacer()
             if app.onProfileEditing {
                 PickerTextField(title: selected, titles: titles, picked: picked, editabled: { edit in
-                    self.app.onProfileEditing = edit
+                    //self.app.onProfileEditing = edit
                 })
                 
             } else {
@@ -333,7 +333,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             Spacer()
             if app.onProfileEditing {
                 DateTextField(title: selected, picked: picked, editabled: { edit in
-                    self.app.onProfileEditing = edit
+                    //self.app.onProfileEditing = edit
                 })
                 
             } else {

@@ -14,9 +14,9 @@ struct PickerTextField: UIViewRepresentable {
     var titles: [String]
     var picked: (String) -> Void
     var editabled: (Bool) -> Void
-
+    
     func makeCoordinator() -> Coordinator {
-        Coordinator(titles: titles, picked: picked)
+        Coordinator(titles: titles, picked: picked, textField: UITextField(), selectedTitle: "")
     }
     
     func makeUIView(context: Context) -> UITextField {
@@ -25,6 +25,8 @@ struct PickerTextField: UIViewRepresentable {
         field.inputAccessoryView = context.coordinator.toolBarView
         field.textAlignment = .right
         field.textColor = .white
+        
+        context.coordinator.textField = field
         
         return field
     }
@@ -39,8 +41,11 @@ extension PickerTextField {
     
     class Coordinator: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
         
+        var textField: UITextField
         private var titles: [String]
         private var picked: (String) -> Void
+        private var selectedTitle: String
+        
         var inputView: UIPickerView {
             let picker = UIPickerView()
             picker.dataSource = self
@@ -51,19 +56,36 @@ extension PickerTextField {
         
         var toolBarView: UIToolbar {
             let toolbar = UIToolbar()
+            toolbar.barStyle = UIBarStyle.default
+            toolbar.isTranslucent = true
+            toolbar.tintColor = UIColor(red: 10/255, green: 132/255, blue: 255/255, alpha: 1)
+            toolbar.sizeToFit()
+            
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.donePicker))
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelPicker))
+
+            toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            toolbar.isUserInteractionEnabled = true
+            
             return toolbar
         }
         
         @objc func donePicker() {
+            picked(selectedTitle)
+            textField.resignFirstResponder()
         }
         
         @objc func cancelPicker() {
-            
+            textField.resignFirstResponder()
         }
         
-        init(titles: [String], picked: @escaping (String) -> Void) {
+                
+        init(titles: [String], picked: @escaping (String) -> Void, textField: UITextField, selectedTitle: String) {
             self.picked = picked
             self.titles = titles
+            self.textField = textField
+            self.selectedTitle = selectedTitle
         }
         
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -83,7 +105,7 @@ extension PickerTextField {
         
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             
-            picked(titles[row])
+            selectedTitle = titles[row]
         }
     }
 }
