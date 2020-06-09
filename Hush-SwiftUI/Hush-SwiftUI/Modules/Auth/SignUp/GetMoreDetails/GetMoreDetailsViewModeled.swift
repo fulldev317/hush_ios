@@ -21,7 +21,8 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var selectedLookingFors: Set<Int> { get set }
     
     var birthday: String { get set }
-    
+    var location: String { get set }
+
     func updateMessage()
 
     func signup()

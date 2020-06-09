@@ -332,9 +332,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             Text(title).font(.regular(17)).foregroundColor(.white)
             Spacer()
             if app.onProfileEditing {
-                DateTextField(title: selected, picked: picked, editabled: { edit in
-                    //self.app.onProfileEditing = edit
-                })
+                DateTextField(title: selected, picked: picked)
                 
             } else {
                 Text(selected).font(.regular(17)).foregroundColor(.white)

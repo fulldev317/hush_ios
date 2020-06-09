@@ -36,8 +36,9 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
     @Published var selectedLookingFors: Set<Int> = []
     
-    @Published var birthday = "" 
-    
+    @Published var birthday = "Enter your Date of Birth"
+    @Published var location = ""
+
     func updateMessage() {
 
         
