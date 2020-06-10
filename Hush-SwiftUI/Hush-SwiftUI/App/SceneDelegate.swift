@@ -75,8 +75,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             .edgesIgnoringSafeArea(.all)
                             .withoutBar()
                     } else {
-                        //SignUpView(viewModel: SignUpViewModel()).withoutBar()
-                        LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
+                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
                     }
                 }

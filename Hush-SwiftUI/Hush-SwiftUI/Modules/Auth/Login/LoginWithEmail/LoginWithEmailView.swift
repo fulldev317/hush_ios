@@ -16,7 +16,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
     @EnvironmentObject var app: App
     @ObservedObject var viewModel: ViewModel
     @State var isShowing: Bool = false
-
+    @State var showingTopPopup: Bool = false
     
     // MARK: - Lifecycle
     
@@ -46,7 +46,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                     //self.app.logedIn = $viewModel.goToLogin
                     
                     if self.viewModel.email.count == 0 {
-                        
+                        self.showingTopPopup = true
                         return
                     }
                     
@@ -84,13 +84,15 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
             .cornerRadius(20)
             .opacity(self.isShowing ? 1 : 0)
             
-        }.background(NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel),
+        }
+        .background(NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel),
                                     isActive: $viewModel.showForgotPassword,
                                     label: EmptyView.init))
         .background(background())
             
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
+
     }
     
     private func resetPasswordButton() -> some View {
@@ -106,7 +108,7 @@ struct LoginWithEmailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                LoginWithEmailView(viewModel: LoginWithEmailViewModel(), isShowing: true)
+                LoginWithEmailView(viewModel: LoginWithEmailViewModel(), isShowing: false)
             }.previewDevice(.init(rawValue: "iPhone SE"))
             
         }

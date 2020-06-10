@@ -55,7 +55,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                 )
             ).background(
                 NavigationLink(
-                    destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
+                    destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar(),
                     isActive: $showUpgrade,
                     label: EmptyView.init
                 )

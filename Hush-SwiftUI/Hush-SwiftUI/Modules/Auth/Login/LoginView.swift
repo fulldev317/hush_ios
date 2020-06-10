@@ -31,7 +31,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             
             onBackButton(mode)
             
-            NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel, isShowing: true), isActive: $viewModel.showEmailScreen, label: { Text("") })
+            NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel, isShowing: false), isActive: $viewModel.showEmailScreen, label: { Text("") })
             }.withoutBar().background(background())
     }
     
