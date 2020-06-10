@@ -7,36 +7,24 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-class Notifications {
+struct Notifications: Codable {
     
-    internal var fan: NotificationType!
-    internal var matchMe: NotificationType!
-    internal var nearMe: NotificationType!
-    internal var message: NotificationType!
+    var fan: NotificationType!
+    var matchMe: NotificationType!
+    var nearMe: NotificationType!
+    var message: NotificationType!
 
-    static func parseFromJson(_ json: JSON) -> Notifications {
-        let notification = Notifications()
-        notification.fan = NotificationType.parseFromJson(json["fan"])
-        notification.matchMe = NotificationType.parseFromJson(json["match_me"])
-        notification.nearMe = NotificationType.parseFromJson(json["near_me"])
-        notification.message = NotificationType.parseFromJson(json["message"])
-        return notification
+    enum CodingKeys: String, CodingKey {
+        case fan
+        case matchMe = "match_me"
+        case nearMe = "near_me"
+        case message
     }
-    
-    class NotificationType {
         
-        internal var email: String!
-        internal var push: String!
-        internal var inapp: String!
-
-        static func parseFromJson(_ json: JSON) -> NotificationType {
-            let type = NotificationType()
-            type.email = json["email"].string
-            type.push = json["push"].string
-            type.inapp = json["inapp"].string
-            return type
-        }
+    struct NotificationType: Codable {
+        var email: String
+        var push: String
+        var inapp: String
     }
 }

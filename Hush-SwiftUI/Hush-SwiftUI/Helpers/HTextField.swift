@@ -33,7 +33,8 @@ struct HTextField: UIViewRepresentable {
         field.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: placeholderColor, .font: font, .kern: 1])
         field.isSecureTextEntry = isSecure
         field.delegate = context.coordinator
-        
+        field.autocapitalizationType = .none
+
         return field
     }
     

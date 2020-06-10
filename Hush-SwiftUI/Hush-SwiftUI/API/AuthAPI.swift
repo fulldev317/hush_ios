@@ -28,7 +28,11 @@ class AuthAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        let json_user = json["user"]
+                        let jsonData = try! json_user.rawData()
+                        user = try! JSONDecoder().decode(User.self, from: jsonData)
+                        
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -64,7 +68,7 @@ class AuthAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -107,7 +111,7 @@ class AuthAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }

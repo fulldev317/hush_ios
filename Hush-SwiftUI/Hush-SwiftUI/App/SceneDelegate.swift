@@ -52,6 +52,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
         
+        let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+        app.logedIn = isLoggedIn.wrappedValue
+        
         pub = app.$logedIn.sink { bool in
             self.window?.rootViewController = UIHostingController(rootView:
                 NavigationView {
@@ -61,7 +64,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             .edgesIgnoringSafeArea(.all)
                             .withoutBar()
                     } else {
-                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        //SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                     }
                 }
                 .environmentObject(PartialSheetManager())
