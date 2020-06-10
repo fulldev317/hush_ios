@@ -34,5 +34,7 @@ class UserDefault<Value>: ObservableObject {
 extension UserDefault {
     enum DefaultKey: String {
         case isFirstLaunch
+        case isLoggedIn
+        case currentUser
     }
 }

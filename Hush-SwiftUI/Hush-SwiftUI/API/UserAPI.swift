@@ -28,7 +28,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -98,7 +98,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -125,7 +125,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -205,7 +205,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -256,7 +256,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -315,7 +315,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -342,7 +342,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -394,7 +394,7 @@ class UserAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        user = User.parseFromJson(json["user"])
+                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }

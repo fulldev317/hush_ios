@@ -30,8 +30,16 @@ class LoginWithEmailViewModel: LoginWithEmailViewModeled {
             } else if let user = user {
                 self.hasErrorMessage = false
                 self.errorMessage = ""
-                //todo: save user info in preferences for instance
-                //goToLogin.toggle()
+                //let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+                //isLoggedIn.wrappedValue = true
+                
+                let jsonData = try! JSONEncoder().encode(user)
+                let jsonString = String(data:jsonData, encoding: .utf8)!
+                
+                let currentUser = UserDefault(.currentUser, default: "")
+                currentUser.wrappedValue = jsonString
+                
+                self.goToLogin.toggle()
             }
         }
     }
