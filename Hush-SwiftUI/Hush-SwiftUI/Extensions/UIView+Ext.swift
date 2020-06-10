@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 #if canImport(SwiftUI)
 import SwiftUI

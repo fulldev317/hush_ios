@@ -43,16 +43,19 @@ class AuthAPI: BaseAPI {
         }
     }
     
-    func register(email: String, password: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: Double, longitude: Double, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: Double, longitude: Double, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+        let photo1 = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+        let thumb1 = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let parameters: Parameters = ["action": "register",
                                       "reg_email": email,
                                       "reg_pass": password,
+                                      "reg_username": username,
                                       "reg_name": name,
                                       "reg_gender": gender,
                                       "reg_birthday": birthday,
                                       "reg_looking": lookingFor,
-                                      "reg_photo": photo,
-                                      "reg_thumb": thumb,
+                                      "reg_photo": photo1,
+                                      "reg_thumb": thumb1,
                                       "reg_city": city,
                                       "reg_country": country,
                                       "reg_lat": latitude,

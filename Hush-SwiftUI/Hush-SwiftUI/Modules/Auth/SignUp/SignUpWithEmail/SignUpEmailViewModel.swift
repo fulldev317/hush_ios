@@ -19,6 +19,16 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var showLoginScreen = false
         
     func submit() {
+        
+        let regName = UserDefault(.regName, default: "")
+        regName.wrappedValue = name
+        let regUsername = UserDefault(.regUsername, default: "")
+        regUsername.wrappedValue = username
+        let regEmail = UserDefault(.regEmail, default: "")
+        regEmail.wrappedValue = email
+        let regPassword = UserDefault(.regPassword, default: "")
+        regPassword.wrappedValue = password
+        
         showAddPhotoScreen.toggle()
     }
     

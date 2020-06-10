@@ -11,20 +11,16 @@ import SwiftUI
 struct DatePickerField: UIViewRepresentable {
     
     @Binding var text: String
-    
-    let coordinator = Coordinator()
+    var picked: (String) -> Void
     
     func makeCoordinator() -> Coordinator {
-        
-        coordinator.view = self
-        
-        return coordinator
+        Coordinator(picked: picked, textField: UITextField(), selectedDate: "")
     }
     
     func makeUIView(context: Context) -> UITextField {
         
         let field = UITextField()
-        field.inputView = context.coordinator.picker
+        field.inputView = context.coordinator.inputView
         field.inputAccessoryView = context.coordinator.createToolBar()
         field.textColor = .white
         field.textAlignment = .center
@@ -43,30 +39,28 @@ extension DatePickerField {
     class Coordinator: NSObject {
         
         var view: DatePickerField!
-        
+        var textField: UITextField
+        private var picked: (String) -> Void
+        private var selectedDate: String
+
         private lazy var formatter: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd/yyyy"
             return formatter
         }()
-        
-        lazy var picker: UIDatePicker = {
+                
+        var inputView: UIDatePicker {
             let picker = UIDatePicker()
             picker.datePickerMode = .date
             picker.maximumDate = Date()
+            picker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
             
             return picker
-        }()
-        
-        override init() {
-            super.init()
-            picker.addTarget(self, action: #selector(handleDatePicker), for: .valueChanged)
         }
         
         @objc
         private func handleDatePicker(_ datePicker: UIDatePicker) {
-            
-            view.text = formatter.string(from: datePicker.date)
+            selectedDate = formatter.string(from: datePicker.date)
         }
         
         func createToolBar() -> UIToolbar {
@@ -81,9 +75,16 @@ extension DatePickerField {
             return toolBar
         }
         
+        init(picked: @escaping (String) -> Void, textField: UITextField, selectedDate: String )
+        {
+           self.picked = picked
+           self.textField = textField
+           self.selectedDate = selectedDate
+        }
+        
         @objc
         private func nextPressed() {
-            
+            picked(selectedDate)
             UIApplication.shared.windows.first?.endEditing(true)
         }
     }

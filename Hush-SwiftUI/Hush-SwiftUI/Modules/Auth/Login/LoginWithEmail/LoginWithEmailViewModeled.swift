@@ -23,5 +23,5 @@ protocol LoginWithEmailViewModeled: ObservableObject {
     
     var goToLogin: Bool { get set }
     
-    func submit()
+    func submit(result: @escaping (Bool) -> Void)
 }

@@ -36,5 +36,9 @@ extension UserDefault {
         case isFirstLaunch
         case isLoggedIn
         case currentUser
+        case regName
+        case regUsername
+        case regEmail
+        case regPassword
     }
 }
