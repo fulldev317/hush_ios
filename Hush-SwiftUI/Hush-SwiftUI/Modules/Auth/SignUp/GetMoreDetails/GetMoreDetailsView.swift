@@ -15,7 +15,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     @Environment(\.presentationMode) var mode
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
-    
+
     @State private var size: CGSize = .zero
     
     
@@ -39,10 +39,11 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 .font(.thin())
                 .foregroundColor(.white)
                 .padding(.bottom, 20)
-//            Text("Date of Birth")
-//                .font(.thin())
-//                .foregroundColor(.white)
-            DatePickerField(text: $viewModel.birthday )
+
+            DatePickerField(text: $viewModel.birthday, picked: { date in
+                self.$viewModel.birthday.wrappedValue = date
+                
+            } )
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
             
@@ -59,8 +60,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
  //           }
             pickers
             borderedButton(action: {
-                //self.app.logedIn = true
-                self.viewModel.signup()
+                self.app.logedIn = true
+                //self.viewModel.signup()
             }, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
     }

@@ -11,5 +11,4 @@ target 'Hush-SwiftUI' do
   pod 'Alamofire', '~> 4.8.2'
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'FLEX', :configurations => ['Debug']
-
 end

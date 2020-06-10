@@ -15,7 +15,8 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var app: App
     @ObservedObject var viewModel: ViewModel
-    
+    @State var isShowing: Bool = false
+
     
     // MARK: - Lifecycle
     
@@ -42,8 +43,26 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password).padding(.horizontal, 30)
                 
                 borderedButton(action: {
-                    //self.app.logedIn = true
-                    self.viewModel.submit()
+                    //self.app.logedIn = $viewModel.goToLogin
+                    
+                    if self.viewModel.email.count == 0 {
+                        
+                        return
+                    }
+                    
+                    if self.viewModel.password.count == 0 {
+                        
+                        return
+                    }
+                    
+                    self.isShowing = true
+
+                    self.viewModel.submit(result: { result in
+                        self.isShowing = false
+                        if (result) {
+                            self.app.logedIn.toggle()
+                        }
+                    })
                 }, title: "Submit")
                     .padding(.vertical, 29)
                     .padding(.horizontal, 30)
@@ -53,6 +72,18 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
             }.keyboardAdaptive()
             
             onBackButton(mode)
+            
+            VStack {
+                Text("Loading...")
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            }
+            .frame(width: 100,
+                   height: 100)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(20)
+            .opacity(self.isShowing ? 1 : 0)
+            
         }.background(NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel),
                                     isActive: $viewModel.showForgotPassword,
                                     label: EmptyView.init))
@@ -75,14 +106,9 @@ struct LoginWithEmailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                LoginWithEmailView(viewModel: LoginWithEmailViewModel())
+                LoginWithEmailView(viewModel: LoginWithEmailViewModel(), isShowing: true)
             }.previewDevice(.init(rawValue: "iPhone SE"))
-            NavigationView {
-                LoginWithEmailView(viewModel: LoginWithEmailViewModel())
-            }.previewDevice(.init(rawValue: "iPhone 8"))
-            NavigationView {
-                LoginWithEmailView(viewModel: LoginWithEmailViewModel())
-            }.previewDevice(.init(rawValue: "iPhone XS Max"))
+            
         }
     }
 }

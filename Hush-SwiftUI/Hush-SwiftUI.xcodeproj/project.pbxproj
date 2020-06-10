@@ -127,6 +127,7 @@
 		15E8CCEB2432289900A92595 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8CCEA2432289900A92595 /* SignUpEmailViewModel.swift */; };
 		2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */; };
 		531123152491200D006B1712 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531123142491200D006B1712 /* User.swift */; };
+		5311231724916E8E006B1712 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5311231624916E8E006B1712 /* ActivityIndicator.swift */; };
 		535F71EC249016CD002320E3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535F71EB249016CD002320E3 /* CustomTextField.swift */; };
 		536419DE248E693B002D7A4F /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DB248E693B002D7A4F /* MatchViewModel.swift */; };
 		536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DC248E693B002D7A4F /* MatchViewModeled.swift */; };
@@ -309,6 +310,7 @@
 		297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		531123142491200D006B1712 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5311231624916E8E006B1712 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		535F71EB249016CD002320E3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		536419DB248E693B002D7A4F /* MatchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		536419DC248E693B002D7A4F /* MatchViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModeled.swift; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				8993D79F24685B17002E636D /* FirstResponderTextField.swift */,
 				8993D7AB246961B6002E636D /* TabBarView.swift */,
 				535F71EB249016CD002320E3 /* CustomTextField.swift */,
+				5311231624916E8E006B1712 /* ActivityIndicator.swift */,
 				894BBF02246AE83400F62F7C /* TextQuerySelectorView */,
 				89C77B2A2465F1E500705899 /* Sliders */,
 			);
@@ -1233,6 +1236,7 @@
 				1546B4482433500C00180D77 /* LoginWithEmailViewModel.swift in Sources */,
 				154B26BC2431DD7400265C76 /* iOSApp.swift in Sources */,
 				1546B44E24335B4F00180D77 /* ForgotPasswordView.swift in Sources */,
+				5311231724916E8E006B1712 /* ActivityIndicator.swift in Sources */,
 				531123152491200D006B1712 /* User.swift in Sources */,
 				1593AA2624346CC2004FAE5D /* SwiftUI+Keyboard.swift in Sources */,
 				155E3005243B1E93001D886D /* MessageDetailViewModel.swift in Sources */,
