@@ -17,11 +17,13 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     @EnvironmentObject var app: App
 
     @State private var size: CGSize = .zero
-    
-    
+    @State private var birth: String = "Enter your Date of Birth"
+    @State var isShowing: Bool = false
+
     // MARK: - Lifecycle
     
     var body: some View {
+        
         ZStack {
             ScrollView {
                 content()
@@ -39,29 +41,42 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 .font(.thin())
                 .foregroundColor(.white)
                 .padding(.bottom, 20)
-
-            DatePickerField(text: $viewModel.birthday, picked: { date in
+            
+            DatePickerField(text: $birth, picked: { date in
                 self.$viewModel.birthday.wrappedValue = date
-                
+                self.$birth.wrappedValue = date
             } )
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
-            
-            CustomTextField(
-                placeholder: Text("Enter your Location").foregroundColor(.white).font(.regular(18)),
-                text: $viewModel.location
-            )
-//            ZStack {
-//
-//                TextField("Enter your Location", text: $viewModel.location).font(.regular(17)).foregroundColor(.white)
-//                    .padding(.horizontal, 16)
-//                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
-            
- //           }
+            HStack {
+                CustomTextField(
+                    placeholder: Text("Country").foregroundColor(Color(0x8E8786)).font(.regular(18)),
+                    text: $viewModel.country
+                )
+                CustomTextField(
+                   placeholder: Text("City").foregroundColor(Color(0x8E8786)).font(.regular(18)),
+                   text: $viewModel.city
+                )
+            }
+           
             pickers
+            
+            if viewModel.hasErrorMessage {
+                HStack {
+                    Text(viewModel.errorMessage).font(.thin()).foregroundColor(.hOrange)
+                }.padding(.horizontal, 36)
+                
+            }
+            
             borderedButton(action: {
-                self.app.logedIn = true
-                //self.viewModel.signup()
+                //self.app.logedIn = true
+                
+                self.viewModel.signup(result: { result in
+                    self.isShowing = false
+                    if (result) {
+                        self.app.logedIn.toggle()
+                    }
+                })
             }, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
     }

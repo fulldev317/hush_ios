@@ -21,9 +21,13 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var selectedLookingFors: Set<Int> { get set }
     
     var birthday: String { get set }
-    var location: String { get set }
+    var city: String { get set }
+    var country: String { get set }
 
+    var hasErrorMessage: Bool { get set }
+    var errorMessage: String { get set }
+    
     func updateMessage()
 
-    func signup()
+    func signup(result: @escaping (Bool) -> Void) 
 }

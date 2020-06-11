@@ -31,8 +31,6 @@ class AuthAPI: BaseAPI {
                         let json_user = json["user"]
                         let jsonData = try! json_user.rawData()
                         user = try! JSONDecoder().decode(User.self, from: jsonData)
-                        
-                        //user = User.parseFromJson(json["user"])
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
@@ -43,9 +41,8 @@ class AuthAPI: BaseAPI {
         }
     }
     
-    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: Double, longitude: Double, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let photo1 = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-        let thumb1 = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+
         let parameters: Parameters = ["action": "register",
                                       "reg_email": email,
                                       "reg_pass": password,
@@ -54,8 +51,8 @@ class AuthAPI: BaseAPI {
                                       "reg_gender": gender,
                                       "reg_birthday": birthday,
                                       "reg_looking": lookingFor,
-                                      "reg_photo": photo1,
-                                      "reg_thumb": thumb1,
+                                      "reg_photo": photo,
+                                      "reg_thumb": thumb,
                                       "reg_city": city,
                                       "reg_country": country,
                                       "reg_lat": latitude,
@@ -71,8 +68,11 @@ class AuthAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
+                        let json_user = json["user"]
+                        let jsonData = try! json_user.rawData()
+                        user = try! JSONDecoder().decode(User.self, from: jsonData)
                     } else {
+                        user = nil
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
                     completion(user, error)
@@ -82,7 +82,7 @@ class AuthAPI: BaseAPI {
         }
     }
     
-    func logout(completion: @escaping () -> Void) {
+    func logout(completion: @escaping (_ error: APIError?) -> Void) {
         let parameters: Parameters = ["action": "logout",
                                       "query": deviceUUID]
         
@@ -91,9 +91,19 @@ class AuthAPI: BaseAPI {
             .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    completion()
+                case .success(let json):
+                    var error: APIError?
+
+                    if (json["error"].int == 0) {
+                        
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+
+                    }
+                    completion(error)
                 case .failure:
+                    var error: APIError?
+                    completion(error)
                     print("API CALL FAILED")
                 }
         }

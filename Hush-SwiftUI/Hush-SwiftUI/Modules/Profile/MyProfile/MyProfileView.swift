@@ -286,9 +286,15 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 }
                 
                 HapticButton(action: {
-                    self.app.logedIn = false
-                    let isLoggedIn = UserDefault(.isLoggedIn, default: false)
-                    isLoggedIn.wrappedValue = false
+                    self.viewModel.logout { (result, error) in
+                        if (result) {
+                            self.app.logedIn = false
+                            let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+                            isLoggedIn.wrappedValue = false
+                        } else {
+                            
+                        }
+                    }
                 }) {
                     Text("Logout").font(.regular(17)).foregroundColor(.white)
                 }

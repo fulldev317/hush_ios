@@ -20,14 +20,21 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
         
     func submit() {
         
-        let regName = UserDefault(.regName, default: "")
-        regName.wrappedValue = name
-        let regUsername = UserDefault(.regUsername, default: "")
-        regUsername.wrappedValue = username
-        let regEmail = UserDefault(.regEmail, default: "")
-        regEmail.wrappedValue = email
-        let regPassword = UserDefault(.regPassword, default: "")
-        regPassword.wrappedValue = password
+        if (name.count == 0) {
+            return
+        }
+        
+        if (username.count == 0) {
+            return
+        }
+        
+        if (email.count == 0) {
+            return
+        }
+        
+        if (password.count == 0) {
+            return
+        }
         
         showAddPhotoScreen.toggle()
     }

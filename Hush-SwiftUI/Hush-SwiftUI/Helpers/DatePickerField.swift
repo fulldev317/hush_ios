@@ -25,6 +25,8 @@ struct DatePickerField: UIViewRepresentable {
         field.textColor = .white
         field.textAlignment = .center
         
+        context.coordinator.textField = field
+        
         return field
     }
     
@@ -85,7 +87,8 @@ extension DatePickerField {
         @objc
         private func nextPressed() {
             picked(selectedDate)
-            UIApplication.shared.windows.first?.endEditing(true)
+            self.textField.resignFirstResponder()
+            //UIApplication.shared.windows.first?.endEditing(true)
         }
     }
 }
