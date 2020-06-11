@@ -11,17 +11,21 @@ import SwiftUI
 struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppScreens {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
-    
     // SwiftUI bug doesn't allow to move this to ViewModel
     @State private var maskEnabled = false
     @State private var sessionRunning = false
-    
+        
     var body: some View {
         ZStack {
             if viewModel.capturedImage != nil {
-                NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password).withoutBar().onAppear {
-                    self.sessionRunning = false
-                }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
+                if viewModel.fromProfile! == true {
+//                    Common.setCapturedImage(viewModel.capturedImage!)
+//                    mode.wrappedValue.dismiss()
+                } else {
+                    NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password).withoutBar().onAppear {
+                        self.sessionRunning = false
+                    }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
+                }
             }
             
             ZStack {
@@ -98,7 +102,12 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                     borderedButton(action: reset, title: "Reset")
                 }
                 
-                borderedButton(action: viewModel.done, title: "Done").disabled(!maskEnabled)
+                borderedButton(action: {
+                    self.viewModel.done()
+                    if self.viewModel.fromProfile == true {
+                        self.mode.wrappedValue.dismiss()
+                    }
+                }, title: "Done").disabled(!maskEnabled)
             }.padding(.horizontal, 32)
             .padding(.bottom)
         }.aspectRatio(414 / 239, contentMode: .fit)
@@ -167,11 +176,12 @@ struct MaskImage: View {
     }
 }
 
-struct NewFaceDetection_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: ""))
-                .withoutBar()
-        }
-    }
-}
+//struct NewFaceDetection_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        NavigationView {
+//            NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: false), selectedImage: Binding<nil>)
+//                .withoutBar()
+//        }
+//    }
+//}

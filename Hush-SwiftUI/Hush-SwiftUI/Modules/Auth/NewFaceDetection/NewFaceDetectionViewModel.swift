@@ -10,17 +10,17 @@ import SwiftUI
 import Combine
 
 class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
-    
     var name: String
     var username: String
     var email: String
     var password: String
-    
-    init(name: String, username: String, email: String, password: String) {
+       
+    init(name: String, username: String, email: String, password: String, fromProfile: Bool) {
         self.name = name
         self.username = username
         self.email = email
         self.password = password
+        self.fromProfile = fromProfile
     }
         
     let maskCategories = MaskCategory.allCases
@@ -28,6 +28,7 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
     @Published var visibleCategories: [MaskCategory] = Array(MaskCategory.allCases[..<3])
     @Published var selectedCategory: MaskCategory?
     @Published var mask: Mask?
+    @Published var fromProfile: Bool? = false
     
     @Published var shouldTakeImage: Bool = false
     @Published var capturedImage: UIImage?

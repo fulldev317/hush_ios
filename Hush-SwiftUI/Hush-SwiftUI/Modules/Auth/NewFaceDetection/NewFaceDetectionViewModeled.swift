@@ -47,7 +47,8 @@ protocol NewFaceDetectionViewModeled: ObservableObject {
     var maskCategories: [MaskCategory] { get }
     var visibleCategories: [MaskCategory] { get }
     var selectedCategory: MaskCategory? { get set }
-    
+    var fromProfile: Bool? { get }
+
     var shouldTakeImage: Bool { get set }
     var capturedImage: UIImage? { get set }
     
