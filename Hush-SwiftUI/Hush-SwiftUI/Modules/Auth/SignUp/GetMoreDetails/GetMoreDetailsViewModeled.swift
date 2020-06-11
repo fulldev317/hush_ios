@@ -12,13 +12,13 @@ import Foundation
 protocol GetMoreDetailsViewModeled: ObservableObject {
     
     var whatFors: [String] { get set }
-    var selectedWhatFor: Set<Int> { get set }
+    var selectedWhatFor: Int { get set }
     
     var genders: [String] { get set }
     var selectedGender: Int { get set }
     
     var lookingFors: [String] { get set }
-    var selectedLookingFors: Set<Int> { get set }
+    var selectedLookingFors: Int { get set }
     
     var birthday: String { get set }
     var city: String { get set }
@@ -29,5 +29,5 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     
     func updateMessage()
 
-    func signup(result: @escaping (Bool) -> Void) 
+    func signup(birth: String, result: @escaping (Bool) -> Void) 
 }

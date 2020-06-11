@@ -36,12 +36,14 @@ class AuthAPI: BaseAPI {
                     }
                     completion(user, error)
                 case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
                     print("API CALL FAILED")
                 }
         }
     }
     
-    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, photo: String, thumb: String, city: String, country: String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, city: String, country: String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
 
         let parameters: Parameters = ["action": "register",
                                       "reg_email": email,
@@ -51,6 +53,7 @@ class AuthAPI: BaseAPI {
                                       "reg_gender": gender,
                                       "reg_birthday": birthday,
                                       "reg_looking": lookingFor,
+                                      "reg_here_for": here,
                                       "reg_photo": photo,
                                       "reg_thumb": thumb,
                                       "reg_city": city,
@@ -59,8 +62,7 @@ class AuthAPI: BaseAPI {
                                       "reg_lng": longitude,
                                       "dID": deviceUUID]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .responseSwiftyJson { response in
                 
                 switch response.result {
@@ -73,10 +75,12 @@ class AuthAPI: BaseAPI {
                         user = try! JSONDecoder().decode(User.self, from: jsonData)
                     } else {
                         user = nil
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        error = APIError(json["error"].intValue, json["error_m"][0].stringValue)
                     }
                     completion(user, error)
                 case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
                     print("API CALL FAILED")
                 }
         }

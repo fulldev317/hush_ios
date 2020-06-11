@@ -56,14 +56,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if (isLoggedIn.wrappedValue) {
             app.logedIn = isLoggedIn.wrappedValue
-//            let currentUser = UserDefault(.currentUser, default: "")
-//            let userString: String = currentUser.wrappedValue
-//            
-//            if userString.count > 0 {
-//                let jsonData = userString.data(using: .utf8)
-//                let user = try! JSONDecoder().decode(User.self, from: jsonData!)
-//                let user1 = user
-//            }
+            let currentUser = UserDefault(.currentUser, default: "")
+            let userString: String = currentUser.wrappedValue
+            
+            if userString.count > 0 {
+                let jsonData = userString.data(using: .utf8)
+                let user = try! JSONDecoder().decode(User.self, from: jsonData!)
+                Common.setUserInfo(user)
+            }
         }
         
         pub = app.$logedIn.sink { bool in
@@ -75,9 +75,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             .edgesIgnoringSafeArea(.all)
                             .withoutBar()
                     } else {
-                        //SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
-                        GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
+                        //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
                     }
                 }
                 .environmentObject(PartialSheetManager())
