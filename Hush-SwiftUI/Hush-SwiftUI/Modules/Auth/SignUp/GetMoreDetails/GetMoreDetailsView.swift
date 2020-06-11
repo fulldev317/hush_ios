@@ -29,6 +29,18 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 content()
                 .overlay(onBackButton(mode))
             }.keyboardAdaptive()
+            
+            VStack {
+                Text("Loading...")
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            }
+            .frame(width: 100,
+                   height: 100)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(20)
+            .opacity(self.isShowing ? 1 : 0)
+            
             NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: self.$app.logedIn, label: { Text("") })
         }.background(background())
     }
@@ -70,8 +82,9 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             
             borderedButton(action: {
                 //self.app.logedIn = true
-                
-                self.viewModel.signup(result: { result in
+                self.isShowing = true
+
+                self.viewModel.signup(birth: self.birth, result: { result in
                     self.isShowing = false
                     if (result) {
                         self.app.logedIn.toggle()
@@ -90,12 +103,12 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             
             VStack(spacing: 8) {
                 Text("Would like to meet new").font(.thin()).foregroundColor(.white)
-                HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+                HSegmentedControl(selected: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
             }
             
             VStack(spacing: 8) {
                 Text("Finally, tell us what are you here for?").font(.thin()).foregroundColor(.white)
-                HSegmentedControl(selectedList: $viewModel.selectedWhatFor, list: viewModel.whatFors)
+                HSegmentedControl(selected: $viewModel.selectedWhatFor, list: viewModel.whatFors)
             }
         }.padding(.bottom, 30)
     }

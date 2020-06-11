@@ -18,4 +18,17 @@ class Common: NSObject {
     static func userInfo() -> User {
         return _user!
     }
+    
+    static func handleErrorMessage(_ message: String) -> String {
+        var errMsg = ""
+        if message.contains("Reg city") {
+           errMsg = "The City field required"
+        } else if message.contains("Reg country") {
+           errMsg = "The Country field required"
+        }
+        else {
+           errMsg = message
+        }
+        return errMsg
+    }
 }

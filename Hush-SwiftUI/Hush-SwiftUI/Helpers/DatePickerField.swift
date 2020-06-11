@@ -86,6 +86,9 @@ extension DatePickerField {
         
         @objc
         private func nextPressed() {
+            if selectedDate.count == 0 {
+                return
+            }
             picked(selectedDate)
             self.textField.resignFirstResponder()
             //UIApplication.shared.windows.first?.endEditing(true)

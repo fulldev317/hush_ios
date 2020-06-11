@@ -31,13 +31,13 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     // MARK: - Properties
     
     @Published var whatFors: [String] = ["Fun", "Chat", "Hookup", "Date"]
-    @Published var selectedWhatFor: Set<Int> = []
+    @Published var selectedWhatFor: Int = 1
     
     @Published var genders: [String] = ["Male", "Female", "A Couple", "Gay"]
     @Published var selectedGender: Int = 0
     
     @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
-    @Published var selectedLookingFors: Set<Int> = []
+    @Published var selectedLookingFors: Int = 1
     
     @Published var birthday = "Enter your Date of Birth"
     @Published var country = ""
@@ -48,25 +48,22 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         
     }
     
-    func signup(result: @escaping (Bool) -> Void) {
+    func signup(birth: String, result: @escaping (Bool) -> Void) {
         
         let strGender = String(selectedGender)
-        var strLookingFor = ""
-        
-        for guy in selectedLookingFors {
-            strLookingFor = strLookingFor + String(guy) + ","
-        }
-        
+        let strWhatFor = String(selectedWhatFor)
+        let strLookingFor = String(selectedLookingFors)
+                
         let photo = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let thumb = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let latitude = "27.2038"
         let longitude = "77.5011"
         
-        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birthday, lookingFor: strLookingFor, photo: photo, thumb: thumb, city: city, country: country, latitude: latitude, longitude: longitude) { (user, error) in
+        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, city: city, country: country, latitude: latitude, longitude: longitude) { (user, error) in
             
             if let error = error {
                 self.hasErrorMessage = true
-                self.errorMessage = error.message
+                self.errorMessage = Common.handleErrorMessage(error.message)
                 result(false)
                 
             } else if let user = user {
