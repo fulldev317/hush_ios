@@ -88,9 +88,9 @@ class AuthAPI: BaseAPI {
     
     func logout(completion: @escaping (_ error: APIError?) -> Void) {
         let parameters: Parameters = ["action": "logout",
-                                      "query": deviceUUID]
+                                      "dID": deviceUUID]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .validate(contentType: ["application/json"])
             .responseSwiftyJson { response in
                 
@@ -102,12 +102,11 @@ class AuthAPI: BaseAPI {
                         
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
-
                     }
-                    completion(error)
+                    completion(nil)
                 case .failure:
-                    var error: APIError?
-                    completion(error)
+                    //let error = APIError(404, "Server Connection Failed")
+                    completion(nil)
                     print("API CALL FAILED")
                 }
         }
