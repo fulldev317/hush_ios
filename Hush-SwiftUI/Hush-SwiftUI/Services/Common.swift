@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 var _user: User?
+var _image: UIImage?
 
 class Common: NSObject {
     static func setUserInfo(_ user: User) {
@@ -17,6 +19,14 @@ class Common: NSObject {
     
     static func userInfo() -> User {
         return _user!
+    }
+    
+    static func setCapturedImage(_ image: UIImage) {
+        _image = image
+    }
+    
+    static func capturedImage(_ image: UIImage) -> UIImage {
+        return _image!
     }
     
     static func handleErrorMessage(_ message: String) -> String {
@@ -31,4 +41,5 @@ class Common: NSObject {
         }
         return errMsg
     }
+
 }

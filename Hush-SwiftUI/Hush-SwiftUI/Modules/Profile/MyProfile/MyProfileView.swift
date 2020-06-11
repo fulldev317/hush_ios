@@ -62,6 +62,14 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 ScrollView {
                     scrollContent
                 }.keyboardAdaptive()
+                
+                NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true)),
+                    isActive: $viewModel.canGoToAR,
+                    label: EmptyView.init)
+                
+                if viewModel.selectedImage != nil {
+                    
+                }
             }
         }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }
@@ -92,13 +100,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     var imagesView: some View {
         ZStack {
             HStack {
-                PolaroidCard<EmptyView>(image: UIImage(named: "image3")!, cardWidth: smallCardSize.width)
+                PolaroidCard<EmptyView>(image: viewModel.selectedImage!, cardWidth: smallCardSize.width)
                     .rotationEffect(.degrees(5))
                 Spacer()
-                PolaroidCard<EmptyView>(image: UIImage(named: "image3")!, cardWidth: smallCardSize.width).rotationEffect(.degrees(5))
+                PolaroidCard<EmptyView>(image: viewModel.selectedImage!, cardWidth: smallCardSize.width).rotationEffect(.degrees(5))
                 
             }.padding(.horizontal, 37)
-            PolaroidCard(image: UIImage(named: "image3")!, cardWidth: bigCardSize.width, bottom:
+            PolaroidCard(image: viewModel.selectedImage!, cardWidth: bigCardSize.width, bottom:
                 HStack {
                     Spacer()
                     HapticButton(action: {}, label: {
@@ -111,7 +119,23 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 }
                 .frame(height: bigCardSize.height - bigCardSize.width))
             .rotationEffect(.degrees(-5))
+            .onTapGesture {
+                self.viewModel.addPhoto()
+            }
+        }.actionSheet(isPresented: $viewModel.isPickerSheetPresented) {
+            ActionSheet(title: Text("Choose how to submit a photo"), message: nil, buttons: [
+                .default(Text("Take a Photo"), action: viewModel.takePhoto),
+                .default(Text("Camera Roll"), action: viewModel.cameraRoll),
+                .cancel()
+            ])
+        }.sheet(isPresented: $viewModel.isPickerPresented) {
+            ImagePickerView(
+                source: self.viewModel.pickerSourceType,
+                image: self.$viewModel.selectedImage,
+                isPresented: self.$viewModel.isPickerPresented)
         }
+        .onAppear(perform: viewModel.appear)
+        .onDisappear(perform: viewModel.disappear)
     }
     var smallCardSize: CGSize {
         
