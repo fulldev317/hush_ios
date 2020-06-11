@@ -46,12 +46,10 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                     //self.app.logedIn = $viewModel.goToLogin
                     
                     if self.viewModel.email.count == 0 {
-                        self.showingTopPopup = true
                         return
                     }
                     
                     if self.viewModel.password.count == 0 {
-                        
                         return
                     }
                     

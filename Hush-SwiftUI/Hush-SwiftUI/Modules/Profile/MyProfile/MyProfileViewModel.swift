@@ -20,6 +20,16 @@ class MyProfileViewModel: MyProfileViewModeled {
 
         message = "New Message"
     }
+    
+    func logout(result: @escaping (Bool, String) -> Void) {
+        AuthAPI.shared.logout { (error) in
+            if let error = error {
+                result(false, error.message)
+            } else {
+                result(true, "")
+            }
+        }
+    }
 }
 
 class BioViewMode: ObservableObject {

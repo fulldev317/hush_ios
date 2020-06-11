@@ -34,6 +34,8 @@ class LoginWithEmailViewModel: LoginWithEmailViewModeled {
                 let isLoggedIn = UserDefault(.isLoggedIn, default: false)
                 isLoggedIn.wrappedValue = true
                 
+                Common.setUserInfo(user)
+                
                 let jsonData = try! JSONEncoder().encode(user)
                 let jsonString = String(data:jsonData, encoding: .utf8)!
                 

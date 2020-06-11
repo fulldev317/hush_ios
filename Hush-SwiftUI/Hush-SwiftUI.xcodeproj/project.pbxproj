@@ -133,6 +133,7 @@
 		536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DC248E693B002D7A4F /* MatchViewModeled.swift */; };
 		536419E0248E693B002D7A4F /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DD248E693B002D7A4F /* MatchView.swift */; };
 		536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */; };
+		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
 		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
@@ -316,6 +317,7 @@
 		536419DC248E693B002D7A4F /* MatchViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModeled.swift; sourceTree = "<group>"; };
 		536419DD248E693B002D7A4F /* MatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeMessageViewModel.swift; sourceTree = "<group>"; };
+		536E78322492200400B6CCFF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				8928ED79246AEA0B004D3073 /* API */,
 				154B26AC2431CB7800265C76 /* Extensions */,
 				154B26A92431CB4D00265C76 /* Helpers */,
+				536E783124921FF300B6CCFF /* Services */,
 				154B26A42431C32500265C76 /* Modules */,
 				154B26A32431C28B00265C76 /* App */,
 				154B26A22431C27500265C76 /* Resources */,
@@ -881,6 +884,14 @@
 			path = Match;
 			sourceTree = "<group>";
 		};
+		536E783124921FF300B6CCFF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				536E78322492200400B6CCFF /* Common.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7354C345247FA586007D6FA5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1189,6 +1200,7 @@
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
+				536E78332492200400B6CCFF /* Common.swift in Sources */,
 				0E13EBD924805627003E0959 /* FaceDetectionViewController.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				89559FFD246AB95300223FB7 /* StoryViewModel.swift in Sources */,

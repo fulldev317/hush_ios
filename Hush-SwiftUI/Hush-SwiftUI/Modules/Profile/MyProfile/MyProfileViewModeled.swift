@@ -14,4 +14,7 @@ protocol MyProfileViewModeled: ObservableObject {
     var basicsViewModel: BioViewMode { get set }
     
     func updateMessage()
+    
+    func logout(result: @escaping (Bool, String) -> Void)
+
 }
