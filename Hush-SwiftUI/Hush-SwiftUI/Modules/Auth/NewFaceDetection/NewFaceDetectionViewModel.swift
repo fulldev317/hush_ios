@@ -43,7 +43,8 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
         selectedCategory = nil
     }
     
-    func done() {
+    func done(selectedImage: Binding<UIImage?>) {
+        selectedImage.wrappedValue = capturedImage
         shouldTakeImage = true
     }
     

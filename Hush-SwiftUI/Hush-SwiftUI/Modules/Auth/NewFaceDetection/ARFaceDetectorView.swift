@@ -557,6 +557,12 @@ final class FaceTrackingViewController: UIViewController, AVCaptureVideoDataOutp
                     }
                 } else {
                     imageView.layer.removeFromSuperlayer()
+                    if let completion = captureCompletion, let screenshot = screenshot {
+                       screenImageView.image = screenshot
+                       session?.stopRunning()
+                       completion(screenshot)
+                       captureCompletion = nil
+                   }
                 }
             }
         }
