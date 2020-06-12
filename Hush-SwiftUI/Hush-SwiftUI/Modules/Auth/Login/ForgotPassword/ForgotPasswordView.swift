@@ -15,8 +15,8 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
 
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
-    
-    
+    @EnvironmentObject var app: App
+
     // MARK: - Lifecycle
     
     var body: some View {
@@ -73,6 +73,7 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
     private func popToRoot() -> some View {
         
         HapticButton(action: {
+            self.app.showSignupButtons.toggle()
             self.viewModel.goToRoot.toggle()
         }) {
             Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }
