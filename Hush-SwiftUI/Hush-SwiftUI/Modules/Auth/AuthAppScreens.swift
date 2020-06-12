@@ -47,8 +47,15 @@ extension AuthAppScreens {
                 presentation.wrappedValue.dismiss()
                 
             }) {
-                Image("onBack_icon").frame(width: 44, height: 44)
-            }.frame(width: 44, height: 44).padding(.top, 20).padding(.leading, 16)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.white, lineWidth: 0)
+                    .foregroundColor(.clear)
+                    .frame(minHeight: 45, maxHeight: 48)
+                    Text("1234").font(.light()).foregroundColor(.clear)
+                    Image("onBack_icon").frame(width: 60, height: 60)
+                }
+            }.frame(width: 60, height: 60).padding(.top, 6).padding(.leading, 6)
                 Spacer()
             }
             Spacer()

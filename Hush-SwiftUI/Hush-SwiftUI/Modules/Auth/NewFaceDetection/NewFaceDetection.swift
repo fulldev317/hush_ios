@@ -32,7 +32,11 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                 
                 VStack(spacing: 0) {
                     
-                    arView.onAppear { self.sessionRunning = true; self.viewModel.shouldTakeImage = false; self.viewModel.capturedImage = nil }
+                    arView.onAppear {
+                        self.sessionRunning = true;
+                        self.viewModel.shouldTakeImage = false;
+                        self.viewModel.capturedImage = nil
+                    }
      
                     maskMenu
 
