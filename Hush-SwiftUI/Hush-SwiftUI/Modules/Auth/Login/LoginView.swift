@@ -14,7 +14,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
 
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
-    
+    @EnvironmentObject var app: App
     
     // MARK: - Lifecycle
     
@@ -38,6 +38,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     private func signupButton() -> some View {
         
         HapticButton(action: {
+            self.app.showSignupButtons.toggle()
             self.mode.wrappedValue.dismiss()
         }) {
             Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }

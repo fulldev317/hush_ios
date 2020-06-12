@@ -22,6 +22,7 @@ class App: ObservableObject {
     @Published var selectingGender = false
     @Published var isFirstResponder = false
     @Published var showStory = false
+    @Published var showSignupButtons = false
     
     let profile = MyProfileViewModel()
     let discovery = DiscoveryViewModel()
