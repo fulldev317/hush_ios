@@ -59,7 +59,7 @@ protocol NewFaceDetectionViewModeled: ObservableObject {
     func previousCategories()
     
     func reset()
-    func done()
+    func done(selectedImage: Binding<UIImage?>) 
     
     func selectCategory(_ category: MaskCategory)
     func selectMask(_ name: String)

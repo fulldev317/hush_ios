@@ -34,7 +34,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
                 Spacer()
             }
             onBackButton(mode)
-            NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, fromProfile: false)),
+            NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, fromProfile: false ), selectedImage: Binding.constant(UIImage())),
                            isActive: $viewModel.canGoToAR,
                            label: EmptyView.init)
             

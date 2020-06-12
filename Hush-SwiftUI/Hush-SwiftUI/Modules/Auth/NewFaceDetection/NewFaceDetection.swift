@@ -14,7 +14,8 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     // SwiftUI bug doesn't allow to move this to ViewModel
     @State private var maskEnabled = false
     @State private var sessionRunning = false
-        
+    @Binding var selectedImage: UIImage?
+    
     var body: some View {
         ZStack {
             if viewModel.capturedImage != nil {
@@ -107,11 +108,11 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                 }
                 
                 borderedButton(action: {
-                    self.viewModel.done()
+                    self.viewModel.done(selectedImage: self.$selectedImage)
                     if self.viewModel.fromProfile == true {
                         self.mode.wrappedValue.dismiss()
                     }
-                }, title: "Done").disabled(!maskEnabled)
+                }, title: "Done")
             }.padding(.horizontal, 32)
             .padding(.bottom)
         }.aspectRatio(414 / 239, contentMode: .fit)
