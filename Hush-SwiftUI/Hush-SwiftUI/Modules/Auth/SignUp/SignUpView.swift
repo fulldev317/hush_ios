@@ -10,23 +10,24 @@ import SwiftUI
 
 struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
     
-    @State var showSignupButtons = false
+    //@State var showSignupButtons = false
     
     @ObservedObject var viewModel: ViewModel
-    
+    @EnvironmentObject var app: App
+
     var body: some View {
         
         ZStack {
             VStack {
                 logo()
-                    .opacity(showSignupButtons ? 0.3 : 1)
+                    .opacity(app.showSignupButtons ? 0.3 : 1)
                     .padding(.top, 55)
                 Spacer()
             }
             VStack {
                 Spacer()
                 signupButton()
-                    .padding(.bottom, showSignupButtons ? 140 : 220)
+                    .padding(.bottom, app.showSignupButtons ? 140 : 220)
             }
             
             VStack(spacing: 28) {
@@ -56,18 +57,19 @@ extension SignUpView {
     func signupButton() -> some View {
         
         VStack(spacing: 17) {
-            HapticButton(action: { withAnimation { self.showSignupButtons.toggle() } }) {
-                if !showSignupButtons {
+            HapticButton(action: { withAnimation { self.app.showSignupButtons.toggle() } }) {
+                if !app.showSignupButtons {
                     Image("arrowUp_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
                 }
                 Text("Sign Up")
                     .foregroundColor(.white)
                     .font(.medium(24))
-                if showSignupButtons {
+                if app.showSignupButtons {
                     Image("arrowDown_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
                 }
-            }.opacity(showSignupButtons ? 0.5 : 1)
-            if showSignupButtons {
+            }.opacity(app.showSignupButtons ? 0.5 : 1)
+            
+            if app.showSignupButtons {
                 LoginButtons(presenter: viewModel).transition(buttonsTransition())
             }
         }.frame(maxWidth: .infinity)
