@@ -73,7 +73,7 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
     private func popToRoot() -> some View {
         
         HapticButton(action: {
-            self.app.showSignupButtons.toggle()
+            self.app.showSignupButtons = true
             self.viewModel.goToRoot.toggle()
         }) {
             Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }
