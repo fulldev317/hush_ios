@@ -18,16 +18,7 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     
     var body: some View {
         ZStack {
-            if viewModel.capturedImage != nil {
-                if viewModel.fromProfile! == true {
-//                    Common.setCapturedImage(viewModel.capturedImage!)
-//                    mode.wrappedValue.dismiss()
-                } else {
-                    NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password).withoutBar().onAppear {
-                        self.sessionRunning = false
-                    }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
-                }
-            }
+            
             
             ZStack {
                 
@@ -44,6 +35,44 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                 }.background(Color.black.edgesIgnoringSafeArea(.all))
                 
                 onBackButton(mode)
+            }
+            
+            
+            if viewModel.capturedImage != nil {
+                if viewModel.fromProfile! == true {
+                    VStack {
+                        Spacer()
+                        
+                        VStack {
+                            Text("Are you okay with photo?")
+                                .font(.thin(28))
+                                .foregroundColor(Color.orange).padding(.top, 20)
+                            
+                            HStack(spacing: 20) {
+                                borderedButton(action: {
+                                    self.viewModel.capturedImage = nil
+                                    self.mode.wrappedValue.dismiss()
+                                }, title: "Cancel")
+                                
+                                borderedButton(action: {
+                                    self.selectedImage = self.viewModel.capturedImage
+                                    self.mode.wrappedValue.dismiss()
+                                }, title: "OK")
+                                   
+                            }.padding(.bottom, 20)
+                        }.padding(.leading, 20).padding(.trailing, 20)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                            .opacity(0.8)
+                    
+                        
+                        Spacer()
+                    }.padding(.leading, 20).padding(.trailing, 20)
+                } else {
+                    NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password).withoutBar().onAppear {
+                        self.sessionRunning = false
+                    }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
+                }
             }
         
         }.withoutBar()
@@ -109,9 +138,9 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                 
                 borderedButton(action: {
                     self.viewModel.done(selectedImage: self.$selectedImage)
-                    if self.viewModel.fromProfile == true {
-                        self.mode.wrappedValue.dismiss()
-                    }
+//                    if self.viewModel.fromProfile == true {
+//                        self.mode.wrappedValue.dismiss()
+//                    }
                 }, title: "Done")
             }.padding(.horizontal, 32)
             .padding(.bottom)
@@ -181,12 +210,12 @@ struct MaskImage: View {
     }
 }
 
-//struct NewFaceDetection_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        NavigationView {
-//            NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: false), selectedImage: Binding<nil>)
-//                .withoutBar()
-//        }
-//    }
-//}
+struct NewFaceDetection_Previews: PreviewProvider {
+
+    static var previews: some View {
+        NavigationView {
+            NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: false), selectedImage: Binding.constant(UIImage()))
+                .withoutBar()
+        }
+    }
+}

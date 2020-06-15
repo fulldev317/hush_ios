@@ -67,9 +67,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     isActive: $viewModel.canGoToAR,
                     label: EmptyView.init)
                 
-                if viewModel.selectedImage != nil {
-                    
-                }
+//                if viewModel.selectedImage != nil {
+//
+//                }
             }
         }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }

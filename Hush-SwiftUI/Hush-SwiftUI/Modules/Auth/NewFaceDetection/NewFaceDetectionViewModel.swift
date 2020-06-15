@@ -35,7 +35,8 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
     
     var canGoNextCategories: Bool { visibleCategories.last != maskCategories.last }
     var canGoPreviousCategories: Bool { visibleCategories.first != maskCategories.first }
-    
+    var pub: AnyCancellable!
+
     private var disposals = Set<AnyCancellable>()
     
     func reset() {
@@ -44,7 +45,14 @@ class NewFaceDetectionViewModel: NewFaceDetectionViewModeled {
     }
     
     func done(selectedImage: Binding<UIImage?>) {
-        selectedImage.wrappedValue = capturedImage
+//        pub = $capturedImage.sink { (image) in
+//            if image == nil {
+//                selectedImage.wrappedValue = UIImage()
+//            } else {
+//                selectedImage.wrappedValue = image
+//            }
+//        }
+        
         shouldTakeImage = true
     }
     
