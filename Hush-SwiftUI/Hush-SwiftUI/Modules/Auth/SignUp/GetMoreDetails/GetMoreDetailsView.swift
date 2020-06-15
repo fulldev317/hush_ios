@@ -65,10 +65,6 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                     placeholder: Text("Country").foregroundColor(Color(0x8E8786)).font(.regular(18)),
                     text: $viewModel.country
                 )
-                CustomTextField(
-                   placeholder: Text("City").foregroundColor(Color(0x8E8786)).font(.regular(18)),
-                   text: $viewModel.city
-                )
             }
            
             pickers
@@ -81,7 +77,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             }
             
             borderedButton(action: {
-                //self.app.logedIn = true
+                self.app.logedIn = true
+                /*
                 self.isShowing = true
 
                 self.viewModel.signup(birth: self.birth, result: { result in
@@ -89,7 +86,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                     if (result) {
                         self.app.logedIn.toggle()
                     }
-                })
+                })*/
             }, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
     }
@@ -103,12 +100,12 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             
             VStack(spacing: 8) {
                 Text("Would like to meet new").font(.thin()).foregroundColor(.white)
-                HSegmentedControl(selected: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+                HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
             }
             
             VStack(spacing: 8) {
                 Text("Finally, tell us what are you here for?").font(.thin()).foregroundColor(.white)
-                HSegmentedControl(selected: $viewModel.selectedWhatFor, list: viewModel.whatFors)
+                HSegmentedControl(selectedList: $viewModel.selectedWhatFor, list: viewModel.lookingFors)
             }
         }.padding(.bottom, 30)
     }

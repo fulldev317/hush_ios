@@ -31,13 +31,13 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     // MARK: - Properties
     
     @Published var whatFors: [String] = ["Fun", "Chat", "Hookup", "Date"]
-    @Published var selectedWhatFor: Int = 1
+    @Published var selectedWhatFor: Set<Int> = []
     
     @Published var genders: [String] = ["Male", "Female", "A Couple", "Gay"]
     @Published var selectedGender: Int = 0
     
     @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
-    @Published var selectedLookingFors: Int = 1
+    @Published var selectedLookingFors: Set<Int> = []
     
     @Published var birthday = "Enter your Date of Birth"
     @Published var country = ""
@@ -51,9 +51,14 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     func signup(birth: String, result: @escaping (Bool) -> Void) {
         
         let strGender = String(selectedGender)
-        let strWhatFor = String(selectedWhatFor)
-        let strLookingFor = String(selectedLookingFors)
-                
+        var strWhatFor = ""
+        for selected in strWhatFor {
+            strWhatFor = strWhatFor + String(selected)
+        }
+        var strLookingFor = ""
+        for selected in strLookingFor {
+            strLookingFor = strLookingFor + String(selected)
+        }
         let photo = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let thumb = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let latitude = "27.2038"
