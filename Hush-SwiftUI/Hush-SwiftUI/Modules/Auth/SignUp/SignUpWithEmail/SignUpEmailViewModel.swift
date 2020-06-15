@@ -19,7 +19,7 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var showLoginScreen = false
         
     func submit() {
-        
+       /*
         if (name.count == 0) {
             return
         }
@@ -35,7 +35,7 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
         if (password.count == 0) {
             return
         }
-        
+        */
         showAddPhotoScreen.toggle()
     }
     
