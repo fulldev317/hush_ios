@@ -25,7 +25,15 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var isPickerPresented = false
     @Published var isPermissionDenied = false
     @Published var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
-    @Published var selectedImage: UIImage? = UIImage(named: "image3")
+    @Published var selectedIndex: Int = -1
+    @Published var selectedImage: UIImage? = UIImage() {
+        didSet {
+            photoDatas[selectedIndex] = selectedImage!
+        }
+    }
+    
+    @Published var photoDatas: [UIImage] = []
+    //let photos: [UIImage] = Array(0..<10).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
 
     @Published private var cameraPickerSelected = false
     @Published private var libraryPickerSelected = false
@@ -33,6 +41,10 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published private var cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
     @Published private var pickedSourceType: UIImagePickerController.SourceType?
     private var disposals = Set<AnyCancellable>()
+
+    init() {
+       initPhotoData()
+   }
 
     func updateMessage() {
 
@@ -58,6 +70,17 @@ class MyProfileViewModel: MyProfileViewModeled {
     func disappear() {
         disposals = []
     }
+    
+    func initPhotoData() {
+        photoDatas.append(UIImage(named: "image2")!)
+        photoDatas.append(UIImage(named: "image3")!)
+        photoDatas.append(UIImage(named: "image4")!)
+        photoDatas.append(UIImage(named: "plus")!)
+        photoDatas.append(UIImage(named: "plus")!)
+        photoDatas.append(UIImage(named: "plus")!)
+        photoDatas.append(UIImage(named: "plus")!)
+        photoDatas.append(UIImage(named: "plus")!)
+    }
 
     func takePhoto() {
         cameraPickerSelected = true
@@ -72,6 +95,11 @@ class MyProfileViewModel: MyProfileViewModeled {
     }
 
     func addPhoto() {
+        //appear()
+        cameraPickerSelected = false
+        libraryPickerSelected = false
+        isPickerPresented = false
+        pickedSourceType = nil
         isPickerSheetPresented = true
     }
 }

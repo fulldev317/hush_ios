@@ -29,7 +29,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @State var showLikesMeView = false
     @State var showMyLikeView = false
     @State private var height: CGFloat = 50
-
+    @State var unlockedPhotos: Set<Int> = [0,1,2]
+    @State var isPhotoTapped = false
     
     // MARK: - Lifecycle
     
@@ -77,8 +78,10 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     var scrollContent: some View {
         
         VStack(alignment: .leading, spacing: 25) {
-            imagesView
-                .padding(.top, 0)
+//            imagesView
+//                .padding(.top, 0)
+            self.carusel(unlocked: self.$unlockedPhotos, images: $viewModel.photoDatas)
+
             Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
                 .foregroundColor(.white)
@@ -95,8 +98,54 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }.padding(.vertical, 10 + SafeAreaInsets.bottom)
     }
     
-    // MARK: - Image
+    // MARK: - Carousel
+
+    func carusel(unlocked: Binding<Set<Int>>, images: Binding<[UIImage]>) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ScrollView(.horizontal) {
+                HStack(spacing: 15) {
+                    ForEach(0 ..< images.wrappedValue.count) { index in
+                        PolaroidCard<EmptyView>(
+                            image: images.wrappedValue[index],
+                            cardWidth: 92
+                            //overlay: Color.black.aspectRatio(1, contentMode: .fit)
+                            //    .opacity(unlocked.wrappedValue.contains(index) ? 0 : 1)
+                        )
+                        .overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
+                        .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
+                        .onTapGesture {
+                                                        
+                            if unlocked.wrappedValue.contains(index) {
+                                unlocked.wrappedValue.remove(index)
+                            } else {
+                                unlocked.wrappedValue.insert(index)
+                            }
+                            self.viewModel.selectedIndex = index
+                            self.viewModel.addPhoto()
+
+                        }.animation(.default)
+                    }
+                }.padding(.vertical, 15)
+                    .padding(.horizontal, 5)
+            }
+            
+        }.actionSheet(isPresented: $viewModel.isPickerSheetPresented) {
+            ActionSheet(title: Text("Choose how to submit a photo"), message: nil, buttons: [
+                .default(Text("Take a Photo"), action: viewModel.takePhoto),
+                .default(Text("Camera Roll"), action: viewModel.cameraRoll),
+                .cancel()
+            ])
+        }.sheet(isPresented: $viewModel.isPickerPresented) {
+            ImagePickerView(
+                source: self.viewModel.pickerSourceType,
+                image: self.$viewModel.selectedImage,
+                isPresented: self.$viewModel.isPickerPresented)
+        }
+        .onAppear(perform: viewModel.appear)
+        .onDisappear(perform: viewModel.disappear)
+    }
     
+    // MARK: - Image
     var imagesView: some View {
         ZStack {
             HStack {
