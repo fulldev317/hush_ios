@@ -75,10 +75,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             .edgesIgnoringSafeArea(.all)
                             .withoutBar()
                     } else {
-                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        //SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
-                        //AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
+                        AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
                     }
                 }
                 .environmentObject(PartialSheetManager())

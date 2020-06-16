@@ -11,7 +11,7 @@ import SwiftUI
 
 class App: ObservableObject {
     
-    @Published var logedIn = true {
+    @Published var logedIn = false {
         didSet {
             notlogged = !logedIn
         }
