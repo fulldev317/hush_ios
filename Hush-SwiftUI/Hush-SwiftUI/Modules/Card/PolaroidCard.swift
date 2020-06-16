@@ -10,7 +10,6 @@ import SwiftUI
 
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
-let ISiPhoneX = SCREEN_HEIGHT >= 812
 
 struct Squere: Shape {
     
