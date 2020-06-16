@@ -17,7 +17,14 @@ class LookingGoodVC: UIViewController {
     @IBOutlet weak var imgViewFront: UIImageView!
     
     @IBOutlet weak var btnDone: UIButton!
+    
+    @IBOutlet weak var topBackConst: NSLayoutConstraint!
+    @IBOutlet weak var leftBackImgConst: NSLayoutConstraint!
+    @IBOutlet weak var leftFrontImgConst: NSLayoutConstraint!
+    @IBOutlet weak var topLookingGoodConst: NSLayoutConstraint!
+    
     var dismiss: Binding<PresentationMode>?
+    var isIphoneX = UIScreen.main.bounds.height > 667 ? true : false
     
     static func create(for image: UIImage, dismiss: Binding<PresentationMode>, completion: (() -> Void)? = nil) -> LookingGoodVC {
         let vc = UIStoryboard(name: "OldFaceDetection", bundle: nil).instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
@@ -33,6 +40,19 @@ class LookingGoodVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (isIphoneX) {
+            topBackConst.constant = 0
+            leftBackImgConst.constant = 60
+            leftFrontImgConst.constant = 60
+            topLookingGoodConst.constant = 73
+        } else {
+            topBackConst.constant = 20
+            leftBackImgConst.constant = 80
+            leftFrontImgConst.constant = 80
+            topLookingGoodConst.constant = 53
+        }
+        
         imgViewBack.image = userImage
         imgViewFront.image = userImage
         viewFirst.rotate(angle:-23 )
@@ -42,6 +62,16 @@ class LookingGoodVC: UIViewController {
         btnDone.layer.borderWidth = 1
         btnDone.layer.cornerRadius = 5
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     @IBAction func actionBack(_ sender: Any) {
