@@ -11,18 +11,25 @@ import SwiftUI
 struct LoginButtons<Presenter: SignUpViewModeled>: View {
     
     @ObservedObject var presenter: Presenter
+    @State var name : String = ""
+    @State var isLoggedIn: Bool = false
     
     var body: some View {
         VStack(spacing: 14) {
             LoginButton(title: "Sign Up with Email", img: Image("mail_icon"), color: Color(0x56CCF2)) {
                 self.presenter.emailPressed()
             }.padding(.horizontal, 24)
+            
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
                 self.presenter.facebookPressed()
             }.padding(.horizontal, 24)
-            LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
-                self.presenter.applePressed()
-            }.padding(.horizontal, 24)
+            
+            SignInWithAppleView(name: $name, isLoggedIn: $isLoggedIn)
+            .frame(width: SCREEN_WIDTH - 48, height: 48)
+
+//            LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
+//                self.presenter.applePressed()
+//            }.padding(.horizontal, 24)
         }
     }
 }

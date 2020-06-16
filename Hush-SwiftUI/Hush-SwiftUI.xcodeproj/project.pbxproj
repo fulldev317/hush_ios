@@ -133,6 +133,8 @@
 		536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DC248E693B002D7A4F /* MatchViewModeled.swift */; };
 		536419E0248E693B002D7A4F /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DD248E693B002D7A4F /* MatchView.swift */; };
 		536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */; };
+		536CAD91249933A100A53053 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD90249933A100A53053 /* SignInWithAppleView.swift */; };
+		536CAD932499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */; };
 		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
@@ -317,6 +319,9 @@
 		536419DC248E693B002D7A4F /* MatchViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModeled.swift; sourceTree = "<group>"; };
 		536419DD248E693B002D7A4F /* MatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeMessageViewModel.swift; sourceTree = "<group>"; };
+		536CAD8E24992F7D00A53053 /* Hush-SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hush-SwiftUI.entitlements"; sourceTree = "<group>"; };
+		536CAD90249933A100A53053 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
+		536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInWithApple-SwiftUI-Coordinator.swift"; sourceTree = "<group>"; };
 		536E78322492200400B6CCFF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -404,6 +409,7 @@
 				896DDEFE2464A92500AC0F95 /* ResetPassword */,
 				1546B44A24335B3E00180D77 /* ForgotPassword */,
 				1546B44324334FEB00180D77 /* LoginWithEmail */,
+				536CAD8F2499336D00A53053 /* LoginWithApple */,
 				1546B43D243340BD00180D77 /* LoginView.swift */,
 				1546B43E243340BD00180D77 /* LoginViewModel.swift */,
 				1546B43F243340BD00180D77 /* LoginViewModeled.swift */,
@@ -462,6 +468,7 @@
 		154B268D2431BF6600265C76 /* Hush-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				536CAD8E24992F7D00A53053 /* Hush-SwiftUI.entitlements */,
 				7354C345247FA586007D6FA5 /* Models */,
 				89B55203246DDED5004DC7C6 /* Model */,
 				8928ED79246AEA0B004D3073 /* API */,
@@ -884,6 +891,15 @@
 			path = Match;
 			sourceTree = "<group>";
 		};
+		536CAD8F2499336D00A53053 /* LoginWithApple */ = {
+			isa = PBXGroup;
+			children = (
+				536CAD90249933A100A53053 /* SignInWithAppleView.swift */,
+				536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */,
+			);
+			path = LoginWithApple;
+			sourceTree = "<group>";
+		};
 		536E783124921FF300B6CCFF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -1221,6 +1237,7 @@
 				15D53C8C243DA8F600D62B26 /* UserCardViewModel.swift in Sources */,
 				157930862435B7A000EE428F /* editImageVc_mainFilterCell.swift in Sources */,
 				155E2FE8243B069C001D886D /* MessagesViewModel.swift in Sources */,
+				536CAD932499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift in Sources */,
 				89559FFF246ABF2A00223FB7 /* MyStoryViewModel.swift in Sources */,
 				1579307B2435B69C00EE428F /* FacedetectorVC.swift in Sources */,
 				1546B45724336B7500180D77 /* GetMoreDetailsViewModeled.swift in Sources */,
@@ -1271,6 +1288,7 @@
 				73D44AF2247FAD7100FB01BA /* Photo.swift in Sources */,
 				155E2FE7243B069C001D886D /* MessagesView.swift in Sources */,
 				15E8CCE92432287B00A92595 /* SignUpEmailViewModeled.swift in Sources */,
+				536CAD91249933A100A53053 /* SignInWithAppleView.swift in Sources */,
 				8993D7AA246958AC002E636D /* View+Env.swift in Sources */,
 				89B55207246DDEE1004DC7C6 /* HushConversation.swift in Sources */,
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
@@ -1476,6 +1494,7 @@
 			baseConfigurationReference = 297656FF9878ADB99ADD59F3 /* Pods-Hush-SwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Hush-SwiftUI/Hush-SwiftUI.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
@@ -1505,6 +1524,7 @@
 			baseConfigurationReference = 5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Hush-SwiftUI/Hush-SwiftUI.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;

@@ -15,6 +15,9 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
+    @State var name : String = ""
+    @State var isLoggedIn: Bool = false
+    @EnvironmentObject var authorizationStatus: UserSettings
     
     // MARK: - Lifecycle
     
@@ -34,7 +37,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel, isShowing: false), isActive: $viewModel.showEmailScreen, label: { Text("") })
             }.withoutBar().background(background())
     }
-    
+        
     private func signupButton() -> some View {
         
         HapticButton(action: {
@@ -52,11 +55,21 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
 //                self.presenter.facebookPressed()
             }
-            LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
-//                self.presenter.applePressed()
-            }
+            
+            SignInWithAppleView(name: $name, isLoggedIn: $isLoggedIn)
+            .frame(width: SCREEN_WIDTH - 60, height: 48)
+            //.onTapGesture(perform: showAppleLogin)
+            
+            //            LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
+//                //self.presenter.applePressed()
+//            }
         }.padding(.horizontal, 30)
     }
+}
+
+class UserSettings: ObservableObject {
+    // 1 = Authorized, -1 = Revoked
+    @Published var authorization: Int = 0
 }
 
 struct LoginView_Previews: PreviewProvider {

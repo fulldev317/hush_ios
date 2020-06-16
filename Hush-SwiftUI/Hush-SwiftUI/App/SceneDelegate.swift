@@ -36,6 +36,7 @@ extension UITabBarController {
 }
 
 import Combine
+import AuthenticationServices
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -45,6 +46,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var pub: AnyCancellable!
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        if let userID = UserDefaults.standard.object(forKey: "userId") as? String {
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            appleIDProvider.getCredentialState(forUserID: userID) { (state, error) in
+                
+                DispatchQueue.main.async {
+                    switch state
+                    {
+                    case .authorized: // valid user id
+                        self.app.logedIn.toggle()
+                        //self.settings.authorization = 1
+                        break
+                    case .revoked: // user revoked authorization
+                        //self.settings.authorization = -1
+                        break
+                    case .notFound: //not found
+                        //self.settings.authorization = 0
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
+        }
         
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -76,6 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             .withoutBar()
                     } else {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        //LoginView(viewModel: LoginViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
                         //AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
