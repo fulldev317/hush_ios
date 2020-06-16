@@ -33,7 +33,11 @@ class MyProfileViewModel: MyProfileViewModeled {
     }
     
     @Published var photoDatas: [UIImage] = []
-    //let photos: [UIImage] = Array(0..<10).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
+    @Published var locations: [String] = [
+        "London, EN, UK",
+        "Palo Alto, CA, US",
+        "Los Angeles, CA, US",
+    ]
 
     @Published private var cameraPickerSelected = false
     @Published private var libraryPickerSelected = false
@@ -215,7 +219,7 @@ class BioViewMode: ObservableObject {
     @Published var age = "21"
     @Published var gender = Gender.male
     @Published var sexuality = Gender.female
-    @Published var living = "No"
+    @Published var living = "London, EN, UK"
     @Published var bio = "Hi, I'm Jack, 18 years old and I'm from London, Unite Kindom"
     @Published var language = "English"
     
