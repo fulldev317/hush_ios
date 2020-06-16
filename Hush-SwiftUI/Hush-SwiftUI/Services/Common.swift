@@ -11,6 +11,7 @@ import UIKit
 
 var _user: User?
 var _image: UIImage?
+let ISiPhoneX = SCREEN_HEIGHT >= 812
 
 class Common: NSObject {
     static func setUserInfo(_ user: User) {
@@ -41,5 +42,5 @@ class Common: NSObject {
         }
         return errMsg
     }
-
+    
 }

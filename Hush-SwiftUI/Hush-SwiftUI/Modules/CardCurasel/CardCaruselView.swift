@@ -90,6 +90,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 Text("PhotoBooth")
                     .font(.ultraLight(48))
                     .foregroundColor(.hOrange)
+                    .padding(.top, ISiPhoneX ? 10 : 25)
             }.padding(.leading, 25)
             Spacer()
             ZStack {
