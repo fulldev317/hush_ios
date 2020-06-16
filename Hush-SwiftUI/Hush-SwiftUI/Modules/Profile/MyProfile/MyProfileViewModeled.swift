@@ -24,6 +24,7 @@ protocol MyProfileViewModeled: ObservableObject {
     var isPermissionDenied: Bool { get set }
     var isPickerPresented: Bool { get set }
     var isPickerSheetPresented: Bool { get set }
+    var locations: [String] { get set }
     
     func appear()
     func disappear()

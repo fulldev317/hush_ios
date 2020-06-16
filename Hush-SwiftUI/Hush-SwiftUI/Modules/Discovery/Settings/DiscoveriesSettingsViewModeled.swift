@@ -19,6 +19,7 @@ enum Gender: String, CaseIterable {
     static let allTitles = allCases.map { $0.title }
 }
 
+
 protocol DiscoveriesSettingsViewModeled: ObservableObject {
     var gender: Gender { get set }
     var message: String { get set }

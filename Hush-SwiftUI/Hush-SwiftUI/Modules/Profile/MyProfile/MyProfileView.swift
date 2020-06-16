@@ -295,12 +295,27 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.$viewModel.basicsViewModel.age.wrappedValue = "\(age)"
                 }
                 tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
-                    self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: $0.lowercased())!
+                    var selectedGender = $0.lowercased()
+                    if (selectedGender == "") {
+                        selectedGender = "male"
+                    }
+                    self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
                 }
                 tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Gender.allTitles) {
-                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Gender(rawValue: $0.lowercased())!
+                    var selectedSex = $0.lowercased()
+                    if (selectedSex == "") {
+                        selectedSex = "female"
+                    }
+                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Gender(rawValue: selectedSex)!
                 }
-                tableRow("Living", value: $viewModel.basicsViewModel.living)
+                tablePickerRow("Living", selected: viewModel.basicsViewModel.living, titles: $viewModel.locations.wrappedValue) {
+                    var selectedLocation = $0
+                    if (selectedLocation == "") {
+                        selectedLocation = self.$viewModel.locations.wrappedValue[0]
+                    }
+                    self.$viewModel.basicsViewModel.living.wrappedValue = selectedLocation
+                }
+                //tableRow("Living", value: $viewModel.basicsViewModel.living)
                 tableRow("Bio", value: nil)
                 if app.onProfileEditing {
                     
