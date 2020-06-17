@@ -137,6 +137,7 @@
 		536CAD932499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */; };
 		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
 		5370FFEF249A6ACC00ABB64C /* LocationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */; };
+		5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
 		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
@@ -325,6 +326,7 @@
 		536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInWithApple-SwiftUI-Coordinator.swift"; sourceTree = "<group>"; };
 		536E78322492200400B6CCFF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerField.swift; sourceTree = "<group>"; };
+		5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithFBView.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				1546B44A24335B3E00180D77 /* ForgotPassword */,
 				1546B44324334FEB00180D77 /* LoginWithEmail */,
 				536CAD8F2499336D00A53053 /* LoginWithApple */,
+				5370FFF0249A795D00ABB64C /* LoginWithFB */,
 				1546B43D243340BD00180D77 /* LoginView.swift */,
 				1546B43E243340BD00180D77 /* LoginViewModel.swift */,
 				1546B43F243340BD00180D77 /* LoginViewModeled.swift */,
@@ -897,8 +900,8 @@
 		536CAD8F2499336D00A53053 /* LoginWithApple */ = {
 			isa = PBXGroup;
 			children = (
-				536CAD90249933A100A53053 /* SignInWithAppleView.swift */,
 				536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */,
+				536CAD90249933A100A53053 /* SignInWithAppleView.swift */,
 			);
 			path = LoginWithApple;
 			sourceTree = "<group>";
@@ -909,6 +912,14 @@
 				536E78322492200400B6CCFF /* Common.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5370FFF0249A795D00ABB64C /* LoginWithFB */ = {
+			isa = PBXGroup;
+			children = (
+				5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */,
+			);
+			path = LoginWithFB;
 			sourceTree = "<group>";
 		};
 		7354C345247FA586007D6FA5 /* Models */ = {
@@ -1279,6 +1290,7 @@
 				894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				8955A00A246ADE9900223FB7 /* TextQueryAPIProvider.swift in Sources */,
+				5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */,
 				8993D7AF2469A970002E636D /* StoryView.swift in Sources */,
 				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
 				155E300A243B29EF001D886D /* ContentTextMessageView.swift in Sources */,

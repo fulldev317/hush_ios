@@ -12,7 +12,6 @@ import AuthenticationServices
 struct SignInWithAppleView: UIViewRepresentable {
     
     @EnvironmentObject var app: App
-    @Binding var name : String
     @Binding var isLoggedIn : Bool {
         didSet {
             if isLoggedIn == true {
