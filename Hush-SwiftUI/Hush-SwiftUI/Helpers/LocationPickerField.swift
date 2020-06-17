@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct PickerTextField: UIViewRepresentable {
+struct LocationPickerField: UIViewRepresentable {
     
     var title: String
     var titles: [String]
@@ -22,7 +22,7 @@ struct PickerTextField: UIViewRepresentable {
         let field = UITextField()
         field.inputView = context.coordinator.inputView
         field.inputAccessoryView = context.coordinator.toolBarView
-        field.textAlignment = .right
+        field.textAlignment = .center
         field.textColor = .white
         
         context.coordinator.textField = field
@@ -36,7 +36,7 @@ struct PickerTextField: UIViewRepresentable {
     }
 }
 
-extension PickerTextField {
+extension LocationPickerField {
     
     class Coordinator: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
         
@@ -109,7 +109,7 @@ extension PickerTextField {
     }
 }
 
-struct PickerTextField_Previews: PreviewProvider {
+struct LocationPickerField_Previews: PreviewProvider {
     
     @State static var str = "some"
     static var previews: some View {
@@ -122,88 +122,3 @@ struct PickerTextField_Previews: PreviewProvider {
     }
 }
 
-
-struct DateTextField: UIViewRepresentable {
-    
-    var title: String
-    var picked: (Date) -> Void
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(picked: picked, textField: UITextField(), selectedDate: Date())
-    }
-    
-    func makeUIView(context: Context) -> UITextField {
-        let field = UITextField()
-        field.inputView = context.coordinator.inputView
-        field.inputAccessoryView = context.coordinator.toolBarView
-        field.textAlignment = .right
-        field.textColor = .white
-        field.resignFirstResponder()
-        
-        context.coordinator.textField = field
-        
-        return field
-    }
-    
-    func updateUIView(_ uiView: UITextField, context: Context) {
-        
-        uiView.text = title
-    }
-    
-}
-
-
-extension DateTextField {
-    
-    class Coordinator: NSObject {
-        var textField: UITextField
-        private var picked: (Date) -> Void
-        private var selectedDate: Date
-        
-        var inputView: UIDatePicker {
-            let picker = UIDatePicker()
-            picker.datePickerMode = .date
-            picker.maximumDate = Date()
-            picker.addTarget(self, action: #selector(changed(_:)), for: .valueChanged)
-            
-            return picker
-        }
-        
-        var toolBarView: UIToolbar {
-            let toolbar = UIToolbar()
-            toolbar.barStyle = UIBarStyle.default
-            toolbar.isTranslucent = true
-            toolbar.tintColor = UIColor(red: 10/255, green: 132/255, blue: 255/255, alpha: 1)
-            toolbar.sizeToFit()
-            
-            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.donePicker))
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelPicker))
-
-            toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-            toolbar.isUserInteractionEnabled = true
-            
-            return toolbar
-        }
-        
-        @objc func donePicker() {
-            picked(selectedDate)
-            textField.resignFirstResponder()
-        }
-        
-        @objc func cancelPicker() {
-            textField.resignFirstResponder()
-        }
-        
-        init(picked: @escaping (Date) -> Void, textField: UITextField, selectedDate: Date ) {
-            self.picked = picked
-            self.textField = textField
-            self.selectedDate = selectedDate
-        }
-        
-        @objc private func changed(_ picker: UIDatePicker) {
-            selectedDate = picker.date
-            //picked(picker.date)
-        }
-    }
-}

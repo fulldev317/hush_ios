@@ -136,6 +136,7 @@
 		536CAD91249933A100A53053 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD90249933A100A53053 /* SignInWithAppleView.swift */; };
 		536CAD932499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */; };
 		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
+		5370FFEF249A6ACC00ABB64C /* LocationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
 		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
@@ -323,6 +324,7 @@
 		536CAD90249933A100A53053 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
 		536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInWithApple-SwiftUI-Coordinator.swift"; sourceTree = "<group>"; };
 		536E78322492200400B6CCFF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerField.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 				8993D7AB246961B6002E636D /* TabBarView.swift */,
 				535F71EB249016CD002320E3 /* CustomTextField.swift */,
 				5311231624916E8E006B1712 /* ActivityIndicator.swift */,
+				5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */,
 				894BBF02246AE83400F62F7C /* TextQuerySelectorView */,
 				89C77B2A2465F1E500705899 /* Sliders */,
 			);
@@ -1318,6 +1321,7 @@
 				1579309A2435C2F100EE428F /* PolaroidCard.swift in Sources */,
 				535F71EC249016CD002320E3 /* CustomTextField.swift in Sources */,
 				1546B42F2433316C00180D77 /* DVImagePicker.swift in Sources */,
+				5370FFEF249A6ACC00ABB64C /* LocationPickerField.swift in Sources */,
 				895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
