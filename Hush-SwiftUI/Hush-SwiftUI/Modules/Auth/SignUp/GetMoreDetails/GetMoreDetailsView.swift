@@ -18,6 +18,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
 
     @State private var size: CGSize = .zero
     @State private var birth: String = "Enter your Date of Birth"
+    @State private var country: String = "Select your country"
     @State var isShowing: Bool = false
 
     // MARK: - Lifecycle
@@ -60,12 +61,17 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             } )
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
-            HStack {
-                CustomTextField(
-                    placeholder: Text("Country").foregroundColor(Color(0x8E8786)).font(.regular(18)),
-                    text: $viewModel.country
-                )
-            }
+            
+            LocationPickerField(title: country, titles: viewModel.locations) { country in
+                if country == "" {
+                    self.$viewModel.country.wrappedValue = self.viewModel.locations[0]
+                    self.$country.wrappedValue = self.viewModel.locations[0]
+                } else {
+                    self.$viewModel.country.wrappedValue = country
+                    self.$country.wrappedValue = country
+                }
+            }.padding(.horizontal, 16)
+                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
            
             pickers
             

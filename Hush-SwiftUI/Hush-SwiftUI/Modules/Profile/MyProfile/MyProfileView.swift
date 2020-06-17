@@ -413,9 +413,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             Text(title).font(.regular(17)).foregroundColor(.white)
             Spacer()
             if app.onProfileEditing {
-                PickerTextField(title: selected, titles: titles, picked: picked, editabled: { edit in
-                    //self.app.onProfileEditing = edit
-                })
+                PickerTextField(title: selected, titles: titles, picked: picked)
                 
             } else {
                 Text(selected).font(.regular(17)).foregroundColor(.white)

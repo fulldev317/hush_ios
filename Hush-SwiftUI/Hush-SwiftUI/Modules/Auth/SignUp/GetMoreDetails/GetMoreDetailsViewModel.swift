@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
-   
+    
     var name: String
     var username: String
     var email: String
@@ -42,6 +42,11 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     @Published var birthday = "Enter your Date of Birth"
     @Published var country = ""
     @Published var city = ""
+    @Published var locations: [String] = [
+        "London, EN, UK",
+        "Palo Alto, CA, US",
+        "Los Angeles, CA, US",
+    ]
     
     func updateMessage() {
 

@@ -23,7 +23,8 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var birthday: String { get set }
     var city: String { get set }
     var country: String { get set }
-
+    var locations: [String] { get set }
+    
     var hasErrorMessage: Bool { get set }
     var errorMessage: String { get set }
     
