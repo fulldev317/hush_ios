@@ -42,7 +42,7 @@ class Coordinator: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationC
         
         let defaults = UserDefaults.standard
         defaults.set(credentials.user, forKey: "userId")
-        parent?.name = "\(credentials.fullName?.givenName ?? "")"
+        //parent?.name = "\(credentials.fullName?.givenName ?? "")"
         parent?.isLoggedIn = true
     }
     

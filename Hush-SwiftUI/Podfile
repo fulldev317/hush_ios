@@ -6,6 +6,7 @@ target 'Hush-SwiftUI' do
   use_frameworks!
 
   pod 'Koloda'
+  pod 'FBSDKLoginKit'
   pod 'Fakery'
   pod 'SwiftUIPager'
   pod 'Alamofire', '~> 4.8.2'

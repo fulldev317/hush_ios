@@ -24,7 +24,7 @@ struct LoginButtons<Presenter: SignUpViewModeled>: View {
                 self.presenter.facebookPressed()
             }.padding(.horizontal, 24)
             
-            SignInWithAppleView(name: $name, isLoggedIn: $isLoggedIn)
+            SignInWithAppleView(isLoggedIn: $isLoggedIn)
             .frame(width: SCREEN_WIDTH - 48, height: 48)
 
 //            LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {

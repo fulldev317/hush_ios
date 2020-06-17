@@ -1,6 +1,16 @@
 PODS:
   - Alamofire (4.8.2)
   - Fakery (4.1.1)
+  - FBSDKCoreKit (7.0.0):
+    - FBSDKCoreKit/Basics (= 7.0.0)
+    - FBSDKCoreKit/Core (= 7.0.0)
+  - FBSDKCoreKit/Basics (7.0.0)
+  - FBSDKCoreKit/Core (7.0.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (7.0.0):
+    - FBSDKLoginKit/Login (= 7.0.0)
+  - FBSDKLoginKit/Login (7.0.0):
+    - FBSDKCoreKit (~> 7.0.0)
   - FLEX (4.1.1)
   - Koloda (5.0):
     - pop (~> 1.0)
@@ -11,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.8.2)
   - Fakery
+  - FBSDKLoginKit
   - FLEX
   - Koloda
   - SwiftUIPager
@@ -20,6 +31,8 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Fakery
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - FLEX
     - Koloda
     - pop
@@ -29,12 +42,14 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
+  FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
+  FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SwiftUIPager: 87780e1c33ea432d326eebfecfcfa33877bfa848
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 07f0a3df38389aa494d948677c1488466f543fa5
+PODFILE CHECKSUM: abf98f4e34c088c2d82554fc1b3cf50b2ad6cb2f
 
 COCOAPODS: 1.9.1

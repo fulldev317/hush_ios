@@ -7,17 +7,18 @@
 //
 
 import SwiftUI
+import FBSDKLoginKit
 
 struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     
     // MARK: - Properties
 
+    @ObservedObject var fbmanager = UserLoginManager()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     @State var name : String = ""
     @State var isLoggedIn: Bool = false
-    @EnvironmentObject var authorizationStatus: UserSettings
     
     // MARK: - Lifecycle
     
@@ -53,10 +54,13 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
         VStack(spacing: 14) {
             LoginButton(title: "Login with Email", img: Image("mail_icon"), color: Color(0x56CCF2), action: viewModel.loginWithEmail)
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
-//                self.presenter.facebookPressed()
+                self.fbmanager.facebookLogin(app: self.app)
             }
             
-            SignInWithAppleView(name: $name, isLoggedIn: $isLoggedIn)
+//            SignInWithFBView(isLoggedIn: $isLoggedIn)
+//            .frame(width: SCREEN_WIDTH - 60, height: 48)
+            
+            SignInWithAppleView(isLoggedIn: $isLoggedIn)
             .frame(width: SCREEN_WIDTH - 60, height: 48)
             //.onTapGesture(perform: showAppleLogin)
             
@@ -67,9 +71,31 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     }
 }
 
-class UserSettings: ObservableObject {
-    // 1 = Authorized, -1 = Revoked
-    @Published var authorization: Int = 0
+class UserLoginManager: ObservableObject {
+    let loginManager = LoginManager()
+    func facebookLogin(app:App) {
+        loginManager.logIn(permissions: [.publicProfile, .email], viewController: nil) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+
+                print(error)
+            case .cancelled:
+
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                print("Logged in! \(grantedPermissions) \(declinedPermissions) \(accessToken)")
+                
+                app.logedIn = true
+                
+                GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name"]).start(completionHandler: { (connection, result, error) -> Void in
+                    if (error == nil){
+                        let fbDetails = result as! NSDictionary
+                        print(fbDetails)
+                    }
+                })
+            }
+        }
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
