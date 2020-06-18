@@ -24,11 +24,14 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var city: String { get set }
     var country: String { get set }
     var locations: [String] { get set }
+    var location: String { get set }
     
     var hasErrorMessage: Bool { get set }
     var errorMessage: String { get set }
-    
+    var closeAPISelectorCompletion: (() -> Void)? { get set }
+
     func updateMessage()
 
-    func signup(birth: String, result: @escaping (Bool) -> Void) 
+    func signup(birth: String, result: @escaping (Bool) -> Void)
+
 }
