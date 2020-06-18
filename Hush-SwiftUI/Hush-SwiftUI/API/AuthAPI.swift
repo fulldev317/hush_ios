@@ -43,7 +43,7 @@ class AuthAPI: BaseAPI {
         }
     }
     
-    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, city: String, country: String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, address: String,  latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
 
         let parameters: Parameters = ["action": "register",
                                       "reg_email": email,
@@ -56,8 +56,7 @@ class AuthAPI: BaseAPI {
                                       "reg_here_for": here,
                                       "reg_photo": photo,
                                       "reg_thumb": thumb,
-                                      "reg_city": city,
-                                      "reg_country": country,
+                                      "reg_address": address,
                                       "reg_lat": latitude,
                                       "reg_lng": longitude,
                                       "dID": deviceUUID]
@@ -75,7 +74,7 @@ class AuthAPI: BaseAPI {
                         user = try! JSONDecoder().decode(User.self, from: jsonData)
                     } else {
                         user = nil
-                        error = APIError(json["error"].intValue, json["error_m"][0].stringValue)
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
                     completion(user, error)
                 case .failure:

@@ -7,12 +7,14 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppScreens {
     
     // MARK: - Properties
     
     @Environment(\.presentationMode) var mode
+    @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
 
@@ -32,7 +34,6 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             }.keyboardAdaptive()
             
             VStack {
-                Text("Loading...")
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             }
             .frame(width: 100,
@@ -61,6 +62,36 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             } )
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
+            /*
+            VStack {
+                HStack {
+                    Text("Location").font(.light())
+                    Spacer()
+                    Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light())
+                    Spacer()
+                    Button(action: {
+                        self.partialSheetManager.showPartialSheet({
+                            self.app.isFirstResponder = false
+                        }, content: {
+                            TextQuerySelectorView(provider: SelectLocationAPI { newLocation in
+                                if let result = newLocation {
+                                    self.viewModel.location = result
+                                }
+                                
+                                self.viewModel.closeAPISelectorCompletion?()
+                            })
+                        })
+                    }) {
+                        Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
+                    }
+                }
+                Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
+            }*/
+            /*
+            CustomTextField(
+                placeholder: Text("Country and City").foregroundColor(Color(0x8E8786)).font(.regular(18)),
+                text: $viewModel.country
+            )*/
             
             LocationPickerField(title: country, titles: viewModel.locations) { country in
                 if country == "" {
@@ -83,8 +114,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             }
             
             borderedButton(action: {
-                self.app.logedIn = true
-                /*
+                //self.app.logedIn = true
+                
                 self.isShowing = true
 
                 self.viewModel.signup(birth: self.birth, result: { result in
@@ -92,7 +123,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                     if (result) {
                         self.app.logedIn.toggle()
                     }
-                })*/
+                })
             }, title: "Submit").padding(.bottom, 55)
         }.padding(.horizontal, 30)
     }

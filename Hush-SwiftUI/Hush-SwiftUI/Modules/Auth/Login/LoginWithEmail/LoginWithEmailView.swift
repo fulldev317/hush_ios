@@ -43,8 +43,8 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password).padding(.horizontal, 30)
                 
                 borderedButton(action: {
-                    self.app.logedIn.toggle()
-                    /*
+                    //self.app.logedIn.toggle()
+                    
                     if self.viewModel.email.count == 0 {
                         return
                     }
@@ -60,7 +60,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                         if (result) {
                             self.app.logedIn.toggle()
                         }
-                    })*/
+                    })
                 }, title: "Submit")
                     .padding(.vertical, 29)
                     .padding(.horizontal, 30)

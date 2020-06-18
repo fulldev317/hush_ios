@@ -34,8 +34,7 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
             countires.append(name)
         }
         locations = countires
-        
-        
+               
     }
     
     // MARK: - Properties
@@ -52,6 +51,8 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     @Published var birthday = "Enter your Date of Birth"
     @Published var country = ""
     @Published var city = ""
+    @Published var location = ""
+    @Published var closeAPISelectorCompletion: (() -> Void)?
     @Published var locations: [String] = [
         "London, EN, UK",
         "Palo Alto, CA, US",
@@ -59,7 +60,7 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     ]
     
     func updateMessage() {
-
+        
         
     }
     
@@ -67,19 +68,21 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         
         let strGender = String(selectedGender)
         var strWhatFor = ""
-        for selected in strWhatFor {
-            strWhatFor = strWhatFor + String(selected)
+        for selected in selectedWhatFor {
+            strWhatFor = strWhatFor + String(selected) + ","
         }
+        strWhatFor = String(strWhatFor.dropLast())
         var strLookingFor = ""
-        for selected in strLookingFor {
-            strLookingFor = strLookingFor + String(selected)
+        for selected in selectedLookingFors {
+            strLookingFor = strLookingFor + String(selected) + ","
         }
+        strLookingFor = String(strLookingFor.dropLast())
         let photo = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let thumb = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let latitude = "27.2038"
         let longitude = "77.5011"
-        
-        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, city: city, country: country, latitude: latitude, longitude: longitude) { (user, error) in
+        let address = country
+        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, address: address, latitude: latitude, longitude: longitude) { (user, error) in
             
             if let error = error {
                 self.hasErrorMessage = true
@@ -105,5 +108,40 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         }
     
     }
+    
+    func getWiFiAddress() -> String? {
+        var address : String?
+
+        // Get list of all interfaces on the local machine:
+        var ifaddr : UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&ifaddr) == 0 else { return nil }
+        guard let firstAddr = ifaddr else { return nil }
+
+        // For each interface ...
+        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+            let interface = ifptr.pointee
+
+            // Check for IPv4 or IPv6 interface:
+            let addrFamily = interface.ifa_addr.pointee.sa_family
+            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+
+                // Check interface name:
+                let name = String(cString: interface.ifa_name)
+                if  name == "en0" {
+
+                    // Convert interface address to a human readable string:
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
+                                &hostname, socklen_t(hostname.count),
+                                nil, socklen_t(0), NI_NUMERICHOST)
+                    address = String(cString: hostname)
+                }
+            }
+        }
+        freeifaddrs(ifaddr)
+
+        return address
+    }
+    
     
 }
