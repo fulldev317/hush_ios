@@ -112,6 +112,31 @@ class AuthAPI: BaseAPI {
         }
     }
     
+    func emailExistCheck(email: String, username: String, completion: @escaping (_ error: APIError?) -> Void) {
+        let parameters: Parameters = ["action": "checkEmailUsername",
+                                      "reg_email": email,
+                                      "reg_username": username]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
     func facebookConnect(facebookId: String, email: String, name: String, gender: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         var parameters: Parameters = ["action": "fbconnect"]
         

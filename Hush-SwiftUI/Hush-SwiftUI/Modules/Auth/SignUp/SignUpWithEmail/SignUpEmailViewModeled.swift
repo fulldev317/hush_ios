@@ -17,7 +17,9 @@ protocol SignUpEmailViewModeled: ObservableObject {
     var hasError: Bool { get set }
     var showAddPhotoScreen: Bool { get set }
     var showLoginScreen: Bool { get set }
-        
-    func submit()
+    var hasErrorMessage: Bool { get set }
+    var errorMessage: String { get set }
+
+    func submit(result: @escaping (Bool) -> Void)
     func login()
 }

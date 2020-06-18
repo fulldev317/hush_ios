@@ -26,6 +26,16 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         self.email = email
         self.password = password
         self.image = image
+        
+        var countires: [String] = []
+        for code in NSLocale.isoCountryCodes {
+            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+            let name = NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
+            countires.append(name)
+        }
+        locations = countires
+        
+        
     }
     
     // MARK: - Properties

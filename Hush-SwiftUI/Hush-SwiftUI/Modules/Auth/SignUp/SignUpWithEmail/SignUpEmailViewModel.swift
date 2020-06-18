@@ -17,9 +17,11 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var hasError: Bool = false
     @Published var showAddPhotoScreen = false
     @Published var showLoginScreen = false
-        
-    func submit() {
-       /*
+    @Published var hasErrorMessage = false
+    @Published var errorMessage = ""
+
+    func submit(result: @escaping (Bool) -> Void) {
+       
         if (name.count == 0) {
             return
         }
@@ -35,8 +37,20 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
         if (password.count == 0) {
             return
         }
-        */
-        showAddPhotoScreen.toggle()
+        
+        AuthAPI.shared.emailExistCheck(email: email, username: username) { (error) in
+            if let error = error {
+                self.hasErrorMessage = true
+                self.errorMessage = error.message
+                result(false)
+            } else {
+                self.hasErrorMessage = false
+                self.errorMessage = ""
+                self.showAddPhotoScreen.toggle()
+                result(true)
+            }
+        }
+        
     }
     
     func login() {

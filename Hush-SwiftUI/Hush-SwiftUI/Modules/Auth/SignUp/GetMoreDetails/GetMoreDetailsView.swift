@@ -111,7 +111,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             
             VStack(spacing: 8) {
                 Text("Finally, tell us what are you here for?").font(.thin()).foregroundColor(.white)
-                HSegmentedControl(selectedList: $viewModel.selectedWhatFor, list: viewModel.lookingFors)
+                HSegmentedControl(selectedList: $viewModel.selectedWhatFor, list: viewModel.whatFors)
             }
         }.padding(.bottom, 30)
     }

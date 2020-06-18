@@ -101,6 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             .withoutBar()
                     } else {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
                         //LoginView(viewModel: LoginViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
