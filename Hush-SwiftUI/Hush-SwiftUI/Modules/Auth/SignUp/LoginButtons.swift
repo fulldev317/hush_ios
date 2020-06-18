@@ -7,12 +7,16 @@
 //
 
 import SwiftUI
+import FBSDKLoginKit
 
 struct LoginButtons<Presenter: SignUpViewModeled>: View {
     
+    @ObservedObject var fbmanager = UserLoginManager()
     @ObservedObject var presenter: Presenter
-    @State var name : String = ""
+    @EnvironmentObject var app: App
+    @State var name: String = ""
     @State var isLoggedIn: Bool = false
+    @Binding var isShowingProgress: Bool
     
     var body: some View {
         VStack(spacing: 14) {
@@ -21,7 +25,22 @@ struct LoginButtons<Presenter: SignUpViewModeled>: View {
             }.padding(.horizontal, 24)
             
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
-                self.presenter.facebookPressed()
+                
+                self.isShowingProgress = true
+                
+                self.fbmanager.facebookLogin(login_result: { fbResult in
+                    let result: String = fbResult["result"] as! String
+                    if result == "success" {
+                        //self.app.logedIn = true
+                        self.fbmanager.facebookConnect(data: fbResult) { result in
+                            self.isShowingProgress = false
+
+                            if result == true {
+                                self.app.logedIn = true
+                            }
+                        }
+                    }
+                })
             }.padding(.horizontal, 24)
             
             SignInWithAppleView(isLoggedIn: $isLoggedIn)
@@ -71,6 +90,6 @@ struct LoginButton: View {
 
 struct LoginButtons_Previews: PreviewProvider {
     static var previews: some View {
-        LoginButtons(presenter: SignUpViewModel())
+        LoginButtons(presenter: SignUpViewModel(), isShowingProgress: .constant(false) )
     }
 }

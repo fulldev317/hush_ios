@@ -14,6 +14,7 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
     
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
+    @State var isShowing: Bool = false
 
     var body: some View {
         
@@ -45,6 +46,17 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
             
             NavigationLink(destination: SignUpEmail(viewModel: SignUpEmailViewModel()), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen, label: EmptyView.init)
+            
+            VStack {
+               ActivityIndicator(isAnimating: .constant(true), style: .large)
+            }
+            .frame(width: 80,
+                  height: 80)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(15)
+            .opacity(self.isShowing ? 1 : 0)
+            
         }.background(background())
     }
 }
@@ -70,7 +82,7 @@ extension SignUpView {
             }.opacity(app.showSignupButtons ? 0.5 : 1)
             
             if app.showSignupButtons {
-                LoginButtons(presenter: viewModel).transition(buttonsTransition())
+                LoginButtons(presenter: viewModel, isShowingProgress: self.$isShowing).transition(buttonsTransition())
             }
         }.frame(maxWidth: .infinity)
     }

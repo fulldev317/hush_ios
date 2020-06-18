@@ -139,11 +139,10 @@ class AuthAPI: BaseAPI {
     func facebookConnect(facebookId: String, email: String, name: String, gender: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         var parameters: Parameters = ["action": "fbconnect"]
         
-        let query = [facebookId, email, name, gender, deviceUUID, "herefor"]
+        let query = facebookId + "," + email + "," + name + "," + gender + "," + deviceUUID + "," + "2-3" + "," + "2-3"
         parameters["query"] = query
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .responseSwiftyJson { response in
                 
                 switch response.result {
@@ -151,12 +150,16 @@ class AuthAPI: BaseAPI {
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
+                        let json_user = json["user"]
+                        let jsonData = try! json_user.rawData()
+                        user = try! JSONDecoder().decode(User.self, from: jsonData)
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
                     completion(user, error)
                 case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
                     print("API CALL FAILED")
                 }
         }

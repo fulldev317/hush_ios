@@ -19,7 +19,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     @EnvironmentObject var app: App
     @State var name : String = ""
     @State var isLoggedIn: Bool = false
-    
+    @State var isShowing: Bool = false
+
     // MARK: - Lifecycle
     
     var body: some View {
@@ -36,7 +37,17 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             onBackButton(mode)
             
             NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel, isShowing: false), isActive: $viewModel.showEmailScreen, label: { Text("") })
-            }.withoutBar().background(background())
+            
+            VStack {
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            }
+            .frame(width: 80,
+                   height: 80)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(15)
+            .opacity(self.isShowing ? 1 : 0)
+        }.withoutBar().background(background())
     }
         
     private func signupButton() -> some View {
@@ -54,7 +65,22 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
         VStack(spacing: 14) {
             LoginButton(title: "Login with Email", img: Image("mail_icon"), color: Color(0x56CCF2), action: viewModel.loginWithEmail)
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
-                self.fbmanager.facebookLogin(app: self.app)
+                
+                self.isShowing = true
+
+                self.fbmanager.facebookLogin(login_result: { fbResult in
+                    let result: String = fbResult["result"] as! String
+                    if result == "success" {
+                        //self.app.logedIn = true
+                        
+                        self.fbmanager.facebookConnect(data: fbResult) { result in
+                            self.isShowing = false
+                            if result == true {
+                                self.app.logedIn = true
+                            }
+                        }
+                    }
+                })
             }
             
 //            SignInWithFBView(isLoggedIn: $isLoggedIn)
@@ -73,24 +99,56 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
 
 class UserLoginManager: ObservableObject {
     let loginManager = LoginManager()
-    func facebookLogin(app:App) {
+    
+    func facebookConnect(data: NSDictionary, result: @escaping (Bool) -> Void ) {
+        AuthAPI.shared.facebookConnect(facebookId: data["id"] as! String,
+                                       email: data["email"] as! String,
+                                       name: data["name"] as! String, gender: "0") { (user, error) in
+                                        
+            if error != nil {
+                result(false)
+            } else if let user = user {
+              
+                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+                isLoggedIn.wrappedValue = true
+                
+                Common.setUserInfo(user)
+                
+                let jsonData = try! JSONEncoder().encode(user)
+                let jsonString = String(data:jsonData, encoding: .utf8)!
+                
+                let currentUser = UserDefault(.currentUser, default: "")
+                currentUser.wrappedValue = jsonString
+                result(true)
+            }
+        }
+        
+    }
+    
+    func facebookLogin(login_result: @escaping (NSDictionary) -> Void) {
         loginManager.logIn(permissions: [.publicProfile, .email], viewController: nil) { loginResult in
             switch loginResult {
             case .failed(let error):
-
+                login_result(["result":"failed"])
                 print(error)
             case .cancelled:
-
+                login_result(["result":"cancelled"])
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
                 print("Logged in! \(grantedPermissions) \(declinedPermissions) \(accessToken)")
                 
-                app.logedIn = true
+                //app.logedIn = true
                 
-                GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name"]).start(completionHandler: { (connection, result, error) -> Void in
+                GraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).start(completionHandler: { (connection, result, error) -> Void in
                     if (error == nil){
                         let fbDetails = result as! NSDictionary
+                        let fbResult: NSDictionary = ["result": "success",
+                                                      "id": fbDetails["id"] ?? "123456789",
+                                                      "name": fbDetails["name"] ?? "test",
+                                                      "email": fbDetails["email"] ?? "test@email.com"]
+                        
                         print(fbDetails)
+                        login_result(fbResult)
                     }
                 })
             }
