@@ -72,7 +72,6 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
             onBackButton(mode)
             
             VStack {
-                Text("Loading...")
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             }
             .frame(width: 100,

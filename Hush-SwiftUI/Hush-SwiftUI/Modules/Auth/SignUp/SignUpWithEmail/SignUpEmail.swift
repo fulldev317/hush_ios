@@ -14,7 +14,8 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var keyboardPresented: Bool = false
     @State private var keyboardHeight: CGFloat = 0
-    
+    @State var isShowing: Bool = false
+
     var body: some View {
         ZStack {
             GeometryReader { proxy in
@@ -33,6 +34,17 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
                 Text("")
             }
+            
+            VStack {
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            }
+            .frame(width: 100,
+                   height: 100)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(20)
+            .opacity(self.isShowing ? 1 : 0)
+            
         }.withoutBar().background(background())
         .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
     }
@@ -54,6 +66,14 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 
                 Spacer()
                 
+                if viewModel.hasErrorMessage {
+                    HStack {
+                        Spacer()
+                        Text(viewModel.errorMessage).font(.thin()).foregroundColor(.hOrange)
+                        Spacer()
+                    }
+                }
+                
                 fields().padding(.horizontal, 30)
                 Spacer()
                 submitButton()
@@ -65,6 +85,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 })
                     .padding(.bottom, 30)
             }
+            
         }
     }
     
@@ -83,7 +104,42 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     
     private func submitButton() -> some View {
         
-        borderedButton(action: viewModel.submit, title: "Submit").padding(.horizontal, 30)
+        borderedButton(action: {
+            
+            if self.viewModel.name.count == 0 {
+                self.viewModel.hasErrorMessage = true
+                self.viewModel.errorMessage = "Please input Name"
+                return
+            }
+            
+            if self.viewModel.username.count == 0 {
+                self.viewModel.hasErrorMessage = true
+                self.viewModel.errorMessage = "Please input Username"
+                return
+            }
+            
+            if self.viewModel.email.count == 0 {
+                self.viewModel.hasErrorMessage = true
+                self.viewModel.errorMessage = "Please input Email"
+                return
+            }
+                      
+            if self.viewModel.password.count == 0 {
+                self.viewModel.hasErrorMessage = true
+                self.viewModel.errorMessage = "Please input Password"
+                return
+            }
+            
+            self.isShowing = true
+
+            self.viewModel.submit(result: { result in
+                
+                self.isShowing = false
+
+                if (result) {
+                }
+            })
+        }, title: "Submit").padding(.horizontal, 30)
     }
 }
 
