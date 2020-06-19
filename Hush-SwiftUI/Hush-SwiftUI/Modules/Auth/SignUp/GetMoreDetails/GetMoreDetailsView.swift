@@ -33,15 +33,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 .overlay(onBackButton(mode))
             }.keyboardAdaptive()
             
-            VStack {
-                ActivityIndicator(isAnimating: .constant(true), style: .large)
-            }
-            .frame(width: 100,
-                   height: 100)
-            .background(Color.secondary.colorInvert())
-            .foregroundColor(Color.primary)
-            .cornerRadius(20)
-            .opacity(self.isShowing ? 1 : 0)
+            HushIndicator(showing: self.isShowing)
             
             NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: self.$app.logedIn, label: { Text("") })
         }.background(background())

@@ -47,15 +47,7 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
             NavigationLink(destination: SignUpEmail(viewModel: SignUpEmailViewModel()), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
             NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen, label: EmptyView.init)
             
-            VStack {
-               ActivityIndicator(isAnimating: .constant(true), style: .large)
-            }
-            .frame(width: 80,
-                  height: 80)
-            .background(Color.secondary.colorInvert())
-            .foregroundColor(Color.primary)
-            .cornerRadius(15)
-            .opacity(self.isShowing ? 1 : 0)
+            HushIndicator(showing: self.isShowing)
             
         }.background(background())
     }
