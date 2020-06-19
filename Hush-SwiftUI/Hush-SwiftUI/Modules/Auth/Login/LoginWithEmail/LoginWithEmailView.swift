@@ -71,15 +71,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
             
             onBackButton(mode)
             
-            VStack {
-                ActivityIndicator(isAnimating: .constant(true), style: .large)
-            }
-            .frame(width: 100,
-                   height: 100)
-            .background(Color.secondary.colorInvert())
-            .foregroundColor(Color.primary)
-            .cornerRadius(20)
-            .opacity(self.isShowing ? 1 : 0)
+            HushIndicator(showing: self.isShowing)
             
         }
         .background(NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel),

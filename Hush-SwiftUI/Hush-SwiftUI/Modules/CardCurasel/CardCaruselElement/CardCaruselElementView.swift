@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CardCaruselElementView: View {
     let rotation: Angle
-    
+    let photo: Photo
     @State private var rectSize: CGSize = .zero
     @State private var showMessages = false
     @State private var showUserProfile = false
@@ -27,7 +27,7 @@ struct CardCaruselElementView: View {
                 .shadow(radius: 10)
             
             VStack {
-                Image("story1")
+                Image(photo.photo)
                     .resizable()
                     .scaledToFill()
                     .frame(width: rectSize.width * imageScale, height: rectSize.width * imageScale)
@@ -79,7 +79,7 @@ struct CardCaruselElementView: View {
 
 struct CardCaruselElement_Previews: PreviewProvider {
     static var previews: some View {
-        CardCaruselElementView(rotation: .degrees(-5))
+        CardCaruselElementView(rotation: .degrees(-5), photo: try! Photo.init(id: "123", thumb: "story1", photo: "story1", approved: "1", profile: "story1", blocked: "0"))
             .previewEnvironment()
             .padding()
     }

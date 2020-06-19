@@ -15,6 +15,14 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     // MARK: - Properties
     
     @Published var message = "Hellow World!"
+    @Published var photos: [Photo] = []
+    
+    init() {
+        let user = Common.userInfo()
+        if let user_photo = user.photo {
+            photos = user_photo
+        }
+    }
     
     func updateMessage() {
         
@@ -22,7 +30,7 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     }
     
     func viewModel(for index: Int) -> CardCuraselElementViewModel {
-        
-        CardCuraselElementViewModel()
+       
+        return CardCuraselElementViewModel()
     }
 }

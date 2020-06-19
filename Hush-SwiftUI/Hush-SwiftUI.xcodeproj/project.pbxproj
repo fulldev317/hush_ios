@@ -138,6 +138,7 @@
 		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
 		5370FFEF249A6ACC00ABB64C /* LocationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */; };
 		5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */; };
+		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
 		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
@@ -327,6 +328,7 @@
 		536E78322492200400B6CCFF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerField.swift; sourceTree = "<group>"; };
 		5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithFBView.swift; sourceTree = "<group>"; };
+		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				8993D7AB246961B6002E636D /* TabBarView.swift */,
 				535F71EB249016CD002320E3 /* CustomTextField.swift */,
 				5311231624916E8E006B1712 /* ActivityIndicator.swift */,
+				53852893249D0C7F00804980 /* HushIndicator.swift */,
 				5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */,
 				894BBF02246AE83400F62F7C /* TextQuerySelectorView */,
 				89C77B2A2465F1E500705899 /* Sliders */,
@@ -1234,6 +1237,7 @@
 				0E13EBD924805627003E0959 /* FaceDetectionViewController.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
 				89559FFD246AB95300223FB7 /* StoryViewModel.swift in Sources */,
+				53852894249D0C7F00804980 /* HushIndicator.swift in Sources */,
 				155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */,
 				158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */,
 				893E6CEC2460441700ECE788 /* ARFaceDetectorView.swift in Sources */,

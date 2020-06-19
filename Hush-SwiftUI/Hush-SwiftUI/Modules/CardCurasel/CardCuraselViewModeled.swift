@@ -12,6 +12,7 @@ import SwiftUI
 protocol CardCuraselViewModeled: ObservableObject {
     
     var message: String { get set }
+    var photos: [Photo] { get set }
     
     func updateMessage()
     

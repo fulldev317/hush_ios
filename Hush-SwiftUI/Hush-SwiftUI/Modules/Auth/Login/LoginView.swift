@@ -38,15 +38,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             
             NavigationLink(destination: LoginWithEmailView(viewModel: viewModel.loginWithMailViewModel, isShowing: false), isActive: $viewModel.showEmailScreen, label: { Text("") })
             
-            VStack {
-                ActivityIndicator(isAnimating: .constant(true), style: .large)
-            }
-            .frame(width: 80,
-                   height: 80)
-            .background(Color.secondary.colorInvert())
-            .foregroundColor(Color.primary)
-            .cornerRadius(15)
-            .opacity(self.isShowing ? 1 : 0)
+            HushIndicator(showing: self.isShowing)
+           
         }.withoutBar().background(background())
     }
         
@@ -82,17 +75,10 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
                     }
                 })
             }
-            
-//            SignInWithFBView(isLoggedIn: $isLoggedIn)
-//            .frame(width: SCREEN_WIDTH - 60, height: 48)
-            
+                        
             SignInWithAppleView(isLoggedIn: $isLoggedIn)
             .frame(width: SCREEN_WIDTH - 60, height: 48)
-            //.onTapGesture(perform: showAppleLogin)
-            
-            //            LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
-//                //self.presenter.applePressed()
-//            }
+
         }.padding(.horizontal, 30)
     }
 }

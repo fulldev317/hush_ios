@@ -94,7 +94,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             }.padding(.leading, 25)
             Spacer()
             ZStack {
-                ForEach((cardIndex..<(cardIndex + 3)).reversed(), id: \.self) { index in
+                ForEach((cardIndex..<(cardIndex + viewModel.photos.count)).reversed(), id: \.self) { index in
                     self.caruselElement(index)
                 }
             }.frame(width: SCREEN_WIDTH).padding(.bottom, 20)
@@ -107,7 +107,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func caruselElement(_ index: Int) -> some View {
-        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5))
+        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5), photo: viewModel.photos[index])
             .offset(index == self.cardIndex ? self.translation : .zero)
             .offset(x: 0, y: self.offset(index))
             .gesture(index == self.cardIndex ? self.topCardDrag : nil)
