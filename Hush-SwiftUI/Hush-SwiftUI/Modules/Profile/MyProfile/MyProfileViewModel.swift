@@ -47,7 +47,57 @@ class MyProfileViewModel: MyProfileViewModeled {
     private var disposals = Set<AnyCancellable>()
 
     init() {
-       initPhotoData()
+        initPhotoData()
+
+        let user = Common.userInfo()
+        
+        basicsViewModel.username = user.username ?? ""
+        basicsViewModel.isPremium = user.premium ?? ""
+        basicsViewModel.isVerified = user.verified ?? ""
+        basicsViewModel.age = user.age ?? ""
+        basicsViewModel.living = user.address ?? ""
+        basicsViewModel.bio = user.bio ?? ""
+        basicsViewModel.language = user.language ?? ""
+        
+        switch Int(user.gender ?? "0") {
+        case 0:
+            basicsViewModel.gender = Gender.male
+            break
+        case 1:
+            basicsViewModel.gender = Gender.female
+            break
+        case 2:
+            basicsViewModel.gender = Gender.lesbian
+            break
+        case 3:
+            basicsViewModel.gender = Gender.gay
+            break
+        default:
+            basicsViewModel.gender = Gender.male
+        }
+        
+        let array = user.looking!.components(separatedBy: ",")
+        if (array.count > 0) {
+            let looking = array[0]
+            
+            switch Int(looking) {
+            case 0:
+                basicsViewModel.sexuality = Gender.male
+                break
+            case 1:
+                basicsViewModel.sexuality = Gender.female
+                break
+            case 2:
+                basicsViewModel.sexuality = Gender.lesbian
+                break
+            case 3:
+                basicsViewModel.sexuality = Gender.gay
+                break
+            default:
+                basicsViewModel.sexuality = Gender.male
+            }
+        }
+        
    }
 
     func updateMessage() {

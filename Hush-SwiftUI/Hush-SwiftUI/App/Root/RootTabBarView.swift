@@ -27,7 +27,6 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         UITabBar.appearance().barTintColor = .black
     }
     
-    
     // MARK: - Lifecycle
     
     var body: some View {
@@ -44,12 +43,16 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     NavigationView {
                         self.discovery().withoutBar()
                     }.zIndex(self.currentTab == .discoveries ? 1 : 0)
+                    
                     self.stories().zIndex(self.currentTab == .stories ? 1 : 0)
+                    
                     NavigationView {
                         CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
                     }.zIndex(self.currentTab == .carusel ? 1 : 0)
+                    
                     self.messages().zIndex(self.currentTab == .chats ? 1 : 0)
-                    MyProfileView(viewModel: self.app.profile).zIndex(self.currentTab == .profile ? 1 : 0)
+                    
+                    MyProfileView(viewModel: MyProfileViewModel()).zIndex(self.currentTab == .profile ? 1 : 0)
                 }
             }.frame(width: proxy.size.width, height: proxy.size.height)
             .accentColor(.hOrange)

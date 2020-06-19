@@ -21,7 +21,7 @@ class Common: NSObject {
     static func userInfo() -> User {
         return _user!
     }
-    
+        
     static func setCapturedImage(_ image: UIImage) {
         _image = image
     }

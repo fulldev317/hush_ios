@@ -80,14 +80,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isLoggedIn = UserDefault(.isLoggedIn, default: false)
         
         if (isLoggedIn.wrappedValue) {
-            app.logedIn = isLoggedIn.wrappedValue
+            
             let currentUser = UserDefault(.currentUser, default: "")
             let userString: String = currentUser.wrappedValue
             
             if userString.count > 0 {
                 let jsonData = userString.data(using: .utf8)
                 let user = try! JSONDecoder().decode(User.self, from: jsonData!)
-                Common.setUserInfo(user)
+                //Common.setUserInfo(user)
+                self.app.logedIn = false
+                self.app.loadingData = false
+                auto_login(userId: user.id!)
             }
         }
         
@@ -100,9 +103,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             .edgesIgnoringSafeArea(.all)
                             .withoutBar()
                     } else {
-                        //SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
-                        LoginView(viewModel: LoginViewModel()).withoutBar()
+                        //LoginView(viewModel: LoginViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "Maksym", username: "max", email: "max@gmail.com", password: "111111", image: UIImage())).withoutBar()
                         //AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
@@ -111,6 +114,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .environmentObject(PartialSheetManager())
                 .environmentObject(self.app)
             )
+        }
+    }
+    
+    func auto_login(userId: String) {
+        AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
+            if error != nil {
+               self.app.loadingData = false
+
+            } else if let user = user {
+              
+                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+                isLoggedIn.wrappedValue = true
+                
+                Common.setUserInfo(user)
+                
+                let jsonData = try! JSONEncoder().encode(user)
+                let jsonString = String(data:jsonData, encoding: .utf8)!
+                
+                let currentUser = UserDefault(.currentUser, default: "")
+                currentUser.wrappedValue = jsonString
+
+                self.app.logedIn = true
+
+                self.app.loadingData = true
+            }
         }
     }
 }

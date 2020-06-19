@@ -23,6 +23,7 @@ struct MessagesCell: View {
             .aspectRatio(contentMode: .fill)
             .frame(width: 60, height: 60)
             .cornerRadius(30)
+            
             VStack(alignment: .leading) {
                 Text(message.username)
                     .font(.bold(17))

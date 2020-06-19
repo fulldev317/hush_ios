@@ -21,9 +21,47 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     @State private var shouldLike = false
     @State private var shouldClose = false
     @State private var shouldAnimate = false
-    
+    @State var isShowing: Bool = false
+
     private var showClose: Bool { translation.width < 0 }
     private var showHeart: Bool { translation.width > 0 }
+    
+    init(viewModel model: ViewModel) {
+        viewModel = model
+
+        let user = Common.userInfo()
+        if let user_photo = user.photos {
+            self.viewModel.photos = user_photo
+        }
+//        auto_login(userId: user.id!)
+        
+    }
+    
+    func auto_login(userId: String) {
+        self.isShowing = true
+
+        AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
+            
+            self.isShowing = false
+            
+            if let user = user {
+              
+                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+                isLoggedIn.wrappedValue = true
+                
+                Common.setUserInfo(user)
+                
+                let jsonData = try! JSONEncoder().encode(user)
+                let jsonString = String(data:jsonData, encoding: .utf8)!
+                
+                let currentUser = UserDefault(.currentUser, default: "")
+                currentUser.wrappedValue = jsonString
+
+                self.viewModel.photos = user.photos!
+            }
+        }
+    }
+    
     private func movePercent(_ translation: CGSize) -> CGFloat {
         translation.width / (SCREEN_WIDTH / 2)
     }
@@ -93,11 +131,14 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     .padding(.top, ISiPhoneX ? 10 : 25)
             }.padding(.leading, 25)
             Spacer()
+            
             ZStack {
                 ForEach((cardIndex..<(cardIndex + viewModel.photos.count)).reversed(), id: \.self) { index in
                     self.caruselElement(index)
                 }
-            }.frame(width: SCREEN_WIDTH).padding(.bottom, 20)
+            }.frame(width: SCREEN_WIDTH).padding(.bottom, 20).padding(.top, 30)
+            
+            HushIndicator(showing: self.isShowing)
         }.overlay(overlay)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -107,7 +148,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func caruselElement(_ index: Int) -> some View {
-        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5), photo: viewModel.photos[index])
+        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5), photo: viewModel.photos[index % viewModel.photos.count])
             .offset(index == self.cardIndex ? self.translation : .zero)
             .offset(x: 0, y: self.offset(index))
             .gesture(index == self.cardIndex ? self.topCardDrag : nil)
