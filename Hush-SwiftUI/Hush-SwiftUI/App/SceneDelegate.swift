@@ -88,32 +88,41 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let jsonData = userString.data(using: .utf8)
                 let user = try! JSONDecoder().decode(User.self, from: jsonData!)
                 //Common.setUserInfo(user)
-                self.app.logedIn = false
+                self.app.logedIn = true
                 self.app.loadingData = false
                 auto_login(userId: user.id!)
             }
         }
         
         pub = app.$logedIn.sink { bool in
-            self.window?.rootViewController = UIHostingController(rootView:
-                NavigationView {
-                    if bool {
-                        RootTabBarView(viewModel: RootTabBarViewModel())
-                            .hostModalPresenter()
-                            .edgesIgnoringSafeArea(.all)
-                            .withoutBar()
-                    } else {
+            if bool {
+                if self.app.loadingData {
+                    self.window?.rootViewController = UIHostingController(rootView:
+                        NavigationView {
+                            RootTabBarView(viewModel: RootTabBarViewModel())
+                                .hostModalPresenter()
+                                .edgesIgnoringSafeArea(.all)
+                                .withoutBar()
+                        }
+                        .environmentObject(PartialSheetManager())
+                        .environmentObject(self.app)
+                    )
+                }
+            } else {
+                self.window?.rootViewController = UIHostingController(rootView:
+                    NavigationView {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
                         //LoginView(viewModel: LoginViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "Maksym", username: "max", email: "max@gmail.com", password: "111111", image: UIImage())).withoutBar()
                         //AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
+                        
                     }
-                }
-                .environmentObject(PartialSheetManager())
-                .environmentObject(self.app)
-            )
+                    .environmentObject(PartialSheetManager())
+                    .environmentObject(self.app)
+                )
+            }
         }
     }
     
@@ -134,10 +143,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 let currentUser = UserDefault(.currentUser, default: "")
                 currentUser.wrappedValue = jsonString
-
-                self.app.logedIn = true
-
+                
                 self.app.loadingData = true
+                self.app.logedIn = true
             }
         }
     }

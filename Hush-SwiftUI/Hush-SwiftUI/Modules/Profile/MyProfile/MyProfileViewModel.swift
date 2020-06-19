@@ -126,6 +126,12 @@ class MyProfileViewModel: MyProfileViewModeled {
     }
     
     func initPhotoData() {
+        let user = Common.userInfo()
+        let photos = user.photos
+//        for index in (0...(photos?.count)!) {
+//            let photo:Photo = photos![index]
+//            photoDatas.append(UIImage(contentsOfFile: photo.photo)!)
+//        }
         photoDatas.append(UIImage(named: "image2")!)
         photoDatas.append(UIImage(named: "image3")!)
         photoDatas.append(UIImage(named: "image4")!)
