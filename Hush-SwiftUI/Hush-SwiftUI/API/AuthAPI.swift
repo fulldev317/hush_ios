@@ -164,4 +164,31 @@ class AuthAPI: BaseAPI {
                 }
         }
     }
+    
+    func get_user_data(userId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+        let parameters: Parameters = ["action": "data",
+                                      "query": userId]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        let json_user = json["user"]
+                        let jsonData = try! json_user.rawData()
+                        user = try! JSONDecoder().decode(User.self, from: jsonData)
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
 }

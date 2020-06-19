@@ -16,6 +16,7 @@ class App: ObservableObject {
             notlogged = !logedIn
         }
     }
+    @Published var loadingData = false 
     @Published var showPremium = false
     @Published var onProfileEditing = false
     @Published var notlogged = true
@@ -24,7 +25,7 @@ class App: ObservableObject {
     @Published var showStory = false
     @Published var showSignupButtons = false
     
-    let profile = MyProfileViewModel()
+   // let profile = MyProfileViewModel()
     let discovery = DiscoveryViewModel()
     let stories = StoriesViewModel()
     let messages = MessagesViewModel()

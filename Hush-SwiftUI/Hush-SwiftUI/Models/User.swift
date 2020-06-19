@@ -48,6 +48,7 @@ struct User: Codable {
     var city: String?
     var emailVerified: String?
     var country: String?
+    var address: String?
     var age: String?
     var paypal: String?
     var latitude: String?
@@ -88,7 +89,7 @@ struct User: Codable {
     var onlineDay: String?
     var slike: String?
     var sage: String?
-    var photo: [Photo]?
+    var photos: [Photo]?
     var notifications: Notifications?
     
     enum CodingKeys: String, CodingKey {
@@ -130,6 +131,7 @@ struct User: Codable {
         case city
         case emailVerified = "email_verified"
         case country
+        case address
         case age
         case paypal
         case latitude
@@ -170,7 +172,7 @@ struct User: Codable {
         case onlineDay = "online_day"
         case slike
         case sage
-        case photo
+        case photos
         case notifications = "notification"
     }
    

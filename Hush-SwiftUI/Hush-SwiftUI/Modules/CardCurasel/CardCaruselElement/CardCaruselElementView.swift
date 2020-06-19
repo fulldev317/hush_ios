@@ -17,7 +17,7 @@ struct CardCaruselElementView: View {
     @EnvironmentObject private var app: App
     
     private let imageScale: CGFloat = 450 / 511
-    private let deviceScale = SCREEN_WIDTH / 414
+    private let deviceScale = SCREEN_WIDTH / 411
     
     var body: some View {
         ZStack {
@@ -27,13 +27,16 @@ struct CardCaruselElementView: View {
                 .shadow(radius: 10)
             
             VStack {
-                Image(photo.photo)
-                    .resizable()
+                AsyncImage(url: URL(string:photo.photo)!, cache: iOSApp.cache, placeholder: Image("AppLogo")) { image in
+                        image.resizable()
+                    }
+                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 220, height: 320)
                     .scaledToFill()
-                    .frame(width: rectSize.width * imageScale, height: rectSize.width * imageScale)
+                    .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 460 : 320) * deviceScale)
                     .clipped()
                     .padding(.top, 30 * deviceScale)
-                
+                    
                 Spacer()
             }
         }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 610 : 470) * deviceScale)
