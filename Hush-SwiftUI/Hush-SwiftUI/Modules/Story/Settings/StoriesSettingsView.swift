@@ -54,7 +54,7 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
                         self.partialSheetManager.showPartialSheet({
                             self.app.isFirstResponder = false
                         }, content: {
-                            TextQuerySelectorView(provider: SelectLocationAPI { newLocation in
+                            TextQuerySelectorView(provider: SelectLocationAPI(query: "") { newLocation in
                                 if let result = newLocation {
                                     self.viewModel.location = result
                                 }

@@ -133,6 +133,8 @@
 		536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DC248E693B002D7A4F /* MatchViewModeled.swift */; };
 		536419E0248E693B002D7A4F /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DD248E693B002D7A4F /* MatchView.swift */; };
 		536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */; };
+		53676382249F97E200833940 /* LocationQuerySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53676381249F97E200833940 /* LocationQuerySelectorView.swift */; };
+		53676384249FA88700833940 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53676383249FA88600833940 /* LocationTextField.swift */; };
 		536CAD91249933A100A53053 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD90249933A100A53053 /* SignInWithAppleView.swift */; };
 		536CAD932499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */; };
 		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
@@ -322,6 +324,8 @@
 		536419DC248E693B002D7A4F /* MatchViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModeled.swift; sourceTree = "<group>"; };
 		536419DD248E693B002D7A4F /* MatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeMessageViewModel.swift; sourceTree = "<group>"; };
+		53676381249F97E200833940 /* LocationQuerySelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationQuerySelectorView.swift; sourceTree = "<group>"; };
+		53676383249FA88600833940 /* LocationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
 		536CAD8E24992F7D00A53053 /* Hush-SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hush-SwiftUI.entitlements"; sourceTree = "<group>"; };
 		536CAD90249933A100A53053 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
 		536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInWithApple-SwiftUI-Coordinator.swift"; sourceTree = "<group>"; };
@@ -962,6 +966,8 @@
 		894BBF02246AE83400F62F7C /* TextQuerySelectorView */ = {
 			isa = PBXGroup;
 			children = (
+				53676383249FA88600833940 /* LocationTextField.swift */,
+				53676381249F97E200833940 /* LocationQuerySelectorView.swift */,
 				8955A005246ADD4100223FB7 /* TextQuerySelectorView.swift */,
 				8955A009246ADE9900223FB7 /* TextQueryAPIProvider.swift */,
 			);
@@ -1244,6 +1250,7 @@
 				157930A12435CE5300EE428F /* View+Ext.swift in Sources */,
 				1546B44F24335B4F00180D77 /* ForgotPasswordViewModel.swift in Sources */,
 				155E2FFC243B0FFC001D886D /* EnvironmentValues+ImageCache.swift in Sources */,
+				53676384249FA88700833940 /* LocationTextField.swift in Sources */,
 				73E7C158247FC0460077F5E1 /* Spotlight.swift in Sources */,
 				15D53C82243C7CA400D62B26 /* HToggleStyle.swift in Sources */,
 				73E7C15A247FC10A0077F5E1 /* Match.swift in Sources */,
@@ -1270,6 +1277,7 @@
 				157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */,
 				157930F2243722F300EE428F /* Image+Ext.swift in Sources */,
 				155E2FFF243B0FFC001D886D /* ImageLoader.swift in Sources */,
+				53676382249F97E200833940 /* LocationQuerySelectorView.swift in Sources */,
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
 				1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */,
 				157930932435BE0100EE428F /* RootTabBarView.swift in Sources */,

@@ -19,14 +19,14 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     
     @Published var hasErrorMessage = false
     @Published var errorMessage = ""
-    
+
     init(name: String, username: String, email: String, password: String, image: UIImage) {
         self.name = name
         self.username = username
         self.email = email
         self.password = password
         self.image = image
-        
+                
         var countires: [String] = []
         for code in NSLocale.isoCountryCodes {
             let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
