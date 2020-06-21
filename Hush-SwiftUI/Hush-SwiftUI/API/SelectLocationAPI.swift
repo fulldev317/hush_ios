@@ -9,7 +9,7 @@
 import Combine
 
 class SelectLocationAPI: TextQueryAPIProvider {
-    let inputTitle = "Type your city"
+    var inputTitle = "Type your city"
     @Published var query = ""
     @Published var searchResult = ""
     
@@ -22,7 +22,8 @@ class SelectLocationAPI: TextQueryAPIProvider {
     ]
     
     private var disposals = [AnyCancellable]()
-    init(completion: @escaping (String?) -> Void) {
+    init(query: String, completion: @escaping (String?) -> Void) {
+        self.query = query
         self.completion = completion
         subscribe()
     }

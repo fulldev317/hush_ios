@@ -22,6 +22,7 @@ class App: ObservableObject {
     @Published var notlogged = true
     @Published var selectingGender = false
     @Published var isFirstResponder = false
+    @Published var isLocationResponder = false
     @Published var showStory = false
     @Published var showSignupButtons = false
     

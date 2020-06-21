@@ -22,7 +22,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     @State private var birth: String = "Enter your Date of Birth"
     @State private var country: String = "Select your country"
     @State var isShowing: Bool = false
-
+    @State var showLocation: Bool = false
+    
     // MARK: - Lifecycle
     
     var body: some View {
@@ -54,48 +55,33 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             } )
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
-            /*
-            VStack {
-                HStack {
-                    Text("Location").font(.light())
-                    Spacer()
-                    Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light())
-                    Spacer()
-                    Button(action: {
-                        self.partialSheetManager.showPartialSheet({
-                            self.app.isFirstResponder = false
-                        }, content: {
-                            TextQuerySelectorView(provider: SelectLocationAPI { newLocation in
-                                if let result = newLocation {
-                                    self.viewModel.location = result
-                                }
-                                
-                                self.viewModel.closeAPISelectorCompletion?()
-                            })
-                        })
-                    }) {
-                        Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
+                        
+            if showLocation {
+                LocationQuerySelectorView(provider: SelectLocationAPI(query: self.viewModel.location) { newLocation in
+                    if let result = newLocation {
+                        self.viewModel.location = result
                     }
+                    self.showLocation = false
+                    //self.viewModel.closeAPISelectorCompletion?()
+                }, isLocationResponder: true)
+            } else {
+                HStack {
+                    
+                    Spacer()
+                    Text(self.viewModel.location.count == 0 ? "Type your city" : self.viewModel.location)
+                    .font(.regular())
+                    .foregroundColor(Color(UIColor.white))
+                    .onTapGesture {
+                            self.showLocation = true
+                            self.viewModel.location = ""
+                    }
+                    Spacer()
                 }
-                Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
-            }*/
-            /*
-            CustomTextField(
-                placeholder: Text("Country and City").foregroundColor(Color(0x8E8786)).font(.regular(18)),
-                text: $viewModel.country
-            )*/
+                .padding(.horizontal, 16)
+                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical).padding(.bottom, 10)
+                                       
+            }
             
-            LocationPickerField(title: country, titles: viewModel.locations) { country in
-                if country == "" {
-                    self.$viewModel.country.wrappedValue = self.viewModel.locations[0]
-                    self.$country.wrappedValue = self.viewModel.locations[0]
-                } else {
-                    self.$viewModel.country.wrappedValue = country
-                    self.$country.wrappedValue = country
-                }
-            }.padding(.horizontal, 16)
-                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
-           
             pickers
             
             if viewModel.hasErrorMessage {
