@@ -15,6 +15,8 @@ class BaseAPI {
     internal let deviceUUID: String = UIDevice.current.identifierForVendor!.uuidString
     //internal let endpoint: String  = "https://www.hushdating.app/requests/api.php"
     internal let endpoint: String  = "https://www.hushsite.com/requests/api.php"
+    internal let google_place: String  = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
+    internal let google_geocode: String  = "https://maps.googleapis.com/maps/api/geocode/json"
     internal let api: SessionManager
     
     init() {

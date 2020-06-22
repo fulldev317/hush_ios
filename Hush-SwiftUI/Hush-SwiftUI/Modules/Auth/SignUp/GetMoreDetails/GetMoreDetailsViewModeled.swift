@@ -25,6 +25,8 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var country: String { get set }
     var locations: [String] { get set }
     var location: String { get set }
+    var latitude: String { get set }
+    var longitude: String { get set }
     
     var hasErrorMessage: Bool { get set }
     var errorMessage: String { get set }
@@ -33,5 +35,7 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     func updateMessage()
 
     func signup(birth: String, result: @escaping (Bool) -> Void)
+    
+    func getGeoCode(address: String)
 
 }

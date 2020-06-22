@@ -60,9 +60,10 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 LocationQuerySelectorView(provider: SelectLocationAPI(query: self.viewModel.location) { newLocation in
                     if let result = newLocation {
                         self.viewModel.location = result
+                        self.viewModel.getGeoCode(address: result)
                     }
                     self.showLocation = false
-                    //self.viewModel.closeAPISelectorCompletion?()
+                    
                 }, isLocationResponder: true)
             } else {
                 HStack {

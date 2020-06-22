@@ -12,7 +12,8 @@ class SelectLocationAPI: TextQueryAPIProvider {
     var inputTitle = "Type your city"
     @Published var query = ""
     @Published var searchResult = ""
-    
+    @Published var searchData = ""
+
     private let completion: (String?) -> Void
     
     private let locations = [
@@ -38,10 +39,13 @@ class SelectLocationAPI: TextQueryAPIProvider {
     
     func subscribe() {
         $query.map { [unowned self] query in
-            self.locations.first { location in
+            AuthAPI.shared.get_address(query: query) { address in
+                self.searchResult = address!
+            }
+            return self.locations.first { location in
                 location.lowercased().contains(query.lowercased())
             } ?? String()
-        }.assign(to: \.searchResult, on: self)
+        }.assign(to: \.searchData, on: self)
         .store(in: &disposals)
     }
 }
