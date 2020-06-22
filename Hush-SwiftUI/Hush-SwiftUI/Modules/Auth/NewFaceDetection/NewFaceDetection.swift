@@ -69,7 +69,7 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                         Spacer()
                     }.padding(.leading, 20).padding(.trailing, 20)
                 } else {
-                    NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password).withoutBar().onAppear {
+                    NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, imagePath: "", imageThumb: "").withoutBar().onAppear {
                         self.sessionRunning = false
                     }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
                 }

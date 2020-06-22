@@ -16,18 +16,21 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     var email: String
     var password: String
     var image: UIImage
-    
+    var imagePath: String
+    var imageThumb: String
     
     @Published var hasErrorMessage = false
     @Published var errorMessage = ""
 
-    init(name: String, username: String, email: String, password: String, image: UIImage) {
+    init(name: String, username: String, email: String, password: String, image: UIImage, imagePath: String, imageThumb: String) {
         self.name = name
         self.username = username
         self.email = email
         self.password = password
         self.image = image
-                
+        self.imagePath = imagePath
+        self.imageThumb = imageThumb
+        
         var countires: [String] = []
         for code in NSLocale.isoCountryCodes {
             let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
@@ -80,12 +83,13 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
             strLookingFor = strLookingFor + String(selected) + ","
         }
         strLookingFor = String(strLookingFor.dropLast())
-        let photo = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-        let thumb = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+        let photo = imagePath
+        let thumb = imageThumb
         let latitude = self.latitude
         let longitude = self.longitude
-        let address = country
-        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, address: address, latitude: latitude, longitude: longitude) { (user, error) in
+        let address = self.location
+        let city = self.location.components(separatedBy: ",")[0]
+        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, address: address, city: city, latitude: latitude, longitude: longitude) { (user, error) in
             
             if let error = error {
                 self.hasErrorMessage = true

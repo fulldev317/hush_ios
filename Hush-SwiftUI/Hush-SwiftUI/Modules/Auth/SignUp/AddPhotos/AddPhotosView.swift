@@ -40,7 +40,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
             
             if viewModel.selectedImage != nil {
                 NavigationLink(
-                    destination: GoodContainer(image: viewModel.selectedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password),
+                    destination: GoodContainer(image: viewModel.selectedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, imagePath: "", imageThumb: ""),
                     isActive: $viewModel.canGoNext,
                     label: EmptyView.init
                 )

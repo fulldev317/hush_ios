@@ -27,6 +27,8 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var location: String { get set }
     var latitude: String { get set }
     var longitude: String { get set }
+    var imagePath: String { get set }
+    var imageThumb: String { get set }
     
     var hasErrorMessage: Bool { get set }
     var errorMessage: String { get set }
