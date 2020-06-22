@@ -101,6 +101,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 self.viewModel.signup(birth: self.birth, result: { result in
                     self.isShowing = false
                     if (result) {
+                        self.app.loadingData = true
                         self.app.logedIn.toggle()
                     }
                 })
@@ -131,7 +132,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
 struct GetMoreDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            GetMoreDetailsView(viewModel: GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage())).withoutBar()
+            GetMoreDetailsView(viewModel: GetMoreDetailsViewModel(name: "", username: "", email: "", password: "", image: UIImage(), imagePath: "", imageThumb: "")).withoutBar()
         }.previewEnvironment()
     }
 }

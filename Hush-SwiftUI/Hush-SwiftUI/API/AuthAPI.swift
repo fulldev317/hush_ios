@@ -43,7 +43,7 @@ class AuthAPI: BaseAPI {
         }
     }
     
-    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, address: String,  latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+    func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, address: String, city:String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
 
         let parameters: Parameters = ["action": "register",
                                       "reg_email": email,
@@ -59,6 +59,7 @@ class AuthAPI: BaseAPI {
                                       "reg_address": address,
                                       "reg_lat": latitude,
                                       "reg_lng": longitude,
+                                      "reg_city": city,
                                       "dID": deviceUUID]
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
@@ -111,9 +112,11 @@ class AuthAPI: BaseAPI {
         }
     }
     
-    func emailExistCheck(email: String, username: String, completion: @escaping (_ error: APIError?) -> Void) {
+    func emailExistCheck(name: String, email: String, username: String, password: String, completion: @escaping (_ error: APIError?) -> Void) {
         let parameters: Parameters = ["action": "checkEmailUsername",
                                       "reg_email": email,
+                                      "reg_name": name,
+                                      "reg_pass": password,
                                       "reg_username": username]
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
@@ -286,7 +289,7 @@ class AuthAPI: BaseAPI {
                         var error: APIError?
                         let status = json["status"]
                         if status == "ok" {
-                            let path: NSDictionary = ["path" : json["path"], "thumb": json["thumb"]]
+                            let path: NSDictionary = ["path" : json["path"].stringValue, "thumb": json["thumb"].stringValue]
                             completion(path, error)
                         } else {
                             error = APIError(404, "upload failed")

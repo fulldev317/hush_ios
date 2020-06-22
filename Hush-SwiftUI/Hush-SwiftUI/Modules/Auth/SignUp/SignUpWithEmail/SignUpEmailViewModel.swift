@@ -38,7 +38,7 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
             return
         }
         
-        AuthAPI.shared.emailExistCheck(email: email, username: username) { (error) in
+        AuthAPI.shared.emailExistCheck(name: name, email: email, username: username, password: password) { (error) in
             if let error = error {
                 self.hasErrorMessage = true
                 self.errorMessage = error.message

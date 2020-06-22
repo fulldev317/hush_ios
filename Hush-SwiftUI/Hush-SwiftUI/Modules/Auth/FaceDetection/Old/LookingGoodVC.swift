@@ -15,6 +15,7 @@ class LookingGoodVC: UIViewController {
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var imgViewBack: UIImageView!
     @IBOutlet weak var imgViewFront: UIImageView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     @IBOutlet weak var btnDone: UIButton!
     
@@ -26,7 +27,7 @@ class LookingGoodVC: UIViewController {
     var dismiss: Binding<PresentationMode>?
     var isIphoneX = UIScreen.main.bounds.height > 667 ? true : false
     
-    static func create(for image: UIImage, dismiss: Binding<PresentationMode>, completion: (() -> Void)? = nil) -> LookingGoodVC {
+    static func create(for image: UIImage, dismiss: Binding<PresentationMode>, completion: ((_ imageDic: NSDictionary?) -> Void)? = nil) -> LookingGoodVC {
         let vc = UIStoryboard(name: "OldFaceDetection", bundle: nil).instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
         vc.userImage = image
         vc.completion = completion
@@ -36,7 +37,7 @@ class LookingGoodVC: UIViewController {
     }
     
     fileprivate var userImage = UIImage()
-    fileprivate var completion: (() -> Void)?
+    fileprivate var completion: ((_ imageDic: NSDictionary?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,9 @@ class LookingGoodVC: UIViewController {
         btnDone.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         btnDone.layer.borderWidth = 1
         btnDone.layer.cornerRadius = 5
+        
+        indicator.stopAnimating()
+        indicator.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -79,12 +83,19 @@ class LookingGoodVC: UIViewController {
     }
     
     @IBAction func actionDone(_ sender: Any) {
+        indicator.startAnimating()
+        indicator.isHidden = false
         
         AuthAPI.shared.upload_image(image: userImage) { (imageUrls, error) in
-            if let error = error {
-                
+            
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
+            
+            if error != nil {
+                self.completion?(nil)
             } else {
-                
+                self.completion?(imageUrls)
+
             }
         }
         //completion?()
