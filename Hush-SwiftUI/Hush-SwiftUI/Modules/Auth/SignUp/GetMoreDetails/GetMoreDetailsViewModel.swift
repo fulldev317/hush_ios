@@ -17,6 +17,7 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     var password: String
     var image: UIImage
     
+    
     @Published var hasErrorMessage = false
     @Published var errorMessage = ""
 
@@ -52,6 +53,8 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     @Published var country = ""
     @Published var city = ""
     @Published var location = ""
+    @Published var latitude = ""
+    @Published var longitude = ""
     @Published var closeAPISelectorCompletion: (() -> Void)?
     @Published var locations: [String] = [
         "London, EN, UK",
@@ -79,8 +82,8 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         strLookingFor = String(strLookingFor.dropLast())
         let photo = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
         let thumb = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-        let latitude = "27.2038"
-        let longitude = "77.5011"
+        let latitude = self.latitude
+        let longitude = self.longitude
         let address = country
         AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, address: address, latitude: latitude, longitude: longitude) { (user, error) in
             
@@ -109,38 +112,13 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     
     }
     
-    func getWiFiAddress() -> String? {
-        var address : String?
-
-        // Get list of all interfaces on the local machine:
-        var ifaddr : UnsafeMutablePointer<ifaddrs>?
-        guard getifaddrs(&ifaddr) == 0 else { return nil }
-        guard let firstAddr = ifaddr else { return nil }
-
-        // For each interface ...
-        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
-            let interface = ifptr.pointee
-
-            // Check for IPv4 or IPv6 interface:
-            let addrFamily = interface.ifa_addr.pointee.sa_family
-            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
-
-                // Check interface name:
-                let name = String(cString: interface.ifa_name)
-                if  name == "en0" {
-
-                    // Convert interface address to a human readable string:
-                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
-                                &hostname, socklen_t(hostname.count),
-                                nil, socklen_t(0), NI_NUMERICHOST)
-                    address = String(cString: hostname)
-                }
+    func getGeoCode(address: String) {
+        AuthAPI.shared.get_geocode(address: address) { lat, lng in
+            if lat!.count > 0 && lng!.count > 0 {
+                self.latitude = lat!
+                self.longitude = lng!
             }
         }
-        freeifaddrs(ifaddr)
-
-        return address
     }
     
     

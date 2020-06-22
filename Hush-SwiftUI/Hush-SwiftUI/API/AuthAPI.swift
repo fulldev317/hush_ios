@@ -191,4 +191,72 @@ class AuthAPI: BaseAPI {
                 }
         }
     }
+    
+    func get_address(query: String, completion: @escaping (_ address: String?) -> Void) {
+        
+        if query.count == 0 {
+            return
+        }
+        
+        let parameters: Parameters = ["key": "AIzaSyDciBuFvEMToHJSdzPJzxEykr6SwNU_xS8",
+                                      "input": query]
+        
+        api.request(google_place, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    let predictions = json["predictions"]
+                    if predictions.count == 0 {
+                        completion("")
+                        return
+                    }
+                    
+                    let prediction = predictions[0]
+                    let address: String = prediction["description"].string!
+                    completion(address)
+                    
+                case .failure:
+                    completion("")
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
+    func get_geocode(address: String, completion: @escaping (_ lat: String?, _ lng: String?) -> Void) {
+        
+        if address.count == 0 {
+            return
+        }
+        
+        let parameters: Parameters = ["key": "AIzaSyDciBuFvEMToHJSdzPJzxEykr6SwNU_xS8",
+                                      "address": address]
+        
+        api.request(google_geocode, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    let results = json["results"]
+                    if results.count == 0 {
+                        completion("", "")
+                        return
+                    }
+
+                    let result = results[0]
+                    let geometry = result["geometry"]
+                    let location = geometry["location"]
+                    let lat = location["lat"].doubleValue
+                    let lng = location["lng"].doubleValue
+                    let strLat = String(format:"%.8f", lat)
+                    let strLng = String(format:"%.8f", lng)
+                    completion(strLat, strLng)
+                    
+                case .failure:
+                    completion("", "")
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
 }
