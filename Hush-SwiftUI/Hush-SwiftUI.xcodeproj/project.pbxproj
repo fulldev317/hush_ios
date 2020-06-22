@@ -135,6 +135,7 @@
 		536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */; };
 		53676382249F97E200833940 /* LocationQuerySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53676381249F97E200833940 /* LocationQuerySelectorView.swift */; };
 		53676384249FA88700833940 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53676383249FA88600833940 /* LocationTextField.swift */; };
+		5367638624A0A39A00833940 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367638524A0A39900833940 /* SplashView.swift */; };
 		536CAD91249933A100A53053 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD90249933A100A53053 /* SignInWithAppleView.swift */; };
 		536CAD932499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */; };
 		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
@@ -326,6 +327,7 @@
 		536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeMessageViewModel.swift; sourceTree = "<group>"; };
 		53676381249F97E200833940 /* LocationQuerySelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationQuerySelectorView.swift; sourceTree = "<group>"; };
 		53676383249FA88600833940 /* LocationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
+		5367638524A0A39900833940 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		536CAD8E24992F7D00A53053 /* Hush-SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hush-SwiftUI.entitlements"; sourceTree = "<group>"; };
 		536CAD90249933A100A53053 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
 		536CAD922499457D00A53053 /* SignInWithApple-SwiftUI-Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInWithApple-SwiftUI-Coordinator.swift"; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				1546B43D243340BD00180D77 /* LoginView.swift */,
 				1546B43E243340BD00180D77 /* LoginViewModel.swift */,
 				1546B43F243340BD00180D77 /* LoginViewModeled.swift */,
+				5367638524A0A39900833940 /* SplashView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1305,6 +1308,7 @@
 				5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */,
 				8993D7AF2469A970002E636D /* StoryView.swift in Sources */,
 				157930E82437209100EE428F /* StoriesViewModeled.swift in Sources */,
+				5367638624A0A39A00833940 /* SplashView.swift in Sources */,
 				155E300A243B29EF001D886D /* ContentTextMessageView.swift in Sources */,
 				8955A006246ADD4100223FB7 /* TextQuerySelectorView.swift in Sources */,
 				154B26932431BF6600265C76 /* MainView.swift in Sources */,
