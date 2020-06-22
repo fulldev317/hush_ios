@@ -259,4 +259,52 @@ class AuthAPI: BaseAPI {
         }
     }
     
+    func upload_image(image: UIImage, completion: @escaping (_ paths: NSDictionary?, _ error: APIError?) -> Void) {
+        let imgData = image.jpegData(compressionQuality: 0.2)!
+
+         let parameters = ["file": "image1.jpg"] //Optional for extra parameter
+
+        Alamofire.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(imgData, withName: "file", fileName: "image1.jpg", mimeType: "image/jpg")
+                for (key, value) in parameters {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    } //Optional for extra parameters
+            },
+        to: uploadpoint)
+        { (result) in
+            switch result {
+            case .success(let upload, _, _):
+
+                upload.uploadProgress(closure: { (progress) in
+                    print("Upload Progress: \(progress.fractionCompleted)")
+                })
+
+                upload.responseSwiftyJson { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        var error: APIError?
+                        let status = json["status"]
+                        if status == "ok" {
+                            let path: NSDictionary = ["path" : json["path"], "thumb": json["thumb"]]
+                            completion(path, error)
+                        } else {
+                            error = APIError(404, "upload failed")
+                            completion(nil, error)
+                        }
+                    case .failure:
+                        var error: APIError?
+                        error = APIError(404, "connect failed")
+                        completion(nil, error)
+                    }
+                }
+
+            case .failure(let encodingError):
+                print(encodingError)
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(nil, error)
+            }
+        }
+    }
 }

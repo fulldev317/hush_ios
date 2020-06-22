@@ -24,8 +24,14 @@ protocol UserProfileViewModeled: ObservableObject {
     var mode: UserProfileMode { get }
     var aboutMe: String { get set }
     var location: String { get set }
-    var photos: [UIImage] { get }
+    var photoUrls: [String] { get set }
     var stories: [UIImage] { get }
-    
+    var name: String { get set }
+    var address: String { get set }
+    var bio: String { get set }
+    var lookfor: String { get set }
+    var gender: String { get set }
+    var herefor: String { get set }
+
     func switchMode()
 }

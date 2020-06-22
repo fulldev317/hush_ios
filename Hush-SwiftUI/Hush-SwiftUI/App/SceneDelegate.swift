@@ -122,12 +122,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } else {
                 self.window?.rootViewController = UIHostingController(rootView:
                     NavigationView {
-                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        //SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
                         //LoginView(viewModel: LoginViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "Maksym", username: "max", email: "max@gmail.com", password: "111111", image: UIImage())).withoutBar()
-                        //AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
+                        AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
                         
                     }
                     .environmentObject(PartialSheetManager())
@@ -140,8 +140,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func auto_login(userId: String) {
         AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
             if error != nil {
-               self.app.loadingData = false
-
+                self.app.loadingData = false
+                self.app.logedIn = false
             } else if let user = user {
               
                 let isLoggedIn = UserDefault(.isLoggedIn, default: false)

@@ -18,6 +18,15 @@ struct IMG: Identifiable, Equatable {
     }
 }
 
+struct STG: Identifiable, Equatable {
+    let id = UUID()
+    let imageUrl: String
+    
+    static func == (l: Self, r: Self) -> Bool {
+        l.imageUrl == r.imageUrl
+    }
+}
+
 struct Rect: Shape {
     
     let width: CGFloat
@@ -86,8 +95,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     }.buttonStyle(PlainButtonStyle())
                     
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("Wendy").font(.ultraLight(48)).foregroundColor(.hOrange)
-                        Text("Los Angeles").font(.thin()).foregroundColor(.white)
+                        Text(self.viewModel.name).font(.ultraLight(32)).foregroundColor(.hOrange)
+                        Text(self.viewModel.address).font(.thin()).foregroundColor(.white)
                     }
                     
                     Spacer()
@@ -102,11 +111,14 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     .padding(.top, SafeAreaInsets.top)
                 
                 ZStack {
-                    Pager(page: self.$currentPage, data: self.viewModel.photos.map { IMG(image: $0) }) { img in
+                    Pager(page: self.$currentPage, data: self.viewModel.photoUrls) { img in
                         GeometryReader { pr in
-                            Image(uiImage: img.image)
-                            .aspectRatio()
-                            .frame(width: pr.size.width, height: pr.size.height)
+                            AsyncImage(url: URL(string: img)!, cache: iOSApp.cache, placeholder: Image(systemName: "person.crop.circle")) { image in
+                                image.resizable()
+
+                            }
+                                .aspectRatio(contentMode: .fill)
+                             .frame(width: pr.size.width, height: pr.size.height)
                             .clipShape(Rect(width: pr.size.width, height: pr.size.height))
                         }
                     }
@@ -119,11 +131,13 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             .padding(.vertical, 16)
                             .padding(.horizontal, 23)
                     }, alignment: .topTrailing)
+                    
+                    
                     self.overlay
                     VStack(spacing: 0) {
                         Spacer()
                         HStack {
-                            ForEach(0..<self.viewModel.photos.count) {
+                            ForEach(0..<self.viewModel.photoUrls.count) {
                                 Circle().foregroundColor( $0 == self.currentPage ? .hOrange : Color.white.opacity(0.3)).square(7)
                             }
                         }.padding(.bottom, 16)
@@ -208,23 +222,23 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     }, alignment: .trailing)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        self.textBlock("About Me", subTitle: self.viewModel.aboutMe)
-                        self.textBlock("Current Location", subTitle: self.viewModel.location)
-                        self.carusel("Photos", unlocked: self.$unlockedImages, images: self.viewModel.photos).padding(.vertical, -10)
-                        self.carusel("Stories", unlocked: self.$unlockedStories, images: self.viewModel.stories)
+                        self.textBlock("About Me", subTitle: self.viewModel.bio)
+                        self.textBlock("Current Location", subTitle: self.viewModel.address)
+                        self.carusel("Photos", unlocked: self.$unlockedImages, images: self.viewModel.photoUrls).padding(.vertical, -10)
+                        //self.carusel("Stories", unlocked: self.$unlockedStories, images: self.viewModel.stories)
                         HStack {
                             VStack(alignment: .leading, spacing: 25) {
-                                self.textBlock("Looking For", subTitle: self.viewModel.aboutMe)
-                                self.textBlock("Sexuality", subTitle: self.viewModel.aboutMe)
-                                self.textBlock("Body Type", subTitle: self.viewModel.aboutMe)
+                                self.textBlock("Looking For", subTitle: self.viewModel.lookfor)
+                                self.textBlock("Sexuality", subTitle: self.viewModel.gender)
+                                self.textBlock("Body Type", subTitle: "Thin")
                             }
                             
                             Spacer()
                             
                             VStack(alignment: .leading, spacing: 25) {
-                                self.textBlock("Smoking", subTitle: self.viewModel.aboutMe)
-                                self.textBlock("Ethnicity", subTitle: self.viewModel.aboutMe)
-                                self.textBlock("Living", subTitle: self.viewModel.aboutMe)
+                                self.textBlock("Smoking", subTitle: "No")
+                                self.textBlock("Ethnicity", subTitle: "Yes")
+                                self.textBlock("Living", subTitle: self.viewModel.herefor)
                             }
                             
                             Spacer()
@@ -281,26 +295,27 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
         }
     }
     
-    func carusel(_ title: String, unlocked: Binding<Set<Int>>, images: [UIImage]) -> some View {
+    func carusel(_ title: String, unlocked: Binding<Set<Int>>, images: [String]) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title).font(.regular(24)).foregroundColor(.white)
             ScrollView(.horizontal) {
                 HStack(spacing: 15) {
                     ForEach(0 ..< images.count) { index in
-                        PolaroidCard<EmptyView>(
+                        
+                        PhotoCard<EmptyView>(
                             image: images[index],
-                            cardWidth: 92,
-                            overlay: Color.black.aspectRatio(1, contentMode: .fit)
-                                .opacity(unlocked.wrappedValue.contains(index) ? 0 : 1)
-                        ).overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
+                            cardWidth: 92
+                        )
+                            //.overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
                         .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
-                        .onTapGesture {
-                            if unlocked.wrappedValue.contains(index) {
-                                unlocked.wrappedValue.remove(index)
-                            } else {
-                                unlocked.wrappedValue.insert(index)
-                            }
-                        }.animation(.default)
+//                        .onTapGesture {
+//                            if unlocked.wrappedValue.contains(index) {
+//                                unlocked.wrappedValue.remove(index)
+//                            } else {
+//                                unlocked.wrappedValue.insert(index)
+//                            }
+//                        }
+                    .animation(.default)
                     }
                 }.padding(.vertical, 15)
                     .padding(.horizontal, 5)

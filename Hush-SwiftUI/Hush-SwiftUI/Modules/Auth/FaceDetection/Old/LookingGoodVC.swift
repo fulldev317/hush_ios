@@ -80,6 +80,13 @@ class LookingGoodVC: UIViewController {
     
     @IBAction func actionDone(_ sender: Any) {
         
-        completion?()
+        AuthAPI.shared.upload_image(image: userImage) { (imageUrls, error) in
+            if let error = error {
+                
+            } else {
+                
+            }
+        }
+        //completion?()
     }
 }

@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Light.otf">
+        <array key="SF-Pro-Display-Light.ttf">
             <string>SFProDisplay-Light</string>
         </array>
         <array key="SF-Pro-Display-Thin.otf">
