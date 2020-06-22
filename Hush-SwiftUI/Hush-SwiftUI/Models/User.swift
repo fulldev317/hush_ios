@@ -61,6 +61,7 @@ struct User: Codable {
     var lang: String?
     var language: String?
     var looking: String?
+    var hereFor: String?
     var premium: String?
     var newFans: String?
     var newVisits: String?
@@ -144,6 +145,7 @@ struct User: Codable {
         case lang
         case language
         case looking
+        case hereFor = "here_for"
         case premium
         case newFans
         case newVisits

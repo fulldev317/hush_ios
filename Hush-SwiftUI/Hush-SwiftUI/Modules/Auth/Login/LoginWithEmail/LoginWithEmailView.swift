@@ -58,8 +58,8 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                     self.viewModel.submit(result: { result in
                         self.isShowing = false
                         if (result) {
+                            self.app.loadingData.toggle()
                             self.app.logedIn.toggle()
-                            self.app.loadingData = true
                         }
                     })
                 }, title: "Submit")

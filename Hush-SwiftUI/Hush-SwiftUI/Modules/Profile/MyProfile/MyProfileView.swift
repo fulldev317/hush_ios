@@ -32,6 +32,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @State var unlockedPhotos: Set<Int> = [0,1,2]
     @State var isPhotoTapped = false
     
+    private let deviceScale = SCREEN_WIDTH / 411
+
     // MARK: - Lifecycle
     
     var body: some View {
@@ -82,6 +84,19 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
 //                .padding(.top, 0)
             self.carusel(unlocked: self.$unlockedPhotos, images: $viewModel.photoDatas)
 
+//            VStack {
+//                AsyncImage(url: URL(string: "https://s3.us-east-2.amazonaws.com/belloousersbucket/653761622.jpg")!, cache: iOSApp.cache, placeholder: Image("AppLogo")) { image in
+//                        image.resizable()
+//                    }
+//                    .aspectRatio(contentMode: .fill)
+//                    .scaledToFill()
+//                    .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 460 : 320) * deviceScale)
+//                    .clipped()
+//                    .padding(.top, 30 * deviceScale)
+//
+//                Spacer()
+//            }
+            
             Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
                 .foregroundColor(.white)
