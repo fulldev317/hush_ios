@@ -41,25 +41,41 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     }
                     
                     NavigationView {
-                        self.discovery().withoutBar()
+                        if self.currentTab == .discoveries {
+                            self.discovery().withoutBar()
+                        } else {
+                            VStack {
+                                Spacer()
+                            }
+                        }
                     }.zIndex(self.currentTab == .discoveries ? 1 : 0)
                     
                     self.stories().zIndex(self.currentTab == .stories ? 1 : 0)
                     
                     NavigationView {
-                        CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
+                        if self.currentTab == .carusel {
+                            CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
+                        } else {
+                            VStack {
+                                Spacer()
+                            }
+                        }
                     }.zIndex(self.currentTab == .carusel ? 1 : 0)
                     
-                    self.messages().zIndex(self.currentTab == .chats ? 1 : 0)
+                    if self.currentTab == .chats {
+                        self.messages().zIndex(self.currentTab == .chats ? 1 : 0)
+                    }
                     
-                    MyProfileView(viewModel: MyProfileViewModel()).zIndex(self.currentTab == .profile ? 1 : 0)
+                    if self.currentTab == .profile {
+                        MyProfileView(viewModel: MyProfileViewModel()).zIndex(self.currentTab == .profile ? 1 : 0)
+                    }
                 }
             }.frame(width: proxy.size.width, height: proxy.size.height)
             .accentColor(.hOrange)
             .sheet(isPresented: self.$app.showPremium) {
                 UpgradeView(viewModel: UpgradeViewModel())
             }.onAppear {
-                self.app.discovery.settingsViewModel.closeAPISelectorCompletion = self.showDiscoverySettings
+                //self.app.discovery.settingsViewModel.closeAPISelectorCompletion = self.showDiscoverySettings
                 self.app.stories.settingsViewModel.closeAPISelectorCompletion = self.showStoriesSettings
             }
             .overlay(self.photoBoothOverlay)
@@ -132,13 +148,13 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
             }.padding(.leading, 25)
             
-            DiscoveryView(viewModel:  self.app.discovery)
+            DiscoveryView(viewModel:  DiscoveryViewModel())
         }.frame(width: SCREEN_WIDTH)
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
             UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
-                self.app.discovery.settingsViewModel.gender = gender
+                //self.app.discovery.settingsViewModel.gender = gender
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         .addPartialSheet()
@@ -157,13 +173,13 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
             }.padding(.leading, 25)
             
-            DiscoveryView(viewModel:  self.app.discovery)
+            DiscoveryView(viewModel:  DiscoveryViewModel())
         }.frame(width: SCREEN_WIDTH)
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
             UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
-                self.app.discovery.settingsViewModel.gender = gender
+                //self.app.discovery.settingsViewModel.gender = gender
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         .addPartialSheet()
@@ -171,7 +187,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     func showDiscoverySettings() {
         partialSheetManager.showPartialSheet {
-            DiscoveriesSettingsView(viewModel: self.app.discovery.settingsViewModel)
+            DiscoveriesSettingsView(viewModel: DiscoveriesSettingsViewModel())
         }
     }
     

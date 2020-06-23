@@ -12,7 +12,6 @@ import PartialSheet
 struct TextQuerySelectorView<Provider: TextQueryAPIProvider>: View {
     @ObservedObject var provider: Provider
     @EnvironmentObject private var app: App
-    @EnvironmentObject private var partialSheetManager: PartialSheetManager
     
     var body: some View {
         VStack {
@@ -67,6 +66,5 @@ struct TextQuerySelectorView<Provider: TextQueryAPIProvider>: View {
     
     private func closeSheet() {
         app.isFirstResponder = false
-        partialSheetManager.closePartialSheet()
     }
 }
