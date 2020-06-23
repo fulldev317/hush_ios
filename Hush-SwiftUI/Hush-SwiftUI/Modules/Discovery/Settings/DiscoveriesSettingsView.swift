@@ -34,7 +34,6 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        
         UIView.appearance().subviews.forEach {
             $0.isExclusiveTouch = true
         }
@@ -49,6 +48,12 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             HStack {
                 Text("Filter").font(.bold(24))
                 Spacer()
+                Button(action: {
+                    self.app.isFilterDone = true
+                    self.partialSheetManager.closePartialSheet()
+                }) {
+                    Text("Done").font(.bold(16))
+                }
             }.padding(.bottom, 40)
             VStack {
                 HStack {

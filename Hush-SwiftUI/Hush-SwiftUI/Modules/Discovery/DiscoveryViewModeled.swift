@@ -16,10 +16,13 @@ extension String: Identifiable {
 
 protocol DiscoveryViewModeled: ObservableObject {
     associatedtype Settings: DiscoveriesSettingsViewModeled
-    typealias Discovery = (name: String, age: Int, liked: Bool)
+    typealias Discovery = (name: String, age: Int, image: String, liked: Bool)
     
-    var discoveries: [(name: String, age: Int, liked: Bool)] { get set }
+    var discoveries: [(name: String, age: Int, image: String, liked: Bool)] { get set }
     var settingsViewModel: Settings { get set }
     func discovery(_ i: Int, _ j: Int) -> Discovery
     func like(_ i: Int, _ j: Int)
+    func loadDiscover(result: @escaping (Bool) -> Void)
+    var isShowingIndicator: Bool { get set }
+
 }

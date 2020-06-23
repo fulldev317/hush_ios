@@ -9,30 +9,59 @@
 import SwiftUI
 import QGrid
 import PartialSheet
+import Combine
 
 struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject private var app: App
     @State private var showsUserProfile = false
-    
+    @State var isShowing: Bool = false
+
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        
+        loadDiscover()
+      
+    }
     // MARK: - Lifecycle
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: -20) {
-                ForEach(0..<(viewModel.discoveries.count / 2), id: \.self) {
-                    self.row(at: $0)
+        ZStack {
+            if viewModel.discoveries.count > 0 {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: -20) {
+                        ForEach(0..<(viewModel.discoveries.count / 2), id: \.self) {
+                            self.row(at: $0)
+                        }
+                    }.padding(.top, 10)
+                    
+                    
+                }.background(
+                    NavigationLink(
+                        destination: UserProfileView(viewModel: UserProfileViewModel()),
+                        isActive: $showsUserProfile,
+                        label: EmptyView.init
+                    )
+                )
+                HushIndicator(showing: self.viewModel.isShowingIndicator)
+
+
+            } else {
+                VStack {
+                    
+                    Spacer()
+                    HushIndicator(showing: self.viewModel.isShowingIndicator)
+                    Spacer()
+
+
                 }
-            }.padding(.top, 10)
-        }.background(
-            NavigationLink(
-                destination: UserProfileView(viewModel: UserProfileViewModel()),
-                isActive: $showsUserProfile,
-                label: EmptyView.init
-            )
-        )
+            }
+            
+
+        }
     }
      
     func row(at i: Int) -> some View {
@@ -44,11 +73,8 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     }
     
     func polaroidCard(_ i: Int, _ j: Int) -> some View {
-        PolaroidCard(
-            image: UIImage(named: "image3")!,
-            cardWidth: SCREEN_WIDTH / 2 + 15,
-            bottom: self.bottomView(i, j)
-        ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
+        PhotoCard(image: self.viewModel.discoveries[i*2+j].image, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: false)
+        .offset(x: j % 2 == 0 ? -10 : 10, y: 0)
         .zIndex(Double(i % 2 == 0 ? j : -j))
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
     }
@@ -85,6 +111,32 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         }.padding(15)
         .padding(.leading, self.leading(j))
         .padding(.trailing, self.trailing(j))
+    }
+    
+    func loadDiscover() {
+
+        let user = Common.userInfo()
+        
+        self.viewModel.isShowingIndicator = true
+        
+        AuthAPI.shared.discovery(uid: user.id!, location: user.address!, gender: "1", max_distance: "100", age_range: "18,30", check_online: "1") { (userList, error) in
+            
+            self.viewModel.isShowingIndicator = false
+
+            
+            if let error = error {
+            } else if let userList = userList {
+                for value in userList {
+                    let user: User = value!
+                    let nAge: Int = Int(user.age!)!
+                    let name: String = user.name!
+                    let photo: String = user.profilePhotoBig!
+
+                    self.viewModel.discoveries.append((name: name, age: nAge, image: photo, liked: false))
+                }
+                
+            }
+        }
     }
     
     
