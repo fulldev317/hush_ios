@@ -14,7 +14,6 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     // MARK: - Properties
     
     @Environment(\.presentationMode) var mode
-    @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
 

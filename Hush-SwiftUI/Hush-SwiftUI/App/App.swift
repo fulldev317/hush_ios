@@ -27,7 +27,7 @@ class App: ObservableObject {
     @Published var showSignupButtons = false
     
    // let profile = MyProfileViewModel()
-    let discovery = DiscoveryViewModel()
+    //let discovery = DiscoveryViewModel()
     let stories = StoriesViewModel()
     let messages = MessagesViewModel()
        

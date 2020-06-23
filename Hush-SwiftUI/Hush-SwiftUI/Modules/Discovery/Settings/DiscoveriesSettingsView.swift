@@ -22,7 +22,8 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     @State private var isToggle = true
     @State private var ageSliderLower = 0.0
     @State private var ageSliderUpper = 1.0
-    
+    @State var showLocation: Bool = false
+
     private var lowerAge: String {
         String(Int(18 + (99 - 18) * ageSliderLower))
     }
@@ -52,6 +53,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             VStack {
                 HStack {
                     Text("Location").font(.light())
+                    
                     Spacer()
                     Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light())
                     Spacer()
@@ -64,7 +66,9 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                                     self.viewModel.location = result
                                 }
                                 
-                                self.viewModel.closeAPISelectorCompletion?()
+                                self.partialSheetManager.showPartialSheet {
+                                    DiscoveriesSettingsView(viewModel: self.viewModel)
+                                }
                             })
                         })
                     }) {

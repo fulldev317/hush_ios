@@ -139,6 +139,61 @@ class AuthAPI: BaseAPI {
         }
     }
     
+    func discovery(uid: String, location: String, gender: String?, max_distance: String?, age_range: String?, check_online: String, completion: @escaping (_ user: [User?]?, _ error: APIError?) -> Void) {
+        
+        var param_gender: String = ""
+        if gender != nil {
+            param_gender = gender!
+        }
+        
+        var param_max_distance: String = "50"
+        if max_distance != nil {
+            param_max_distance = max_distance!
+        }
+        
+        var param_age: String = "18,40"
+        if age_range != nil {
+            param_age = age_range!
+        }
+             
+        let parameters: Parameters = ["action": "discover",
+                                      "uid": uid,
+                                      "check_online": check_online,
+                                      "location": location,
+                                      "gender": param_gender,
+                                      "max_distance": param_max_distance,
+                                      "age_range": param_age
+        ]
+ 
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var userList:[User?] = []
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        let json_users = json["users"]
+                        
+                        for index in 0 ..< json_users.count - 1 {
+                            let user = json_users[index]
+                            let jsonData = try! user.rawData()
+                            let user_data = try! JSONDecoder().decode(User.self, from: jsonData)
+                            userList.append(user_data)
+                        }
+                        
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(userList, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
     func facebookConnect(facebookId: String, email: String, name: String, gender: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         var parameters: Parameters = ["action": "fbconnect"]
         
