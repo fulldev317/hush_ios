@@ -19,6 +19,7 @@ protocol MyProfileViewModeled: ObservableObject {
     var selectedImage: UIImage? { get set }
     var photoDatas: [UIImage] { get set }
     var selectedIndex: Int { get set }
+    var photoUrls: [String] { get set }
     
     var pickerSourceType: UIImagePickerController.SourceType { get set }
     var isPermissionDenied: Bool { get set }
