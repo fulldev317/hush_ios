@@ -11,6 +11,10 @@ import QGrid
 import PartialSheet
 import Combine
 
+let TAB_MARGIN: CGFloat = CGFloat(10)
+let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - 2)
+let TAB_HEIGHT: CGFloat = CGFloat(30)
+
 struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
     // MARK: - Properties
@@ -19,7 +23,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @EnvironmentObject private var app: App
     @State private var showsUserProfile = false
     @State var isShowing: Bool = false
-
+    @State var currentViewIndex: Int = 0
+    
+    
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
         
@@ -29,7 +35,97 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     // MARK: - Lifecycle
     
     var body: some View {
-        ZStack {
+        VStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    Button(action: {
+                        self.currentViewIndex = 0
+
+                    }) {
+                        ZStack {
+                            Text("Broswe")
+                                .font(.regular(16))
+                                .foregroundColor(self.currentViewIndex == 0 ? Color.yellow : Color.white)
+                            Rectangle().frame(height: 1)
+                                .foregroundColor(Color.yellow)
+                                .padding(.top, TAB_HEIGHT - 2)
+                                .opacity(self.currentViewIndex == 0 ? 1 : 0)
+                        }
+                    
+                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                    
+                    Rectangle().frame(width: 1).foregroundColor(Color.white).background(Color.yellow)
+                    
+                    Button(action: {
+                        self.currentViewIndex = 1
+
+                    }) {
+                        ZStack {
+                            Text("Matched")
+                                .font(.regular(16))
+                                .foregroundColor(self.currentViewIndex == 1 ? Color.yellow : Color.white)
+                            Rectangle().frame(height: 1)
+                                .foregroundColor(Color.yellow)
+                                .padding(.top, TAB_HEIGHT - 2)
+                                .opacity(self.currentViewIndex == 1 ? 1 : 0)
+
+                        }
+                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                    
+                    Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+
+                    Button(action: {
+                        self.currentViewIndex = 2
+
+                    }) {
+                        ZStack {
+                            Text("Visited Me")
+                                .font(.regular(16))
+                                .foregroundColor(self.currentViewIndex == 2 ? Color.yellow : Color.white)
+                            Rectangle().frame(height: 1)
+                                .foregroundColor(Color.yellow)
+                                .padding(.top, TAB_HEIGHT - 2)
+                                .opacity(self.currentViewIndex == 2 ? 1 : 0)
+
+                        }
+                    }.frame(width: TAB_WIDTH * 1.2, height: TAB_HEIGHT, alignment: .center)
+                    
+                    Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+
+                    Button(action: {
+                        self.currentViewIndex = 3
+                    }) {
+                        ZStack {
+                            Text("My Likes")
+                                .font(.regular(16))
+                                .foregroundColor(self.currentViewIndex == 3 ? Color.yellow : Color.white)
+                            Rectangle().frame(height: 1)
+                                .foregroundColor(Color.yellow)
+                                .padding(.top, TAB_HEIGHT - 2)
+                                .opacity(self.currentViewIndex == 3 ? 1 : 0)
+
+                        }
+                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                    
+                    Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+
+                    Button(action: {
+                        self.currentViewIndex = 4
+                    }) {
+                        ZStack {
+                            Text("Likes Me")
+                                .font(.regular(16))
+                                .foregroundColor(self.currentViewIndex == 4 ? Color.yellow : Color.white)
+                            Rectangle().frame(height: 1)
+                                .foregroundColor(Color.yellow)
+                                .padding(.top, TAB_HEIGHT - 2)
+                                .opacity(self.currentViewIndex == 4 ? 1 : 0)
+
+                        }
+                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                }.frame(height: TAB_HEIGHT, alignment: .leading)
+            }.frame(width: SCREEN_WIDTH, height: TAB_HEIGHT, alignment: .leading)
+            
             if viewModel.discoveries.count > 0 {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: -20) {
@@ -46,7 +142,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                         label: EmptyView.init
                     )
                 )
-                HushIndicator(showing: self.viewModel.isShowingIndicator)
+                //HushIndicator(showing: self.viewModel.isShowingIndicator)
 
 
             } else {
