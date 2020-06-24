@@ -21,10 +21,10 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject private var app: App
-    @State private var showsUserProfile = false
+    @State private var showUserProfile = false
     @State var isShowing: Bool = false
     @State var currentViewIndex: Int = 0
-    
+    @State private var selectedItem: Int = 0
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -137,8 +137,8 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     
                 }.background(
                     NavigationLink(
-                        destination: UserProfileView(viewModel: UserProfileViewModel()),
-                        isActive: $showsUserProfile,
+                        destination: UserProfileView(viewModel: UserProfileViewModel(user: self.viewModel.discoveries[self.selectedItem])),
+                        isActive: $showUserProfile,
                         label: EmptyView.init
                     )
                 )
@@ -163,13 +163,17 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     func row(at i: Int) -> some View {
         HStack(spacing: -18) {
             ForEach(0..<2, id: \.self) { j in
-                self.polaroidCard(i, j).tapGesture(toggls: self.$showsUserProfile)
+                self.polaroidCard(i, j)
+                    .onTapGesture {
+                        self.selectedItem = i * 2 + j
+                        self.showUserProfile = true
+                }
             }
         }.zIndex(Double(100 - i))
     }
     
     func polaroidCard(_ i: Int, _ j: Int) -> some View {
-        PhotoCard(image: self.viewModel.discoveries[i*2+j].image, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: false)
+        PhotoCard(image: self.viewModel.discoveries[i*2+j].profilePhotoBig!, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: false)
         .offset(x: j % 2 == 0 ? -10 : 10, y: 0)
         .zIndex(Double(i % 2 == 0 ? j : -j))
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
@@ -192,14 +196,14 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     func bottomView(_ i: Int, _ j: Int) -> some View {
         let discovery = viewModel.discovery(i, j)
         return HStack {
-            (Text(discovery.name) + Text(", ") + Text("\(discovery.age)"))
+            (Text(discovery.name ?? "John") + Text(", ") + Text("\(discovery.age ?? "20")"))
                 .font(.regular(14))
                 .foregroundColor(Color(0x8E8786))
             Spacer()
             Button(action: { self.viewModel.like(i, j) }) {
                 Image("red_heart")
                     .resizable()
-                    .renderingMode(discovery.liked ? .original : .template)
+                    .renderingMode(discovery.liked! ? .original : .template)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
                     .foregroundColor(.gray)
@@ -223,12 +227,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
             if let error = error {
             } else if let userList = userList {
                 for value in userList {
-                    let user: User = value!
+                    var user: User = value!
                     let nAge: Int = Int(user.age!)!
                     let name: String = user.name!
                     let photo: String = user.profilePhotoBig!
+                    user.liked = false
 
-                    self.viewModel.discoveries.append((name: name, age: nAge, image: photo, liked: false))
+                    self.viewModel.discoveries.append(user)
                 }
                 
             }

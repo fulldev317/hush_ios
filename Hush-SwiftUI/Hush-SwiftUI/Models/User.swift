@@ -91,6 +91,7 @@ struct User: Codable {
     var slike: String?
     var sage: String?
     var photos: [Photo]?
+    var liked: Bool?
     var notifications: Notifications?
     
     enum CodingKeys: String, CodingKey {

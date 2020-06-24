@@ -49,7 +49,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                 }.padding(.top, 10)
             }.background(
                 NavigationLink(
-                  destination: UserProfileView(viewModel: UserProfileViewModel()),
+                    destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)),
                   isActive: $showsUserProfile,
                   label: EmptyView.init
                 )

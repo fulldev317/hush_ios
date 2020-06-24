@@ -13,7 +13,8 @@ class DiscoveryViewModel: DiscoveryViewModeled {
 
     // MARK: - Properties
     
-    @Published var discoveries: [(name: String, age: Int, image: String, liked: Bool)] = []
+    //@Published var discoveries: [(name: String, age: Int, image: String, liked: Bool)] = []
+    @Published var discoveries: [User] = []
     @Published var isShowingIndicator: Bool = false
     var settingsViewModel = DiscoveriesSettingsViewModel()
     
@@ -21,12 +22,14 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     
     }
     
-    func discovery(_ i: Int, _ j: Int) -> Discovery {
+    func discovery(_ i: Int, _ j: Int) -> User {
         discoveries[i * 2 + j]
     }
     
     func like(_ i: Int, _ j: Int) {
-        discoveries[i * 2 + j].liked.toggle()
+        var discover = discoveries[i * 2 + j];
+        discover.liked!.toggle()
+        //discoveries[i * 2 + j].liked.toggle()
     }
         
     func loadDiscover(result: @escaping (Bool) -> Void) {
@@ -39,12 +42,12 @@ class DiscoveryViewModel: DiscoveryViewModeled {
                 result(false)
             } else if let userList = userList {
                 for value in userList {
-                    let user: User = value!
+                    var user: User = value!
                     let nAge: Int = Int(user.age!)!
                     let name: String = user.name!
                     let photo: String = user.profilePhotoBig!
-
-                    self.discoveries.append((name: name, age: nAge, image: photo, liked: false))
+                    user.liked = false
+                    self.discoveries.append(user)
                 }
                 result(true)
                 

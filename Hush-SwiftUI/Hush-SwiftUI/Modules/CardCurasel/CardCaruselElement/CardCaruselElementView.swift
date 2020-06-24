@@ -67,7 +67,7 @@ struct CardCaruselElementView: View {
                 }.padding(.bottom, 10)
                 
                 VStack {
-                    NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(), isActive: self.$showUserProfile) {
+                    NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)).withoutBar(), isActive: self.$showUserProfile) {
                         Image("profile_icon_carusel").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                     }.buttonStyle(PlainButtonStyle())
                 }.padding(.bottom, 10).padding(.trailing, ISiPhoneX ? 0 : 15)
