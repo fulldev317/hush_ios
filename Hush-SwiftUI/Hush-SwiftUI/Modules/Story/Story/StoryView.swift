@@ -145,7 +145,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
             }
             .background(
                 NavigationLink(
-                    destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(),
+                    destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)).withoutBar(),
                     isActive: $showsUserProfile,
                     label: EmptyView.init
                 )

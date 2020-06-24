@@ -44,7 +44,7 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
 //                            Image("message_card_icon").aspectRatio().frame(width: 45, height: 45)
 //                        })
                         
-                        NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(), isActive: self.$showUserProfile) {
+                        NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)).withoutBar(), isActive: self.$showUserProfile) {
                             Image("more_card_icon").aspectRatio().frame(width: 45, height: 45)
                         }.buttonStyle(PlainButtonStyle())
                         Spacer()

@@ -29,13 +29,18 @@ class UserProfileViewModel: UserProfileViewModeled {
     
     let stories: [UIImage] = Array(0..<20).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
     
-    init() {
-        let userInfo = Common.userInfo()
-        name = userInfo.name!
-        address = userInfo.address!
-        bio = userInfo.bio!
+    init(user: User?) {
+        var userInfo: User
+        if user == nil {
+            userInfo = Common.userInfo()
+        } else {
+            userInfo = user!
+        }
+        name = userInfo.name ?? "Jane"
+        address = userInfo.address ?? "London, UK"
+        bio = userInfo.bio ?? "I'm Jain, is 20 years old."
         
-        let nLookFor = Int(userInfo.looking!)
+        let nLookFor = Int(userInfo.looking ?? "1")
         switch nLookFor {
         case 0:
             lookfor = "Male"
@@ -50,13 +55,15 @@ class UserProfileViewModel: UserProfileViewModeled {
             lookfor = "Male"
 
         }
-        herefor = userInfo.hereFor!
-        gender = userInfo.gender!
+        herefor = userInfo.hereFor ?? "1"
+        gender = userInfo.gender ?? "0"
         
         let photos = userInfo.photos
-        for index in (0..<(photos?.count)!) {
-            let photo:Photo = photos![index]
-            photoUrls.append(photo.photo)
+        if photos != nil {
+            for index in (0..<(photos?.count)!) {
+                let photo:Photo = photos![index]
+                photoUrls.append(photo.photo)
+            }
         }
     }
     

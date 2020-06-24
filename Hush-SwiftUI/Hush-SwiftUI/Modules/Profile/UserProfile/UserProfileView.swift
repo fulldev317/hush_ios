@@ -327,7 +327,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserProfileView(viewModel: UserProfileViewModel())
+            UserProfileView(viewModel: UserProfileViewModel(user: nil))
                 .previewEnvironment()
                 .hostModalPresenter()
                 .withoutBar()
