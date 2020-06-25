@@ -148,13 +148,19 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
             }.padding(.leading, 25)
             
-            DiscoveryView(viewModel:  DiscoveryViewModel())
+            DiscoveryView(viewModel:  self.app.discovery)
         }.frame(width: SCREEN_WIDTH)
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
             UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
                 //self.app.discovery.settingsViewModel.gender = gender
+                self.app.discovery.settingsViewModel.setGender(gender: gender)
+//                AuthAPI.shared.update_gender(gender: gender.rawValue) { (error) in
+//                    var user = Common.userInfo()
+//                    user.gender = Common.getGenderIntValue(gender.rawValue)
+//                    Common.setUserInfo(user)
+//                }
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         .addPartialSheet()
@@ -173,7 +179,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
             }.padding(.leading, 25)
             
-            DiscoveryView(viewModel:  DiscoveryViewModel())
+            DiscoveryView(viewModel:  self.app.discovery)
         }.frame(width: SCREEN_WIDTH)
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
@@ -187,7 +193,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     func showDiscoverySettings() {
         partialSheetManager.showPartialSheet {
-            DiscoveriesSettingsView(viewModel: DiscoveriesSettingsViewModel())
+            DiscoveriesSettingsView(viewModel: self.app.discovery.settingsViewModel)
         }
     }
     
