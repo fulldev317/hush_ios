@@ -69,6 +69,9 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                             TextQuerySelectorView(provider: SelectLocationAPI(query: "") { newLocation in
                                 if let result = newLocation {
                                     self.viewModel.location = result
+                                    var user = Common.userInfo()
+                                    user.address = result
+                                    Common.setUserInfo(user)
                                     
                                     AuthAPI.shared.get_geocode(address: result) { (lat, lng) in
                                         AuthAPI.shared.update_filer_location(address: result, lat: lat!, lng: lng!) { (error) in

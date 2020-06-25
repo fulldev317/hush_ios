@@ -24,8 +24,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @State private var showUserProfile = false
     @State var isShowing: Bool = false
     @State var currentViewIndex: Int = 0
-    @State private var selectedItem: Int = 0
-    
+    @State private var selectedIndex: Int = 0
+    @State private var selectedUser: User = User()
+
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
         
@@ -152,13 +153,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     
                     
                 }
-//                .background(
-//                    NavigationLink(
-//                        destination: UserProfileView(viewModel: UserProfileViewModel(user: self.viewModel.discoveries[self.selectedItem])),
-//                        isActive: $showUserProfile,
-//                        label: EmptyView.init
-//                    )
-//                )
+                .background(
+                    NavigationLink(
+                        destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)),
+                        isActive: $showUserProfile,
+                        label: EmptyView.init
+                    )
+                )
                 HushIndicator(showing: self.viewModel.isShowingIndicator)
 
 
@@ -182,8 +183,20 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
             ForEach(0..<2, id: \.self) { j in
                 self.polaroidCard(i, j)
                     .onTapGesture {
-                        self.selectedItem = i * 2 + j
-                        self.showUserProfile = true
+                        self.selectedIndex = i * 2 + j
+                        let discover = self.viewModel.discoveries[self.selectedIndex]
+                        let userId = discover.id
+                        
+                        self.viewModel.isShowingIndicator = true
+                        
+                        AuthAPI.shared.cuser(userId: userId!) { (user, error) in
+                            self.viewModel.isShowingIndicator = false
+                            if error == nil {
+                                self.selectedUser = user!
+                                self.showUserProfile = true
+                            }
+                        }
+                        
                 }
             }
         }.zIndex(Double(100 - i))
@@ -231,8 +244,6 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     }
     
     func loadDiscover() {
-
-        //let user = Common.userInfo()
         
         self.viewModel.isShowingIndicator = true
         
@@ -246,6 +257,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 }
             }
         }
+    }
+//let user = Common.userInfo()
+
 //        AuthAPI.shared.discovery(uid: user.id!, location: user.address!, gender: "1", max_distance: "100", age_range: "18,30", check_online: "1") { (userList, error) in
 //
 //            self.viewModel.isShowingIndicator = false
@@ -265,7 +279,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
 //
 //            }
 //        }
-    }
+    
     
     
 }
