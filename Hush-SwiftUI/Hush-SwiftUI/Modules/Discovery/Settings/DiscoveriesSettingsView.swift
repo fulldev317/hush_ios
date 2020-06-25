@@ -69,13 +69,15 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                             TextQuerySelectorView(provider: SelectLocationAPI(query: "") { newLocation in
                                 if let result = newLocation {
                                     self.viewModel.location = result
-                                    var user = Common.userInfo()
-                                    user.address = result
-                                    Common.setUserInfo(user)
                                     
                                     AuthAPI.shared.get_geocode(address: result) { (lat, lng) in
-                                        AuthAPI.shared.update_filer_location(address: result, lat: lat!, lng: lng!) { (error) in
-                                            
+                                        AuthAPI.shared.update_location(address: result, lat: lat!, lng: lng!) { (error) in
+                                        
+                                            var user = Common.userInfo()
+                                            user.address = result
+                                            user.latitude = lat
+                                            user.longitude = lng
+                                            Common.setUserInfo(user)
                                         }
                                     }
                                 }
@@ -95,10 +97,11 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                 HStack {
                     Text("Gender").font(.light())
                     Spacer()
-                    Text(viewModel.gender.title).font(.light())
+                    Text(self.viewModel.gender.title).font(.light())
                     Spacer()
                     Button(action: {
                         self.app.selectingGender.toggle()
+                        
                     }) {
                         Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
                     }

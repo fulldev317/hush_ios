@@ -43,4 +43,25 @@ class Common: NSObject {
         return errMsg
     }
     
+    static func getGenderIntValue(_ gender: String) -> String {
+        var nGender = "0"
+        switch gender {
+        case Gender.male.rawValue:
+            nGender = "0"
+            break
+        case Gender.female.rawValue:
+            nGender = "1"
+            break
+        case Gender.lesbian.rawValue:
+            nGender = "2"
+            break
+        case Gender.gay.rawValue:
+            nGender = "3"
+            break
+        default:
+            nGender = "0"
+        }
+        return nGender
+    }
+    
 }

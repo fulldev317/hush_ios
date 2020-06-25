@@ -23,4 +23,8 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
 
         message = "New Message"
     }
+    
+    func setGender(gender: Gender) {
+        self.gender = gender
+    }
 }
