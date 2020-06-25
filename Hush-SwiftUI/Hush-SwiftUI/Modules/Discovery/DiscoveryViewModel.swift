@@ -34,15 +34,22 @@ class DiscoveryViewModel: DiscoveryViewModeled {
         
     func loadDiscover(result: @escaping (Bool) -> Void) {
 
+        self.isShowingIndicator = true
         self.discoveries.removeAll()
         AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
-           if error == nil {
+            self.isShowingIndicator = false
+
+            if error == nil {
                if let userList = userList {
                    for user in userList {
                        self.discoveries.append(user!)
                    }
                }
-           }
+                result(true)
+            } else {
+                result(false)
+            }
+
         }
     }
 //
