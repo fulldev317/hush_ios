@@ -29,8 +29,10 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
+        self.viewModel.discoveries.removeAll()
         
-        loadDiscover()
+        self.viewModel.loadDiscover { (result) in
+        }
       
     }
     // MARK: - Lifecycle
@@ -42,10 +44,12 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         Button(action: {
+                            if self.currentViewIndex == 0 {
+                                return
+                            }
+                            
                             self.currentViewIndex = 0
-                            self.viewModel.isShowingIndicator = true
                             self.viewModel.loadDiscover { result in
-                                self.viewModel.isShowingIndicator = false
 
                             }
                         }) {
@@ -64,10 +68,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                         Rectangle().frame(width: 1).foregroundColor(Color.white).background(Color.yellow)
                         
                         Button(action: {
+                            if self.currentViewIndex == 1 {
+                                return
+                            }
+                            
                             self.currentViewIndex = 1
-                            self.viewModel.isShowingIndicator = true
+                            
                             self.viewModel.loadDiscover { result in
-                                self.viewModel.isShowingIndicator = false
 
                             }
                         }) {
@@ -86,9 +93,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                         Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
 
                         Button(action: {
+                            if self.currentViewIndex == 2 {
+                                return
+                            }
                             self.currentViewIndex = 2
+                            
                             self.viewModel.loadDiscover { result in
-                                
+
                             }
                         }) {
                             ZStack {
@@ -106,9 +117,12 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                         Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
 
                         Button(action: {
+                            if self.currentViewIndex == 3 {
+                                return
+                            }
                             self.currentViewIndex = 3
+                            
                             self.viewModel.loadDiscover { result in
-                                
                             }
                         }) {
                             ZStack {
@@ -126,9 +140,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                         Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
 
                         Button(action: {
+                            if self.currentViewIndex == 4 {
+                                return
+                            }
                             self.currentViewIndex = 4
+                            
                             self.viewModel.loadDiscover { result in
-                                
+
                             }
                         }) {
                             ZStack {
@@ -154,7 +172,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             self.row(at: $0)
                         }
                     }.padding(.top, 10)
-                }.padding(.top, 35)
+                }.padding(.top, TAB_HEIGHT + 10)
                 .background(
                     NavigationLink(
                         destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)),
@@ -163,7 +181,6 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     )
                 )
                 HushIndicator(showing: self.viewModel.isShowingIndicator)
-
 
             } else {
                 VStack {
@@ -241,46 +258,6 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         .padding(.leading, self.leading(j))
         .padding(.trailing, self.trailing(j))
     }
-    
-    func loadDiscover() {
-        
-        self.viewModel.isShowingIndicator = true
-        
-        AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
-            self.viewModel.isShowingIndicator = false
-            if error == nil {
-                if let userList = userList {
-                    for user in userList {
-                        self.viewModel.discoveries.append(user!)
-                    }
-                }
-            }
-        }
-    }
-//let user = Common.userInfo()
-
-//        AuthAPI.shared.discovery(uid: user.id!, location: user.address!, gender: "1", max_distance: "100", age_range: "18,30", check_online: "1") { (userList, error) in
-//
-//            self.viewModel.isShowingIndicator = false
-//
-//
-//            if let error = error {
-//            } else if let userList = userList {
-//                for value in userList {
-//                    var user: User = value!
-//                    let nAge: Int = Int(user.age!)!
-//                    let name: String = user.name!
-//                    let photo: String = user.profilePhotoBig!
-//                    user.liked = false
-//
-//                    self.viewModel.discoveries.append(user)
-//                }
-//
-//            }
-//        }
-    
-    
-    
 }
 
 struct DiscoveryView_Previews: PreviewProvider {
