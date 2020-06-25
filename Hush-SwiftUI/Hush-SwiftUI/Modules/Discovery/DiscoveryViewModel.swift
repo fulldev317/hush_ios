@@ -14,7 +14,7 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     // MARK: - Properties
     
     //@Published var discoveries: [(name: String, age: Int, image: String, liked: Bool)] = []
-    @Published var discoveries: [User] = []
+    @Published var discoveries: [Discover] = []
     @Published var isShowingIndicator: Bool = false
     var settingsViewModel = DiscoveriesSettingsViewModel()
     
@@ -22,7 +22,7 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     
     }
     
-    func discovery(_ i: Int, _ j: Int) -> User {
+    func discovery(_ i: Int, _ j: Int) -> Discover {
         discoveries[i * 2 + j]
     }
     
@@ -34,24 +34,36 @@ class DiscoveryViewModel: DiscoveryViewModeled {
         
     func loadDiscover(result: @escaping (Bool) -> Void) {
 
-        let user = Common.userInfo()
-        
-        AuthAPI.shared.discovery(uid: user.id!, location: user.address!, gender: "1", max_distance: "100", age_range: "18,30", check_online: "1") { (userList, error) in
-            
-            if let error = error {
-                result(false)
-            } else if let userList = userList {
-                for value in userList {
-                    var user: User = value!
-                    let nAge: Int = Int(user.age!)!
-                    let name: String = user.name!
-                    let photo: String = user.profilePhotoBig!
-                    user.liked = false
-                    self.discoveries.append(user)
-                }
-                result(true)
-                
-            }
+        self.discoveries.removeAll()
+        AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
+           if error == nil {
+               if let userList = userList {
+                   for user in userList {
+                       self.discoveries.append(user!)
+                   }
+               }
+           }
         }
     }
+//
+//        let user = Common.userInfo()
+//
+//        AuthAPI.shared.discovery(uid: user.id!, location: user.address!, gender: "1", max_distance: "100", age_range: "18,30", check_online: "1") { (userList, error) in
+//
+//            if let error = error {
+//                result(false)
+//            } else if let userList = userList {
+//                for value in userList {
+//                    var user: User = value!
+//                    //let nAge: Int = Int(user.age!)!
+//                    //let name: String = user.name!
+//                    //let photo: String = user.profilePhotoBig!
+//                    user.liked = false
+//                    self.discoveries.append(user)
+//                }
+//                result(true)
+//
+//            }
+//        }
+    
 }

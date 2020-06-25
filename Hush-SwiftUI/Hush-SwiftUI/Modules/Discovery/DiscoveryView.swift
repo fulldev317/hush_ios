@@ -12,7 +12,7 @@ import PartialSheet
 import Combine
 
 let TAB_MARGIN: CGFloat = CGFloat(10)
-let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - 2)
+let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - (ISiPhoneX ? 15 : 2))
 let TAB_HEIGHT: CGFloat = CGFloat(30)
 
 struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
@@ -40,7 +40,11 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 HStack {
                     Button(action: {
                         self.currentViewIndex = 0
+                        self.viewModel.isShowingIndicator = true
+                        self.viewModel.loadDiscover { result in
+                            self.viewModel.isShowingIndicator = false
 
+                        }
                     }) {
                         ZStack {
                             Text("Broswe")
@@ -58,7 +62,11 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     
                     Button(action: {
                         self.currentViewIndex = 1
+                        self.viewModel.isShowingIndicator = true
+                        self.viewModel.loadDiscover { result in
+                            self.viewModel.isShowingIndicator = false
 
+                        }
                     }) {
                         ZStack {
                             Text("Matched")
@@ -76,7 +84,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
 
                     Button(action: {
                         self.currentViewIndex = 2
-
+                        self.viewModel.loadDiscover { result in
+                            
+                        }
                     }) {
                         ZStack {
                             Text("Visited Me")
@@ -94,6 +104,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
 
                     Button(action: {
                         self.currentViewIndex = 3
+                        self.viewModel.loadDiscover { result in
+                            
+                        }
                     }) {
                         ZStack {
                             Text("My Likes")
@@ -111,6 +124,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
 
                     Button(action: {
                         self.currentViewIndex = 4
+                        self.viewModel.loadDiscover { result in
+                            
+                        }
                     }) {
                         ZStack {
                             Text("Likes Me")
@@ -135,14 +151,15 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     }.padding(.top, 10)
                     
                     
-                }.background(
-                    NavigationLink(
-                        destination: UserProfileView(viewModel: UserProfileViewModel(user: self.viewModel.discoveries[self.selectedItem])),
-                        isActive: $showUserProfile,
-                        label: EmptyView.init
-                    )
-                )
-                //HushIndicator(showing: self.viewModel.isShowingIndicator)
+                }
+//                .background(
+//                    NavigationLink(
+//                        destination: UserProfileView(viewModel: UserProfileViewModel(user: self.viewModel.discoveries[self.selectedItem])),
+//                        isActive: $showUserProfile,
+//                        label: EmptyView.init
+//                    )
+//                )
+                HushIndicator(showing: self.viewModel.isShowingIndicator)
 
 
             } else {
@@ -173,7 +190,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     }
     
     func polaroidCard(_ i: Int, _ j: Int) -> some View {
-        PhotoCard(image: self.viewModel.discoveries[i*2+j].profilePhotoBig!, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: false)
+        PhotoCard(image: self.viewModel.discoveries[i*2+j].photo!, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: false)
         .offset(x: j % 2 == 0 ? -10 : 10, y: 0)
         .zIndex(Double(i % 2 == 0 ? j : -j))
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
@@ -215,29 +232,39 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
     func loadDiscover() {
 
-        let user = Common.userInfo()
+        //let user = Common.userInfo()
         
         self.viewModel.isShowingIndicator = true
         
-        AuthAPI.shared.discovery(uid: user.id!, location: user.address!, gender: "1", max_distance: "100", age_range: "18,30", check_online: "1") { (userList, error) in
-            
+        AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
             self.viewModel.isShowingIndicator = false
-
-            
-            if let error = error {
-            } else if let userList = userList {
-                for value in userList {
-                    var user: User = value!
-                    let nAge: Int = Int(user.age!)!
-                    let name: String = user.name!
-                    let photo: String = user.profilePhotoBig!
-                    user.liked = false
-
-                    self.viewModel.discoveries.append(user)
+            if error == nil {
+                if let userList = userList {
+                    for user in userList {
+                        self.viewModel.discoveries.append(user!)
+                    }
                 }
-                
             }
         }
+//        AuthAPI.shared.discovery(uid: user.id!, location: user.address!, gender: "1", max_distance: "100", age_range: "18,30", check_online: "1") { (userList, error) in
+//
+//            self.viewModel.isShowingIndicator = false
+//
+//
+//            if let error = error {
+//            } else if let userList = userList {
+//                for value in userList {
+//                    var user: User = value!
+//                    let nAge: Int = Int(user.age!)!
+//                    let name: String = user.name!
+//                    let photo: String = user.profilePhotoBig!
+//                    user.liked = false
+//
+//                    self.viewModel.discoveries.append(user)
+//                }
+//
+//            }
+//        }
     }
     
     

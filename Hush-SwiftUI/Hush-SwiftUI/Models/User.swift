@@ -70,7 +70,7 @@ struct User: Codable {
     var totalFans: String?
     var totalMatches: Int?
     var ip: String?
-    var premiumCheck: Int?
+    //var premiumCheck: Int?
     var verified: String?
     var popular: String?
     var credits: String?
@@ -155,7 +155,7 @@ struct User: Codable {
         case totalFans
         case totalMatches
         case ip
-        case premiumCheck = "premium_check"
+        //case premiumCheck = "premium_check"
         case verified
         case popular
         case credits

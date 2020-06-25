@@ -142,6 +142,7 @@
 		536E78332492200400B6CCFF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E78322492200400B6CCFF /* Common.swift */; };
 		5370FFEF249A6ACC00ABB64C /* LocationPickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */; };
 		5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */; };
+		5375541424A4EE2F009A13AE /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375541324A4EE2E009A13AE /* Discover.swift */; };
 		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
@@ -336,6 +337,7 @@
 		536E78322492200400B6CCFF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerField.swift; sourceTree = "<group>"; };
 		5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithFBView.swift; sourceTree = "<group>"; };
+		5375541324A4EE2E009A13AE /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -944,6 +946,7 @@
 				73D44AF3247FAE2700FB01BA /* Notifications.swift */,
 				73E7C157247FC0460077F5E1 /* Spotlight.swift */,
 				73E7C159247FC10A0077F5E1 /* Match.swift */,
+				5375541324A4EE2E009A13AE /* Discover.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1304,6 +1307,7 @@
 				158A2C572434844F005F6847 /* DatePickerField.swift in Sources */,
 				154B26912431BF6600265C76 /* SceneDelegate.swift in Sources */,
 				15D53C8D243DA8F800D62B26 /* UserCardViewModeled.swift in Sources */,
+				5375541424A4EE2F009A13AE /* Discover.swift in Sources */,
 				8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */,
 				894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
