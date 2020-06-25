@@ -10,6 +10,9 @@ import Foundation
 
 struct User: Codable {
 
+    init() {
+        id = "0"
+    }
     var questions: [Question]?
     var id: String?
     var email: String?

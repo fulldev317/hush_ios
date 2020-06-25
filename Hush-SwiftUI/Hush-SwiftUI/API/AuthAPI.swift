@@ -43,6 +43,35 @@ class AuthAPI: BaseAPI {
         }
     }
     
+    func cuser(userId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+        let parameters: Parameters = ["action": "cuser",
+                                      "uid1": userId,
+                                      "uid2": userId]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        let json_user = json["user"]
+                        let jsonData = try! json_user.rawData()
+                        user = try! JSONDecoder().decode(User.self, from: jsonData)
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+
+    
     func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, address: String, city:String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
 
         let parameters: Parameters = ["action": "registerA",
