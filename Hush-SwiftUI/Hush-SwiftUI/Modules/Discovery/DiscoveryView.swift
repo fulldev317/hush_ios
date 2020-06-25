@@ -13,7 +13,7 @@ import Combine
 
 let TAB_MARGIN: CGFloat = CGFloat(10)
 let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - (ISiPhoneX ? 15 : 2))
-let TAB_HEIGHT: CGFloat = CGFloat(30)
+let TAB_HEIGHT: CGFloat = CGFloat(25)
 
 struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
@@ -36,112 +36,116 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     // MARK: - Lifecycle
     
     var body: some View {
-        VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    Button(action: {
-                        self.currentViewIndex = 0
-                        self.viewModel.isShowingIndicator = true
-                        self.viewModel.loadDiscover { result in
-                            self.viewModel.isShowingIndicator = false
+        ZStack {
+            
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        Button(action: {
+                            self.currentViewIndex = 0
+                            self.viewModel.isShowingIndicator = true
+                            self.viewModel.loadDiscover { result in
+                                self.viewModel.isShowingIndicator = false
 
-                        }
-                    }) {
-                        ZStack {
-                            Text("Broswe")
-                                .font(.regular(16))
-                                .foregroundColor(self.currentViewIndex == 0 ? Color.yellow : Color.white)
-                            Rectangle().frame(height: 1)
-                                .foregroundColor(Color.yellow)
-                                .padding(.top, TAB_HEIGHT - 2)
-                                .opacity(self.currentViewIndex == 0 ? 1 : 0)
-                        }
-                    
-                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
-                    
-                    Rectangle().frame(width: 1).foregroundColor(Color.white).background(Color.yellow)
-                    
-                    Button(action: {
-                        self.currentViewIndex = 1
-                        self.viewModel.isShowingIndicator = true
-                        self.viewModel.loadDiscover { result in
-                            self.viewModel.isShowingIndicator = false
+                            }
+                        }) {
+                            ZStack {
+                                Text("Broswe")
+                                    .font(.regular(16))
+                                    .foregroundColor(self.currentViewIndex == 0 ? Color.yellow : Color.white)
+                                Rectangle().frame(height: 1)
+                                    .foregroundColor(Color.yellow)
+                                    .padding(.top, TAB_HEIGHT - 2)
+                                    .opacity(self.currentViewIndex == 0 ? 1 : 0)
+                            }
+                        
+                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                        
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).background(Color.yellow)
+                        
+                        Button(action: {
+                            self.currentViewIndex = 1
+                            self.viewModel.isShowingIndicator = true
+                            self.viewModel.loadDiscover { result in
+                                self.viewModel.isShowingIndicator = false
 
-                        }
-                    }) {
-                        ZStack {
-                            Text("Matched")
-                                .font(.regular(16))
-                                .foregroundColor(self.currentViewIndex == 1 ? Color.yellow : Color.white)
-                            Rectangle().frame(height: 1)
-                                .foregroundColor(Color.yellow)
-                                .padding(.top, TAB_HEIGHT - 2)
-                                .opacity(self.currentViewIndex == 1 ? 1 : 0)
+                            }
+                        }) {
+                            ZStack {
+                                Text("Matched")
+                                    .font(.regular(16))
+                                    .foregroundColor(self.currentViewIndex == 1 ? Color.yellow : Color.white)
+                                Rectangle().frame(height: 1)
+                                    .foregroundColor(Color.yellow)
+                                    .padding(.top, TAB_HEIGHT - 2)
+                                    .opacity(self.currentViewIndex == 1 ? 1 : 0)
 
-                        }
-                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
-                    
-                    Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+                            }
+                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                        
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
 
-                    Button(action: {
-                        self.currentViewIndex = 2
-                        self.viewModel.loadDiscover { result in
-                            
-                        }
-                    }) {
-                        ZStack {
-                            Text("Visited Me")
-                                .font(.regular(16))
-                                .foregroundColor(self.currentViewIndex == 2 ? Color.yellow : Color.white)
-                            Rectangle().frame(height: 1)
-                                .foregroundColor(Color.yellow)
-                                .padding(.top, TAB_HEIGHT - 2)
-                                .opacity(self.currentViewIndex == 2 ? 1 : 0)
+                        Button(action: {
+                            self.currentViewIndex = 2
+                            self.viewModel.loadDiscover { result in
+                                
+                            }
+                        }) {
+                            ZStack {
+                                Text("Visited Me")
+                                    .font(.regular(16))
+                                    .foregroundColor(self.currentViewIndex == 2 ? Color.yellow : Color.white)
+                                Rectangle().frame(height: 1)
+                                    .foregroundColor(Color.yellow)
+                                    .padding(.top, TAB_HEIGHT - 2)
+                                    .opacity(self.currentViewIndex == 2 ? 1 : 0)
 
-                        }
-                    }.frame(width: TAB_WIDTH * 1.2, height: TAB_HEIGHT, alignment: .center)
-                    
-                    Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+                            }
+                        }.frame(width: TAB_WIDTH * 1.2, height: TAB_HEIGHT, alignment: .center)
+                        
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
 
-                    Button(action: {
-                        self.currentViewIndex = 3
-                        self.viewModel.loadDiscover { result in
-                            
-                        }
-                    }) {
-                        ZStack {
-                            Text("My Likes")
-                                .font(.regular(16))
-                                .foregroundColor(self.currentViewIndex == 3 ? Color.yellow : Color.white)
-                            Rectangle().frame(height: 1)
-                                .foregroundColor(Color.yellow)
-                                .padding(.top, TAB_HEIGHT - 2)
-                                .opacity(self.currentViewIndex == 3 ? 1 : 0)
+                        Button(action: {
+                            self.currentViewIndex = 3
+                            self.viewModel.loadDiscover { result in
+                                
+                            }
+                        }) {
+                            ZStack {
+                                Text("My Likes")
+                                    .font(.regular(16))
+                                    .foregroundColor(self.currentViewIndex == 3 ? Color.yellow : Color.white)
+                                Rectangle().frame(height: 1)
+                                    .foregroundColor(Color.yellow)
+                                    .padding(.top, TAB_HEIGHT - 2)
+                                    .opacity(self.currentViewIndex == 3 ? 1 : 0)
 
-                        }
-                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
-                    
-                    Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+                            }
+                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                        
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
 
-                    Button(action: {
-                        self.currentViewIndex = 4
-                        self.viewModel.loadDiscover { result in
-                            
-                        }
-                    }) {
-                        ZStack {
-                            Text("Likes Me")
-                                .font(.regular(16))
-                                .foregroundColor(self.currentViewIndex == 4 ? Color.yellow : Color.white)
-                            Rectangle().frame(height: 1)
-                                .foregroundColor(Color.yellow)
-                                .padding(.top, TAB_HEIGHT - 2)
-                                .opacity(self.currentViewIndex == 4 ? 1 : 0)
+                        Button(action: {
+                            self.currentViewIndex = 4
+                            self.viewModel.loadDiscover { result in
+                                
+                            }
+                        }) {
+                            ZStack {
+                                Text("Likes Me")
+                                    .font(.regular(16))
+                                    .foregroundColor(self.currentViewIndex == 4 ? Color.yellow : Color.white)
+                                Rectangle().frame(height: 1)
+                                    .foregroundColor(Color.yellow)
+                                    .padding(.top, TAB_HEIGHT - 2)
+                                    .opacity(self.currentViewIndex == 4 ? 1 : 0)
 
-                        }
-                    }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
-                }.frame(height: TAB_HEIGHT, alignment: .leading)
-            }.frame(width: SCREEN_WIDTH, height: TAB_HEIGHT, alignment: .leading)
+                            }
+                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                    }.frame(height: TAB_HEIGHT, alignment: .leading)
+                }.frame(width: SCREEN_WIDTH, height: TAB_HEIGHT, alignment: .leading)
+                Spacer()
+            }
             
             if viewModel.discoveries.count > 0 {
                 ScrollView(showsIndicators: false) {
@@ -150,9 +154,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             self.row(at: $0)
                         }
                     }.padding(.top, 10)
-                    
-                    
-                }
+                }.padding(.top, 35)
                 .background(
                     NavigationLink(
                         destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)),
@@ -170,11 +172,8 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     HushIndicator(showing: self.viewModel.isShowingIndicator)
                     Spacer()
 
-
                 }
             }
-            
-
         }
     }
      
