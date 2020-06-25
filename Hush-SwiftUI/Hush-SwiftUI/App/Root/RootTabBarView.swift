@@ -41,18 +41,18 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     }
                     
                     NavigationView {
-                        self.discovery().withoutBar()
+//                        self.discovery().withoutBar()
 
-//                        if self.currentTab == .discoveries {
-//                            ZStack {
-//                                self.discovery().withoutBar()
-//                                Spacer()
-//                            }
-//                        } else {
-//                            ZStack {
-//                                Spacer()
-//                            }
-//                        }
+                        if self.currentTab == .discoveries {
+                            ZStack {
+                                self.discovery().withoutBar()
+                                Spacer()
+                            }
+                        } else {
+                            ZStack {
+                                Spacer()
+                            }
+                        }
                     }.zIndex(self.currentTab == .discoveries ? 1 : 0)
                     
                     self.stories().zIndex(self.currentTab == .stories ? 1 : 0)

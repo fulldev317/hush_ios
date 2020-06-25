@@ -413,6 +413,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.viewModel.logout { (result, error) in
                         if (result) {
                             self.app.logedIn = false
+                            self.app.loadingData = false
                             let isLoggedIn = UserDefault(.isLoggedIn, default: false)
                             isLoggedIn.wrappedValue = false
                         } else {

@@ -45,7 +45,7 @@ class AuthAPI: BaseAPI {
     
     func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, address: String, city:String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
 
-        let parameters: Parameters = ["action": "register",
+        let parameters: Parameters = ["action": "registerA",
                                       "reg_email": email,
                                       "reg_pass": password,
                                       "reg_username": username,
@@ -99,11 +99,11 @@ class AuthAPI: BaseAPI {
                     var error: APIError?
 
                     if (json["error"].int == 0) {
-                        
+                        error = nil
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                    completion(nil)
+                    completion(error)
                 case .failure:
                     //let error = APIError(404, "Server Connection Failed")
                     completion(nil)
@@ -191,6 +191,48 @@ class AuthAPI: BaseAPI {
                     completion(nil, error)
                     print("API CALL FAILED")
                 }
+        }
+    }
+    
+    func meet(uid2: String, uid3: String, completion: @escaping (_ user: [Discover?]?, _ error: APIError?) -> Void) {
+           
+        let user = Common.userInfo()
+        let userId = user.id!
+                
+        let parameters: Parameters = ["action": "meet",
+                                     "uid1": userId,
+                                     "uid2": uid2,
+                                     "uid3": uid3
+        ]
+    
+       api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+           .responseSwiftyJson { response in
+               
+            switch response.result {
+            case .success(let json):
+                var userList:[Discover?] = []
+                var error: APIError?
+                if json["error"].int == 0 {
+                    let json_users = json["result"]
+                   
+                    if (json_users.count > 0) {
+                        for index in 0 ..< json_users.count - 1 {
+                            let user = json_users[index]
+                            let jsonData = try! user.rawData()
+                            var user_data = try! JSONDecoder().decode(Discover.self, from: jsonData)
+                            user_data.liked = false
+                            userList.append(user_data)
+                        }
+                    }
+               } else {
+                   error = APIError(json["error"].intValue, json["error_m"].stringValue)
+               }
+               completion(userList, error)
+            case .failure:
+               let error = APIError(404, "Server Connection Failed")
+               completion(nil, error)
+               print("API CALL FAILED")
+            }
         }
     }
     
@@ -363,6 +405,33 @@ class AuthAPI: BaseAPI {
                 error = APIError(404, "connect failed")
                 completion(nil, error)
             }
+        }
+    }
+
+    func update_filer_location(address: String, lat: String, lng: String, completion: @escaping (_ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + "," + lat + "," + lng + "," + address
+        let parameters: Parameters = ["action": "updateLocationA",
+                                      "query": query]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                       error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
         }
     }
 }
