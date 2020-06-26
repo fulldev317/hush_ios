@@ -17,13 +17,15 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     @EnvironmentObject private var app: App
     @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @Environment(\.colorScheme) var colorScheme
-    @State private var firstSliderFalue = 0.0
+    @State private var firstSliderValue = 0.0
+    @State private var selectedSliderValue = 0.0
+
     @State private var secondSliderFalue = 0.0
     @State private var isToggle = true
+    @State var showLocation: Bool = false
     @State private var ageSliderLower = 0.0
     @State private var ageSliderUpper = 1.0
-    @State var showLocation: Bool = false
-
+    
     private var lowerAge: String {
         String(Int(18 + (99 - 18) * ageSliderLower))
     }
@@ -118,7 +120,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
-                SingleSlider(value: $firstSliderFalue)
+                SingleSlider(value: $firstSliderValue, selectedValue: $viewModel.selectedDistance)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }.animation(nil)
             VStack {
@@ -138,7 +140,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                     
                     HStack {
                         Text("99").opacity(0)
-                        DoubleSlider(lower: $ageSliderLower, upper: $ageSliderUpper)
+                        DoubleSlider(lower: $ageSliderLower, lowerSelected: $viewModel.ageSelLower, upper: $ageSliderUpper, upperSelected: $viewModel.ageSelUpper)
                         Text("99").opacity(0)
                     }
                 }.font(.light(18)).animation(nil)
@@ -160,10 +162,13 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     }
     
     var maxDistance: String {
-        let miles = 10 + firstSliderFalue * 80
+        let miles = 10 + firstSliderValue * 80
         let kilometers = miles * 1.6
+        
         return String(format: "%.f Miles (%.fkm)", miles, kilometers)
+
     }
+    
 }
 
 //struct SettingsView_Previews: PreviewProvider {

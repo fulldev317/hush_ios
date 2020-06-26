@@ -25,6 +25,9 @@ protocol DiscoveriesSettingsViewModeled: ObservableObject {
     var message: String { get set }
     var dragFlag: Bool { get set }
     var location: String { get set }
+    var selectedDistance : Double { get set }
+    var ageSelLower: Double { get set }
+    var ageSelUpper: Double { get set }
     var closeAPISelectorCompletion: (() -> Void)? { get set }
     
     func updateMessage()

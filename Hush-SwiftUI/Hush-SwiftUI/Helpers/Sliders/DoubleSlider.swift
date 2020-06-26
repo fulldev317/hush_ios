@@ -11,6 +11,8 @@ import SwiftUI
 struct DoubleSlider: View, SliderViewProtocol {
     @Binding var lower: Double
     @Binding var upper: Double
+    @Binding var lowerSelected: Double
+    @Binding var upperSelected: Double
     
     private let minimumValue: Double = 0
     private let maximumValue: Double = 1
@@ -23,10 +25,11 @@ struct DoubleSlider: View, SliderViewProtocol {
     
     @State private var size: CGSize = .zero
     
-    init(lower: Binding<Double>, upper: Binding<Double>) {
+    init(lower: Binding<Double>, lowerSelected: Binding<Double>, upper: Binding<Double>, upperSelected: Binding<Double>) {
         _lower = lower
         _upper = upper
-        
+        _lowerSelected = lowerSelected
+        _upperSelected = upperSelected
         _lowerSavedProgress = State(initialValue: lower.wrappedValue)
         _upperSavedProgress = State(initialValue: 1 - upper.wrappedValue)
     }
@@ -57,6 +60,7 @@ private extension DoubleSlider {
             self.updateLowerProgress()
         }.onEnded { value in
             self.lowerSavedProgress = self.lower
+            self.lowerSelected = self.lower
         }
     }
     
@@ -66,6 +70,8 @@ private extension DoubleSlider {
             self.updateUpperProgress()
         }.onEnded { value in
             self.upperSavedProgress = 1 - self.upper
+            self.upperSelected = self.upper
+
         }
     }
     
@@ -94,7 +100,7 @@ struct UISliderView_Previews: PreviewProvider {
         @State var upper = 0.5
         
         var body: some View {
-            DoubleSlider(lower: $lower, upper: $upper)
+            DoubleSlider(lower: $lower, lowerSelected: $lower, upper: $upper, upperSelected: $upper)
                 .padding()
         }
     }

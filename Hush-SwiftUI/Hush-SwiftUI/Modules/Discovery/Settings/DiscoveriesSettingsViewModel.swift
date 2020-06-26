@@ -18,7 +18,25 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
     @Published var dragFlag: Bool = true
     @Published var location: String = "Los Angeles"
     @Published var closeAPISelectorCompletion: (() -> Void)?
+    @Published var ageSelLower: Double = 0.0 {
+        didSet {
+            let ageLower = (Int(18 + (99 - 18) * ageSelLower))
+
+        }
+    }
+    @Published var ageSelUpper: Double = 1.0 {
+        didSet {
+            let ageUpper = (Int(18 + (99 - 18) * ageSelUpper))
+
+        }
+    }
     
+    @Published var selectedDistance : Double = 1.0 {
+        didSet {
+            //let miles = 10 + selectedDistance * 80
+            //let kilometers = miles * 1.6
+        }
+    }
     func updateMessage() {
 
         message = "New Message"

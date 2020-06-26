@@ -90,7 +90,7 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {
-                SingleSlider(value: $viewModel.maxDistance)
+                SingleSlider(value: $viewModel.maxDistance, selectedValue: $viewModel.selectedDistance)
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }.animation(nil)
             VStack {
@@ -110,7 +110,7 @@ struct StoriesSettingsView<ViewModel: StoriesSettingsViewModeled>: View {
                     
                     HStack {
                         Text("99").opacity(0)
-                        DoubleSlider(lower: $viewModel.ageMin, upper: $viewModel.ageMax)
+                        DoubleSlider(lower: $viewModel.ageMin, lowerSelected:$viewModel.ageMin,  upper: $viewModel.ageMin, upperSelected: $viewModel.ageMax)
                         Text("99").opacity(0)
                     }
                 }.font(.light(18)).animation(nil)
