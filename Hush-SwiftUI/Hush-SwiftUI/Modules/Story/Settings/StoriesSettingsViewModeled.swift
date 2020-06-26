@@ -13,6 +13,8 @@ protocol StoriesSettingsViewModeled: ObservableObject {
     var location: String { get set }
     var gender: Gender { get set }
     var maxDistance: Double { get set }
+    var selectedDistance: Double { get set }
+
     var ageMin: Double { get set }
     var ageMax: Double { get set }
     var onlineUsers: Bool { get set }

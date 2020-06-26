@@ -13,6 +13,8 @@ class StoriesSettingsViewModel: StoriesSettingsViewModeled {
     @Published var location = ""
     @Published var gender = Gender.male
     @Published var maxDistance = 1.0
+    @Published var selectedDistance = 1.0
+
     @Published var ageMin = 0.0
     @Published var ageMax = 1.0
     @Published var onlineUsers = true

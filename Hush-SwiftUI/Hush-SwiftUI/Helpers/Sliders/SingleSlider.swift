@@ -10,12 +10,15 @@ import SwiftUI
 
 struct SingleSlider: View, SliderViewProtocol {
     @Binding var value: Double
+    @Binding var selectedValue: Double
+
     @State private var savedValue: Double
     @State private var translation: CGSize = .zero
     @State private var size: CGSize = .zero
     
-    init(value outerValue: Binding<Double>) {
+    init(value outerValue: Binding<Double>, selectedValue endValue: Binding<Double>) {
         _value = outerValue
+        _selectedValue = endValue
         _savedValue = State<Double>(initialValue: outerValue.wrappedValue)
     }
     
@@ -42,6 +45,7 @@ private extension SingleSlider {
             self.updateProgress()
         }.onEnded { value in
             self.savedValue = self.value
+            self.selectedValue = self.value
         }
     }
     
@@ -58,9 +62,10 @@ private extension SingleSlider {
 struct SingleSlider_Previews: PreviewProvider {
     struct Content: View {
         @State var slider = 1.0
-        
+        @State var selectedValue = 1.0
+
         var body: some View {
-            SingleSlider(value: $slider)
+            SingleSlider(value: $slider, selectedValue: $selectedValue)
                 .padding()
         }
     }
