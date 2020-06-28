@@ -51,7 +51,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                 Text("Filter").font(.bold(24))
                 Spacer()
                 Button(action: {
-                    self.app.isFilterDone = true
+                    self.app.isShowingSetting = false
                     self.partialSheetManager.closePartialSheet()
                 }) {
                     Text("Done").font(.bold(16))

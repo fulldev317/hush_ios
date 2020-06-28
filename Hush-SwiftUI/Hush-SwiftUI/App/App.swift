@@ -25,7 +25,7 @@ class App: ObservableObject {
     @Published var isLocationResponder = false
     @Published var showStory = false
     @Published var showSignupButtons = false
-    @Published var isFilterDone = false    
+    @Published var isShowingSetting = false    
 
    // let profile = MyProfileViewModel()
     let discovery = DiscoveryViewModel()

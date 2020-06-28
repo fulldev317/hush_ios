@@ -94,6 +94,12 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             
             borderedButton(action: {
                 //self.app.logedIn = true
+                if (self.viewModel.location.count == 0) {
+                    return
+                }
+                if (self.viewModel.latitude.count == 0 || self.viewModel.longitude.count == 0) {
+                    return
+                }
                 
                 self.isShowing = true
 

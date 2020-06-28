@@ -72,15 +72,15 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     
     func signup(birth: String, result: @escaping (Bool) -> Void) {
         
-        let strGender = String(selectedGender)
+        let strGender = String(selectedGender + 1)
         var strWhatFor = ""
         for selected in selectedWhatFor {
-            strWhatFor = strWhatFor + String(selected) + ","
+            strWhatFor = strWhatFor + String(selected + 1) + ","
         }
         strWhatFor = String(strWhatFor.dropLast())
         var strLookingFor = ""
         for selected in selectedLookingFors {
-            strLookingFor = strLookingFor + String(selected) + ","
+            strLookingFor = strLookingFor + String(selected + 1) + ","
         }
         strLookingFor = String(strLookingFor.dropLast())
         let photo = imagePath
