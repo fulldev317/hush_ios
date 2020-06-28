@@ -147,7 +147,6 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
             }.padding(.leading, 25)
-            
             DiscoveryView(viewModel:  self.app.discovery)
         }.frame(width: SCREEN_WIDTH)
         .withoutBar()
@@ -192,6 +191,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     }
     
     func showDiscoverySettings() {
+        self.app.isShowingSetting = true
         partialSheetManager.showPartialSheet {
             DiscoveriesSettingsView(viewModel: self.app.discovery.settingsViewModel)
         }

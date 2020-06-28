@@ -12,7 +12,7 @@ import PartialSheet
 import Combine
 
 let TAB_MARGIN: CGFloat = CGFloat(10)
-let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - (ISiPhoneX ? 15 : 2))
+let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - (WIDTH_375 ? 2 : 15))
 let TAB_HEIGHT: CGFloat = CGFloat(25)
 
 struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
@@ -20,7 +20,6 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: ViewModel
-    @EnvironmentObject private var app: App
     @State private var showUserProfile = false
     @State var isShowing: Bool = false
     @State var currentViewIndex: Int = 0
@@ -29,7 +28,6 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        self.viewModel.discoveries.removeAll()
         
         self.viewModel.loadDiscover { (result) in
         }
@@ -262,19 +260,19 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
 
 struct DiscoveryView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            DiscoveryView(viewModel: DiscoveryViewModel())
-        }
-//        Group {
+//        NavigationView {
+//            DiscoveryView(viewModel: DiscoveryViewModel())
+//        }
+        Group {
 //            NavigationView {
 //                DiscoveryView(viewModel: DiscoveryViewModel())
 //            }.previewDevice(.init(rawValue: "iPhone SE"))
-//            NavigationView {
-//                DiscoveryView(viewModel: DiscoveryViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone 8"))
+            NavigationView {
+                DiscoveryView(viewModel: DiscoveryViewModel())
+            }.previewDevice(.init(rawValue: "iPhone 11 Pro"))
 //            NavigationView {
 //                DiscoveryView(viewModel: DiscoveryViewModel())
 //            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-//        }
+        }
     }
 }

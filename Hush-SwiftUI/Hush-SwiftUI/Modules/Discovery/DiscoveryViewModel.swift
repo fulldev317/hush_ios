@@ -12,7 +12,6 @@ import Combine
 class DiscoveryViewModel: DiscoveryViewModeled {
 
     // MARK: - Properties
-    
     @Published var discoveries: [Discover] = []
     @Published var isShowingIndicator: Bool = false
     var settingsViewModel = DiscoveriesSettingsViewModel()
@@ -32,7 +31,7 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     }
         
     func loadDiscover(result: @escaping (Bool) -> Void) {
-
+       
         self.isShowingIndicator = true
         self.discoveries.removeAll()
         AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
