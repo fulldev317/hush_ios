@@ -40,7 +40,7 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
             let miles = 10 + selectedDistance * 80
             let kilometers = miles * 1.6
             AuthAPI.shared.update_radius(radius: String(kilometers)) { (error) in
-                
+                Common.setMaxRangeInfo(self.selectedDistance)
             }
         }
     }

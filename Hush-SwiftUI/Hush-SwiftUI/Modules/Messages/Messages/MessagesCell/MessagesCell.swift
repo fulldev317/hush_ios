@@ -17,7 +17,7 @@ struct MessagesCell: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            AsyncImage(url: url, cache: iOSApp.cache, placeholder: Image(systemName: "person.crop.circle")) { image in
+            AsyncImage(url: url, cache: iOSApp.cache, placeholder: Image("AppLogo")) { image in
                 image.resizable()
             }
             .aspectRatio(contentMode: .fill)

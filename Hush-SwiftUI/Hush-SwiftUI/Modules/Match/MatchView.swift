@@ -126,7 +126,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         let match = viewModel.match(i, j)
         return HStack {
             //(Text(match.name) + Text(", ") + Text("\(match.age)"))
-            (Text("123"))
+            (Text(match.name ?? "John") + Text(", ") + Text("\(match.age ?? "20")"))
                 .font(.regular(14))
                 .blur(radius: blured ? 2 : 0)
                 .foregroundColor(Color(0x8E8786))

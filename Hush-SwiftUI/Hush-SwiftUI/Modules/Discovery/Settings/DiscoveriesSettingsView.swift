@@ -40,6 +40,8 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             $0.isExclusiveTouch = true
         }
         self.viewModel.location = Common.addessInfo()
+        self.$firstSliderValue.wrappedValue = Common.maxRangeInfo()
+        
     }
     
     

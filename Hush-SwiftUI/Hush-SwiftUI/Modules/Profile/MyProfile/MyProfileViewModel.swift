@@ -76,26 +76,27 @@ class MyProfileViewModel: MyProfileViewModeled {
         default:
             basicsViewModel.gender = Gender.male
         }
-        
-        let array = user.looking!.components(separatedBy: ",")
-        if (array.count > 0) {
-            let looking = array[0]
-            
-            switch Int(looking) {
-            case 0:
-                basicsViewModel.sexuality = Gender.male
-                break
-            case 1:
-                basicsViewModel.sexuality = Gender.female
-                break
-            case 2:
-                basicsViewModel.sexuality = Gender.lesbian
-                break
-            case 3:
-                basicsViewModel.sexuality = Gender.gay
-                break
-            default:
-                basicsViewModel.sexuality = Gender.male
+        if let looking = user.looking {
+            let array = looking.components(separatedBy: ",")
+            if (array.count > 0) {
+                let looking = array[0]
+                
+                switch Int(looking) {
+                case 0:
+                    basicsViewModel.sexuality = Gender.male
+                    break
+                case 1:
+                    basicsViewModel.sexuality = Gender.female
+                    break
+                case 2:
+                    basicsViewModel.sexuality = Gender.lesbian
+                    break
+                case 3:
+                    basicsViewModel.sexuality = Gender.gay
+                    break
+                default:
+                    basicsViewModel.sexuality = Gender.male
+                }
             }
         }
         
@@ -129,9 +130,11 @@ class MyProfileViewModel: MyProfileViewModeled {
     func initPhotoData() {
         let user = Common.userInfo()
         let photos = user.photos
-        for index in (0..<(photos?.count)!) {
-            let photo:Photo = photos![index]
-            photoUrls.append(photo.photo)
+        if let count = photos?.count {
+            for index in (0 ..< count) {
+                let photo:Photo = photos![index]
+                photoUrls.append(photo.photo)
+            }
         }
         
         photoDatas.append(UIImage(named: "image2")!)

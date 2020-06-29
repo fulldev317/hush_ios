@@ -16,6 +16,9 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     
     @Published var message = "Hellow World!"
     @Published var photos: [Photo] = []
+    @Published var name: String = "Alex"
+    @Published var age: String = "32"
+    @Published var address: String = "London, UK"
     
     func updateMessage() {
         

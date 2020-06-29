@@ -10,6 +10,9 @@ import SwiftUI
 
 struct CardCaruselElementView: View {
     let rotation: Angle
+    let name: String
+    let age: String
+    let address: String
     let photo: Photo
     @State private var rectSize: CGSize = .zero
     @State private var showMessages = false
@@ -51,14 +54,16 @@ struct CardCaruselElementView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
-                        Text("Verylongname goes here")
+                        Text(name)
                             .foregroundColor(Color.black)
-                        Text("29").foregroundColor(Color.black)
+                        Text(age).foregroundColor(Color.black)
                     }.font(.thin(ISiPhoneX ? 30 : 24)).lineLimit(1)
-                    Text("Los Angeles").font(.thin(ISiPhoneX ? 18 : 16)).foregroundColor(Color.black)
+                    Text(address).font(.thin(ISiPhoneX ? 18 : 16)).foregroundColor(Color.black)
                     Circle().fill(Color(0x6FCF97)).square(15)
                         .padding(.top, 4)
                 }.padding(.leading, ISiPhoneX ? 0 : rotation.degrees > 0 ? 20 : -10 )
+                
+                Spacer()
                 
                 VStack {
                     NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(), isActive: self.$showMessages) {
@@ -71,9 +76,9 @@ struct CardCaruselElementView: View {
                         Image("profile_icon_carusel").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                     }.buttonStyle(PlainButtonStyle())
                 }.padding(.bottom, 10).padding(.trailing, ISiPhoneX ? 0 : 15)
-            }.padding(.bottom, ISiPhoneX ? 10 : 10)
-                .padding(.horizontal, 5)
-                .padding(.leading, 0)
+            }.padding(.bottom, rotation.degrees > 0 ? 0: 10)
+                .padding(.leading, 15)
+                .padding(.trailing, rotation.degrees > 0 ? -10: 15)
             
         }.padding(.horizontal, ISiPhoneX ? 70 * deviceScale : 0)
         .padding(.vertical)
@@ -82,7 +87,7 @@ struct CardCaruselElementView: View {
 
 struct CardCaruselElement_Previews: PreviewProvider {
     static var previews: some View {
-        CardCaruselElementView(rotation: .degrees(-5), photo: try! Photo.init(id: "123", thumb: "story1", photo: "story1", approved: "1", profile: "story1", blocked: "0"))
+        CardCaruselElementView(rotation: .degrees(-5), name: "Bobby", age: "23", address: "London, UK", photo: try! Photo.init(id: "123", thumb: "story1", photo: "story1", approved: "1", profile: "story1", blocked: "0"))
             .previewEnvironment()
             .padding()
     }

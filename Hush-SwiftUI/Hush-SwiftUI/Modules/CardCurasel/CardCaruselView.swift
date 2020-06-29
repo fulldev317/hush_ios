@@ -148,7 +148,12 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func caruselElement(_ index: Int) -> some View {
-        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5), photo: viewModel.photos[index % viewModel.photos.count])
+
+        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5),
+                               name: viewModel.name,
+                               age: viewModel.age,
+                               address: viewModel.address,
+                               photo: viewModel.photos[index % viewModel.photos.count])
             .offset(index == self.cardIndex ? self.translation : .zero)
             .offset(x: 0, y: self.offset(index))
             .gesture(index == self.cardIndex ? self.topCardDrag : nil)
