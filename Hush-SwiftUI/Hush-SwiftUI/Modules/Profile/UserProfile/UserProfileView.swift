@@ -111,27 +111,28 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     .padding(.top, SafeAreaInsets.top)
                 
                 ZStack {
-                    Pager(page: self.$currentPage, data: self.viewModel.photoUrls) { img in
-                        GeometryReader { pr in
-                            AsyncImage(url: URL(string: img)!, cache: iOSApp.cache, placeholder: Image(systemName: "person.crop.circle")) { image in
-                                image.resizable()
+                    if self.viewModel.photoUrls.count > 0 {
+                        Pager(page: self.$currentPage, data: self.viewModel.photoUrls) { img in
+                            GeometryReader { pr in
+                                AsyncImage(url: URL(string: img)!, cache: iOSApp.cache, placeholder: Image(systemName: "person.crop.circle")) { image in
+                                    image.resizable()
 
+                                }
+                                    .aspectRatio(contentMode: .fill)
+                                 .frame(width: pr.size.width, height: pr.size.height)
+                                .clipShape(Rect(width: pr.size.width, height: pr.size.height))
                             }
-                                .aspectRatio(contentMode: .fill)
-                             .frame(width: pr.size.width, height: pr.size.height)
-                            .clipShape(Rect(width: pr.size.width, height: pr.size.height))
                         }
+                        .itemSpacing(30)
+                        .padding(0)
+                        .overlay(Button(action: { self.shouldReport.toggle() }) {
+                            Image(systemName: "ellipsis")
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                                .padding(.vertical, 16)
+                                .padding(.horizontal, 23)
+                        }, alignment: .topTrailing)
                     }
-                    .itemSpacing(30)
-                    .padding(0)
-                    .overlay(Button(action: { self.shouldReport.toggle() }) {
-                        Image(systemName: "ellipsis")
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .padding(.vertical, 16)
-                            .padding(.horizontal, 23)
-                    }, alignment: .topTrailing)
-                    
                     
                     self.overlay
                     VStack(spacing: 0) {
