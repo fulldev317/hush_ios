@@ -40,7 +40,7 @@ struct PhotoCard<Content: View>: View {
                 .foregroundColor(.white)
                 .shadow(color: Color.black.opacity(0.4), radius: 8, x: 0, y: 4)
             VStack(spacing: 0) {
-                AsyncImage(url: URL(string: image)!, cache: iOSApp.cache, placeholder: Image(systemName: "person.crop.circle")) { image in
+                AsyncImage(url: URL(string: image)!, cache: iOSApp.cache, placeholder: cardWidth > 120 ? Image("placeholder_b") : Image("placeholder_s")) { image in
                     image.resizable()
 
                 }
@@ -56,7 +56,7 @@ struct PhotoCard<Content: View>: View {
 //                    .frame(width: imgSide, height: imgSide)
 //                    .padding([.leading, .top, .trailing], (cardWidth - imgSide) / 2)
 //                    .blur(radius: blured ? (cardWidth - imgSide) / 3 : 0)
-//                    .clipShape(Squere(x: (cardWidth - imgSide) / 2, y: (cardWidth - imgSide) / 2, side: imgSide))
+//          `          .clipShape(Squere(x: (cardWidth - imgSide) / 2, y: (cardWidth - imgSide) / 2, side: imgSide))
                 
                 bottom
             }

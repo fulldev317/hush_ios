@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
-var _user: User?
-var _address: String?
+var _user: User? = User()
+var _address: String? = "London, UK"
+var _lowAge: Double? = 0.0
+var _upperAge: Double? = 1.0
+var _maxRange: Double? = 0.0
 var _image: UIImage?
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let WIDTH_375 = SCREEN_WIDTH == 375
@@ -21,7 +24,7 @@ class Common: NSObject {
     }
     
     static func userInfo() -> User {
-        return _user!
+        return _user ?? User()
     }
     
     static func setAdderesInfo(_ address: String) {
@@ -30,6 +33,14 @@ class Common: NSObject {
     
     static func addessInfo() -> String {
         return _address!
+    }
+    
+    static func setMaxRangeInfo(_ range: Double) {
+        _maxRange = range
+    }
+    
+    static func maxRangeInfo() -> Double {
+        return _maxRange!
     }
     
     static func setCapturedImage(_ image: UIImage) {

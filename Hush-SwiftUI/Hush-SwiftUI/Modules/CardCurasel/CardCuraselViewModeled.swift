@@ -13,7 +13,9 @@ protocol CardCuraselViewModeled: ObservableObject {
     
     var message: String { get set }
     var photos: [Photo] { get set }
-    
+    var name: String { get set }
+    var age: String { get set }
+    var address: String { get set }
     func updateMessage()
     
     func viewModel(for index: Int) -> CardCuraselElementViewModel
