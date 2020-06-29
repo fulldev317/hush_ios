@@ -57,14 +57,13 @@ class UserProfileViewModel: UserProfileViewModeled {
         }
         herefor = userInfo.hereFor ?? "1"
         gender = userInfo.gender ?? "0"
-        
-        let photos = userInfo.photos
-        if photos != nil {
-            for index in (0..<(photos?.count)!) {
-                let photo:Photo = photos![index]
-                photoUrls.append(photo.photo)
-            }
+        let photos = userInfo.photos ?? []
+        let photo_count = photos.count
+        for index in (0 ..< photo_count) {
+            let photo:Photo = photos[index]
+            photoUrls.append(photo.photo)
         }
+    
     }
     
     func updateMessage() {
