@@ -99,7 +99,7 @@ class UserLoginManager: ObservableObject {
                 isLoggedIn.wrappedValue = true
                 
                 Common.setUserInfo(user)
-                
+                Common.setAdderesInfo("Los Angels, FA, UK")
                 let jsonData = try! JSONEncoder().encode(user)
                 let jsonString = String(data:jsonData, encoding: .utf8)!
                 

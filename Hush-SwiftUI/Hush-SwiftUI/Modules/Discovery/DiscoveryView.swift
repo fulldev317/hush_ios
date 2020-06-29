@@ -19,6 +19,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
     // MARK: - Properties
     
+    @EnvironmentObject var app: App
     @ObservedObject var viewModel: ViewModel
     @State private var showUserProfile = false
     @State var isShowing: Bool = false
@@ -26,10 +27,12 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @State private var selectedIndex: Int = 0
     @State private var selectedUser: User = User()
 
-    init(viewModel: ViewModel) {
+    init(viewModel: ViewModel, showingSetting: Bool) {
         self.viewModel = viewModel
         
-        self.viewModel.loadDiscover { (result) in
+        if !showingSetting {
+            self.viewModel.loadDiscover { (result) in
+            }
         }
       
     }
@@ -268,8 +271,8 @@ struct DiscoveryView_Previews: PreviewProvider {
 //                DiscoveryView(viewModel: DiscoveryViewModel())
 //            }.previewDevice(.init(rawValue: "iPhone SE"))
             NavigationView {
-                DiscoveryView(viewModel: DiscoveryViewModel())
-            }.previewDevice(.init(rawValue: "iPhone 11 Pro"))
+                DiscoveryView(viewModel: DiscoveryViewModel(), showingSetting: false)
+            }.previewDevice(.init(rawValue: "iPhone X"))
 //            NavigationView {
 //                DiscoveryView(viewModel: DiscoveryViewModel())
 //            }.previewDevice(.init(rawValue: "iPhone XS Max"))

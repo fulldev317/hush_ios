@@ -16,25 +16,32 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
     @Published var gender = Gender.male
     @Published var message = "Hellow World!"
     @Published var dragFlag: Bool = true
-    @Published var location: String = "Los Angeles"
+    @Published var location: String = "Los Angles, FA, US"
     @Published var closeAPISelectorCompletion: (() -> Void)?
-    @Published var ageSelLower: Double = 0.0 {
+    @Published var ageSelLower: Double = 18 {
         didSet {
             let ageLower = (Int(18 + (99 - 18) * ageSelLower))
-
+            AuthAPI.shared.update_age(lower: String(ageLower), upper: String(Int(ageSelUpper))) { (error) in
+                
+            }
         }
     }
-    @Published var ageSelUpper: Double = 1.0 {
+    @Published var ageSelUpper: Double = 99 {
         didSet {
             let ageUpper = (Int(18 + (99 - 18) * ageSelUpper))
-
+            AuthAPI.shared.update_age(lower: String(Int(ageSelLower)), upper: String(ageUpper)) { (error) in
+                
+            }
         }
     }
     
     @Published var selectedDistance : Double = 1.0 {
         didSet {
-            //let miles = 10 + selectedDistance * 80
-            //let kilometers = miles * 1.6
+            let miles = 10 + selectedDistance * 80
+            let kilometers = miles * 1.6
+            AuthAPI.shared.update_radius(radius: String(kilometers)) { (error) in
+                
+            }
         }
     }
     func updateMessage() {

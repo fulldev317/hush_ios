@@ -9,9 +9,12 @@
 import Combine
 
 protocol MatchViewModeled: ObservableObject {
-    typealias Matches = (name: String, age: Int, liked: Bool)
+    //typealias Matches = (name: String, age: Int, liked: Bool)
     
-    var matches: [(name: String, age: Int, liked: Bool)] { get set }
-    func match(_ i: Int, _ j: Int) -> Matches
+    var matches: [Discover] { get set }
+    func match(_ i: Int, _ j: Int) -> Discover
     func like(_ i: Int, _ j: Int)
+    func loadMatches(result: @escaping (Bool) -> Void)
+    var isShowingIndicator: Bool { get set }
+
 }

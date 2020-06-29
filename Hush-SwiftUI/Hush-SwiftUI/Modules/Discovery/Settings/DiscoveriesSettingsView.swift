@@ -39,6 +39,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
         UIView.appearance().subviews.forEach {
             $0.isExclusiveTouch = true
         }
+        self.viewModel.location = Common.addessInfo()
     }
     
     
@@ -62,7 +63,8 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                     Text("Location").font(.light())
                     
                     Spacer()
-                    Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light())
+                    Text(self.viewModel.location)
+                    //Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light())
                     Spacer()
                     Button(action: {
                         self.partialSheetManager.showPartialSheet({
@@ -70,16 +72,19 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                         }, content: {
                             TextQuerySelectorView(provider: SelectLocationAPI(query: "") { newLocation in
                                 if let result = newLocation {
-                                    self.viewModel.location = result
                                     
                                     AuthAPI.shared.get_geocode(address: result) { (lat, lng) in
                                         AuthAPI.shared.update_location(address: result, lat: lat!, lng: lng!) { (error) in
                                         
+                                            self.viewModel.location = result
+
                                             var user = Common.userInfo()
                                             user.address = result
                                             user.latitude = lat
                                             user.longitude = lng
                                             Common.setUserInfo(user)
+                                            
+                                            Common.setAdderesInfo(result)
                                         }
                                     }
                                 }

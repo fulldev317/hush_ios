@@ -267,45 +267,69 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("Matches", "0") {
-                    self.showMatchesView.toggle()
-                }.background(
-                    NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image5", blured: false).environmentObject(self.app).withoutBar(),
-                        isActive: $showMatchesView,
-                        label: EmptyView.init
+                if (self.showMatchesView) {
+                    tableRow("Matches", "0") {
+                        self.showMatchesView.toggle()
+                    }.background(
+                        NavigationLink(
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image5", blured: false).environmentObject(self.app).withoutBar(),
+                            isActive: $showMatchesView,
+                            label: EmptyView.init
+                        )
                     )
-                )
+                } else {
+                    tableRow("Likes me", "0") {
+                        self.showLikesMeView.toggle()
+                    }
+                }
                 
-                tableRow("Visited my Profile", "0") {
-                    self.showVisitedMeView.toggle()
-                }.background(
-                    NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", image_url: "image2", blured: true).environmentObject(self.app).withoutBar(),
-                       isActive: $showVisitedMeView,
-                       label: EmptyView.init
+                if (self.showVisitedMeView) {
+                    tableRow("Visited my Profile", "0") {
+                        self.showVisitedMeView.toggle()
+                    }.background(
+                        NavigationLink(
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", image_url: "image2", blured: true).environmentObject(self.app).withoutBar(),
+                           isActive: $showVisitedMeView,
+                           label: EmptyView.init
+                        )
                     )
-                )
+                } else {
+                    tableRow("Visited my Profile", "0") {
+                        self.showVisitedMeView.toggle()
+                    }
+                }
                 
-                tableRow("Likes me", "0") {
-                    self.showLikesMeView.toggle()
-                }.background(
-                    NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", image_url: "image3", blured: true).environmentObject(self.app).withoutBar(),
-                       isActive: $showLikesMeView,
-                       label: EmptyView.init
+                if (self.showLikesMeView) {
+                    tableRow("Likes me", "0") {
+                        self.showLikesMeView.toggle()
+                    }.background(
+                        NavigationLink(
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", image_url: "image3", blured: true).environmentObject(self.app).withoutBar(),
+                           isActive: $showLikesMeView,
+                           label: EmptyView.init
+                        )
                     )
-                )
+                } else {
+                    tableRow("Likes me", "0") {
+                        self.showLikesMeView.toggle()
+                    }
+                }
                 
-                tableRow("My likes", "0") {
-                    self.showMyLikeView.toggle()
-                }.background(
-                    NavigationLink(
-                        destination: MatchView(viewModel: MatchViewModel(), title: "My Likes", image_url: "image4", blured: false).environmentObject(self.app).withoutBar(),
-                       isActive: $showMyLikeView,
-                       label: EmptyView.init
+                if (self.showMyLikeView) {
+                    tableRow("My likes", "0") {
+                        self.showMyLikeView.toggle()
+                    }.background(
+                        NavigationLink(
+                            destination: MatchView(viewModel: MatchViewModel(), title: "My Likes", image_url: "image4", blured: false).environmentObject(self.app).withoutBar(),
+                           isActive: $showMyLikeView,
+                           label: EmptyView.init
+                        )
                     )
-                )
+                } else {
+                    tableRow("My likes", "0") {
+                        self.showMyLikeView.toggle()
+                    }
+                }
             }
         }.padding(.horizontal, 36)
     }

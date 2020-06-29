@@ -22,6 +22,15 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     @State private var showUpgrade = false
     @Environment(\.presentationMode) var mode
 
+    init(viewModel: ViewModel, title: String, image_url: String, blured: Bool) {
+        self.viewModel = viewModel
+        self.title = title
+        self.image_url = image_url
+        self.blured = blured
+        
+        self.viewModel.loadMatches { (result) in
+        }
+    }
 
     // MARK: - Lifecycle
     
@@ -41,26 +50,39 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                 }
             }.padding([.horizontal])
                
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: -20) {
-                  ForEach(0..<(viewModel.matches.count / 2), id: \.self) {
-                      self.row(at: $0)
-                  }
-                }.padding(.top, 10)
-            }.background(
-                NavigationLink(
-                    destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)),
-                  isActive: $showsUserProfile,
-                  label: EmptyView.init
+            if viewModel.matches.count > 0 {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: -20) {
+                        ForEach(0..<(viewModel.matches.count / 2), id: \.self) {
+                            self.row(at: $0)
+                        }
+                    }.padding(.top, 10)
+                }.padding(.top, TAB_HEIGHT + 10)
+                .background(
+                    NavigationLink(
+                        destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)),
+                        isActive: $showsUserProfile,
+                        label: EmptyView.init
+                    )
                 )
-            ).background(
-                NavigationLink(
-                    destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar(),
-                    isActive: $showUpgrade,
-                    label: EmptyView.init
+                .background(
+                    NavigationLink(
+                        destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar(),
+                        isActive: $showUpgrade,
+                        label: EmptyView.init
+                    )
+                    
                 )
-                
-            )
+                HushIndicator(showing: self.viewModel.isShowingIndicator)
+
+            } else {
+                VStack {
+                    Spacer()
+                    HushIndicator(showing: self.viewModel.isShowingIndicator)
+                    Spacer()
+
+                }
+            }
        }
        .background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }
@@ -74,12 +96,9 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     }
     
     func polaroidCard(_ i: Int, _ j: Int) -> some View {
-        PolaroidCard(
-            image: UIImage(named: image_url)!,
-            cardWidth: SCREEN_WIDTH / 2 + 15,
-            bottom: self.bottomView(i, j),
-            blured: blured
-        ).offset(x: j % 2 == 0 ? -10 : 10, y: 0)
+        
+        PhotoCard(image: self.viewModel.matches[i*2+j].photo!, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: false)
+        .offset(x: j % 2 == 0 ? -10 : 10, y: 0)
         .zIndex(Double(i % 2 == 0 ? j : -j))
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
         .onTapGesture {
@@ -106,7 +125,8 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     func bottomView(_ i: Int, _ j: Int) -> some View {
         let match = viewModel.match(i, j)
         return HStack {
-            (Text(match.name) + Text(", ") + Text("\(match.age)"))
+            //(Text(match.name) + Text(", ") + Text("\(match.age)"))
+            (Text("123"))
                 .font(.regular(14))
                 .blur(radius: blured ? 2 : 0)
                 .foregroundColor(Color(0x8E8786))
@@ -114,7 +134,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
             Button(action: { self.viewModel.like(i, j) }) {
                 Image("red_heart")
                     .resizable()
-                    .renderingMode(match.liked ? .original : .template)
+                    .renderingMode(match.liked! ? .original : .template)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
                     .foregroundColor(.gray)

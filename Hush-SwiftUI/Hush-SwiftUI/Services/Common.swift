@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 var _user: User?
+var _address: String?
 var _image: UIImage?
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let WIDTH_375 = SCREEN_WIDTH == 375
@@ -22,7 +23,15 @@ class Common: NSObject {
     static func userInfo() -> User {
         return _user!
     }
-        
+    
+    static func setAdderesInfo(_ address: String) {
+        _address = address
+    }
+    
+    static func addessInfo() -> String {
+        return _address!
+    }
+    
     static func setCapturedImage(_ image: UIImage) {
         _image = image
     }
