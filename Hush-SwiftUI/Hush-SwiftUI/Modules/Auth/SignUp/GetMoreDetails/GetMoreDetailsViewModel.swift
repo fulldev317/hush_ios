@@ -103,6 +103,7 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
                 isLoggedIn.wrappedValue = true
                 
                 Common.setUserInfo(user)
+                Common.setAdderesInfo(user.address!)
                 
                 let jsonData = try! JSONEncoder().encode(user)
                 let jsonString = String(data:jsonData, encoding: .utf8)!

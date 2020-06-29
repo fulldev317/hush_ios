@@ -147,7 +147,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
             }.padding(.leading, 25)
-            DiscoveryView(viewModel:  self.app.discovery)
+            DiscoveryView(viewModel:  self.app.discovery, showingSetting: self.app.isShowingSetting)
         }.frame(width: SCREEN_WIDTH)
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
@@ -178,7 +178,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
             }.padding(.leading, 25)
             
-            DiscoveryView(viewModel:  self.app.discovery)
+            DiscoveryView(viewModel:  self.app.discovery, showingSetting: self.app.isShowingSetting)
         }.frame(width: SCREEN_WIDTH)
         .withoutBar()
         .background(Color.black.edgesIgnoringSafeArea(.all))
