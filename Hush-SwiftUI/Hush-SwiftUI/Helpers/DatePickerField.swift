@@ -71,8 +71,11 @@ extension DatePickerField {
             let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(nextPressed))
             
             let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
+            
             toolBar.isTranslucent = false
-            toolBar.setItems([spaceButton, spaceButton, doneButton], animated: false)
+            toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
             
             return toolBar
         }
@@ -92,6 +95,11 @@ extension DatePickerField {
             picked(selectedDate)
             self.textField.resignFirstResponder()
             //UIApplication.shared.windows.first?.endEditing(true)
+        }
+        
+        @objc
+        private func cancelPressed() {
+            self.textField.resignFirstResponder()
         }
     }
 }

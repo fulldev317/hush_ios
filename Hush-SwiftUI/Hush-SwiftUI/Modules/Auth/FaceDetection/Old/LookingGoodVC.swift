@@ -65,6 +65,7 @@ class LookingGoodVC: UIViewController {
         
         indicator.stopAnimating()
         indicator.isHidden = true
+        
         // Do any additional setup after loading the view.
     }
     
