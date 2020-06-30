@@ -46,7 +46,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                         }.zIndex(self.currentTab == .discoveries ? 1 : 0)
                     } else {
                         ZStack {
-                            Text("123")
+                            Spacer()
                         }
                     }
                     
@@ -64,10 +64,16 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     
                     if self.currentTab == .chats {
                         self.messages().zIndex(self.currentTab == .chats ? 1 : 0)
+                    } else {
+                        ZStack {
+                           Spacer()
+                        }
                     }
                     
                     if self.currentTab == .profile {
-                        MyProfileView(viewModel: MyProfileViewModel()).zIndex(self.currentTab == .profile ? 1 : 0)
+                        NavigationView {
+                            MyProfileView(viewModel: MyProfileViewModel()).withoutBar()
+                        }.zIndex(self.currentTab == .profile ? 1 : 0)
                     }
                 }
             }.frame(width: proxy.size.width, height: proxy.size.height)
