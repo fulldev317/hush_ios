@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
     
-    //@State var showSignupButtons = false
+    @State var showSignupButtons = false
     
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
@@ -21,14 +21,14 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
         ZStack {
             VStack {
                 logo()
-                    .opacity(app.showSignupButtons ? 0.3 : 1)
-                    .padding(.top, 55)
+                    .opacity(showSignupButtons ? 0.3 : 1)
+                    .padding(.top, showSignupButtons ? -100 : 55)
                 Spacer()
             }
             VStack {
                 Spacer()
                 signupButton()
-                    .padding(.bottom, app.showSignupButtons ? 140 : 220)
+                    .padding(.bottom, showSignupButtons ? 140 : 220)
             }
             
             VStack(spacing: 28) {
@@ -61,19 +61,23 @@ extension SignUpView {
     func signupButton() -> some View {
         
         VStack(spacing: 17) {
-            HapticButton(action: { withAnimation { self.app.showSignupButtons.toggle() } }) {
-                if !app.showSignupButtons {
+            HapticButton(action: { withAnimation {
+                self.showSignupButtons.toggle()
+                self.app.showSignupButtons = self.showSignupButtons
+                } }) {
+                
+                if showSignupButtons {
                     Image("arrowUp_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
                 }
                 Text("Sign Up")
                     .foregroundColor(.white)
                     .font(.medium(24))
-                if app.showSignupButtons {
+                if showSignupButtons {
                     Image("arrowDown_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
                 }
-            }.opacity(app.showSignupButtons ? 0.5 : 1)
+            }.opacity(showSignupButtons ? 0.5 : 1)
             
-            if app.showSignupButtons {
+            if showSignupButtons {
                 LoginButtons(presenter: viewModel, isShowingProgress: self.$isShowing).transition(buttonsTransition())
             }
         }.frame(maxWidth: .infinity)
