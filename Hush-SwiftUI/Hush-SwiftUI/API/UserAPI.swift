@@ -380,7 +380,7 @@ class UserAPI: BaseAPI {
     
     func updateLocation(latitude: Double, longitude: Double, city: String, country: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateLocation"]
+        var parameters: Parameters = ["action": "updateLocationA"]
         
         let query: [Any] = [userId, latitude, longitude, city, country]
         parameters["query"] = query

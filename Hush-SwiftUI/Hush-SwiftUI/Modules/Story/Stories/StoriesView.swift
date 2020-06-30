@@ -30,6 +30,7 @@ extension HeaderedScreen {
             }
             Spacer()
         }.padding(.leading, 30)
+        .padding(.top, ISiPhoneX ? 0 : 20)
     }
 }
 

@@ -29,11 +29,18 @@ struct HToggleStyle: ToggleStyle {
                             .fill(thumbColor)
                             .shadow(radius: 1, x: 0, y: 1)
                             .padding(1.5)
-                            .offset(x: configuration.isOn ? 10 : -10))
+                            .offset(x: configuration.isOn ? 12 : -13))
                     .animation(Animation.easeInOut(duration: 0.1))
             }
         }
         .font(.title)
         .padding(.horizontal)
+    }
+}
+
+struct HToggleStyle_Previews: PreviewProvider {
+    static var previews: some View {
+        Toggle("", isOn: .constant(false)).toggleStyle(HToggleStyle(onColor: Color(0x7ED321), offColor: Color(0xEB5757)))
+        
     }
 }

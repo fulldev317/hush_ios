@@ -128,15 +128,16 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 Text("PhotoBooth")
                     .font(.ultraLight(48))
                     .foregroundColor(.hOrange)
-                    .padding(.top, ISiPhoneX ? 10 : 25)
+                    
             }.padding(.leading, 25)
-            Spacer()
+            .padding(.top, ISiPhoneX ? 10 : 20)
             
+            Spacer()
             ZStack {
                 ForEach((cardIndex..<(cardIndex + viewModel.photos.count)).reversed(), id: \.self) { index in
                     self.caruselElement(index)
                 }
-            }.frame(width: SCREEN_WIDTH).padding(.bottom, 20).padding(.top, 30)
+            }.frame(width: SCREEN_WIDTH).padding(.bottom, ISiPhoneX ? 20 : 0).padding(.top, 30)
             
             HushIndicator(showing: self.isShowing)
         }.overlay(overlay)

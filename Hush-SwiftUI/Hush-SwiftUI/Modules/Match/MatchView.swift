@@ -38,14 +38,14 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         
         VStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text(title).font(.thin(48)).foregroundColor(.hOrange)
+                Text(title).font(.thin(48)).foregroundColor(.hOrange).padding(.top, ISiPhoneX ? 0 : 20).padding(.leading, 10)
                 HStack(alignment: .top) {
                    HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
                        HStack(spacing: 23) {
                            Image("onBack_icon")
                            Text("Back to My Profile").foregroundColor(.white).font(.thin())
                        }
-                   }
+                   }.padding(.leading, 10)
                    Spacer()
                 }
             }.padding([.horizontal])
@@ -57,7 +57,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                             self.row(at: $0)
                         }
                     }.padding(.top, 10)
-                }.padding(.top, TAB_HEIGHT + 10)
+                }
                 .background(
                     NavigationLink(
                         destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)),
@@ -73,8 +73,6 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                     )
                     
                 )
-                HushIndicator(showing: self.viewModel.isShowingIndicator)
-
             } else {
                 VStack {
                     Spacer()
@@ -97,7 +95,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     
     func polaroidCard(_ i: Int, _ j: Int) -> some View {
         
-        PhotoCard(image: self.viewModel.matches[i*2+j].photo!, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: false)
+        PhotoCard(image: self.viewModel.matches[i*2+j].photo!, cardWidth: SCREEN_WIDTH / 2 + 15, bottom: self.bottomView(i, j), blured: self.blured)
         .offset(x: j % 2 == 0 ? -10 : 10, y: 0)
         .zIndex(Double(i % 2 == 0 ? j : -j))
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
