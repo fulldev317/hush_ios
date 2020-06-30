@@ -24,14 +24,35 @@ struct SignInWithAppleView: UIViewRepresentable {
         return Coordinator(self)
     }
     
-    func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
-        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .whiteOutline)
-        button.cornerRadius = 6
-        button.addTarget(context.coordinator, action:  #selector(Coordinator.didTapButton), for: .touchUpInside)
-        return button
+    func makeUIView(context: Context) -> UIView  {
+//        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .whiteOutline)
+//        button.cornerRadius = 6
+//        button.addTarget(context.coordinator, action:  #selector(Coordinator.didTapButton), for: .touchUpInside)
+        let frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH - 48, height: 48)
+        let button = UIButton(frame: frame)
+        button.addTarget(context.coordinator, action: #selector(Coordinator.didTapButton), for: .touchUpInside)
+        button.backgroundColor = UIColor.clear
+        let view = UIView(frame: frame)
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 6
+        let imageView = UIImageView(frame: CGRect(x: 50, y: 14, width: 20, height: 20))
+        imageView.image = UIImage(named: "apple_icon")
+        
+        let font = UIFont(name: "SFProDisplay-Regular", size: 20)
+        
+        let textView = UILabel(frame: CGRect(x: 79, y:0, width: SCREEN_WIDTH - 140, height: 48))
+        textView.text = "Sign in with Apple"
+        textView.font = font
+        textView.textColor = UIColor.black
+        
+        view.addSubview(imageView)
+        view.addSubview(textView)
+        view.addSubview(button)
+        
+        return view
     }
     
-    func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {
+    func updateUIView(_ uiView: UIView, context: Context) {
     
     }
 }
