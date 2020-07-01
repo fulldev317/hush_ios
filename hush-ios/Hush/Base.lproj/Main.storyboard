@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o3R-5D-cPU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o3R-5D-cPU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Light.ttf">
+        <array key="SF-Pro-Display-Light.otf">
             <string>SFProDisplay-Light</string>
         </array>
         <array key="SF-Pro-Display-Medium.otf">
@@ -3644,7 +3644,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAW-om-8F0">
                                                 <rect key="frame" x="60" y="80" width="334" height="409"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image4" translatesAutoresizingMaskIntoConstraints="NO" id="HNq-mu-1jE">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="10" translatesAutoresizingMaskIntoConstraints="NO" id="HNq-mu-1jE">
                                                         <rect key="frame" x="15" y="15" width="304" height="304"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="HNq-mu-1jE" secondAttribute="height" multiplier="1:1" id="8Ue-Ci-87p"/>
@@ -3821,6 +3821,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="10" width="150" height="150"/>
         <image name="Vector" width="102" height="75"/>
         <image name="Vector (1)" width="92" height="92"/>
         <image name="arrow-bottom" width="30" height="30"/>
@@ -3844,7 +3845,7 @@
         <image name="msg" width="33" height="30"/>
         <image name="password" width="16" height="18"/>
         <image name="photoBox" width="33" height="30"/>
-        <image name="search" width="30" height="30"/>
+        <image name="search" width="26" height="26"/>
         <image name="tabcard" width="36" height="37"/>
         <image name="tabuser" width="27" height="30"/>
         <image name="user" width="16" height="18"/>
