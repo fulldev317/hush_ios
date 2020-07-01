@@ -14,6 +14,7 @@ class UserProfileViewModel: UserProfileViewModeled {
     // MARK: - Properties
     
     @Published var photoUrls: [String] = []
+    @Published var unlockedPhotos: Set<Int> = []
     @Published var mode: UserProfileMode = .photo
     @Published var name: String = ""
     @Published var address: String = ""
@@ -21,7 +22,6 @@ class UserProfileViewModel: UserProfileViewModeled {
     @Published var lookfor: String = "Female"
     @Published var herefor: String = "Fun"
     @Published var gender: String = "Male"
-
     
     var aboutMe = "Hello World!"
     var location = "Hello World!"
@@ -59,11 +59,17 @@ class UserProfileViewModel: UserProfileViewModeled {
         gender = userInfo.gender ?? "0"
         let photos = userInfo.photos ?? []
         let photo_count = photos.count
+        let empty_count = 8 - photo_count + 1
+        
+        for _ in (0 ..< empty_count) {
+            unlockedPhotos.insert(1)
+        }
+        
         for index in (0 ..< photo_count) {
             let photo:Photo = photos[index]
             photoUrls.append(photo.photo)
+            unlockedPhotos.insert(0)
         }
-    
     }
     
     func updateMessage() {

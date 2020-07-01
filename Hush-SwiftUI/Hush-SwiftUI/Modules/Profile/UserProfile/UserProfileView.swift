@@ -225,7 +225,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     VStack(alignment: .leading, spacing: 20) {
                         self.textBlock("About Me", subTitle: self.viewModel.bio)
                         self.textBlock("Current Location", subTitle: self.viewModel.address)
-                        self.carusel("Photos", unlocked: self.$unlockedImages, images: self.viewModel.photoUrls).padding(.vertical, -10)
+                        self.carusel("Photos", unlocked: self.$viewModel.unlockedPhotos, images: self.viewModel.photoUrls).padding(.vertical, -10)
                         //self.carusel("Stories", unlocked: self.$unlockedStories, images: self.viewModel.stories)
                         HStack {
                             VStack(alignment: .leading, spacing: 25) {
@@ -301,22 +301,34 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
             Text(title).font(.regular(24)).foregroundColor(.white)
             ScrollView(.horizontal) {
                 HStack(spacing: 15) {
-                    ForEach(0 ..< images.count) { index in
+                    ForEach(0 ..< MAX_PHOTOS) { index in
                         
-                        PhotoCard<EmptyView>(
-                            image: images[index],
-                            cardWidth: 92
-                        )
-                            //.overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
-                        .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
-//                        .onTapGesture {
-//                            if unlocked.wrappedValue.contains(index) {
-//                                unlocked.wrappedValue.remove(index)
-//                            } else {
-//                                unlocked.wrappedValue.insert(index)
-//                            }
-//                        }
-                    .animation(.default)
+                        if index < images.count {
+                            PhotoCard<EmptyView>(
+                                image: images[index],
+                                cardWidth: 92
+                            )
+                            .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
+                            .animation(.default)
+
+                        } else {
+                        
+                            PhotoCard<EmptyView>(
+                                image: "empty",
+                                cardWidth: 92
+                            )
+                            .overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
+                            .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
+    //                        .onTapGesture {
+    //                            if unlocked.wrappedValue.contains(index) {
+    //                                unlocked.wrappedValue.remove(index)
+    //                            } else {
+    //                                unlocked.wrappedValue.insert(index)
+    //                            }
+    //                        }
+                            .animation(.default)
+
+                        }
                     }
                 }.padding(.vertical, 15)
                     .padding(.horizontal, 5)
