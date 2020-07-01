@@ -69,7 +69,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
             }.padding(.top, 22)
         }.background(
             NavigationLink(
-                destination: StoryView(viewModel: StoryViewModel()).environmentObject(self.app).withoutBar(),
+                destination: StoryView(viewModel: StoryViewModel(), isNewStory: false).environmentObject(self.app).withoutBar(),
                 isActive: $showsUserProfile,
                 label: EmptyView.init
             )
@@ -112,7 +112,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     
     func showMyStory(lastPick: Bool) {
         modalPresenterManager.present(style: .overFullScreen) {
-            StoryView(viewModel: MyStoryViewModel(userStories, isLastPick: lastPick))
+            StoryView(viewModel: MyStoryViewModel(userStories, isLastPick: lastPick), isNewStory: true)
         }
     }
     
