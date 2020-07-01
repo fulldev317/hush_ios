@@ -13,7 +13,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
     
     @State private var keyboardHeight: CGFloat = 0
     @State private var showReport = false
-    @State private var likedStory = false
+    @State private var likedStory = true
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
     @EnvironmentObject private var app: App
@@ -66,9 +66,14 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         Text("21 minutes ago").font(.regular())
                     }.shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
                     Button(action: { self.likedStory.toggle() }) {
-                        Image("heart_icon")
-                            .foregroundColor(likedStory ? .red : .white)
-                            .padding(20)
+                        if likedStory {
+                            Image("heart_icon_solid")
+                                .foregroundColor(Color.red)
+                                .padding(20)
+                        } else {
+                            Image("heart_icon")
+                                .padding(20)
+                        }
                     }
                     Button(action: {
                          self.mode.wrappedValue.dismiss()
