@@ -59,7 +59,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                 }) {
                     Text("Done").font(.bold(16))
                 }
-            }.padding(.bottom, 40)
+            }.padding(.bottom, ISiPhoneX ? 40 : 15)
             VStack {
                 HStack {
                     Text("Location").font(.light())
@@ -160,7 +160,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                     Toggle("", isOn: $isToggle)
                 }
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
-            }.padding(.top, 20)
+            }.padding(.top, ISiPhoneX ? 20 : 10)
             Spacer()
         }.padding(.horizontal, 20)
 //        .frame(height: 500)
