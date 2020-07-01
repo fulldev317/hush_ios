@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 enum HushTabs: Int, CaseIterable, Identifiable {
     case discoveries
@@ -23,6 +24,7 @@ enum HushTabs: Int, CaseIterable, Identifiable {
 }
 
 struct TabBarView<Content: View>: View {
+    @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @Binding var selectedTab: HushTabs
     let content: Content
     
@@ -36,7 +38,10 @@ struct TabBarView<Content: View>: View {
             content
             HStack(alignment: .center, spacing: 0) {
                 ForEach(HushTabs.allCases) { tab in
-                    Button(action: { self.selectedTab = tab }) {
+                    Button(action: {
+                        self.selectedTab = tab
+                        self.partialSheetManager.closePartialSheet()
+                    }) {
                         Spacer()
                         tab.image
                             .renderingMode(.template)
