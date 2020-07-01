@@ -27,6 +27,7 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     func like(_ i: Int, _ j: Int) {
         var discover = discoveries[i * 2 + j];
         discover.liked!.toggle()
+        discoveries[i * 2 + j] = discover
         //discoveries[i * 2 + j].liked.toggle()
     }
         

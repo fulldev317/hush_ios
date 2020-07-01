@@ -242,6 +242,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     #warning("Please update viewModel")
     func bottomView(_ i: Int, _ j: Int) -> some View {
         let discovery = viewModel.discovery(i, j)
+        
         return HStack {
             (Text(discovery.name ?? "John") + Text(", ") + Text("\(discovery.age ?? "20")"))
                 .font(.regular(14))

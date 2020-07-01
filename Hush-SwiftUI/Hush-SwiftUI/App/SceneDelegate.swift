@@ -128,8 +128,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         //SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
                         //LoginView(viewModel: LoginViewModel()).withoutBar()
-                        //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
-                        GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "Maksym", username: "max4", email: "max4@gmail.com", password: "111111", image: UIImage(), imagePath: "", imageThumb: "")).withoutBar()
+                        LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
+                        //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "Maksym", username: "max4", email: "max4@gmail.com", password: "111111", image: UIImage(), imagePath: "", imageThumb: "")).withoutBar()
                         //AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()
                         
                     }
