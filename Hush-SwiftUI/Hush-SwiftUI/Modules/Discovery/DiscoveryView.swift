@@ -12,7 +12,7 @@ import PartialSheet
 import Combine
 
 let TAB_MARGIN: CGFloat = CGFloat(10)
-let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - (WIDTH_375 ? 2 : 15))
+let TAB_WIDTH: CGFloat = CGFloat((SCREEN_WIDTH - TAB_MARGIN) / 5 - (ISiPhonePlus ? 15 : 2))
 let TAB_HEIGHT: CGFloat = CGFloat(25)
 
 struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
@@ -55,7 +55,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             }
                         }) {
                             ZStack {
-                                Text("Broswe")
+                                Text("Browse")
                                     .font(.regular(16))
                                     .foregroundColor(self.currentViewIndex == 0 ? Color.yellow : Color.white)
                                 Rectangle().frame(height: 1)
@@ -64,10 +64,10 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                     .opacity(self.currentViewIndex == 0 ? 1 : 0)
                             }
                         
-                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                        }.frame(width: 55, height: TAB_HEIGHT, alignment: .center)
                         
-                        Rectangle().frame(width: 1).foregroundColor(Color.white).background(Color.yellow)
-                        
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 4)
+
                         Button(action: {
                             if self.currentViewIndex == 1 {
                                 return
@@ -89,9 +89,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                     .opacity(self.currentViewIndex == 1 ? 1 : 0)
 
                             }
-                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                        }.frame(width: 60, height: TAB_HEIGHT, alignment: .center)
                         
-                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 4)
 
                         Button(action: {
                             if self.currentViewIndex == 2 {
@@ -113,9 +113,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                     .opacity(self.currentViewIndex == 2 ? 1 : 0)
 
                             }
-                        }.frame(width: TAB_WIDTH * 1.2, height: TAB_HEIGHT, alignment: .center)
+                        }.frame(width: 72, height: TAB_HEIGHT, alignment: .center)
                         
-                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 4)
 
                         Button(action: {
                             if self.currentViewIndex == 3 {
@@ -136,9 +136,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                     .opacity(self.currentViewIndex == 3 ? 1 : 0)
 
                             }
-                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                        }.frame(width: 60, height: TAB_HEIGHT, alignment: .center)
                         
-                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 2)
+                        Rectangle().frame(width: 1).foregroundColor(Color.white).padding(.vertical, 4)
 
                         Button(action: {
                             if self.currentViewIndex == 4 {
@@ -160,9 +160,11 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                     .opacity(self.currentViewIndex == 4 ? 1 : 0)
 
                             }
-                        }.frame(width: TAB_WIDTH, height: TAB_HEIGHT, alignment: .center)
+                        }.frame(width: 60, height: TAB_HEIGHT, alignment: .center)
                     }.frame(height: TAB_HEIGHT, alignment: .leading)
-                }.frame(width: SCREEN_WIDTH, height: TAB_HEIGHT, alignment: .leading)
+                }
+                .frame(width: SCREEN_WIDTH - 20, height: TAB_HEIGHT, alignment: .leading)
+                .padding(.leading, ISiPhonePlus ? 20 : 10)
                 Spacer()
             }
             
@@ -268,9 +270,9 @@ struct DiscoveryView_Previews: PreviewProvider {
 //            DiscoveryView(viewModel: DiscoveryViewModel())
 //        }
         Group {
-//            NavigationView {
-//                DiscoveryView(viewModel: DiscoveryViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone SE"))
+            NavigationView {
+                DiscoveryView(viewModel: DiscoveryViewModel(), showingSetting: false)
+            }.previewDevice(.init(rawValue: "iPhone 11"))
             NavigationView {
                 DiscoveryView(viewModel: DiscoveryViewModel(), showingSetting: false)
             }.previewDevice(.init(rawValue: "iPhone X"))
