@@ -10,7 +10,8 @@ import SwiftUI
 
 struct StoryView<ViewModel: StoryViewModeled>: View {
     @ObservedObject var viewModel: ViewModel
-    
+    var isNewStory = false
+
     @State private var keyboardHeight: CGFloat = 0
     @State private var showReport = false
     @State private var likedStory = true
@@ -76,7 +77,12 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         }
                     }
                     Button(action: {
-                         self.mode.wrappedValue.dismiss()
+                        if self.isNewStory {
+                            self.modalPresenterManager.dismiss()
+                        } else {
+                            self.mode.wrappedValue.dismiss()
+                        }
+                        
                     }) {
                         Image("close_icon").padding(20)
                     }
