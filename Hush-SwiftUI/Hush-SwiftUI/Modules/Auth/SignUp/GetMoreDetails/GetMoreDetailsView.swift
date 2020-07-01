@@ -32,7 +32,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 content()
                 .overlay(onBackButton(mode))
             }.keyboardAdaptive()
-                .padding(.top, ISiPhoneX ? 0 : self.showLocation ? -80 : 0)
+                .padding(.top, ISiPhoneX ? 0 : self.showLocation ? SCREEN_HEIGHT == 568 ? -170 : -80 : 0)
             
             HushIndicator(showing: self.isShowing)
             
