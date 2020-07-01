@@ -91,7 +91,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.app.logedIn = true
                 self.app.loadingData = false
                 
-                Common.setAdderesInfo(user.address!)
+                Common.setAddressInfo(user.address!)
                 
                 auto_login(userId: user.id!)
             }

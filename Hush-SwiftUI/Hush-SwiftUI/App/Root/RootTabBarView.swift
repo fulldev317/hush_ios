@@ -146,7 +146,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Discovery").foregroundColor(.hOrange).font(.ultraLight(48))
-                    Text("Location").foregroundColor(.white).font(.thin())
+                    Text(Common.addressInfo()).foregroundColor(.white).font(.thin())
                 }
                 Spacer()
                 HapticButton(action: self.showDiscoverySettings) {

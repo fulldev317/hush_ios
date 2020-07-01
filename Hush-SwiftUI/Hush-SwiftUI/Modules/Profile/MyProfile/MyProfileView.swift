@@ -41,7 +41,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             VStack(spacing: 0) {
                 HStack {
                     header([Text("My Profile")
-                        .font(.thin(48))
+                        .font(.ultraLight(48))
                         .foregroundColor(.hOrange)])
                         .padding(.bottom)
                     HapticButton(action: {

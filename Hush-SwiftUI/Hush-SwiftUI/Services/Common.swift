@@ -16,7 +16,7 @@ var _upperAge: Double? = 1.0
 var _maxRange: Double? = 0.0
 var _image: UIImage?
 let ISiPhoneX = SCREEN_HEIGHT >= 812
-let WIDTH_375 = SCREEN_WIDTH == 375
+let ISiPhonePlus = SCREEN_WIDTH == 414
 
 class Common: NSObject {
     static func setUserInfo(_ user: User) {
@@ -27,11 +27,11 @@ class Common: NSObject {
         return _user ?? User()
     }
     
-    static func setAdderesInfo(_ address: String) {
+    static func setAddressInfo(_ address: String) {
         _address = address
     }
     
-    static func addessInfo() -> String {
+    static func addressInfo() -> String {
         return _address!
     }
     

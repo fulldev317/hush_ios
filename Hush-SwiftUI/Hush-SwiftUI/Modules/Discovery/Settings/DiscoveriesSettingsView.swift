@@ -39,7 +39,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
         UIView.appearance().subviews.forEach {
             $0.isExclusiveTouch = true
         }
-        self.viewModel.location = Common.addessInfo()
+        self.viewModel.location = Common.addressInfo()
         self.$firstSliderValue.wrappedValue = Common.maxRangeInfo()
         
     }
@@ -86,7 +86,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                                             user.longitude = lng
                                             Common.setUserInfo(user)
                                             
-                                            Common.setAdderesInfo(result)
+                                            Common.setAddressInfo(result)
                                         }
                                     }
                                 }
