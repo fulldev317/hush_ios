@@ -21,7 +21,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
     @State private var birth: String = "Enter your Date of Birth"
     @State private var country: String = "Select your country"
     @State var isShowing: Bool = false
-    @State var showLocation: Bool = false
+    //@State var showLocation: Bool = false
     
     // MARK: - Lifecycle
     
@@ -32,7 +32,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 content()
                 .overlay(onBackButton(mode))
             }.keyboardAdaptive()
-                .padding(.top, ISiPhoneX ? 0 : self.showLocation ? SCREEN_HEIGHT == 568 ? -170 : -80 : 0)
+                .padding(.top, ISiPhoneX ? 0 : self.viewModel.editingLocation ? SCREEN_HEIGHT == 568 ? -170 : -80 : 0)
             
             HushIndicator(showing: self.isShowing)
             
@@ -56,15 +56,15 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
                         
-            if showLocation {
+            if self.viewModel.editingLocation {
                 LocationQuerySelectorView(provider: SelectLocationAPI(query: self.viewModel.location) { newLocation in
                     if let result = newLocation {
                         self.viewModel.location = result
                         self.viewModel.getGeoCode(address: result)
                     }
-                    self.showLocation = false
+                    self.viewModel.editingLocation = true
                     
-                }, isLocationResponder: true)
+                }, editingLocation: self.$viewModel.editingLocation)
             } else {
                 HStack {
                     
@@ -73,8 +73,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                     .font(.regular())
                     .foregroundColor(Color(UIColor.white))
                     .onTapGesture {
-                            self.showLocation = true
-                            self.viewModel.location = ""
+                        self.viewModel.editingLocation = true
+                        self.viewModel.location = ""
                     }
                     Spacer()
                 }

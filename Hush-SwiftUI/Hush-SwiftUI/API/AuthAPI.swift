@@ -324,6 +324,7 @@ class AuthAPI: BaseAPI {
     func get_address(query: String, completion: @escaping (_ address: String?) -> Void) {
         
         if query.count == 0 {
+            completion("")
             return
         }
         

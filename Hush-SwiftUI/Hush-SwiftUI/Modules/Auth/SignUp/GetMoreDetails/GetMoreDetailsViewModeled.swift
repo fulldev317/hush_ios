@@ -30,6 +30,7 @@ protocol GetMoreDetailsViewModeled: ObservableObject {
     var imagePath: String { get set }
     var imageThumb: String { get set }
     
+    var editingLocation: Bool { get set }
     var hasErrorMessage: Bool { get set }
     var errorMessage: String { get set }
     var closeAPISelectorCompletion: (() -> Void)? { get set }
