@@ -48,10 +48,18 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 logo()
                     .opacity(keyboardPresented ? 0 : 1)
                     .padding(.top, 55)
+                .blur(radius: keyboardPresented ? 2 : 0)
+
                 Spacer()
                 
-                Text("Sign up with email").foregroundColor(.white).font(.thin(22))
+                if keyboardPresented {
+                    Text("Sign up with email").foregroundColor(.white).font(.thin(22))
                     .frame(maxHeight: 90).frame(minHeight: 60)
+                    .blur(radius: 2)
+                } else {
+                    Text("Sign up with email").foregroundColor(.white).font(.thin(22))
+                      .frame(maxHeight: 90).frame(minHeight: 60)
+                }
                 if viewModel.hasError {
                     errorLabel().padding(.bottom, 22)
                 }
