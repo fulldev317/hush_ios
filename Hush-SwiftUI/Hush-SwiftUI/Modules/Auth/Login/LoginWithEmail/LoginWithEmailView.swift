@@ -14,6 +14,9 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
     
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var app: App
+    @State private var keyboardPresented: Bool = false
+    @State private var keyboardHeight: CGFloat = 0
+
     @ObservedObject var viewModel: ViewModel
     @State var isShowing: Bool = false
     @State var showingTopPopup: Bool = false
@@ -69,8 +72,9 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 resetPasswordButton()
                     .padding(.bottom, 36)
             }.keyboardAdaptive()
+                .padding(.top, keyboardHeight > 0 ? -150 : 0)
             
-            onBackButton(mode)
+            onBackButton(mode).padding(.top, keyboardHeight > 0 ? -100 : 0)
             
             HushIndicator(showing: self.isShowing)
             
@@ -79,7 +83,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                                     isActive: $viewModel.showForgotPassword,
                                     label: EmptyView.init))
         .background(background())
-            
+            .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
 

@@ -16,6 +16,7 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
+    @State private var keyboardHeight: CGFloat = 0
 
     // MARK: - Lifecycle
     
@@ -28,7 +29,7 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
                             .frame(minHeight: proxy.size.height)
                 }
             }.keyboardAdaptive()
-            onBackButton(mode)
+            onBackButton(mode).padding(.top, keyboardHeight > 0 ? -100 : 0)
             NavigationLink(destination:
                 SignUpView(viewModel: SignUpViewModel())
                     .navigationBarTitle("", displayMode: .inline)
@@ -64,10 +65,12 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
                 }, title: "Submit")
                     .padding(.vertical, 29).padding(.horizontal, 30)
                 popToRoot()
-            }
+            }.padding(.top, keyboardHeight > 0 ? -150 : 0)
         }.background(NavigationLink(destination: ResetPasswordView(viewModel: ResetPasswordViewModel()),
         isActive: $viewModel.showResetPassword,
         label: EmptyView.init))
+        .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
+
     }
     
     private func popToRoot() -> some View {
