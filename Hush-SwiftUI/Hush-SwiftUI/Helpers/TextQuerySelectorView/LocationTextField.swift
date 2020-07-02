@@ -12,6 +12,7 @@ struct LocationTextField: UIViewRepresentable {
     let title: String
     @Binding var text: String
     @Binding var isLocationResponder: Bool
+    @Binding var isEditingLocation: Bool
     
     let textColor: UIColor?
     let font: UIFont?
@@ -48,6 +49,7 @@ struct LocationTextField: UIViewRepresentable {
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             parent.isLocationResponder = false
+            parent.isEditingLocation = false
             textField.resignFirstResponder()
             return true
         }
@@ -58,6 +60,7 @@ struct LocationTextField: UIViewRepresentable {
         
         func textFieldDidChangeSelection(_ textField: UITextField) {
             parent.text = textField.text ?? String()
+
         }
         
         func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

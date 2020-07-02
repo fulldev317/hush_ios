@@ -64,6 +64,7 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         "Palo Alto, CA, US",
         "Los Angeles, CA, US",
     ]
+    @Published var editingLocation: Bool = false
     
     func updateMessage() {
         

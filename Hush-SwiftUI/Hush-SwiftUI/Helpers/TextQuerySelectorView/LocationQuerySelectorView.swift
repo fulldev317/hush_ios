@@ -13,7 +13,8 @@ struct LocationQuerySelectorView<Provider: TextQueryAPIProvider>: View {
     @ObservedObject var provider: Provider
     @EnvironmentObject private var app: App
     @State var isLocationResponder: Bool = true
-    
+    @Binding var editingLocation: Bool
+
     var body: some View {
         ZStack {
            
@@ -32,6 +33,7 @@ struct LocationQuerySelectorView<Provider: TextQueryAPIProvider>: View {
                         title: provider.inputTitle,
                         text: $provider.query,
                         isLocationResponder: $isLocationResponder,
+                        isEditingLocation: $editingLocation,
                         textColor: UIColor.white,
                         font: .regular(17)
                     ).fixedSize(horizontal: false, vertical: true)
@@ -71,7 +73,7 @@ struct LocationQuerySelectorView<Provider: TextQueryAPIProvider>: View {
     
     private func select() {
         provider.select(provider.searchResult)
-        isLocationResponder = false
+        editingLocation = false
     }
     
     private func close() {
