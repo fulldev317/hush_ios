@@ -23,6 +23,7 @@ class LookingGoodVC: UIViewController {
     @IBOutlet weak var leftBackImgConst: NSLayoutConstraint!
     @IBOutlet weak var leftFrontImgConst: NSLayoutConstraint!
     @IBOutlet weak var topLookingGoodConst: NSLayoutConstraint!
+    @IBOutlet weak var topPhotoConst: NSLayoutConstraint!
     
     var dismiss: Binding<PresentationMode>?
     var isIphoneX = UIScreen.main.bounds.height > 667 ? true : false
@@ -52,6 +53,12 @@ class LookingGoodVC: UIViewController {
             leftBackImgConst.constant = 80
             leftFrontImgConst.constant = 80
             topLookingGoodConst.constant = 53
+        }
+        
+        if (ISiPhone5) {
+            topPhotoConst.constant = 40
+        } else {
+            topPhotoConst.constant = 80
         }
         
         imgViewBack.image = userImage
