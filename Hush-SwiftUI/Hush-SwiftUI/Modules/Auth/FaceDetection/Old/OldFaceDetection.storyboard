@@ -108,7 +108,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking Good!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1k-JY-yCu">
-                                                <rect key="frame" x="60" y="523" width="255" height="43"/>
+                                                <rect key="frame" x="83" y="523" width="209.5" height="43"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="36"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -135,11 +135,11 @@
                                         <constraints>
                                             <constraint firstItem="AZH-yR-ham" firstAttribute="leading" secondItem="6cc-Tp-ls4" secondAttribute="leading" constant="60" id="1eF-2x-3l3"/>
                                             <constraint firstItem="J1k-JY-yCu" firstAttribute="top" secondItem="f3y-cj-DEu" secondAttribute="bottom" constant="73" id="2Q8-uN-iMB"/>
-                                            <constraint firstItem="J1k-JY-yCu" firstAttribute="leading" secondItem="6cc-Tp-ls4" secondAttribute="leading" constant="60" id="7MA-dn-VW4"/>
                                             <constraint firstItem="Vfj-Ef-vqU" firstAttribute="leading" secondItem="6cc-Tp-ls4" secondAttribute="leading" constant="35" id="9XU-kU-IgR"/>
                                             <constraint firstItem="AZH-yR-ham" firstAttribute="top" secondItem="J1k-JY-yCu" secondAttribute="bottom" constant="5" id="9gu-zN-uAK"/>
                                             <constraint firstItem="Vfj-Ef-vqU" firstAttribute="top" secondItem="AZH-yR-ham" secondAttribute="bottom" constant="28" id="AlW-z6-WEg"/>
                                             <constraint firstItem="f3y-cj-DEu" firstAttribute="top" secondItem="6cc-Tp-ls4" secondAttribute="top" constant="80" id="J9d-4E-j2z"/>
+                                            <constraint firstItem="J1k-JY-yCu" firstAttribute="centerX" secondItem="6cc-Tp-ls4" secondAttribute="centerX" id="T69-qr-iNJ"/>
                                             <constraint firstItem="U94-eD-eV9" firstAttribute="top" secondItem="Mzt-ox-a9H" secondAttribute="top" id="U7I-0q-TgB"/>
                                             <constraint firstAttribute="trailing" secondItem="U94-eD-eV9" secondAttribute="trailing" constant="20" id="WuF-ui-Cej"/>
                                             <constraint firstItem="Og6-vf-Du2" firstAttribute="leading" secondItem="6cc-Tp-ls4" secondAttribute="leading" constant="16" id="agt-LS-f8h"/>
@@ -148,7 +148,6 @@
                                             <constraint firstAttribute="trailing" secondItem="AZH-yR-ham" secondAttribute="trailing" constant="60" id="iuu-80-ZWg"/>
                                             <constraint firstItem="Og6-vf-Du2" firstAttribute="top" secondItem="6cc-Tp-ls4" secondAttribute="top" id="jwg-GK-esi"/>
                                             <constraint firstAttribute="trailing" secondItem="Vfj-Ef-vqU" secondAttribute="trailing" constant="35" id="wgJ-Ax-tFr"/>
-                                            <constraint firstAttribute="trailing" secondItem="J1k-JY-yCu" secondAttribute="trailing" constant="60" id="xVb-dg-uNp"/>
                                             <constraint firstItem="U94-eD-eV9" firstAttribute="leading" secondItem="6cc-Tp-ls4" secondAttribute="leading" constant="60" id="xtp-JG-ssg"/>
                                             <constraint firstAttribute="trailing" secondItem="f3y-cj-DEu" secondAttribute="trailing" constant="20" id="zkd-AG-Inw"/>
                                         </constraints>

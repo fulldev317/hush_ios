@@ -441,7 +441,7 @@ class AuthAPI: BaseAPI {
     func update_location(address: String, lat: String, lng: String, completion: @escaping (_ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!
-        let query = userId + "[SP]" + lat + "[SP]" + lng + "[SP]" + address
+        let query = userId + "[sp]" + lat + "[sp]" + lng + "[sp]" + address
         let parameters: Parameters = ["action": "updateLocationA",
                                       "query": query]
         
