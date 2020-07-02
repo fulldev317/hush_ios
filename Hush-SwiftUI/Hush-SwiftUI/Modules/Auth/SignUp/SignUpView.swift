@@ -66,7 +66,7 @@ extension SignUpView {
                 self.app.showSignupButtons = self.showSignupButtons
                 } }) {
                 
-                if showSignupButtons {
+                if !showSignupButtons {
                     Image("arrowUp_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
                 }
                 Text("Sign Up")
@@ -95,7 +95,7 @@ extension SignUpView {
     
     private func bottomText() -> some View {
         VStack(spacing: 0) {
-            Text("We dont post anything on Facebook.\n By registering and using Hush you agree to")
+            Text("We don't post anything on Facebook.\n By registering and using Hush you agree to")
             HStack(spacing: 0) {
                 Text(" our ")
                 terms()
