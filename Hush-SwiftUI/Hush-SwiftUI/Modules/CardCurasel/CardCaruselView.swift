@@ -130,7 +130,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     .foregroundColor(.hOrange)
                     
             }.padding(.leading, 25)
-                .padding(.top, ISiPhoneX ? 10 : ISiPhone5 ? 50 : 20)
+                .padding(.top, ISiPhoneX ? 10 : ISiPhone5 ? 55 : 35)
             
             Spacer()
             ZStack {
