@@ -103,7 +103,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     func messages() -> some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(spacing: ISiPhone5 ? 0 : 20) {
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Messages").foregroundColor(.hOrange).font(.ultraLight(48))

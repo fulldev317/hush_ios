@@ -33,8 +33,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         if let user_photo = user.photos {
             self.viewModel.photos = user_photo
         }
-//        auto_login(userId: user.id!)
-        
     }
     
     func auto_login(userId: String) {
