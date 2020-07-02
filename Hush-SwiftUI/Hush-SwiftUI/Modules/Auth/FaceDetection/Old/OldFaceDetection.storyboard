@@ -201,6 +201,7 @@
                         <outlet property="leftFrontImgConst" destination="bgf-FR-Vzt" id="5Ew-E0-CAg"/>
                         <outlet property="topBackConst" destination="jwg-GK-esi" id="Y4N-qG-Ohy"/>
                         <outlet property="topLookingGoodConst" destination="2Q8-uN-iMB" id="31G-v1-bfv"/>
+                        <outlet property="topPhotoConst" destination="J9d-4E-j2z" id="GhB-1s-Qy8"/>
                         <outlet property="viewBack" destination="U94-eD-eV9" id="clX-64-AsP"/>
                         <outlet property="viewFirst" destination="f3y-cj-DEu" id="euI-fa-ume"/>
                     </connections>

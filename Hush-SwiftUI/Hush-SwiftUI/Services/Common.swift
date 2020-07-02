@@ -17,6 +17,8 @@ var _maxRange: Double? = 0.0
 var _image: UIImage?
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let ISiPhonePlus = SCREEN_WIDTH == 414
+let ISiPhone5 = SCREEN_WIDTH == 320
+
 
 class Common: NSObject {
     static func setUserInfo(_ user: User) {
