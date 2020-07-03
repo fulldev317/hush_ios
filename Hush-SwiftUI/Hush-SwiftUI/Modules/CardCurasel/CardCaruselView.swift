@@ -114,7 +114,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
 
                 }.frame(width: SCREEN_WIDTH)
                 .padding(.bottom, ISiPhoneX ? 20 : 0)
-                .padding(.top, ISiPhoneX ? 40 : 20)
+                .padding(.top, ISiPhoneX ? 30 : 20)
                 Spacer()
 
             }.overlay(overlay)
