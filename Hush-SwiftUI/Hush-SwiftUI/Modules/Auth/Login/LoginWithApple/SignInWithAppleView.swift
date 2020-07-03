@@ -35,12 +35,15 @@ struct SignInWithAppleView: UIViewRepresentable {
         let view = UIView(frame: frame)
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 6
-        let imageView = UIImageView(frame: CGRect(x: 50, y: 14, width: 20, height: 20))
+        
+        let imgX: Int = ISiPhone5 ? 20 : 50
+        let imageView = UIImageView(frame: CGRect(x: imgX, y: 14, width: 20, height: 20))
         imageView.image = UIImage(named: "apple_icon")
         
         let font = UIFont(name: "SFProDisplay-Regular", size: 20)
         
-        let textView = UILabel(frame: CGRect(x: 79, y:0, width: SCREEN_WIDTH - 140, height: 48))
+        let textX: Int = ISiPhone5 ? 49 : 79
+        let textView = UILabel(frame: CGRect(x: textX, y: 0, width: Int(SCREEN_WIDTH) - 140, height: 48))
         textView.text = "Sign in with Apple"
         textView.font = font
         textView.textColor = UIColor.black
