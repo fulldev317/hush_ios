@@ -59,7 +59,7 @@ class UserProfileViewModel: UserProfileViewModeled {
         gender = userInfo.gender ?? "0"
         let photos = userInfo.photos ?? []
         let photo_count = photos.count
-        let empty_count = 8 - photo_count + 1
+        let empty_count = 8 - photo_count
         
         for _ in (0 ..< empty_count) {
             unlockedPhotos.insert(1)
