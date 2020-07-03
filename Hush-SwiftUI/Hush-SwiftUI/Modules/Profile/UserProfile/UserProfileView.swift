@@ -124,7 +124,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         .itemSpacing(30)
                         .padding(0)
                         .overlay(Button(action: { self.shouldReport.toggle() }) {
-                            Image(systemName: "ellipsis")
+                            Image("3dot")
                                 .font(.largeTitle)
                                 .foregroundColor(.white)
                                 .padding(.vertical, 16)
