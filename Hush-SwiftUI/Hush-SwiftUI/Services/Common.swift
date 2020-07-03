@@ -19,6 +19,7 @@ let ISiPhone11 = SCREEN_HEIGHT >= 896
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let ISiPhonePlus = SCREEN_WIDTH == 414
 let ISiPhone5 = SCREEN_WIDTH == 320
+let ISiPhone8 = SCREEN_HEIGHT == 667
 
 
 class Common: NSObject {
