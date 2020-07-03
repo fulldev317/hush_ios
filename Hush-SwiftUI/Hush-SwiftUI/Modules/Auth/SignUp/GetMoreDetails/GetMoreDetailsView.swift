@@ -52,6 +52,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             DatePickerField(text: $birth, picked: { date in
                 self.$viewModel.birthday.wrappedValue = date
                 self.$birth.wrappedValue = date
+                self.viewModel.hasErrorMessage = false
+                self.viewModel.errorMessage = ""
             } )
                 .padding(.horizontal, 16)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white, lineWidth: 1).frame(height: 48)).padding(.vertical)
@@ -60,6 +62,8 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 LocationQuerySelectorView(provider: SelectLocationAPI(query: self.viewModel.location) { newLocation in
                     if let result = newLocation {
                         self.viewModel.location = result
+                        self.viewModel.hasErrorMessage = false
+                        self.viewModel.errorMessage = ""
                         self.viewModel.getGeoCode(address: result)
                     }
                     self.viewModel.editingLocation = true
@@ -94,10 +98,22 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             
             borderedButton(action: {
                 //self.app.logedIn = true
+                self.viewModel.hasErrorMessage = false
+                self.viewModel.errorMessage = ""
+                
+                if (self.viewModel.birthday == "Enter your Date of Birth") {
+                    self.viewModel.hasErrorMessage = true
+                    self.viewModel.errorMessage = "Enter your Date of Birth"
+                    return
+                }
                 if (self.viewModel.location.count == 0) {
+                    self.viewModel.hasErrorMessage = true
+                    self.viewModel.errorMessage = "Type your City"
                     return
                 }
                 if (self.viewModel.latitude.count == 0 || self.viewModel.longitude.count == 0) {
+                    self.viewModel.hasErrorMessage = true
+                    self.viewModel.errorMessage = "Type your City"
                     return
                 }
                 
