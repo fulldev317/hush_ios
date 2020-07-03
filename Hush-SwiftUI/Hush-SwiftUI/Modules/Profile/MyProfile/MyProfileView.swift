@@ -79,7 +79,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     var scrollContent: some View {
         
-        VStack(alignment: .leading, spacing: 25) {
+        VStack(alignment: .leading, spacing: ISiPhone5 ? 10 : 25) {
 
             //self.carusel(unlocked: self.$unlockedPhotos, images: $viewModel.photoDatas)
             self.carusel1(unlocked: self.$unlockedPhotos, images: $viewModel.photoUrls)
@@ -161,7 +161,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         .animation(.default)
                         
                     }
-                }.padding(.vertical, 15)
+                }.padding(.vertical, ISiPhone5 ? 5 : 15)
                     .padding(.horizontal, 5)
             }
             
@@ -244,17 +244,19 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }) {
             ZStack(alignment: .leading) {
                 Text("Activate Premium")
-                    .kerning(-0.41)
-                    .font(.regular(22))
-                    .padding(.all, 20)
+                    //.kerning(-0.41)
+                    .font(.regular(ISiPhone5 ? 20 : 22))
+                    .padding(.all, ISiPhone5 ? 12 : 20)
                     .padding(.leading, 60)
                     .padding(.trailing, 50)
                     .background(Color.hOrange.cornerRadius(8))
                     .foregroundColor(Color.black)
-                    .frame(height: 54)
-                Image("unlock").padding(.leading, 25)
+                Image("unlock").resizable().frame(width: 30, height: 30, alignment: .leading).padding(.leading, 25)
             }
+            .padding(.top, 10)
+                .padding(.bottom, 10)
         }.centred
+       
     }
     
     
@@ -264,7 +266,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         
         VStack(alignment: .leading, spacing: 30) {
             Text("Profile Activity")
-                .font(.regular(28))
+                .font(.regular(ISiPhone5 ? 24 : 28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
                 if (self.showMatchesView) {
@@ -332,6 +334,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 }
             }
         }.padding(.horizontal, 36)
+            .padding(.top, 20)
     }
     
     
@@ -341,7 +344,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         
         VStack(alignment: .leading, spacing: 25) {
             Text("Profile Basics")
-                .font(.regular(28))
+                .font(.regular(ISiPhone5 ? 24 : 28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
                 tableRow("User Name", value: $viewModel.basicsViewModel.username)
@@ -389,6 +392,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 tableRow("Language", value: $viewModel.basicsViewModel.language)
             }
         }.padding(.horizontal, 36)
+        .padding(.top, 20)
+
     }
     
     
@@ -414,6 +419,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }
         .padding(.leading, 36)
         .padding(.trailing, 25)
+        .padding(.top, 20)
     }
     
     
@@ -451,6 +457,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }
         .padding(.leading, 36)
         .padding(.trailing, 25)
+        .padding(.top, 20)
+
     }
     
     
@@ -550,7 +558,7 @@ struct MyProfileView_Previews: PreviewProvider {
         Group {
             NavigationView {
                 MyProfileView(viewModel: MyProfileViewModel()).withoutBar().environmentObject(App())
-            }.previewDevice(.init(rawValue: "iPhone SE"))
+            }.previewDevice(.init(rawValue: "iPhone SE 1"))
             NavigationView {
                 MyProfileView(viewModel: MyProfileViewModel()).withoutBar().environmentObject(App())
             }.previewDevice(.init(rawValue: "iPhone 8"))
