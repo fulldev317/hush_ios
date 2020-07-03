@@ -15,6 +15,7 @@ var _lowAge: Double? = 0.0
 var _upperAge: Double? = 1.0
 var _maxRange: Double? = 0.0
 var _image: UIImage?
+let ISiPhone11 = SCREEN_HEIGHT >= 896
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let ISiPhonePlus = SCREEN_WIDTH == 414
 let ISiPhone5 = SCREEN_WIDTH == 320

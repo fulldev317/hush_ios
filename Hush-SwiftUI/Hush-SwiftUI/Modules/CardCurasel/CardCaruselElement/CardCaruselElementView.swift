@@ -36,13 +36,13 @@ struct CardCaruselElementView: View {
                     .aspectRatio(contentMode: .fill)
 //                    .frame(width: 220, height: 320)
                     .scaledToFill()
-                    .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 420 : 320) * deviceScale)
+                    .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 400 : 320) * deviceScale)
                     .clipped()
                     .padding(.top, 30 * deviceScale)
                     
                 Spacer()
             }
-        }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 570 : 470) * deviceScale)
+        }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 550 : 470) * deviceScale)
         .overlay(overlay.rotationEffect(rotation), alignment: .bottom)
         .rotationEffect(-rotation)
         .tapGesture(toggls: $showUserProfile)
