@@ -52,8 +52,6 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var app: App
     
-    
-    @State var unlockedImages: Set<Int> = [0]
     @State var unlockedStories: Set<Int> = []
     
     
@@ -194,7 +192,10 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
             VStack(alignment: .leading) {
                 HStack(spacing: 25) {
                     Spacer()
-                    HapticButton(action: { self.goToMessage.toggle() }) {
+                    HapticButton(action: {
+                        self.showUpgrade.toggle()
+                        //self.goToMessage.toggle()
+                    }) {
                         Image("profile_message")
                             .foregroundColor(.white)
                     }
