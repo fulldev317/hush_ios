@@ -26,40 +26,14 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     private var showClose: Bool { translation.width < 0 }
     private var showHeart: Bool { translation.width > 0 }
     
-    init(viewModel model: ViewModel) {
-        viewModel = model
-
-        let user = Common.userInfo()
-        if let user_photo = user.photos {
-            self.viewModel.photos = user_photo
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+      
+        self.viewModel.loadDiscover { (result) in
+            
         }
     }
-    
-    func auto_login(userId: String) {
-        self.isShowing = true
 
-        AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
-            
-            self.isShowing = false
-            
-            if let user = user {
-              
-                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
-                isLoggedIn.wrappedValue = true
-                
-                Common.setUserInfo(user)
-                
-                let jsonData = try! JSONEncoder().encode(user)
-                let jsonString = String(data:jsonData, encoding: .utf8)!
-                
-                let currentUser = UserDefault(.currentUser, default: "")
-                currentUser.wrappedValue = jsonString
-
-                self.viewModel.photos = user.photos!
-            }
-        }
-    }
-    
     private func movePercent(_ translation: CGSize) -> CGFloat {
         translation.width / (SCREEN_WIDTH / 2)
     }
@@ -121,40 +95,43 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     // MARK: - Lifecycle
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text("PhotoBooth")
-                    .font(.ultraLight(48))
-                    .foregroundColor(.hOrange)
+        ZStack {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    Text("PhotoBooth")
+                        .font(.ultraLight(48))
+                        .foregroundColor(.hOrange)
+                        
+                }.padding(.leading, 25)
+                    .frame(height: 65)
                     
-            }.padding(.leading, 25)
-                .padding(.top, ISiPhone11 ? 30 : ISiPhoneX ? 50 : ISiPhone5 ? 55 : 35)
-            
-            Spacer()
-            ZStack {
-                ForEach((cardIndex..<(cardIndex + viewModel.photos.count)).reversed(), id: \.self) { index in
-                        self.caruselElement(index)
-                    }
+                //.padding(.top, ISiPhone11 ? 30 : ISiPhoneX ? 50 : ISiPhone5 ? 55 : 105)
+                Spacer()
+                ZStack {
+                    ForEach((cardIndex..<(cardIndex + viewModel.photos.count)).reversed(), id: \.self) { index in
+                            self.caruselElement(index)
+                        }
+
                 }.frame(width: SCREEN_WIDTH)
                 .padding(.bottom, ISiPhoneX ? 20 : 0)
-                .padding(.top, ISiPhone5 ?
-                    20 : 40)
-            HushIndicator(showing: self.isShowing)
-        }.overlay(overlay)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.shouldAnimate = true
+                .padding(.top, ISiPhoneX ? 40 : 20)
+                Spacer()
+
+            }.overlay(overlay)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.shouldAnimate = true
+                }
             }
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
         }
+        
     }
     
     private func caruselElement(_ index: Int) -> some View {
 
         CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5),
-                               name: viewModel.name,
-                               age: viewModel.age,
-                               address: viewModel.address,
-                               photo: viewModel.photos[index % viewModel.photos.count])
+                               user: viewModel.discoveries[index % viewModel.photos.count], showIndicator: $viewModel.isShowingIndicator)
             .offset(index == self.cardIndex ? self.translation : .zero)
             .offset(x: 0, y: self.offset(index))
             .gesture(index == self.cardIndex ? self.topCardDrag : nil)
@@ -189,7 +166,7 @@ struct CardCuraselView_Previews: PreviewProvider {
         NavigationView {
             CardCaruselView(viewModel: CardCuraselViewModel())
                 .withoutBar()
-                .previewEnvironment()
+                .previewDevice(.init(rawValue: "iPhone SE 1"))
         }
     }
 }

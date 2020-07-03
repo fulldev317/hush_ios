@@ -15,10 +15,45 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     // MARK: - Properties
     
     @Published var message = "Hellow World!"
-    @Published var photos: [Photo] = []
+    @Published var photos: [String] = []
     @Published var name: String = "Alex"
     @Published var age: String = "32"
     @Published var address: String = "London, UK"
+    @Published var isShowingIndicator: Bool = false
+    @Published var discoveries: [Discover] = []
+
+    init() {
+
+    }
+    
+    func loadDiscover(result: @escaping (Bool) -> Void) {
+       
+        //self.isShowingIndicator = true
+        AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
+            //self.isShowingIndicator = false
+            self.discoveries.removeAll()
+            self.photos.removeAll()
+            
+            if error == nil {
+               if let userList = userList {
+                    for user in userList {
+                        if self.discoveries.count == 8 {
+                            break;
+                        }
+                        self.discoveries.append(user!)
+                        if let url = user?.photo {
+                            self.photos.append(url)
+                        }
+                    }
+               }
+                result(true)
+            } else {
+                result(false)
+            }
+
+        }
+    }
+    
     
     func updateMessage() {
         
