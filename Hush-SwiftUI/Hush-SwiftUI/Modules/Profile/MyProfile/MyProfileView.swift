@@ -345,8 +345,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
                 tableRow("User Name", value: $viewModel.basicsViewModel.username)
-                tableRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
-                tableRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
+                tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
+                tableFixedRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
                 tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
                     let now = Date()
                     let calendar = Calendar.current
@@ -469,6 +469,17 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             }
         }
     }
+    
+    private func tableFixedRow(_ title: String, value: Binding<String>?) -> some View {
+        HStack {
+            Text(title).font(.regular(17)).foregroundColor(.white)
+            Spacer()
+            if value != nil {
+                Text(value!.wrappedValue).font(.regular(17)).foregroundColor(.white)
+            }
+        }
+    }
+    
     private func tablePickerRow(_ title: String, selected: String, titles: [String], picked: @escaping (String) -> Void) -> some View {
         HStack {
             Text(title).font(.regular(17)).foregroundColor(.white)

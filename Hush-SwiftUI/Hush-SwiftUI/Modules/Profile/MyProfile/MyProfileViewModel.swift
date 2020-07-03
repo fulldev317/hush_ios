@@ -53,8 +53,28 @@ class MyProfileViewModel: MyProfileViewModeled {
         let user = Common.userInfo()
         
         basicsViewModel.username = user.username ?? ""
-        basicsViewModel.isPremium = user.premium ?? ""
-        basicsViewModel.isVerified = user.verified ?? ""
+        
+        if let premium = user.premium {
+            if premium == "1" {
+                basicsViewModel.isPremium = "Yes"
+            } else {
+                basicsViewModel.isPremium = "No"
+            }
+        } else {
+            basicsViewModel.isPremium = "No"
+        }
+        
+        if let verified = user.verified {
+            if verified == "1" {
+                basicsViewModel.isVerified = "Yes"
+            } else {
+                basicsViewModel.isVerified = "No"
+            }
+        } else {
+            basicsViewModel.isVerified = "No"
+        }
+        //basicsViewModel.isPremium = user.premium ?? ""
+        //basicsViewModel.isVerified = user.verified ?? ""
         basicsViewModel.age = user.age ?? ""
         basicsViewModel.living = user.address ?? ""
         basicsViewModel.bio = user.bio ?? ""
