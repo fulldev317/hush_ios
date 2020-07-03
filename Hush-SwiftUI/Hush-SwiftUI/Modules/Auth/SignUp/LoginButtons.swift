@@ -82,7 +82,7 @@ struct LoginButton: View {
                         .minimumScaleFactor(0.7)
                     .lineLimit(1)
                         .foregroundColor(titleColor)
-                }.padding(.leading, 50)
+                }.padding(.leading, ISiPhone5 ? 20 : 50)
             }
         }
     }
