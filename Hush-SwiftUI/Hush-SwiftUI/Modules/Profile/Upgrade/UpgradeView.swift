@@ -45,10 +45,12 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                                 self.twelveMonth = false
                         }
                         HStack {
-                            Text("1 Week ").font(.bold()) + Text("Trial").font(.light())
+                            HStack {
+                            Text("1 Week ").font(.bold(ISiPhone5 ? 16 : 18)) + Text("Trial").font(.light(ISiPhone5 ? 16 : 18))
+                            }.padding(.leading, 0)
                             Spacer()
-                            Text("$14,99")
-                                .padding(.trailing, 90)
+                            Text("$14,99").font(.regular(ISiPhone5 ? 14 : 18))
+                                .padding(.trailing, 80)
                         }.padding(.leading, 15)
                     }.opacity(oneWeek ? 1.0 : 0.6)
                     ZStack {
@@ -59,10 +61,10 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                             self.twelveMonth = false
                         }
                         HStack {
-                            Text("3 Month ").font(.bold()) + Text("Premium").font(.light())
+                            Text("3 Month ").font(.bold(ISiPhone5 ? 16 : 18)) + Text("Premium").font(.light(ISiPhone5 ? 16 : 18))
                             Spacer()
-                            Text("$47,99")
-                                .padding(.trailing, 90)
+                            Text("$47,99").font(.light(ISiPhone5 ? 14 : 18))
+                                .padding(.trailing, 80)
                         }.padding(.leading, 15)
                     }.opacity(threeMonth ? 1.0 : 0.6)
                     ZStack {
@@ -74,7 +76,7 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                         }
                         HStack {
                             Spacer()
-                            Rectangle().foregroundColor(Color(0x27AE60)).frame(width: 80, height: 50)
+                            Rectangle().foregroundColor(Color(0x27AE60)).frame(width: ISiPhone5 ? 75 : 80, height: 50)
                                 .overlay(
                                     Text("Best\nValue")
                                         .multilineTextAlignment(.center)
@@ -83,10 +85,10 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                             )
                         }
                         HStack {
-                            Text("12 Month ").font(.bold()) + Text("Value").font(.light())
+                            Text("12 Month ").font(.bold(ISiPhone5 ? 16 : 18)) + Text("Value").font(.light(ISiPhone5 ? 16 : 18))
                             Spacer()
-                            Text("$78,99")
-                                .padding(.trailing, 90)
+                            Text("$78,99").font(.light(ISiPhone5 ? 14 : 18))
+                                .padding(.trailing, 80)
                         }.padding(.leading, 15)
                     }.opacity(twelveMonth ? 1.0 : 0.6)
                     ZStack {
@@ -123,7 +125,7 @@ struct UpgradeView_Previews: PreviewProvider {
         Group {
             NavigationView {
                 UpgradeView(viewModel: UpgradeViewModel()).withoutBar()
-            }.previewDevice(.init(rawValue: "iPhone SE"))
+            }.previewDevice(.init(rawValue: "iPhone SE 1"))
             NavigationView {
                 UpgradeView(viewModel: UpgradeViewModel()).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone 8"))
