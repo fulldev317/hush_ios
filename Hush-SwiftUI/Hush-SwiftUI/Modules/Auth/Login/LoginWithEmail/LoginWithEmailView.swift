@@ -27,13 +27,14 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
         ZStack {
             VStack {
                 Spacer()
-                logo()
+                logo().opacity(keyboardHeight > 0 ? 0.3 : 1)
                 Spacer()
                 Spacer()
                 Text("Log in with email")
                     .font(.thin(22))
                     .foregroundColor(.white)
                     .padding(.bottom, 16)
+                    .opacity(keyboardHeight > 0 ? 0.3 : 1)
                 
                 if viewModel.hasErrorMessage {
                     HStack {

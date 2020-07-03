@@ -12,7 +12,6 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State private var keyboardPresented: Bool = false
     @State private var keyboardHeight: CGFloat = 0
     @State var isShowing: Bool = false
 
@@ -46,20 +45,15 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
                 logo()
-                    .opacity(keyboardPresented ? 0 : 1)
+                    .opacity(keyboardHeight > 0 ? 0.3 : 1)
                     .padding(.top, 55)
-                .blur(radius: keyboardPresented ? 2 : 0)
 
                 Spacer()
                 
-                if keyboardPresented {
-                    Text("Sign up with email").foregroundColor(.white).font(.thin(22))
-                    .frame(maxHeight: 90).frame(minHeight: 60)
-                    .blur(radius: 2)
-                } else {
-                    Text("Sign up with email").foregroundColor(.white).font(.thin(22))
-                      .frame(maxHeight: 90).frame(minHeight: 60)
-                }
+                Text("Sign up with email").foregroundColor(.white).font(.thin(22))
+                .frame(maxHeight: 90).frame(minHeight: 60)
+                    .opacity(keyboardHeight > 0 ? 0.3 : 1)
+             
                 if viewModel.hasError {
                     errorLabel().padding(.bottom, 22)
                 }
