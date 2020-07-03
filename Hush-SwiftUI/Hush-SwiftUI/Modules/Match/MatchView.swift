@@ -38,7 +38,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         
         VStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text(title).font(.thin(48)).foregroundColor(.hOrange).padding(.top, ISiPhoneX ? 0 : 20).padding(.leading, 10)
+                Text(title).font(.thin(48)).foregroundColor(.hOrange).padding(.top, ISiPhoneX ? 0 : 0).padding(.leading, 10)
                 HStack(alignment: .top) {
                    HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
                        HStack(spacing: 23) {
