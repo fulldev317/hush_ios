@@ -54,7 +54,8 @@ extension DatePickerField {
         var inputView: UIDatePicker {
             let picker = UIDatePicker()
             picker.datePickerMode = .date
-            picker.maximumDate = Date()
+            let date = Calendar.current.date(byAdding: .year, value: -18, to: Date())
+            picker.maximumDate = date
             picker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
             
             return picker
