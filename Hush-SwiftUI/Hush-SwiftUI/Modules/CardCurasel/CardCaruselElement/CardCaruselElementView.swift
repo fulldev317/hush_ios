@@ -30,7 +30,7 @@ struct CardCaruselElementView: View {
                 .shadow(radius: 10)
             
             VStack {
-                AsyncImage(url: URL(string: user.photo ?? "")!, cache: iOSApp.cache, placeholder: Image("placeholder")) { image in
+                AsyncImage(url: URL(string: user.photo ?? "")!, cache: iOSApp.cache, placeholder: Image("placeholder_l")) { image in
                         image.resizable()
                     }
                     .aspectRatio(contentMode: .fill)
