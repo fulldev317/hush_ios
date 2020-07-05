@@ -43,7 +43,10 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         DragGesture().onChanged { value in
             self.translation = value.translation
         }.onEnded { value in
+            
             let percent = self.movePercent(value.translation)
+            self.translation = .zero
+
             if percent > 1 {
                 self.animateLike()
             } else if percent < -1 {
@@ -73,24 +76,26 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func animateLike() {
-        shouldLike = true
+        //shouldLike = true
+        self.cardIndex += 1
+        self.translation = .zero
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.default) {
-                self.shouldLike = false
-                self.cardIndex += 1
-                self.translation = .zero
+                //self.shouldLike = false
             }
         }
     }
     
     private func animateClose() {
-        shouldClose = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        //shouldClose = true
+        self.translation = .zero
+        self.cardIndex += 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation(.default) {
-                self.shouldClose = false
+              //self.shouldClose = false
 
-                self.cardIndex += 1
-                self.translation = .zero
+
+                
             }
         }
     }
@@ -206,7 +211,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             .offset(index == self.getLastIndex(self.cardIndex) - 1 ? self.translation : .zero)
             .offset(x: 0, y: self.getOffset(index))
             .gesture(index == self.getLastIndex(self.cardIndex) - 1 ? self.topCardDrag : nil)
-            .offset(x: self.flyAwayOffset(index), y: 0)
+            //.offset(x: self.flyAwayOffset(index), y: 0)
             .transition(.opacity)
             .rotationEffect(.degrees(index == self.getLastIndex(self.cardIndex) - 1 ? self.degrees : 0), anchor: .bottom)
             //.animation(self.shouldAnimate ? .easeOut(duration: 0.3) : nil)
