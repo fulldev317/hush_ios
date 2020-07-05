@@ -22,7 +22,8 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     @State private var shouldClose = false
     @State private var shouldAnimate = false
     @State var isShowing: Bool = false
-
+    
+    private var degreeIndex = 0
     private var showClose: Bool { translation.width < 0 }
     private var showHeart: Bool { translation.width > 0 }
     
@@ -108,7 +109,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 //.padding(.top, ISiPhone11 ? 30 : ISiPhoneX ? 50 : ISiPhone5 ? 55 : 105)
                 Spacer()
                 ZStack {
-                    ForEach((cardIndex..<(cardIndex + viewModel.photos.count)).reversed(), id: \.self) { index in
+                    ForEach((cardIndex..<(cardIndex + (viewModel.discoveries.count > 3 ? 4 : viewModel.discoveries.count))).reversed(), id: \.self) { index in
                             self.caruselElement(index)
                         }
 
@@ -123,15 +124,44 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     self.shouldAnimate = true
                 }
             }
-            HushIndicator(showing: self.viewModel.isShowingIndicator)
+            //HushIndicator(showing: self.viewModel.isShowingIndicator)
         }
         
     }
     
+    private func getDegree(_ index: Int ) -> Double {
+        
+        var degree:Double = -5
+        switch( index % 4) {
+        case 0:
+            degree = 5
+            break
+        case 1:
+            degree = -5
+            break
+        case 2:
+            degree = 10
+            break
+        case 3:
+            degree = -10
+            break
+        default:
+            degree = -5
+            break
+        }
+      
+        
+        return degree
+        //return index.isMultiple(of: 2) ? -5 : 5
+    }
+    
     private func caruselElement(_ index: Int) -> some View {
 
-        CardCaruselElementView(rotation: .degrees(index.isMultiple(of: 2) ? -5 : 5),
-                               user: viewModel.discoveries[index % viewModel.photos.count], showIndicator: $viewModel.isShowingIndicator)
+        CardCaruselElementView(rotation: .degrees(
+            //index.isMultiple(of: 2) ? -5 : 5),
+            self.getDegree(index)),
+                               user: viewModel.discoveries[index % viewModel.discoveries.count]
+                               )
             .offset(index == self.cardIndex ? self.translation : .zero)
             .offset(x: 0, y: self.offset(index))
             .gesture(index == self.cardIndex ? self.topCardDrag : nil)

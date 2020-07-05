@@ -17,7 +17,7 @@ struct CardCaruselElementView: View {
     @State private var showMessages = false
     @State private var showUserProfile = false
     @State private var selectedUser: User = User()
-    @Binding var showIndicator: Bool
+    //@Binding var showIndicator: Bool
 
     private let imageScale: CGFloat = 450 / 511
     private let deviceScale = SCREEN_WIDTH / 411
@@ -30,11 +30,10 @@ struct CardCaruselElementView: View {
                 .shadow(radius: 10)
             
             VStack {
-                AsyncImage(url: URL(string: user.photo ?? "")!, cache: iOSApp.cache, placeholder: Image("placeholder_l").frame(width: 100, height: 100)) { image in
+                AsyncImage(url: URL(string: user.photo ?? "")!, cache: iOSApp.cache, placeholder: Image("placeholder")) { image in
                         image.resizable()
                     }
                     .aspectRatio(contentMode: .fill)
-//                    .frame(width: 220, height: 320)
                     .scaledToFill()
                     .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 400 : 320) * deviceScale)
                     .clipped()
@@ -46,10 +45,10 @@ struct CardCaruselElementView: View {
         .overlay(overlay.rotationEffect(rotation), alignment: .bottom)
         .rotationEffect(-rotation)
         .onTapGesture {
-            self.showIndicator = true
+            //self.showIndicator = true
 
             AuthAPI.shared.cuser(userId: self.user.id!) { (user, error) in
-                self.showIndicator = false
+                //self.showIndicator = false
                 if error == nil {
                     self.selectedUser = user!
                     self.showUserProfile.toggle()
@@ -102,7 +101,7 @@ struct CardCaruselElementView: View {
 
 struct CardCaruselElement_Previews: PreviewProvider {
     static var previews: some View {
-        CardCaruselElementView(rotation: .degrees(-5), user: Discover(id: "12345678", name: "Max Zaiets", firstName: "max", age: "30", gender: "", city: "Los Angels, CA, US", photo: "image1", photoBig: "image2", error: 0, show: 0, status: 1, blocked: 0, margin: "", story: "", stories: "", fan: 0, match: 1, liked: false), showIndicator: .constant(false))
+        CardCaruselElementView(rotation: .degrees(-5), user: Discover(id: "12345678", name: "Max Zaiets", firstName: "max", age: "30", gender: "", city: "Los Angels, CA, US", photo: "image1", photoBig: "image2", error: 0, show: 0, status: 1, blocked: 0, margin: "", story: "", stories: "", fan: 0, match: 1, liked: false))
             .previewEnvironment()
             .padding()
     }
