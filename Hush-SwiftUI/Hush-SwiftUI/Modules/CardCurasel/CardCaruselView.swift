@@ -43,7 +43,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         DragGesture().onChanged { value in
             self.translation = value.translation
         }.onEnded { value in
-            self.translation = .zero
             let percent = self.movePercent(value.translation)
             if percent > 1 {
                 self.animateLike()
@@ -64,10 +63,10 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     
     private func flyAwayOffset(_ index: Int) -> CGFloat {
         var result: CGFloat = 0
-        if shouldLike && index == cardIndex {
-            result = SCREEN_WIDTH * 2
-        } else if shouldClose && index == cardIndex {
-            result = -SCREEN_WIDTH * 2
+        if shouldLike && index == self.getLastIndex(cardIndex) - 1 {
+            result = SCREEN_WIDTH
+        } else if shouldClose && index == self.getLastIndex(cardIndex) - 1 {
+            result = -SCREEN_WIDTH
         }
 
         return result
@@ -76,9 +75,10 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     private func animateLike() {
         shouldLike = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.shouldLike = false
             withAnimation(.default) {
+                self.shouldLike = false
                 self.cardIndex += 1
+                self.translation = .zero
             }
         }
     }
@@ -86,9 +86,11 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     private func animateClose() {
         shouldClose = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.shouldClose = false
             withAnimation(.default) {
+                self.shouldClose = false
+
                 self.cardIndex += 1
+                self.translation = .zero
             }
         }
     }
@@ -109,9 +111,9 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 //.padding(.top, ISiPhone11 ? 30 : ISiPhoneX ? 50 : ISiPhone5 ? 55 : 105)
                 Spacer()
                 ZStack {
-                    ForEach((cardIndex..<(cardIndex + (viewModel.discoveries.count > 3 ? 4 : viewModel.discoveries.count))).reversed(), id: \.self) { index in
-                            self.caruselElement(index)
-                        }
+                    ForEach((cardIndex..<self.getLastIndex(cardIndex)), id: \.self) { index in
+                        self.caruselElement(index)
+                    }
 
                 }.frame(width: SCREEN_WIDTH)
                 .padding(.bottom, ISiPhoneX ? 20 : 0)
@@ -126,33 +128,72 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             }
             //HushIndicator(showing: self.viewModel.isShowingIndicator)
         }
-        
     }
     
     private func getDegree(_ index: Int ) -> Double {
-        
         var degree:Double = -5
-        switch( index % 4) {
-        case 0:
-            degree = 5
-            break
-        case 1:
-            degree = -5
-            break
-        case 2:
-            degree = 10
-            break
-        case 3:
-            degree = -10
-            break
-        default:
-            degree = -5
-            break
+
+        switch( (index - cardIndex) % 4) {
+            case 0:
+                degree = -10
+                break
+            case 1:
+                degree = 10
+                break
+            case 2:
+                if cardIndex % 2 == 0 {
+                    degree = -5
+                } else {
+                    degree = 5
+                }
+                break
+            case 3:
+                if cardIndex % 2 == 0 {
+                    degree = 5
+                } else {
+                    degree = -5
+                }
+                break
+            default:
+                degree = -5
+                break
         }
-      
+    
         
         return degree
+/*
         //return index.isMultiple(of: 2) ? -5 : 5
+ */
+    }
+    
+    private func getLastIndex(_ index: Int) -> Int {
+        let retIndex = index + (viewModel.discoveries.count > 3 ? 4 : viewModel.discoveries.count)
+        return retIndex
+   }
+    
+    private func getOffset(_ index: Int) -> CGFloat {
+        var offset:CGFloat = 0;
+        let offIndex: Int = (index - cardIndex) % 4
+        
+        switch(offIndex) {
+        case 0:
+            offset = 0
+            break
+        case 1:
+            offset = 3
+            break
+        case 2:
+            offset = 6
+            break
+        case 3:
+            offset = 9
+            break
+        default:
+            offset = 0
+
+        }
+        
+        return offset
     }
     
     private func caruselElement(_ index: Int) -> some View {
@@ -160,15 +201,15 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         CardCaruselElementView(rotation: .degrees(
             //index.isMultiple(of: 2) ? -5 : 5),
             self.getDegree(index)),
-                               user: viewModel.discoveries[index % viewModel.discoveries.count]
+                               user: viewModel.discoveries[(2 * self.cardIndex - index + 3) % viewModel.discoveries.count]
                                )
-            .offset(index == self.cardIndex ? self.translation : .zero)
-            .offset(x: 0, y: self.offset(index))
-            .gesture(index == self.cardIndex ? self.topCardDrag : nil)
+            .offset(index == self.getLastIndex(self.cardIndex) - 1 ? self.translation : .zero)
+            .offset(x: 0, y: self.getOffset(index))
+            .gesture(index == self.getLastIndex(self.cardIndex) - 1 ? self.topCardDrag : nil)
             .offset(x: self.flyAwayOffset(index), y: 0)
             .transition(.opacity)
-            .rotationEffect(.degrees(index == self.cardIndex ? self.degrees : 0), anchor: .bottom)
-            .animation(self.shouldAnimate ? .easeOut(duration: 0.3) : nil)
+            .rotationEffect(.degrees(index == self.getLastIndex(self.cardIndex) - 1 ? self.degrees : 0), anchor: .bottom)
+            //.animation(self.shouldAnimate ? .easeOut(duration: 0.3) : nil)
     }
     
     private var overlay: some View {
@@ -189,6 +230,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             }
         }.opacity(opacity)
     }
+    
 }
 
 struct CardCuraselView_Previews: PreviewProvider {
