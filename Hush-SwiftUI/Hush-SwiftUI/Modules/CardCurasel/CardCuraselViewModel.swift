@@ -15,11 +15,10 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     // MARK: - Properties
     
     @Published var message = "Hellow World!"
-    @Published var photos: [String] = []
+    //@Published var photos: [String] = []
     @Published var name: String = "Alex"
     @Published var age: String = "32"
     @Published var address: String = "London, UK"
-    @Published var isShowingIndicator: Bool = false
     @Published var discoveries: [Discover] = []
 
     init() {
@@ -32,7 +31,7 @@ class CardCuraselViewModel: CardCuraselViewModeled {
         AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
             //self.isShowingIndicator = false
             self.discoveries.removeAll()
-            self.photos.removeAll()
+            //self.photos.removeAll()
             
             if error == nil {
                if let userList = userList {
@@ -41,9 +40,9 @@ class CardCuraselViewModel: CardCuraselViewModeled {
                             break;
                         }
                         self.discoveries.append(user!)
-                        if let url = user?.photo {
-                            self.photos.append(url)
-                        }
+//                        if let url = user?.photo {
+//                            self.photos.append(url)
+//                        }
                     }
                }
                 result(true)
