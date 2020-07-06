@@ -101,7 +101,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
                 self.viewModel.hasErrorMessage = false
                 self.viewModel.errorMessage = ""
                 
-                if (self.viewModel.birthday == "Enter your Date of Birth") {
+                if (self.birth == "Enter your Date of Birth") {
                     self.viewModel.hasErrorMessage = true
                     self.viewModel.errorMessage = "Enter your Date of Birth"
                     return
