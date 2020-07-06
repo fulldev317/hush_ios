@@ -320,13 +320,13 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             )
                             .overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
                             .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
-    //                        .onTapGesture {
-    //                            if unlocked.wrappedValue.contains(index) {
-    //                                unlocked.wrappedValue.remove(index)
-    //                            } else {
-    //                                unlocked.wrappedValue.insert(index)
-    //                            }
-    //                        }
+                            .onTapGesture {
+                                if unlocked.wrappedValue.contains(index) {
+                                    unlocked.wrappedValue.remove(index)
+                                } else {
+                                    unlocked.wrappedValue.insert(index)
+                                }
+                            }
                             .animation(.default)
 
                         }

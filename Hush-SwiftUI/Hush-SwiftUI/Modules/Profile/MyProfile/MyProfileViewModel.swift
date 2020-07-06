@@ -17,7 +17,8 @@ class MyProfileViewModel: MyProfileViewModeled {
 
     @Published var message = "Hellow World!"
     @Published var basicsViewModel: BioViewMode = BioViewMode()
-    
+    @Published var unlockedPhotos: Set<Int> = []
+
     @Published var messageLabel = "With Hush’s own Filters you can make \nyour photo as private as you like!"
     @Published var canGoNext = false
     @Published var canGoToAR = false

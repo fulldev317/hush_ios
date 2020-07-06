@@ -29,7 +29,6 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @State var showLikesMeView = false
     @State var showMyLikeView = false
     @State private var height: CGFloat = 50
-    @State var unlockedPhotos: Set<Int> = [0,1,2]
     @State var isPhotoTapped = false
     
     private let deviceScale = SCREEN_WIDTH / 411
@@ -81,8 +80,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         
         VStack(alignment: .leading, spacing: ISiPhone5 ? 10 : 25) {
 
-            //self.carusel(unlocked: self.$unlockedPhotos, images: $viewModel.photoDatas)
-            self.carusel1(unlocked: self.$unlockedPhotos, images: $viewModel.photoUrls)
+            self.carusel1(unlocked: self.$viewModel.unlockedPhotos, images: $viewModel.photoUrls)
 
             Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
@@ -151,14 +149,38 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         VStack(alignment: .leading, spacing: 0) {
             ScrollView(.horizontal) {
                 HStack(spacing: 15) {
-                    ForEach(0 ..< images.wrappedValue.count) { index in
-                        PhotoCard<EmptyView>(
-                            image: images.wrappedValue[index],
-                            cardWidth: 92
-                        )
-                        //.overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
-                        .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
-                        .animation(.default)
+                    ForEach(0 ..< MAX_PHOTOS) { index in
+                        
+                        if index < images.wrappedValue.count {
+
+                            PhotoCard<EmptyView>(
+                                image: images.wrappedValue[index],
+                                cardWidth: 92
+                            )
+                            .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
+                            .animation(.default)
+                        
+                        } else {
+                        
+                            PhotoCard<EmptyView>(
+                                image: "empty",
+                                cardWidth: 92
+                            )
+                            .overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
+                            .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
+                            .onTapGesture {
+                                if unlocked.wrappedValue.contains(index) {
+                                    unlocked.wrappedValue.remove(index)
+                                } else {
+                                    unlocked.wrappedValue.insert(index)
+                                }
+                                
+                                self.viewModel.selectedIndex = index
+                                self.viewModel.addPhoto()
+                            }
+                            .animation(.default)
+
+                        }
                         
                     }
                 }.padding(.vertical, ISiPhone5 ? 5 : 15)
