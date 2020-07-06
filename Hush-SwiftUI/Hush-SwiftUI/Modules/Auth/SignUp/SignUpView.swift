@@ -45,7 +45,7 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
             }.padding(.bottom, 20)
             
             NavigationLink(destination: SignUpEmail(viewModel: SignUpEmailViewModel()), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
-            NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen, label: EmptyView.init)
+            NavigationLink(destination: LoginView(viewModel: LoginViewModel(), showSignupButtons: $showSignupButtons), isActive: $viewModel.showLoginScreen, label: EmptyView.init)
             
             HushIndicator(showing: self.isShowing)
             

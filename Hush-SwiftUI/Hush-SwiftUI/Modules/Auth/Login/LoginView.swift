@@ -20,6 +20,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     @State var name : String = ""
     @State var isLoggedIn: Bool = false
     @State var isShowing: Bool = false
+    @Binding var showSignupButtons: Bool
 
     // MARK: - Lifecycle
     
@@ -46,7 +47,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     private func signupButton() -> some View {
         
         HapticButton(action: {
-            self.app.showSignupButtons = true
+            //self.app.showSignupButtons = true
+            self.showSignupButtons = true
             self.mode.wrappedValue.dismiss()
         }) {
             Group { Text("No Account? ").foregroundColor(.white) + Text("Sign Up Now!").foregroundColor(Color(0x56cbf2)) }
@@ -146,7 +148,7 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                LoginView(viewModel: LoginViewModel()).withoutBar()
+                LoginView(viewModel: LoginViewModel(), showSignupButtons: .constant(false)).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone SE"))
 //            NavigationView {
 //                LoginView(viewModel: LoginViewModel())
