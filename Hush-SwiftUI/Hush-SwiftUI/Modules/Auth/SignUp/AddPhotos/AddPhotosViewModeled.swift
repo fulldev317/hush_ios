@@ -25,6 +25,7 @@ protocol AddPhotosViewModeled: ObservableObject {
     func takePhoto()
     func cameraRoll()
     func addPhoto()
+    func resetPhotoCamera()
     
     // data from previous screens
     var name: String { get set }

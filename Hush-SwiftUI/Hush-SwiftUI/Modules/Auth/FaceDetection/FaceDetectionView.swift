@@ -30,7 +30,7 @@ struct FaceDetectionView<ViewModel: FaceDetectionViewModeled>: View {
             OldFD(image: $image, showGood: $showGood).edgesIgnoringSafeArea(.all)
             #endif
             if image != nil {
-                NavigationLink(destination: GoodContainer(image: image!, name: "", username: "", email: "", password: "", imagePath: "", imageThumb: "").withoutBar(), isActive: $showGood, label: {
+                NavigationLink(destination: GoodContainer(image: image!, name: "", username: "", email: "", password: "", photoModel: AddPhotosViewModel(name: "", username: "", email: "", password: ""), imagePath: "", imageThumb: "").withoutBar(), isActive: $showGood, label: {
                     Text("")
                 })
             }
@@ -77,14 +77,15 @@ struct OldFD: UIViewControllerRepresentable {
 struct OldGood: UIViewControllerRepresentable {
     
     var image: UIImage
+    var photoModel: AddPhotosViewModel
     @Binding var canGoNext: Bool
     @Binding var imagePath: String
     @Binding var imageThumb: String
     @Environment(\.presentationMode) var presentationMode
     
     func makeUIViewController(context: Context) -> LookingGoodVC {
-        
-        LookingGoodVC.create(for: image, dismiss: presentationMode) { imageDic in
+            
+        LookingGoodVC.create(for: image, photoModel: photoModel, dismiss: presentationMode) { imageDic in
             if let dic = imageDic {
                 
                 self.imagePath = dic["path"] as! String
@@ -107,6 +108,7 @@ struct GoodContainer: View, AuthAppScreens {
     var username: String
     var email: String
     var password: String
+    var photoModel: AddPhotosViewModel
     
     @State var imagePath: String
     @State var imageThumb: String
@@ -115,7 +117,9 @@ struct GoodContainer: View, AuthAppScreens {
     
     var body: some View {
         ZStack {
-            OldGood(image: image, canGoNext: $canGoNext, imagePath: $imagePath, imageThumb: $imageThumb).edgesIgnoringSafeArea(.all)
+            
+            OldGood(image: image, photoModel: photoModel, canGoNext: $canGoNext, imagePath: $imagePath, imageThumb: $imageThumb).edgesIgnoringSafeArea(.all)
+            
             NavigationLink(destination: GetMoreDetailsView(viewModel: GetMoreDetailsViewModel(name: name, username: username, email: email, password: password, image: image, imagePath: imagePath, imageThumb: imageThumb)).withoutBar(), isActive: $canGoNext) {
                 Text("")
             }
