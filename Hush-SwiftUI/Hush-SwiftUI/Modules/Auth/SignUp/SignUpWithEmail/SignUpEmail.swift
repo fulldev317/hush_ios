@@ -30,7 +30,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 AddPhotosView(viewModel: AddPhotosViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password)).withoutBar(),
 //                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, image: UIImage())).withoutBar(),
                 isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
-            NavigationLink(destination: LoginView(viewModel: LoginViewModel()), isActive: $viewModel.showLoginScreen) {
+            NavigationLink(destination: LoginView(viewModel: LoginViewModel(), showSignupButtons: .constant(false)), isActive: $viewModel.showLoginScreen) {
                 Text("")
             }
             
