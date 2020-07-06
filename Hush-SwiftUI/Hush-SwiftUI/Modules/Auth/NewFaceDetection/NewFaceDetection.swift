@@ -16,6 +16,8 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
     @State private var sessionRunning = false
     @Binding var selectedImage: UIImage?
     
+    var photoModel: AddPhotosViewModel
+    
     var body: some View {
         ZStack {
             
@@ -69,7 +71,7 @@ struct NewFaceDetection<ViewModel: NewFaceDetectionViewModeled>: View, AuthAppSc
                         Spacer()
                     }.padding(.leading, 20).padding(.trailing, 20)
                 } else {
-                    NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, imagePath: "", imageThumb: "").withoutBar().onAppear {
+                    NavigationLink(destination: GoodContainer(image: viewModel.capturedImage!, name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, photoModel: photoModel, imagePath: "", imageThumb: "").withoutBar().onAppear {
                         self.sessionRunning = false
                     }, isActive: .constant(viewModel.capturedImage != nil), label: EmptyView.init)
                 }
@@ -214,7 +216,7 @@ struct NewFaceDetection_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationView {
-            NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: false), selectedImage: Binding.constant(UIImage()))
+            NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: false), selectedImage: Binding.constant(UIImage()), photoModel: AddPhotosViewModel(name: "", username: "", email: "", password: ""))
                 .withoutBar()
         }
     }

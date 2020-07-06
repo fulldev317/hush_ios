@@ -27,12 +27,14 @@ class LookingGoodVC: UIViewController {
     
     var dismiss: Binding<PresentationMode>?
     var isIphoneX = UIScreen.main.bounds.height > 667 ? true : false
+    var photoModel: AddPhotosViewModel!
     
-    static func create(for image: UIImage, dismiss: Binding<PresentationMode>, completion: ((_ imageDic: NSDictionary?) -> Void)? = nil) -> LookingGoodVC {
+    static func create(for image: UIImage, photoModel: AddPhotosViewModel, dismiss: Binding<PresentationMode>, completion: ((_ imageDic: NSDictionary?) -> Void)? = nil) -> LookingGoodVC {
         let vc = UIStoryboard(name: "OldFaceDetection", bundle: nil).instantiateViewController(withIdentifier: "LookingGoodVC") as! LookingGoodVC
         vc.userImage = image
         vc.completion = completion
         vc.dismiss = dismiss
+        vc.photoModel = photoModel
         
         return vc
     }
@@ -87,7 +89,9 @@ class LookingGoodVC: UIViewController {
     }
     
     @IBAction func actionBack(_ sender: Any) {
+        photoModel.resetPhotoCamera()
         dismiss?.wrappedValue.dismiss()
+        
     }
     
     @IBAction func actionDone(_ sender: Any) {

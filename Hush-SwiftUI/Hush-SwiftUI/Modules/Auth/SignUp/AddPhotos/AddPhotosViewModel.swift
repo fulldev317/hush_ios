@@ -41,6 +41,7 @@ class AddPhotosViewModel: AddPhotosViewModeled {
     @Published private var libraryAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
     @Published private var cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
     @Published private var pickedSourceType: UIImagePickerController.SourceType?
+        
     private var disposals = Set<AnyCancellable>()
     
     func appear() {
@@ -67,6 +68,11 @@ class AddPhotosViewModel: AddPhotosViewModeled {
     
     func addPhoto() {
         isPickerSheetPresented = true
+    }
+    
+    func resetPhotoCamera() {
+        cameraPickerSelected = false
+        libraryPickerSelected = false
     }
 }
 
@@ -102,6 +108,7 @@ extension AddPhotosViewModel {
         isPickerPresented = false
         pickedSourceType = nil
     }
+
     
     private func refreshPermissions() {
         cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)

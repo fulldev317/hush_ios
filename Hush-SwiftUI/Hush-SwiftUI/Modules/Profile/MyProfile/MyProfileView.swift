@@ -65,7 +65,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     scrollContent
                 }.keyboardAdaptive()
                 
-                NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true), selectedImage: $viewModel.selectedImage),
+                NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true), selectedImage: $viewModel.selectedImage, photoModel: self.viewModel as! AddPhotosViewModel),
                     isActive: $viewModel.canGoToAR,
                     label: EmptyView.init)
                 
