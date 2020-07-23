@@ -146,6 +146,8 @@
 		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
 		595C7E6024C9F2400094D7A0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C7E5F24C9F2400094D7A0 /* Story.swift */; };
 		595D7F8324CA1922003492E4 /* UserStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D7F8224CA1922003492E4 /* UserStoryCard.swift */; };
+		5962D37A24CA25D8001873D6 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5962D37924CA25D8001873D6 /* Matches.swift */; };
+		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
 		599EAEC724C9E2F800DE4510 /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC624C9E2F800DE4510 /* Stories.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
@@ -345,6 +347,8 @@
 		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
 		595C7E5F24C9F2400094D7A0 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		595D7F8224CA1922003492E4 /* UserStoryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStoryCard.swift; sourceTree = "<group>"; };
+		5962D37924CA25D8001873D6 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
+		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
 		599EAEC624C9E2F800DE4510 /* Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
@@ -953,10 +957,11 @@
 				531123142491200D006B1712 /* User.swift */,
 				599EAEC624C9E2F800DE4510 /* Stories.swift */,
 				595C7E5F24C9F2400094D7A0 /* Story.swift */,
+				73E7C159247FC10A0077F5E1 /* Match.swift */,
+				5962D37924CA25D8001873D6 /* Matches.swift */,
 				73D44AF1247FAD7100FB01BA /* Photo.swift */,
 				73D44AF3247FAE2700FB01BA /* Notifications.swift */,
 				73E7C157247FC0460077F5E1 /* Spotlight.swift */,
-				73E7C159247FC10A0077F5E1 /* Match.swift */,
 				5375541324A4EE2E009A13AE /* Discover.swift */,
 			);
 			path = Models;
@@ -972,6 +977,7 @@
 				7391790F247F0DCC002AF4A9 /* UserAPI.swift */,
 				73917911247F0FE9002AF4A9 /* ChatAPI.swift */,
 				599EAEC424C9A89C00DE4510 /* StoryAPI.swift */,
+				597A3FC624CA22FF00958B68 /* MatchesAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1249,6 +1255,7 @@
 				7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */,
 				89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */,
 				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
+				597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */,
 				8993D7AC246961B6002E636D /* TabBarView.swift in Sources */,
@@ -1326,6 +1333,7 @@
 				894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				595C7E6024C9F2400094D7A0 /* Story.swift in Sources */,
+				5962D37A24CA25D8001873D6 /* Matches.swift in Sources */,
 				8955A00A246ADE9900223FB7 /* TextQueryAPIProvider.swift in Sources */,
 				5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */,
 				8993D7AF2469A970002E636D /* StoryView.swift in Sources */,

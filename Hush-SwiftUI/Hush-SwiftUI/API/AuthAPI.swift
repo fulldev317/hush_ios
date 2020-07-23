@@ -245,7 +245,7 @@ class AuthAPI: BaseAPI {
                     let json_users = json["result"]
                    
                     if (json_users.count > 0) {
-                        for index in 0 ..< json_users.count - 1 {
+                        for index in 0 ..< json_users.count {
                             let user = json_users[index]
                             let jsonData = try! user.rawData()
                             var user_data = try! JSONDecoder().decode(Discover.self, from: jsonData)
