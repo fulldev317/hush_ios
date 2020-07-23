@@ -136,7 +136,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 }
             }
             
-            StoriesView(viewModel: StoriesViewModel())
+            StoriesView(viewModel: StoriesViewModel(), showingSetting: self.app.isShowingSetting)
         }.addPartialSheet()
         .background(Color.black.edgesIgnoringSafeArea(.all))
     }

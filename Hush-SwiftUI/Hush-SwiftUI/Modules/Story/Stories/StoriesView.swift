@@ -45,6 +45,15 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     private let imagePicker = DVImagePicker()
     @State private var showsUserProfile = false
 
+    init(viewModel: ViewModel, showingSetting: Bool) {
+           self.viewModel = viewModel
+           
+           if !showingSetting {
+               self.viewModel.viewStory { (result) in
+               }
+           }
+         
+       }
     // MARK: - Lifecycle
     
     var body: some View {
