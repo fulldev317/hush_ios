@@ -145,6 +145,7 @@
 		5375541424A4EE2F009A13AE /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375541324A4EE2E009A13AE /* Discover.swift */; };
 		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
 		595C7E6024C9F2400094D7A0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C7E5F24C9F2400094D7A0 /* Story.swift */; };
+		595D7F8324CA1922003492E4 /* UserStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D7F8224CA1922003492E4 /* UserStoryCard.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
 		599EAEC724C9E2F800DE4510 /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC624C9E2F800DE4510 /* Stories.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
@@ -343,6 +344,7 @@
 		5375541324A4EE2E009A13AE /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
 		595C7E5F24C9F2400094D7A0 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		595D7F8224CA1922003492E4 /* UserStoryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStoryCard.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
 		599EAEC624C9E2F800DE4510 /* Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
@@ -778,6 +780,7 @@
 				157930E62437209100EE428F /* StoriesView.swift */,
 				157930E42437209100EE428F /* StoriesViewModel.swift */,
 				157930E52437209100EE428F /* StoriesViewModeled.swift */,
+				595D7F8224CA1922003492E4 /* UserStoryCard.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -1274,6 +1277,7 @@
 				73E7C15A247FC10A0077F5E1 /* Match.swift in Sources */,
 				157930E92437209100EE428F /* StoriesView.swift in Sources */,
 				1546B45624336B7500180D77 /* GetMoreDetailsViewModel.swift in Sources */,
+				595D7F8324CA1922003492E4 /* UserStoryCard.swift in Sources */,
 				15D53C7F243C65C900D62B26 /* MyProfileViewModel.swift in Sources */,
 				1579307C2435B69C00EE428F /* LookingGoodVC.swift in Sources */,
 				0E13EBD724805627003E0959 /* FaceDetectionViewModel.swift in Sources */,

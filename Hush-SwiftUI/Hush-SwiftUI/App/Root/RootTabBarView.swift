@@ -50,7 +50,15 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                         }
                     }
                     
-                    self.stories().zIndex(self.currentTab == .stories ? 1 : 0)
+                    if self.currentTab == .stories {
+                        NavigationView {
+                            self.stories().withoutBar()
+                        }.zIndex(self.currentTab == .stories ? 1 : 0)
+                    } else {
+                        ZStack {
+                            Spacer()
+                        }
+                    }
                     
                     NavigationView {
                         if self.currentTab == .carusel {
