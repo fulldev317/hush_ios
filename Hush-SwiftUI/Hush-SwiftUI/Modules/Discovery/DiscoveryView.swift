@@ -40,7 +40,6 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     
     var body: some View {
         ZStack {
-            
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {

@@ -98,7 +98,7 @@ class LookingGoodVC: UIViewController {
         indicator.startAnimating()
         indicator.isHidden = false
         
-        AuthAPI.shared.upload_image(image: userImage) { (imageUrls, error) in
+        UserAPI.shared.upload_image(image: userImage) { (imageUrls, error) in
             
             self.indicator.stopAnimating()
             self.indicator.isHidden = true
@@ -110,6 +110,5 @@ class LookingGoodVC: UIViewController {
 
             }
         }
-        //completion?()
     }
 }

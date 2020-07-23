@@ -18,6 +18,7 @@ class BaseAPI {
     internal let uploadpoint: String  = "https://www.hushdating.app/assets/sources/upload.php"//"https://www.hushsite.com/assets/sources/upload.php"
     internal let google_place: String  = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
     internal let google_geocode: String  = "https://maps.googleapis.com/maps/api/geocode/json"
+    internal let storyendpoint: String = "https://www.hushdating.app/requests/belloo.php"
     
     internal let api: SessionManager
     
