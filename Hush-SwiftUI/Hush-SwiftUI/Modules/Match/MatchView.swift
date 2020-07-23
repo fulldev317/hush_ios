@@ -28,7 +28,9 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         self.image_url = image_url
         self.blured = blured
         
-        self.viewModel.loadMatches { (result) in
+//        self.viewModel.loadMatches { (result) in
+//        }
+        self.viewModel.loadMyLikes { (result) in
         }
     }
 
@@ -50,7 +52,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                 }
             }.padding([.horizontal])
                
-            if viewModel.matches.count > 0 {
+            if self.viewModel.matches.count > 0 {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: -20) {
                         ForEach(0..<(viewModel.matches.count / 2), id: \.self) {
