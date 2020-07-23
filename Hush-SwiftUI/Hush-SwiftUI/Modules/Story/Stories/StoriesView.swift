@@ -62,7 +62,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                 ForEach(0...10, id: \.self) { i in
                     HStack(spacing: -2) {
                         ForEach(0..<3, id: \.self) { j in
-                            UserStoryView(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last)
+                            UserStoryCard(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last)
                                 .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
                                 .zIndex(j == 1 ? 3 : 0)
                                 .offset(self.offset(row: i, column: j))
@@ -145,63 +145,6 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
             self.userStories.append(image)
             self.modalPresenterManager.dismiss {
                 self.showMyStory(lastPick: true)
-            }
-        }
-    }
-}
-
-struct UserStoryView: View {
-    let username: String
-    let isMyStory: Bool
-    let isFirstStory: Bool
-    let storyImage: UIImage?
-    
-    var body: some View {
-        ZStack(alignment: .top) {
-            Color.white
-                .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
-            
-            VStack(spacing: 0) {
-                GeometryReader { proxy in
-                    (self.storyImage == nil || !self.isMyStory ? Image("stories_placeholder") : Image(uiImage: self.storyImage!))
-                        .resizable()
-                        .scaledToFill()
-                }.clipped()
-                .overlay(overlay)
-                .padding(8)
-                .aspectRatio(1, contentMode: .fit)
-                
-                Text(isMyStory ? "Your Story" : username)
-                    .font(.light(14))
-                    .foregroundColor(Color(0x8E8786))
-            }
-        }.aspectRatio(124 / 148, contentMode: .fit)
-        .border(Color(0xE0E0E0), width: 1)
-        .scaledToFill()
-    }
-    
-    private var overlay: some View {
-        Group {
-            if isMyStory {
-                Color.black.opacity(isFirstStory ? 1 : 0.7)
-                    .overlay(Text("+")
-                        .font(.system(.largeTitle))
-                        .foregroundColor(.hOrange))
-            } else {
-                GeometryReader { p in
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            Image("image4")
-                                .resizable()
-                                .scaledToFill()
-                                .clipShape(Circle())
-                                .frame(width: p.size.width / 2.4, height: p.size.height / 2.4)
-                                .background(Circle().fill(Color.white).padding(-5))
-                        }
-                    }
-                }
             }
         }
     }
