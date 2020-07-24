@@ -295,8 +295,8 @@ class AuthAPI: BaseAPI {
     }
     
     func get_user_data(userId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let parameters: Parameters = ["action": "data",
-                                      "query": userId]
+        let parameters: Parameters = ["action": "userProfile",
+                                      "id": userId]
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .responseSwiftyJson { response in

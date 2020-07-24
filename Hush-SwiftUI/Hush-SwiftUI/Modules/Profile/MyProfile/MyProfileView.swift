@@ -292,7 +292,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
                 if (self.showMatchesView) {
-                    tableRow("Matches", "0") {
+                    tableRow("Matches", $viewModel.basicsViewModel.matches.wrappedValue) {
                         self.showMatchesView.toggle()
                     }.background(
                         NavigationLink(
@@ -302,13 +302,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         )
                     )
                 } else {
-                    tableRow("Matches", "0") {
+                    tableRow("Matches", $viewModel.basicsViewModel.matches.wrappedValue) {
                         self.showMatchesView.toggle()
                     }
                 }
                 
                 if (self.showVisitedMeView) {
-                    tableRow("Visited my Profile", "0") {
+                    tableRow("Visited my Profile", $viewModel.basicsViewModel.visitedMe.wrappedValue) {
                         self.showVisitedMeView.toggle()
                     }.background(
                         NavigationLink(
@@ -318,13 +318,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         )
                     )
                 } else {
-                    tableRow("Visited my Profile", "0") {
+                    tableRow("Visited my Profile", $viewModel.basicsViewModel.visitedMe.wrappedValue) {
                         self.showVisitedMeView.toggle()
                     }
                 }
                 
                 if (self.showLikesMeView) {
-                    tableRow("Likes me", "0") {
+                    tableRow("Likes me", $viewModel.basicsViewModel.likesMe.wrappedValue) {
                         self.showLikesMeView.toggle()
                     }.background(
                         NavigationLink(
@@ -334,13 +334,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         )
                     )
                 } else {
-                    tableRow("Likes me", "0") {
+                    tableRow("Likes me", $viewModel.basicsViewModel.likesMe.wrappedValue) {
                         self.showLikesMeView.toggle()
                     }
                 }
                 
                 if (self.showMyLikeView) {
-                    tableRow("My likes", "0") {
+                    tableRow("My likes", $viewModel.basicsViewModel.myLikes.wrappedValue) {
                         self.showMyLikeView.toggle()
                     }.background(
                         NavigationLink(
@@ -350,7 +350,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         )
                     )
                 } else {
-                    tableRow("My likes", "0") {
+                    tableRow("My likes", $viewModel.basicsViewModel.myLikes.wrappedValue) {
                         self.showMyLikeView.toggle()
                     }
                 }
@@ -421,10 +421,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     // MARK: - Notifications
     
-    @State var newMatches = false
-    @State var messageLikes = false
-    @State var messages = false
-    @State var nearby = false
+
     
     var notifications: some View {
         
@@ -433,10 +430,18 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("New Matches", $newMatches)
-                tableRow("Message Likes", $messageLikes)
-                tableRow("Messages", $messages)
-                tableRow("People Nearby", $nearby)
+                tableRow("New Matches", $viewModel.basicsViewModel.noti_matches) { (toggled) in
+                    self.viewModel.updateNotification(notification_type: "match_me", toogled: toggled)
+                }
+                tableRow("Message Likes", $viewModel.basicsViewModel.noti_likeMe) { (toggled) in
+                    self.viewModel.updateNotification(notification_type: "fan", toogled: toggled)
+                }
+                tableRow("Messages", $viewModel.basicsViewModel.noti_messages) { (toggled) in
+                    self.viewModel.updateNotification(notification_type: "message", toogled: toggled)
+                }
+                tableRow("People Nearby", $viewModel.basicsViewModel.noti_nearby) { (toggled) in
+                    self.viewModel.updateNotification(notification_type: "near_me", toogled: toggled)
+                }
             }
         }
         .padding(.leading, 36)
@@ -536,12 +541,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }
     }
     
-    private func tableRow(_ title: String, _ bool: Binding<Bool>) -> some View {
+    private func tableRow(_ title: String, _ bool: Binding<Bool>, toggled: @escaping (Bool) -> Void) -> some View {
         HStack {
             Text(title).font(.regular(17)).foregroundColor(.white)
             Spacer()
             
-            Toggle("", isOn: bool).toggleStyle(HToggleStyle(onColor: Color(0x7ED321), offColor: Color(0xEB5757)))
+            Toggle("", isOn: bool)
+                .toggleStyle(HToggleStyle(onColor: Color(0x7ED321), offColor: Color(0xEB5757)))
         }
     }
     

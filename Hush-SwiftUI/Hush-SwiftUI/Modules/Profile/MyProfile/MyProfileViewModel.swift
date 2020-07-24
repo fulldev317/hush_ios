@@ -46,7 +46,14 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published private var libraryAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
     @Published private var cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
     @Published private var pickedSourceType: UIImagePickerController.SourceType?
+    
     private var disposals = Set<AnyCancellable>()
+    
+    private var cancellable0: AnyCancellable?
+    private var cancellable1: AnyCancellable?
+    private var cancellable2: AnyCancellable?
+    private var cancellable3: AnyCancellable?
+
 
     init() {
         initPhotoData()
@@ -80,6 +87,54 @@ class MyProfileViewModel: MyProfileViewModeled {
         basicsViewModel.living = user.address ?? ""
         basicsViewModel.bio = user.bio ?? ""
         basicsViewModel.language = user.language ?? ""
+        basicsViewModel.matches = String(user.totalMatches!)
+        basicsViewModel.visitedMe = user.totalVisits!
+        basicsViewModel.likesMe = String(user.totalLikes!)
+        basicsViewModel.myLikes = user.totalMyLikes!
+        basicsViewModel.noti_matches = user.notifications?.matchMe.inapp == "1"
+        basicsViewModel.noti_likeMe = user.notifications?.fan.inapp == "1"
+        basicsViewModel.noti_messages = user.notifications?.message.inapp == "1"
+        basicsViewModel.noti_nearby = user.notifications?.nearMe.inapp == "1"
+        
+        cancellable0 = basicsViewModel.$noti_matches.sink(receiveCompletion: { (completion) in
+        }) { (value) in
+            if (value != self.basicsViewModel.noti_matches) {
+                var user = Common.userInfo()
+                user.notifications?.matchMe.inapp = value ? "1" : "0"
+                Common.setUserInfo(user)
+                self.updateNotification(notification_type: "match_me", toogled: value)
+            }
+        }
+        
+        cancellable1 = basicsViewModel.$noti_likeMe.sink(receiveCompletion: { (completion) in
+        }) { (value) in
+            if (value != self.basicsViewModel.noti_likeMe) {
+                var user = Common.userInfo()
+                user.notifications?.fan.inapp = value ? "1" : "0"
+                Common.setUserInfo(user)
+                self.updateNotification(notification_type: "fan", toogled: value)
+            }
+        }
+        
+        cancellable2 = basicsViewModel.$noti_messages.sink(receiveCompletion: { (completion) in
+        }) { (value) in
+            if (value != self.basicsViewModel.noti_messages) {
+                var user = Common.userInfo()
+                user.notifications?.message.inapp = value ? "1" : "0"
+                Common.setUserInfo(user)
+                self.updateNotification(notification_type: "message", toogled: value)
+            }
+        }
+        
+        cancellable3 = basicsViewModel.$noti_nearby.sink(receiveCompletion: { (completion) in
+        }) { (value) in
+            if (value != self.basicsViewModel.noti_nearby) {
+                var user = Common.userInfo()
+                user.notifications?.message.inapp = value ? "1" : "0"
+                Common.setUserInfo(user)
+                self.updateNotification(notification_type: "near_me", toogled: value)
+            }
+        }
         
         switch Int(user.gender ?? "0") {
         case 0:
@@ -120,9 +175,19 @@ class MyProfileViewModel: MyProfileViewModeled {
                 }
             }
         }
-        
-   }
+    }
 
+    func updateNotification(notification_type: String, toogled: Bool) {
+       
+        UserAPI.shared.updateNotification(notification_type: notification_type, enable: toogled) { (enabled, error) in
+            if error == nil {
+                if (enabled) {
+                }
+            } else {
+            }
+        }
+    }
+    
     func updateMessage() {
 
         message = "New Message"
@@ -304,8 +369,17 @@ class BioViewMode: ObservableObject {
     @Published var living = "London, EN, UK"
     @Published var bio = "Hi, I'm Jack, 18 years old and I'm from London, Unite Kindom"
     @Published var language = "English"
-    
+    @Published var matches = "0"
+    @Published var visitedMe = "0"
+    @Published var likesMe = "0"
+    @Published var myLikes = "0"
+    @Published var noti_matches = false
+    @Published var noti_likeMe = false
+    @Published var noti_messages = false
+    @Published var noti_nearby = false
+
     init() {
-        
     }
+    
+    
 }
