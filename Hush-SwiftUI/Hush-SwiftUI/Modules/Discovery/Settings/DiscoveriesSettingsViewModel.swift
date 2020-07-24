@@ -21,7 +21,7 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
     @Published var ageSelLower: Double = 18 {
         didSet {
             let ageLower = (Int(18 + (99 - 18) * ageSelLower))
-            AuthAPI.shared.update_age(lower: String(ageLower), upper: String(Int(ageSelUpper))) { (error) in
+            UserAPI.shared.update_age(lower: String(ageLower), upper: String(Int(ageSelUpper))) { (error) in
                 
             }
         }
@@ -29,7 +29,7 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
     @Published var ageSelUpper: Double = 99 {
         didSet {
             let ageUpper = (Int(18 + (99 - 18) * ageSelUpper))
-            AuthAPI.shared.update_age(lower: String(Int(ageSelLower)), upper: String(ageUpper)) { (error) in
+            UserAPI.shared.update_age(lower: String(Int(ageSelLower)), upper: String(ageUpper)) { (error) in
                 
             }
         }

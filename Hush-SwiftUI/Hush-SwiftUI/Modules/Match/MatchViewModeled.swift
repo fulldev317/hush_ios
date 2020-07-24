@@ -19,7 +19,8 @@ protocol MatchViewModeled: ObservableObject {
     func match(_ i: Int, _ j: Int) -> Match
     func like(_ i: Int, _ j: Int)
     func loadMatches(result: @escaping (Bool) -> Void)
+    func loadVisitedMe(result: @escaping (Bool) -> Void)
+    func loadLikesMe(result: @escaping (Bool) -> Void)
     func loadMyLikes(result: @escaping (Bool) -> Void)
-
 
 }

@@ -10,6 +10,8 @@ import SwiftUI
 import Combine
 
 class MatchViewModel: MatchViewModeled {
+    
+    
 
     // MARK: - Properties
     
@@ -33,28 +35,69 @@ class MatchViewModel: MatchViewModeled {
     func loadMatches(result: @escaping (Bool) -> Void) {
 
        self.isShowingIndicator = true
-       AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
+       
+       MatchesAPI.shared.matches(match_type: "matches", completion: { (matchList, error) in
            self.isShowingIndicator = false
            self.matches.removeAll()
-
+           
            if error == nil {
-              if let userList = userList {
-                  for user in userList {
-                      self.matches1.append(user!)
-                  }
-              }
+               if let matchList = matchList {
+                   for match in matchList {
+                       self.matches.append(match!)
+                   }
+               }
                result(true)
            } else {
                result(false)
            }
-        }
+       })
     }
     
     func loadMyLikes(result: @escaping (Bool) -> Void) {
         
         self.isShowingIndicator = true
         
-        MatchesAPI.shared.my_likes(completion: { (matchList, error) in
+        MatchesAPI.shared.matches(match_type: "myLikes", completion: { (matchList, error) in
+            self.isShowingIndicator = false
+            self.matches.removeAll()
+            
+            if error == nil {
+                if let matchList = matchList {
+                    for match in matchList {
+                        self.matches.append(match!)
+                    }
+                }
+                result(true)
+            } else {
+                result(false)
+            }
+        })
+    }
+    
+    func loadVisitedMe(result: @escaping (Bool) -> Void) {
+        self.isShowingIndicator = true
+
+        MatchesAPI.shared.matches(match_type: "visitedMe", completion: { (matchList, error) in
+            self.isShowingIndicator = false
+            self.matches.removeAll()
+            
+            if error == nil {
+                if let matchList = matchList {
+                    for match in matchList {
+                        self.matches.append(match!)
+                    }
+                }
+                result(true)
+            } else {
+                result(false)
+            }
+        })
+    }
+    
+    func loadLikesMe(result: @escaping (Bool) -> Void) {
+        self.isShowingIndicator = true
+
+        MatchesAPI.shared.matches(match_type: "likesMe", completion: { (matchList, error) in
             self.isShowingIndicator = false
             self.matches.removeAll()
             

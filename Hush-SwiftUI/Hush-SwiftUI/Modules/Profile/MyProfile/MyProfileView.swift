@@ -296,7 +296,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showMatchesView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image5", blured: true).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Matches", match_type: "matches", blured: true).environmentObject(self.app).withoutBar(),
                             isActive: $showMatchesView,
                             label: EmptyView.init
                         )
@@ -312,7 +312,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showVisitedMeView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", image_url: "image2", blured: true).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", match_type: "visited_me", blured: true).environmentObject(self.app).withoutBar(),
                            isActive: $showVisitedMeView,
                            label: EmptyView.init
                         )
@@ -328,7 +328,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showLikesMeView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", image_url: "image3", blured: true).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", match_type: "lies_me", blured: true).environmentObject(self.app).withoutBar(),
                            isActive: $showLikesMeView,
                            label: EmptyView.init
                         )
@@ -344,7 +344,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showMyLikeView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "My Likes", image_url: "image4", blured: false).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "My Likes", match_type: "my_likes", blured: false).environmentObject(self.app).withoutBar(),
                            isActive: $showMyLikeView,
                            label: EmptyView.init
                         )
@@ -377,19 +377,38 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     let calendar = Calendar.current
                     let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
                     let age = ageComponents.year!
-                    self.$viewModel.basicsViewModel.age.wrappedValue = "\(age)"
+                    
+                    if (age == 0) {
+                        return
+                    }
+                    
+                    let strAge = "\(age)"
+                    
+                    if (strAge != self.$viewModel.basicsViewModel.age.wrappedValue) {
+                        
+                    }
+                    
+                    self.$viewModel.basicsViewModel.age.wrappedValue = strAge
                 }
                 tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
                     var selectedGender = $0.lowercased()
                     if (selectedGender == "") {
                         selectedGender = "male"
                     }
+                    if (selectedGender != self.$viewModel.basicsViewModel.gender.wrappedValue.rawValue)
+                    {
+                        self.viewModel.updateGender(gender: selectedGender)
+                    }
                     self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
                 }
                 tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Gender.allTitles) {
                     var selectedSex = $0.lowercased()
                     if (selectedSex == "") {
-                        selectedSex = "female"
+                        selectedSex = "male"
+                    }
+                    if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
+                    {
+                        
                     }
                     self.$viewModel.basicsViewModel.sexuality.wrappedValue = Gender(rawValue: selectedSex)!
                 }
@@ -462,9 +481,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 tableRow("Privacy Policy") {
                     iOSApp.open(URL(string: "https://google.com")!)
                 }
-                tableRow("Privacy Policy") {
-                    iOSApp.open(URL(string: "https://google.com")!)
-                }
+//                tableRow("Privacy Policy") {
+//                    iOSApp.open(URL(string: "https://google.com")!)
+//                }
                 
                 HapticButton(action: {
                     self.viewModel.logout { (result, error) in

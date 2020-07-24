@@ -35,7 +35,7 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
                             }
                         }.padding(.leading, 30)
                         Spacer()
-                        NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(), isActive: self.$showMessages) {
+                        NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0), imagePath: "")).withoutBar(), isActive: self.$showMessages) {
                             Image("message_card_icon").aspectRatio().frame(width: 45, height: 45)
                         }.buttonStyle(PlainButtonStyle())
 //                        HapticButton(action: {

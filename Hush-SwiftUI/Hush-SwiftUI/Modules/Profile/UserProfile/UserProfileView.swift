@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SwiftUIPager
+import SDWebImageSwiftUI
 
 struct IMG: Identifiable, Equatable {
     let id = UUID()
@@ -78,7 +79,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
             label: EmptyView.init
         ))
         .background(NavigationLink(
-            destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(),
+            destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0), imagePath: "")).withoutBar(),
             isActive: self.$goToMessage,
             label: EmptyView.init
         ))
@@ -112,13 +113,16 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     if self.viewModel.photoUrls.count > 0 {
                         Pager(page: self.$currentPage, data: self.viewModel.photoUrls) { img in
                             GeometryReader { pr in
-                                AsyncImage(url: URL(string: img)!, cache: iOSApp.cache, placeholder: Image(systemName: "person.crop.circle")) { image in
-                                    image.resizable()
-
+                                
+                                WebImage(url: URL(string: img))
+                                .resizable()
+                                .placeholder {
+                                    Image("placeholder_l")
                                 }
-                                    .aspectRatio(contentMode: .fill)
-                                 .frame(width: pr.size.width, height: pr.size.height)
-                                .clipShape(Rect(width: pr.size.width, height: pr.size.height))
+                                .background(Color.white)
+                                .scaledToFill()
+                                .frame(width: pr.size.width, height: pr.size.height)
+
                             }
                         }
                         .itemSpacing(30)
@@ -159,8 +163,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 }
                                 
                                 HapticButton(action: {
-                                    self.showUpgrade.toggle()
-                                    //self.goToMessage.toggle()
+                                    //self.showUpgrade.toggle()
+                                    self.goToMessage.toggle()
                                     }) {
                                     Image("profile_message")
                                         .resizable()
@@ -193,8 +197,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                 HStack(spacing: 25) {
                     Spacer()
                     HapticButton(action: {
-                        self.showUpgrade.toggle()
-                        //self.goToMessage.toggle()
+                        //self.showUpgrade.toggle()
+                        self.goToMessage.toggle()
                     }) {
                         Image("profile_message")
                             .foregroundColor(.white)

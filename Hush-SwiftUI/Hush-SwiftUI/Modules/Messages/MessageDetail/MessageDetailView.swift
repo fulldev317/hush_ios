@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScreen {
     
@@ -22,7 +23,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Long username").font(.thin(48)).foregroundColor(.hOrange)
+                Text($viewModel.peerName.wrappedValue).font(.thin(48)).foregroundColor(.hOrange)
                 HStack(alignment: .top) {
                     HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
                         HStack(spacing: 23) {
@@ -31,16 +32,31 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                         }
                     }
                     Spacer()
-                    Image("story3")
-                        .aspectRatio()
-                        .frame(width: 60, height: 60)
-                        .cornerRadius(30)
-                        .padding(.trailing, 20)
-                        .overlay(Circle()
-                            .fill(Color(0x27AE60))
-                            .square(22)
-                            .padding(.trailing, 9),
-                        alignment: .topTrailing)
+                    WebImage(url: URL(string: $viewModel.peerImagePath.wrappedValue))
+                    .resizable()
+                    .placeholder {
+                        Image("placeholder_s").frame(width: 60, height: 60, alignment: .center)
+                    }
+                    .background(Color.white)
+                    .scaledToFill()
+                    .frame(width: 60, height: 60)
+                    .cornerRadius(30)
+                    .overlay(Circle()
+                        .fill(Color(0x27AE60))
+                        .square(22)
+                        .padding(.trailing, 0),
+                         alignment: .topTrailing)
+                    
+//                    Image("story3")
+//                        .aspectRatio()
+//                        .frame(width: 60, height: 60)
+//                        .cornerRadius(30)
+//                        .padding(.trailing, 20)
+//                        .overlay(Circle()
+//                            .fill(Color(0x27AE60))
+//                            .square(22)
+//                            .padding(.trailing, 9),
+//                        alignment: .topTrailing)
                 }
             }.padding([.horizontal])
             
@@ -105,7 +121,7 @@ struct MessageDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                MessageDetailView(viewModel: MessageDetailViewModel(MessagesViewModel().item(at: 3))).withoutBar()
+                MessageDetailView(viewModel: MessageDetailViewModel(MessagesViewModel().item(at: 3), imagePath: "https://www.hushdating.app/assets/sources/uploads/thumb_5efdff0a0e620_image1.jpg")).withoutBar()
             }
         }
     }

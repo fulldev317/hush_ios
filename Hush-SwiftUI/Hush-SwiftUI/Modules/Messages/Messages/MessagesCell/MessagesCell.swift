@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MessagesCell: View {
     
@@ -17,12 +18,15 @@ struct MessagesCell: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            AsyncImage(url: url, cache: iOSApp.cache, placeholder: Image("AppLogo")) { image in
-                image.resizable()
-            }
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 60, height: 60)
-            .cornerRadius(30)
+            WebImage(url: url)
+                .resizable()
+                .placeholder {
+                    Image("placeholder_s").frame(width: 60, height: 60, alignment: .center)
+                }
+                .background(Color.white)
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .cornerRadius(30)
             
             VStack(alignment: .leading) {
                 Text(message.username)

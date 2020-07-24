@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct Squere1: Shape {
     
@@ -40,26 +41,19 @@ struct PhotoCard<Content: View>: View {
                 .foregroundColor(.white)
                 .shadow(color: Color.black.opacity(0.4), radius: 8, x: 0, y: 4)
             VStack(spacing: 0) {
-                AsyncImage(url: URL(string: image)!, cache: iOSApp.cache, placeholder: cardWidth > 120 ? Image("placeholder_b") : Image("placeholder_s")) { image in
-                    image.resizable()
-
+                WebImage(url: URL(string: image))
+                .resizable()
+                .placeholder {
+                  cardWidth > 120 ? Image("placeholder_b") : Image("placeholder_s")
                 }
-                .aspectRatio(contentMode: .fill)
+                .blur(radius: blured ? (cardWidth - imgSide) / 3 : 0)
                 .frame(width: imgSide, height: imgSide)
                 .padding([.leading, .top, .trailing], (cardWidth - imgSide) / 2)
-                .blur(radius: blured ? (cardWidth - imgSide) / 3 : 0)
-                .clipShape(Squere1(x: (cardWidth - imgSide) / 2, y: (cardWidth - imgSide) / 2, side: imgSide))
-//
-//                Image(uiImage: image)
-//                    .aspectRatio()
-//                    .overlay(overlay)
-//                    .frame(width: imgSide, height: imgSide)
-//                    .padding([.leading, .top, .trailing], (cardWidth - imgSide) / 2)
-//                    .blur(radius: blured ? (cardWidth - imgSide) / 3 : 0)
-//          `          .clipShape(Squere(x: (cardWidth - imgSide) / 2, y: (cardWidth - imgSide) / 2, side: imgSide))
                 
                 bottom
             }
+            
+            
         }.frame(width: cardWidth, height: height)
     }
 }
