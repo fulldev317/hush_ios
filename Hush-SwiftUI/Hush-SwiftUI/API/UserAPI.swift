@@ -14,6 +14,35 @@ class UserAPI: BaseAPI {
     
     static let shared: UserAPI = UserAPI()
     
+    func updateNotification(notification_type: String, enable: Bool, completion: @escaping (_ result: Bool, _ error: APIError?) -> Void) {
+           
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + "," + notification_type + "," + (enable ? "1" : "0")
+        let parameters: Parameters = ["action": "updateNotification",
+                                      "query": query]
+    
+       api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+           .responseSwiftyJson { response in
+               
+            switch response.result {
+            case .success(let json):
+                var enabled = false
+                var error: APIError? = nil
+                if json["error"].int == 0 {
+                    enabled = true
+               } else {
+                   error = APIError(json["error"].intValue, json["error_m"].stringValue)
+               }
+               completion(enabled, error)
+            case .failure:
+               let error = APIError(404, "Server Connection Failed")
+               completion(false, error)
+               print("API CALL FAILED")
+            }
+        }
+    }
+    
     func userProfile(completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
         let parameters: Parameters = ["action": "userProfile",
@@ -316,64 +345,6 @@ class UserAPI: BaseAPI {
         }
     }
     
-    func updateUser(age: String?, birthday: String?, city: String?, country: String?, gender: String?, latitude: Double?, longitude: Double?, premium: Bool?, name: String?, verified: Bool?, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateUser"]
-        
-        var query: [Any] = [userId]
-        
-        if let age = age {
-            query.append(contentsOf: [age, 0])
-            
-        } else if let birthday = birthday {
-            query.append(contentsOf: [birthday, 1])
-            
-        } else if let city = city {
-            query.append(contentsOf: [city, 2])
-            
-        } else if let country = country {
-            query.append(contentsOf: [country, 3])
-            
-        } else if let gender = gender {
-            query.append(contentsOf: [gender, 4])
-            
-        } else if let latitude = latitude {
-            query.append(contentsOf: [latitude, 5])
-            
-        } else if let longitude = longitude {
-            query.append(contentsOf: [longitude, 6])
-            
-        } else if let premium = premium {
-            query.append(contentsOf: [premium, 7])
-            
-        } else if let name = name {
-            query.append(contentsOf: [name, 8])
-            
-        } else if let verified = verified {
-            query.append(contentsOf: [verified, 9])
-        }
-        
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var user: User?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(user, error)
-                case .failure:
-                    print("API CALL FAILED")
-                }
-        }
-    }
     
     func updateUserExtended(questionId: String, answer: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
