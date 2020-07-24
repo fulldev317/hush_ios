@@ -16,7 +16,9 @@ class UserProfileViewModel: UserProfileViewModeled {
     @Published var photoUrls: [String] = []
     @Published var unlockedPhotos: Set<Int> = []
     @Published var mode: UserProfileMode = .photo
+    @Published var userId: String = ""
     @Published var name: String = ""
+    @Published var profilePhoto: String = ""
     @Published var address: String = ""
     @Published var bio: String = ""
     @Published var lookfor: String = "Female"
@@ -36,9 +38,11 @@ class UserProfileViewModel: UserProfileViewModeled {
         } else {
             userInfo = user!
         }
+        userId = userInfo.id ?? "1"
         name = userInfo.name ?? "Jane"
         address = userInfo.address ?? "London, UK"
         bio = userInfo.bio ?? "I'm Jain, is 20 years old."
+        profilePhoto = userInfo.profilePhoto ?? ""
         
         let nLookFor = Int(userInfo.looking ?? "1")
         switch nLookFor {

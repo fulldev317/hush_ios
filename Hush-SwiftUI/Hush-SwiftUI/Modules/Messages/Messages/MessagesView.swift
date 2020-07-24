@@ -44,7 +44,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     var body: some View {
         ZStack {
             if selectedMessage != nil {
-                NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(selectedMessage!, imagePath: selectedMessage!.imageURL))
+                NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: selectedMessage!.id, name: selectedMessage!.username, image: selectedMessage!.imageURL)))
                     .withoutBar()
                     .onDisappear { self.selectedMessage = nil }, isActive: .constant(true), label: EmptyView.init)
             }

@@ -47,22 +47,12 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                         .padding(.trailing, 0),
                          alignment: .topTrailing)
                     
-//                    Image("story3")
-//                        .aspectRatio()
-//                        .frame(width: 60, height: 60)
-//                        .cornerRadius(30)
-//                        .padding(.trailing, 20)
-//                        .overlay(Circle()
-//                            .fill(Color(0x27AE60))
-//                            .square(22)
-//                            .padding(.trailing, 9),
-//                        alignment: .topTrailing)
                 }
             }.padding([.horizontal])
             
             ScrollView {
                 VStack(spacing: 10) {
-                    ForEach(self.viewModel.messages(), id: \.id) { message in
+                    ForEach(self.viewModel.messages(conversation: self.app.messages.item(at: 0)), id: \.id) { message in
                         self.viewForMessage(message)
                     }
                 }.padding(.bottom, 30)
@@ -111,7 +101,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     }
     
     func messageShouldShowDate(_ message: HushMessage) -> Bool {
-        let messages = viewModel.messages()
+        let messages = viewModel.messages(conversation: self.app.messages.item(at: 0))
         guard let index = messages.firstIndex(of: message), index > 0 else { return true }
         return messages[index - 1].userID != message.userID
     }
@@ -121,7 +111,7 @@ struct MessageDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                MessageDetailView(viewModel: MessageDetailViewModel(MessagesViewModel().item(at: 3), imagePath: "https://www.hushdating.app/assets/sources/uploads/thumb_5efdff0a0e620_image1.jpg")).withoutBar()
+                MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: "111", name: "Test", image: "https://www.hushdating.app/assets/sources/uploads/thumb_5efdff0a0e620_image1.jpg"))).withoutBar()
             }
         }
     }

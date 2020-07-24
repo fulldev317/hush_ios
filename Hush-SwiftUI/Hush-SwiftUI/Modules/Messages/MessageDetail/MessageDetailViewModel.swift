@@ -14,19 +14,21 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     @Published private var changed = false
     @Published var peerImagePath: String = ""
     @Published var peerName: String = ""
+    @Published var peerId: String = ""
+
     // MARK: - Properties
 
     var conversation: HushConversation!
     
-    init(_ conversation: HushConversation, imagePath: String) {
-        self.conversation = conversation
-        self.peerName = conversation.username
-        self.peerImagePath = imagePath
+    init(_ messageItem: MessageItem) {
+        self.peerName = messageItem.name!
+        self.peerId = messageItem.id!
+        self.peerImagePath = messageItem.profilePhoto!
         //self.peerImagePath = "https://www.hushdating.app/assets/sources/uploads/thumb_5efdff0a0e620_image1.jpg"
     }
     
-    func messages() -> [HushMessage] {
-        conversation.messages
+    func messages(conversation:HushConversation) -> [HushMessage] {
+        return conversation.messages
     }
     
     func name() -> String {
