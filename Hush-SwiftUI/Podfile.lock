@@ -15,6 +15,11 @@ PODS:
   - Koloda (5.0):
     - pop (~> 1.0)
   - pop (1.0.12)
+  - SDWebImage (5.8.3):
+    - SDWebImage/Core (= 5.8.3)
+  - SDWebImage/Core (5.8.3)
+  - SDWebImageSwiftUI (1.5.0):
+    - SDWebImage (~> 5.7)
   - SwiftUIPager (1.4.0)
   - SwiftyJSON (5.0.0)
 
@@ -24,6 +29,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FLEX
   - Koloda
+  - SDWebImageSwiftUI
   - SwiftUIPager
   - SwiftyJSON (~> 5.0.0)
 
@@ -36,6 +42,8 @@ SPEC REPOS:
     - FLEX
     - Koloda
     - pop
+    - SDWebImage
+    - SDWebImageSwiftUI
     - SwiftUIPager
     - SwiftyJSON
 
@@ -47,9 +55,11 @@ SPEC CHECKSUMS:
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  SDWebImageSwiftUI: 43687ffe232ddd33fe0659498b7ca9884fdd6b35
   SwiftUIPager: 87780e1c33ea432d326eebfecfcfa33877bfa848
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: abf98f4e34c088c2d82554fc1b3cf50b2ad6cb2f
+PODFILE CHECKSUM: 81a4bccd633bb903db3b8f8cbe9481557e0f15f1
 
 COCOAPODS: 1.9.3

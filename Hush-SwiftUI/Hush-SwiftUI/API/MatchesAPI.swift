@@ -14,11 +14,11 @@ class MatchesAPI: BaseAPI {
     
     static let shared: MatchesAPI = MatchesAPI()
 
-    func my_likes(completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
+    func matches(match_type: String, completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
      
          let user = Common.userInfo()
          let userId = user.id!
-         let parameters = ["action": "myLikes",
+         let parameters = ["action": match_type,
                             "uid": userId
                             ]
      

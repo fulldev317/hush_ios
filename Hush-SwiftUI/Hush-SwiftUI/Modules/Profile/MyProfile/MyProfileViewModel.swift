@@ -48,12 +48,10 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published private var pickedSourceType: UIImagePickerController.SourceType?
     
     private var disposals = Set<AnyCancellable>()
-    
     private var cancellable0: AnyCancellable?
     private var cancellable1: AnyCancellable?
     private var cancellable2: AnyCancellable?
     private var cancellable3: AnyCancellable?
-
 
     init() {
         initPhotoData()
@@ -81,16 +79,15 @@ class MyProfileViewModel: MyProfileViewModeled {
         } else {
             basicsViewModel.isVerified = "No"
         }
-        //basicsViewModel.isPremium = user.premium ?? ""
-        //basicsViewModel.isVerified = user.verified ?? ""
+
         basicsViewModel.age = user.age ?? ""
         basicsViewModel.living = user.address ?? ""
         basicsViewModel.bio = user.bio ?? ""
         basicsViewModel.language = user.language ?? ""
-        basicsViewModel.matches = String(user.totalMatches!)
-        basicsViewModel.visitedMe = user.totalVisits!
-        basicsViewModel.likesMe = String(user.totalLikes!)
-        basicsViewModel.myLikes = user.totalMyLikes!
+        basicsViewModel.matches = String(user.totalMatches ?? 0)
+        basicsViewModel.visitedMe = user.totalVisits ?? "0"
+        basicsViewModel.likesMe = String(user.totalLikes ?? 0)
+        basicsViewModel.myLikes = user.totalMyLikes ?? "0"
         basicsViewModel.noti_matches = user.notifications?.matchMe.inapp == "1"
         basicsViewModel.noti_likeMe = user.notifications?.fan.inapp == "1"
         basicsViewModel.noti_messages = user.notifications?.message.inapp == "1"
@@ -179,11 +176,20 @@ class MyProfileViewModel: MyProfileViewModeled {
 
     func updateNotification(notification_type: String, toogled: Bool) {
        
-        UserAPI.shared.updateNotification(notification_type: notification_type, enable: toogled) { (enabled, error) in
+        UserAPI.shared.update_notification(notification_type: notification_type, enable: toogled) { (enabled, error) in
             if error == nil {
                 if (enabled) {
                 }
             } else {
+            }
+        }
+    }
+    
+    func updateGender(gender: String) {
+       
+        UserAPI.shared.update_gender(gender: gender) { (error) in
+            if (error == nil) {
+                
             }
         }
     }

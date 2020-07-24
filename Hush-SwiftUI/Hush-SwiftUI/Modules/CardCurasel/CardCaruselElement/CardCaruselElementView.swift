@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CardCaruselElementView: View {
     let rotation: Angle
@@ -30,15 +31,17 @@ struct CardCaruselElementView: View {
                 .shadow(radius: 10)
             
             VStack {
-                AsyncImage(url: URL(string: user.photo ?? "")!, cache: iOSApp.cache, placeholder: Image("placeholder_l")) { image in
-                        image.resizable()
+                
+                WebImage(url: URL(string: user.photo ?? ""))
+                    .resizable()
+                    .placeholder {
+                      Image("placeholder_l")
                     }
-                    .aspectRatio(contentMode: .fill)
+                    .background(Color.white)
                     .scaledToFill()
                     .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 400 : 320) * deviceScale)
-                    .clipped()
                     .padding(.top, 30 * deviceScale)
-                    
+
                 Spacer()
             }
         }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 550 : 470) * deviceScale)
@@ -78,7 +81,7 @@ struct CardCaruselElementView: View {
                 Spacer()
                 
                 VStack {
-                    NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0))).withoutBar(), isActive: self.$showMessages) {
+                    NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0), imagePath: "")).withoutBar(), isActive: self.$showMessages) {
                         Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                     }.buttonStyle(PlainButtonStyle())
                 }.padding(.bottom, 10)

@@ -15,22 +15,34 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     // MARK: - Properties
     @ObservedObject var viewModel: ViewModel
     let title: String
-    let image_url: String
+    let match_type: String
     let blured: Bool
     
     @State private var showsUserProfile = false
     @State private var showUpgrade = false
     @Environment(\.presentationMode) var mode
 
-    init(viewModel: ViewModel, title: String, image_url: String, blured: Bool) {
+    init(viewModel: ViewModel, title: String, match_type: String, blured: Bool) {
         self.viewModel = viewModel
         self.title = title
-        self.image_url = image_url
+        self.match_type = match_type
         self.blured = blured
         
-//        self.viewModel.loadMatches { (result) in
-//        }
-        self.viewModel.loadMyLikes { (result) in
+        if (match_type == "matches") {
+            self.viewModel.loadMatches { (result) in
+            }
+        }
+        else if (match_type == "visited_me") {
+            self.viewModel.loadVisitedMe { (result) in
+            }
+        }
+        else if (match_type == "my_likes") {
+            self.viewModel.loadMyLikes { (result) in
+            }
+        }
+        else if (match_type == "likes_me") {
+            self.viewModel.loadLikesMe { (result) in
+            }
         }
     }
 
@@ -121,11 +133,9 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         return index % 4 == 0 || stride(from: 3, through: index, by: 4).contains(index)
     }
     
-    #warning("Please update viewModel")
     func bottomView(_ i: Int, _ j: Int) -> some View {
         let match = viewModel.match(i, j)
         return HStack {
-            //(Text(match.name) + Text(", ") + Text("\(match.age)"))
             (Text(match.name ?? "John") + Text(", ") + Text("\(match.age ?? "20")"))
                 .font(.regular(14))
                 .blur(radius: blured ? 2 : 0)
@@ -150,7 +160,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
 struct MatchesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MatchView(viewModel: MatchViewModel(), title: "Matches", image_url: "image1", blured: true)
+            MatchView(viewModel: MatchViewModel(), title: "Matches", match_type: "image1", blured: true)
         }
     }
 }

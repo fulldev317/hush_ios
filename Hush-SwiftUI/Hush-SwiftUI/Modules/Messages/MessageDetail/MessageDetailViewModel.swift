@@ -12,13 +12,17 @@ import Combine
 class MessageDetailViewModel: MessageDetailViewModeled {
     
     @Published private var changed = false
-    
+    @Published var peerImagePath: String = ""
+    @Published var peerName: String = ""
     // MARK: - Properties
 
     var conversation: HushConversation!
     
-    init(_ conversation: HushConversation) {
+    init(_ conversation: HushConversation, imagePath: String) {
         self.conversation = conversation
+        self.peerName = conversation.username
+        self.peerImagePath = imagePath
+        //self.peerImagePath = "https://www.hushdating.app/assets/sources/uploads/thumb_5efdff0a0e620_image1.jpg"
     }
     
     func messages() -> [HushMessage] {

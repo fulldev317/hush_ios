@@ -35,7 +35,7 @@ protocol MyProfileViewModeled: ObservableObject {
     func addPhoto()
     
     func updateMessage()
-    
+    func updateGender(gender: String)
     func updateNotification(notification_type: String, toogled: Bool)
     func logout(result: @escaping (Bool, String) -> Void)
 

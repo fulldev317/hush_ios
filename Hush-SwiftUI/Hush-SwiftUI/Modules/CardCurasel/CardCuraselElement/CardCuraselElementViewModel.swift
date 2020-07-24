@@ -14,6 +14,8 @@ class CardCuraselElementViewModel: CardCuraselElementViewModeled {
     // MARK: - Properties
 
     @Published var message = "Hellow World!"
+    @Published var conversation: HushConversation? = nil
+    
     let image: UIImage = UIImage(named: "image3")!
 
     func updateMessage() {

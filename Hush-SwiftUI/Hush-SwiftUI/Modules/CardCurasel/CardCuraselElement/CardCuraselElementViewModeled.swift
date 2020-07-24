@@ -12,6 +12,6 @@ protocol CardCuraselElementViewModeled: ObservableObject {
     
     var message: String { get set }
     var image: UIImage { get }
-    
+    var conversation: HushConversation? { get set }
     func updateMessage()
 }
