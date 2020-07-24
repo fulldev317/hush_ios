@@ -81,7 +81,7 @@ struct CardCaruselElementView: View {
                 Spacer()
                 
                 VStack {
-                    NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0), imagePath: "")).withoutBar(), isActive: self.$showMessages) {
+                    NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: user.id!, name: user.name!, image: user.photo!))).withoutBar(), isActive: self.$showMessages) {
                         Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                     }.buttonStyle(PlainButtonStyle())
                 }.padding(.bottom, 10)

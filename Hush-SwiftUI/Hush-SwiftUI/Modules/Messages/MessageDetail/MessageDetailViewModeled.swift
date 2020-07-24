@@ -11,9 +11,10 @@ import UIKit
 
 protocol MessageDetailViewModeled: ObservableObject {
     
+    var peerId: String { get set }
     var peerName: String { get set }
     var peerImagePath: String { get set }
-    func messages() -> [HushMessage]
+    func messages(conversation:HushConversation) -> [HushMessage] 
     func name() -> String
     func sendMessage(_ text: String)
     func sendImage(_ image: UIImage)

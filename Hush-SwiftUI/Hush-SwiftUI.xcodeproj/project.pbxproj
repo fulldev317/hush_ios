@@ -148,6 +148,7 @@
 		595D7F8324CA1922003492E4 /* UserStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D7F8224CA1922003492E4 /* UserStoryCard.swift */; };
 		5962D37A24CA25D8001873D6 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5962D37924CA25D8001873D6 /* Matches.swift */; };
 		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
+		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
 		599EAEC724C9E2F800DE4510 /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC624C9E2F800DE4510 /* Stories.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
@@ -349,6 +350,7 @@
 		595D7F8224CA1922003492E4 /* UserStoryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStoryCard.swift; sourceTree = "<group>"; };
 		5962D37924CA25D8001873D6 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
+		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
 		599EAEC624C9E2F800DE4510 /* Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
@@ -955,6 +957,7 @@
 			children = (
 				73D44AF5247FB3DB00FB01BA /* APIError.swift */,
 				531123142491200D006B1712 /* User.swift */,
+				598FE48E24CB670B00029C3A /* MessageItem.swift */,
 				599EAEC624C9E2F800DE4510 /* Stories.swift */,
 				595C7E5F24C9F2400094D7A0 /* Story.swift */,
 				73E7C159247FC10A0077F5E1 /* Match.swift */,
@@ -1419,6 +1422,7 @@
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
 				8928ED7D246AEA32004D3073 /* StoriesSettingsViewModeled.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
+				598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */,
 				157930F72437324600EE428F /* CardCaruselView.swift in Sources */,
 				0E13EBD824805627003E0959 /* FaceDetectionViewModeled.swift in Sources */,
 				15D53C91243DCE1200D62B26 /* PickerTextField.swift in Sources */,

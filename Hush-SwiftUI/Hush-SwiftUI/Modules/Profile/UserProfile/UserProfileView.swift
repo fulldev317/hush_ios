@@ -79,7 +79,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
             label: EmptyView.init
         ))
         .background(NavigationLink(
-            destination: MessageDetailView(viewModel: MessageDetailViewModel(self.app.messages.item(at: 0), imagePath: "")).withoutBar(),
+            destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: self.viewModel.userId, name: self.viewModel.name, image: self.viewModel.profilePhoto))).withoutBar(),
             isActive: self.$goToMessage,
             label: EmptyView.init
         ))
