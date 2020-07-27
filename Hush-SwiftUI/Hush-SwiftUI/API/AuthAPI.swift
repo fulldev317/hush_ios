@@ -71,7 +71,6 @@ class AuthAPI: BaseAPI {
         }
     }
 
-    
     func register(email: String, password: String, username: String, name: String, gender: String, birthday: String, lookingFor: String, here: String, photo: String, thumb: String, address: String, city:String, latitude: String, longitude: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
 
         let parameters: Parameters = ["action": "registerA",

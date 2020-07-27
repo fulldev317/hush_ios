@@ -62,6 +62,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                     }.tapGesture(toggls: $showsUserProfile)
                     
                     Spacer()
+                    
                     VStack(alignment: .leading) {
                         Text("Long Username").font(.bold(24)).lineLimit(1)
                         Text("21 minutes ago").font(.regular())
@@ -79,13 +80,9 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         } else {
                             self.mode.wrappedValue.dismiss()
                         }
-                        
                     }) {
                         Image("close_icon").padding(20)
                     }
-//                    Button(action: modalPresenterManager.dismiss) {
-//                        Image("close_icon").padding(20)
-//                    }
                     
                 }.foregroundColor(.white)
                 .padding(.leading, 20)

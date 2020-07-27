@@ -12,7 +12,7 @@ import Combine
 class StoriesViewModel: StoriesViewModeled {
     @Published var isShowingIndicator: Bool = false
     let settingsViewModel = StoriesSettingsViewModel()
-    @Published var stories: [Story] = []
+    @Published var storyList: [Story] = []
 
     func uploadImage(userImage: UIImage, result: @escaping ( NSDictionary?) -> Void)
     {
@@ -26,23 +26,28 @@ class StoriesViewModel: StoriesViewModeled {
         }
     }
     
-    func uploadStory(imagePath: String, imageThumb: String, result: @escaping ( Stories? ) -> Void)
+    func uploadStory(imagePath: String, imageThumb: String, result: @escaping ( Story?, APIError? ) -> Void)
     {
-        StoryAPI.shared.upload_story(image_path: imagePath, image_thumb: imageThumb) { (upload_story) in
+        StoryAPI.shared.upload_story(image_path: imagePath, image_thumb: imageThumb) { (upload_story, error) in
             if upload_story != nil {
-                result(upload_story)
+                result(upload_story, error)
             } else {
-                result(nil)
+                result(nil, error)
             }
         }
     }
     
     func viewStory(result: @escaping ( Bool ) -> Void)
     {
-        StoryAPI.shared.view_story() { (upload_story) in
-            if upload_story != nil {
-                self.stories = upload_story!.stories!
-            } else {
+        StoryAPI.shared.view_story() { (stories, error) in
+            if error == nil {
+                if stories != nil {
+                    self.storyList.removeAll()
+                    for story in stories! {
+                        self.storyList.append(story!)
+                    }
+                } else {
+                }
             }
         }
     }

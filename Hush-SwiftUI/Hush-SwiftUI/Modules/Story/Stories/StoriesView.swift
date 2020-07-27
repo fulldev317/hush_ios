@@ -59,21 +59,27 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: -14) {
-                ForEach(0...10, id: \.self) { i in
-                    HStack(spacing: -2) {
+                ForEach(0...self.viewModel.storyList.count / 3, id: \.self) { i in
+                    HStack(spacing: -10) {
                         ForEach(0..<3, id: \.self) { j in
-                            UserStoryCard(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last)
-                                .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
-                                .zIndex(j == 1 ? 3 : 0)
-                                .offset(self.offset(row: i, column: j))
-                                .onTapGesture {
-                                    self.handleTap(i, j)
-                                    
+                            HStack(spacing: -10) {
+                                if (i * 3 + j < self.viewModel.storyList.count) {
+                                    UserStoryCard(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last, imagePath: self.viewModel.storyList[i * 3 + j].icon)
+                                        .frame(width: SCREEN_WIDTH / 3, height: SCREEN_WIDTH / 3 + 20)
+                                        .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
+                                        .zIndex(j == 1 ? 3 : 0)
+                                        .offset(self.offset(row: i, column: j))
+                                        .onTapGesture {
+                                            self.handleTap(i, j)
+                                            
+                                    }
+                                }
                             }
                         }
                     }.zIndex(self.zIndex(row: i))
                     .padding(.horizontal, 22)
-                    .frame(width: SCREEN_WIDTH)
+                        .frame(width: SCREEN_WIDTH, alignment: .leading)
+                        .padding(.leading, -20)
                 }
             }.padding(.top, 22)
         }.background(

@@ -13,7 +13,7 @@ struct Story: Codable {
     var sid: String?
     var src: String?
     var uid: String?
-    var title: String?
+    //var title: String?
     var stype: String?
     var url: String?
     var credits: String?
@@ -22,5 +22,5 @@ struct Story: Codable {
     var duration: Int?
     var date: String?
     var purchased: Int?
-    
+    var liked: Bool?
 }
