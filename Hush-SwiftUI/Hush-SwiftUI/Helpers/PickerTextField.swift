@@ -24,7 +24,7 @@ struct PickerTextField: UIViewRepresentable {
         field.inputAccessoryView = context.coordinator.toolBarView
         field.textAlignment = .right
         field.textColor = .white
-        
+        field.tintColor = UIColor.clear
         context.coordinator.textField = field
         
         return field
@@ -88,7 +88,6 @@ extension PickerTextField {
         }
         
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            
             1
         }
         

@@ -85,7 +85,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     
     private func fields() -> some View {
         Group {
-            SignUpTextField(placeholder: "Name", icon: Image("user_icon"), text: $viewModel.name)
+            SignUpTextField(placeholder: "First Name", icon: Image("user_icon"), text: $viewModel.name)
             SignUpTextField(placeholder: "Choose a Username", icon: Image("user_icon"), text: $viewModel.username)
             SignUpTextField(placeholder: "Email", icon: Image("signup_email_icon"), text: $viewModel.email)
             SignUpTextField(placeholder: "Password", icon: Image("signup_password_icon"), isSecured: true, text: $viewModel.password)

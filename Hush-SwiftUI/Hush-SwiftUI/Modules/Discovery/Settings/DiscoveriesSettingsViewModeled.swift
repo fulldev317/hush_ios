@@ -19,6 +19,59 @@ enum Gender: String, CaseIterable {
     static let allTitles = allCases.map { $0.title }
 }
 
+enum Sex: String, CaseIterable {
+    case gay
+    case open
+    case straight
+    case bisexual
+    
+    var title: String {
+        if (rawValue == "open") {
+            return "Open-Mind"
+        }
+        return rawValue.capitalized
+    }
+    static func typeForTitle(title: String) -> String {
+        if (title == "open-mind") {
+            return "open"
+        }
+        return title
+    }
+    static let allTitles = allCases.map { $0.title }
+}
+
+enum Living: String, CaseIterable {
+    case alone
+    case parent
+    case partner
+    case student
+    
+    var title: String {
+        if (rawValue == "alone") {
+            return "Alone"
+        } else if (rawValue == "parent") {
+            return "With parents"
+        } else if (rawValue == "partner") {
+            return "With partner"
+        } else if (rawValue == "student") {
+            return "Student house"
+        }
+        return rawValue.capitalized
+    }
+    static func typeForTitle(title: String) -> String {
+        if (title == "alone") {
+            return "alone"
+        } else if (title == "with parents") {
+            return "parent"
+        } else if (title == "with partner") {
+            return "partner"
+        } else if (title == "student house") {
+            return "student"
+        }
+        return "alone"
+    }
+    static let allTitles = allCases.map { $0.title }
+}
 
 protocol DiscoveriesSettingsViewModeled: ObservableObject {
     var gender: Gender { get set }

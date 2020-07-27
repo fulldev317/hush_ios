@@ -36,6 +36,8 @@ protocol MyProfileViewModeled: ObservableObject {
     
     func updateMessage()
     func updateGender(gender: String)
+    func updateSex(sex: String)
+    func updateLiving(living: String)
     func updateNotification(notification_type: String, toogled: Bool)
     func logout(result: @escaping (Bool, String) -> Void)
 

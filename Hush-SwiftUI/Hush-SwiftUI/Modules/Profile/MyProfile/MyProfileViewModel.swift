@@ -81,7 +81,6 @@ class MyProfileViewModel: MyProfileViewModeled {
         }
 
         basicsViewModel.age = user.age ?? ""
-        basicsViewModel.living = user.address ?? ""
         basicsViewModel.bio = user.bio ?? ""
         basicsViewModel.language = user.language ?? ""
         basicsViewModel.matches = String(user.totalMatches ?? 0)
@@ -133,7 +132,7 @@ class MyProfileViewModel: MyProfileViewModeled {
             }
         }
         
-        switch Int(user.gender ?? "0") {
+        switch Int(user.gender ?? "1") {
         case 0:
             basicsViewModel.gender = Gender.male
             break
@@ -149,29 +148,92 @@ class MyProfileViewModel: MyProfileViewModeled {
         default:
             basicsViewModel.gender = Gender.male
         }
-        if let looking = user.looking {
-            let array = looking.components(separatedBy: ",")
-            if (array.count > 0) {
-                let looking = array[0]
-                
-                switch Int(looking) {
-                case 0:
-                    basicsViewModel.sexuality = Gender.male
-                    break
-                case 1:
-                    basicsViewModel.sexuality = Gender.female
-                    break
-                case 2:
-                    basicsViewModel.sexuality = Gender.lesbian
-                    break
-                case 3:
-                    basicsViewModel.sexuality = Gender.gay
-                    break
-                default:
-                    basicsViewModel.sexuality = Gender.male
-                }
+        
+        var s_question: Question?
+        var live_question: Question?
+        for question in user.questions! {
+            if question.id == "2" {
+                s_question = question
+            }
+            if question.id == "7" {
+                live_question = question
             }
         }
+        
+        if (s_question != nil) {
+            if s_question?.userAnswer == "" {
+                basicsViewModel.sexuality = Sex.gay
+            } else {
+                switch Int(s_question?.userAnswer ?? "1") {
+                case 1:
+                    basicsViewModel.sexuality = Sex.gay
+                    break
+                case 2:
+                    basicsViewModel.sexuality = Sex.open
+                    break
+                case 3:
+                    basicsViewModel.sexuality = Sex.straight
+                    break
+                case 4:
+                    basicsViewModel.sexuality = Sex.bisexual
+                    break
+                default:
+                    basicsViewModel.sexuality = Sex.gay
+                }
+                
+            }
+        } else {
+            basicsViewModel.sexuality = Sex.gay
+        }
+        
+        if (live_question != nil) {
+            if live_question?.userAnswer == "" {
+                basicsViewModel.living = Living.alone
+            } else {
+                switch Int(live_question?.userAnswer ?? "1") {
+                case 1:
+                    basicsViewModel.living = Living.alone
+                    break
+                case 2:
+                    basicsViewModel.living = Living.parent
+                    break
+                case 3:
+                    basicsViewModel.living = Living.partner
+                    break
+                case 4:
+                    basicsViewModel.living = Living.student
+                    break
+                default:
+                    basicsViewModel.living = Living.alone
+                }
+            }
+        } else {
+            basicsViewModel.living = Living.alone
+        }
+//
+//        if let looking = user.looking {
+//            let array = looking.components(separatedBy: ",")
+//            if (array.count > 0) {
+//                let looking = array[0]
+//
+//                switch Int(looking) {
+//                case 0:
+//                    basicsViewModel.sexuality = Gender.male
+//                    break
+//                case 1:
+//                    basicsViewModel.sexuality = Gender.female
+//                    break
+//                case 2:
+//                    basicsViewModel.sexuality = Gender.lesbian
+//                    break
+//                case 3:
+//                    basicsViewModel.sexuality = Gender.gay
+//                    break
+//                default:
+//                    basicsViewModel.sexuality = Gender.male
+//                }
+//            }
+//        }
     }
 
     func updateNotification(notification_type: String, toogled: Bool) {
@@ -187,15 +249,42 @@ class MyProfileViewModel: MyProfileViewModeled {
     
     func updateGender(gender: String) {
        
-        UserAPI.shared.update_gender(gender: gender) { (error) in
+        let gender_index = Common.getGenderIndexValue(gender)
+
+        UserAPI.shared.update_gender(gender: gender_index) { (user, error) in
             if (error == nil) {
-                
+                if (user != nil) {
+                    Common.setUserInfo(user!)
+                }
+            }
+        }
+    }
+    
+    func updateSex(sex: String) {
+        let s_index = Common.getSexIndexValue(sex)
+
+        UserAPI.shared.update_sexuality(s: s_index) { (user, error) in
+            if (error == nil) {
+                if (user != nil) {
+                   Common.setUserInfo(user!)
+                }
+            }
+        }
+    }
+    
+    func updateLiving(living: String) {
+       let living_index = Common.getLivingIndexValue(living)
+
+        UserAPI.shared.update_living(living: living_index) { (user, error) in
+            if (error == nil) {
+                if (user != nil) {
+                    Common.setUserInfo(user!)
+                }
             }
         }
     }
     
     func updateMessage() {
-
         message = "New Message"
     }
     
@@ -371,8 +460,8 @@ class BioViewMode: ObservableObject {
     @Published var isVerified = "No"
     @Published var age = "21"
     @Published var gender = Gender.male
-    @Published var sexuality = Gender.female
-    @Published var living = "London, EN, UK"
+    @Published var sexuality = Sex.gay
+    @Published var living = Living.alone
     @Published var bio = "Hi, I'm Jack, 18 years old and I'm from London, Unite Kindom"
     @Published var language = "English"
     @Published var matches = "0"

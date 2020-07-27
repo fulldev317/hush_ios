@@ -61,13 +61,13 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             LoginButton(title: "Login with Email", img: Image("mail_icon"), color: Color(0x56CCF2), action: viewModel.loginWithEmail)
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
                 
-                self.isShowing = true
 
                 self.fbmanager.facebookLogin(login_result: { fbResult in
                     let result: String = fbResult["result"] as! String
                     if result == "success" {
                         //self.app.logedIn = true
-                        
+                        self.isShowing = true
+
                         self.fbmanager.facebookConnect(data: fbResult) { result in
                             self.isShowing = false
                             if result == true {
