@@ -150,7 +150,6 @@
 		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
 		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
-		599EAEC724C9E2F800DE4510 /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC624C9E2F800DE4510 /* Stories.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
 		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
@@ -352,7 +351,6 @@
 		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
 		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
-		599EAEC624C9E2F800DE4510 /* Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
@@ -958,7 +956,6 @@
 				73D44AF5247FB3DB00FB01BA /* APIError.swift */,
 				531123142491200D006B1712 /* User.swift */,
 				598FE48E24CB670B00029C3A /* MessageItem.swift */,
-				599EAEC624C9E2F800DE4510 /* Stories.swift */,
 				595C7E5F24C9F2400094D7A0 /* Story.swift */,
 				73E7C159247FC10A0077F5E1 /* Match.swift */,
 				5962D37924CA25D8001873D6 /* Matches.swift */,
@@ -1332,7 +1329,6 @@
 				15D53C8D243DA8F800D62B26 /* UserCardViewModeled.swift in Sources */,
 				5375541424A4EE2F009A13AE /* Discover.swift in Sources */,
 				8993C7662460079400E8F765 /* Combine+Ext.swift in Sources */,
-				599EAEC724C9E2F800DE4510 /* Stories.swift in Sources */,
 				894421262464ACEC0025D843 /* ResetPasswordViewModeled.swift in Sources */,
 				1546B4472433500C00180D77 /* LoginWithEmailView.swift in Sources */,
 				595C7E6024C9F2400094D7A0 /* Story.swift in Sources */,

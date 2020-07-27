@@ -17,13 +17,14 @@ import SwiftUI
 //
 
 import SwiftUI
-
+import SDWebImageSwiftUI
 struct UserStoryCard: View {
     let username: String
     let isMyStory: Bool
     let isFirstStory: Bool
     let storyImage: UIImage?
-    
+    let imagePath: String?
+
     var body: some View {
         ZStack(alignment: .top) {
             Color.white
@@ -31,9 +32,12 @@ struct UserStoryCard: View {
             
             VStack(spacing: 0) {
                 GeometryReader { proxy in
-                    (self.storyImage == nil || !self.isMyStory ? Image("stories_placeholder") : Image(uiImage: self.storyImage!))
-                        .resizable()
-                        .scaledToFill()
+                    WebImage(url: URL(string: self.imagePath!))
+                    .resizable()
+                    
+//                    (self.storyImage == nil || !self.isMyStory ? Image("stories_placeholder") : Image(uiImage: self.storyImage!))
+//                        .resizable()
+//                        .scaledToFill()
                 }.clipped()
                 .overlay(overlay)
                 .padding(8)
@@ -66,7 +70,7 @@ struct UserStoryCard: View {
                                 .scaledToFill()
                                 .clipShape(Circle())
                                 .frame(width: p.size.width / 2.4, height: p.size.height / 2.4)
-                                .background(Circle().fill(Color.white).padding(-5))
+                                .background(Circle().fill(Color.white).padding(-3))
                         }
                     }
                 }
