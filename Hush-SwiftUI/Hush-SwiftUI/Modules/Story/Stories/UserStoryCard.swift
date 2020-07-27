@@ -24,6 +24,7 @@ struct UserStoryCard: View {
     let isFirstStory: Bool
     let storyImage: UIImage?
     let imagePath: String?
+    let iconPath: String?
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -65,12 +66,17 @@ struct UserStoryCard: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            Image("image4")
-                                .resizable()
-                                .scaledToFill()
-                                .clipShape(Circle())
-                                .frame(width: p.size.width / 2.4, height: p.size.height / 2.4)
-                                .background(Circle().fill(Color.white).padding(-3))
+                            WebImage(url: URL(string: self.iconPath!))
+                            .resizable()
+                            .frame(width: p.size.width / 2.4, height: p.size.height / 2.4)
+                            .background(Circle().fill(Color.white).padding(-3))
+                            .clipShape(Circle())
+//                            Image("image4")
+//                                .resizable()
+//                                .scaledToFill()
+//                                .clipShape(Circle())
+//                                .frame(width: p.size.width / 2.4, height: p.size.height / 2.4)
+//                                .background(Circle().fill(Color.white).padding(-3))
                         }
                     }
                 }

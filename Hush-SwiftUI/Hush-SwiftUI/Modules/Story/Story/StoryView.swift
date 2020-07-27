@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct StoryView<ViewModel: StoryViewModeled>: View {
     @ObservedObject var viewModel: ViewModel
@@ -35,13 +36,12 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
     
     private func content(_ proxy: GeometryProxy) -> some View {
         ZStack {
-            
-            viewModel.stories[viewModel.currentStoryIndex]
+            WebImage.init(url: URL(string: viewModel.stories[viewModel.currentStoryIndex].url!))
                 .resizable()
+                .frame(proxy)
                 .scaledToFill()
                 .clipped()
                 .edgesIgnoringSafeArea(.all)
-                .frame(proxy)
                 .onTapGesture {
                     if self.viewModel.canTapNext {
                         self.viewModel.showNext()
@@ -49,6 +49,19 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         //self.modalPresenterManager.dismiss()
                     }
                 }
+//            viewModel.stories[viewModel.currentStoryIndex].icon
+//                .resizable()
+//                .scaledToFill()
+//                .clipped()
+//                .edgesIgnoringSafeArea(.all)
+//                .frame(proxy)
+//                .onTapGesture {
+//                    if self.viewModel.canTapNext {
+//                        self.viewModel.showNext()
+//                    } else {
+//                        //self.modalPresenterManager.dismiss()
+//                    }
+//                }
             
             VStack {
                 HStack(spacing: 0) {
@@ -183,7 +196,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
 
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-        StoryView(viewModel: StoryViewModel())
+        StoryView(viewModel: StoryViewModel(stories: [], index: -1))
             .previewEnvironment()
             .hostModalPresenter()
             .edgesIgnoringSafeArea(.all)

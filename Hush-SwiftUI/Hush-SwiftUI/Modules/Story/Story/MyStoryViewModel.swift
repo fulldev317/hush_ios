@@ -11,12 +11,12 @@ import SwiftUI
 class MyStoryViewModel: StoryViewModeled {
     @Published var currentStoryIndex: Int = 0
     @Published var storyMessage: String = ""
-    @Published var stories: [Image] = []
+    @Published var stories: [Story] = []
     let canSendMessages = false
     let canReport = false
     
     init(_ stories: [UIImage], isLastPick: Bool) {
-        self.stories = stories.map(Image.init)
+        self.stories = []
         if isLastPick {
             currentStoryIndex = self.stories.endIndex - 1
         }

@@ -11,7 +11,7 @@ import SwiftUI
 protocol StoryViewModeled: ObservableObject {
     var currentStoryIndex: Int { get set }
     var storyMessage: String { get set }
-    var stories: [Image] { get }
+    var stories: [Story] { get }
     var canSendMessages: Bool { get }
     var canReport: Bool { get }
     
