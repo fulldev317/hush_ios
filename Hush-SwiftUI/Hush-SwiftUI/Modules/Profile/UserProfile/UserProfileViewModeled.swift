@@ -26,6 +26,7 @@ protocol UserProfileViewModeled: ObservableObject {
     var location: String { get set }
     var profilePhoto: String { get set }
     var photoUrls: [String] { get set }
+    var galleriaUrls: [String] { get set }
     var unlockedPhotos: Set<Int> { get set }
     var stories: [UIImage] { get }
     var userId: String { get set }
@@ -35,6 +36,11 @@ protocol UserProfileViewModeled: ObservableObject {
     var lookfor: String { get set }
     var gender: String { get set }
     var herefor: String { get set }
-
+    var relationship: String { get set }
+    var sex: String { get set }
+    var smoke: String { get set }
+    var ethnicity: String { get set }
+    var body_type: String { get set }
+    var living: String { get set }
     func switchMode()
 }

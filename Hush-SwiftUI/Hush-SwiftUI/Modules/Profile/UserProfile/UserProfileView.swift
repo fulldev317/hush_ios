@@ -206,11 +206,11 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     
                     HapticButton(action: { self.liked.toggle() }) {
                         Image("profile_heart")
-                            .renderingMode(.template)
-                            .foregroundColor(self.liked ? .red : .white)
+                           .renderingMode(.template)
+                           .foregroundColor(self.liked ? .red : .white)
                     }
                     
-                    HapticButton(action:                        self.viewModel.switchMode
+                    HapticButton(action: self.viewModel.switchMode
                         //{
                         //self.profileTapped.toggle()
                         //}
@@ -231,20 +231,21 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         self.textBlock("About Me", subTitle: self.viewModel.bio)
                         self.textBlock("Current Location", subTitle: self.viewModel.address)
                         self.carusel("Photos", unlocked: self.$viewModel.unlockedPhotos, images: self.viewModel.photoUrls).padding(.vertical, -10)
+
                         //self.carusel("Stories", unlocked: self.$unlockedStories, images: self.viewModel.stories)
                         HStack {
                             VStack(alignment: .leading, spacing: 25) {
-                                self.textBlock("Looking For", subTitle: self.viewModel.lookfor)
-                                self.textBlock("Sexuality", subTitle: self.viewModel.gender)
-                                self.textBlock("Body Type", subTitle: "Thin")
+                                self.textBlock("Relationship", subTitle: self.viewModel.relationship)
+                                self.textBlock("Sexuality", subTitle: self.viewModel.sex)
+                                self.textBlock("Body Type", subTitle: self.viewModel.body_type)
                             }
                             
                             Spacer()
                             
                             VStack(alignment: .leading, spacing: 25) {
-                                self.textBlock("Smoking", subTitle: "No")
-                                self.textBlock("Ethnicity", subTitle: "Yes")
-                                self.textBlock("Living", subTitle: self.viewModel.herefor)
+                                self.textBlock("Smoking", subTitle: self.viewModel.smoke)
+                                self.textBlock("Ethnicity", subTitle: self.viewModel.ethnicity)
+                                self.textBlock("Living", subTitle: self.viewModel.living)
                             }
                             
                             Spacer()
