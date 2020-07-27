@@ -13,6 +13,7 @@ class StoriesViewModel: StoriesViewModeled {
     @Published var isShowingIndicator: Bool = false
     let settingsViewModel = StoriesSettingsViewModel()
     @Published var storyList: [Story] = []
+    @Published var selectedStoryIndex: Int = 0
 
     func uploadImage(userImage: UIImage, result: @escaping ( NSDictionary?) -> Void)
     {
