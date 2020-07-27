@@ -66,16 +66,13 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         Text("Long Username").font(.bold(24)).lineLimit(1)
                         Text("21 minutes ago").font(.regular())
                     }.shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
-                    Button(action: { self.likedStory.toggle() }) {
-                        if likedStory {
-                            Image("heart_icon_solid")
-                                .foregroundColor(Color.red)
-                                .padding(20)
-                        } else {
-                            Image("heart_icon")
-                                .padding(20)
-                        }
+
+                    HapticButton(action: { self.likedStory.toggle() }) {
+                        Image("profile_heart")
+                            .renderingMode(.template)
+                            .foregroundColor(self.likedStory ? .red : .white)
                     }
+                    
                     Button(action: {
                         if self.isNewStory {
                             self.modalPresenterManager.dismiss()

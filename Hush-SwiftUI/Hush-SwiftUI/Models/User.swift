@@ -195,20 +195,18 @@ struct User: Codable {
         var field9: String?
         var field10: String?
     }
+}
 
-    struct Gallery: Codable {
-        var image: String?
-        var photoId: String?
-        var privated: String?
-        
-        enum CodingKeys: String, CodingKey {
-            case image
-            case photoId
-            case privated = "private"
-        }
-        
+struct Gallery: Codable {
+    var image: String?
+    var photoId: String?
+    var privated: String?
+   
+    enum CodingKeys: String, CodingKey {
+        case image
+        case photoId
+        case privated = "private"
     }
-    
 }
 
 struct Question: Codable {
