@@ -68,7 +68,7 @@ class Common: NSObject {
         return errMsg
     }
     
-    static func getGenderIntValue(_ gender: String) -> String {
+    static func getGenderIndexValue(_ gender: String) -> String {
         var nGender = "1"
         switch gender {
         case Gender.male.rawValue:
@@ -89,4 +89,45 @@ class Common: NSObject {
         return nGender
     }
     
+    static func getSexIndexValue(_ sex: String) -> String {
+        var nSex = "1"
+        switch sex {
+        case Sex.gay.rawValue:
+            nSex = "1"
+            break
+        case Sex.open.rawValue:
+            nSex = "2"
+            break
+        case Sex.straight.rawValue:
+            nSex = "3"
+            break
+        case Sex.bisexual.rawValue:
+            nSex = "4"
+            break
+        default:
+            nSex = "1"
+        }
+        return nSex
+    }
+    
+    static func getLivingIndexValue(_ living: String) -> String {
+        var nLiving = "1"
+        switch living {
+        case Living.alone.rawValue:
+            nLiving = "1"
+            break
+        case Living.parent.rawValue:
+            nLiving = "2"
+            break
+        case Living.partner.rawValue:
+            nLiving = "3"
+            break
+        case Living.student.rawValue:
+            nLiving = "4"
+            break
+        default:
+            nLiving = "1"
+        }
+        return nLiving
+    }
 }

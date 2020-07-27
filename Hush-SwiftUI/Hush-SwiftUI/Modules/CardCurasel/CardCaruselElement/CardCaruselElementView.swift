@@ -38,7 +38,6 @@ struct CardCaruselElementView: View {
                       Image("placeholder_l")
                     }
                     .background(Color.white)
-                    .scaledToFill()
                     .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 400 : 320) * deviceScale)
                     .padding(.top, 30 * deviceScale)
 

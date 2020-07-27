@@ -401,23 +401,31 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
                 }
-                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Gender.allTitles) {
-                    var selectedSex = $0.lowercased()
+                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
+                    var selectedSex: String = $0.lowercased()
                     if (selectedSex == "") {
-                        selectedSex = "male"
+                        selectedSex = "gay"
+                    } else {
+                        selectedSex = Sex.typeForTitle(title: selectedSex)
                     }
                     if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
                     {
-                        
+                        self.viewModel.updateSex(sex: selectedSex)
                     }
-                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Gender(rawValue: selectedSex)!
+                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
                 }
-                tablePickerRow("Living", selected: viewModel.basicsViewModel.living, titles: $viewModel.locations.wrappedValue) {
-                    var selectedLocation = $0
-                    if (selectedLocation == "") {
-                        selectedLocation = self.$viewModel.locations.wrappedValue[0]
+                tablePickerRow("Living", selected: viewModel.basicsViewModel.living.title, titles: Living.allTitles) {
+                    var selectedLiving = $0.lowercased()
+                    if (selectedLiving == "") {
+                        selectedLiving = "alone"
+                    } else {
+                        selectedLiving = Living.typeForTitle(title: selectedLiving)
                     }
-                    self.$viewModel.basicsViewModel.living.wrappedValue = selectedLocation
+                    if (selectedLiving != self.$viewModel.basicsViewModel.living.wrappedValue.rawValue)
+                    {
+                       self.viewModel.updateLiving(living: selectedLiving)
+                    }
+                    self.$viewModel.basicsViewModel.living.wrappedValue = Living(rawValue: selectedLiving)!
                 }
                 //tableRow("Living", value: $viewModel.basicsViewModel.living)
                 tableRow("Bio", value: nil)

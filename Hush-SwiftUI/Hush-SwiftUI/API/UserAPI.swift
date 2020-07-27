@@ -162,11 +162,72 @@ class UserAPI: BaseAPI {
         }
     }
     
-    func update_gender(gender: String, completion: @escaping (_ error: APIError?) -> Void) {
+    func update_living(living: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!
-        let nGender = Common.getGenderIntValue(gender)
-        let query = userId + "," + nGender;
+        let query = userId + ",7," + living;
+        let parameters: Parameters = ["action": "updateUserExtended",
+                                      "query": query]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                        let json_user = json["user"]
+                        let jsonData = try! json_user.rawData()
+                        user = try! JSONDecoder().decode(User.self, from: jsonData)
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(user, error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
+    func update_sexuality(s: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + ",2," + s;
+        let parameters: Parameters = ["action": "updateUserExtended",
+                                      "query": query]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var user: User?
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                        let json_user = json["user"]
+                                              let jsonData = try! json_user.rawData()
+                                              user = try! JSONDecoder().decode(User.self, from: jsonData)
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(user, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
+    func update_gender(gender: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + "," + gender;
         let parameters: Parameters = ["action": "updateGender",
                                       "query": query]
         
@@ -175,16 +236,20 @@ class UserAPI: BaseAPI {
                 
                 switch response.result {
                 case .success(let json):
+                    var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
+                        let json_user = json["user"]
+                        let jsonData = try! json_user.rawData()
+                        user = try! JSONDecoder().decode(User.self, from: jsonData)
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                    completion(error)
+                    completion(user, error)
                 case .failure:
                     let error = APIError(404, "Server Connection Failed")
-                    completion(error)
+                    completion(nil, error)
                     print("API CALL FAILED")
                 }
         }
@@ -321,86 +386,4 @@ class UserAPI: BaseAPI {
         }
     }
     
-    func updateUserProfilePhoto(photoId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateUserProfilePhoto"]
-        
-        let query: [Any] = [userId, photoId]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var user: User?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(user, error)
-                case .failure:
-                    print("API CALL FAILED")
-                }
-        }
-    }
-    
-    
-    func updateUserExtended(questionId: String, answer: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateUserExtended"]
-        
-        let query: [Any] = [userId, questionId, answer]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var user: User?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(user, error)
-                case .failure:
-                    print("API CALL FAILED")
-                    
-                }
-        }
-    }
-    
-    func updateLocation(latitude: Double, longitude: Double, city: String, country: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateLocationA"]
-        
-        let query: [Any] = [userId, latitude, longitude, city, country]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var user: User?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(user, error)
-                case .failure:
-                    print("API CALL FAILED")
-                }
-        }
-    }
 }

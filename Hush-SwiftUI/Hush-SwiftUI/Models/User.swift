@@ -182,21 +182,6 @@ struct User: Codable {
         case notifications = "notification"
     }
    
-    struct Question: Codable {
-        var id: String?
-        var method: String?
-        var gender: String?
-        var q_order: String?
-        var userAnswer: String?
-        var answers: [Answer]?
-
-        struct Answer: Codable {
-            var id: String?
-            var answer: String?
-            var text: String?
-        }
-    }
-    
     struct Extended: Codable {
         var uid: String?
         var field1: String?
@@ -226,4 +211,19 @@ struct User: Codable {
     
 }
 
+struct Question: Codable {
+     var id: String?
+     var method: String?
+     var question: String?
+     var gender: String?
+     var q_order: String?
+     var userAnswer: String?
+     var answers: [Answer]?
 
+ }
+ 
+ struct Answer: Codable {
+    var id: String?
+    var answer: String?
+    var text: String?
+}
