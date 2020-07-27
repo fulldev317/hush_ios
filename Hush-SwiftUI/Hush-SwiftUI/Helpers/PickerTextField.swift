@@ -15,7 +15,7 @@ struct PickerTextField: UIViewRepresentable {
     var picked: (String) -> Void
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(titles: titles, picked: picked, textField: UITextField(), selectedTitle: "")
+        Coordinator(titles: titles, picked: picked, textField: UITextField(), selectedTitle: title)
     }
     
     func makeUIView(context: Context) -> UITextField {
@@ -50,6 +50,14 @@ extension PickerTextField {
             picker.dataSource = self
             picker.delegate = self
 
+            var index = 0
+            for value in titles {
+                if value == selectedTitle {
+                    break
+                }
+                index += 1
+            }
+            picker.selectRow(index, inComponent: 0, animated: false)
             return picker
         }
         

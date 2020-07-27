@@ -224,7 +224,7 @@ class UserAPI: BaseAPI {
         }
     }
     
-    func update_gender(gender: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+    func update_gender(gender: String, completion: @escaping ( _ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!
         let query = userId + "," + gender;
@@ -236,20 +236,16 @@ class UserAPI: BaseAPI {
                 
                 switch response.result {
                 case .success(let json):
-                    var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
-                        let json_user = json["user"]
-                        let jsonData = try! json_user.rawData()
-                        user = try! JSONDecoder().decode(User.self, from: jsonData)
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                    completion(user, error)
+                    completion(error)
                 case .failure:
                     let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
+                    completion(error)
                     print("API CALL FAILED")
                 }
         }

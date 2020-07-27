@@ -133,16 +133,16 @@ class MyProfileViewModel: MyProfileViewModeled {
         }
         
         switch Int(user.gender ?? "1") {
-        case 0:
+        case 1:
             basicsViewModel.gender = Gender.male
             break
-        case 1:
+        case 2:
             basicsViewModel.gender = Gender.female
             break
-        case 2:
+        case 3:
             basicsViewModel.gender = Gender.lesbian
             break
-        case 3:
+        case 4:
             basicsViewModel.gender = Gender.gay
             break
         default:
@@ -251,11 +251,11 @@ class MyProfileViewModel: MyProfileViewModeled {
        
         let gender_index = Common.getGenderIndexValue(gender)
 
-        UserAPI.shared.update_gender(gender: gender_index) { (user, error) in
+        UserAPI.shared.update_gender(gender: gender_index) { ( error) in
             if (error == nil) {
-                if (user != nil) {
-                    Common.setUserInfo(user!)
-                }
+                var user = Common.userInfo()
+                user.gender = gender_index
+                Common.setUserInfo(user)
             }
         }
     }
