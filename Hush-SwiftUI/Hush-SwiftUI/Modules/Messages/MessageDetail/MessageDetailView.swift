@@ -17,14 +17,23 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var app: App
     @State private var keyboardHeight: CGFloat = 0
-    
+    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+
     // MARK: - Lifecycle
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
+        
+        if (Common.messageLoaded()) {
+            
+            Common.setMessageLoaded(loaded: false)
 
-        self.viewModel.userChat { result in
-            if (result == true) {
-                
+            self.viewModel.isShowingIndicator = true
+            
+            self.viewModel.userChat { result in
+                viewModel.isShowingIndicator = false
+                if (result == true) {
+                    
+                }
             }
         }
     }
@@ -33,8 +42,18 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
             VStack {
                 VStack(alignment: .leading, spacing: 0) {
                     Text($viewModel.peerName.wrappedValue).font(.thin(48)).foregroundColor(.hOrange)
+                    .onReceive(timer) { input in
+                        self.viewModel.userChat { result in
+                            if (result == true) {
+                                
+                            }
+                        }
+                    }
                     HStack(alignment: .top) {
-                        HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
+                        HapticButton(action: {
+                            self.mode.wrappedValue.dismiss()
+                            self.timer.upstream.connect().cancel()
+                        }) {
                             HStack(spacing: 23) {
                                 Image("onBack_icon")
                                 Text("Back to messages").foregroundColor(.white).font(.thin())
@@ -64,7 +83,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                         self.viewForMessage(message)
                     }
                 }
-                    
+
                 SendTextField(placeholder: "Type your Message", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
                     .padding(.horizontal, 15)
 

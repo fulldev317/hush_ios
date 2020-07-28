@@ -15,6 +15,7 @@ var _lowAge: Double? = 0.0
 var _upperAge: Double? = 1.0
 var _maxRange: Double? = 0.0
 var _image: UIImage?
+var isMessageLoaded: Bool? = false
 let ISiPhone11 = SCREEN_HEIGHT >= 896
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let ISiPhonePlus = SCREEN_WIDTH == 414
@@ -37,6 +38,14 @@ class Common: NSObject {
     
     static func addressInfo() -> String {
         return _address!
+    }
+    
+    static func setMessageLoaded(loaded: Bool) {
+        isMessageLoaded = loaded
+    }
+    
+    static func messageLoaded() -> Bool {
+        return isMessageLoaded!
     }
     
     static func setMaxRangeInfo(_ range: Double) {
