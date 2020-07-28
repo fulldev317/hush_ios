@@ -32,9 +32,11 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
             self.viewModel.userChat { result in
                 viewModel.isShowingIndicator = false
                 if (result == true) {
-                    
+                    	
                 }
             }
+        } else {
+            self.viewModel.chatMessages = Common.chatMessage()
         }
     }
     var body: some View {
@@ -77,10 +79,18 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                         
                     }
                 }.padding([.horizontal])
-                               
-                HushScrollView(scrollToEnd: true) {
-                    ForEach(self.viewModel.chatMessages, id: \.id) { message in
-                        self.viewForMessage(message)
+                    
+                if ($keyboardHeight.wrappedValue > 0) {
+                    HushScrollView(scrollToEnd: true) {
+                        ForEach(self.viewModel.chatMessages, id: \.id) { message in
+                            self.viewForMessage(message)
+                        }
+                    }
+                } else {
+                    HushScrollView(scrollToEnd: true) {
+                        ForEach(self.viewModel.chatMessages, id: \.id) { message in
+                            self.viewForMessage(message)
+                        }
                     }
                 }
 

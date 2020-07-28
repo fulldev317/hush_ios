@@ -12,6 +12,7 @@ import Combine
 class MessageDetailViewModel: MessageDetailViewModeled {
     @Published var isShowingIndicator: Bool = false
     @Published var chatMessages: [HushMessage] = []
+
     @Published private var changed = false
     @Published var peerImagePath: String = ""
     @Published var peerName: String = ""
@@ -35,7 +36,8 @@ class MessageDetailViewModel: MessageDetailViewModeled {
 
         ChatAPI.shared.userChat(to_user_id: self.peerId) { (messageList, error) in
             self.chatMessages.removeAll()
-
+            Common.setChatMessage(message: [])
+            
             if error == nil {
                 if let messageList = messageList {
                     for message in messageList {
@@ -59,6 +61,7 @@ class MessageDetailViewModel: MessageDetailViewModeled {
                         }
                     }
                 }
+                Common.setChatMessage(message: self.chatMessages)
                 result(true)
             } else {
                 result(false)
@@ -83,6 +86,7 @@ class MessageDetailViewModel: MessageDetailViewModeled {
             self.changed = false
             if error == nil {
                 self.chatMessages.append(.text(message))
+                Common.setChatMessage(message: self.chatMessages)
             }
         }
     }

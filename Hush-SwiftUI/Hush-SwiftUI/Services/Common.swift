@@ -15,13 +15,13 @@ var _lowAge: Double? = 0.0
 var _upperAge: Double? = 1.0
 var _maxRange: Double? = 0.0
 var _image: UIImage?
-var isMessageLoaded: Bool? = false
+var _isMessageLoaded: Bool? = false
+var _chatMessage: [HushMessage]?
 let ISiPhone11 = SCREEN_HEIGHT >= 896
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let ISiPhonePlus = SCREEN_WIDTH == 414
 let ISiPhone5 = SCREEN_WIDTH == 320
 let ISiPhone8 = SCREEN_HEIGHT == 667
-
 
 class Common: NSObject {
     static func setUserInfo(_ user: User) {
@@ -41,11 +41,19 @@ class Common: NSObject {
     }
     
     static func setMessageLoaded(loaded: Bool) {
-        isMessageLoaded = loaded
+        _isMessageLoaded = loaded
     }
     
     static func messageLoaded() -> Bool {
-        return isMessageLoaded!
+        return _isMessageLoaded!
+    }
+    
+    static func setChatMessage(message: [HushMessage]) {
+        _chatMessage = message
+    }
+    
+    static func chatMessage() -> [HushMessage] {
+        return _chatMessage!
     }
     
     static func setMaxRangeInfo(_ range: Double) {
