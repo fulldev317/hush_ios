@@ -19,53 +19,75 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     @State private var keyboardHeight: CGFloat = 0
     
     // MARK: - Lifecycle
-    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+
+        self.viewModel.userChat { result in
+            if (result == true) {
+                
+            }
+        }
+    }
     var body: some View {
-        VStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Text($viewModel.peerName.wrappedValue).font(.thin(48)).foregroundColor(.hOrange)
-                HStack(alignment: .top) {
-                    HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
-                        HStack(spacing: 23) {
-                            Image("onBack_icon")
-                            Text("Back to messages").foregroundColor(.white).font(.thin())
+        ZStack {
+            VStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text($viewModel.peerName.wrappedValue).font(.thin(48)).foregroundColor(.hOrange)
+                    HStack(alignment: .top) {
+                        HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
+                            HStack(spacing: 23) {
+                                Image("onBack_icon")
+                                Text("Back to messages").foregroundColor(.white).font(.thin())
+                            }
                         }
+                        Spacer()
+                        WebImage(url: URL(string: $viewModel.peerImagePath.wrappedValue))
+                        .resizable()
+                        .placeholder {
+                            Image("placeholder_s").frame(width: 60, height: 60, alignment: .center)
+                        }
+                        .background(Color.white)
+                        .scaledToFill()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(30)
+                        .overlay(Circle()
+                            .fill(Color(0x27AE60))
+                            .square(22)
+                            .padding(.trailing, 0),
+                             alignment: .topTrailing)
+                        
                     }
-                    Spacer()
-                    WebImage(url: URL(string: $viewModel.peerImagePath.wrappedValue))
-                    .resizable()
-                    .placeholder {
-                        Image("placeholder_s").frame(width: 60, height: 60, alignment: .center)
-                    }
-                    .background(Color.white)
-                    .scaledToFill()
-                    .frame(width: 60, height: 60)
-                    .cornerRadius(30)
-                    .overlay(Circle()
-                        .fill(Color(0x27AE60))
-                        .square(22)
-                        .padding(.trailing, 0),
-                         alignment: .topTrailing)
-                    
-                }
-            }.padding([.horizontal])
-            
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(self.viewModel.messages(conversation: self.app.messages.item(at: 0)), id: \.id) { message in
+                }.padding([.horizontal])
+                
+//                ScrollView {
+//                    VStack(spacing: 10) {
+//                        ForEach(viewModel.chatMessages, id: \.id) { message in
+//                            //self.viewForMessage(message)
+//                            Text("123")
+//                        }
+//                    }.padding(.bottom, 30)
+//                }
+//                .rotationEffect(.degrees(180))
+                
+                List {
+                    ForEach(viewModel.chatMessages, id: \.id) { message in
                         self.viewForMessage(message)
                     }
-                }.padding(.bottom, 30)
-            }
-            .rotationEffect(.degrees(180))
-            
-            SendTextField(placeholder: "Type your Message", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
-                .padding(.horizontal, 15)
+                }.listStyle(DefaultListStyle())
+                .rotationEffect(.degrees(180))
+                
+                SendTextField(placeholder: "Type your Message", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
+                    .padding(.horizontal, 15)
 
-            Spacer(minLength: keyboardHeight - 70)
+                Spacer(minLength: keyboardHeight - 70)
+                
+            }
+            .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
+            .background(Color.hBlack.edgesIgnoringSafeArea(.all))
+                
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
+
         }
-        .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
-        .background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }
     
     private func viewForMessage(_ message: HushMessage) -> some View {
@@ -84,7 +106,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
         guard case let .text(textMessage) = message else { fatalError() }
         return ContentTextMessageView(
             time: message.time,
-            contentMessage: textMessage.text,
+            contentMessage: textMessage.text.parseSpecialText(),
             isCurrentUser: message.userID == "SELF",
             shouldShowDate: self.messageShouldShowDate(message)
         ).rotationEffect(.degrees(180))
@@ -101,7 +123,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     }
     
     func messageShouldShowDate(_ message: HushMessage) -> Bool {
-        let messages = viewModel.messages(conversation: self.app.messages.item(at: 0))
+        let messages = viewModel.chatMessages
         guard let index = messages.firstIndex(of: message), index > 0 else { return true }
         return messages[index - 1].userID != message.userID
     }

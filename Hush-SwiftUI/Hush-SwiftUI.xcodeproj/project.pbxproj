@@ -147,6 +147,9 @@
 		595C7E6024C9F2400094D7A0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C7E5F24C9F2400094D7A0 /* Story.swift */; };
 		595D7F8324CA1922003492E4 /* UserStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D7F8224CA1922003492E4 /* UserStoryCard.swift */; };
 		5962D37A24CA25D8001873D6 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5962D37924CA25D8001873D6 /* Matches.swift */; };
+		59645F6A24D0134E003D1167 /* ChatMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6924D0134E003D1167 /* ChatMember.swift */; };
+		59645F6C24D02EDA003D1167 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6B24D02EDA003D1167 /* String+Ext.swift */; };
+		59645F6E24D064BF003D1167 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6D24D064BF003D1167 /* ChatMessage.swift */; };
 		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
 		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
@@ -348,6 +351,9 @@
 		595C7E5F24C9F2400094D7A0 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		595D7F8224CA1922003492E4 /* UserStoryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStoryCard.swift; sourceTree = "<group>"; };
 		5962D37924CA25D8001873D6 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
+		59645F6924D0134E003D1167 /* ChatMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMember.swift; sourceTree = "<group>"; };
+		59645F6B24D02EDA003D1167 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		59645F6D24D064BF003D1167 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
 		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
@@ -636,6 +642,7 @@
 				8993C7652460079400E8F765 /* Combine+Ext.swift */,
 				8993D7A9246958AC002E636D /* View+Env.swift */,
 				8936B110246B303B001F9254 /* UIApplicationExtensions.swift */,
+				59645F6B24D02EDA003D1167 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -963,6 +970,8 @@
 				73D44AF3247FAE2700FB01BA /* Notifications.swift */,
 				73E7C157247FC0460077F5E1 /* Spotlight.swift */,
 				5375541324A4EE2E009A13AE /* Discover.swift */,
+				59645F6924D0134E003D1167 /* ChatMember.swift */,
+				59645F6D24D064BF003D1167 /* ChatMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1314,6 +1323,7 @@
 				8928ED7B246AEA2D004D3073 /* StoriesSettingsViewModel.swift in Sources */,
 				155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */,
 				73917912247F0FE9002AF4A9 /* ChatAPI.swift in Sources */,
+				59645F6A24D0134E003D1167 /* ChatMember.swift in Sources */,
 				8993D7B12469D2D7002E636D /* ModalPresenterWrapper.swift in Sources */,
 				155E2FF4243B0C2C001D886D /* MessagesCell.swift in Sources */,
 				89B5520A246DEA13004DC7C6 /* ContentImageMessageView.swift in Sources */,
@@ -1361,6 +1371,7 @@
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
 				73D44AF4247FAE2700FB01BA /* Notifications.swift in Sources */,
 				89559FFB246AB94000223FB7 /* StoryViewModeled.swift in Sources */,
+				59645F6E24D064BF003D1167 /* ChatMessage.swift in Sources */,
 				15E8CCDC2431E1D400A92595 /* SignUpEmail.swift in Sources */,
 				536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */,
 				8936B116246B40FA001F9254 /* UserDefault.swift in Sources */,
@@ -1411,6 +1422,7 @@
 				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,
 				599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */,
 				157930952435BE0100EE428F /* RootTabBarViewModeled.swift in Sources */,
+				59645F6C24D02EDA003D1167 /* String+Ext.swift in Sources */,
 				157930F82437324600EE428F /* CardCuraselViewModel.swift in Sources */,
 				155E300F243B4132001D886D /* HTextView.swift in Sources */,
 				154B26B22431D06000265C76 /* SignUpViewModel.swift in Sources */,

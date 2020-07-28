@@ -31,4 +31,84 @@ class ChatAPI: BaseAPI {
                 }
         }
     }
+    
+    func getChat(completion: @escaping (_ matches: [ChatMember?]?, _ error: APIError?) -> Void) {
+     
+         let user = Common.userInfo()
+         let userId = user.id!
+         let parameters = ["action": "getChat",
+                            "id": userId]
+     
+        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+                    
+            switch response.result {
+            case .success(let json):
+                var memberList:[ChatMember?] = []
+                var error: APIError?
+
+                if (json["error"].int == 0) {
+                    
+                    let json_matches = json["matches"]
+                    
+                     if (json_matches.count > 0) {
+                         for index in 0 ..< json_matches.count {
+                             let member = json_matches[index]
+                             let jsonData = try! member.rawData()
+                             var member_data = try! JSONDecoder().decode(ChatMember.self, from: jsonData)
+                             member_data.liked = false
+                             memberList.append(member_data)
+                         }
+                     }
+                } else {
+                    error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                }
+                completion(memberList, error)
+
+            case .failure:
+                let error = APIError(404, "Server Connection Failed")
+                completion(nil, error)
+                print("API CALL FAILED")
+            }
+        }
+    }
+    
+    func userChat(to_user_id: String, completion: @escaping (_ matches: [ChatMessage?]?, _ error: APIError?) -> Void) {
+     
+         let user = Common.userInfo()
+         let userId = user.id!
+         let parameters = ["action": "userChat",
+                            "uid1": userId,
+                            "uid2": to_user_id]
+     
+        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+                    
+            switch response.result {
+            case .success(let json):
+                var memberList:[ChatMessage?] = []
+                var error: APIError?
+
+                if (json["error"].int == 0) {
+                    
+                    let json_matches = json["chat"]
+                    
+                    if (json_matches.count > 0) {
+                        for index in 0 ..< json_matches.count {
+                            let member = json_matches[index]
+                            let jsonData = try! member.rawData()
+                            let member_data = try! JSONDecoder().decode(ChatMessage.self, from: jsonData)
+                            memberList.append(member_data)
+                        }
+                    }
+                } else {
+                    error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                }
+                completion(memberList, error)
+
+            case .failure:
+                let error = APIError(404, "Server Connection Failed")
+                completion(nil, error)
+                print("API CALL FAILED")
+            }
+        }
+    }
 }

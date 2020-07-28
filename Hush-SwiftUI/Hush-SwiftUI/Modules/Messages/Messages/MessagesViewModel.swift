@@ -11,24 +11,44 @@ import Combine
 import Fakery
 
 class MessagesViewModel: MessagesViewModeled {
-    
-    
+
     // MARK: - Properties
     
     @Published var filter: MessagesFilter = .all
     @Published var message = "Hellow World!"
-    
+    @Published var isShowingIndicator: Bool = false
+    @Published var items: [HushConversation] = []
+
     var searchQuery: String = ""
     
     private let storage = FakeStorage()
-    
-    var items: [HushConversation] {
-        storage.getMessages()
-    }
-    
+        
     func updateMessage() {
 
         message = "New Message"
+    }
+    
+    func getChat(result: @escaping (Bool) -> Void) {
+        
+        self.isShowingIndicator = true
+        
+        ChatAPI.shared.getChat(completion: { (memberList, error) in
+            self.isShowingIndicator = false
+            self.items.removeAll()
+            
+            if error == nil {
+                if let memberList = memberList {
+                    for member in memberList {
+                        if (member != nil) {
+                            self.items.append(HushConversation(id: member!.id!, username: member!.name!, text: member!.last_m!.parseSpecialText(), imageURL: member!.photo!, time: member!.last_m_time!, messages: []))
+                        }
+                    }
+                }
+                result(true)
+            } else {
+                result(false)
+            }
+        })
     }
     
     func item(at index: Int) -> HushConversation {
@@ -39,15 +59,6 @@ class MessagesViewModel: MessagesViewModeled {
     func numberOfItems() -> Int {
         
         storage.getMessages().count
-    }
-    
-    func createConversation(message: String) {
-        storage.storage.insert(HushConversation(
-            username: storage.faker.name.firstName(),
-            text: message,
-            imageURL: storage.faker.internet.image(width: 100, height: 100),
-            messages: [.text(HushTextMessage(userID: "SELF", text: message))]
-        ), at: 0)
     }
     
     func deleteContersation(atOffsets offsets: IndexSet) {
@@ -78,7 +89,7 @@ fileprivate class FakeStorage: HushConversationsStorage {
     
     init() {
         storage = Array(0..<10).map { _ in
-            HushConversation(username: faker.name.firstName(), text: faker.lorem.paragraph(), imageURL: faker.internet.image(width: 100, height: 100), time: faker.date.birthday(2, 10), messages: (0..<10).map { i in
+            HushConversation(username: faker.name.firstName(), text: faker.lorem.paragraph(), imageURL: faker.internet.image(width: 100, height: 100), time: "", messages: (0..<10).map { i in
                 .text(HushTextMessage(userID: i.isMultiple(of: 3) ? "SELF" : "DEF", text: faker.lorem.paragraph()))
             })
         }

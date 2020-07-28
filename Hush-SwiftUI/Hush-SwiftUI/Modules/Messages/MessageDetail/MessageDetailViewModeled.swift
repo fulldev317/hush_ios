@@ -14,7 +14,10 @@ protocol MessageDetailViewModeled: ObservableObject {
     var peerId: String { get set }
     var peerName: String { get set }
     var peerImagePath: String { get set }
-    func messages(conversation:HushConversation) -> [HushMessage] 
+    var isShowingIndicator: Bool { get set }
+    var chatMessages: [HushMessage] { get set }
+
+    func userChat(result: @escaping (Bool) -> Void)
     func name() -> String
     func sendMessage(_ text: String)
     func sendImage(_ image: UIImage)
