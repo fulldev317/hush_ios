@@ -58,24 +58,13 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                         
                     }
                 }.padding([.horizontal])
-                
-//                ScrollView {
-//                    VStack(spacing: 10) {
-//                        ForEach(viewModel.chatMessages, id: \.id) { message in
-//                            //self.viewForMessage(message)
-//                            Text("123")
-//                        }
-//                    }.padding(.bottom, 30)
-//                }
-//                .rotationEffect(.degrees(180))
-                
-                List {
-                    ForEach(viewModel.chatMessages, id: \.id) { message in
+                               
+                HushScrollView(scrollToEnd: true) {
+                    ForEach(self.viewModel.chatMessages, id: \.id) { message in
                         self.viewForMessage(message)
                     }
-                }.listStyle(DefaultListStyle())
-                .rotationEffect(.degrees(180))
-                
+                }
+                    
                 SendTextField(placeholder: "Type your Message", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
                     .padding(.horizontal, 15)
 
@@ -99,6 +88,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
             if message.isImage {
                 viewForImageMessage(message)
             }
+                
         }
     }
     
@@ -109,8 +99,8 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
             contentMessage: textMessage.text.parseSpecialText(),
             isCurrentUser: message.userID == "SELF",
             shouldShowDate: self.messageShouldShowDate(message)
-        ).rotationEffect(.degrees(180))
-        .padding(message.userID == "SELF" ? .trailing : .leading, 70)
+        )
+        .padding(message.userID == "SELF" ? .leading : .trailing, 40)
         
     }
     

@@ -90,7 +90,7 @@ fileprivate class FakeStorage: HushConversationsStorage {
     init() {
         storage = Array(0..<10).map { _ in
             HushConversation(username: faker.name.firstName(), text: faker.lorem.paragraph(), imageURL: faker.internet.image(width: 100, height: 100), time: "", messages: (0..<10).map { i in
-                .text(HushTextMessage(userID: i.isMultiple(of: 3) ? "SELF" : "DEF", text: faker.lorem.paragraph()))
+                .text(HushTextMessage(id: String(i), userID: i.isMultiple(of: 3) ? "SELF" : "DEF", text: faker.lorem.paragraph()))
             })
         }
     }
