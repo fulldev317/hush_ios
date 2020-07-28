@@ -33,7 +33,7 @@ extension HushConversation: Identifiable { }
 struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     
     // MARK: - Properties
-    
+    @EnvironmentObject private var app: App
     @ObservedObject var viewModel: ViewModel
     @State private var selectedMessage: HushConversation?
     @State private var keyboardPresented: Bool = false
@@ -73,7 +73,8 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                             .listRowInsets(.init())
                                 .onTapGesture {
                                     self.selectedMessage = message
-                            }
+                                    Common.setMessageLoaded(loaded: true)
+                                }
                             }.onDelete(perform: self.viewModel.deleteContersation)
                             .background(Color.black)
                     }.listStyle(DefaultListStyle())

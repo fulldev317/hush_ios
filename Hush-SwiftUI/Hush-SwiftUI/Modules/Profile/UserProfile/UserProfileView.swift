@@ -168,7 +168,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 HapticButton(action: {
                                     //self.showUpgrade.toggle()
                                     self.goToMessage.toggle()
-                                    }) {
+                                    Common.setMessageLoaded(loaded: true)
+                                }) {
                                     Image("profile_message")
                                         .resizable()
                                         .foregroundColor(.white).aspectRatio(contentMode: .fill)

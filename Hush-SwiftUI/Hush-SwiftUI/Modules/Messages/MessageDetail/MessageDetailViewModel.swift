@@ -27,12 +27,13 @@ class MessageDetailViewModel: MessageDetailViewModeled {
         self.peerImagePath = messageItem.profilePhoto!
     }
     
+    deinit {
+         
+     }
+    
     func userChat(result: @escaping (Bool) -> Void) {
 
-        self.isShowingIndicator = true
-
         ChatAPI.shared.userChat(to_user_id: self.peerId) { (messageList, error) in
-            self.isShowingIndicator = false
             self.chatMessages.removeAll()
 
             if error == nil {
