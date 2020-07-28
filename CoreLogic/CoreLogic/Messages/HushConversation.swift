@@ -15,7 +15,7 @@ private protocol HushMessageProtocol {
 }
 
 struct HushTextMessage: Hashable, Equatable, HushMessageProtocol {
-    var id: String = UUID().uuidString
+    var id: String
     var userID: String
     var text: String
     var time: Date = Date()

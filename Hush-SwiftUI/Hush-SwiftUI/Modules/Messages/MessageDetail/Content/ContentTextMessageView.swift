@@ -17,13 +17,6 @@ struct ContentTextMessageView: View {
     
     var body: some View {
         VStack(alignment: isCurrentUser ? .trailing : .leading, spacing: 4) {
-            HStack {
-                Text(contentMessage)
-                    .padding(10)
-                    .foregroundColor(Color.white)
-                Spacer()
-            }.background(background())
-        
             if shouldShowDate {
                 if !isCurrentUser {
                     Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
@@ -31,6 +24,16 @@ struct ContentTextMessageView: View {
                     (Text(getTime()) + Text(" | Delivered")).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
                 }
             }
+            
+            HStack {
+                Text(contentMessage)
+                    .padding(10)
+                    .foregroundColor(Color.white)
+                Spacer()
+            }.background(background())
+            
+            Text("").frame(width: 100, height: 2)
+            
         }.padding(.horizontal, 16)
     }
     

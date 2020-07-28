@@ -70,9 +70,17 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     }
     
     func sendMessage(_ text: String) {
-        let message = HushTextMessage(userID: "SELF", text: text)
-        conversation.sendMessage(.text(message))
-        changed.toggle()
+        let lastMessage = self.chatMessages.last
+        let last_id = Int(lastMessage!.id)
+        let message = HushTextMessage(id: String(last_id! + 1), userID: "SELF", text: text)
+        
+        changed = true
+        ChatAPI.shared.sendMessage(to_user_id: peerId, message: text, type: "text") { (error) in
+            self.changed = false
+            if error == nil {
+                self.chatMessages.append(.text(message))
+            }
+        }
     }
     
     func sendImage(_ image: UIImage) {
