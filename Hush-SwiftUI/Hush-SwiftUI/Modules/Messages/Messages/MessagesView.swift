@@ -39,6 +39,14 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     @State private var keyboardPresented: Bool = false
     @State private var keyboardHeight: CGFloat = 0
 
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        self.viewModel.getChat { result in
+            if (result == true) {
+                
+            }
+        }
+    }
     // MARK: - Lifecycle
     
     var body: some View {
@@ -56,6 +64,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                     .listRowBackground(Color.black)
                     .padding(.bottom)
                     .listRowInsets(.init())
+                    .environment(\.colorScheme, .dark)
 
                 ZStack {
                     List {
@@ -85,6 +94,9 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                     }
                 }                
             }
+            
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
+
         }.observeKeyboardHeight($keyboardHeight, withAnimation: .default)
     }
 }

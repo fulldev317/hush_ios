@@ -24,6 +24,7 @@ public struct HushIndicator: View {
         .frame(width: 80,
                height: 80)
         .background(Color.secondary.colorInvert())
+        //.background(Color.gray)
         .foregroundColor(Color.primary)
         .cornerRadius(15)
         .opacity(self.isShowing ? 1 : 0)

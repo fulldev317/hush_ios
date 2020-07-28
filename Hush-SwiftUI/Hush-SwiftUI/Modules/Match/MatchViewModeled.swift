@@ -13,7 +13,6 @@ protocol MatchViewModeled: ObservableObject {
     
     var matches: [Match] { get set }
     var matches1: [Discover] { get set }
-
     var isShowingIndicator: Bool { get set }
 
     func match(_ i: Int, _ j: Int) -> Match

@@ -122,7 +122,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     }.offset(x: 0, y: 10)
                 }.padding(.top, -10)
                 
-                MessagesView(viewModel: app.messages).environment(\.colorScheme, .dark)
+                MessagesView(viewModel: app.messages)
             }.withoutBar()
         }.actionSheet(isPresented: $selectMessagesFilter) {
             ActionSheet(title: Text("Filter Messages"), message: nil, buttons: MessagesFilter.allCases.map { filter in

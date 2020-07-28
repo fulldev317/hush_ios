@@ -60,7 +60,7 @@ struct HushConversation: Hashable, Equatable {
     var username: String
     var text: String
     var imageURL: String
-    var time: Date = Date()
+    var time: String
     var messages: [HushMessage]
     
     // TODO: - Temp solution

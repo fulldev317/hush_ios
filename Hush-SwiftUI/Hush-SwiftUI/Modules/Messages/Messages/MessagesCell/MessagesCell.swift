@@ -41,7 +41,7 @@ struct MessagesCell: View {
             }.padding(.horizontal, 20)
             Spacer()
             VStack {
-                Text("08:23AM").font(.regular(13)).foregroundColor(Color(0xACB1C0))
+                Text(message.time).font(.regular(13)).foregroundColor(Color(0xACB1C0))
                 Spacer()
             }
         }.buttonStyle(PlainButtonStyle()).frame(height: 90).listRowBackground(Color.hBlack)

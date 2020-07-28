@@ -188,7 +188,6 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
     }
     
     private func sendMessage() {
-        app.messages.createConversation(message: viewModel.storyMessage)
         viewModel.storyMessage = ""
         UIApplication.shared.endEditing()
     }
