@@ -67,6 +67,14 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
             if viewModel.mode == .info {
                 infoView.background(Color.hBlack.edgesIgnoringSafeArea(.all)).withoutBar()
             }
+            
+            if (self.$goToMessage.wrappedValue) {
+                NavigationLink(
+                    destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: self.viewModel.userId, name: self.viewModel.name, image: self.viewModel.profilePhoto))).withoutBar(),
+                    isActive: self.$goToMessage,
+                    label: EmptyView.init
+                )
+            }
         }.actionSheet(isPresented: $shouldReport) {
             ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
                 .default(Text("Block User"), action: {}),
@@ -76,11 +84,6 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
         }.background(NavigationLink(
             destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
             isActive: self.$showUpgrade,
-            label: EmptyView.init
-        ))
-        .background(NavigationLink(
-            destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: self.viewModel.userId, name: self.viewModel.name, image: self.viewModel.profilePhoto))).withoutBar(),
-            isActive: self.$goToMessage,
             label: EmptyView.init
         ))
     }

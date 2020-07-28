@@ -82,8 +82,15 @@ struct CardCaruselElementView: View {
                 if (self.$showMessages.wrappedValue) {
                     VStack {
                         NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: user.id!, name: user.name!, image: user.photo!))).withoutBar(), isActive: self.$showMessages) {
-                            Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
+                            Spacer()
                         }.buttonStyle(PlainButtonStyle())
+                    }.padding(.bottom, 10)
+                } else {
+                    VStack {
+                        Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
+                            .onTapGesture {
+                                self.showMessages = true
+                        }
                     }.padding(.bottom, 10)
                 }
                 

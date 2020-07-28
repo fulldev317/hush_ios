@@ -71,8 +71,11 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     
     func sendMessage(_ text: String) {
         let lastMessage = self.chatMessages.last
-        let last_id = Int(lastMessage!.id)
-        let message = HushTextMessage(id: String(last_id! + 1), userID: "SELF", text: text)
+        var last_id: Int = 0
+        if (lastMessage != nil) {
+            last_id = Int(lastMessage!.id)! + 1
+        }
+        let message = HushTextMessage(id: String(last_id), userID: "SELF", text: text)
         
         changed = true
         ChatAPI.shared.sendMessage(to_user_id: peerId, message: text, type: "text") { (error) in

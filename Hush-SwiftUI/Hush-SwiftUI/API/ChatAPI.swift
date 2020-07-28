@@ -114,10 +114,10 @@ class ChatAPI: BaseAPI {
     
     func sendMessage(to_user_id: String, message: String, type: String, completion: @escaping (_ error: APIError?) -> Void) {
      
-         let user = Common.userInfo()
-         let userId = user.id!
+        let user = Common.userInfo()
+        let userId = user.id!
         let query = userId + "[message]" + to_user_id + "[message]" + message + "[message]" + type
-         let parameters = ["action": "sendMessage",
+        let parameters = ["action": "sendMessage",
                             "query": query]
      
         Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
