@@ -15,19 +15,19 @@ class StoriesViewModel: StoriesViewModeled {
     @Published var storyList: [Story] = []
     @Published var selectedStoryIndex: Int = 0
 
-    func uploadImage(userImage: UIImage, result: @escaping ( NSDictionary?) -> Void)
+    func uploadImage(userImage: UIImage, result: @escaping ( NSDictionary?, APIError?) -> Void)
     {
         UserAPI.shared.upload_image(image: userImage) { (imageUrls, error) in
             
             if error != nil {
-                result(nil)
+                result(nil, error)
             } else {
-                result(imageUrls)
+                result(imageUrls, nil)
             }
         }
     }
     
-    func uploadStory(imagePath: String, imageThumb: String, result: @escaping ( Story?, APIError? ) -> Void)
+    func uploadStory(imagePath: String, imageThumb: String, result: @escaping ( [Story?]?, APIError? ) -> Void)
     {
         StoryAPI.shared.upload_story(image_path: imagePath, image_thumb: imageThumb) { (upload_story, error) in
             if upload_story != nil {
@@ -49,6 +49,9 @@ class StoriesViewModel: StoriesViewModeled {
                     }
                 } else {
                 }
+                result(true)
+            } else {
+                result(false)
             }
         }
     }

@@ -19,6 +19,9 @@ class MyStoryViewModel: StoryViewModeled {
         self.stories = []
         if isLastPick {
             currentStoryIndex = self.stories.endIndex - 1
+            if (currentStoryIndex < 0) {
+                currentStoryIndex = 0
+            }
         }
     }
 }

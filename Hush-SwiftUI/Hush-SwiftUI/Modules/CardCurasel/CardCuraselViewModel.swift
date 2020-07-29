@@ -15,6 +15,7 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     // MARK: - Properties
     
     @Published var message = "Hellow World!"
+    @Published var isShowingIndicator: Bool = false
     //@Published var photos: [String] = []
     @Published var name: String = "Alex"
     @Published var age: String = "32"
@@ -27,9 +28,9 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     
     func loadDiscover(result: @escaping (Bool) -> Void) {
        
-        //self.isShowingIndicator = true
+        self.isShowingIndicator = true
         AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
-            //self.isShowingIndicator = false
+            self.isShowingIndicator = false
             self.discoveries.removeAll()
             //self.photos.removeAll()
             
@@ -62,5 +63,11 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     func viewModel(for index: Int) -> CardCuraselElementViewModel {
        
         return CardCuraselElementViewModel()
+    }
+}
+
+struct CardCuraselViewModel_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

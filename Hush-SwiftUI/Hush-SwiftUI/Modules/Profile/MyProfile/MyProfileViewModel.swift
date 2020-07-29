@@ -18,6 +18,7 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var message = "Hellow World!"
     @Published var basicsViewModel: BioViewMode = BioViewMode()
     @Published var unlockedPhotos: Set<Int> = []
+    @Published var isShowingIndicator: Bool = false
 
     @Published var messageLabel = "With Hush’s own Filters you can make \nyour photo as private as you like!"
     @Published var canGoNext = false
@@ -29,7 +30,11 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var selectedIndex: Int = -1
     @Published var selectedImage: UIImage? = UIImage() {
         didSet {
-            photoDatas[selectedIndex] = selectedImage!
+            if (selectedImage != nil) {
+                self.photoUrls.append("https://s3.us-east-2.amazonaws.com/hush/1593704202image1.jpg")
+
+//                uploadImage(userImage: selectedImage!)
+            }
         }
     }
     
@@ -236,6 +241,30 @@ class MyProfileViewModel: MyProfileViewModeled {
 //        }
     }
 
+    func uploadImage(userImage: UIImage)
+    {
+       
+        UserAPI.shared.upload_image(image: userImage) { (dic, error) in
+            
+            if error == nil {
+                let imagePath = dic!["path"] as! String
+                let imageThumb = dic!["thumb"] as! String
+                self.photoUrls.append(imageThumb)
+                var user = Common.userInfo()
+                let newPhoto = Photo(id: "123", thumb: imageThumb, photo: imagePath, approved: "1", profile: "1", blocked: "0")
+                if let photos = user.photos {
+                    var photoList: [Photo] = photos
+                    photoList.append(newPhoto)
+                    user.photos = photoList
+                    Common.setUserInfo(user)
+                }
+                
+            } else {
+                
+            }
+        }
+    }
+    
     func updateNotification(notification_type: String, toogled: Bool) {
        
         UserAPI.shared.update_notification(notification_type: notification_type, enable: toogled) { (enabled, error) in

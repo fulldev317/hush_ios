@@ -13,6 +13,7 @@ protocol CardCuraselViewModeled: ObservableObject {
     
     var discoveries: [Discover] { get set }
     var message: String { get set }
+    var isShowingIndicator: Bool { get set }
     //var photos: [String] { get set }
     var name: String { get set }
     var age: String { get set }

@@ -46,49 +46,55 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     @State private var showsUserProfile = false
 
     init(viewModel: ViewModel, showingSetting: Bool) {
-           self.viewModel = viewModel
+        self.viewModel = viewModel
            
-           if !showingSetting {
-               self.viewModel.viewStory { (result) in
-               }
-           }
-         
+        if !showingSetting {
+            self.viewModel.isShowingIndicator = true
+            self.viewModel.viewStory { (result) in
+                viewModel.isShowingIndicator = false
+            }
        }
+   }
     // MARK: - Lifecycle
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: -14) {
-                ForEach(0...self.viewModel.storyList.count / 3, id: \.self) { i in
-                    HStack(spacing: -10) {
-                        ForEach(0..<3, id: \.self) { j in
-                            HStack(spacing: -10) {
-                                if (i * 3 + j < self.viewModel.storyList.count) {
-                                    UserStoryCard(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last, imagePath: self.viewModel.storyList[i * 3 + j].url, iconPath: self.viewModel.storyList[i * 3 + j].icon)
-                                        .frame(width: SCREEN_WIDTH / 3, height: SCREEN_WIDTH / 3 + 20)
-                                        .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
-                                        .zIndex(j == 1 ? 3 : 0)
-                                        .offset(self.offset(row: i, column: j))
-                                        .onTapGesture {
-                                            self.handleTap(i, j)
-                                            
+        ZStack{
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: -14) {
+                    ForEach(0...self.viewModel.storyList.count / 3, id: \.self) { i in
+                        HStack(spacing: -10) {
+                            ForEach(0..<3, id: \.self) { j in
+                                HStack(spacing: -10) {
+                                    if (i * 3 + j < self.viewModel.storyList.count) {
+                                        UserStoryCard(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last, imagePath: self.viewModel.storyList[i * 3 + j].url, iconPath: self.viewModel.storyList[i * 3 + j].icon)
+                                            .frame(width: SCREEN_WIDTH / 3, height: SCREEN_WIDTH / 3 + 20)
+                                            .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
+                                            .zIndex(j == 1 ? 3 : 0)
+                                            .offset(self.offset(row: i, column: j))
+                                            .onTapGesture {
+                                                self.handleTap(i, j)
+                                                
+                                        }
                                     }
                                 }
                             }
-                        }
-                    }.zIndex(self.zIndex(row: i))
-                    .padding(.horizontal, 22)
-                        .frame(width: SCREEN_WIDTH, alignment: .leading)
-                        .padding(.leading, -20)
-                }
-            }.padding(.top, 22)
-        }.background(
-            NavigationLink(
-                destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.storyList, index: self.viewModel.selectedStoryIndex) , isNewStory: false).environmentObject(self.app).withoutBar(),
-                isActive: $showsUserProfile,
-                label: EmptyView.init
+                        }.zIndex(self.zIndex(row: i))
+                        .padding(.horizontal, 22)
+                            .frame(width: SCREEN_WIDTH, alignment: .leading)
+                            .padding(.leading, -20)
+                    }
+                }.padding(.top, 22)
+            }.background(
+                NavigationLink(
+                    destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.storyList, index: self.viewModel.selectedStoryIndex) , isNewStory: false).environmentObject(self.app).withoutBar(),
+                    isActive: $showsUserProfile,
+                    label: EmptyView.init
+                )
             )
-        )
+            
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
+
+        }
     }
     
     private func zIndex(row i: Int) -> Double {
@@ -126,14 +132,37 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
 //        }
     }
     
-    func showMyStory(lastPick: Bool) {
-        modalPresenterManager.present(style: .overFullScreen) {
-            StoryView(viewModel: MyStoryViewModel(userStories, isLastPick: lastPick), isNewStory: true)
+    func showMyStory(image: UIImage) {
+        self.viewModel.isShowingIndicator = true
+        self.viewModel.uploadImage(userImage: image) { (dic, error) in
+            if error == nil {
+                let imagePath = dic!["path"] as! String
+                let imageThumb = dic!["thumb"] as! String
+                self.viewModel.uploadStory(imagePath: imagePath, imageThumb: imageThumb) { (stories, error) in
+                    self.viewModel.isShowingIndicator = false
+                    self.viewModel.storyList.removeAll()
+                    for story in stories! {
+                        self.viewModel.storyList.append(story!)
+                    }
+                    self.viewModel.selectedStoryIndex = self.viewModel.storyList.count - 1
+                    self.showStory()
+                    
+//                            modalPresenterManager.present(style: .overFullScreen) {
+//                                StoryView(viewModel: MyStoryViewModel(userStories, isLastPick: lastPick), isNewStory: true)
+//                            }
+                }
+            } else {
+                self.viewModel.isShowingIndicator = false
+            }
         }
+
     }
     
     func showStoryPicker() {
-        let viewStory = UIAlertAction(title: "View Story", style: .default) { _ in self.showMyStory(lastPick: false) }
+        let viewStory = UIAlertAction(title: "View Story", style: .default) { _ in
+            //self.showMyStory(lastPick: false)
+            
+        }
         let uploadStory = UIAlertAction(title: "Upload Story", style: .default) { _ in self.pickStory() }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         viewStory.isEnabled = !userStories.isEmpty
@@ -149,9 +178,9 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     func pickStory() {
         imagePicker.showActionSheet(from: modalPresenterManager.presenter!) { result in
             guard case let .success(image) = result else { return }
-            self.userStories.append(image)
+            //self.userStories.append(image)
             self.modalPresenterManager.dismiss {
-                self.showMyStory(lastPick: true)
+                self.showMyStory(image: image)
             }
         }
     }
