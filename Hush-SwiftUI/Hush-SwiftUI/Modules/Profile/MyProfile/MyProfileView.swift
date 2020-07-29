@@ -36,52 +36,58 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     // MARK: - Lifecycle
     
     var body: some View {
-        ZStack(alignment: .top) {
-            VStack(spacing: 0) {
-                HStack {
-                    header([Text("My Profile")
-                        .font(.ultraLight(48))
-                        .foregroundColor(.hOrange)])
-                        .padding(.bottom)
-                    HapticButton(action: {
-                        withAnimation {
-                            self.app.onProfileEditing = !self.app.onProfileEditing
+        ZStack {
+            ZStack(alignment: .top) {
+                VStack(spacing: 0) {
+                    HStack {
+                        header([Text("My Profile")
+                            .font(.ultraLight(48))
+                            .foregroundColor(.hOrange)])
+                            .padding(.bottom)
+                        HapticButton(action: {
+                            withAnimation {
+                                self.app.onProfileEditing = !self.app.onProfileEditing
+                            }
+                        }) {
+                            Text(self.app.onProfileEditing ? "Done" : "Edit")
+                                .font(.regular(17))
+                                .foregroundColor(Color.white)
+                                .padding(.all)
+    //                        Image("editProfile_icon")
+    //                            .aspectRatio(.fit)
+    //                            .frame(width: 30, height: 30).padding(.trailing, 26)
+    //                            .foregroundColor(.white)
                         }
-                    }) {
-                        Text(self.app.onProfileEditing ? "Done" : "Edit")
-                            .font(.regular(17))
-                            .foregroundColor(Color.white)
-                            .padding(.all)
-//                        Image("editProfile_icon")
-//                            .aspectRatio(.fit)
-//                            .frame(width: 30, height: 30).padding(.trailing, 26)
-//                            .foregroundColor(.white)
                     }
+    //                Rectangle()
+    //                    .frame(height: 0.9)
+    //                    .foregroundColor(Color(0x4F4F4F))
+                    ScrollView {
+                        scrollContent
+                    }.keyboardAdaptive()
+                    
+                    NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true), selectedImage: $viewModel.selectedImage, photoModel: AddPhotosViewModel(name: "", username: "", email: "", password: "")),
+                        isActive: $viewModel.canGoToAR,
+                        label: EmptyView.init)
+                    
+    //                if viewModel.selectedImage != nil {
+    //
+    //                }
                 }
-//                Rectangle()
-//                    .frame(height: 0.9)
-//                    .foregroundColor(Color(0x4F4F4F))
-                ScrollView {
-                    scrollContent
-                }.keyboardAdaptive()
                 
-                NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true), selectedImage: $viewModel.selectedImage, photoModel: AddPhotosViewModel(name: "", username: "", email: "", password: "")),
-                    isActive: $viewModel.canGoToAR,
-                    label: EmptyView.init)
                 
-//                if viewModel.selectedImage != nil {
-//
-//                }
-            }
+            }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
+            
             HushIndicator(showing: self.viewModel.isShowingIndicator)
-        }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
+
+        }
     }
     
     var scrollContent: some View {
         
         VStack(alignment: .leading, spacing: ISiPhone5 ? 10 : 25) {
 
-            self.carusel1(images: $viewModel.photoUrls.wrappedValue)
+            self.carusel1(unlocked: self.$viewModel.unlockedPhotos, images: $viewModel.photoUrls)
 
             Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
@@ -146,28 +152,25 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
 //        .onDisappear(perform: viewModel.disappear)
 //    }
     
-    func carusel1(images: [String]) -> some View {
+    func carusel1(unlocked: Binding<Set<Int>>, images: Binding<[String]>) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             ScrollView(.horizontal) {
                 HStack(spacing: 15) {
-                    ForEach(0 ..< images.count) { index in
+                    ForEach(0 ..< MAX_PHOTOS) { index in
                         PhotoCard<EmptyView>(
-                            image: images[index],
+                            image: index < images.wrappedValue.count ? images.wrappedValue[index] : "empty",
                             cardWidth: 92
                         )
+                        .overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
                         .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
-                        .animation(.default)
-                    }
-                    
-                    ForEach(images.count ..< MAX_PHOTOS) { index1 in
-                        PhotoCard<EmptyView>(
-                            image: "empty",
-                            cardWidth: 92
-                        )
-                        .overlay(Color.black.opacity(0.7))
-                        .rotationEffect(.degrees(index1.isMultiple(of: 2) ? -5 : 5))
                         .onTapGesture {
-                            self.viewModel.selectedIndex = index1
+//                            if unlocked.wrappedValue.contains(index) {
+//                                unlocked.wrappedValue.remove(index)
+//                            } else {
+//                                unlocked.wrappedValue.insert(index)
+//                            }
+                            
+                            self.viewModel.selectedIndex = index
                             self.viewModel.addPhoto()
                         }
                         .animation(.default)

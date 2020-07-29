@@ -31,9 +31,8 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var selectedImage: UIImage? = UIImage() {
         didSet {
             if (selectedImage != nil) {
-                self.photoUrls.append("https://s3.us-east-2.amazonaws.com/hush/1593704202image1.jpg")
-
-//                uploadImage(userImage: selectedImage!)
+                //self.photoUrls.append("https://s3.us-east-2.amazonaws.com/hush/1593704202image1.jpg")
+                uploadImage(userImage: selectedImage!)
             }
         }
     }
@@ -243,13 +242,18 @@ class MyProfileViewModel: MyProfileViewModeled {
 
     func uploadImage(userImage: UIImage)
     {
-       
+        self.isShowingIndicator = true
+        
         UserAPI.shared.upload_image(image: userImage) { (dic, error) in
+            
+            self.isShowingIndicator = false
             
             if error == nil {
                 let imagePath = dic!["path"] as! String
                 let imageThumb = dic!["thumb"] as! String
                 self.photoUrls.append(imageThumb)
+                self.unlockedPhotos.insert(self.photoUrls.count - 1)
+
                 var user = Common.userInfo()
                 let newPhoto = Photo(id: "123", thumb: imageThumb, photo: imagePath, approved: "1", profile: "1", blocked: "0")
                 if let photos = user.photos {
@@ -344,6 +348,7 @@ class MyProfileViewModel: MyProfileViewModeled {
             for index in (0 ..< count) {
                 let photo:Photo = photos![index]
                 photoUrls.append(photo.photo)
+                unlockedPhotos.insert(index)
             }
         }
         
