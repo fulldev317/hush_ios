@@ -15,8 +15,8 @@ protocol StoriesViewModeled: ObservableObject {
     var isShowingIndicator: Bool { get set }
     var storyList: [Story] { get set }
     var selectedStoryIndex: Int { get set }
-    func uploadImage(userImage: UIImage, result: @escaping ( NSDictionary? ) -> Void)
-    func uploadStory(imagePath: String, imageThumb: String, result: @escaping ( Story?, APIError? ) -> Void)
+    func uploadImage(userImage: UIImage, result: @escaping ( NSDictionary?,  APIError?) -> Void)
+    func uploadStory(imagePath: String, imageThumb: String, result: @escaping ( [Story?]?, APIError? ) -> Void)
     func viewStory(result: @escaping ( Bool ) -> Void)
 
 }

@@ -21,6 +21,7 @@ protocol MyProfileViewModeled: ObservableObject {
     var selectedIndex: Int { get set }
     var photoUrls: [String] { get set }
     var unlockedPhotos: Set<Int> { get set }
+    var isShowingIndicator: Bool { get set }
 
     var pickerSourceType: UIImagePickerController.SourceType { get set }
     var isPermissionDenied: Bool { get set }
