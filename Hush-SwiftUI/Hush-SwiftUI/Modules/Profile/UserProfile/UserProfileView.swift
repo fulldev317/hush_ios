@@ -166,9 +166,9 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 }
                                 
                                 HapticButton(action: {
-                                    //self.showUpgrade.toggle()
-                                    self.goToMessage.toggle()
-                                    Common.setMessageLoaded(loaded: true)
+                                    self.showUpgrade.toggle()
+                                    //Common.setMessageLoaded(loaded: true)
+                                    //self.goToMessage.toggle()
                                 }) {
                                     Image("profile_message")
                                         .resizable()
@@ -202,6 +202,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     Spacer()
                     HapticButton(action: {
                         //self.showUpgrade.toggle()
+                        Common.setMessageLoaded(loaded: true)
                         self.goToMessage.toggle()
                     }) {
                         Image("profile_message")

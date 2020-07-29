@@ -72,8 +72,8 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                             MessagesCell(message: message).padding(.horizontal, 16)
                             .listRowInsets(.init())
                                 .onTapGesture {
-                                    self.selectedMessage = message
                                     Common.setMessageLoaded(loaded: true)
+                                    self.selectedMessage = message
                                 }
                             }.onDelete(perform: self.viewModel.deleteContersation)
                             .background(Color.black)

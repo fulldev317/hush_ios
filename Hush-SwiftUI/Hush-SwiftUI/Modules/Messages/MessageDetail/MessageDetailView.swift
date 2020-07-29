@@ -25,14 +25,13 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
         
         if (Common.messageLoaded()) {
             
-            Common.setMessageLoaded(loaded: false)
 
             self.viewModel.isShowingIndicator = true
             
             self.viewModel.userChat { result in
                 viewModel.isShowingIndicator = false
                 if (result == true) {
-                    	
+                    Common.setMessageLoaded(loaded: false)
                 }
             }
         } else {

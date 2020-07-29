@@ -9,7 +9,7 @@
 import SwiftUI
 
 class StoryViewModel: StoryViewModeled {
-    @Published var currentStoryIndex: Int = 0
+    @Published var currentStoryIndex: Int = -1
     @Published var storyMessage: String = ""
     @Published var stories: [Story] = []
     let canSendMessages = true
@@ -18,5 +18,41 @@ class StoryViewModel: StoryViewModeled {
     init(stories: [Story], index: Int) {
         self.stories = stories
         self.currentStoryIndex = index
+    }
+    
+    func getStoryImagePath() -> String {
+        if (currentStoryIndex < 0 || currentStoryIndex >= stories.count) {
+            return "empty"
+        }
+        let story = stories[currentStoryIndex]
+        let url = story.url ?? "empty"
+        return url
+    }
+    
+    func getStoryAvatarPath() -> String {
+        if (currentStoryIndex < 0 || currentStoryIndex >= stories.count) {
+            return "empty"
+        }
+        let story = stories[currentStoryIndex]
+        let path = story.icon ?? "empty"
+        return path
+    }
+    
+    func getStoryTitle() -> String {
+        if (currentStoryIndex < 0 || currentStoryIndex >= stories.count) {
+            return "Unknown"
+        }
+        let story = stories[currentStoryIndex]
+        let title = story.title ?? "Unknown"
+        return title
+    }
+        
+    func getStoryTime() -> String {
+        if (currentStoryIndex < 0 || currentStoryIndex >= stories.count) {
+            return ""
+        }
+        let story = stories[currentStoryIndex]
+        let date = story.date ?? ""
+        return date
     }
 }

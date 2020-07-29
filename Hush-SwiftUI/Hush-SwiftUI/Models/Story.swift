@@ -13,7 +13,7 @@ struct Story: Codable {
     var sid: String?
     var src: String?
     var uid: String?
-    //var title: String?
+    var title: String?
     var stype: String?
     var url: String?
     var credits: String?
