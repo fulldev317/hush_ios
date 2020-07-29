@@ -15,6 +15,11 @@ protocol StoryViewModeled: ObservableObject {
     var canSendMessages: Bool { get }
     var canReport: Bool { get }
     
+    func getStoryImagePath() -> String
+    func getStoryAvatarPath() -> String
+    func getStoryTitle() -> String
+    func getStoryTime() -> String
+    
     func showNext()
     func blockUser()
     func reportProfile()

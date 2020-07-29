@@ -89,8 +89,8 @@ struct CardCaruselElementView: View {
                     VStack {
                         Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                             .onTapGesture {
-                                self.showMessages = true
                                 Common.setMessageLoaded(loaded: true)
+                                self.showMessages = true
                         }
                     }.padding(.bottom, 10)
                 }

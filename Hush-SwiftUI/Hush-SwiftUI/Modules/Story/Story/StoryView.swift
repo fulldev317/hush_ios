@@ -15,7 +15,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
 
     @State private var keyboardHeight: CGFloat = 0
     @State private var showReport = false
-    @State private var likedStory = true
+    @State private var likedStory = false
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
     @EnvironmentObject private var app: App
@@ -36,7 +36,7 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
     
     private func content(_ proxy: GeometryProxy) -> some View {
         ZStack {
-            WebImage.init(url: URL(string: viewModel.stories[viewModel.currentStoryIndex].url!))
+            WebImage(url: URL(string: self.viewModel.getStoryImagePath()))
                 .resizable()
                 .frame(proxy)
                 .scaledToFill()
@@ -49,6 +49,9 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         //self.modalPresenterManager.dismiss()
                     }
                 }
+            
+            
+            
 //            viewModel.stories[viewModel.currentStoryIndex].icon
 //                .resizable()
 //                .scaledToFill()
@@ -66,20 +69,21 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
             VStack {
                 HStack(spacing: 0) {
                     VStack {
-                        Image("image4")
+                        WebImage(url: URL(string: self.viewModel.getStoryAvatarPath()))
                            .resizable()
-                           .scaledToFill()
                            .clipShape(Circle())
                            .frame(width: 52, height: 52)
                            .background(Circle().fill(Color.white).padding(-5))
                     }.tapGesture(toggls: $showsUserProfile)
                     
-                    Spacer()
-                    
                     VStack(alignment: .leading) {
-                        Text("Long Username").font(.bold(24)).lineLimit(1)
-                        Text("21 minutes ago").font(.regular())
-                    }.shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
+                        Text(self.viewModel.getStoryTitle()).font(.bold(24)).lineLimit(1)
+                        Text(self.viewModel.getStoryTime()).font(.regular())
+                    }
+                    .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
+                    .padding(.leading, 20)
+                    
+                    Spacer()
 
                     HapticButton(action: { self.likedStory.toggle() }) {
                         Image("profile_heart")
