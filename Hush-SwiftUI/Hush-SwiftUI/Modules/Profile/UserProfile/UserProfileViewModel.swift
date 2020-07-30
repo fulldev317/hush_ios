@@ -31,7 +31,8 @@ class UserProfileViewModel: UserProfileViewModeled {
     @Published var ethnicity: String = "White"
     @Published var body_type: String = "Thin"
     @Published var living: String = "Alone"
-    
+    @Published var isFan: Bool = false
+
     var aboutMe = "Hello World!"
     var location = "Hello World!"
     //let photos: [UIImage] = Array(0..<3).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
@@ -116,6 +117,9 @@ class UserProfileViewModel: UserProfileViewModeled {
         }
         herefor = userInfo.hereFor ?? "1"
         gender = userInfo.gender ?? "0"
+        
+        isFan = userInfo.isFan == 1
+        
         let photos = userInfo.photos ?? []
         let photo_count = photos.count
        
@@ -142,4 +146,14 @@ class UserProfileViewModel: UserProfileViewModeled {
         
         mode.toggle()
     }
+    
+    func userLike(like: String) {
+        UserAPI.shared.game_like(toUserID: self.userId, like: like) { (error) in
+            if (error == nil) {
+                
+            }
+        }
+    }
+
+    
 }

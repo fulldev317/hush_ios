@@ -245,7 +245,6 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         return index % 4 == 0 || stride(from: 3, through: index, by: 4).contains(index)
     }
     
-    #warning("Please update viewModel")
     func bottomView(_ i: Int, _ j: Int) -> some View {
         let discovery = viewModel.discovery(i, j)
         

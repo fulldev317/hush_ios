@@ -42,5 +42,7 @@ protocol UserProfileViewModeled: ObservableObject {
     var ethnicity: String { get set }
     var body_type: String { get set }
     var living: String { get set }
+    var isFan: Bool { get set }
     func switchMode()
+    func userLike(like: String)
 }

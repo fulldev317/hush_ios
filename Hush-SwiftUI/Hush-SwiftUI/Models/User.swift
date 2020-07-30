@@ -95,6 +95,7 @@ struct User: Codable {
     var sage: String?
     var photos: [Photo]?
     var liked: Bool?
+    var isFan: Int?
     var notifications: Notifications?
     
     enum CodingKeys: String, CodingKey {
@@ -179,6 +180,7 @@ struct User: Codable {
         case slike
         case sage
         case photos
+        case isFan
         case notifications = "notification"
     }
    
