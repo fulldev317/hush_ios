@@ -46,6 +46,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                 
             }
         }
+        
     }
     // MARK: - Lifecycle
     
@@ -68,12 +69,13 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
 
                 ZStack {
                     List {
-                        ForEach(viewModel.items) { message in
+                        ForEach(viewModel.filteredItems) { message in
                             MessagesCell(message: message).padding(.horizontal, 16)
                             .listRowInsets(.init())
                                 .onTapGesture {
                                     Common.setMessageLoaded(loaded: true)
                                     self.selectedMessage = message
+                                    UIApplication.shared.endEditing()
                                 }
                             }.onDelete(perform: self.viewModel.deleteContersation)
                             .background(Color.black)
@@ -83,22 +85,29 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                         .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
                         .appearenceModifier(path: \UITableView.separatorStyle, value: .none)
                     
-                    if (keyboardHeight > 0) {
-                        VStack {
-                            Spacer()
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        .background(Color.black.opacity(0.04))
-                        .onTapGesture {
-                            UIApplication.shared.endEditing()
-                        }
-                    }
+//                    if (keyboardHeight > 0) {
+//                        VStack {
+//                            Spacer()
+//                        }
+//                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+//                        .background(Color.black.opacity(0.04))
+//                        .onTapGesture {
+//                            UIApplication.shared.endEditing()
+//                        }
+//                    }
                 }                
             }
             
             HushIndicator(showing: self.viewModel.isShowingIndicator)
 
-        }.observeKeyboardHeight($keyboardHeight, withAnimation: .default)
+        }.actionSheet(isPresented: self.$viewModel.showMessageFilter) {
+            ActionSheet(title: Text("Filter Messages"), message: nil, buttons: MessagesFilter.allCases.map { filter in
+                .default(Text(filter.title), action: {
+                    self.viewModel.filter = filter
+                    self.viewModel.showMessageFilter = false
+                })
+            } + [.cancel()])
+        }
     }
 }
 

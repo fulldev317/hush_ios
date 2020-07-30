@@ -14,12 +14,32 @@ class MessagesViewModel: MessagesViewModeled {
 
     // MARK: - Properties
     
-    @Published var filter: MessagesFilter = .all
+    @Published var filter: MessagesFilter = .all {
+        didSet {
+            if filter == .all {
+                filteredItems = items
+            } else if filter == .notRead {
+                filteredItems =  items.filter { $0.unread > 0 }
+            } else if filter == .usersOnline {
+                filteredItems =  items.filter { $0.online > 0 }
+            }
+        }
+    }
     @Published var message = "Hellow World!"
     @Published var isShowingIndicator: Bool = false
+    @Published var showMessageFilter: Bool = false
     @Published var items: [HushConversation] = []
+    @Published var filteredItems: [HushConversation] = []
 
-    var searchQuery: String = ""
+    @Published var searchQuery: String = "" {
+        didSet {
+            if (searchQuery.count == 0) {
+                filteredItems = items
+            } else {
+                filteredItems =  items.filter { $0.username.lowercased().contains(searchQuery.lowercased()) }
+            }
+        }
+    }
     
     private let storage = FakeStorage()
         
@@ -35,12 +55,15 @@ class MessagesViewModel: MessagesViewModeled {
         ChatAPI.shared.getChat(completion: { (memberList, error) in
             self.isShowingIndicator = false
             self.items.removeAll()
+            self.filteredItems.removeAll()
             
             if error == nil {
                 if let memberList = memberList {
                     for member in memberList {
-                        if (member != nil) {
-                            self.items.append(HushConversation(id: member!.id!, username: member!.name!, text: member!.last_m!.parseSpecialText(), imageURL: member!.photo!, time: member!.last_m_time!, messages: []))
+                        if let member = member {
+                            let item = HushConversation(id: member.id!, username: member.name!, text: member.last_m!.parseSpecialText(), imageURL: member.photo!, time: member.last_m_time!, unread: member.unread!, online: member.online!, messages: [])
+                                self.items.append(item)
+                                self.filteredItems.append(item)
                         }
                     }
                 }
@@ -89,7 +112,7 @@ fileprivate class FakeStorage: HushConversationsStorage {
     
     init() {
         storage = Array(0..<10).map { _ in
-            HushConversation(username: faker.name.firstName(), text: faker.lorem.paragraph(), imageURL: faker.internet.image(width: 100, height: 100), time: "", messages: (0..<10).map { i in
+            HushConversation(username: faker.name.firstName(), text: faker.lorem.paragraph(), imageURL: faker.internet.image(width: 100, height: 100), time: "", unread: 1, online: 1, messages: (0..<10).map { i in
                 .text(HushTextMessage(id: String(i), userID: i.isMultiple(of: 3) ? "SELF" : "DEF", text: faker.lorem.paragraph()))
             })
         }

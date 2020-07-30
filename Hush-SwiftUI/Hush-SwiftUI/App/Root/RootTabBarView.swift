@@ -117,17 +117,13 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                         Text("Messages").foregroundColor(.hOrange).font(.ultraLight(48))
                     }.padding(.leading, 25)
                     Spacer()
-                    HapticButton(action: { self.selectMessagesFilter.toggle() }) {
+                    HapticButton(action: { self.app.messages.showMessageFilter.toggle() }) {
                         Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                     }.offset(x: 0, y: 10)
                 }.padding(.top, -10)
                 
                 MessagesView(viewModel: app.messages)
             }.withoutBar()
-        }.actionSheet(isPresented: $selectMessagesFilter) {
-            ActionSheet(title: Text("Filter Messages"), message: nil, buttons: MessagesFilter.allCases.map { filter in
-                .default(Text(filter.title), action: { self.app.messages.filter = filter })
-            } + [.cancel()])
         }
     }
     

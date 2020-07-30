@@ -29,10 +29,12 @@ enum MessagesFilter: CaseIterable {
 protocol MessagesViewModeled: ObservableObject {
     var filter: MessagesFilter { get set }
     var searchQuery: String { get set }
+    var showMessageFilter: Bool { get set }
     var items: [HushConversation] { get set }
+    var filteredItems: [HushConversation] { get set }
+
     var message: String { get set }
     var isShowingIndicator: Bool { get set }
-    
     func getChat(result: @escaping (Bool) -> Void)
     func item(at index: Int) -> HushConversation
     func numberOfItems() -> Int
