@@ -89,7 +89,7 @@ class MyProfileViewModel: MyProfileViewModeled {
         basicsViewModel.language = user.language ?? ""
         basicsViewModel.matches = String(user.totalMatches ?? 0)
         basicsViewModel.visitedMe = user.totalVisits ?? "0"
-        basicsViewModel.likesMe = String(user.totalLikes ?? 0)
+        basicsViewModel.likesMe = user.totalFans ?? "0"
         basicsViewModel.myLikes = user.totalMyLikes ?? "0"
         basicsViewModel.noti_matches = user.notifications?.matchMe.inapp == "1"
         basicsViewModel.noti_likeMe = user.notifications?.fan.inapp == "1"

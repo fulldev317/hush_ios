@@ -19,7 +19,7 @@ import SwiftUI
 import SwiftUI
 import SDWebImageSwiftUI
 struct UserStoryCard: View {
-    let username: String
+    let username: String?
     let isMyStory: Bool
     let isFirstStory: Bool
     let storyImage: UIImage?
@@ -33,7 +33,7 @@ struct UserStoryCard: View {
             
             VStack(spacing: 0) {
                 GeometryReader { proxy in
-                    WebImage(url: URL(string: self.imagePath!))
+                    WebImage(url: URL(string: self.imagePath ?? ""))
                     .resizable()
                     
 //                    (self.storyImage == nil || !self.isMyStory ? Image("stories_placeholder") : Image(uiImage: self.storyImage!))
@@ -44,7 +44,7 @@ struct UserStoryCard: View {
                 .padding(8)
                 .aspectRatio(1, contentMode: .fit)
                 
-                Text(isMyStory ? "Your Story" : username)
+                Text(isMyStory ? "Your Story" : username!)
                     .font(.light(14))
                     .foregroundColor(Color(0x8E8786))
             }
@@ -66,7 +66,7 @@ struct UserStoryCard: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            WebImage(url: URL(string: self.iconPath!))
+                            WebImage(url: URL(string: self.iconPath ?? ""))
                             .resizable()
                             .frame(width: p.size.width / 2.4, height: p.size.height / 2.4)
                             .background(Circle().fill(Color.white).padding(-3))

@@ -41,6 +41,7 @@ struct User: Codable {
     var totalNoLikers: String?
     var myLikes: String?
     var totalLikes: Int?
+    var totalFans: String?
     var likesPercentage: Int?
     var galleria: [Gallery]? //TODO
     var total_likes: String? //TODO repeated?
@@ -70,7 +71,6 @@ struct User: Codable {
     var newVisits: String?
     var totalVisits: String?
     var totalMyLikes: String?
-    var totalFans: String?
     var totalMatches: Int?
     var ip: String?
     //var premiumCheck: Int?
