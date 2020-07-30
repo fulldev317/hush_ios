@@ -66,14 +66,18 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                             ForEach(0..<3, id: \.self) { j in
                                 HStack(spacing: -10) {
                                     if (i * 3 + j < self.viewModel.storyList.count) {
-                                        UserStoryCard(username: "Username", isMyStory: i == 0 && j == 0, isFirstStory: self.userStories.isEmpty, storyImage: self.userStories.last, imagePath: self.viewModel.storyList[i * 3 + j].url, iconPath: self.viewModel.storyList[i * 3 + j].icon)
+                                        UserStoryCard(username: self.viewModel.storyList[i * 3 + j].title ?? "Unknown",
+                                                      isMyStory: i == 0 && j == 0,
+                                                      isFirstStory: self.userStories.isEmpty,
+                                                      storyImage: self.userStories.last,
+                                                      imagePath: self.viewModel.storyList[i * 3 + j].url,
+                                                      iconPath: self.viewModel.storyList[i * 3 + j].icon)
                                             .frame(width: SCREEN_WIDTH / 3, height: SCREEN_WIDTH / 3 + 20)
                                             .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
                                             .zIndex(j == 1 ? 3 : 0)
                                             .offset(self.offset(row: i, column: j))
                                             .onTapGesture {
                                                 self.handleTap(i, j)
-                                                
                                         }
                                     }
                                 }
@@ -89,7 +93,12 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                     destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.storyList, index: self.viewModel.selectedStoryIndex) , isNewStory: false).environmentObject(self.app).withoutBar(),
                     isActive: $showsUserProfile,
                     label: EmptyView.init
-                )
+                ).onDisappear(perform: {
+                    self.viewModel.isShowingIndicator = true
+                    self.viewModel.viewStory { (result) in
+                        self.viewModel.isShowingIndicator = false
+                    }
+                })
             )
             
             HushIndicator(showing: self.viewModel.isShowingIndicator)

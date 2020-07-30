@@ -40,14 +40,18 @@ class StoriesViewModel: StoriesViewModeled {
     
     func viewStory(result: @escaping ( Bool ) -> Void)
     {
+        self.storyList.removeAll()
+        let addStory = Story(id: "", sid: "", src: "", uid: "", title: "", stype: "", url: "", credits: "", review: "", icon: "", duration: 0, date: "", purchased: 0, liked: false)
+        self.storyList.append(addStory)
+        
         StoryAPI.shared.view_story() { (stories, error) in
             if error == nil {
-                if stories != nil {
-                    self.storyList.removeAll()
-                    for story in stories! {
-                        self.storyList.append(story!)
+                if let stories = stories {
+                    for story in stories {
+                        if let story = story {
+                            self.storyList.append(story)
+                        }
                     }
-                } else {
                 }
                 result(true)
             } else {
