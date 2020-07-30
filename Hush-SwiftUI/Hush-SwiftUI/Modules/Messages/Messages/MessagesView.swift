@@ -71,7 +71,8 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                     List {
                         ForEach(viewModel.filteredItems) { message in
                             MessagesCell(message: message).padding(.horizontal, 16)
-                            .listRowInsets(.init())
+                                .listRowInsets(.init())
+                                .contentShape(Rectangle())
                                 .onTapGesture {
                                     Common.setMessageLoaded(loaded: true)
                                     self.selectedMessage = message

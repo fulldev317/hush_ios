@@ -361,7 +361,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(ISiPhone5 ? 24 : 28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("User Name", value: $viewModel.basicsViewModel.username)
+                tableFixedRow("User Name", value: $viewModel.basicsViewModel.username)
                 tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
                 tableFixedRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
                 tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
@@ -377,9 +377,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     let strAge = "\(age)"
                     
                     if (strAge != self.$viewModel.basicsViewModel.age.wrappedValue) {
-                        
+                        self.viewModel.updateAge(age: strAge)
                     }
-                    
                     self.$viewModel.basicsViewModel.age.wrappedValue = strAge
                 }
                 tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
@@ -423,8 +422,11 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 tableRow("Bio", value: nil)
                 if app.onProfileEditing {
                     
-                    MultilineTextField("Bio", text: $viewModel.basicsViewModel.bio, height: $height)
-                                 .foregroundColor(.white)
+                    MultilineTextField("Bio", text: $viewModel.basicsViewModel.bio, height: $height) {
+                        let bio = self.viewModel.basicsViewModel.bio
+                        self.viewModel.updateBio(bio: bio)
+                    }
+                    .foregroundColor(.white)
                     
 //                    TextField("Bio", text: $viewModel.basicsViewModel.bio).multilineTextAlignment(.leading).font(.regular(17)).foregroundColor(.white)
                 } else {

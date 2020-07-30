@@ -36,6 +36,8 @@ protocol MyProfileViewModeled: ObservableObject {
     func addPhoto()
     
     func updateMessage()
+    func updateAge(age: String)
+    func updateBio(bio: String)
     func updateGender(gender: String)
     func updateSex(sex: String)
     func updateLiving(living: String)

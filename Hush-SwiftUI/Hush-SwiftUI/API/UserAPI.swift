@@ -135,28 +135,57 @@ class UserAPI: BaseAPI {
         }
     }
     
-    func updateSRadius(radius: Double, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateSRadius"]
+    func update_bio(bio: String, completion: @escaping ( _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "updateUser",
+                                      "uid": userId,
+                                      "col": "bio",
+                                      "val": bio]
         
-        let query: [Any] = [userId, radius]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .responseSwiftyJson { response in
                 
                 switch response.result {
                 case .success(let json):
-                    var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
+                        error = nil
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                    completion(user, error)
+                    completion(error)
                 case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
+    func update_age(age: String, completion: @escaping ( _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "updateUser",
+                                      "uid": userId,
+                                      "col": "age",
+                                      "val": age]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
                     print("API CALL FAILED")
                 }
         }
@@ -278,58 +307,7 @@ class UserAPI: BaseAPI {
         }
     }
     
-    func updateUserLanguage(language: String, completion: @escaping (_ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateUserLanguage"]
-        
-        let query: [Any] = [userId, language]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var error: APIError?
-                    if json["error"].int != 0 {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(error)
-                case .failure:
-                    print("API CALL FAILED")
-                }
-        }
-    }
     
-    func updateUserBio(bio: String, postBioUrl: String, completion: @escaping (_ urlMessage: String?, _ url: String?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "updateUserBio"]
-        
-        let query: [Any] = [userId, bio, postBioUrl]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var urlMessage: String?
-                    var url: String?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        urlMessage = json["urlMessage"].string
-                        url = json["url"].string
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(urlMessage, url, error)
-                case .failure:
-                    print("API CALL FAILED")
-                }
-        }
-    }
     
     func deletePhoto(photoId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
