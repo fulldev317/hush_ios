@@ -239,9 +239,28 @@ class MyProfileViewModel: MyProfileViewModeled {
 //            }
 //        }
     }
-
-    func uploadImage(userImage: UIImage)
-    {
+    
+    func updateAge(age: String) {
+        UserAPI.shared.update_age(age: age) { (error) in
+            if error == nil {
+                var user = Common.userInfo()
+                user.age = age
+                Common.setUserInfo(user)
+            }
+        }
+    }
+    
+    func updateBio(bio: String) {
+        UserAPI.shared.update_bio(bio: bio) { (error) in
+            if error == nil {
+                var user = Common.userInfo()
+                user.bio = bio
+                Common.setUserInfo(user)
+            }
+        }
+    }
+    
+    func uploadImage(userImage: UIImage) {
         self.isShowingIndicator = true
         
         UserAPI.shared.upload_image(image: userImage) { (dic, error) in
