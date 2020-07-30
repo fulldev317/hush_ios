@@ -288,7 +288,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showMatchesView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "Matches", match_type: "matches", blured: true).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Matches", match_type: "matches", blured: false).environmentObject(self.app).withoutBar(),
                             isActive: $showMatchesView,
                             label: EmptyView.init
                         )
@@ -320,7 +320,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showLikesMeView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", match_type: "lies_me", blured: true).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", match_type: "likes_me", blured: true).environmentObject(self.app).withoutBar(),
                            isActive: $showLikesMeView,
                            label: EmptyView.init
                         )
@@ -597,7 +597,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     .aspectRatio(.fit)
                     .foregroundColor(.white)
                     .frame(width: 15, height: 15)
-            }
+            }.contentShape(Rectangle())
+
         }
     }
 }

@@ -115,6 +115,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     
                 //.padding(.top, ISiPhone11 ? 30 : ISiPhoneX ? 50 : ISiPhone5 ? 55 : 105)
                 Spacer()
+                    
                 ZStack {
                     ForEach((cardIndex..<self.getLastIndex(cardIndex)), id: \.self) { index in
                         self.caruselElement(index)
@@ -123,6 +124,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 }.frame(width: SCREEN_WIDTH)
                 .padding(.bottom, ISiPhoneX ? 20 : 0)
                 .padding(.top, ISiPhoneX ? 30 : 20)
+                
                 Spacer()
 
             }.overlay(overlay)

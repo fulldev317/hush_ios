@@ -67,7 +67,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
             if self.viewModel.matches.count > 0 {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: -20) {
-                        ForEach(0..<(viewModel.matches.count / 2), id: \.self) {
+                        ForEach(0...(viewModel.matches.count / 2), id: \.self) {
                             self.row(at: $0)
                         }
                     }.padding(.top, 10)
@@ -102,7 +102,14 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     func row(at i: Int) -> some View {
         HStack(spacing: -18) {
             ForEach(0..<2, id: \.self) { j in
-                self.polaroidCard(i, j).tapGesture(toggls: self.$showsUserProfile)
+                HStack {
+                    if (i * 2 + j < self.viewModel.matches.count) {
+                        self.polaroidCard(i, j)
+                            .tapGesture(toggls: self.$showsUserProfile)
+                    } else {
+                        Spacer()
+                    }
+                }
             }
         }.zIndex(Double(100 - i))
     }

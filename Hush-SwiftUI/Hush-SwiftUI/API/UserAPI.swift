@@ -135,6 +135,33 @@ class UserAPI: BaseAPI {
         }
     }
     
+    func add_visit(toUserID: String , completion: @escaping ( _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + "," + toUserID
+        let parameters: Parameters = ["action": "addVisit",
+                                      "query": query]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
     func update_bio(bio: String, completion: @escaping ( _ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!
