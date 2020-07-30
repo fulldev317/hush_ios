@@ -36,7 +36,7 @@ class MatchViewModel: MatchViewModeled {
 
        self.isShowingIndicator = true
        
-       MatchesAPI.shared.matches(match_type: "matches", completion: { (matchList, error) in
+       MatchesAPI.shared.matches( completion: { (matchList, error) in
            self.isShowingIndicator = false
            self.matches.removeAll()
            
@@ -57,7 +57,7 @@ class MatchViewModel: MatchViewModeled {
         
         self.isShowingIndicator = true
         
-        MatchesAPI.shared.matches(match_type: "myLikes", completion: { (matchList, error) in
+        MatchesAPI.shared.my_likes(completion: { (matchList, error) in
             self.isShowingIndicator = false
             self.matches.removeAll()
             
@@ -77,7 +77,7 @@ class MatchViewModel: MatchViewModeled {
     func loadVisitedMe(result: @escaping (Bool) -> Void) {
         self.isShowingIndicator = true
 
-        MatchesAPI.shared.matches(match_type: "visitedMe", completion: { (matchList, error) in
+        MatchesAPI.shared.visited_me(completion: { (matchList, error) in
             self.isShowingIndicator = false
             self.matches.removeAll()
             
@@ -97,7 +97,7 @@ class MatchViewModel: MatchViewModeled {
     func loadLikesMe(result: @escaping (Bool) -> Void) {
         self.isShowingIndicator = true
 
-        MatchesAPI.shared.matches(match_type: "likesMe", completion: { (matchList, error) in
+        MatchesAPI.shared.likes_me(completion: { (matchList, error) in
             self.isShowingIndicator = false
             self.matches.removeAll()
             

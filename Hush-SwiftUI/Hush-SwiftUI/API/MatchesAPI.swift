@@ -14,11 +14,11 @@ class MatchesAPI: BaseAPI {
     
     static let shared: MatchesAPI = MatchesAPI()
 
-    func matches(match_type: String, completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
+    func matches(completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
      
          let user = Common.userInfo()
          let userId = user.id!
-         let parameters = ["action": match_type,
+         let parameters = ["action": "matches",
                             "uid": userId
                             ]
      
@@ -31,7 +31,7 @@ class MatchesAPI: BaseAPI {
 
                 if (json["error"].int == 0) {
                     
-                    let json_matches = json["mylikes"]
+                    let json_matches = json["matches"]
                     
                      if (json_matches.count > 0) {
                          for index in 0 ..< json_matches.count {
@@ -55,7 +55,48 @@ class MatchesAPI: BaseAPI {
         }
     }
     
-    func like_me(completion: @escaping (_ matches: Matches?) -> Void) {
+    func visited_me(completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
+     
+         let user = Common.userInfo()
+         let userId = user.id!
+         let parameters = ["action": "getVisitors",
+                            "uid": userId
+                            ]
+     
+        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+                    
+            switch response.result {
+            case .success(let json):
+                var matchList:[Match?] = []
+                var error: APIError?
+
+                if (json["error"].int == 0) {
+                    
+                    let json_matches = json["visitors"]
+                    
+                     if (json_matches.count > 0) {
+                         for index in 0 ..< json_matches.count {
+                             let match = json_matches[index]
+                             let jsonData = try! match.rawData()
+                             var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
+                             match_data.liked = false
+                             matchList.append(match_data)
+                         }
+                     }
+                } else {
+                    error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                }
+                completion(matchList, error)
+
+            case .failure:
+                let error = APIError(404, "Server Connection Failed")
+                completion(nil, error)
+                print("API CALL FAILED")
+            }
+        }
+    }
+    
+    func likes_me(completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
      
          let user = Common.userInfo()
          let userId = user.id!
@@ -67,18 +108,74 @@ class MatchesAPI: BaseAPI {
                     
             switch response.result {
             case .success(let json):
+                var matchList:[Match?] = []
+                var error: APIError?
+
                 if (json["error"].int == 0) {
-                     let matches: Matches?
-                     let jsonData = try! json.rawData()
-                     matches = try! JSONDecoder().decode(Matches.self, from: jsonData)
-                        
-                     completion(matches)
+                    
+                    let json_matches = json["likesMe"]
+                    
+                     if (json_matches.count > 0) {
+                         for index in 0 ..< json_matches.count {
+                             let match = json_matches[index]
+                             let jsonData = try! match.rawData()
+                             var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
+                             match_data.liked = false
+                             matchList.append(match_data)
+                         }
+                     }
+                } else {
+                    error = APIError(json["error"].intValue, json["error_m"].stringValue)
                 }
-                completion(nil)
+                completion(matchList, error)
+
             case .failure:
-                completion(nil)
+                let error = APIError(404, "Server Connection Failed")
+                completion(nil, error)
                 print("API CALL FAILED")
             }
         }
     }
+    
+    func my_likes(completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
+     
+         let user = Common.userInfo()
+         let userId = user.id!
+         let parameters = ["action": "myLikes",
+                            "uid": userId
+                            ]
+     
+        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+                    
+            switch response.result {
+            case .success(let json):
+                var matchList:[Match?] = []
+                var error: APIError?
+
+                if (json["error"].int == 0) {
+                    
+                    let json_matches = json["myLikes"]
+                    
+                     if (json_matches.count > 0) {
+                         for index in 0 ..< json_matches.count {
+                             let match = json_matches[index]
+                             let jsonData = try! match.rawData()
+                             var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
+                             match_data.liked = false
+                             matchList.append(match_data)
+                         }
+                     }
+                } else {
+                    error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                }
+                completion(matchList, error)
+
+            case .failure:
+                let error = APIError(404, "Server Connection Failed")
+                completion(nil, error)
+                print("API CALL FAILED")
+            }
+        }
+    }
+    
 }

@@ -44,9 +44,13 @@ class AuthAPI: BaseAPI {
     }
     
     func cuser(userId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
+        
+        let user = Common.userInfo()
+        let myId = user.id!
+        
         let parameters: Parameters = ["action": "cuser",
                                       "uid1": userId,
-                                      "uid2": userId]
+                                      "uid2": myId]
         
         api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .responseSwiftyJson { response in

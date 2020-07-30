@@ -48,12 +48,18 @@ struct CardCaruselElementView: View {
         .rotationEffect(-rotation)
         .onTapGesture {
             //self.showIndicator = true
-
-            AuthAPI.shared.cuser(userId: self.user.id!) { (user, error) in
-                //self.showIndicator = false
-                if error == nil {
-                    self.selectedUser = user!
-                    self.showUserProfile.toggle()
+            if let userID = self.user.id {
+                
+                AuthAPI.shared.cuser(userId: userID) { (user, error) in
+                    //self.showIndicator = false
+                    UserAPI.shared.add_visit(toUserID: userID) { (error) in
+                        
+                    }
+                    
+                    if error == nil {
+                        self.selectedUser = user!
+                        self.showUserProfile.toggle()
+                    }
                 }
             }
         }

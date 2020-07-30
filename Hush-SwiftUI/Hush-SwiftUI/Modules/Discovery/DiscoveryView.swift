@@ -203,15 +203,20 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     .onTapGesture {
                         self.selectedIndex = i * 2 + j
                         let discover = self.viewModel.discoveries[self.selectedIndex]
-                        let userId = discover.id
+                        if let userId = discover.id {
                         
-                        self.viewModel.isShowingIndicator = true
-                        
-                        AuthAPI.shared.cuser(userId: userId!) { (user, error) in
-                            self.viewModel.isShowingIndicator = false
-                            if error == nil {
-                                self.selectedUser = user!
-                                self.showUserProfile = true
+                            self.viewModel.isShowingIndicator = true
+                            
+                            AuthAPI.shared.cuser(userId: userId) { (user, error) in
+                                self.viewModel.isShowingIndicator = false
+                                if error == nil {
+                                    
+                                    UserAPI.shared.add_visit(toUserID: userId) { (error) in
+                                    }
+                                    
+                                    self.selectedUser = user!
+                                    self.showUserProfile = true
+                                }
                             }
                         }
                         
