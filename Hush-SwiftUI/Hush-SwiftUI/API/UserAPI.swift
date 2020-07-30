@@ -116,26 +116,36 @@ class UserAPI: BaseAPI {
                 }
         }
     }
-    
-    func messageRead(completion: @escaping () -> Void) {
-        let userId: String = "user_id"
-        let parameters: Parameters = ["action": "messageRead",
-                                      "id": userId]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
+    func game_like(toUserID: String, like: String, completion: @escaping (_ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "game_like",
+                                      "uid1": userId,
+                                      "uid2": toUserID,
+                                      "uid3": like]
+
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
             .responseSwiftyJson { response in
-                
+
                 switch response.result {
                 case .success(let json):
-                    completion()
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
                 case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
                     print("API CALL FAILED")
                 }
         }
     }
-    
-    func add_visit(toUserID: String , completion: @escaping ( _ error: APIError?) -> Void) {
+
+    func add_visit(toUserID: String , completion: @escaping (_ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!
         let query = userId + "," + toUserID
@@ -329,35 +339,6 @@ class UserAPI: BaseAPI {
                 case .failure:
                     let error = APIError(404, "Server Connection Failed")
                     completion(error)
-                    print("API CALL FAILED")
-                }
-        }
-    }
-    
-    
-    
-    func deletePhoto(photoId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "deletePhoto"]
-        
-        let query: [Any] = [userId, photoId]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var user: User?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        //user = User.parseFromJson(json["user"])
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(user, error)
-                case .failure:
                     print("API CALL FAILED")
                 }
         }

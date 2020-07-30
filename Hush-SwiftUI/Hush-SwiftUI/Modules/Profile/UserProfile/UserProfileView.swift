@@ -47,7 +47,6 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     @State var shouldReport = false
     @State var goToMessage = false
     @State var showUpgrade = false
-    @State var liked = false
     @State var profileTapped = false
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
@@ -159,10 +158,15 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                             //self.profileTapped ? .red : .white)
                                 }
                                
-                                HapticButton(action: { self.liked.toggle() }) {
+                                HapticButton(action: {
+                                    let like = self.viewModel.isFan ? "0" : "1"
+                                    self.viewModel.userLike(like: like)
+                                    self.viewModel.isFan.toggle()
+                                    
+                                }) {
                                     Image("profile_heart")
                                         .renderingMode(.template)
-                                        .foregroundColor(self.liked ? .red : .white)
+                                        .foregroundColor(self.viewModel.isFan ? .red : .white)
                                 }
                                 
                                 HapticButton(action: {
@@ -209,10 +213,14 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             .foregroundColor(.white)
                     }
                     
-                    HapticButton(action: { self.liked.toggle() }) {
+                    HapticButton(action: {
+                        let like = self.viewModel.isFan ? "0" : "1"
+                        self.viewModel.userLike(like: like)
+                        self.viewModel.isFan.toggle()
+                    }) {
                         Image("profile_heart")
-                           .renderingMode(.template)
-                           .foregroundColor(self.liked ? .red : .white)
+                            .renderingMode(.template)
+                            .foregroundColor(self.viewModel.isFan ? .red : .white)
                     }
                     
                     HapticButton(action: self.viewModel.switchMode

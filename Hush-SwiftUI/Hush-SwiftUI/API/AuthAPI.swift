@@ -252,7 +252,9 @@ class AuthAPI: BaseAPI {
                             let user = json_users[index]
                             let jsonData = try! user.rawData()
                             var user_data = try! JSONDecoder().decode(Discover.self, from: jsonData)
-                            user_data.liked = false
+                            if let fan = user_data.fan {
+                                user_data.liked = fan == 1
+                            }
                             userList.append(user_data)
                         }
                     }
