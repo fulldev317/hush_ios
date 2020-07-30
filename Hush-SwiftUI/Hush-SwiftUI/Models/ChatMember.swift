@@ -21,6 +21,8 @@ struct ChatMember: Codable {
     var story: String?
     var stories: String?
     var status: Int?
+    var online: Int?
+    var unread: Int?
     var last_m: String?
     var last_m_time: String?
     var credits: String?
@@ -38,6 +40,8 @@ struct ChatMember: Codable {
         case last_a
         case premium
         case photo
+        case online
+        case unread
         case error
         case story
         case stories
@@ -48,5 +52,6 @@ struct ChatMember: Codable {
         case check_m
         case gift
         case liked
+        case unreadCount
     }
 }
