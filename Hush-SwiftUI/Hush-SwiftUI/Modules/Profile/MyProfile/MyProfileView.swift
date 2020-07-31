@@ -53,15 +53,9 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                                 .font(.regular(17))
                                 .foregroundColor(Color.white)
                                 .padding(.all)
-    //                        Image("editProfile_icon")
-    //                            .aspectRatio(.fit)
-    //                            .frame(width: 30, height: 30).padding(.trailing, 26)
-    //                            .foregroundColor(.white)
                         }
                     }
-    //                Rectangle()
-    //                    .frame(height: 0.9)
-    //                    .foregroundColor(Color(0x4F4F4F))
+
                     ScrollView {
                         scrollContent
                     }.keyboardAdaptive()
@@ -69,10 +63,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true), selectedImage: $viewModel.selectedImage, photoModel: AddPhotosViewModel(name: "", username: "", email: "", password: "")),
                         isActive: $viewModel.canGoToAR,
                         label: EmptyView.init)
-                    
-    //                if viewModel.selectedImage != nil {
-    //
-    //                }
+
+
                 }
                 
                 
@@ -87,7 +79,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         
         VStack(alignment: .leading, spacing: ISiPhone5 ? 10 : 25) {
 
-            self.carusel1(unlocked: self.$viewModel.unlockedPhotos, images: $viewModel.photoUrls)
+            //self.carusel1(unlocked: self.$viewModel.unlockedPhotos, images: $viewModel.photoUrls)
 
             Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
@@ -106,52 +98,6 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     }
     
     // MARK: - Carousel
-
-//    func carusel(unlocked: Binding<Set<Int>>, images: Binding<[UIImage]>) -> some View {
-//        VStack(alignment: .leading, spacing: 0) {
-//            ScrollView(.horizontal) {
-//                HStack(spacing: 15) {
-//                    ForEach(0 ..< images.wrappedValue.count) { index in
-//                        PolaroidCard<EmptyView>(
-//                            image: images.wrappedValue[index],
-//                            cardWidth: 92
-//                            //overlay: Color.black.aspectRatio(1, contentMode: .fit)
-//                            //    .opacity(unlocked.wrappedValue.contains(index) ? 0 : 1)
-//                        )
-//                        .overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
-//                        .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
-//                        .onTapGesture {
-//
-//                            if unlocked.wrappedValue.contains(index) {
-//                                unlocked.wrappedValue.remove(index)
-//                            } else {
-//                                unlocked.wrappedValue.insert(index)
-//                            }
-//                            self.viewModel.selectedIndex = index
-//                            self.viewModel.addPhoto()
-//
-//                        }.animation(.default)
-//                    }
-//                }.padding(.vertical, 15)
-//                    .padding(.horizontal, 5)
-//            }
-//
-//        }.actionSheet(isPresented: $viewModel.isPickerSheetPresented) {
-//            ActionSheet(title: Text("Choose how to submit a photo"), message: nil, buttons: [
-//                .default(Text("Take a Photo"), action: viewModel.takePhoto),
-//                .default(Text("Camera Roll"), action: viewModel.cameraRoll),
-//                .cancel()
-//            ])
-//        }.sheet(isPresented: $viewModel.isPickerPresented) {
-//            ImagePickerView(
-//                source: self.viewModel.pickerSourceType,
-//                image: self.$viewModel.selectedImage,
-//                isPresented: self.$viewModel.isPickerPresented)
-//        }
-//        .onAppear(perform: viewModel.appear)
-//        .onDisappear(perform: viewModel.disappear)
-//    }
-    
     func carusel1(unlocked: Binding<Set<Int>>, images: Binding<[String]>) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             ScrollView(.horizontal) {
@@ -164,12 +110,6 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         .overlay(Color.black.opacity(unlocked.wrappedValue.contains(index) ? 0 : 0.7))
                         .rotationEffect(.degrees(index.isMultiple(of: 2) ? -5 : 5))
                         .onTapGesture {
-//                            if unlocked.wrappedValue.contains(index) {
-//                                unlocked.wrappedValue.remove(index)
-//                            } else {
-//                                unlocked.wrappedValue.insert(index)
-//                            }
-                            
                             self.viewModel.selectedIndex = index
                             self.viewModel.addPhoto()
                         }
@@ -361,7 +301,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(ISiPhone5 ? 24 : 28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableFixedRow("User Name", value: $viewModel.basicsViewModel.username)
+                tableRow("User Name", value: $viewModel.basicsViewModel.username)
                 tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
                 tableFixedRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
                 tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
