@@ -52,7 +52,7 @@ class MessagesViewModel: MessagesViewModeled {
         
         self.isShowingIndicator = true
         
-        ChatAPI.shared.getChat(completion: { (memberList, error) in
+        ChatAPI.shared.get_chat(completion: { (memberList, error) in
             self.isShowingIndicator = false
             self.items.removeAll()
             self.filteredItems.removeAll()

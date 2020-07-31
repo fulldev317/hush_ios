@@ -14,32 +14,42 @@ class ChatAPI: BaseAPI {
     
     static let shared: ChatAPI = ChatAPI()
     
-    func messageRead(completion: @escaping () -> Void) {
-        let userId: String = "user_id"
-        let parameters: Parameters = ["action": "getChat",
-                                      "id": userId]
+    func message_read(to_user_id: String, completion: @escaping (_ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + "," + to_user_id
+        let parameters: Parameters = ["action": "messageRead",
+                                      "query": query]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
+        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+        .responseSwiftyJson { response in
                 
                 switch response.result {
-                case .success:
-                    completion()
+                case .success(let json):
+                    var error: APIError?
+                    if (json["error"].int == 0) {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
                 case .failure:
                     print("API CALL FAILED")
-                }
+                    completion(nil)
+
+            }
         }
     }
     
-    func getChat(completion: @escaping (_ matches: [ChatMember?]?, _ error: APIError?) -> Void) {
+    func get_chat(completion: @escaping (_ matches: [ChatMember?]?, _ error: APIError?) -> Void) {
      
          let user = Common.userInfo()
          let userId = user.id!
          let parameters = ["action": "getChat",
                             "id": userId]
      
-        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            .responseSwiftyJson { response in
                     
             switch response.result {
             case .success(let json):
@@ -72,7 +82,7 @@ class ChatAPI: BaseAPI {
         }
     }
     
-    func userChat(to_user_id: String, completion: @escaping (_ matches: [ChatMessage?]?, _ error: APIError?) -> Void) {
+    func user_chat(to_user_id: String, completion: @escaping (_ matches: [ChatMessage?]?, _ error: APIError?) -> Void) {
      
          let user = Common.userInfo()
          let userId = user.id!

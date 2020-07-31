@@ -37,7 +37,7 @@ struct CardCuraselElementView<ViewModel: CardCuraselElementViewModeled>: View {
                         Spacer()
                         
                         if (self.$showMessages.wrappedValue) {
-                            NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel( MessageItem(user_id: "", name: "", image: ""))).withoutBar(), isActive: self.$showMessages) {
+                            NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel( MessageItem(user_id: "", name: "", image: "", online: 0))).withoutBar(), isActive: self.$showMessages) {
                                 Spacer()
                             }.buttonStyle(PlainButtonStyle())
                         } else {

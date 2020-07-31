@@ -12,10 +12,12 @@ struct MessageItem: Codable {
     var id: String?
     var profilePhoto: String?
     var name: String?
+    var online: Int?
     
-    init(user_id: String, name: String, image: String) {
+    init(user_id: String, name: String, image: String, online: Int) {
         self.id = user_id
         self.name = name
         self.profilePhoto = image
+        self.online = online
     }
 }

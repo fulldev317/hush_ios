@@ -37,7 +37,7 @@ class Common: NSObject {
     }
     
     static func addressInfo() -> String {
-        return _address!
+        return _address ?? ""
     }
     
     static func setMessageLoaded(loaded: Bool) {
@@ -45,7 +45,7 @@ class Common: NSObject {
     }
     
     static func messageLoaded() -> Bool {
-        return _isMessageLoaded!
+        return _isMessageLoaded ?? false
     }
     
     static func setChatMessage(message: [HushMessage]) {
@@ -53,7 +53,7 @@ class Common: NSObject {
     }
     
     static func chatMessage() -> [HushMessage] {
-        return _chatMessage!
+        return _chatMessage ?? []
     }
     
     static func setMaxRangeInfo(_ range: Double) {
@@ -61,7 +61,7 @@ class Common: NSObject {
     }
     
     static func maxRangeInfo() -> Double {
-        return _maxRange!
+        return _maxRange ?? 1.0
     }
     
     static func setCapturedImage(_ image: UIImage) {
