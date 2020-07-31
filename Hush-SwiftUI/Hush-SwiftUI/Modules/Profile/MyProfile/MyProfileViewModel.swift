@@ -19,7 +19,7 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var basicsViewModel: BioViewMode = BioViewMode()
     @Published var unlockedPhotos: Set<Int> = []
     @Published var isShowingIndicator: Bool = false
-
+    @Published var languageNames: [String] = []
     @Published var messageLabel = "With Hush’s own Filters you can make \nyour photo as private as you like!"
     @Published var canGoNext = false
     @Published var canGoToAR = false
@@ -57,8 +57,9 @@ class MyProfileViewModel: MyProfileViewModeled {
     private var cancellable1: AnyCancellable?
     private var cancellable2: AnyCancellable?
     private var cancellable3: AnyCancellable?
-
+    
     init() {
+                
         initPhotoData()
 
         let user = Common.userInfo()
@@ -567,7 +568,6 @@ class BioViewMode: ObservableObject {
     @Published var noti_likeMe = false
     @Published var noti_messages = false
     @Published var noti_nearby = false
-
     init() {
     }
     

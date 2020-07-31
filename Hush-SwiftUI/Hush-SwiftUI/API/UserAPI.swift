@@ -14,6 +14,40 @@ class UserAPI: BaseAPI {
     
     static let shared: UserAPI = UserAPI()
     
+    func get_language_list(completion: @escaping (_ user: [Language?]?, _ error: APIError?) -> Void) {
+                
+        let parameters: Parameters = ["action": "getLanguageList"]
+    
+       api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+           .responseSwiftyJson { response in
+               
+            switch response.result {
+            case .success(let json):
+                var languageList:[Language?] = []
+                var error: APIError?
+                if json["error"].int == 0 {
+                    let json_users = json["languages"]
+                   
+                    if (json_users.count > 0) {
+                        for index in 0 ..< json_users.count {
+                            let user = json_users[index]
+                            let jsonData = try! user.rawData()
+                            let user_data = try! JSONDecoder().decode(Language.self, from: jsonData)
+                            languageList.append(user_data)
+                        }
+                    }
+               } else {
+                   error = APIError(json["error"].intValue, json["error_m"].stringValue)
+               }
+               completion(languageList, error)
+            case .failure:
+               let error = APIError(404, "Server Connection Failed")
+               completion(nil, error)
+               print("API CALL FAILED")
+            }
+        }
+    }
+    
     func update_notification(notification_type: String, enable: Bool, completion: @escaping (_ result: Bool, _ error: APIError?) -> Void) {
            
         let user = Common.userInfo()
@@ -255,6 +289,35 @@ class UserAPI: BaseAPI {
                 }
         }
     }
+    
+    func update_language(lang_id: String, completion: @escaping ( _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "updateUser",
+                                      "uid": userId,
+                                      "col": "lang",
+                                      "val": lang_id]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
     func update_bio(bio: String, completion: @escaping ( _ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!

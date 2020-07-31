@@ -97,6 +97,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         
+        load_langauge()
+        
         pub = app.$logedIn.sink { bool in
             if bool {
                 if self.app.loadingData {
@@ -160,6 +162,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 self.app.loadingData = true
                 self.app.logedIn = true
+            }
+        }
+    }
+    
+    func load_langauge() {
+        UserAPI.shared.get_language_list { (list, error) in
+            if error == nil {
+                if let list = list {
+                    for language in list {
+                        if let language = language {
+                            self.app.languageList.append(language)
+                            if let name = language.name {
+                                self.app.languageNames.append(name)
+                            }
+                        }
+                    }
+                }
             }
         }
     }

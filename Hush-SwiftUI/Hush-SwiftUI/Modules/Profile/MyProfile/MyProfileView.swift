@@ -63,11 +63,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true), selectedImage: $viewModel.selectedImage, photoModel: AddPhotosViewModel(name: "", username: "", email: "", password: "")),
                         isActive: $viewModel.canGoToAR,
                         label: EmptyView.init)
-
-
                 }
-                
-                
             }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
             
             HushIndicator(showing: self.viewModel.isShowingIndicator)
@@ -79,7 +75,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         
         VStack(alignment: .leading, spacing: ISiPhone5 ? 10 : 25) {
 
-            //self.carusel1(unlocked: self.$viewModel.unlockedPhotos, images: $viewModel.photoUrls)
+            self.carusel1(unlocked: self.$viewModel.unlockedPhotos, images: $viewModel.photoUrls)
 
             Text("\(viewModel.basicsViewModel.username), \(viewModel.basicsViewModel.age)")
                 .font(.bold(28))
@@ -321,6 +317,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     self.$viewModel.basicsViewModel.age.wrappedValue = strAge
                 }
+                
                 tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
                     var selectedGender = $0.lowercased()
                     if (selectedGender == "") {
@@ -332,6 +329,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
                 }
+                
                 tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
                     var selectedSex: String = $0.lowercased()
                     if (selectedSex == "") {
@@ -345,6 +343,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
                 }
+                
                 tablePickerRow("Living", selected: viewModel.basicsViewModel.living.title, titles: Living.allTitles) {
                     var selectedLiving = $0.lowercased()
                     if (selectedLiving == "") {
@@ -358,7 +357,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     self.$viewModel.basicsViewModel.living.wrappedValue = Living(rawValue: selectedLiving)!
                 }
-                //tableRow("Living", value: $viewModel.basicsViewModel.living)
+                
                 tableRow("Bio", value: nil)
                 if app.onProfileEditing {
                     
@@ -368,11 +367,39 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     .foregroundColor(.white)
                     
-//                    TextField("Bio", text: $viewModel.basicsViewModel.bio).multilineTextAlignment(.leading).font(.regular(17)).foregroundColor(.white)
                 } else {
                     Text(viewModel.basicsViewModel.bio).font(.regular(17)).foregroundColor(.white)
                 }
-                tableRow("Language", value: $viewModel.basicsViewModel.language)
+                tablePickerRow("Language", selected: viewModel.basicsViewModel.language, titles: self.app.languageNames) {
+                    var selectedLanguage = $0
+                    if (selectedLanguage == "") {
+                        selectedLanguage = "English"
+                    }
+                    if (selectedLanguage != self.$viewModel.basicsViewModel.language.wrappedValue)
+                    {
+                        var language_id = ""
+                        for language in self.app.languageList {
+                            if let name = language.name {
+                                if name == selectedLanguage {
+                                    language_id = language.id ?? ""
+                                }
+                            }
+                        }
+                        if (language_id.count > 0) {
+                            UserAPI.shared.update_language(lang_id: language_id) { (error) in
+                                if error == nil {
+                                    
+                                }
+                            }
+                            var user = Common.userInfo()
+                            user.language = selectedLanguage
+                            Common.setUserInfo(user)
+                        }
+                       
+                    }
+                    self.$viewModel.basicsViewModel.language.wrappedValue = selectedLanguage
+                }
+                //tableRow("Language", value: $viewModel.basicsViewModel.language)
             }
         }.padding(.horizontal, 36)
         .padding(.top, 20)

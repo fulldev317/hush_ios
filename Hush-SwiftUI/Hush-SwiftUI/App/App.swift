@@ -26,6 +26,8 @@ class App: ObservableObject {
     @Published var showStory = false
     @Published var showSignupButtons = false
     @Published var isShowingSetting = false    
+    @Published var languageList: [Language] = []
+    @Published var languageNames: [String] = []
 
    // let profile = MyProfileViewModel()
     let discovery = DiscoveryViewModel()
