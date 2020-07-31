@@ -48,24 +48,27 @@ struct CardCaruselElementView: View {
         .rotationEffect(-rotation)
         .onTapGesture {
             //self.showIndicator = true
-            if let userID = self.user.id {
-                
-                AuthAPI.shared.cuser(userId: userID) { (user, error) in
-                    //self.showIndicator = false
-                    UserAPI.shared.add_visit(toUserID: userID) { (error) in
-                        
-                    }
-                    
-                    if error == nil {
-                        self.selectedUser = user!
-                        self.showUserProfile.toggle()
-                    }
-                }
-            }
+            self.gotoUserProfilePage()
         }
         .tapGesture(
             
             toggls: $showUserProfile)
+    }
+    
+    func gotoUserProfilePage() {
+        if let userID = self.user.id {
+            AuthAPI.shared.cuser(userId: userID) { (user, error) in
+                //self.showIndicator = false
+                UserAPI.shared.add_visit(toUserID: userID) { (error) in
+                    
+                }
+                
+                if error == nil {
+                    self.selectedUser = user!
+                    self.showUserProfile.toggle()
+                }
+            }
+        }
     }
     
     var overlay: some View {
@@ -88,7 +91,11 @@ struct CardCaruselElementView: View {
                 if (self.$showMessages.wrappedValue) {
                     VStack {
                         NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: user.id!, name: user.name!, image: user.photo!))).withoutBar(), isActive: self.$showMessages) {
-                            Spacer()
+                            Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
+                                .onTapGesture {
+                                    Common.setMessageLoaded(loaded: true)
+                                    self.showMessages = true
+                            }
                         }.buttonStyle(PlainButtonStyle())
                     }.padding(.bottom, 10)
                 } else {
@@ -104,6 +111,9 @@ struct CardCaruselElementView: View {
                 VStack {
                     NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)).withoutBar(), isActive: self.$showUserProfile) {
                         Image("profile_icon_carusel").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
+                        .onTapGesture {
+                            self.gotoUserProfilePage()
+                        }
                     }.buttonStyle(PlainButtonStyle())
                 }.padding(.bottom, 10).padding(.trailing, ISiPhoneX ? 0 : 15)
             }.padding(.bottom, rotation.degrees > 0 ? 0: 10)
