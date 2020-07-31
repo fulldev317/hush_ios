@@ -19,7 +19,9 @@ protocol MyProfileViewModeled: ObservableObject {
     var selectedImage: UIImage? { get set }
     var photoDatas: [UIImage] { get set }
     var selectedIndex: Int { get set }
+
     var photoUrls: [String] { get set }
+    var photoIDs: [String] { get set }
     var unlockedPhotos: Set<Int> { get set }
     var isShowingIndicator: Bool { get set }
 

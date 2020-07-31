@@ -25,7 +25,7 @@ class StoryAPI: BaseAPI {
                                       "media[0][path]": image_path,
                                       "media[0][thumb]": image_thumb]
 
-        Alamofire.request(storyendpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+        Alamofire.request(belloo_endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
                        
             switch response.result {
             case .success(let json):

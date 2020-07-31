@@ -28,6 +28,7 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var isPermissionDenied = false
     @Published var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     @Published var selectedIndex: Int = -1
+
     @Published var selectedImage: UIImage? = UIImage() {
         didSet {
             if (selectedImage != nil) {
@@ -38,6 +39,7 @@ class MyProfileViewModel: MyProfileViewModeled {
     }
     
     @Published var photoUrls: [String] = []
+    @Published var photoIDs: [String] = []
     @Published var photoDatas: [UIImage] = []
     @Published var locations: [String] = [
         "London, EN, UK",
@@ -265,23 +267,52 @@ class MyProfileViewModel: MyProfileViewModeled {
         
         UserAPI.shared.upload_image(image: userImage) { (dic, error) in
             
-            self.isShowingIndicator = false
             
             if error == nil {
                 let imagePath = dic!["path"] as! String
                 let imageThumb = dic!["thumb"] as! String
-                self.photoUrls.append(imageThumb)
-                self.unlockedPhotos.insert(self.photoUrls.count - 1)
-
-                var user = Common.userInfo()
-                let newPhoto = Photo(id: "123", thumb: imageThumb, photo: imagePath, approved: "1", profile: "1", blocked: "0")
-                if let photos = user.photos {
-                    var photoList: [Photo] = photos
-                    photoList.append(newPhoto)
-                    user.photos = photoList
-                    Common.setUserInfo(user)
-                }
                 
+                if (self.selectedIndex < self.photoIDs.count) {
+                    let imageID = self.photoIDs[self.selectedIndex]
+                    UserAPI.shared.update_image(imageID: imageID, path: imagePath, thumb: imageThumb) { (error) in
+                        self.isShowingIndicator = false
+
+                        if error == nil {
+                            self.photoUrls[self.selectedIndex] = imageThumb
+                            var user = Common.userInfo()
+                                if let photos = user.photos {
+                                    var photoList: [Photo] = photos
+                                    var photo = photos[self.selectedIndex]
+                                    photo.thumb = imageThumb
+                                    photo.photo = imagePath
+                                    photoList[self.selectedIndex] = photo
+                                    user.photos = photoList
+                                    Common.setUserInfo(user)
+                            }
+                        }
+                    }
+                } else {
+                    UserAPI.shared.add_image(path: imagePath, thumb: imageThumb) { (imageID, error) in
+                        self.isShowingIndicator = false
+                        
+                        if error == nil {
+                            if let imageID = imageID {
+                                self.photoUrls.append(imageThumb)
+                                self.photoIDs.append(imageID)
+                                self.unlockedPhotos.insert(self.photoUrls.count - 1)
+
+                                var user = Common.userInfo()
+                                let newPhoto = Photo(id: "123", thumb: imageThumb, photo: imagePath, approved: "1", profile: "1", blocked: "0")
+                                if let photos = user.photos {
+                                    var photoList: [Photo] = photos
+                                    photoList.append(newPhoto)
+                                    user.photos = photoList
+                                    Common.setUserInfo(user)
+                                }
+                            }
+                        }
+                    }
+                }
             } else {
                 
             }
@@ -367,6 +398,7 @@ class MyProfileViewModel: MyProfileViewModeled {
             for index in (0 ..< count) {
                 let photo:Photo = photos![index]
                 photoUrls.append(photo.photo)
+                photoIDs.append(photo.id)
                 unlockedPhotos.insert(index)
             }
         }
