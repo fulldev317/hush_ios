@@ -17,6 +17,8 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var app: App
     @State private var keyboardHeight: CGFloat = 0
+    @State var indexPathToSetVisible: IndexPath?
+
     let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
 
     // MARK: - Lifecycle
@@ -24,7 +26,6 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
         self.viewModel = viewModel
         
         if (Common.messageLoaded()) {
-            
 
             self.viewModel.isShowingIndicator = true
             
@@ -71,27 +72,30 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                         .frame(width: 60, height: 60)
                         .cornerRadius(30)
                         .overlay(Circle()
-                            .fill(Color(0x27AE60))
+                        .fill(self.viewModel.peerOnline == 1 ? Color(0x27AE60) : Color(0xe4e5e8))
                             .square(22)
                             .padding(.trailing, 0),
                              alignment: .topTrailing)
                         
                     }
                 }.padding([.horizontal])
-                    
-                if ($keyboardHeight.wrappedValue > 0) {
-                    HushScrollView(scrollToEnd: true) {
-                        ForEach(self.viewModel.chatMessages, id: \.id) { message in
-                            self.viewForMessage(message)
+                
+                if (self.viewModel.chatMessages.count > 0) {
+                    if ($keyboardHeight.wrappedValue > 0) {
+                        HushScrollView(scrollToEnd: true) {
+                            ForEach(self.viewModel.chatMessages, id: \.id) { message in
+                                self.viewForMessage(message)
+                            }
                         }
-                    }
-                } else {
-                    HushScrollView(scrollToEnd: true) {
-                        ForEach(self.viewModel.chatMessages, id: \.id) { message in
-                            self.viewForMessage(message)
+                    } else {
+                        HushScrollView(scrollToEnd: true) {
+                            ForEach(self.viewModel.chatMessages, id: \.id) { message in
+                                self.viewForMessage(message)
+                            }
                         }
                     }
                 }
+
 
                 SendTextField(placeholder: "Type your Message", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
                     .padding(.horizontal, 15)
@@ -100,7 +104,7 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                 
             }
             .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
-            .background(Color.hBlack.edgesIgnoringSafeArea(.all))
+            //.background(Color.hBlack.edgesIgnoringSafeArea(.all))
                 
             HushIndicator(showing: self.viewModel.isShowingIndicator)
 
@@ -151,7 +155,7 @@ struct MessageDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: "111", name: "Test", image: "https://www.hushdating.app/assets/sources/uploads/thumb_5efdff0a0e620_image1.jpg"))).withoutBar()
+                MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: "111", name: "Test", image: "https://www.hushdating.app/assets/sources/uploads/thumb_5efdff0a0e620_image1.jpg", online: 0))).withoutBar()
             }
         }
     }

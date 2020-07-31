@@ -14,6 +14,7 @@ protocol MessageDetailViewModeled: ObservableObject {
     var peerId: String { get set }
     var peerName: String { get set }
     var peerImagePath: String { get set }
+    var peerOnline: Int { get set }
     var isShowingIndicator: Bool { get set }
     var chatMessages: [HushMessage] { get set }
 

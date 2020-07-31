@@ -17,7 +17,7 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     @Published var peerImagePath: String = ""
     @Published var peerName: String = ""
     @Published var peerId: String = ""
-
+    @Published var peerOnline: Int = 0
     // MARK: - Properties
 
     var conversation: HushConversation!
@@ -26,6 +26,7 @@ class MessageDetailViewModel: MessageDetailViewModeled {
         self.peerName = messageItem.name!
         self.peerId = messageItem.id!
         self.peerImagePath = messageItem.profilePhoto!
+        self.peerOnline = messageItem.online!
     }
     
     deinit {
@@ -34,7 +35,7 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     
     func userChat(result: @escaping (Bool) -> Void) {
 
-        ChatAPI.shared.userChat(to_user_id: self.peerId) { (messageList, error) in
+        ChatAPI.shared.user_chat(to_user_id: self.peerId) { (messageList, error) in
             self.chatMessages.removeAll()
             Common.setChatMessage(message: [])
             

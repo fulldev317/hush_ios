@@ -53,7 +53,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     var body: some View {
         ZStack {
             if selectedMessage != nil {
-                NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: selectedMessage!.id, name: selectedMessage!.username, image: selectedMessage!.imageURL)))
+                NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: selectedMessage!.id, name: selectedMessage!.username, image: selectedMessage!.imageURL, online: selectedMessage!.online)))
                     .withoutBar()
                     .onDisappear { self.selectedMessage = nil }, isActive: .constant(true), label: EmptyView.init)
             }
@@ -76,6 +76,11 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                                 .onTapGesture {
                                     Common.setMessageLoaded(loaded: true)
                                     self.selectedMessage = message
+                                    ChatAPI.shared.message_read(to_user_id: message.id) { (error) in
+                                        if (error == nil) {
+                                            
+                                        }
+                                    }
                                     UIApplication.shared.endEditing()
                                 }
                             }.onDelete(perform: self.viewModel.deleteContersation)

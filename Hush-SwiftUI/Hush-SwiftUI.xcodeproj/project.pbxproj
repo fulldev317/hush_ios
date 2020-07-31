@@ -145,13 +145,13 @@
 		5375541424A4EE2F009A13AE /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375541324A4EE2E009A13AE /* Discover.swift */; };
 		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
 		5956EBFB24D45E10007443C0 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956EBFA24D45E10007443C0 /* Language.swift */; };
+		5956EBFD24D49A31007443C0 /* HushScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956EBFC24D49A31007443C0 /* HushScrollView.swift */; };
 		595C7E6024C9F2400094D7A0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C7E5F24C9F2400094D7A0 /* Story.swift */; };
 		595D7F8324CA1922003492E4 /* UserStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D7F8224CA1922003492E4 /* UserStoryCard.swift */; };
 		5962D37A24CA25D8001873D6 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5962D37924CA25D8001873D6 /* Matches.swift */; };
 		59645F6A24D0134E003D1167 /* ChatMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6924D0134E003D1167 /* ChatMember.swift */; };
 		59645F6C24D02EDA003D1167 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6B24D02EDA003D1167 /* String+Ext.swift */; };
 		59645F6E24D064BF003D1167 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6D24D064BF003D1167 /* ChatMessage.swift */; };
-		59645F7024D09EEE003D1167 /* HushScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6F24D09EEE003D1167 /* HushScrollView.swift */; };
 		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
 		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
@@ -351,13 +351,13 @@
 		5375541324A4EE2E009A13AE /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
 		5956EBFA24D45E10007443C0 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		5956EBFC24D49A31007443C0 /* HushScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushScrollView.swift; sourceTree = "<group>"; };
 		595C7E5F24C9F2400094D7A0 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		595D7F8224CA1922003492E4 /* UserStoryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStoryCard.swift; sourceTree = "<group>"; };
 		5962D37924CA25D8001873D6 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		59645F6924D0134E003D1167 /* ChatMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMember.swift; sourceTree = "<group>"; };
 		59645F6B24D02EDA003D1167 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		59645F6D24D064BF003D1167 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
-		59645F6F24D09EEE003D1167 /* HushScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushScrollView.swift; sourceTree = "<group>"; };
 		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
 		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
@@ -628,9 +628,9 @@
 				5311231624916E8E006B1712 /* ActivityIndicator.swift */,
 				53852893249D0C7F00804980 /* HushIndicator.swift */,
 				5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */,
+				5956EBFC24D49A31007443C0 /* HushScrollView.swift */,
 				894BBF02246AE83400F62F7C /* TextQuerySelectorView */,
 				89C77B2A2465F1E500705899 /* Sliders */,
-				59645F6F24D09EEE003D1167 /* HushScrollView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1371,6 +1371,7 @@
 				157930E72437209100EE428F /* StoriesViewModel.swift in Sources */,
 				157930AD2435E62000EE428F /* DiscoveriesSettingsViewModeled.swift in Sources */,
 				8993D7A3246868C1002E636D /* AppearenceModifier.swift in Sources */,
+				5956EBFD24D49A31007443C0 /* HushScrollView.swift in Sources */,
 				8955A008246ADE3400223FB7 /* SelectLocationAPI.swift in Sources */,
 				157930E224371D0800EE428F /* StoryCardsViewModeled.swift in Sources */,
 				15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */,
@@ -1399,7 +1400,6 @@
 				5370FFEF249A6ACC00ABB64C /* LocationPickerField.swift in Sources */,
 				895D0C63245C59D600C6BE9B /* ImagePickerView.swift in Sources */,
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
-				59645F7024D09EEE003D1167 /* HushScrollView.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
 				15D53C87243C909600D62B26 /* UpgradeView.swift in Sources */,
 				89442128246578C90025D843 /* DoubleSlider.swift in Sources */,

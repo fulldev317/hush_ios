@@ -69,7 +69,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
             
             if (self.$goToMessage.wrappedValue) {
                 NavigationLink(
-                    destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: self.viewModel.userId, name: self.viewModel.name, image: self.viewModel.profilePhoto))).withoutBar(),
+                    destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: self.viewModel.userId, name: self.viewModel.name, image: self.viewModel.profilePhoto, online: 1))).withoutBar(),
                     isActive: self.$goToMessage,
                     label: EmptyView.init
                 )
