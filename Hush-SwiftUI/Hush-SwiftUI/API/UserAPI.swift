@@ -228,6 +228,33 @@ class UserAPI: BaseAPI {
         }
     }
     
+    func update_name(name: String, completion: @escaping ( _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "updateUser",
+                                      "uid": userId,
+                                      "col": "name",
+                                      "val": name]
+        
+        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
+            .responseSwiftyJson { response in
+                
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
     func update_bio(bio: String, completion: @escaping ( _ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!

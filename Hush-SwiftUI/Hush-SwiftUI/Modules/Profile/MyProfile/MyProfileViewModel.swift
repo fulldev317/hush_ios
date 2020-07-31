@@ -32,7 +32,6 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var selectedImage: UIImage? = UIImage() {
         didSet {
             if (selectedImage != nil) {
-                //self.photoUrls.append("https://s3.us-east-2.amazonaws.com/hush/1593704202image1.jpg")
                 uploadImage(userImage: selectedImage!)
             }
         }
@@ -157,12 +156,14 @@ class MyProfileViewModel: MyProfileViewModeled {
         
         var s_question: Question?
         var live_question: Question?
-        for question in user.questions! {
-            if question.id == "2" {
-                s_question = question
-            }
-            if question.id == "7" {
-                live_question = question
+        if let questions = user.questions {
+            for question in questions {
+                if question.id == "2" {
+                    s_question = question
+                }
+                if question.id == "7" {
+                    live_question = question
+                }
             }
         }
         
@@ -242,6 +243,16 @@ class MyProfileViewModel: MyProfileViewModeled {
 //        }
     }
     
+    func updateName(name: String) {
+        UserAPI.shared.update_name(name: name) { (error) in
+            if error == nil {
+                var user = Common.userInfo()
+                user.name = name
+                Common.setUserInfo(user)
+            }
+        }
+    }
+    
     func updateAge(age: String) {
         UserAPI.shared.update_age(age: age) { (error) in
             if error == nil {
@@ -264,14 +275,13 @@ class MyProfileViewModel: MyProfileViewModeled {
     
     func uploadImage(userImage: UIImage) {
         self.isShowingIndicator = true
-        
+
         UserAPI.shared.upload_image(image: userImage) { (dic, error) in
-            
-            
+
             if error == nil {
                 let imagePath = dic!["path"] as! String
                 let imageThumb = dic!["thumb"] as! String
-                
+
                 if (self.selectedIndex < self.photoIDs.count) {
                     let imageID = self.photoIDs[self.selectedIndex]
                     UserAPI.shared.update_image(imageID: imageID, path: imagePath, thumb: imageThumb) { (error) in
@@ -294,7 +304,7 @@ class MyProfileViewModel: MyProfileViewModeled {
                 } else {
                     UserAPI.shared.add_image(path: imagePath, thumb: imageThumb) { (imageID, error) in
                         self.isShowingIndicator = false
-                        
+
                         if error == nil {
                             if let imageID = imageID {
                                 self.photoUrls.append(imageThumb)
@@ -314,7 +324,7 @@ class MyProfileViewModel: MyProfileViewModeled {
                     }
                 }
             } else {
-                
+
             }
         }
     }
