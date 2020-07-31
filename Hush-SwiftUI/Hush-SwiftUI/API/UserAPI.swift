@@ -168,7 +168,8 @@ class UserAPI: BaseAPI {
                     var error: APIError?
                     var image_id: String? = nil
                     if json["error"].int == 0 {
-                        image_id = json["id"].string
+                        let image_data = json["data"]
+                        image_id = image_data["id"].stringValue
                         error = nil
                     } else {
                         error = APIError(json["error"].intValue, json["error_m"].stringValue)

@@ -94,17 +94,21 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
                             }
                         }
                     }
+                } else {
+                    Spacer()
                 }
 
 
                 SendTextField(placeholder: "Type your Message", onsend: viewModel.sendMessage(_:), onimage: viewModel.sendImage(_:))
                     .padding(.horizontal, 15)
 
-                Spacer(minLength: keyboardHeight - 70)
+                if (keyboardHeight > 0) {
+                    Spacer(minLength: keyboardHeight - 70)
+                }
                 
             }
             .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
-            //.background(Color.hBlack.edgesIgnoringSafeArea(.all))
+            .background(Color.hBlack.edgesIgnoringSafeArea(.all))
                 
             HushIndicator(showing: self.viewModel.isShowingIndicator)
 
