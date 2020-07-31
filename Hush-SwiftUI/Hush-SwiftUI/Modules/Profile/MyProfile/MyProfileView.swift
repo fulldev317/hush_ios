@@ -297,7 +297,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(ISiPhone5 ? 24 : 28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("User Name", value: $viewModel.basicsViewModel.username)
+                //tableRow("User Name", value: $viewModel.basicsViewModel.username)
+                tableRow("User Name", value: $viewModel.basicsViewModel.username) {
+                    let name = self.$viewModel.basicsViewModel.username
+                    UserAPI.shared.update_name(name: name.wrappedValue) { (error) in
+                        
+                    }
+                }
                 tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
                 tableFixedRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
                 tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
@@ -486,6 +492,24 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             if value != nil {
                 if app.onProfileEditing {
                     TextField(title, text: value!).multilineTextAlignment(.trailing).font(.regular(17)).foregroundColor(.white)
+                } else {
+                    Text(value!.wrappedValue).font(.regular(17)).foregroundColor(.white)
+                }
+            }
+        }
+    }
+
+    private func tableRow(_ title: String, value: Binding<String>?, onCommit: @escaping () -> Void) -> some View {
+        HStack {
+            Text(title).font(.regular(17)).foregroundColor(.white)
+            Spacer()
+            if value != nil {
+                if app.onProfileEditing {
+                    TextField(title, text: value!, onEditingChanged: { (edit) in
+                    }) {
+                        onCommit()
+                    }.multilineTextAlignment(.trailing).font(.regular(17)).foregroundColor(.white)
+
                 } else {
                     Text(value!.wrappedValue).font(.regular(17)).foregroundColor(.white)
                 }

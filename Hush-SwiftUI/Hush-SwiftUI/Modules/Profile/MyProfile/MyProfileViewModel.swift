@@ -64,7 +64,7 @@ class MyProfileViewModel: MyProfileViewModeled {
 
         let user = Common.userInfo()
         
-        basicsViewModel.username = user.username ?? ""
+        basicsViewModel.username = user.name ?? ""
         
         if let premium = user.premium {
             if premium == "1" {
