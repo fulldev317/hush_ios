@@ -144,6 +144,7 @@
 		5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */; };
 		5375541424A4EE2F009A13AE /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375541324A4EE2E009A13AE /* Discover.swift */; };
 		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
+		5956EBFB24D45E10007443C0 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956EBFA24D45E10007443C0 /* Language.swift */; };
 		595C7E6024C9F2400094D7A0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C7E5F24C9F2400094D7A0 /* Story.swift */; };
 		595D7F8324CA1922003492E4 /* UserStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D7F8224CA1922003492E4 /* UserStoryCard.swift */; };
 		5962D37A24CA25D8001873D6 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5962D37924CA25D8001873D6 /* Matches.swift */; };
@@ -349,6 +350,7 @@
 		5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithFBView.swift; sourceTree = "<group>"; };
 		5375541324A4EE2E009A13AE /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
+		5956EBFA24D45E10007443C0 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		595C7E5F24C9F2400094D7A0 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		595D7F8224CA1922003492E4 /* UserStoryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStoryCard.swift; sourceTree = "<group>"; };
 		5962D37924CA25D8001873D6 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
@@ -975,6 +977,7 @@
 				5375541324A4EE2E009A13AE /* Discover.swift */,
 				59645F6924D0134E003D1167 /* ChatMember.swift */,
 				59645F6D24D064BF003D1167 /* ChatMessage.swift */,
+				5956EBFA24D45E10007443C0 /* Language.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1276,6 +1279,7 @@
 				89B55202246D9F96004DC7C6 /* Zero.swift in Sources */,
 				8936B113246B321A001F9254 /* CardCaruselTutorialView.swift in Sources */,
 				1579308E2435BDD000EE428F /* DiscoveryViewModeled.swift in Sources */,
+				5956EBFB24D45E10007443C0 /* Language.swift in Sources */,
 				154B26A82431C36B00265C76 /* SignUpView.swift in Sources */,
 				15D53C8F243DB4EC00D62B26 /* UDProperty.swift in Sources */,
 				1546B440243340BD00180D77 /* LoginView.swift in Sources */,
