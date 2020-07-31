@@ -116,6 +116,62 @@ class UserAPI: BaseAPI {
                 }
         }
     }
+    
+    func add_image(path: String, thumb: String, completion: @escaping (_ imageID: String?, _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "uploadMedia",
+                                      "uid": userId,
+                                      "media[0][status]": "ok",
+                                      "media[0][video]": "0",
+                                      "media[0][path]": path,
+                                      "media[0][thumb]": thumb]
+
+        Alamofire.request(belloo_endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    var image_id: String? = nil
+                    if json["error"].int == 0 {
+                        image_id = json["id"].string
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(image_id, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
+    
+    func update_image(imageID: String, path: String, thumb: String, completion: @escaping (_ error: APIError?) -> Void) {
+        let parameters: Parameters = ["action": "updateImage",
+                                      "id": imageID,
+                                      "path": path,
+                                      "thumb": thumb]
+
+        Alamofire.request(endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+
+                switch response.result {
+                case .success(let json):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
+        }
+    }
         
     func game_like(toUserID: String, like: String, completion: @escaping (_ error: APIError?) -> Void) {
         let user = Common.userInfo()
