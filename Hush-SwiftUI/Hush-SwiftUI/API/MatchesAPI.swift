@@ -161,7 +161,7 @@ class MatchesAPI: BaseAPI {
                              let match = json_matches[index]
                              let jsonData = try! match.rawData()
                              var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                             match_data.liked = false
+                             match_data.liked = true
                              matchList.append(match_data)
                          }
                      }

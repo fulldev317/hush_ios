@@ -53,8 +53,7 @@ class CardCuraselViewModel: CardCuraselViewModeled {
 
         }
     }
-    
-    
+        
     func updateMessage() {
         
         message = "New Message"

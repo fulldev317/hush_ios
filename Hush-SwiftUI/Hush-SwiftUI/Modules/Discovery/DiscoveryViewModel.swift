@@ -69,4 +69,94 @@ class DiscoveryViewModel: DiscoveryViewModeled {
 
         }
     }
+    
+    func loadMatches(result: @escaping (Bool) -> Void) {
+
+        self.isShowingIndicator = true
+       
+        MatchesAPI.shared.matches( completion: { (matchList, error) in
+            self.isShowingIndicator = false
+            self.discoveries.removeAll()
+           
+            if error == nil {
+                if let matchList = matchList {
+                    for match in matchList {
+                        if let match = match {
+                            let discover: Discover = Discover(match: match)
+                            self.discoveries.append(discover)
+                        }
+                   }
+               }
+               result(true)
+           } else {
+               result(false)
+           }
+       })
+    }
+    
+    func loadMyLikes(result: @escaping (Bool) -> Void) {
+        self.isShowingIndicator = true
+        MatchesAPI.shared.my_likes(completion: { (matchList, error) in
+            self.isShowingIndicator = false
+            self.discoveries.removeAll()
+           
+            if error == nil {
+                if let matchList = matchList {
+                    for match in matchList {
+                        if let match = match {
+                        let discover: Discover = Discover(match: match)
+                            self.discoveries.append(discover)
+                        }
+                   }
+               }
+               result(true)
+           } else {
+               result(false)
+           }
+       })
+    }
+    
+    func loadVisitedMe(result: @escaping (Bool) -> Void) {
+        self.isShowingIndicator = true
+        MatchesAPI.shared.visited_me(completion: { (matchList, error) in
+            self.isShowingIndicator = false
+            self.discoveries.removeAll()
+           
+            if error == nil {
+                if let matchList = matchList {
+                    for match in matchList {
+                        if let match = match {
+                        let discover: Discover = Discover(match: match)
+                            self.discoveries.append(discover)
+                        }
+                   }
+               }
+               result(true)
+           } else {
+               result(false)
+           }
+       })
+    }
+    
+    func loadLikesMe(result: @escaping (Bool) -> Void) {
+        self.isShowingIndicator = true
+        MatchesAPI.shared.likes_me(completion: { (matchList, error) in
+            self.isShowingIndicator = false
+            self.discoveries.removeAll()
+           
+            if error == nil {
+                if let matchList = matchList {
+                    for match in matchList {
+                        if let match = match {
+                        let discover: Discover = Discover(match: match)
+                            self.discoveries.append(discover)
+                        }
+                   }
+               }
+               result(true)
+           } else {
+               result(false)
+           }
+       })
+    }
 }

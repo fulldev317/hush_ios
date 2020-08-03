@@ -21,9 +21,14 @@ protocol DiscoveryViewModeled: ObservableObject {
     //var discoveries: [(name: String, age: Int, image: String, liked: Bool)] { get set }
     var discoveries: [Discover] { get set }
     var settingsViewModel: Settings { get set }
+    var isShowingIndicator: Bool { get set }
+
     func discovery(_ i: Int, _ j: Int) -> Discover
     func like(_ i: Int, _ j: Int)
     func loadDiscover(result: @escaping (Bool) -> Void)
-    var isShowingIndicator: Bool { get set }
+    func loadMatches(result: @escaping (Bool) -> Void)
+    func loadMyLikes(result: @escaping (Bool) -> Void)
+    func loadVisitedMe(result: @escaping (Bool) -> Void)
+    func loadLikesMe(result: @escaping (Bool) -> Void)
 
 }

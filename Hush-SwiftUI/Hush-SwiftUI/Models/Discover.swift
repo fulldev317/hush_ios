@@ -10,6 +10,29 @@ import Foundation
 
 struct Discover: Codable {
 
+    init() {
+        id = "123456"
+        name = "Max Zaiets"
+        firstName = "Max"
+        age = "30"
+        gender = "1"
+        city = "Los Angels, US"
+        photo = "image1"
+        liked = false
+    }
+    
+    init(match: Match) {
+        id = match.id
+        name = match.name
+        firstName = match.firstName
+        age = match.age
+        city = match.city
+        photo = match.photo
+        error = match.error
+        story = match.story
+        status = match.status
+        liked = match.liked
+    }
     var id: String?
     var name: String?
     var firstName: String?
