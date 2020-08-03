@@ -21,6 +21,8 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     @State private var shouldLike = false
     @State private var shouldClose = false
     @State private var shouldAnimate = false
+    @State private var overlay_opacity: Double = 0
+
     @State var isShowing: Bool = false
     
     private var degreeIndex = 0
@@ -36,28 +38,43 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
 
     private func movePercent(_ translation: CGSize) -> CGFloat {
-        translation.width / (SCREEN_WIDTH / 2)
+        translation.width / (SCREEN_WIDTH / 3)
     }
     
     private var topCardDrag: some Gesture {
         DragGesture().onChanged { value in
-            self.translation = value.translation
+            withAnimation(.linear) {
+                self.translation = value.translation
+            }
         }.onEnded { value in
             
             let percent = self.movePercent(value.translation)
-            self.translation = .zero
+            if -1 <= percent && percent <= 1 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
 
-            if percent > 1 {
-                self.animateLike()
-            } else if percent < -1 {
-                self.animateClose()
+                    withAnimation(.default) {
+                        self.translation = .zero
+                        self.overlay_opacity = 0.0
+                    }
+                }
+            } else {
+
+                if percent > 1 {
+                    self.animateLike()
+                } else if percent < -1 {
+                    self.animateClose()
+                }
             }
         }.updating($opacity) { value, opacity, _ in
-            opacity = abs(Double(self.movePercent(value.translation))) * 0.4
-        }.updating($degrees) { value, degrees, _ in
-            let percent = self.movePercent(value.translation)
-            degrees = 15 * Double(percent)
+            withAnimation(.linear) {
+                //opacity = abs(Double(self.movePercent(value.translation))) * 0.4
+                self.overlay_opacity = abs(Double(self.movePercent(value.translation))) * 0.4
+            }
         }
+//        .updating($degrees) { value, degrees, _ in
+//            let percent = self.movePercent(value.translation)
+//            degrees = 15 * Double(percent)
+//        }
     }
     
     private func offset(_ card: Int) -> CGFloat {
@@ -77,27 +94,44 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     
     private func animateLike() {
         //shouldLike = true
-        self.cardIndex += 1
-        self.translation = .zero
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        //self.translation = .zero
+
+        withAnimation(.default) {
+            let size:CGSize = self.translation
+            self.translation = CGSize(width: size.width + SCREEN_WIDTH, height: size.height + 100)
+            //self.shouldLike = false
+            self.overlay_opacity = 1.0
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.translation = .zero
+
             withAnimation(.default) {
+                self.cardIndex += 1
+                self.overlay_opacity = 0.0
                 //self.shouldLike = false
             }
         }
     }
     
     private func animateClose() {
-        //shouldClose = true
-        self.translation = .zero
-        self.cardIndex += 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            withAnimation(.default) {
-              //self.shouldClose = false
+        
+        withAnimation(.default) {
+           let size:CGSize = self.translation
+           self.translation = CGSize(width: size.width - SCREEN_WIDTH, height: size.height + 100)
+           //self.shouldLike = false
+           self.overlay_opacity = 1.0
+       }
+       
+       DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+           self.translation = .zero
 
-
-                
-            }
-        }
+           withAnimation(.default) {
+               self.cardIndex += 1
+               self.overlay_opacity = 0.0
+               //self.shouldLike = false
+           }
+       }
     }
     
     // MARK: - Lifecycle
@@ -235,7 +269,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     Image("heart_icon").aspectRatio(.fit).frame(width: 100, height: 100)
                 }
             }
-        }.opacity(opacity)
+        }.opacity(overlay_opacity)
     }
     
 }

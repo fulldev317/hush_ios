@@ -129,7 +129,7 @@ struct CardCaruselElementView: View {
 
 struct CardCaruselElement_Previews: PreviewProvider {
     static var previews: some View {
-        CardCaruselElementView(rotation: .degrees(-5), user: Discover(id: "12345678", name: "Max Zaiets", firstName: "max", age: "30", gender: "", city: "Los Angels, CA, US", photo: "image1", photoBig: "image2", error: 0, show: 0, status: 1, blocked: 0, margin: "", story: "", stories: "", fan: 0, match: 1, liked: false))
+        CardCaruselElementView(rotation: .degrees(-5), user: Discover())
             .previewEnvironment()
             .padding()
     }

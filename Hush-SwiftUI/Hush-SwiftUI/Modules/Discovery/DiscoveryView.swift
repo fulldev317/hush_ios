@@ -74,7 +74,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             
                             self.currentViewIndex = 1
                             
-                            self.viewModel.loadDiscover { result in
+                            self.viewModel.loadMatches { result in
 
                             }
                         }) {
@@ -98,7 +98,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             }
                             self.currentViewIndex = 2
                             
-                            self.viewModel.loadDiscover { result in
+                            self.viewModel.loadVisitedMe { result in
 
                             }
                         }) {
@@ -122,7 +122,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             }
                             self.currentViewIndex = 3
                             
-                            self.viewModel.loadDiscover { result in
+                            self.viewModel.loadMyLikes { result in
                             }
                         }) {
                             ZStack {
@@ -145,7 +145,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             }
                             self.currentViewIndex = 4
                             
-                            self.viewModel.loadDiscover { result in
+                            self.viewModel.loadLikesMe { result in
 
                             }
                         }) {
@@ -170,7 +170,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
             if viewModel.discoveries.count > 0 {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: -20) {
-                        ForEach(0..<(viewModel.discoveries.count / 2), id: \.self) {
+                        ForEach(0...(viewModel.discoveries.count / 2), id: \.self) {
                             self.row(at: $0)
                         }
                     }.padding(.top, 10)
@@ -199,27 +199,32 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     func row(at i: Int) -> some View {
         HStack(spacing: -18) {
             ForEach(0..<2, id: \.self) { j in
-                self.polaroidCard(i, j)
-                    .onTapGesture {
-                        self.selectedIndex = i * 2 + j
-                        let discover = self.viewModel.discoveries[self.selectedIndex]
-                        if let userId = discover.id {
-                        
-                            self.viewModel.isShowingIndicator = true
-                            
-                            AuthAPI.shared.cuser(userId: userId) { (user, error) in
-                                self.viewModel.isShowingIndicator = false
-                                if error == nil {
+                HStack {
+                    if (i * 2 + j < self.viewModel.discoveries.count) {
+                        self.polaroidCard(i, j)
+                            .onTapGesture {
+                                self.selectedIndex = i * 2 + j
+                                let discover = self.viewModel.discoveries[self.selectedIndex]
+                                if let userId = discover.id {
+                                
+                                    self.viewModel.isShowingIndicator = true
                                     
-                                    UserAPI.shared.add_visit(toUserID: userId) { (error) in
+                                    AuthAPI.shared.cuser(userId: userId) { (user, error) in
+                                        self.viewModel.isShowingIndicator = false
+                                        if error == nil {
+                                            
+                                            UserAPI.shared.add_visit(toUserID: userId) { (error) in
+                                            }
+                                            
+                                            self.selectedUser = user!
+                                            self.showUserProfile = true
+                                        }
                                     }
-                                    
-                                    self.selectedUser = user!
-                                    self.showUserProfile = true
                                 }
-                            }
                         }
-                        
+                    } else {
+                        Spacer()
+                    }
                 }
             }
         }.zIndex(Double(100 - i))
