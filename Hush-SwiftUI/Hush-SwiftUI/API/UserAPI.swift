@@ -18,32 +18,35 @@ class UserAPI: BaseAPI {
                 
         let parameters: Parameters = ["action": "getLanguageList"]
     
-       api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-           .responseSwiftyJson { response in
-               
-            switch response.result {
-            case .success(let json):
-                var languageList:[Language?] = []
-                var error: APIError?
-                if json["error"].int == 0 {
-                    let json_users = json["languages"]
-                   
-                    if (json_users.count > 0) {
-                        for index in 0 ..< json_users.count {
-                            let user = json_users[index]
-                            let jsonData = try! user.rawData()
-                            let user_data = try! JSONDecoder().decode(Language.self, from: jsonData)
-                            languageList.append(user_data)
+       let request = AF.request(endpoint, parameters: parameters)
+       request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var languageList:[Language?] = []
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        let json_users = json["languages"]
+
+                        if (json_users.count > 0) {
+                            for index in 0 ..< json_users.count {
+                                let user = json_users[index]
+                                let jsonData = try! user.rawData()
+                                let user_data = try! JSONDecoder().decode(Language.self, from: jsonData)
+                                languageList.append(user_data)
+                            }
                         }
-                    }
-               } else {
-                   error = APIError(json["error"].intValue, json["error_m"].stringValue)
-               }
-               completion(languageList, error)
-            case .failure:
-               let error = APIError(404, "Server Connection Failed")
-               completion(nil, error)
-               print("API CALL FAILED")
+                   } else {
+                       error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                   }
+                   completion(languageList, error)
+                case .failure:
+                   let error = APIError(404, "Server Connection Failed")
+                   completion(nil, error)
+                   print("API CALL FAILED")
+                }
             }
         }
     }
@@ -56,23 +59,26 @@ class UserAPI: BaseAPI {
         let parameters: Parameters = ["action": "updateNotification",
                                       "query": query]
     
-       api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-           .responseSwiftyJson { response in
-               
-            switch response.result {
-            case .success(let json):
-                var enabled = false
-                var error: APIError? = nil
-                if json["error"].int == 0 {
-                    enabled = true
-               } else {
-                   error = APIError(json["error"].intValue, json["error_m"].stringValue)
-               }
-               completion(enabled, error)
-            case .failure:
-               let error = APIError(404, "Server Connection Failed")
-               completion(false, error)
-               print("API CALL FAILED")
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var enabled = false
+                    var error: APIError? = nil
+                    if json["error"].int == 0 {
+                        enabled = true
+                   } else {
+                       error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                   }
+                   completion(enabled, error)
+                case .failure:
+                   let error = APIError(404, "Server Connection Failed")
+                   completion(false, error)
+                   print("API CALL FAILED")
+                }
             }
         }
     }
@@ -82,48 +88,48 @@ class UserAPI: BaseAPI {
 
          let parameters = ["file": "image1.jpg"] //Optional for extra parameter
 
-        Alamofire.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(imgData, withName: "file", fileName: "image1.jpg", mimeType: "image/jpg")
-                for (key, value) in parameters {
-                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-                    } //Optional for extra parameters
-            },
-        to: uploadpoint)
-        { (result) in
-            switch result {
-            case .success(let upload, _, _):
-
-                upload.uploadProgress(closure: { (progress) in
-                    print("Upload Progress: \(progress.fractionCompleted)")
-                })
-
-                upload.responseSwiftyJson { response in
-                    
-                    switch response.result {
-                    case .success(let json):
-                        var error: APIError?
-                        let status = json["status"]
-                        if status == "ok" {
-                            let path: NSDictionary = ["path" : json["path"].stringValue, "thumb": json["thumb"].stringValue]
-                            completion(path, error)
-                        } else {
-                            error = APIError(404, "upload failed")
-                            completion(nil, error)
-                        }
-                    case .failure:
-                        var error: APIError?
-                        error = APIError(404, "connect failed")
-                        completion(nil, error)
-                    }
-                }
-
-            case .failure(let encodingError):
-                print(encodingError)
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(nil, error)
-            }
-        }
+//        Alamofire.upload(multipartFormData: { multipartFormData in
+//                multipartFormData.append(imgData, withName: "file", fileName: "image1.jpg", mimeType: "image/jpg")
+//                for (key, value) in parameters {
+//                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+//                    } //Optional for extra parameters
+//            },
+//        to: uploadpoint)
+//        { (result) in
+//            switch result {
+//            case .success(let upload, _, _):
+//
+//                upload.uploadProgress(closure: { (progress) in
+//                    print("Upload Progress: \(progress.fractionCompleted)")
+//                })
+//
+//                upload.responseSwiftyJson { response in
+//
+//                    switch response.result {
+//                    case .success(let json):
+//                        var error: APIError?
+//                        let status = json["status"]
+//                        if status == "ok" {
+//                            let path: NSDictionary = ["path" : json["path"].stringValue, "thumb": json["thumb"].stringValue]
+//                            completion(path, error)
+//                        } else {
+//                            error = APIError(404, "upload failed")
+//                            completion(nil, error)
+//                        }
+//                    case .failure:
+//                        var error: APIError?
+//                        error = APIError(404, "connect failed")
+//                        completion(nil, error)
+//                    }
+//                }
+//
+//            case .failure(let encodingError):
+//                print(encodingError)
+//                var error: APIError?
+//                error = APIError(404, "connect failed")
+//                completion(nil, error)
+//            }
+//        }
     }
     
     func unreadMessageCount(completion: @escaping (_ unreadMessages: Int?, _ error: APIError?) -> Void) {
@@ -131,12 +137,13 @@ class UserAPI: BaseAPI {
         let parameters: Parameters = ["action": "unreadMessageCount",
                                       "id": userId]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var unreadMessages: Int?
                     var error: APIError?
                     if json["error"].int == 0 {
@@ -148,6 +155,7 @@ class UserAPI: BaseAPI {
                 case .failure:
                     print("API CALL FAILED")
                 }
+            }
         }
     }
     
@@ -161,26 +169,26 @@ class UserAPI: BaseAPI {
                                       "media[0][path]": path,
                                       "media[0][thumb]": thumb]
 
-        Alamofire.request(belloo_endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
-
-                switch response.result {
-                case .success(let json):
-                    var error: APIError?
-                    var image_id: String? = nil
-                    if json["error"].int == 0 {
-                        let image_data = json["data"]
-                        image_id = image_data["id"].stringValue
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(image_id, error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
-                    print("API CALL FAILED")
-                }
-        }
+//        Alamofire.request(belloo_endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
+//
+//                switch response.result {
+//                case .success(let json):
+//                    var error: APIError?
+//                    var image_id: String? = nil
+//                    if json["error"].int == 0 {
+//                        let image_data = json["data"]
+//                        image_id = image_data["id"].stringValue
+//                        error = nil
+//                    } else {
+//                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+//                    }
+//                    completion(image_id, error)
+//                case .failure:
+//                    let error = APIError(404, "Server Connection Failed")
+//                    completion(nil, error)
+//                    print("API CALL FAILED")
+//                }
+//        }
     }
     
     func update_image(imageID: String, path: String, thumb: String, completion: @escaping (_ error: APIError?) -> Void) {
@@ -189,10 +197,13 @@ class UserAPI: BaseAPI {
                                       "path": path,
                                       "thumb": thumb]
 
-        Alamofire.request(endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
-
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -205,6 +216,7 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
         
@@ -216,11 +228,13 @@ class UserAPI: BaseAPI {
                                       "uid2": toUserID,
                                       "uid3": like]
 
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
-
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -233,6 +247,7 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
 
@@ -243,11 +258,13 @@ class UserAPI: BaseAPI {
         let parameters: Parameters = ["action": "addVisit",
                                       "query": query]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -260,6 +277,7 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
     
@@ -271,11 +289,13 @@ class UserAPI: BaseAPI {
                                       "col": "name",
                                       "val": name]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -288,6 +308,7 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
     
@@ -299,11 +320,13 @@ class UserAPI: BaseAPI {
                                       "col": "lang",
                                       "val": lang_id]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -316,6 +339,7 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
     
@@ -327,11 +351,13 @@ class UserAPI: BaseAPI {
                                       "col": "bio",
                                       "val": bio]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -344,6 +370,7 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
     
@@ -355,11 +382,13 @@ class UserAPI: BaseAPI {
                                       "col": "age",
                                       "val": age]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -372,6 +401,37 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            }
+        }
+    }
+    
+    func update_age(lower: String, upper: String, completion: @escaping (_ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + "," + lower + "," + upper;
+        let parameters: Parameters = ["action": "updateAge",
+                                      "query": query]
+
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                    print("API CALL FAILED")
+                }
+            }
         }
     }
     
@@ -382,11 +442,13 @@ class UserAPI: BaseAPI {
         let parameters: Parameters = ["action": "updateUserExtended",
                                       "query": query]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
@@ -403,6 +465,7 @@ class UserAPI: BaseAPI {
                     completion(user, error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
     
@@ -413,11 +476,13 @@ class UserAPI: BaseAPI {
         let parameters: Parameters = ["action": "updateUserExtended",
                                       "query": query]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var user: User?
                     var error: APIError?
                     if json["error"].int == 0 {
@@ -434,6 +499,7 @@ class UserAPI: BaseAPI {
                     completion(nil, error)
                     print("API CALL FAILED")
                 }
+            }
         }
     }
     
@@ -444,11 +510,13 @@ class UserAPI: BaseAPI {
         let parameters: Parameters = ["action": "updateGender",
                                       "query": query]
         
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
                 
                 switch response.result {
-                case .success(let json):
+                case .success(_):
                     var error: APIError?
                     if json["error"].int == 0 {
                         error = nil
@@ -461,57 +529,7 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
-        }
-    }
-    
-    func update_age(lower: String, upper: String, completion: @escaping (_ error: APIError?) -> Void) {
-        let user = Common.userInfo()
-        let userId = user.id!
-        let query = userId + "," + lower + "," + upper;
-        let parameters: Parameters = ["action": "updateAge",
-                                      "query": query]
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.queryString)
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
-                }
-        }
-    }
-    
-    func deleteStoryAlbum(albumId: String, completion: @escaping (_ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        var parameters: Parameters = ["action": "deleteStoryAlbum"]
-        
-        let query: [Any] = [userId, albumId]
-        parameters["query"] = query
-        
-        api.request(endpoint, method: HTTPMethod.get, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(contentType: ["application/json"])
-            .responseSwiftyJson { response in
-                
-                switch response.result {
-                case .success(let json):
-                    var error: APIError?
-                    if json["error"].int != 0 {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(error)
-                case .failure:
-                    print("API CALL FAILED")
-                }
+            }
         }
     }
     

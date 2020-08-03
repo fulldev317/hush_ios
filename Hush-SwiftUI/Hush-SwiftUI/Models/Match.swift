@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Match: Codable {
+struct Match: Decodable {
     var id: String?
     var name: String?
     var firstName: String?

@@ -49,7 +49,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
         
     }
     // MARK: - Lifecycle
-    
+    @ViewBuilder
     var body: some View {
         ZStack {
             if selectedMessage != nil {

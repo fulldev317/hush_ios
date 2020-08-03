@@ -89,27 +89,27 @@ class UserLoginManager: ObservableObject {
     let loginManager = LoginManager()
     
     func facebookConnect(data: NSDictionary, result: @escaping (Bool) -> Void ) {
-        AuthAPI.shared.facebookConnect(facebookId: data["id"] as! String,
-                                       email: data["email"] as! String,
-                                       name: data["name"] as! String, gender: "0") { (user, error) in
-                                        
-            if error != nil {
-                result(false)
-            } else if let user = user {
-              
-                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
-                isLoggedIn.wrappedValue = true
-                
-                Common.setUserInfo(user)
-                Common.setAddressInfo("Los Angels, FA, UK")
-                let jsonData = try! JSONEncoder().encode(user)
-                let jsonString = String(data:jsonData, encoding: .utf8)!
-                
-                let currentUser = UserDefault(.currentUser, default: "")
-                currentUser.wrappedValue = jsonString
-                result(true)
-            }
-        }
+//        AuthAPI.shared.facebookConnect(facebookId: data["id"] as! String,
+//                                       email: data["email"] as! String,
+//                                       name: data["name"] as! String, gender: "0") { (user, error) in
+//                                        
+//            if error != nil {
+//                result(false)
+//            } else if let user = user {
+//              
+//                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+//                isLoggedIn.wrappedValue = true
+//                
+//                Common.setUserInfo(user)
+//                Common.setAddressInfo("Los Angels, FA, UK")
+//                let jsonData = try! JSONEncoder().encode(user)
+//                let jsonString = String(data:jsonData, encoding: .utf8)!
+//                
+//                let currentUser = UserDefault(.currentUser, default: "")
+//                currentUser.wrappedValue = jsonString
+//                result(true)
+//            }
+//        }
         
     }
     

@@ -49,7 +49,7 @@ class MessagesViewModel: MessagesViewModeled {
     }
     
     func getChat(result: @escaping (Bool) -> Void) {
-        
+
         self.isShowingIndicator = true
         
         ChatAPI.shared.get_chat(completion: { (memberList, error) in

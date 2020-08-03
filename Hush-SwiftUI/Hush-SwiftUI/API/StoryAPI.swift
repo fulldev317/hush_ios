@@ -25,33 +25,37 @@ class StoryAPI: BaseAPI {
                                       "media[0][path]": image_path,
                                       "media[0][thumb]": image_thumb]
 
-        Alamofire.request(belloo_endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
-                       
-            switch response.result {
-            case .success(let json):
-                var error: APIError?
-                var storyList: [Story?] = []
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var error: APIError?
+                    var storyList: [Story?] = []
 
-                if (json["story"].intValue > 0) {
-                    let json_stories = json["stories"]
+                    if (json["story"].intValue > 0) {
+                        let json_stories = json["stories"]
 
-                    if (json_stories.count > 0) {
-                        for index in 0 ..< json_stories.count {
-                            let story = json_stories[index]
-                            let jsonData = try! story.rawData()
-                            var story_data = try! JSONDecoder().decode(Story.self, from: jsonData)
-                            story_data.liked = false
-                            storyList.append(story_data)
+                        if (json_stories.count > 0) {
+                            for index in 0 ..< json_stories.count {
+                                let story = json_stories[index]
+                                let jsonData = try! story.rawData()
+                                var story_data = try! JSONDecoder().decode(Story.self, from: jsonData)
+                                story_data.liked = false
+                                storyList.append(story_data)
+                            }
                         }
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                } else {
-                    error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    completion(storyList, error)
+                case .failure:
+                   let error = APIError(404, "Server Connection Failed")
+                   completion(nil, error)
+                   print("API CALL FAILED")
                 }
-                completion(storyList, error)
-            case .failure:
-               let error = APIError(404, "Server Connection Failed")
-               completion(nil, error)
-               print("API CALL FAILED")
             }
         }
     }
@@ -64,33 +68,37 @@ class StoryAPI: BaseAPI {
                             "uid": userId
                             ]
      
-        Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
-                    
-            switch response.result {
-            case .success(let json):
-                var error: APIError?
-                var storyList: [Story?] = []
-                if (json["error"].int == 0) {
-                    let json_stories = json["stories"]
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var error: APIError?
+                    var storyList: [Story?] = []
+                    if (json["error"].int == 0) {
+                        let json_stories = json["stories"]
 
-                    if (json_stories.count > 0) {
-                        for index in 0 ..< json_stories.count {
-                            let story = json_stories[index]
-                            let jsonData = try! story.rawData()
-                            var story_data = try! JSONDecoder().decode(Story.self, from: jsonData)
-                            story_data.liked = false
-                            storyList.append(story_data)
+                        if (json_stories.count > 0) {
+                            for index in 0 ..< json_stories.count {
+                                let story = json_stories[index]
+                                let jsonData = try! story.rawData()
+                                var story_data = try! JSONDecoder().decode(Story.self, from: jsonData)
+                                story_data.liked = false
+                                storyList.append(story_data)
+                            }
                         }
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
                     }
-                } else {
-                    error = APIError(json["error"].intValue, json["error_m"].stringValue)
+
+                    completion(storyList, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
+                    print("API CALL FAILED")
                 }
-                        
-                completion(storyList, error)
-            case .failure:
-                let error = APIError(404, "Server Connection Failed")
-                completion(nil, error)
-                print("API CALL FAILED")
             }
         }
     }
