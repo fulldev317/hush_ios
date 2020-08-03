@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.8.2)
+  - Alamofire (5.2.1)
   - Fakery (4.1.1)
   - FBSDKCoreKit (7.0.0):
     - FBSDKCoreKit/Basics (= 7.0.0)
@@ -24,14 +24,14 @@ PODS:
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.8.2)
+  - Alamofire (~> 5.2.1)
   - Fakery
   - FBSDKLoginKit
   - FLEX
   - Koloda
   - SDWebImageSwiftUI
   - SwiftUIPager
-  - SwiftyJSON (~> 5.0.0)
+  - SwiftyJSON (from `https://github.com/tattn/SwiftyJSON.git`, branch `hotfix-xcode12`)
 
 SPEC REPOS:
   trunk:
@@ -45,10 +45,19 @@ SPEC REPOS:
     - SDWebImage
     - SDWebImageSwiftUI
     - SwiftUIPager
-    - SwiftyJSON
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :branch: hotfix-xcode12
+    :git: https://github.com/tattn/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 29ee46ee23593f08e33e0d4364aa4bb91e950847
+    :git: https://github.com/tattn/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
   FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
   FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
@@ -58,8 +67,8 @@ SPEC CHECKSUMS:
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SDWebImageSwiftUI: 43687ffe232ddd33fe0659498b7ca9884fdd6b35
   SwiftUIPager: 87780e1c33ea432d326eebfecfcfa33877bfa848
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  SwiftyJSON: f0574c07d8ca1644050db687067209e3033a89a0
 
-PODFILE CHECKSUM: 81a4bccd633bb903db3b8f8cbe9481557e0f15f1
+PODFILE CHECKSUM: 7c73e35868b5e25f3b7cb2ee0d8754c45cb1fa20
 
 COCOAPODS: 1.9.3

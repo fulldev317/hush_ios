@@ -20,50 +20,46 @@ class BaseAPI {
     internal let google_geocode: String  = "https://maps.googleapis.com/maps/api/geocode/json"
     internal let belloo_endpoint: String = "https://www.hushdating.app/requests/belloo.php"
     
-    internal let api: SessionManager
-    
-    init() {
-        let configuration = URLSessionConfiguration.default
-        api = Alamofire.SessionManager(configuration: configuration)
-        api.adapter = AccessTokenAdapter()
-    }
+//    internal let api: SessionManager
+//
+	
 }
 
 
-class AccessTokenAdapter: RequestAdapter {
-    func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
-        var urlRequest = urlRequest
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        return urlRequest
-    }
-}
-
-extension DataRequest {
-    
-    @discardableResult
-    public func responseSwiftyJson(completionHandler: @escaping (DataResponse<JSON>) -> Void) -> Self {
-        return response(queue: nil,
-                        responseSerializer: DataRequest.swiftyResponseSerializer(),
-                        completionHandler: completionHandler)
-    }
-    
-    public static func swiftyResponseSerializer() -> DataResponseSerializer<JSON> {
-        return DataResponseSerializer { (request, response, data, error) in
-            
-            if let request = request, let httpBody = request.httpBody {
-                debugPrint(String(data: httpBody, encoding: .utf8) as Any)
-            }
-            debugPrint(response as Any)
-            
-            let result = Request.serializeResponseJSON(options: .allowFragments, response: response, data: data, error: error)
-            
-            switch result {
-            case .success(let value):
-                let jsonObject = JSON(value)
-                return .success(jsonObject)
-            case .failure(let error):
-                return .failure(error)
-            }
-        }
-    }
-}
+//class AccessTokenAdapter: RequestAdapter {
+//    func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
+//        var urlRequest = urlRequest
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        return urlRequest
+//    }
+//}
+//
+//extension DataRequest {
+//
+//    @discardableResult
+//    public func responseSwiftyJson(completionHandler: @escaping (DataResponse<JSON>) -> Void) -> Self {
+//        return response(queue: nil,
+//                        responseSerializer: DataRequest.swiftyResponseSerializer(),
+//                        completionHandler: completionHandler)
+//    }
+//
+//    public static func swiftyResponseSerializer() -> DataResponseSerializer {
+//        return DataResponseSerializer { (request, response, data, error) in
+//
+//            if let request = request, let httpBody = request.httpBody {
+//                debugPrint(String(data: httpBody, encoding: .utf8) as Any)
+//            }
+//            debugPrint(response as Any)
+//
+//            let result = Request.serializeResponseJSON(options: .allowFragments, response: response, data: data, error: error)
+//
+//            switch result {
+//            case .success(let value):
+//                let jsonObject = JSON(value)
+//                return .success(jsonObject)
+//            case .failure(let error):
+//                return .failure(error)
+//            }
+//        }
+//    }
+//}

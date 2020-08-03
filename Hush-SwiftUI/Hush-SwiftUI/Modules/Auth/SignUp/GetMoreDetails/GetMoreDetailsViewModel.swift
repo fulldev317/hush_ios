@@ -90,31 +90,32 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         let longitude = self.longitude
         let address = self.location
         let city = self.location.components(separatedBy: ",")[0]
-        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, address: address, city: city, latitude: latitude, longitude: longitude) { (user, error) in
-            
-            if let error = error {
-                self.hasErrorMessage = true
-                self.errorMessage = Common.handleErrorMessage(error.message)
-                result(false)
-                
-            } else if let user = user {
-                self.hasErrorMessage = false
-                self.errorMessage = ""
-                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
-                isLoggedIn.wrappedValue = true
-                
-                Common.setUserInfo(user)
-                Common.setAddressInfo(user.address ?? "")
-                
-                let jsonData = try! JSONEncoder().encode(user)
-                let jsonString = String(data:jsonData, encoding: .utf8)!
-                
-                let currentUser = UserDefault(.currentUser, default: "")
-                currentUser.wrappedValue = jsonString
-
-                result(true)
-            }
-        }
+        
+//        AuthAPI.shared.register(email: email, password: password, username: username, name: name, gender: strGender, birthday: birth, lookingFor: strLookingFor, here: strWhatFor, photo: photo, thumb: thumb, address: address, city: city, latitude: latitude, longitude: longitude) { (user, error) in
+//            
+//            if let error = error {
+//                self.hasErrorMessage = true
+//                self.errorMessage = Common.handleErrorMessage(error.message)
+//                result(false)
+//                
+//            } else if let user = user {
+//                self.hasErrorMessage = false
+//                self.errorMessage = ""
+//                let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+//                isLoggedIn.wrappedValue = true
+//                
+//                Common.setUserInfo(user)
+//                Common.setAddressInfo(user.address ?? "")
+//                
+//                let jsonData = try! JSONEncoder().encode(user)
+//                let jsonString = String(data:jsonData, encoding: .utf8)!
+//                
+//                let currentUser = UserDefault(.currentUser, default: "")
+//                currentUser.wrappedValue = jsonString
+//
+//                result(true)
+//            }
+//        }
     
     }
     
