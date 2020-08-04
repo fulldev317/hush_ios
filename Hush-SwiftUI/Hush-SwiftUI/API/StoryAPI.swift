@@ -25,7 +25,7 @@ class StoryAPI: BaseAPI {
                                       "media[0][path]": image_path,
                                       "media[0][thumb]": image_thumb]
 
-        let request = AF.request(endpoint, parameters: parameters)
+        let request = AF.request(belloo_endpoint, method: .post, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
                 let json = try! JSON(data: data)
@@ -56,6 +56,9 @@ class StoryAPI: BaseAPI {
                    completion(nil, error)
                    print("API CALL FAILED")
                 }
+            } else {
+                let error = APIError(404, "Server Connection Failed")
+                completion(nil, error)
             }
         }
     }
@@ -99,6 +102,9 @@ class StoryAPI: BaseAPI {
                     completion(nil, error)
                     print("API CALL FAILED")
                 }
+            } else {
+                let error = APIError(404, "Server Connection Failed")
+                completion(nil, error)
             }
         }
     }

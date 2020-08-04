@@ -48,10 +48,10 @@ class MyStoryViewModel: StoryViewModeled {
     
     func getStoryTitle() -> String {
         if (currentStoryIndex < 0 || currentStoryIndex >= stories.count) {
-            return "Unknown"
+            return ""
         }
         let story = stories[currentStoryIndex]
-        let url = story.title ?? "Unknown"
+        let url = story.title ?? ""
         return url
     }
     

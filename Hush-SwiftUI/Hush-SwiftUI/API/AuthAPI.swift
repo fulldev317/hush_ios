@@ -388,7 +388,7 @@ class AuthAPI: BaseAPI {
         let parameters: Parameters = ["key": "AIzaSyDciBuFvEMToHJSdzPJzxEykr6SwNU_xS8",
                                       "input": query]
         
-        let request = AF.request(endpoint, parameters: parameters)
+        let request = AF.request(google_place, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
                 let json = try! JSON(data: data)
@@ -422,7 +422,7 @@ class AuthAPI: BaseAPI {
         let parameters: Parameters = ["key": "AIzaSyDciBuFvEMToHJSdzPJzxEykr6SwNU_xS8",
                                       "address": address]
         
-        let request = AF.request(endpoint, parameters: parameters)
+        let request = AF.request(google_geocode, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
                 let json = try! JSON(data: data)

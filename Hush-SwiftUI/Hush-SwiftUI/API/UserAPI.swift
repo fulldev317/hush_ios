@@ -88,6 +88,40 @@ class UserAPI: BaseAPI {
 
          let parameters = ["file": "image1.jpg"] //Optional for extra parameter
 
+        AF.upload(multipartFormData: { mulitpartFormData in
+            mulitpartFormData.append(imgData, withName: "file", fileName: "image1.jpg", mimeType: "image/jpg")
+
+             for (key, value) in parameters {
+                mulitpartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            }
+        }, to: uploadpoint)
+            .uploadProgress(queue: .main, closure: { (progress) in
+                print("Upload Progress: \(progress.fractionCompleted)")
+            })
+            .response { (response) in
+                if let data = response.data {
+                    let json = try! JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        let status = json["status"]
+                        if status == "ok" {
+                            let path: NSDictionary = ["path" : json["path"].stringValue, "thumb": json["thumb"].stringValue]
+                            completion(path, error)
+                        } else {
+                            error = APIError(404, "upload failed")
+                            completion(nil, error)
+                        }
+                    case .failure:
+                        var error: APIError?
+                        error = APIError(404, "connect failed")
+                        completion(nil, error)
+                    }
+                }
+        }
+    }
+        
 //        Alamofire.upload(multipartFormData: { multipartFormData in
 //                multipartFormData.append(imgData, withName: "file", fileName: "image1.jpg", mimeType: "image/jpg")
 //                for (key, value) in parameters {
@@ -130,7 +164,7 @@ class UserAPI: BaseAPI {
 //                completion(nil, error)
 //            }
 //        }
-    }
+    
     
     func unreadMessageCount(completion: @escaping (_ unreadMessages: Int?, _ error: APIError?) -> Void) {
         let userId: String = "user_id"
@@ -168,27 +202,30 @@ class UserAPI: BaseAPI {
                                       "media[0][video]": "0",
                                       "media[0][path]": path,
                                       "media[0][thumb]": thumb]
-
-//        Alamofire.request(belloo_endpoint, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil) .responseSwiftyJson { response in
-//
-//                switch response.result {
-//                case .success(let json):
-//                    var error: APIError?
-//                    var image_id: String? = nil
-//                    if json["error"].int == 0 {
-//                        let image_data = json["data"]
-//                        image_id = image_data["id"].stringValue
-//                        error = nil
-//                    } else {
-//                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-//                    }
-//                    completion(image_id, error)
-//                case .failure:
-//                    let error = APIError(404, "Server Connection Failed")
-//                    completion(nil, error)
-//                    print("API CALL FAILED")
-//                }
-//        }
+        let request = AF.request(endpoint, method: .post, parameters : parameters)
+        request.responseJSON { (response) in
+           if let data = response.data {
+               let json = try! JSON(data: data)
+               
+               switch response.result {
+               case .success(_):
+                    var error: APIError?
+                    var image_id: String? = nil
+                    if json["error"].int == 0 {
+                        let image_data = json["data"]
+                        image_id = image_data["id"].stringValue
+                        error = nil
+                    } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    }
+                    completion(image_id, error)
+                case .failure:
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
+                    print("API CALL FAILED")
+                }
+            }
+        }
     }
     
     func update_image(imageID: String, path: String, thumb: String, completion: @escaping (_ error: APIError?) -> Void) {

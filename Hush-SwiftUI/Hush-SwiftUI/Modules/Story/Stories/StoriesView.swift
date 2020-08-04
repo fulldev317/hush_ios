@@ -66,7 +66,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                             ForEach(0..<3, id: \.self) { j in
                                 HStack(spacing: -10) {
                                     if (i * 3 + j < self.viewModel.storyList.count) {
-                                        UserStoryCard(username: self.viewModel.storyList[i * 3 + j].title ?? "Unknown",
+                                        UserStoryCard(username: self.viewModel.storyList[i * 3 + j].title ?? "",
                                                       isMyStory: i == 0 && j == 0,
                                                       isFirstStory: self.userStories.isEmpty,
                                                       storyImage: self.userStories.last,
