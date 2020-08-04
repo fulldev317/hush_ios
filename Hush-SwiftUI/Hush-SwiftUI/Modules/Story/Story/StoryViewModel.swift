@@ -40,10 +40,10 @@ class StoryViewModel: StoryViewModeled {
     
     func getStoryTitle() -> String {
         if (currentStoryIndex < 0 || currentStoryIndex >= stories.count) {
-            return "Unknown"
+            return ""
         }
         let story = stories[currentStoryIndex]
-        let title = story.title ?? "Unknown"
+        let title = story.title ?? ""
         return title
     }
         
