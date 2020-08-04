@@ -47,6 +47,10 @@ class UserAPI: BaseAPI {
                    completion(nil, error)
                    print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(nil, error)
             }
         }
     }
@@ -118,6 +122,10 @@ class UserAPI: BaseAPI {
                         error = APIError(404, "connect failed")
                         completion(nil, error)
                     }
+                } else {
+                    var error: APIError?
+                    error = APIError(404, "connect failed")
+                    completion(nil, error)
                 }
         }
     }
@@ -189,6 +197,10 @@ class UserAPI: BaseAPI {
                 case .failure:
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(nil, error)
             }
         }
     }
@@ -224,6 +236,10 @@ class UserAPI: BaseAPI {
                     completion(nil, error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(nil, error)
             }
         }
     }
@@ -234,7 +250,7 @@ class UserAPI: BaseAPI {
                                       "path": path,
                                       "thumb": thumb]
 
-        let request = AF.request(endpoint, parameters: parameters)
+        let request = AF.request(endpoint, method: .post, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
                 let json = try! JSON(data: data)
@@ -253,6 +269,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
             }
         }
     }
@@ -284,6 +304,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
             }
         }
     }
@@ -314,6 +338,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
             }
         }
     }
@@ -345,6 +373,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
             }
         }
     }
@@ -376,6 +408,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
             }
         }
     }
@@ -407,6 +443,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
             }
         }
     }
@@ -438,6 +478,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+               var error: APIError?
+               error = APIError(404, "connect failed")
+               completion(error)
             }
         }
     }
@@ -468,6 +512,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+               var error: APIError?
+               error = APIError(404, "connect failed")
+               completion(error)
             }
         }
     }
@@ -502,6 +550,10 @@ class UserAPI: BaseAPI {
                     completion(user, error)
                     print("API CALL FAILED")
                 }
+            } else {
+               var error: APIError?
+               error = APIError(404, "connect failed")
+               completion(nil, error)
             }
         }
     }
@@ -536,6 +588,10 @@ class UserAPI: BaseAPI {
                     completion(nil, error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(nil, error)
             }
         }
     }
@@ -566,6 +622,10 @@ class UserAPI: BaseAPI {
                     completion(error)
                     print("API CALL FAILED")
                 }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
             }
         }
     }
