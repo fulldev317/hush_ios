@@ -22,6 +22,7 @@ enum UserProfileMode {
 protocol UserProfileViewModeled: ObservableObject {
     
     var mode: UserProfileMode { get }
+    var isShowingIndicator: Bool { get set }
     var aboutMe: String { get set }
     var location: String { get set }
     var profilePhoto: String { get set }
@@ -45,4 +46,7 @@ protocol UserProfileViewModeled: ObservableObject {
     var isFan: Bool { get set }
     func switchMode()
     func userLike(like: String)
+    func getReportList(result: @escaping ([String]) -> Void)
+    func reportUser(reason: String, result: @escaping (Bool) -> Void)
+    func blockUser(result: @escaping (Bool) -> Void) 
 }

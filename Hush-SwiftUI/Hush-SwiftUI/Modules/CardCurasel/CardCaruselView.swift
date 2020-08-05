@@ -93,23 +93,18 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func animateLike() {
-        //shouldLike = true
-        //self.translation = .zero
 
         withAnimation(.default) {
             let size:CGSize = self.translation
             self.translation = CGSize(width: size.width + SCREEN_WIDTH, height: size.height + 100)
-            //self.shouldLike = false
             self.overlay_opacity = 1.0
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.translation = .zero
-
             withAnimation(.default) {
                 self.cardIndex += 1
                 self.overlay_opacity = 0.0
-                //self.shouldLike = false
             }
         }
     }
@@ -119,7 +114,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         withAnimation(.default) {
            let size:CGSize = self.translation
            self.translation = CGSize(width: size.width - SCREEN_WIDTH, height: size.height + 100)
-           //self.shouldLike = false
            self.overlay_opacity = 1.0
        }
        
@@ -129,7 +123,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
            withAnimation(.default) {
                self.cardIndex += 1
                self.overlay_opacity = 0.0
-               //self.shouldLike = false
            }
        }
     }
@@ -147,7 +140,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 }.padding(.leading, 25)
                     .frame(height: 65)
                     
-                //.padding(.top, ISiPhone11 ? 30 : ISiPhoneX ? 50 : ISiPhone5 ? 55 : 105)
                 Spacer()
                     
                 ZStack {
@@ -199,12 +191,8 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 degree = -5
                 break
         }
-    
         
         return degree
-/*
-        //return index.isMultiple(of: 2) ? -5 : 5
- */
     }
     
     private func getLastIndex(_ index: Int) -> Int {
@@ -231,26 +219,29 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             break
         default:
             offset = 0
-
         }
         
         return offset
     }
     
     private func caruselElement(_ index: Int) -> some View {
-
+        
         CardCaruselElementView(rotation: .degrees(
-            //index.isMultiple(of: 2) ? -5 : 5),
-            self.getDegree(index)),
-                               user: viewModel.discoveries[(2 * self.cardIndex - index + 3) % viewModel.discoveries.count]
-                               )
-            .offset(index == self.getLastIndex(self.cardIndex) - 1 ? self.translation : .zero)
-            .offset(x: 0, y: self.getOffset(index))
-            .gesture(index == self.getLastIndex(self.cardIndex) - 1 ? self.topCardDrag : nil)
-            //.offset(x: self.flyAwayOffset(index), y: 0)
-            .transition(.opacity)
-            .rotationEffect(.degrees(index == self.getLastIndex(self.cardIndex) - 1 ? self.degrees : 0), anchor: .bottom)
-            //.animation(self.shouldAnimate ? .easeOut(duration: 0.3) : nil)
+                                //index.isMultiple(of: 2) ? -5 : 5),
+                                    self.getDegree(index)),
+                               user: viewModel.discoveries[(2 * self.cardIndex - index + 3) % viewModel.discoveries.count])
+        {
+            self.viewModel.loadDiscover { (result) in
+                
+            }
+        }
+        .offset(index == self.getLastIndex(self.cardIndex) - 1 ? self.translation : .zero)
+        .offset(x: 0, y: self.getOffset(index))
+        .gesture(index == self.getLastIndex(self.cardIndex) - 1 ? self.topCardDrag : nil)
+        //.offset(x: self.flyAwayOffset(index), y: 0)
+        .transition(.opacity)
+        .rotationEffect(.degrees(index == self.getLastIndex(self.cardIndex) - 1 ? self.degrees : 0), anchor: .bottom)
+        //.animation(self.shouldAnimate ? .easeOut(duration: 0.3) : nil)
     }
     
     private var overlay: some View {

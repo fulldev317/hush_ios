@@ -45,6 +45,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     
     @State var currentPage = 0
     @State var shouldReport = false
+    @State var shouldReportReason = false
     @State var goToMessage = false
     @State var showUpgrade = false
     @State var profileTapped = false
@@ -53,38 +54,87 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     @EnvironmentObject var app: App
     
     @State var unlockedStories: Set<Int> = []
-    
-    
+    @State var reportReasonButton: [ActionSheet.Button] = []
+    enum ReportSheet { case main, reason }
+    @State var reportSheet: ReportSheet = .main
+
     // MARK: - Lifecycle
     
     var body: some View {
-        Group {
-            if viewModel.mode == .photo {
-                photoView.background(Color.hBlack).edgesIgnoringSafeArea(.all).withoutBar()
+        ZStack {
+            Group {
+                if viewModel.mode == .photo {
+                    photoView.background(Color.hBlack).edgesIgnoringSafeArea(.all).withoutBar()
+                }
+                
+                if viewModel.mode == .info {
+                    infoView.background(Color.hBlack.edgesIgnoringSafeArea(.all)).withoutBar()
+                }
+                
+                if (self.$goToMessage.wrappedValue) {
+                    NavigationLink(
+                        destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: self.viewModel.userId, name: self.viewModel.name, image: self.viewModel.profilePhoto, online: 1))).withoutBar(),
+                        isActive: self.$goToMessage,
+                        label: EmptyView.init
+                    )
+                }
+                
+
+            }.actionSheet(isPresented: $shouldReport) {
+                if (self.reportSheet == .main) {
+                    return ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
+                        .default(Text("Block User"), action: {
+                            self.viewModel.blockUser { (result) in
+                                if (result == true) {
+                                    Common.setUserBlocked(true)
+                                    self.mode.wrappedValue.dismiss()
+                                }
+                            }
+                        }),
+                        .default(Text("Report Profile"), action: {
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                                self.viewModel.getReportList { (reason_list) in
+                                    self.shouldReport = true
+                                    self.reportSheet = .reason
+                                    var aryButton:[ActionSheet.Button] = []
+                                    let aryReason:[String] = reason_list
+                                    for reason in aryReason {
+                                        let button: ActionSheet.Button = .default(Text(reason), action: {
+                                            self.viewModel.reportUser(reason: reason) { (result) in
+                                                if (result == true) {
+                                                    Common.setUserBlocked(true)
+                                                    self.mode.wrappedValue.dismiss()
+                                                }
+                                            }
+                                        })
+                                        aryButton.append(button)
+                                    }
+                                    aryButton.append(.cancel())
+                                    self.reportReasonButton = aryButton
+                                }
+                            })
+                           
+                        }),
+                        .cancel()
+                    ])
+                }
+        
+                return ActionSheet(title: Text("Report reason"), message: nil, buttons: self.reportReasonButton)
             }
+    //        .actionSheet(isPresented: $shouldReportReason) {
+    //
+    //            ActionSheet(title: Text("Report reason"), message: nil, buttons: self.reportReasonButton)
+    //        }
+            .background(NavigationLink(
+                destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
+                isActive: self.$showUpgrade,
+                label: EmptyView.init
+            ))
             
-            if viewModel.mode == .info {
-                infoView.background(Color.hBlack.edgesIgnoringSafeArea(.all)).withoutBar()
-            }
-            
-            if (self.$goToMessage.wrappedValue) {
-                NavigationLink(
-                    destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: self.viewModel.userId, name: self.viewModel.name, image: self.viewModel.profilePhoto, online: 1))).withoutBar(),
-                    isActive: self.$goToMessage,
-                    label: EmptyView.init
-                )
-            }
-        }.actionSheet(isPresented: $shouldReport) {
-            ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
-                .default(Text("Block User"), action: {}),
-                .default(Text("Report Profile"), action: {}),
-                .cancel()
-            ])
-        }.background(NavigationLink(
-            destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
-            isActive: self.$showUpgrade,
-            label: EmptyView.init
-        ))
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
+
+        }
     }
     
     var photoView: some View {
@@ -129,7 +179,10 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         }
                         .itemSpacing(30)
                         .padding(0)
-                        .overlay(Button(action: { self.shouldReport.toggle() }) {
+                        .overlay(Button(action: {
+                            self.shouldReport.toggle()
+                            self.reportSheet = .main
+                        }) {
                             Image("3dot")
                                 .font(.largeTitle)
                                 .foregroundColor(.white)
@@ -295,7 +348,10 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 Spacer()
                             }.padding(.bottom, 30)
                             
-                            Button(action: { self.shouldReport.toggle() }) {
+                            Button(action: {
+                                self.shouldReport.toggle()
+                                self.reportSheet = .main
+                            }) {
                                 Text("Block or report profile")
                                     .font(.regular(14))
                                     .foregroundColor(.white)

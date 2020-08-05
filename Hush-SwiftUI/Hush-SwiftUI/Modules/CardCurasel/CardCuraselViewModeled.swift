@@ -13,6 +13,7 @@ protocol CardCuraselViewModeled: ObservableObject {
     
     var discoveries: [Discover] { get set }
     var message: String { get set }
+    var isBlock: Bool { get set }
     var isShowingIndicator: Bool { get set }
     //var photos: [String] { get set }
     var name: String { get set }
@@ -21,5 +22,4 @@ protocol CardCuraselViewModeled: ObservableObject {
     func loadDiscover(result: @escaping (Bool) -> Void)
     func updateMessage()
 
-    func viewModel(for index: Int) -> CardCuraselElementViewModel
 }

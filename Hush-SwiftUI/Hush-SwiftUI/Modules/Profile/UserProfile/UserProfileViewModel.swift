@@ -13,6 +13,7 @@ class UserProfileViewModel: UserProfileViewModeled {
 
     // MARK: - Properties
     
+    @Published var isShowingIndicator: Bool = false
     @Published var photoUrls: [String] = []
     @Published var unlockedPhotos: Set<Int> = []
     @Published var galleriaUrls: [String] = []
@@ -154,6 +155,39 @@ class UserProfileViewModel: UserProfileViewModeled {
             }
         }
     }
+    
+    func getReportList(result: @escaping ([String]) -> Void) {
+        UserAPI.shared.report_reason_list { (list, error) in
+            if (error == nil) {
+                if let reason_list = list {
+                    result(reason_list)
+                }
+            } else {
+                result(["1","2","3"])
+            }
+        }
+    }
 
+    func reportUser(reason: String, result: @escaping (Bool) -> Void) {
+        self.isShowingIndicator = true
+        UserAPI.shared.report_user(report_id: userId, report_reason: reason) { (error) in
+            self.isShowingIndicator = false
+            if error == nil {
+                result(true)
+            }
+            result(false)
+        }
+    }
+    
+    func blockUser(result: @escaping (Bool) -> Void) {
+        self.isShowingIndicator = true
+        UserAPI.shared.block_user(report_id: userId) { (error) in
+            self.isShowingIndicator = false
+            if error == nil {
+                result(true)
+            }
+            result(false)
+        }
+    }
     
 }

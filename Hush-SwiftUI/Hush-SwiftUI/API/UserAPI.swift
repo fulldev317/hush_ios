@@ -14,6 +14,120 @@ class UserAPI: BaseAPI {
     
     static let shared: UserAPI = UserAPI()
     
+    func block_user(report_id: String, completion: @escaping (_ error: APIError?) -> Void) {
+                
+        let user = Common.userInfo()
+        let uid = user.id!
+        let parameters: Parameters = ["action": "block",
+                                      "uid1": uid,
+                                      "uid2": report_id]
+    
+       let request = AF.request(endpoint, parameters: parameters)
+       request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                   } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                   }
+                   completion(error)
+                case .failure:
+                   let error = APIError(404, "Server Connection Failed")
+                   completion(error)
+                   print("API CALL FAILED")
+                }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
+            }
+        }
+    }
+    
+    func report_user(report_id: String, report_reason: String, completion: @escaping (_ error: APIError?) -> Void) {
+                
+        let user = Common.userInfo()
+        let uid = user.id!
+        let parameters: Parameters = ["action": "report",
+                                      "uid1": uid,
+                                      "uid2": report_id,
+                                      "reason": report_reason]
+    
+       let request = AF.request(endpoint, parameters: parameters)
+       request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        error = nil
+                   } else {
+                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                   }
+                   completion(error)
+                case .failure:
+                   let error = APIError(404, "Server Connection Failed")
+                   completion(error)
+                   print("API CALL FAILED")
+                }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
+            }
+        }
+    }
+    
+    func report_reason_list(completion: @escaping (_ user: [String]?, _ error: APIError?) -> Void) {
+                
+        let user = Common.userInfo()
+        let parameters: Parameters = ["action": "reportReasonList",
+                                      "langid": user.lang!]
+    
+       let request = AF.request(endpoint, parameters: parameters)
+       request.responseJSON { (response) in
+            if let data = response.data {
+                let json = try! JSON(data: data)
+                
+                switch response.result {
+                case .success(_):
+                    var reasonList:[String] = []
+                    var error: APIError?
+                    if json["error"].int == 0 {
+                        let json_list = json["reportList"]
+
+                        if (json_list.count > 0) {
+                            for index in 0 ..< json_list.count {
+                                let list = json_list[index]
+                                let reason_data = list["text"]
+                                let reason: String = reason_data.rawString()!
+                                reasonList.append(reason)
+                            }
+                        }
+                   } else {
+                       error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                   }
+                   completion(reasonList, error)
+                case .failure:
+                   let error = APIError(404, "Server Connection Failed")
+                   completion(nil, error)
+                   print("API CALL FAILED")
+                }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(nil, error)
+            }
+        }
+    }
+    
     func get_language_list(completion: @escaping (_ user: [Language?]?, _ error: APIError?) -> Void) {
                 
         let parameters: Parameters = ["action": "getLanguageList"]

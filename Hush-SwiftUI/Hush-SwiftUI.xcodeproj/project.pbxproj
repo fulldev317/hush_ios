@@ -92,9 +92,6 @@
 		157930F92437324600EE428F /* CardCuraselViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930F62437324600EE428F /* CardCuraselViewModeled.swift */; };
 		157930FF243737A800EE428F /* KolodeViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157930FE243737A800EE428F /* KolodeViewHolder.swift */; };
 		1579310424373C2800EE428F /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579310324373C2800EE428F /* UIView+Ext.swift */; };
-		15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793106243754B500EE428F /* CardCuraselElementView.swift */; };
-		1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793107243754B500EE428F /* CardCuraselElementViewModel.swift */; };
-		1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15793108243754B500EE428F /* CardCuraselElementViewModeled.swift */; };
 		158A2C572434844F005F6847 /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C562434844F005F6847 /* DatePickerField.swift */; };
 		158A2C5924348F1F005F6847 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A2C5824348F1F005F6847 /* View+Navigation.swift */; };
 		158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158A2C6224349509005F6847 /* libFaceDetectionLib.a */; };
@@ -294,9 +291,6 @@
 		157930F62437324600EE428F /* CardCuraselViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselViewModeled.swift; sourceTree = "<group>"; };
 		157930FE243737A800EE428F /* KolodeViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodeViewHolder.swift; sourceTree = "<group>"; };
 		1579310324373C2800EE428F /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		15793106243754B500EE428F /* CardCuraselElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementView.swift; sourceTree = "<group>"; };
-		15793107243754B500EE428F /* CardCuraselElementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementViewModel.swift; sourceTree = "<group>"; };
-		15793108243754B500EE428F /* CardCuraselElementViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCuraselElementViewModeled.swift; sourceTree = "<group>"; };
 		158A2C562434844F005F6847 /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		158A2C5824348F1F005F6847 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		158A2C5B24349433005F6847 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
@@ -805,23 +799,12 @@
 			isa = PBXGroup;
 			children = (
 				8970B5F0246BFFE500740B92 /* CardCaruselElement */,
-				15793105243754A200EE428F /* CardCuraselElement */,
 				157930F42437324600EE428F /* CardCaruselView.swift */,
 				157930F52437324600EE428F /* CardCuraselViewModel.swift */,
 				157930F62437324600EE428F /* CardCuraselViewModeled.swift */,
 				8936B112246B321A001F9254 /* CardCaruselTutorialView.swift */,
 			);
 			path = CardCurasel;
-			sourceTree = "<group>";
-		};
-		15793105243754A200EE428F /* CardCuraselElement */ = {
-			isa = PBXGroup;
-			children = (
-				15793106243754B500EE428F /* CardCuraselElementView.swift */,
-				15793107243754B500EE428F /* CardCuraselElementViewModel.swift */,
-				15793108243754B500EE428F /* CardCuraselElementViewModeled.swift */,
-			);
-			path = CardCuraselElement;
 			sourceTree = "<group>";
 		};
 		158A2C5A2434940B005F6847 /* FaceDetection */ = {
@@ -1269,7 +1252,6 @@
 				15E8CCE02431E74300A92595 /* KeyboardObserver.swift in Sources */,
 				7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */,
 				89DCC12F2460750E000A0BCB /* NewFaceDetectionViewModel.swift in Sources */,
-				1579310A243754B500EE428F /* CardCuraselElementViewModel.swift in Sources */,
 				597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */,
 				1546B42D2433275F00180D77 /* HTextField.swift in Sources */,
 				8936B111246B303B001F9254 /* UIApplicationExtensions.swift in Sources */,
@@ -1326,7 +1308,6 @@
 				154B268F2431BF6600265C76 /* AppDelegate.swift in Sources */,
 				1546B45924336B8C00180D77 /* HSegmentedControl.swift in Sources */,
 				157930932435BE0100EE428F /* RootTabBarView.swift in Sources */,
-				1579310B243754B500EE428F /* CardCuraselElementViewModeled.swift in Sources */,
 				8928ED7B246AEA2D004D3073 /* StoriesSettingsViewModel.swift in Sources */,
 				155E3006243B1E93001D886D /* MessageDetailViewModeled.swift in Sources */,
 				73917912247F0FE9002AF4A9 /* ChatAPI.swift in Sources */,
@@ -1420,7 +1401,6 @@
 				89C77B292465EC6900705899 /* SliderViewProtocol.swift in Sources */,
 				1546B42B24331EB900180D77 /* AddPhotosViewModeled.swift in Sources */,
 				1546B441243340BD00180D77 /* LoginViewModel.swift in Sources */,
-				15793109243754B500EE428F /* CardCuraselElementView.swift in Sources */,
 				0E13EBD624805627003E0959 /* FaceDetectionView.swift in Sources */,
 				896DDEFD2464956A00AC0F95 /* Size.swift in Sources */,
 				896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */,

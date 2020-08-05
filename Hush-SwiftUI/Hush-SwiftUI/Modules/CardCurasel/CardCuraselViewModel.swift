@@ -21,7 +21,8 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     @Published var age: String = "32"
     @Published var address: String = "London, UK"
     @Published var discoveries: [Discover] = []
-
+    @Published var isBlock: Bool = false
+    
     init() {
 
     }
@@ -41,9 +42,7 @@ class CardCuraselViewModel: CardCuraselViewModeled {
                             break;
                         }
                         self.discoveries.append(user!)
-//                        if let url = user?.photo {
-//                            self.photos.append(url)
-//                        }
+
                     }
                }
                 result(true)
@@ -59,10 +58,6 @@ class CardCuraselViewModel: CardCuraselViewModeled {
         message = "New Message"
     }
     
-    func viewModel(for index: Int) -> CardCuraselElementViewModel {
-       
-        return CardCuraselElementViewModel()
-    }
 }
 
 struct CardCuraselViewModel_Previews: PreviewProvider {

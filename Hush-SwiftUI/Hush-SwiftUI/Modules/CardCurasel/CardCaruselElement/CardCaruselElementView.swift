@@ -12,17 +12,19 @@ import SDWebImageSwiftUI
 struct CardCaruselElementView: View {
     let rotation: Angle
     let user: Discover
-    
+    var onRefresh: (() -> Void)?
+
     @EnvironmentObject private var app: App
+
     @State private var rectSize: CGSize = .zero
     @State private var showMessages = false
     @State private var showUserProfile = false
     @State private var selectedUser: User = User()
     //@Binding var showIndicator: Bool
-
+    
     private let imageScale: CGFloat = 450 / 511
     private let deviceScale = SCREEN_WIDTH / 411
-    
+        
     var body: some View {
         ZStack {
             Rectangle()
@@ -109,7 +111,16 @@ struct CardCaruselElementView: View {
                 }
                 
                 VStack {
-                    NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)).withoutBar(), isActive: self.$showUserProfile) {
+                    NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser))
+                        .withoutBar()
+                        .onDisappear {
+                            let blocked = Common.userBlocked()
+                            if (blocked) {
+                                Common.setUserBlocked(true)
+                                self.onRefresh?()
+                            }
+                        },
+                                   isActive: self.$showUserProfile) {
                         Image("profile_icon_carusel").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                         .onTapGesture {
                             self.gotoUserProfilePage()
@@ -126,11 +137,12 @@ struct CardCaruselElementView: View {
     
     
 }
-
-struct CardCaruselElement_Previews: PreviewProvider {
-    static var previews: some View {
-        CardCaruselElementView(rotation: .degrees(-5), user: Discover())
-            .previewEnvironment()
-            .padding()
-    }
-}
+//
+//struct CardCaruselElement_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        CardCaruselElementView(rotation: .degrees(-5), user: Discover())
+//            .previewEnvironment()
+//            .padding()
+//    }
+//}
