@@ -41,7 +41,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             
             HushIndicator(showing: self.isShowing)
            
-        }.withoutBar().background(background())
+        }.withoutBar().background(background(name: "back-1"))
     }
         
     private func signupButton() -> some View {

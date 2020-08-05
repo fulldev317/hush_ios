@@ -54,7 +54,7 @@ struct PermissionDeniedView: View, AuthAppScreens {
                     .padding(.horizontal, 32 * scale)
                 Spacer()
             }.multilineTextAlignment(.center)
-        }.background(background())
+        }.background(background(name: "back-1"))
     }
     
     private func goToSettings() {

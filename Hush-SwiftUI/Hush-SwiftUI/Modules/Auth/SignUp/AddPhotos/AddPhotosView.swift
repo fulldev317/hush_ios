@@ -49,7 +49,7 @@ struct AddPhotosView<ViewModel: AddPhotosViewModeled>: View, AuthAppScreens {
             NavigationLink(destination: PermissionDeniedView(type: viewModel.pickerSourceType),
                            isActive: $viewModel.isPermissionDenied,
                            label: EmptyView.init)
-        }.background(background())
+        }.background(background(name: "back-1"))
             .navigationBarHidden(true)
         .actionSheet(isPresented: $viewModel.isPickerSheetPresented) {
             ActionSheet(title: Text("Choose how to submit a photo"), message: nil, buttons: [

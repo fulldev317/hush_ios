@@ -200,7 +200,14 @@ class AuthAPI: BaseAPI {
                     if json["error"].int == 0 {
                         error = nil
                     } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    let error_json: JSON = json["error_m"]
+                        if let aryError: [JSON] = error_json.array {
+                            let error_m = aryError[0].stringValue
+                            error = APIError(json["error"].intValue, error_m)
+                        } else {
+                            let error_m = error_json.stringValue
+                            error = APIError(json["error"].intValue, error_m)
+                        }
                     }
                     completion(error)
                 case .failure:

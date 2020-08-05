@@ -49,7 +49,7 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
             
             HushIndicator(showing: self.isShowing)
             
-        }.background(background())
+        }.background(background(name: "back-1"))
     }
 }
 
