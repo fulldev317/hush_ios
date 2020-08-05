@@ -45,6 +45,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let app = App()
     var pub: AnyCancellable!
     
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+         if userActivity.activityType == "com.me.project.activityName" {
+             if let url = URL(string: "https://www.google.com") {
+                 UIApplication.shared.open(url)
+             }
+         }
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         if let userID = UserDefaults.standard.object(forKey: "userId") as? String {
@@ -75,6 +83,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             self.window = window
             window.makeKeyAndVisible()
+            
+            if let userActvity = connectionOptions.userActivities.first {
+//                if let intent = userActivity .interaction?.intent {
+//                    print("ddd")
+//                }
+            }
         }
         
         let isLoggedIn = UserDefault(.isLoggedIn, default: false)
@@ -137,6 +151,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                     .environmentObject(PartialSheetManager())
                     .environmentObject(self.app)
+                
                 )
             }
         }

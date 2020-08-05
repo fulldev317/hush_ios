@@ -15,6 +15,7 @@ var _lowAge: Double? = 0.0
 var _upperAge: Double? = 1.0
 var _maxRange: Double? = 0.0
 var _image: UIImage?
+var _block: Bool?
 var _isMessageLoaded: Bool? = false
 var _chatMessage: [HushMessage]?
 let ISiPhone11 = SCREEN_HEIGHT >= 896
@@ -70,6 +71,14 @@ class Common: NSObject {
     
     static func capturedImage(_ image: UIImage) -> UIImage {
         return _image!
+    }
+    
+    static func setUserBlocked(_ block: Bool) {
+        _block = block
+    }
+    
+    static func userBlocked() -> Bool {
+        return _block ?? false
     }
     
     static func handleErrorMessage(_ message: String) -> String {
