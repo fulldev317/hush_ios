@@ -39,7 +39,7 @@ struct SplashView: View, AuthAppScreens {
             
             HushIndicator(showing: self.isShowing)
             
-        }.background(background())
+        }.background(background(name: "back-1"))
         .withoutBar()
 
     }

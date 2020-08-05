@@ -26,13 +26,14 @@ extension AuthAppScreens {
         UIScreen.main.bounds.size
     }
     
-    func background() -> some View {
-        Image("SignUp-background")
+    func background(name: String) -> some View {
+        Image(name)
             .resizable()
             .scaledToFill()
             .frame(width: UIScreen.main.bounds.width)
             .overlay(Color.black.opacity(0.2))
             .edgesIgnoringSafeArea(.all)
+            .background(Color.black)
 //        ZStack {
 //
 //
@@ -79,12 +80,12 @@ struct MainAppScreens_Previews: PreviewProvider, AuthAppScreens {
     static var previews: some View {
         Group {
             ZStack {
-                MainAppScreens_Previews().background()
+                MainAppScreens_Previews().background(name: "")
                 MainAppScreens_Previews().logo()
             }
             
             ZStack {
-                MainAppScreens_Previews().background()
+                MainAppScreens_Previews().background(name: "")
                 MainAppScreens_Previews().logo()
             }.previewDevice(.init(rawValue: "iPhone XS Max"))
         }

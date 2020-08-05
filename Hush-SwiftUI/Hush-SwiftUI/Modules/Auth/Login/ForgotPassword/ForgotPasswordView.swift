@@ -35,7 +35,7 @@ struct ForgotPasswordView<ViewModel: ForgotPasswordViewModeled>: View, AuthAppSc
                     .navigationBarTitle("", displayMode: .inline)
                     .navigationBarHidden(true),
                            isActive: $viewModel.goToRoot, label: { Text("") })
-        }.background(background())
+        }.background(background(name: "back-1"))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
     }
