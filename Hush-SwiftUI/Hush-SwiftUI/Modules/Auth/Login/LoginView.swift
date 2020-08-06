@@ -22,6 +22,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     @State var isShowing: Bool = false
     @Binding var showSignupButtons: Bool
 
+    @State var image_index: Int = 0
+
     // MARK: - Lifecycle
     
     var body: some View {
@@ -41,7 +43,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
             
             HushIndicator(showing: self.isShowing)
            
-        }.withoutBar().background(background(name: "back-1"))
+        }.withoutBar().background(background(name: "back1"))
     }
         
     private func signupButton() -> some View {
