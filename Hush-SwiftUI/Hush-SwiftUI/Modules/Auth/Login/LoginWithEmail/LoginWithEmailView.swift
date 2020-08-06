@@ -83,7 +83,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
         .background(NavigationLink(destination: ForgotPasswordView(viewModel: viewModel.forgotPasswordViewModel),
                                     isActive: $viewModel.showForgotPassword,
                                     label: EmptyView.init))
-            .background(background(name: "back-1"))
+            .background(background(name: "back1"))
             .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)

@@ -60,7 +60,7 @@ struct ResetPasswordView<ViewModel: ResetPasswordViewModeled>: View, AuthAppScre
             
             NavigationLink(destination: SignUpView(viewModel: SignUpViewModel()), isActive: $viewModel.showSignUp, label: EmptyView.init)
             
-        }.background(background(name: "back-1"))
+        }.background(background(name: "back1"))
         .withoutBar()
     }
 }

@@ -37,7 +37,7 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
             HushIndicator(showing: self.isShowing)
             
             NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: self.$app.logedIn, label: { Text("") })
-        }.background(background(name: "back-1"))
+        }.background(background(name: "back1"))
     }
     
     private func content() -> some View {

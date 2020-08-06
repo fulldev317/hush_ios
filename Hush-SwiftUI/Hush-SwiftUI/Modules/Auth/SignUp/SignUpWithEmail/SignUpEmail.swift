@@ -36,7 +36,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
             
             HushIndicator(showing: self.isShowing)
             
-        }.withoutBar().background(background(name: "back-1"))
+        }.withoutBar().background(background(name: "back1"))
         .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
     }
     
@@ -53,7 +53,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 Text("Sign up with email").foregroundColor(.white).font(.thin(22))
                 .frame(maxHeight: 90).frame(minHeight: 60)
                     .opacity(keyboardHeight > 0 ? 0.3 : 1)
-             
+
                 if viewModel.hasError {
                     errorLabel().padding(.bottom, 22)
                 }
