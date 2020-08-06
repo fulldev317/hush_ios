@@ -21,30 +21,6 @@ class SignUpEmailViewModel: SignUpEmailViewModeled {
     @Published var errorMessage = ""
 
     func submit(result: @escaping (Bool) -> Void) {
-       
-        if (name.count == 0) {
-            self.hasErrorMessage = true
-            self.errorMessage = "Firstname is missing"
-            return
-        }
-        
-        if (username.count == 0) {
-            self.hasErrorMessage = true
-            self.errorMessage = "Username is missing"
-            return
-        }
-        
-        if (email.count == 0) {
-            self.hasErrorMessage = true
-            self.errorMessage = "Email is missing"
-            return
-        }
-        
-        if (password.count == 0) {
-            self.hasErrorMessage = true
-            self.errorMessage = "Password is missing"
-            return
-        }
         
         AuthAPI.shared.emailExistCheck(name: name, email: email, username: username, password: password) { (error) in
             if let error = error {

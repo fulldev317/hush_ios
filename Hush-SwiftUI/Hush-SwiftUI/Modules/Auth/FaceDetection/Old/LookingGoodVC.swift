@@ -66,6 +66,7 @@ class LookingGoodVC: UIViewController {
         imgViewBack.image = userImage
         imgViewFront.image = userImage
         viewFirst.rotate(angle:-23 )
+        viewFirst.shadow(size: 5.0)
         viewBack.rotate(angle: -10)
         
         btnDone.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
