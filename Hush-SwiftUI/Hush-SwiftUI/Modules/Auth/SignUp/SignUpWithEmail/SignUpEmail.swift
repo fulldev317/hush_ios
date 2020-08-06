@@ -14,6 +14,7 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var keyboardHeight: CGFloat = 0
     @State var isShowing: Bool = false
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {

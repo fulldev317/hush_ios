@@ -59,7 +59,9 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
                 bottomText()
             }.padding(.bottom, 20)
             
-            NavigationLink(destination: SignUpEmail(viewModel: SignUpEmailViewModel()), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
+            NavigationLink(destination: SignUpEmail(viewModel: SignUpEmailViewModel()).onAppear(perform: {
+                self.timer.upstream.connect().cancel()
+            }), isActive: $viewModel.showEmailScreen, label: EmptyView.init)
             NavigationLink(destination: LoginView(viewModel: LoginViewModel(), showSignupButtons: $showSignupButtons), isActive: $viewModel.showLoginScreen, label: EmptyView.init)
             
             HushIndicator(showing: self.isShowing)
@@ -97,6 +99,7 @@ extension SignUpView {
         
         VStack(spacing: 17) {
             HapticButton(action: { withAnimation {
+                self.timer.upstream.connect().cancel()
                 self.showSignupButtons.toggle()
                 self.app.showSignupButtons = self.showSignupButtons
                 } }) {

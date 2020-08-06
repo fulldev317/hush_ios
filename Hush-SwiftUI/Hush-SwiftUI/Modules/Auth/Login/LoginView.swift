@@ -22,8 +22,6 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     @State var isShowing: Bool = false
     @Binding var showSignupButtons: Bool
 
-    @State var image_index: Int = 0
-
     // MARK: - Lifecycle
     
     var body: some View {

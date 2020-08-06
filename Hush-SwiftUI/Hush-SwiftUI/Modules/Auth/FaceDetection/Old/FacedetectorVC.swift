@@ -710,7 +710,12 @@ extension UIView {
         self.transform = rotation
     }
     
-    
+    func shadow(size: CGFloat) {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = size
+    }
     
     var screenshot: UIImage{
         
