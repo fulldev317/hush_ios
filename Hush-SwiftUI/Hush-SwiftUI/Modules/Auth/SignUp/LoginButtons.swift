@@ -36,7 +36,8 @@ struct LoginButtons<Presenter: SignUpViewModeled>: View {
                             self.isShowingProgress = false
 
                             if result == true {
-                                self.app.logedIn = true
+                                self.app.loadingData.toggle()
+                                self.app.logedIn.toggle()
                             }
                         }
                     }

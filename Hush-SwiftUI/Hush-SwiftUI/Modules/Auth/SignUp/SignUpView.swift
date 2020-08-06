@@ -17,9 +17,9 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
     @State var isShowing: Bool = false
     @State var image_index: Int = 0
     @State var image_opacity: Double = 1
-    let backImages: [String] = ["back1", "back2", "back3", "back4", "back5", "back6"]
-    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    @State var timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
+    let backImages: [String] = ["back1", "back2", "back3", "back4", "back5", "back6"]
     var body: some View {
         
         ZStack {
@@ -88,19 +88,17 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
             }
         }
     }
-}
-
-
-// MARK: - Signup button
-
-extension SignUpView {
     
     func signupButton() -> some View {
         
         VStack(spacing: 17) {
             HapticButton(action: { withAnimation {
-                self.timer.upstream.connect().cancel()
                 self.showSignupButtons.toggle()
+                if (self.showSignupButtons) {
+                    self.timer.upstream.connect().cancel()
+                } else {
+                    self.timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+                }
                 self.app.showSignupButtons = self.showSignupButtons
                 } }) {
                 
@@ -124,6 +122,14 @@ extension SignUpView {
     private func buttonsTransition() -> AnyTransition {
         AnyTransition.move(edge: .bottom).combined(with: .opacity)
     }
+}
+
+
+// MARK: - Signup button
+
+extension SignUpView {
+    
+    
 }
 
 
