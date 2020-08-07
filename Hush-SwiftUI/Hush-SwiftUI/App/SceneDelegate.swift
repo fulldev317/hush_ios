@@ -44,11 +44,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     let app = App()
     var pub: AnyCancellable!
+    var pub1: AnyCancellable!
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-         if userActivity.activityType == "com.me.project.activityName" {
-             if let url = URL(string: "https://www.google.com") {
-                 UIApplication.shared.open(url)
+
+        if userActivity.activityType ==  NSUserActivityTypeBrowsingWeb {
+            if let url = userActivity.webpageURL {
+                let urlString = url.absoluteString
+                if (urlString == "https://hushdating.app/reset-password") {
+                    self.app.resetPasswordPage = true
+                }
+                 
              }
          }
     }
@@ -78,16 +84,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             self.window = window
             window.makeKeyAndVisible()
-            
-            if let userActvity = connectionOptions.userActivities.first {
-//                if let intent = userActivity .interaction?.intent {
-//                    print("ddd")
-//                }
+
+            if let userActivity = connectionOptions.userActivities.first {
+
+                //self.scene(scene, continue: userActivity)
+               if let url = userActivity.webpageURL {
+                   let urlString = url.absoluteString
+                   if (urlString == "https://hushdating.app/reset-password") {
+                       self.app.resetPasswordPage.toggle()
+                   }
+
+                }
             }
         }
         
@@ -112,6 +123,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         load_langauge()
+        
+        pub1 = app.$resetPasswordPage.sink { bool in
+            if bool {
+                self.window?.rootViewController = UIHostingController(rootView:
+                    NavigationView {
+                        ResetPasswordView(viewModel: ResetPasswordViewModel()).withoutBar()
+                    }
+                    .environmentObject(PartialSheetManager())
+                    .environmentObject(self.app)
+                )
+            }
+        }
         
         pub = app.$logedIn.sink { bool in
             if bool {
@@ -144,6 +167,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
                         //LoginView(viewModel: LoginViewModel()).withoutBar()
+                        //ForgotPasswordView(viewModel: ForgotPasswordViewModel()).withoutBar()
+                        //ResetPasswordView(viewModel: ResetPasswordViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()
                         //GetMoreDetailsView(viewModel:       GetMoreDetailsViewModel(name: "Maksym", username: "max4", email: "max4@gmail.com", password: "111111", image: UIImage(), imagePath: "", imageThumb: "")).withoutBar()
                         //AddPhotosView(viewModel: AddPhotosViewModel(name: "Maksym", username: "max3", email: "max3@gmail.com", password: "123456")).withoutBar()

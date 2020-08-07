@@ -40,7 +40,7 @@ class Common: NSObject {
     static func addressInfo() -> String {
         return _address ?? ""
     }
-    
+        
     static func setMessageLoaded(loaded: Bool) {
         _isMessageLoaded = loaded
     }

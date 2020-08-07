@@ -14,4 +14,7 @@ protocol ResetPasswordViewModeled: ObservableObject {
     var hasErrorMessage: Bool { get set }
     var errorMessage: String { get set }
     var showSignUp: Bool { get set }
+    var showLogin: Bool { get set }
+
+    func submit(email: String, password: String, result: @escaping (Bool) -> Void)
 }

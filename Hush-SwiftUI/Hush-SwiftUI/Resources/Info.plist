@@ -62,7 +62,7 @@
 	<string>Hush will use your Photo Library for images selection</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>forgot_password</string>
+		<string>reset_password</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>
