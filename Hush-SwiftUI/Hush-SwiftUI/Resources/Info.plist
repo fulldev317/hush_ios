@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSUserActivityTypes</key>
-	<array>
-		<string>forgot_password</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,28 +16,6 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Hush will use your Camera for image capturing</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Hush will use your Photo Library for images selection</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SF-Pro-Display-Bold.otf</string>
-		<string>SF-Pro-Display-Ultralight.otf</string>
-		<string>SF-Pro-Display-Thin.otf</string>
-		<string>SF-Pro-Display-Light.otf</string>
-		<string>SF-Pro-Display-Medium.otf</string>
-		<string>SF-Pro-Display-Regular.otf</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -51,6 +25,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>191285220922141</string>
 	<key>FacebookDisplayName</key>
@@ -72,6 +48,30 @@
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Hush will use your Camera for image capturing</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Hush will use your Photo Library for images selection</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>forgot_password</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro-Display-Bold.otf</string>
+		<string>SF-Pro-Display-Ultralight.otf</string>
+		<string>SF-Pro-Display-Thin.otf</string>
+		<string>SF-Pro-Display-Light.otf</string>
+		<string>SF-Pro-Display-Medium.otf</string>
+		<string>SF-Pro-Display-Regular.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
