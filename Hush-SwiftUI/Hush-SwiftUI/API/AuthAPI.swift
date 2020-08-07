@@ -75,6 +75,80 @@ class AuthAPI: BaseAPI {
 //        }
     }
     
+    func send_forgot_email(email: String, completion: @escaping (_ error: APIError?) -> Void) {
+                
+        let parameters: Parameters = ["action": "sendForgotEmail",
+                                      "email": email]
+        
+        let request = AF.request(endpoint, parameters: parameters)
+            // 2
+        request.responseJSON { (response) in
+            if let data = response.data {
+                do {
+                    let json = try JSON(data: data)
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                }
+            } else {
+                let error = APIError(404, "Server Connection Failed")
+                completion(error)
+            }
+        }
+    }
+    
+    func reset_password(email: String, password: String, completion: @escaping (_ error: APIError?) -> Void) {
+                
+        let parameters: Parameters = ["action": "resetPassword",
+                                      "email": email,
+                                      "new_pass": password,
+                                      "confirm_pass": password]
+        
+        let request = AF.request(endpoint, parameters: parameters)
+
+        request.responseJSON { (response) in
+            if let data = response.data {
+                do {
+                    let json = try JSON(data: data)
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(error)
+                }
+            } else {
+                let error = APIError(404, "Server Connection Failed")
+                completion(error)
+            }
+        }
+    }
+    
     func cuser(userId: String, completion: @escaping (_ user: User?, _ error: APIError?) -> Void) {
         
         let user = Common.userInfo()

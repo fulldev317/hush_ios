@@ -225,7 +225,7 @@
 		1546B45324336B7500180D77 /* GetMoreDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoreDetailsViewModel.swift; sourceTree = "<group>"; };
 		1546B45424336B7500180D77 /* GetMoreDetailsViewModeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoreDetailsViewModeled.swift; sourceTree = "<group>"; };
 		1546B45824336B8C00180D77 /* HSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSegmentedControl.swift; sourceTree = "<group>"; };
-		154B268B2431BF6600265C76 /* Hush-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hush-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		154B268B2431BF6600265C76 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		154B268E2431BF6600265C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154B26902431BF6600265C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		154B26922431BF6600265C76 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -494,7 +494,7 @@
 		154B268C2431BF6600265C76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				154B268B2431BF6600265C76 /* Hush-SwiftUI.app */,
+				154B268B2431BF6600265C76 /* Hush.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1133,7 +1133,7 @@
 				89C77B242465E61600705899 /* PartialSheet */,
 			);
 			productName = "Hush-SwiftUI";
-			productReference = 154B268B2431BF6600265C76 /* Hush-SwiftUI.app */;
+			productReference = 154B268B2431BF6600265C76 /* Hush.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1576,7 +1576,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hinder.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hush;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1606,7 +1606,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hinder.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hush;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -20,7 +20,17 @@ class ForgotPasswordViewModel: ForgotPasswordViewModeled {
     @Published var goToRoot = false
     @Published var showResetPassword = false
 
-    func submit() {
-        
+    func submit(email: String, result: @escaping (Bool) -> Void) {
+        AuthAPI.shared.send_forgot_email(email: email) { (error) in
+            if let error = error {
+                self.hasErrorMessage = true
+                self.errorMessage = error.message
+                result(false)
+            } else {
+                self.hasErrorMessage = false
+                self.errorMessage = ""
+                result(true)
+            }
+        }
     }
 }
