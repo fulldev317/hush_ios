@@ -71,7 +71,8 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
                         self.fbmanager.facebookConnect(data: fbResult) { result in
                             self.isShowing = false
                             if result == true {
-                                self.app.logedIn = true
+                                self.app.loadingData.toggle()
+                                self.app.logedIn.toggle()
                             }
                         }
                     }
