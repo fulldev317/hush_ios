@@ -325,7 +325,7 @@ class MyProfileViewModel: MyProfileViewModeled {
                     }
                 }
             } else {
-
+                self.isShowingIndicator = false
             }
         }
     }

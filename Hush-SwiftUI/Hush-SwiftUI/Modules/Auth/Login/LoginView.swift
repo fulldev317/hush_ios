@@ -17,7 +17,7 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
-    @State var name : String = ""
+    @State var name: String = ""
     @State var isLoggedIn: Bool = false
     @State var isShowing: Bool = false
     @Binding var showSignupButtons: Bool
@@ -60,7 +60,6 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
         VStack(spacing: 14) {
             LoginButton(title: "Login with Email", img: Image("mail_icon"), color: Color(0x56CCF2), action: viewModel.loginWithEmail)
             LoginButton(title: "Connect with Facebook", img: Image("facebook_icon"), color: Color(0x2672CB)) {
-                
 
                 self.fbmanager.facebookLogin(login_result: { fbResult in
                     let result: String = fbResult["result"] as! String
@@ -79,10 +78,23 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
                 })
             }
                         
-            SignInWithAppleView(isLoggedIn: $isLoggedIn)
-            .frame(width: SCREEN_WIDTH - 60, height: 48)
+            SignInWithAppleView(action: { login, name, email in
+                if (login == true) {
+                    self.isShowing = true
+
+                    self.viewModel.loginWithApple(email: email, name: name) { (result) in
+                        self.isShowing = false
+
+                        if (result) {
+                            self.app.loadingData.toggle()
+                            self.app.logedIn.toggle()
+                        }
+                    }
+                }
+            }).frame(width: SCREEN_WIDTH - 60, height: 48)
 
         }.padding(.horizontal, 30)
+
     }
 }
 

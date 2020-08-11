@@ -25,26 +25,28 @@ class UserAPI: BaseAPI {
        let request = AF.request(endpoint, parameters: parameters)
        request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                   } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                   }
-                   completion(error)
-                case .failure:
-                   let error = APIError(404, "Server Connection Failed")
-                   completion(error)
-                   print("API CALL FAILED")
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                       } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                       }
+                       completion(error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion(error)
+                       print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+               completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -61,26 +63,28 @@ class UserAPI: BaseAPI {
        let request = AF.request(endpoint, parameters: parameters)
        request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                   } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                   }
-                   completion(error)
-                case .failure:
-                   let error = APIError(404, "Server Connection Failed")
-                   completion(error)
-                   print("API CALL FAILED")
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                       } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                       }
+                       completion(error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion(error)
+                       print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+                completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -94,36 +98,38 @@ class UserAPI: BaseAPI {
        let request = AF.request(endpoint, parameters: parameters)
        request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var reasonList:[String] = []
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        let json_list = json["reportList"]
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var reasonList:[String] = []
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            let json_list = json["reportList"]
 
-                        if (json_list.count > 0) {
-                            for index in 0 ..< json_list.count {
-                                let list = json_list[index]
-                                let reason_data = list["text"]
-                                let reason: String = reason_data.rawString()!
-                                reasonList.append(reason)
+                            if (json_list.count > 0) {
+                                for index in 0 ..< json_list.count {
+                                    let list = json_list[index]
+                                    let reason_data = list["text"]
+                                    let reason: String = reason_data.rawString()!
+                                    reasonList.append(reason)
+                                }
                             }
-                        }
-                   } else {
-                       error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                   }
-                   completion(reasonList, error)
-                case .failure:
-                   let error = APIError(404, "Server Connection Failed")
-                   completion(nil, error)
-                   print("API CALL FAILED")
+                       } else {
+                           error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                       }
+                       completion(reasonList, error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion(nil, error)
+                       print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(nil, error)
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -135,36 +141,38 @@ class UserAPI: BaseAPI {
        let request = AF.request(endpoint, parameters: parameters)
        request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var languageList:[Language?] = []
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        let json_users = json["languages"]
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var languageList:[Language?] = []
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            let json_users = json["languages"]
 
-                        if (json_users.count > 0) {
-                            for index in 0 ..< json_users.count {
-                                let user = json_users[index]
-                                let jsonData = try! user.rawData()
-                                let user_data = try! JSONDecoder().decode(Language.self, from: jsonData)
-                                languageList.append(user_data)
+                            if (json_users.count > 0) {
+                                for index in 0 ..< json_users.count {
+                                    let user = json_users[index]
+                                    let jsonData = try! user.rawData()
+                                    let user_data = try! JSONDecoder().decode(Language.self, from: jsonData)
+                                    languageList.append(user_data)
+                                }
                             }
-                        }
-                   } else {
-                       error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                   }
-                   completion(languageList, error)
-                case .failure:
-                   let error = APIError(404, "Server Connection Failed")
-                   completion(nil, error)
-                   print("API CALL FAILED")
+                       } else {
+                           error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                       }
+                       completion(languageList, error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion(nil, error)
+                       print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(nil, error)
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -180,23 +188,29 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var enabled = false
-                    var error: APIError? = nil
-                    if json["error"].int == 0 {
-                        enabled = true
-                   } else {
-                       error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                   }
-                   completion(enabled, error)
-                case .failure:
-                   let error = APIError(404, "Server Connection Failed")
-                   completion(false, error)
-                   print("API CALL FAILED")
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var enabled = false
+                        var error: APIError? = nil
+                        if json["error"].int == 0 {
+                            enabled = true
+                       } else {
+                           error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                       }
+                       completion(enabled, error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion(false, error)
+                       print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(false, APIError(404, "Server Connection Failed"))
                 }
+            } else {
+                completion(false, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -218,28 +232,30 @@ class UserAPI: BaseAPI {
             })
             .response { (response) in
                 if let data = response.data {
-                    let json = try! JSON(data: data)
-                    
-                    switch response.result {
-                    case .success(_):
-                        var error: APIError?
-                        let status = json["status"]
-                        if status == "ok" {
-                            let path: NSDictionary = ["path" : json["path"].stringValue, "thumb": json["thumb"].stringValue]
-                            completion(path, error)
-                        } else {
-                            error = APIError(404, "upload failed")
+                    do {
+                        let json = try JSON(data: data)
+                        
+                        switch response.result {
+                        case .success(_):
+                            var error: APIError?
+                            let status = json["status"]
+                            if status == "ok" {
+                                let path: NSDictionary = ["path" : json["path"].stringValue, "thumb": json["thumb"].stringValue]
+                                completion(path, error)
+                            } else {
+                                error = APIError(404, "upload failed")
+                                completion(nil, error)
+                            }
+                        case .failure:
+                            var error: APIError?
+                            error = APIError(404, "connect failed")
                             completion(nil, error)
                         }
-                    case .failure:
-                        var error: APIError?
-                        error = APIError(404, "connect failed")
-                        completion(nil, error)
+                    } catch {
+                        completion(nil, APIError(404, "Server Connection Failed"))
                     }
                 } else {
-                    var error: APIError?
-                    error = APIError(404, "connect failed")
-                    completion(nil, error)
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
         }
     }
@@ -296,25 +312,27 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var unreadMessages: Int?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        unreadMessages = Int(json["unreadMessageCount"].string ?? "0") ?? 0
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var unreadMessages: Int?
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            unreadMessages = Int(json["unreadMessageCount"].string ?? "0") ?? 0
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(unreadMessages, error)
+                    case .failure:
+                        print("API CALL FAILED")
                     }
-                    completion(unreadMessages, error)
-                case .failure:
-                    print("API CALL FAILED")
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(nil, error)
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -330,30 +348,32 @@ class UserAPI: BaseAPI {
                                       "media[0][thumb]": thumb]
         let request = AF.request(endpoint, method: .post, parameters : parameters)
         request.responseJSON { (response) in
-           if let data = response.data {
-               let json = try! JSON(data: data)
-               
-               switch response.result {
-               case .success(_):
-                    var error: APIError?
-                    var image_id: String? = nil
-                    if json["error"].int == 0 {
-                        let image_data = json["data"]
-                        image_id = image_data["id"].stringValue
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+            if let data = response.data {
+                do {
+                   let json = try JSON(data: data)
+                   
+                   switch response.result {
+                   case .success(_):
+                        var error: APIError?
+                        var image_id: String? = nil
+                        if json["error"].int == 0 {
+                            let image_data = json["data"]
+                            image_id = image_data["id"].stringValue
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(image_id, error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
                     }
-                    completion(image_id, error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(nil, error)
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -367,26 +387,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, method: .post, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+                completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -402,21 +424,26 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
+                } catch {
                     let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                                           completion(error)
                 }
             } else {
                 var error: APIError?
@@ -436,26 +463,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+                completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -471,26 +500,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
+                do {
+                let json = try JSON(data: data)
                 
                 switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+                completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -506,26 +537,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+                completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -541,26 +574,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+                completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -576,26 +611,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-               var error: APIError?
-               error = APIError(404, "connect failed")
-               completion(error)
+               completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -610,26 +647,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-               var error: APIError?
-               error = APIError(404, "connect failed")
-               completion(error)
+                completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -644,30 +683,32 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var user: User?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                        let json_user = json["user"]
-                        let jsonData = try! json_user.rawData()
-                        user = try! JSONDecoder().decode(User.self, from: jsonData)
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var user: User?
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                            let json_user = json["user"]
+                            let jsonData = try! json_user.rawData()
+                            user = try! JSONDecoder().decode(User.self, from: jsonData)
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(user, error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(user, error)
+                        print("API CALL FAILED")
                     }
-                    completion(user, error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(user, error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
             } else {
-               var error: APIError?
-               error = APIError(404, "connect failed")
-               completion(nil, error)
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -682,30 +723,32 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var user: User?
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                        let json_user = json["user"]
-                                              let jsonData = try! json_user.rawData()
-                                              user = try! JSONDecoder().decode(User.self, from: jsonData)
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var user: User?
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                            let json_user = json["user"]
+                                                  let jsonData = try! json_user.rawData()
+                                                  user = try! JSONDecoder().decode(User.self, from: jsonData)
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(user, error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
                     }
-                    completion(user, error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(nil, error)
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -720,26 +763,28 @@ class UserAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if json["error"].int == 0 {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion(error)
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(error)
-                    print("API CALL FAILED")
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
                 }
             } else {
-                var error: APIError?
-                error = APIError(404, "connect failed")
-                completion(error)
+               completion(APIError(404, "Server Connection Failed"))
             }
         }
     }
