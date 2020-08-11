@@ -148,6 +148,7 @@
 		59645F6A24D0134E003D1167 /* ChatMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6924D0134E003D1167 /* ChatMember.swift */; };
 		59645F6C24D02EDA003D1167 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6B24D02EDA003D1167 /* String+Ext.swift */; };
 		59645F6E24D064BF003D1167 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6D24D064BF003D1167 /* ChatMessage.swift */; };
+		596B6CAF24E29916003E3473 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596B6CAE24E29916003E3473 /* StoreKit.framework */; };
 		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
 		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
@@ -351,6 +352,7 @@
 		59645F6924D0134E003D1167 /* ChatMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMember.swift; sourceTree = "<group>"; };
 		59645F6B24D02EDA003D1167 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		59645F6D24D064BF003D1167 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		596B6CAE24E29916003E3473 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
 		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			files = (
 				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
+				596B6CAF24E29916003E3473 /* StoreKit.framework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
 				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
 			);
@@ -822,6 +825,7 @@
 		158A2C6124349509005F6847 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				596B6CAE24E29916003E3473 /* StoreKit.framework */,
 				155E2FEF243B0962001D886D /* CoreLogic.framework */,
 				158A2C6224349509005F6847 /* libFaceDetectionLib.a */,
 				367D1AB809231A2FAB392DF4 /* Pods_Hush_SwiftUI.framework */,

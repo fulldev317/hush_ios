@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import Purchases
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            application,
            didFinishLaunchingWithOptions: launchOptions
         )
+        
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: "dOgiuWrnvfyvWYRkKZVpXPDwFgUzCfvO")
         return true
     }
 
