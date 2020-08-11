@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Purchases
 
 struct CardCaruselElementView: View {
     let rotation: Angle
@@ -20,6 +21,8 @@ struct CardCaruselElementView: View {
     @State private var showMessages = false
     @State private var showUserProfile = false
     @State private var selectedUser: User = User()
+    @State private var showUpgrade = false
+
     //@Binding var showIndicator: Bool
     
     private let imageScale: CGFloat = 450 / 511
@@ -104,10 +107,19 @@ struct CardCaruselElementView: View {
                     VStack {
                         Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                             .onTapGesture {
-                                Common.setMessageLoaded(loaded: true)
-                                self.showMessages = true
+                                self.showUpgrade.toggle()
+//                                Common.setMessageLoaded(loaded: true)
+//                                self.showMessages = true
                         }
                     }.padding(.bottom, 10)
+                }
+                
+                if (self.$showUpgrade.wrappedValue) {
+                    NavigationLink(
+                        destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
+                        isActive: self.$showUpgrade,
+                        label: EmptyView.init
+                    )
                 }
                 
                 VStack {

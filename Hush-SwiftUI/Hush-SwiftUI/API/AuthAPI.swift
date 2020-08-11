@@ -37,7 +37,14 @@ class AuthAPI: BaseAPI {
                             let jsonData = try! json_user.rawData()
                             user = try! JSONDecoder().decode(User.self, from: jsonData)
                         } else {
-                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                            let error_json: JSON = json["error_m"]
+                            if let aryError: [JSON] = error_json.array {
+                                let error_m = aryError[0].stringValue
+                                error = APIError(json["error"].intValue, error_m)
+                            } else {
+                                let error_m = error_json.stringValue
+                                error = APIError(json["error"].intValue, error_m)
+                            }
                         }
                         completion(user, error)
                         break

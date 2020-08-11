@@ -15,4 +15,5 @@ target 'Hush-SwiftUI' do
 #  pod 'SwiftyJSON', '~> 5.0.0'
   pod 'SwiftyJSON', :git => 'https://github.com/tattn/SwiftyJSON.git', :branch => 'hotfix-xcode12'
   pod 'FLEX', :configurations => ['Debug']
+  pod 'Purchases', '3.4.0'
 end
