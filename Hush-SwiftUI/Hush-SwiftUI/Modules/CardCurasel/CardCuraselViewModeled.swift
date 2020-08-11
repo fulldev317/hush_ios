@@ -21,5 +21,6 @@ protocol CardCuraselViewModeled: ObservableObject {
     var address: String { get set }
     func loadDiscover(result: @escaping (Bool) -> Void)
     func updateMessage()
+    func userLike(userID: String, like: String) 
 
 }

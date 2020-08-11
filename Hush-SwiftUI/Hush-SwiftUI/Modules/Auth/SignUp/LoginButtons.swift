@@ -44,8 +44,35 @@ struct LoginButtons<Presenter: SignUpViewModeled>: View {
                 })
             }.padding(.horizontal, 24)
             
-            SignInWithAppleView(isLoggedIn: $isLoggedIn)
-            .frame(width: SCREEN_WIDTH - 48, height: 48)
+            SignInWithAppleView(action: { login, name, email in
+                
+                if (login == true) {
+                    self.isShowingProgress = true
+                    
+                    AuthAPI.shared.appleConnect(email: email, name: name) { (user, error) in
+                        self.isShowingProgress = false
+
+                        if error != nil {
+                            
+                        } else if let user = user {
+                          
+                            let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+                            isLoggedIn.wrappedValue = true
+                            
+                            Common.setUserInfo(user)
+                            Common.setAddressInfo("Los Angels, CA, US")
+                            let jsonData = try! JSONEncoder().encode(user)
+                            let jsonString = String(data:jsonData, encoding: .utf8)!
+                            
+                            let currentUser = UserDefault(.currentUser, default: "")
+                            currentUser.wrappedValue = jsonString
+                            
+                            self.app.loadingData.toggle()
+                            self.app.logedIn.toggle()
+                        }
+                    }
+                }
+            }).frame(width: SCREEN_WIDTH - 48, height: 48)
 
 //            LoginButton(title: "Sign in with Apple", titleColor: .black, img: Image("apple_icon"), color: Color(0xFFFFFF)) {
 //                self.presenter.applePressed()

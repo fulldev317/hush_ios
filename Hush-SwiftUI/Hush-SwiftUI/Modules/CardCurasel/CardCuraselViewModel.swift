@@ -27,6 +27,14 @@ class CardCuraselViewModel: CardCuraselViewModeled {
 
     }
     
+    func userLike(userID: String, like: String) {
+        UserAPI.shared.game_like(toUserID: userID, like: like) { (error) in
+            if (error == nil) {
+                
+            }
+        }
+    }
+    
     func loadDiscover(result: @escaping (Bool) -> Void) {
        
         self.isShowingIndicator = true

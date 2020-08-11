@@ -15,7 +15,6 @@ class Coordinator: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationC
     init(_ parent: SignInWithAppleView) {
         self.parent = parent
         super.init()
-
     }
     
     @objc func didTapButton() {
@@ -42,10 +41,19 @@ class Coordinator: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationC
         
         let defaults = UserDefaults.standard
         defaults.set(credentials.user, forKey: "userId")
+        let fname = credentials.fullName?.givenName ?? "Any"
+        let lname = credentials.fullName?.familyName ?? "Any"
+        let name = fname + " " + lname
+        let email = credentials.email ?? "test@email.com"
         //parent?.name = "\(credentials.fullName?.givenName ?? "")"
-        parent?.isLoggedIn = true
+        //parent?.isLoggedIn = true
+        
+        parent?.action(true, name, email)
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        parent?.action(false, "apple_user", "appel_email")
+        
+        
     }
 }

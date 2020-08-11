@@ -12,16 +12,11 @@ import AuthenticationServices
 struct SignInWithAppleView: UIViewRepresentable {
     
     @EnvironmentObject var app: App
-    @Binding var isLoggedIn : Bool {
-        didSet {
-            if isLoggedIn == true {
-                app.logedIn.toggle()
-            }
-        }
-    }
+    var action: (_ login: Bool, _ userName: String,_ email: String) -> Void
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
+        let coordinator = Coordinator(self)
+        return coordinator
     }
     
     func makeUIView(context: Context) -> UIView  {

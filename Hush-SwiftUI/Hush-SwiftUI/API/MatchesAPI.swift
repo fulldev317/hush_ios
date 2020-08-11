@@ -25,36 +25,42 @@ class MatchesAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var matchList:[Match?] = []
-                    var error: APIError?
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var matchList:[Match?] = []
+                        var error: APIError?
 
-                    if (json["error"].int == 0) {
+                        if (json["error"].int == 0) {
 
-                        let json_matches = json["matches"]
+                            let json_matches = json["matches"]
 
-                         if (json_matches.count > 0) {
-                             for index in 0 ..< json_matches.count {
-                                 let match = json_matches[index]
-                                 let jsonData = try! match.rawData()
-                                 var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                 match_data.liked = false
-                                 matchList.append(match_data)
+                             if (json_matches.count > 0) {
+                                 for index in 0 ..< json_matches.count {
+                                     let match = json_matches[index]
+                                     let jsonData = try! match.rawData()
+                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
+                                     match_data.liked = false
+                                     matchList.append(match_data)
+                                 }
                              }
-                         }
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(matchList, error)
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(matchList, error)
 
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
-                    print("API CALL FAILED")
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
+            } else {
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -70,36 +76,42 @@ class MatchesAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                    case .success(_):
-                    var matchList:[Match?] = []
-                    var error: APIError?
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                        case .success(_):
+                        var matchList:[Match?] = []
+                        var error: APIError?
 
-                    if (json["error"].int == 0) {
+                        if (json["error"].int == 0) {
 
-                        let json_matches = json["visitors"]
+                            let json_matches = json["visitors"]
 
-                         if (json_matches.count > 0) {
-                             for index in 0 ..< json_matches.count {
-                                 let match = json_matches[index]
-                                 let jsonData = try! match.rawData()
-                                 var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                 match_data.liked = false
-                                 matchList.append(match_data)
+                             if (json_matches.count > 0) {
+                                 for index in 0 ..< json_matches.count {
+                                     let match = json_matches[index]
+                                     let jsonData = try! match.rawData()
+                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
+                                     match_data.liked = false
+                                     matchList.append(match_data)
+                                 }
                              }
-                         }
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(matchList, error)
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(matchList, error)
 
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
-                    print("API CALL FAILED")
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
+            } else {
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }
@@ -115,38 +127,44 @@ class MatchesAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var matchList:[Match?] = []
-                    var error: APIError?
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var matchList:[Match?] = []
+                        var error: APIError?
 
-                    if (json["error"].int == 0) {
+                        if (json["error"].int == 0) {
 
-                        let json_matches = json["likesMe"]
+                            let json_matches = json["likesMe"]
 
-                         if (json_matches.count > 0) {
-                             for index in 0 ..< json_matches.count {
-                                 let match = json_matches[index]
-                                 let jsonData = try! match.rawData()
-                                 var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                 match_data.liked = false
-                                 matchList.append(match_data)
+                             if (json_matches.count > 0) {
+                                 for index in 0 ..< json_matches.count {
+                                     let match = json_matches[index]
+                                     let jsonData = try! match.rawData()
+                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
+                                     match_data.liked = false
+                                     matchList.append(match_data)
+                                 }
                              }
-                         }
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(matchList, error)
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(matchList, error)
 
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
-                    print("API CALL FAILED")
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
+                     }
+                } catch {
+                   completion(nil, APIError(404, "Server Connection Failed"))
                 }
-            }
-        }
+           } else {
+               completion(nil, APIError(404, "Server Connection Failed"))
+           }
+       }
     }
     
     func my_likes(completion: @escaping (_ matches: [Match?]?, _ error: APIError?) -> Void) {
@@ -160,36 +178,42 @@ class MatchesAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var matchList:[Match?] = []
-                    var error: APIError?
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var matchList:[Match?] = []
+                        var error: APIError?
 
-                    if (json["error"].int == 0) {
-                        
-                        let json_matches = json["myLikes"]
-                        
-                         if (json_matches.count > 0) {
-                             for index in 0 ..< json_matches.count {
-                                 let match = json_matches[index]
-                                 let jsonData = try! match.rawData()
-                                 var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                 match_data.liked = true
-                                 matchList.append(match_data)
+                        if (json["error"].int == 0) {
+                            
+                            let json_matches = json["myLikes"]
+                            
+                             if (json_matches.count > 0) {
+                                 for index in 0 ..< json_matches.count {
+                                     let match = json_matches[index]
+                                     let jsonData = try! match.rawData()
+                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
+                                     match_data.liked = true
+                                     matchList.append(match_data)
+                                 }
                              }
-                         }
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
-                    completion(matchList, error)
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(matchList, error)
 
-                case .failure:
-                    let error = APIError(404, "Server Connection Failed")
-                    completion(nil, error)
-                    print("API CALL FAILED")
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
                 }
+            } else {
+                completion(nil, APIError(404, "Server Connection Failed"))
             }
         }
     }

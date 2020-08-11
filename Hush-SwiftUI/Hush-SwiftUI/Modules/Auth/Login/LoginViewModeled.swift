@@ -14,7 +14,7 @@ protocol LoginViewModeled: ObservableObject {
     
     var showEmailScreen: Bool { get set }
     var loginWithMailViewModel: loginWithMailViewModel { get set }
-    
+    func loginWithApple(email: String, name: String, result: @escaping (Bool) -> Void)
     func loginWithEmail()
     
 }

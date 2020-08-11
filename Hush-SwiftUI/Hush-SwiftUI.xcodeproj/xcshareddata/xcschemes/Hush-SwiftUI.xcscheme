@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "154B268A2431BF6600265C76"
-               BuildableName = "Hush-SwiftUI.app"
+               BuildableName = "Hush.app"
                BlueprintName = "Hush-SwiftUI"
                ReferencedContainer = "container:Hush-SwiftUI.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "154B268A2431BF6600265C76"
-            BuildableName = "Hush-SwiftUI.app"
+            BuildableName = "Hush.app"
             BlueprintName = "Hush-SwiftUI"
             ReferencedContainer = "container:Hush-SwiftUI.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "154B268A2431BF6600265C76"
-            BuildableName = "Hush-SwiftUI.app"
+            BuildableName = "Hush.app"
             BlueprintName = "Hush-SwiftUI"
             ReferencedContainer = "container:Hush-SwiftUI.xcodeproj">
          </BuildableReference>
