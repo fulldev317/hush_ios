@@ -13,8 +13,9 @@ import Purchases
 struct CardCaruselElementView: View {
     let rotation: Angle
     let user: Discover
+    @Binding var showIndicator: Bool
     var onRefresh: (() -> Void)?
-
+    
     @EnvironmentObject private var app: App
 
     @State private var rectSize: CGSize = .zero
@@ -107,16 +108,35 @@ struct CardCaruselElementView: View {
                     VStack {
                         Image("message_card_icon").aspectRatio().frame(width: ISiPhoneX ? 45 : 36, height: ISiPhoneX ? 45 : 36)
                             .onTapGesture {
-                                self.showUpgrade.toggle()
-//                                Common.setMessageLoaded(loaded: true)
-//                                self.showMessages = true
+                                if (Common.premium()) {
+                                    Common.setMessageLoaded(loaded: true)
+                                    self.showMessages = true
+                                } else {
+                                    self.showIndicator = true
+                                    
+                                    Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+                                        self.showIndicator = false
+                                        if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                                            Common.setPremium(true)
+                                            Common.setMessageLoaded(loaded: true)
+                                            self.showMessages = true
+                                        } else {
+                                            self.showUpgrade.toggle()
+                                        }
+                                    }
+                                }
                         }
                     }.padding(.bottom, 10)
                 }
                 
                 if (self.$showUpgrade.wrappedValue) {
                     NavigationLink(
-                        destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
+                        destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar().onDisappear(perform: {
+                            if (Common.premium()) {
+                                Common.setMessageLoaded(loaded: true)
+                                self.showMessages = true
+                            }
+                        }),
                         isActive: self.$showUpgrade,
                         label: EmptyView.init
                     )

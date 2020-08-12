@@ -35,20 +35,19 @@ class UpgradeViewModel: UpgradeViewModeled {
         //UpgradeUIItem(title: "Access Private Stories", content: image(7))
         ]
     }
-    
+        
     init() {
-                
+        self.showingIndicator = true
         Purchases.shared.offerings { (offerings, error) in
+            self.showingIndicator = false
+
             if let offerings = offerings {
                 if let offer = offerings.current {
                     self.offering = offer
-                    //let packages = offering.availablePackages
-                    //let package = packages[0]
-
                 }
             }
         }
-                                        
+                                                
         //                                Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
         //                                    if purchaserInfo?.entitlements.all["1_week_special.upgrade"]?.isActive == true {
         //                                        // Unlock that great "pro" content
@@ -63,27 +62,49 @@ class UpgradeViewModel: UpgradeViewModeled {
         //                                }
     }
     
-    func upgradeOneWeek() {
-        if let offering = self.offering {
-            let packages = offering.availablePackages
-            if (packages.count > 0) {
-                let package = packages[0]
-                Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
-                    if purchaserInfo?.entitlements.all["1_week_special.upgrade"]?.isActive == true {
-                        // Unlock that great "pro" content
-
-                    }
-                }
-            }
+    func upgradeOneWeek(result: @escaping (Bool, String) -> Void) {
+        purchasePackage(index: 0) { (alert, message) in
+            result(alert, message)
         }
     }
     
-    func upgradeOneMonth() {
-        
+    func upgradeOneMonth(result: @escaping (Bool, String) -> Void) {
+        purchasePackage(index: 1) { (alert, message) in
+            result(alert, message)
+        }
     }
     
-    func upgradeThreeMonth() {
-        
+    func upgradeThreeMonth(result: @escaping (Bool, String) -> Void) {
+        purchasePackage(index: 2) { (alert, message) in
+            result(alert, message)
+        }
+    }
+    
+    func purchasePackage(index: Int, result: @escaping (Bool, String) -> Void) {
+        if let offering = self.offering {
+            let packages = offering.availablePackages
+            if (packages.count > 0) {
+                let package = packages[index]
+                Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
+                    if let error = error {
+                        if !userCancelled {
+                            result(true, error.localizedDescription)
+                        } else {
+                            result(false, "")
+                        }
+                    } else {
+                        if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                            // Unlock that great "pro" content
+                            Common.setPremium(true)
+                            result(true, "success")
+                        } else {
+                            result(false, "")
+                        }
+                    }
+                    
+                }
+            }
+        }
     }
     
     func updateMessage() {
