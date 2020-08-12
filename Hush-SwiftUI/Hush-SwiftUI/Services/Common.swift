@@ -16,6 +16,7 @@ var _upperAge: Double? = 1.0
 var _maxRange: Double? = 0.0
 var _image: UIImage?
 var _block: Bool?
+var _premium: Bool?
 var _isMessageLoaded: Bool? = false
 var _chatMessage: [HushMessage]?
 let ISiPhone11 = SCREEN_HEIGHT >= 896
@@ -79,6 +80,15 @@ class Common: NSObject {
     
     static func userBlocked() -> Bool {
         return _block ?? false
+    }
+    
+    static func setPremium(_ premium: Bool) {
+        UserDefaults.standard.set(premium, forKey: "premium")
+    }
+    
+    static func premium() -> Bool {
+        let premium: Bool? = UserDefaults.standard.bool(forKey: "premium")
+        return premium ?? false
     }
     
     static func handleErrorMessage(_ message: String) -> String {

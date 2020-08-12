@@ -9,7 +9,7 @@
 import SwiftUI
 import QGrid
 import PartialSheet
-
+import Purchases
 struct MatchView<ViewModel: MatchViewModeled>: View {
     
     // MARK: - Properties
@@ -49,54 +49,56 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     // MARK: - Lifecycle
     
     var body: some View {
-        
-        VStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(title).font(.thin(48)).foregroundColor(.hOrange).padding(.top, ISiPhoneX ? 0 : 0).padding(.leading, 10)
-                HStack(alignment: .top) {
-                   HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
-                       HStack(spacing: 23) {
-                           Image("onBack_icon")
-                           Text("Back to My Profile").foregroundColor(.white).font(.thin())
-                       }
-                   }.padding(.leading, 10)
-                   Spacer()
-                }
-            }.padding([.horizontal])
-               
-            if self.viewModel.matches.count > 0 {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: -20) {
-                        ForEach(0...(viewModel.matches.count / 2), id: \.self) {
-                            self.row(at: $0)
-                        }
-                    }.padding(.top, 10)
-                }
-                .background(
-                    NavigationLink(
-                        destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)),
-                        isActive: $showsUserProfile,
-                        label: EmptyView.init
+        ZStack {
+            VStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(title).font(.thin(48)).foregroundColor(.hOrange).padding(.top, ISiPhoneX ? 0 : 0).padding(.leading, 10)
+                    HStack(alignment: .top) {
+                       HapticButton(action: { self.mode.wrappedValue.dismiss() }) {
+                           HStack(spacing: 23) {
+                               Image("onBack_icon")
+                               Text("Back to My Profile").foregroundColor(.white).font(.thin())
+                           }
+                       }.padding(.leading, 10)
+                       Spacer()
+                    }
+                }.padding([.horizontal])
+                   
+                if self.viewModel.matches.count > 0 {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: -20) {
+                            ForEach(0...(viewModel.matches.count / 2), id: \.self) {
+                                self.row(at: $0)
+                            }
+                        }.padding(.top, 10)
+                    }
+                    .background(
+                        NavigationLink(
+                            destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)),
+                            isActive: $showsUserProfile,
+                            label: EmptyView.init
+                        )
                     )
-                )
-                .background(
-                    NavigationLink(
-                        destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar(),
-                        isActive: $showUpgrade,
-                        label: EmptyView.init
+                    .background(
+                        NavigationLink(
+                            destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar().onDisappear(perform: {
+                                if (Common.premium()) {
+                                    self.showsUserProfile.toggle()
+                                }
+                            }),
+                            isActive: $showUpgrade,
+                            label: EmptyView.init
+                        )
+                        
                     )
-                    
-                )
-            } else {
-                VStack {
+                } else {
                     Spacer()
-                    HushIndicator(showing: self.viewModel.isShowingIndicator)
-                    Spacer()
-
                 }
             }
-       }
-       .background(Color.hBlack.edgesIgnoringSafeArea(.all))
+            
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
+
+        }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
     }
      
     func row(at i: Int) -> some View {
@@ -122,7 +124,25 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
         .onTapGesture {
             if (self.blured) {
-                self.showUpgrade.toggle()
+                
+                if (Common.premium()) {
+                    self.showsUserProfile = true
+                } else {
+                    self.viewModel.isShowingIndicator = true
+
+                    Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+                        self.viewModel.isShowingIndicator = false
+                        if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                            Common.setPremium(true)
+                            self.showsUserProfile.toggle()
+                        } else {
+                            self.showUpgrade.toggle()
+                        }
+                    }
+                }
+                
+            } else {
+                self.showsUserProfile.toggle()
             }
         }
     }

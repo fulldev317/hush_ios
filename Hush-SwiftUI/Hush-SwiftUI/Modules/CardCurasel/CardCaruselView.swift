@@ -229,11 +229,11 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func caruselElement(_ index: Int) -> some View {
-        
+          
         CardCaruselElementView(rotation: .degrees(
                                 //index.isMultiple(of: 2) ? -5 : 5),
                                     self.getDegree(index)),
-                               user: viewModel.discoveries[(2 * self.cardIndex - index + 3) % viewModel.discoveries.count])
+                               user: viewModel.discoveries[(2 * self.cardIndex - index + 3) % viewModel.discoveries.count], showIndicator: $viewModel.isShowingIndicator)
         {
             self.viewModel.loadDiscover { (result) in
                 

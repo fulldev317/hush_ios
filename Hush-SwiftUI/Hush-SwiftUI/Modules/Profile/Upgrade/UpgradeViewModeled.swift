@@ -13,18 +13,17 @@ import Purchases
 protocol UpgradeViewModeled: ObservableObject {
     
     var message: String { get set }
-    var showAlert: Bool { get set }
     var showingIndicator: Bool { get set }
-
+    
     var oneWeek: Bool { get set }
     var oneMonth: Bool { get set }
     var threeMonth: Bool { get set }
     var offering: Purchases.Offering? { get set }
     var uiElements: [UpgradeUIItem<AnyView>] { get }
     func updateMessage()
-    func upgradeOneWeek()
-    func upgradeOneMonth()
-    func upgradeThreeMonth()
+    func upgradeOneWeek(result: @escaping (Bool, String) -> Void)
+    func upgradeOneMonth(result: @escaping (Bool, String) -> Void)
+    func upgradeThreeMonth(result: @escaping (Bool, String) -> Void)
 
 
 }

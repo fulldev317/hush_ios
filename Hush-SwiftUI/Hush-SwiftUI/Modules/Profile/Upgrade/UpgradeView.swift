@@ -14,6 +14,8 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
     
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
+    @State var showAlert = false
+    @State var alertMessage = ""
     
     // MARK: - Lifecycle
     
@@ -39,7 +41,16 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                             Rectangle().foregroundColor(.hOrange).frame(height: 50)
                             .onTapGesture {
                                 if (self.viewModel.oneWeek) {
-                                    self.viewModel.upgradeOneWeek()
+                                    self.viewModel.upgradeOneWeek { (alert, message) in
+                                        if (alert) {
+                                            if message == "success" {
+                                                self.mode.wrappedValue.dismiss()
+                                            } else {
+                                                self.showAlert = true
+                                                self.alertMessage = message
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             HStack {
@@ -56,7 +67,16 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                             Rectangle().foregroundColor(.hOrange).frame(height: 50)
                             .onTapGesture {
                                 if (self.viewModel.oneMonth) {
-                                    self.viewModel.upgradeOneMonth()
+                                    self.viewModel.upgradeOneMonth { (alert, message) in
+                                        if (alert) {
+                                            if message == "success" {
+                                                self.mode.wrappedValue.dismiss()
+                                            } else {
+                                                self.showAlert = true
+                                                self.alertMessage = message
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             HStack {
@@ -70,7 +90,16 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                             Rectangle().foregroundColor(.hOrange).frame(height: 50)
                                 .onTapGesture {
                                     if (self.viewModel.threeMonth) {
-                                        self.viewModel.upgradeThreeMonth()
+                                        self.viewModel.upgradeThreeMonth { (alert, message) in
+                                            if (alert) {
+                                                if message == "success" {
+                                                    self.mode.wrappedValue.dismiss()
+                                                } else {
+                                                    self.showAlert = true
+                                                    self.alertMessage = message
+                                                }
+                                            }
+                                        }
                                     }
                             }
                             HStack {
@@ -86,7 +115,7 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                             HStack {
                                 Text("3 Month ").font(.bold(ISiPhone5 ? 16 : 18)) + Text("Value").font(.light(ISiPhone5 ? 16 : 18))
                                 Spacer()
-                                Text("$47,99").font(.light(ISiPhone5 ? 14 : 18))
+                                Text("$47,99 ").font(.light(ISiPhone5 ? 14 : 18))
                                     .padding(.trailing, 80)
                             }.padding(.leading, 15)
                         }.opacity(self.viewModel.threeMonth ? 1.0 : 0.6)
@@ -115,10 +144,11 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                         .foregroundColor(.white)
                 }
                 .padding(.bottom, 30)
+                
             }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
-            .alert(isPresented: $viewModel.showAlert) { () -> Alert in
-                Alert(title: Text(""), message: Text("Your profile is upgraded successfully").font(.regular(24)), dismissButton: .default(Text("OK"), action: {
-                    self.viewModel.showAlert = false
+            .alert(isPresented: $showAlert) { () -> Alert in
+                Alert(title: Text(""), message: Text(self.alertMessage).font(.regular(24)), dismissButton: .default(Text("OK"), action: {
+                    self.showAlert = false
                 }))
             }
             

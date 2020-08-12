@@ -9,6 +9,7 @@
 import SwiftUI
 import SwiftUIPager
 import SDWebImageSwiftUI
+import Purchases
 
 struct IMG: Identifiable, Equatable {
     let id = UUID()
@@ -127,7 +128,12 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     //            ActionSheet(title: Text("Report reason"), message: nil, buttons: self.reportReasonButton)
     //        }
             .background(NavigationLink(
-                destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar(),
+                destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar().onDisappear(perform: {
+                    if (Common.premium()) {
+                        Common.setMessageLoaded(loaded: true)
+                        self.goToMessage.toggle()
+                    }
+                }),
                 isActive: self.$showUpgrade,
                 label: EmptyView.init
             ))
@@ -223,9 +229,23 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 }
                                 
                                 HapticButton(action: {
-                                    self.showUpgrade.toggle()
-                                    //Common.setMessageLoaded(loaded: true)
-                                    //self.goToMessage.toggle()
+                                    if (Common.premium()) {
+                                        Common.setMessageLoaded(loaded: true)
+                                        self.goToMessage.toggle()
+                                    } else {
+                                        self.viewModel.isShowingIndicator = true
+                                        
+                                        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+                                            self.viewModel.isShowingIndicator = false
+                                            if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                                                Common.setPremium(true)
+                                                Common.setMessageLoaded(loaded: true)
+                                                self.goToMessage.toggle()
+                                            } else {
+                                                self.showUpgrade.toggle()
+                                            }
+                                        }
+                                    }
                                 }) {
                                     Image("profile_message")
                                         .resizable()
@@ -258,9 +278,23 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                 HStack(spacing: 25) {
                     Spacer()
                     HapticButton(action: {
-                        //self.showUpgrade.toggle()
-                        Common.setMessageLoaded(loaded: true)
-                        self.goToMessage.toggle()
+                        if (Common.premium()) {
+                            Common.setMessageLoaded(loaded: true)
+                            self.goToMessage.toggle()
+                        } else {
+                            self.viewModel.isShowingIndicator = true
+                            
+                            Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+                                self.viewModel.isShowingIndicator = false
+                                if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                                    Common.setPremium(true)
+                                    Common.setMessageLoaded(loaded: true)
+                                    self.goToMessage.toggle()
+                                } else {
+                                    self.showUpgrade.toggle()
+                                }
+                            }
+                        }
                     }) {
                         Image("profile_message")
                             .foregroundColor(.white)
