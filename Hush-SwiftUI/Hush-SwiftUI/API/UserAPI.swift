@@ -14,6 +14,44 @@ class UserAPI: BaseAPI {
     
     static let shared: UserAPI = UserAPI()
     
+    func update_premium(duration: String, completion: @escaping (_ error: APIError?) -> Void) {
+                
+        let user = Common.userInfo()
+        let uid = user.id!
+        let parameters: Parameters = ["action": "updatePremium",
+                                      "uid": uid,
+                                      "col": "premium",
+                                      "val": duration]
+    
+        let request = AF.request(endpoint, method: .post, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                       } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                       }
+                       completion(error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion(error)
+                       print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
+                }
+            } else {
+               completion(APIError(404, "Server Connection Failed"))
+            }
+        }
+    }
+    
     func block_user(report_id: String, completion: @escaping (_ error: APIError?) -> Void) {
                 
         let user = Common.userInfo()

@@ -34,7 +34,7 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                     Text("Go Premium")
                         .font(.ultraLight(48))
                         .foregroundColor(.hOrange)
-                    ImagesCarusel(uiElements: viewModel.uiElements).padding(.bottom, 20)
+                    ImagesCarusel(uiElements: viewModel.getElements()).padding(.bottom, 20)
 
                     VStack {
                         ZStack {
@@ -162,13 +162,13 @@ struct UpgradeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                UpgradeView(viewModel: UpgradeViewModel()).withoutBar()
+                UpgradeView(viewModel: UpgradeViewModel(isMatched: true)).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone SE 1"))
             NavigationView {
-                UpgradeView(viewModel: UpgradeViewModel()).withoutBar()
+                UpgradeView(viewModel: UpgradeViewModel(isMatched: true)).withoutBar()
             }.previewDevice(.init(rawValue: "iPhone 8"))
             NavigationView {
-                UpgradeView(viewModel: UpgradeViewModel())
+                UpgradeView(viewModel: UpgradeViewModel(isMatched: true))
             }.previewDevice(.init(rawValue: "iPhone XS Max")).withoutBar()
         }
     }
