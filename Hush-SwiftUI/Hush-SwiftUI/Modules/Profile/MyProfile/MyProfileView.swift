@@ -240,7 +240,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showVisitedMeView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", match_type: "visited_me", blured: true).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Visited Me", match_type: "visited_me", blured: !Common.premium() ).environmentObject(self.app).withoutBar(),
                            isActive: $showVisitedMeView,
                            label: EmptyView.init
                         )
@@ -256,7 +256,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.showLikesMeView.toggle()
                     }.background(
                         NavigationLink(
-                            destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", match_type: "likes_me", blured: true).environmentObject(self.app).withoutBar(),
+                            destination: MatchView(viewModel: MatchViewModel(), title: "Likes Me", match_type: "likes_me", blured: !Common.premium()).environmentObject(self.app).withoutBar(),
                            isActive: $showLikesMeView,
                            label: EmptyView.init
                         )

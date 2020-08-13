@@ -19,11 +19,11 @@ protocol UpgradeViewModeled: ObservableObject {
     var oneMonth: Bool { get set }
     var threeMonth: Bool { get set }
     var offering: Purchases.Offering? { get set }
-    var uiElements: [UpgradeUIItem<AnyView>] { get }
+    
     func updateMessage()
     func upgradeOneWeek(result: @escaping (Bool, String) -> Void)
     func upgradeOneMonth(result: @escaping (Bool, String) -> Void)
     func upgradeThreeMonth(result: @escaping (Bool, String) -> Void)
-
+    func getElements() -> [UpgradeUIItem<AnyView>]
 
 }

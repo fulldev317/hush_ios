@@ -13,6 +13,10 @@ struct User: Codable {
     init() {
         id = "0"
     }
+    init(match: Match) {
+        id = match.id
+        
+    }
     var questions: [Question]?
     var id: String?
     var email: String?

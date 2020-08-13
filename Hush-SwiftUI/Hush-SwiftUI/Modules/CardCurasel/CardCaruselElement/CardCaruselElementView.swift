@@ -131,7 +131,7 @@ struct CardCaruselElementView: View {
                 
                 if (self.$showUpgrade.wrappedValue) {
                     NavigationLink(
-                        destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar().onDisappear(perform: {
+                        destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
                             if (Common.premium()) {
                                 Common.setMessageLoaded(loaded: true)
                                 self.showMessages = true

@@ -21,6 +21,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
     @State private var showsUserProfile = false
     @State private var showUpgrade = false
     @Environment(\.presentationMode) var mode
+    @State var selectedUser: User = User()
 
     init(viewModel: ViewModel, title: String, match_type: String, blured: Bool) {
         self.viewModel = viewModel
@@ -74,14 +75,14 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                     }
                     .background(
                         NavigationLink(
-                            destination: UserProfileView(viewModel: UserProfileViewModel(user: nil)),
+                            destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)),
                             isActive: $showsUserProfile,
                             label: EmptyView.init
                         )
                     )
                     .background(
                         NavigationLink(
-                            destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar().onDisappear(perform: {
+                            destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: true)).withoutBar().onDisappear(perform: {
                                 if (Common.premium()) {
                                     self.showsUserProfile.toggle()
                                 }
@@ -107,7 +108,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                 HStack {
                     if (i * 2 + j < self.viewModel.matches.count) {
                         self.polaroidCard(i, j)
-                            .tapGesture(toggls: self.$showsUserProfile)
+                        
                     } else {
                         Spacer()
                     }
@@ -124,7 +125,6 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
         .rotationEffect(.degrees(self.isRotated(i, j) ? 0 : -5), anchor: UnitPoint(x: 0.5, y: i % 2 == 1 ? 0.4 : 0.75))
         .onTapGesture {
             if (self.blured) {
-                
                 if (Common.premium()) {
                     self.showsUserProfile = true
                 } else {
@@ -140,9 +140,19 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                         }
                     }
                 }
-                
             } else {
-                self.showsUserProfile.toggle()
+                let match = self.viewModel.matches[i * 2 + j]
+                self.viewModel.isShowingIndicator = true
+                
+                AuthAPI.shared.get_user_data(userId: match.id ?? "1") { (user, error) in
+                    self.viewModel.isShowingIndicator = false
+                    if (error == nil) {
+                        if let user = user {
+                            self.selectedUser = user
+                            self.showsUserProfile.toggle()
+                        }
+                    }
+                }
             }
         }
     }

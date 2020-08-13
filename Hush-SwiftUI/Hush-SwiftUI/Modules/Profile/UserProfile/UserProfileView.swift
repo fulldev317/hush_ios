@@ -79,7 +79,6 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         label: EmptyView.init
                     )
                 }
-                
 
             }.actionSheet(isPresented: $shouldReport) {
                 if (self.reportSheet == .main) {
@@ -128,7 +127,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     //            ActionSheet(title: Text("Report reason"), message: nil, buttons: self.reportReasonButton)
     //        }
             .background(NavigationLink(
-                destination: UpgradeView(viewModel: UpgradeMessageViewModel()).withoutBar().onDisappear(perform: {
+                destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
                     if (Common.premium()) {
                         Common.setMessageLoaded(loaded: true)
                         self.goToMessage.toggle()
@@ -355,7 +354,24 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                             HStack(spacing: 30) {
                                 Spacer()
                                 HapticButton(action: {
-                                    self.app.showPremium.toggle()
+                                    
+                                    if (Common.premium()) {
+                                        Common.setMessageLoaded(loaded: true)
+                                        self.goToMessage.toggle()
+                                    } else {
+                                        self.viewModel.isShowingIndicator = true
+                                        
+                                        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+                                            self.viewModel.isShowingIndicator = false
+                                            if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                                                Common.setPremium(true)
+                                                Common.setMessageLoaded(loaded: true)
+                                                self.goToMessage.toggle()
+                                            } else {
+                                                self.showUpgrade.toggle()
+                                            }
+                                        }
+                                    }
                                 }) {
                                     Image("msg_profile_icon")
                                         .aspectRatio(.fit)

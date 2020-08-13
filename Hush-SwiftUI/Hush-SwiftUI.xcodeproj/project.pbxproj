@@ -130,7 +130,6 @@
 		536419DE248E693B002D7A4F /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DB248E693B002D7A4F /* MatchViewModel.swift */; };
 		536419DF248E693B002D7A4F /* MatchViewModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DC248E693B002D7A4F /* MatchViewModeled.swift */; };
 		536419E0248E693B002D7A4F /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419DD248E693B002D7A4F /* MatchView.swift */; };
-		536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */; };
 		53676382249F97E200833940 /* LocationQuerySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53676381249F97E200833940 /* LocationQuerySelectorView.swift */; };
 		53676384249FA88700833940 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53676383249FA88600833940 /* LocationTextField.swift */; };
 		5367638624A0A39A00833940 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367638524A0A39900833940 /* SplashView.swift */; };
@@ -333,7 +332,6 @@
 		536419DB248E693B002D7A4F /* MatchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		536419DC248E693B002D7A4F /* MatchViewModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewModeled.swift; sourceTree = "<group>"; };
 		536419DD248E693B002D7A4F /* MatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
-		536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeMessageViewModel.swift; sourceTree = "<group>"; };
 		53676381249F97E200833940 /* LocationQuerySelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationQuerySelectorView.swift; sourceTree = "<group>"; };
 		53676383249FA88600833940 /* LocationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
 		5367638524A0A39900833940 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -888,7 +886,6 @@
 			children = (
 				15D53C84243C909600D62B26 /* UpgradeView.swift */,
 				15D53C85243C909600D62B26 /* UpgradeViewModel.swift */,
-				536419E8248EA6D3002D7A4F /* UpgradeMessageViewModel.swift */,
 				15D53C86243C909600D62B26 /* UpgradeViewModeled.swift */,
 				15D53C8A243C90DC00D62B26 /* ImagesCarusel.swift */,
 			);
@@ -1408,7 +1405,6 @@
 				0E13EBD624805627003E0959 /* FaceDetectionView.swift in Sources */,
 				896DDEFD2464956A00AC0F95 /* Size.swift in Sources */,
 				896DDF002464A92F00AC0F95 /* ResetPasswordView.swift in Sources */,
-				536419E9248EA6D3002D7A4F /* UpgradeMessageViewModel.swift in Sources */,
 				157930802435B73B00EE428F /* UIButtonX.swift in Sources */,
 				15D53C7E243C65C900D62B26 /* MyProfileView.swift in Sources */,
 				157930E024371D0800EE428F /* StoryCardsView.swift in Sources */,

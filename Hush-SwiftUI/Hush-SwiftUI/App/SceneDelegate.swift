@@ -202,6 +202,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 self.app.loadingData = true
                 self.app.logedIn = true
+                
+                if let premium = user.premium {
+                    if premium == "1" {
+                        Common.setPremium(true)
+                    } else {
+                        Common.setPremium(false)
+                    }
+                }
             }
         }
     }
