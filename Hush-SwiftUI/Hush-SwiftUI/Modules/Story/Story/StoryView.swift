@@ -49,23 +49,6 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                         //self.modalPresenterManager.dismiss()
                     }
                 }
-            
-            
-            
-//            viewModel.stories[viewModel.currentStoryIndex].icon
-//                .resizable()
-//                .scaledToFill()
-//                .clipped()
-//                .edgesIgnoringSafeArea(.all)
-//                .frame(proxy)
-//                .onTapGesture {
-//                    if self.viewModel.canTapNext {
-//                        self.viewModel.showNext()
-//                    } else {
-//                        //self.modalPresenterManager.dismiss()
-//                    }
-//                }
-            
             VStack {
                 HStack(spacing: 0) {
                     VStack {
@@ -180,15 +163,6 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                 .cancel()
             ])
         }.gesture(dragToClose)
-        
-//        .background(
-//            NavigationView {
-//                NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel()).withoutBar(), isActive: .constant(true)) {
-//                  Text("Press on me")
-//               }.buttonStyle(PlainButtonStyle())
-//            }
-//        )
-        
     }
     
     private func sendMessage() {

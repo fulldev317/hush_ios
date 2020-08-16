@@ -58,6 +58,9 @@ extension DatePickerField {
             picker.maximumDate = date
             picker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
             
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yyyy"
+            selectedDate = formatter.string(from: date!)
             return picker
         }
         

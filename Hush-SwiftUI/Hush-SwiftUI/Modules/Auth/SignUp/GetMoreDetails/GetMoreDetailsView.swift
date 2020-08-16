@@ -30,14 +30,16 @@ struct GetMoreDetailsView<ViewModel: GetMoreDetailsViewModeled>: View, AuthAppSc
         ZStack {
             ScrollView {
                 content()
-                .overlay(onBackButton(mode))
+                
             }.keyboardAdaptive()
                 .padding(.top, ISiPhoneX ? 0 : self.viewModel.editingLocation ? SCREEN_HEIGHT == 568 ? -170 : -80 : 0)
+            
             
             HushIndicator(showing: self.isShowing)
             
             NavigationLink(destination: RootTabBarView(viewModel: RootTabBarViewModel()), isActive: self.$app.logedIn, label: { Text("") })
         }.background(background(name: "back1"))
+            .overlay(onBackButton(mode))
     }
     
     private func content() -> some View {
