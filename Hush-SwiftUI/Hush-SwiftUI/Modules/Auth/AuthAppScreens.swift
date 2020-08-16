@@ -29,9 +29,8 @@ extension AuthAppScreens {
     func background(name: String) -> some View {
         Image(name)
             .resizable()
-            .scaledToFill()
             .frame(width: UIScreen.main.bounds.width)
-            .overlay(Color.black.opacity(0.2))
+            .overlay(Color.black.opacity(0.4))
             .edgesIgnoringSafeArea(.all)
             .background(Color.black)
 //        ZStack {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o3R-5D-cPU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o3R-5D-cPU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -3589,7 +3589,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-Dw-yqF">
                                                 <rect key="frame" x="16" y="0.0" width="38" height="38"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="gUY-qm-5cE">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBack_icon" translatesAutoresizingMaskIntoConstraints="NO" id="gUY-qm-5cE">
                                                         <rect key="frame" x="9" y="9" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="laX-yg-24H"/>
@@ -3597,8 +3597,12 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Agv-Ny-0Qm">
-                                                        <rect key="frame" x="4" y="4" width="30" height="30"/>
+                                                        <rect key="frame" x="-11" y="-11" width="60" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="jy9-vP-Gs0"/>
+                                                            <constraint firstAttribute="width" constant="60" id="p2P-Ma-83O"/>
+                                                        </constraints>
                                                         <connections>
                                                             <action selector="actionBack:" destination="XLh-LS-jyY" eventType="touchUpInside" id="c1h-HP-3WU"/>
                                                         </connections>
@@ -3843,6 +3847,7 @@
         <image name="img_login_bg" width="414" height="896"/>
         <image name="likeRound" width="106" height="106"/>
         <image name="msg" width="33" height="30"/>
+        <image name="onBack_icon" width="9.5" height="17"/>
         <image name="password" width="16" height="18"/>
         <image name="photoBox" width="33" height="30"/>
         <image name="search" width="26" height="26"/>
