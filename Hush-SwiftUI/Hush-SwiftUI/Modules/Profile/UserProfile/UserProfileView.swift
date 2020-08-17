@@ -331,6 +331,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         self.textBlock("Current Location", subTitle: self.viewModel.address)
                         self.carusel("Photos", unlocked: self.$viewModel.unlockedPhotos, images: self.viewModel.photoUrls).padding(.vertical, -10)
 
+                        self.carusel("Stories", unlocked: self.$viewModel.unlockedStories, images: self.viewModel.storyUrls).padding(.vertical, -10)
+                        
                         //self.carusel("Stories", unlocked: self.$unlockedStories, images: self.viewModel.stories)
                         HStack {
                             VStack(alignment: .leading, spacing: 25) {
