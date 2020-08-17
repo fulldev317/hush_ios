@@ -140,6 +140,17 @@
 		5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */; };
 		5375541424A4EE2F009A13AE /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375541324A4EE2E009A13AE /* Discover.swift */; };
 		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
+		592843FA24EAF28A008A5B7A /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F024EAF28A008A5B7A /* nanopb.xcframework */; };
+		592843FB24EAF28A008A5B7A /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F124EAF28A008A5B7A /* GoogleAppMeasurement.framework */; };
+		592843FC24EAF28A008A5B7A /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F224EAF28A008A5B7A /* PromisesObjC.xcframework */; };
+		592843FD24EAF28A008A5B7A /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F324EAF28A008A5B7A /* FirebaseAnalytics.framework */; };
+		592843FE24EAF28A008A5B7A /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F424EAF28A008A5B7A /* FirebaseCoreDiagnostics.xcframework */; };
+		592843FF24EAF28A008A5B7A /* FirebaseInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F524EAF28A008A5B7A /* FirebaseInstallations.xcframework */; };
+		5928440024EAF28A008A5B7A /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F624EAF28A008A5B7A /* FirebaseCore.xcframework */; };
+		5928440124EAF28A008A5B7A /* GoogleDataTransport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F724EAF28A008A5B7A /* GoogleDataTransport.xcframework */; };
+		5928440224EAF28A008A5B7A /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F824EAF28A008A5B7A /* FIRAnalyticsConnector.framework */; };
+		5928440324EAF28A008A5B7A /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592843F924EAF28A008A5B7A /* GoogleUtilities.xcframework */; };
+		5928440924EAF6B0008A5B7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5928440824EAF6B0008A5B7A /* GoogleService-Info.plist */; };
 		5956EBFB24D45E10007443C0 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956EBFA24D45E10007443C0 /* Language.swift */; };
 		5956EBFD24D49A31007443C0 /* HushScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956EBFC24D49A31007443C0 /* HushScrollView.swift */; };
 		595C7E6024C9F2400094D7A0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C7E5F24C9F2400094D7A0 /* Story.swift */; };
@@ -343,6 +354,19 @@
 		5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithFBView.swift; sourceTree = "<group>"; };
 		5375541324A4EE2E009A13AE /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
+		592843F024EAF28A008A5B7A /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = nanopb.xcframework; sourceTree = "<group>"; };
+		592843F124EAF28A008A5B7A /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		592843F224EAF28A008A5B7A /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PromisesObjC.xcframework; sourceTree = "<group>"; };
+		592843F324EAF28A008A5B7A /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		592843F424EAF28A008A5B7A /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
+		592843F524EAF28A008A5B7A /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseInstallations.xcframework; sourceTree = "<group>"; };
+		592843F624EAF28A008A5B7A /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCore.xcframework; sourceTree = "<group>"; };
+		592843F724EAF28A008A5B7A /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleDataTransport.xcframework; sourceTree = "<group>"; };
+		592843F824EAF28A008A5B7A /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
+		592843F924EAF28A008A5B7A /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
+		5928440624EAF55D008A5B7A /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		5928440724EAF596008A5B7A /* Hush-SwiftUI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hush-SwiftUI-Bridging-Header.h"; sourceTree = "<group>"; };
+		5928440824EAF6B0008A5B7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5956EBFA24D45E10007443C0 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		5956EBFC24D49A31007443C0 /* HushScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushScrollView.swift; sourceTree = "<group>"; };
 		595C7E5F24C9F2400094D7A0 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
@@ -413,11 +437,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				592843FF24EAF28A008A5B7A /* FirebaseInstallations.xcframework in Frameworks */,
+				5928440024EAF28A008A5B7A /* FirebaseCore.xcframework in Frameworks */,
 				1579309F2435CAFC00EE428F /* QGrid in Frameworks */,
 				158A2C6324349509005F6847 /* libFaceDetectionLib.a in Frameworks */,
+				592843FD24EAF28A008A5B7A /* FirebaseAnalytics.framework in Frameworks */,
+				5928440324EAF28A008A5B7A /* GoogleUtilities.xcframework in Frameworks */,
 				596B6CAF24E29916003E3473 /* StoreKit.framework in Frameworks */,
+				592843FA24EAF28A008A5B7A /* nanopb.xcframework in Frameworks */,
+				592843FB24EAF28A008A5B7A /* GoogleAppMeasurement.framework in Frameworks */,
+				592843FE24EAF28A008A5B7A /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
 				2D0E78432E4C49082A57C36A /* Pods_Hush_SwiftUI.framework in Frameworks */,
 				89C77B252465E61600705899 /* PartialSheet in Frameworks */,
+				5928440224EAF28A008A5B7A /* FIRAnalyticsConnector.framework in Frameworks */,
+				592843FC24EAF28A008A5B7A /* PromisesObjC.xcframework in Frameworks */,
+				5928440124EAF28A008A5B7A /* GoogleDataTransport.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +519,7 @@
 		154B26822431BF6600265C76 = {
 			isa = PBXGroup;
 			children = (
+				592843EE24EAF22D008A5B7A /* Firebase */,
 				154B268D2431BF6600265C76 /* Hush-SwiftUI */,
 				154B268C2431BF6600265C76 /* Products */,
 				158A2C6124349509005F6847 /* Frameworks */,
@@ -514,6 +549,8 @@
 				154B26A32431C28B00265C76 /* App */,
 				154B26A22431C27500265C76 /* Resources */,
 				154B26922431BF6600265C76 /* MainView.swift */,
+				5928440724EAF596008A5B7A /* Hush-SwiftUI-Bridging-Header.h */,
+				5928440824EAF6B0008A5B7A /* GoogleService-Info.plist */,
 			);
 			path = "Hush-SwiftUI";
 			sourceTree = "<group>";
@@ -946,6 +983,32 @@
 			path = LoginWithFB;
 			sourceTree = "<group>";
 		};
+		592843EE24EAF22D008A5B7A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				5928440624EAF55D008A5B7A /* Firebase.h */,
+				592843EF24EAF28A008A5B7A /* FirebaseAnalytics */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		592843EF24EAF28A008A5B7A /* FirebaseAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				592843F024EAF28A008A5B7A /* nanopb.xcframework */,
+				592843F124EAF28A008A5B7A /* GoogleAppMeasurement.framework */,
+				592843F224EAF28A008A5B7A /* PromisesObjC.xcframework */,
+				592843F324EAF28A008A5B7A /* FirebaseAnalytics.framework */,
+				592843F424EAF28A008A5B7A /* FirebaseCoreDiagnostics.xcframework */,
+				592843F524EAF28A008A5B7A /* FirebaseInstallations.xcframework */,
+				592843F624EAF28A008A5B7A /* FirebaseCore.xcframework */,
+				592843F724EAF28A008A5B7A /* GoogleDataTransport.xcframework */,
+				592843F824EAF28A008A5B7A /* FIRAnalyticsConnector.framework */,
+				592843F924EAF28A008A5B7A /* GoogleUtilities.xcframework */,
+			);
+			path = FirebaseAnalytics;
+			sourceTree = "<group>";
+		};
 		7354C345247FA586007D6FA5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1184,6 +1247,7 @@
 				154B26982431BF6800265C76 /* Preview Assets.xcassets in Resources */,
 				157930872435B7A000EE428F /* editImageVc_mainFilterCell.xib in Resources */,
 				154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */,
+				5928440924EAF6B0008A5B7A /* GoogleService-Info.plist in Resources */,
 				154B26952431BF6800265C76 /* Assets.xcassets in Resources */,
 				15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */,
 				157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */,
@@ -1568,6 +1632,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendors",
+					"$(PROJECT_DIR)/Firebase/FirebaseAnalytics",
 				);
 				INFOPLIST_FILE = "Hush-SwiftUI/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1575,9 +1640,82 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Objc",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FLEX\"",
+					"-framework",
+					"\"Fakery\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"Koloda\"",
+					"-framework",
+					"\"Purchases\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SDWebImageSwiftUI\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SwiftUIPager\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"WebKit\"",
+					"-framework",
+					"\"pop\"",
+					"-weak_framework",
+					"\"Accelerate\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"Combine\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"SwiftUI\"",
+					"-weak_framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hinder.app;
 				PRODUCT_NAME = Hush;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fulldev/Documents/Hush/Hush-SwiftUI/Hush-SwiftUI/Hush-SwiftUI-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1598,6 +1736,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendors",
+					"$(PROJECT_DIR)/Firebase/FirebaseAnalytics",
 				);
 				INFOPLIST_FILE = "Hush-SwiftUI/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1605,9 +1744,71 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Objc",
+					"-l\"c++\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"Fakery\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"Koloda\"",
+					"-framework",
+					"\"Purchases\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SDWebImageSwiftUI\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SwiftUIPager\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"pop\"",
+					"-weak_framework",
+					"\"Accelerate\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"Combine\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"SwiftUI\"",
+					"-weak_framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hinder.app;
 				PRODUCT_NAME = Hush;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fulldev/Documents/Hush/Hush-SwiftUI/Hush-SwiftUI/Hush-SwiftUI-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

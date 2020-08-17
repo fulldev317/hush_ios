@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Purchases.debugLogsEnabled = true
         Purchases.configure(withAPIKey: "dOgiuWrnvfyvWYRkKZVpXPDwFgUzCfvO")
+        
+        FirebaseApp.configure()
+        
         return true
     }
 
