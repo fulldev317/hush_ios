@@ -265,8 +265,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
                     .foregroundColor(.gray)
+                    .padding(15)
             }
-        }.padding(15)
+        }.padding(.leading, j == 0 ? 0 : 15).padding(.trailing, j == 0 ? 15 : 0)
         .padding(.leading, self.leading(j))
         .padding(.trailing, self.trailing(j))
     }
