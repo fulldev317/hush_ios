@@ -183,4 +183,25 @@ class Common: NSObject {
             return []
         }
     }
+    
+    static func userNameValid(name: String) -> Bool {
+        if name.count == 0 {
+            return false
+        }
+        let names = name.components(separatedBy: "@")
+        if (names.count > 1) {
+            return false
+        }
+        var num_cnt = 0
+        for i in 0..<name.count {
+            let c: Character = name[name.index(name.startIndex, offsetBy: i)]
+            if c.isNumber {
+                num_cnt += 1
+            }
+        }
+        if num_cnt > 3 {
+            return false
+        }
+        return true
+    }
 }

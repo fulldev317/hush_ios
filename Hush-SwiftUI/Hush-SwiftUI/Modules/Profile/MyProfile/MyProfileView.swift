@@ -30,7 +30,10 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @State var showMyLikeView = false
     @State private var height: CGFloat = 50
     @State var isPhotoTapped = false
-    
+    @State var showAlert = false
+    @State var alertMessage = ""
+    @State var showUpgrade = false
+
     private let deviceScale = SCREEN_WIDTH / 411
 
     // MARK: - Lifecycle
@@ -63,6 +66,20 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     NavigationLink(destination: NewFaceDetection(viewModel: NewFaceDetectionViewModel(name: "", username: "", email: "", password: "", fromProfile: true), selectedImage: $viewModel.selectedImage, photoModel: AddPhotosViewModel(name: "", username: "", email: "", password: "")),
                         isActive: $viewModel.canGoToAR,
                         label: EmptyView.init)
+                    
+                    if (self.$showUpgrade.wrappedValue) {
+                        NavigationLink(
+                            destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
+                                if (Common.premium()) {
+                                    self.viewModel.basicsViewModel.isPremium = "Yes"
+                                } else {
+                                    self.viewModel.basicsViewModel.isPremium = "Activate"
+                                }
+                            }),
+                            isActive: self.$showUpgrade,
+                            label: EmptyView.init
+                        )
+                    }
                 }
             }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
             
@@ -299,12 +316,22 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             VStack(spacing: 25) {
                 //tableRow("User Name", value: $viewModel.basicsViewModel.username)
                 tableRow("User Name", value: $viewModel.basicsViewModel.username) {
-                    let name = self.$viewModel.basicsViewModel.username
-                    UserAPI.shared.update_name(name: name.wrappedValue) { (error) in
-                        
+                    let name = self.$viewModel.basicsViewModel.username.wrappedValue
+                    if Common.userNameValid(name: name) {
+                        UserAPI.shared.update_name(name: name) { (error) in
+                            
+                        }
+                    } else {
+                        self.showAlert.toggle()
+                        self.alertMessage = "User Name is invalid"
                     }
                 }
-                tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
+                tableFixedRow("Premium User", value: $viewModel.premium, onCommit: {
+                    if !Common.premium() {
+                        self.showUpgrade.toggle()
+                    }
+                })
+                //tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
                 tableFixedRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
                 tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
                     let now = Date()
@@ -335,6 +362,18 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
                 }
+                
+//                tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
+//                    var selectedLooking = $0.lowercased()
+//                    if (selectedLooking == "") {
+//                        selectedLooking = "female"
+//                    }
+//                    if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
+//                    {
+//                        self.viewModel.updateGender(gender: selectedGender)
+//                    }
+//                    self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
+//                }
                 
                 tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
                     var selectedSex: String = $0.lowercased()
@@ -376,6 +415,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 } else {
                     Text(viewModel.basicsViewModel.bio).font(.regular(17)).foregroundColor(.white)
                 }
+                
                 tablePickerRow("Language", selected: viewModel.basicsViewModel.language, titles: self.app.languageNames) {
                     var selectedLanguage = $0
                     if (selectedLanguage == "") {
@@ -409,6 +449,11 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             }
         }.padding(.horizontal, 36)
         .padding(.top, 20)
+        .alert(isPresented: $showAlert) { () -> Alert in
+            Alert(title: Text(""), message: Text(self.alertMessage).font(.regular(24)), dismissButton: .default(Text("OK"), action: {
+                self.showAlert = false
+            }))
+        }
 
     }
     
@@ -512,6 +557,18 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
 
                 } else {
                     Text(value!.wrappedValue).font(.regular(17)).foregroundColor(.white)
+                }
+            }
+        }
+    }
+    
+    private func tableFixedRow(_ title: String, value: Binding<String>?, onCommit: @escaping () -> Void) -> some View {
+        HStack {
+            Text(title).font(.regular(17)).foregroundColor(.white)
+            Spacer()
+            if value != nil {
+                Text(value!.wrappedValue).font(.regular(17)).foregroundColor(.white).onTapGesture {
+                    onCommit()
                 }
             }
         }

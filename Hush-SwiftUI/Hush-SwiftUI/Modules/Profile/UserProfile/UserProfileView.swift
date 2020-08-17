@@ -197,6 +197,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     }
                     
                     self.overlay
+                    
                     VStack(spacing: 0) {
                         Spacer()
                         HStack {
@@ -252,14 +253,14 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                         .frame(width: 34, height: 34)
                                 }
                             
-                            }
+                            }.padding(.bottom, 20)
                             
-                            HapticButton(action: self.viewModel.switchMode) {
-                                Image("profile_chevron_down")
-                                    .foregroundColor(.white)
-                                .padding()
-                                .offset(x: 0, y: 0)
-                            }
+//                            HapticButton(action: self.viewModel.switchMode) {
+//                                Image("profile_chevron_down")
+//                                    .foregroundColor(.white)
+//                                .padding()
+//                                .offset(x: 0, y: 0)
+//                            }
                         }
                     }.padding(10)
                 }.frame(width: proxy.size.width)
@@ -268,7 +269,11 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     }
     
     var overlay: some View {
-        LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .center).contentShape(Zero())
+        ZStack {
+            //LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .center).contentShape(Zero())
+            LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: UnitPoint(x: 0.0, y: 1.0), endPoint: UnitPoint(x: 0.0, y: 0.8)).contentShape(Zero())
+            LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 0.2)).contentShape(Zero())
+        }
     }
     
     var infoView: some View {
