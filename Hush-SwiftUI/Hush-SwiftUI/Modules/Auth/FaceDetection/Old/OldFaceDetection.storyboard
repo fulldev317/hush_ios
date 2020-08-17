@@ -18,7 +18,7 @@
         <!--Looking GoodVC-->
         <scene sceneID="Lwp-Li-ARt">
             <objects>
-                <viewController storyboardIdentifier="LookingGoodVC" id="ksH-Jh-xor" customClass="LookingGoodVC" customModule="Hush_SwiftUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LookingGoodVC" id="ksH-Jh-xor" customClass="LookingGoodVC" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Rj-KG-9zW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,11 +120,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vfj-Ef-vqU">
-                                                <rect key="frame" x="35" y="620" width="305" height="48"/>
+                                                <rect key="frame" x="35" y="620" width="305" height="45"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="wUI-Ny-vpd"/>
+                                                    <constraint firstAttribute="height" constant="45" id="wUI-Ny-vpd"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="19"/>
                                                 <state key="normal" title="Done"/>
                                                 <connections>
                                                     <action selector="actionDone:" destination="ksH-Jh-xor" eventType="touchUpInside" id="gxf-Ur-9rk"/>
@@ -212,7 +212,7 @@
         <!--FacedetectorVC-->
         <scene sceneID="dA3-Y4-edb">
             <objects>
-                <viewController storyboardIdentifier="FacedetectorVC" id="GNS-hj-BEv" customClass="FacedetectorVC" customModule="Hush_SwiftUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FacedetectorVC" id="GNS-hj-BEv" customClass="FacedetectorVC" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Id5-yp-bMQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,7 +299,7 @@
                                             <constraint firstAttribute="bottom" secondItem="3bf-6p-qgb" secondAttribute="bottom" constant="5" id="ywH-mt-CYT"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oep-YZ-HJL" customClass="UIButtonX" customModule="Hush_SwiftUI" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oep-YZ-HJL" customClass="UIButtonX" customModule="Hush" customModuleProvider="target">
                                         <rect key="frame" x="30" y="157" width="315" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -326,7 +326,7 @@
                                             <action selector="click_done:" destination="GNS-hj-BEv" eventType="touchUpInside" id="9IW-O5-4Mc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L4s-jq-Kog" customClass="UIButtonX" customModule="Hush_SwiftUI" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L4s-jq-Kog" customClass="UIButtonX" customModule="Hush" customModuleProvider="target">
                                         <rect key="frame" x="30" y="157" width="152.5" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -351,7 +351,7 @@
                                             <action selector="click_reset:" destination="GNS-hj-BEv" eventType="touchUpInside" id="9An-Uj-5bm"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjU-yB-Ldp" customClass="UIButtonX" customModule="Hush_SwiftUI" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjU-yB-Ldp" customClass="UIButtonX" customModule="Hush" customModuleProvider="target">
                                         <rect key="frame" x="192.5" y="157" width="152.5" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

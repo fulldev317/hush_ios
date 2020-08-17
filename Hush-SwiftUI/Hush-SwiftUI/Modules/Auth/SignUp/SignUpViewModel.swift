@@ -20,12 +20,12 @@ class SignUpViewModel: SignUpViewModeled {
     
     func terms() {
         
-        iOSApp.open(URL(string: "http://google.com")!)
+        iOSApp.open(URL(string: "http://www.appsmallprint.com")!)
     }
     
     func privacy() {
         
-        iOSApp.open(URL(string: "http://google.com")!)
+        iOSApp.open(URL(string: "http://www.appsmallprint.com")!)
     }
     
     func emailPressed() {
