@@ -81,13 +81,14 @@ class MessageDetailViewModel: MessageDetailViewModeled {
             last_id = Int(lastMessage!.id)! + 1
         }
         let message = HushTextMessage(id: String(last_id), userID: "SELF", text: text)
+        self.chatMessages.append(.text(message))
+        Common.setChatMessage(message: self.chatMessages)
         
         changed = true
         ChatAPI.shared.sendMessage(to_user_id: peerId, message: text, type: "text") { (error) in
             self.changed = false
             if error == nil {
-                self.chatMessages.append(.text(message))
-                Common.setChatMessage(message: self.chatMessages)
+                
             }
         }
     }
