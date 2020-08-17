@@ -29,7 +29,8 @@ protocol UserProfileViewModeled: ObservableObject {
     var photoUrls: [String] { get set }
     var galleriaUrls: [String] { get set }
     var unlockedPhotos: Set<Int> { get set }
-    var stories: [UIImage] { get }
+    var unlockedStories: Set<Int> { get set }
+    var storyUrls: [String] { get set }
     var userId: String { get set }
     var name: String { get set }
     var address: String { get set }

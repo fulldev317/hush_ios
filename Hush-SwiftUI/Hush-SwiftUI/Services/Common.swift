@@ -166,4 +166,21 @@ class Common: NSObject {
         }
         return nLiving
     }
+    
+    static func convertStringToJSON(jsonString: String) ->  [Dictionary<String,Any>] {
+        let data = jsonString.data(using: .utf8)!
+        do {
+            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [Dictionary<String,Any>]
+            {
+                print(jsonArray) // use the json here
+                return jsonArray
+            } else {
+                print("bad json")
+                return []
+            }
+        } catch let error as NSError {
+            print(error)
+            return []
+        }
+    }
 }

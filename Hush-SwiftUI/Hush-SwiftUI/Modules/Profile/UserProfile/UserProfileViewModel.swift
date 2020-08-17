@@ -9,13 +9,15 @@
 import SwiftUI
 import Combine
 
-class UserProfileViewModel: UserProfileViewModeled {
+class UserProfileViewModel: UserProfileViewModeled {    
 
     // MARK: - Properties
     
     @Published var isShowingIndicator: Bool = false
     @Published var photoUrls: [String] = []
     @Published var unlockedPhotos: Set<Int> = []
+    @Published var storyUrls: [String] = []
+    @Published var unlockedStories: Set<Int> = []
     @Published var galleriaUrls: [String] = []
     @Published var mode: UserProfileMode = .photo
     @Published var userId: String = ""
@@ -37,9 +39,7 @@ class UserProfileViewModel: UserProfileViewModeled {
     var aboutMe = "Hello World!"
     var location = "Hello World!"
     //let photos: [UIImage] = Array(0..<3).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
-    
-    let stories: [UIImage] = Array(0..<20).compactMap { UIImage(named: "image\($0.isMultiple(of: 2) ? 2 : 3)") }
-    
+        
     init(user: User?) {
         var userInfo: User
         if user == nil {
@@ -137,6 +137,18 @@ class UserProfileViewModel: UserProfileViewModeled {
             let gallery:Gallery = gallerias[index]
             galleriaUrls.append(gallery.image ?? "")
         }
+        
+        if let stories = userInfo.stories {
+            if stories.count > 0 {
+                let aryStory = Common.convertStringToJSON(jsonString: stories)
+                for index in (0 ..< aryStory.count) {
+                    let storyDic = aryStory[index]
+                    storyUrls.append(storyDic["url"] as! String)
+                    unlockedStories.insert(index)
+                }
+            }
+        }
+        
     }
     
     func updateMessage() {
