@@ -384,7 +384,7 @@ class UserAPI: BaseAPI {
                                       "media[0][video]": "0",
                                       "media[0][path]": path,
                                       "media[0][thumb]": thumb]
-        let request = AF.request(endpoint, method: .post, parameters : parameters)
+        let request = AF.request(belloo_endpoint, method: .post, parameters : parameters)
         request.responseJSON { (response) in
             if let data = response.data {
                 do {

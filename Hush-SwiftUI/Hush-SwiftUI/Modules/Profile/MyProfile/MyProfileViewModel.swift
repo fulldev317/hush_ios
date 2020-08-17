@@ -28,7 +28,8 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var isPermissionDenied = false
     @Published var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     @Published var selectedIndex: Int = -1
-
+    @Published var premium: String = "Activate"
+    
     @Published var selectedImage: UIImage? = UIImage() {
         didSet {
             if (selectedImage != nil) {
@@ -59,23 +60,18 @@ class MyProfileViewModel: MyProfileViewModeled {
     private var cancellable3: AnyCancellable?
     
     init() {
-                
-        initPhotoData()
-
+             
         let user = Common.userInfo()
+
+        initPhotoData(user: user)
+
+        if let userId = user.id {
+            updatePremium(userId: userId)
+        }
         
         basicsViewModel.username = user.name ?? ""
         
-        if let premium = user.premium {
-            if premium == "1" {
-                basicsViewModel.isPremium = "Yes"
-            } else {
-                basicsViewModel.isPremium = "No"
-            }
-        } else {
-            basicsViewModel.isPremium = "No"
-        }
-        
+       
         if let verified = user.verified {
             if verified == "1" {
                 basicsViewModel.isVerified = "Yes"
@@ -153,6 +149,23 @@ class MyProfileViewModel: MyProfileViewModeled {
             break
         default:
             basicsViewModel.gender = Gender.male
+        }
+        
+        switch Int(user.looking ?? "1") {
+        case 1:
+            basicsViewModel.looking = Gender.male
+            break
+        case 2:
+            basicsViewModel.looking = Gender.female
+            break
+        case 3:
+            basicsViewModel.looking = Gender.lesbian
+            break
+        case 4:
+            basicsViewModel.looking = Gender.gay
+            break
+        default:
+            basicsViewModel.looking = Gender.male
         }
         
         var s_question: Question?
@@ -242,6 +255,24 @@ class MyProfileViewModel: MyProfileViewModeled {
 //                }
 //            }
 //        }
+    }
+    
+    func updatePremium(userId: String) {
+        AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
+            if error == nil {
+                if let user = user {
+                    if let premium = user.premium {
+                        if premium == "1" {
+                            Common.setPremium(true)
+                            self.premium = "Yes"
+                        } else {
+                            Common.setPremium(false)
+                            self.premium = "Activate"
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func updateName(name: String) {
@@ -402,8 +433,8 @@ class MyProfileViewModel: MyProfileViewModeled {
         disposals = []
     }
     
-    func initPhotoData() {
-        let user = Common.userInfo()
+    func initPhotoData(user: User) {
+        
         let photos = user.photos
         if let count = photos?.count {
             for index in (0 ..< count) {
@@ -556,6 +587,7 @@ class BioViewMode: ObservableObject {
     @Published var isVerified = "No"
     @Published var age = "21"
     @Published var gender = Gender.male
+    @Published var looking = Gender.female
     @Published var sexuality = Sex.gay
     @Published var living = Living.alone
     @Published var bio = "Hi, I'm Jack, 18 years old and I'm from London, Unite Kindom"
