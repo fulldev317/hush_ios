@@ -646,6 +646,52 @@ class AuthAPI: BaseAPI {
         }
     }
     
+    func get_location(completion: @escaping (_ location: String?, _ error: APIError?) -> Void) {
+                
+        let parameters: Parameters = ["action": "getLocationInfo"]
+                                      
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        var location: String?
+                        if json["error"].int == 0 {
+                            error = nil
+                            location = json["location"].string
+                            let locations = location?.split(separator: ",")
+                            if (locations!.count > 2) {
+                                var country: String = String(locations![2])
+                                country = country.replacingOccurrences(of: " ", with: "")
+                                let low_country = country.lowercased()
+                                if (low_country != "usa") {
+                                    let city: String = String(locations![0])
+                                    location = city + ", " + country
+                                }
+                            }
+                       } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                            location = ""
+                       }
+                       completion(location, error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion("", error)
+                       print("API CALL FAILED")
+                    }
+                } catch {
+                    completion("", APIError(404, "Server Connection Failed"))
+                }
+            } else {
+               completion("", APIError(404, "Server Connection Failed"))
+            }
+        }
+    }
+    
     func update_location(address: String, lat: String, lng: String, completion: @escaping (_ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!

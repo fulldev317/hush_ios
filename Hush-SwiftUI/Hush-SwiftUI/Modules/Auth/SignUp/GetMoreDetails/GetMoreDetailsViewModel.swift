@@ -38,6 +38,12 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
             countires.append(name)
         }
         locations = countires
+        
+        self.getLocation { (location) in
+            if (location.count > 0) {
+                self.location = location
+            }
+        }
                
     }
     
@@ -124,6 +130,16 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
             if lat!.count > 0 && lng!.count > 0 {
                 self.latitude = lat!
                 self.longitude = lng!
+            }
+        }
+    }
+    
+    func getLocation(result: @escaping (String) -> Void){
+        AuthAPI.shared.get_location { (location, error) in
+            if (error == nil) {
+                result(location!)
+            } else {
+                result("")
             }
         }
     }
