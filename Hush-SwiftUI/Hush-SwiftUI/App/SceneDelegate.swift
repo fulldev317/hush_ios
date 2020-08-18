@@ -166,7 +166,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     NavigationView {
                         SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
-                        //LoginView(viewModel: LoginViewModel()).withoutBar()
+                        //LoginView(viewModel: LoginViewModel(), showSignupButtons: .constant(false)).withoutBar()
                         //ForgotPasswordView(viewModel: ForgotPasswordViewModel()).withoutBar()
                         //ResetPasswordView(viewModel: ResetPasswordViewModel()).withoutBar()
                         //LoginWithEmailView(viewModel: LoginWithEmailViewModel()).withoutBar()

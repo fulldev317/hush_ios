@@ -32,6 +32,8 @@ protocol UserProfileViewModeled: ObservableObject {
     var unlockedStories: Set<Int> { get set }
     var storyUrls: [String] { get set }
     var userId: String { get set }
+    var online: String { get set }
+    var verfied: String { get set }
     var name: String { get set }
     var address: String { get set }
     var bio: String { get set }

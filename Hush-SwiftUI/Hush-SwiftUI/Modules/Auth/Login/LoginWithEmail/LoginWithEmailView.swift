@@ -38,7 +38,11 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 
                 if viewModel.hasErrorMessage {
                     HStack {
-                        Text(viewModel.errorMessage).font(.thin()).foregroundColor(.hOrange)
+                        Text(viewModel.errorMessage).font(.thin()).foregroundColor(.hOrange).onTapGesture {
+                            if self.viewModel.errorMessage.contains("Account not found") {
+                                iOSApp.open(URL(string: "https://desk.zoho.eu/portal/datingsuppport/")!)
+                            }
+                        }
                         Spacer()
                     }.padding(.horizontal, 36)
                 }

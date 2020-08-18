@@ -125,6 +125,12 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
                 return
             }
             
+            if !Common.userNameValid(name: self.viewModel.username) {
+                self.viewModel.hasErrorMessage = true
+                self.viewModel.errorMessage = "Username must be a name only"
+                return
+            }
+            
             self.isShowing = true
 
             self.viewModel.submit(result: { result in

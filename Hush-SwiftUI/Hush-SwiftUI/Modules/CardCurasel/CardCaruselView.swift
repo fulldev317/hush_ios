@@ -125,8 +125,13 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
            self.translation = .zero
 
            withAnimation(.default) {
-               self.cardIndex += 1
-               self.overlay_opacity = 0.0
+                let index = self.getLastIndex(self.cardIndex) - 1
+                let user_index = (2 * self.cardIndex - index + 3) % self.viewModel.discoveries.count
+                let user = self.viewModel.discoveries[user_index]
+                self.viewModel.userLike(userID: user.id ?? "1", like: "0")
+
+                self.cardIndex += 1
+                self.overlay_opacity = 0.0
            }
        }
     }
