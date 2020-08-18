@@ -17,7 +17,28 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     var settingsViewModel = DiscoveriesSettingsViewModel()
     
     init() {
+       
+    }
     
+    func setSettingsModel() {
+        let user: User = Common.userInfo()
+               
+        switch Int(user.gender ?? "1") {
+        case 1:
+           settingsViewModel.gender = Gender.male
+           break
+        case 2:
+           settingsViewModel.gender = Gender.female
+           break
+        case 3:
+           settingsViewModel.gender = Gender.lesbian
+           break
+        case 4:
+           settingsViewModel.gender = Gender.gay
+           break
+        default:
+           settingsViewModel.gender = Gender.male
+        }
     }
     
     func discovery(_ i: Int, _ j: Int) -> Discover {
@@ -47,13 +68,14 @@ class DiscoveryViewModel: DiscoveryViewModeled {
 
     }
         
-    func loadDiscover(result: @escaping (Bool) -> Void) {
+    func loadDiscover(page: Int, result: @escaping (Bool) -> Void) {
        
         self.isShowingIndicator = true
-        AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
+        AuthAPI.shared.meet(uid2: String(page), uid3: "0") { (userList, error) in
             self.isShowingIndicator = false
-            self.discoveries.removeAll()
-
+            if page == 0 {
+                self.discoveries.removeAll()
+            }
             if error == nil {
                 if let userList = userList {
                     for user in userList {

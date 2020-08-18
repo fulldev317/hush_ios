@@ -160,6 +160,7 @@
 		59645F6E24D064BF003D1167 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59645F6D24D064BF003D1167 /* ChatMessage.swift */; };
 		596B6CAF24E29916003E3473 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596B6CAE24E29916003E3473 /* StoreKit.framework */; };
 		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
+		597E15A924EBCF5000C44CCA /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E15A824EBCF5000C44CCA /* Game.swift */; };
 		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
 		59B7AF1024D8B1ED00F1CA6A /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B7AF0F24D8B1ED00F1CA6A /* LoginResponse.swift */; };
@@ -376,6 +377,7 @@
 		59645F6D24D064BF003D1167 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		596B6CAE24E29916003E3473 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
+		597E15A824EBCF5000C44CCA /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
 		59B7AF0F24D8B1ED00F1CA6A /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 				73D44AF3247FAE2700FB01BA /* Notifications.swift */,
 				73E7C157247FC0460077F5E1 /* Spotlight.swift */,
 				5375541324A4EE2E009A13AE /* Discover.swift */,
+				597E15A824EBCF5000C44CCA /* Game.swift */,
 				59645F6924D0134E003D1167 /* ChatMember.swift */,
 				59645F6D24D064BF003D1167 /* ChatMessage.swift */,
 				5956EBFA24D45E10007443C0 /* Language.swift */,
@@ -1448,6 +1451,7 @@
 				15E8CCDE2431E35F00A92595 /* AuthAppScreens.swift in Sources */,
 				1546B442243340BD00180D77 /* LoginViewModeled.swift in Sources */,
 				15D53C87243C909600D62B26 /* UpgradeView.swift in Sources */,
+				597E15A924EBCF5000C44CCA /* Game.swift in Sources */,
 				89442128246578C90025D843 /* DoubleSlider.swift in Sources */,
 				155E3008243B282B001D886D /* RoundedCorners.swift in Sources */,
 				73D44AF6247FB3DB00FB01BA /* APIError.swift in Sources */,

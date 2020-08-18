@@ -91,6 +91,15 @@ class Common: NSObject {
         return premium ?? false
     }
     
+    static func loadPhotoBooth() -> Bool {
+        let photobooth: Bool? = UserDefaults.standard.bool(forKey: "photobooth")
+        return photobooth ?? false
+    }
+    
+    static func setLoadPhotoBooth(photobooth: Bool) {
+        UserDefaults.standard.set(photobooth, forKey: "photobooth")
+    }
+    
     static func handleErrorMessage(_ message: String) -> String {
         var errMsg = ""
         if message.contains("Reg city") {
@@ -106,7 +115,7 @@ class Common: NSObject {
     
     static func getGenderIndexValue(_ gender: String) -> String {
         var nGender = "1"
-        switch gender {
+        switch gender.lowercased() {
         case Gender.male.rawValue:
             nGender = "1"
             break

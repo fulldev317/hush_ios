@@ -11,7 +11,7 @@ import SwiftUI
 
 protocol CardCuraselViewModeled: ObservableObject {
     
-    var discoveries: [Discover] { get set }
+    var games: [Game] { get set }
     var message: String { get set }
     var isBlock: Bool { get set }
     var isShowingIndicator: Bool { get set }
@@ -19,7 +19,7 @@ protocol CardCuraselViewModeled: ObservableObject {
     var name: String { get set }
     var age: String { get set }
     var address: String { get set }
-    func loadDiscover(result: @escaping (Bool) -> Void)
+    func loadGame(result: @escaping (Bool) -> Void)
     func updateMessage()
     func userLike(userID: String, like: String) 
 

@@ -26,12 +26,14 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @State var currentViewIndex: Int = 0
     @State private var selectedIndex: Int = 0
     @State private var selectedUser: User = User()
-
+    @State private var page_num: Int = 0
+    
     init(viewModel: ViewModel, showingSetting: Bool) {
         self.viewModel = viewModel
+        self.viewModel.setSettingsModel()
         
         if !showingSetting {
-            self.viewModel.loadDiscover { (result) in
+            self.viewModel.loadDiscover(page: page_num) { (result) in
             }
         }
       
@@ -49,7 +51,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             }
                             
                             self.currentViewIndex = 0
-                            self.viewModel.loadDiscover { result in
+                            self.viewModel.loadDiscover(page: self.page_num) { result in
 
                             }
                         }) {

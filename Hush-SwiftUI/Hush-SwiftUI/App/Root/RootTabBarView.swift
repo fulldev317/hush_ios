@@ -60,15 +60,25 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                         }
                     }
                     
-                    NavigationView {
-                        if self.currentTab == .carusel {
+                    if self.currentTab == .carusel {
+                        NavigationView {
                             CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
-                        } else {
-                            VStack {
-                                Spacer()
-                            }
+                        }.zIndex(self.currentTab == .carusel ? 1 : 0)
+                    } else {
+                        ZStack {
+                            Spacer()
                         }
-                    }.zIndex(self.currentTab == .carusel ? 1 : 0)
+                    }
+                    
+//                    NavigationView {
+//                        if self.currentTab == .carusel {
+//                            CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
+//                        } else {
+//                            VStack {
+//                                Spacer()
+//                            }
+//                        }
+//                    }.zIndex(self.currentTab == .carusel ? 1 : 0)
                     
                     if self.currentTab == .chats {
                         self.messages().zIndex(self.currentTab == .chats ? 1 : 0)

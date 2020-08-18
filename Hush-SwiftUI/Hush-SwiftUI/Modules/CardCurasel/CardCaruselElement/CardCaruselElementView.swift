@@ -12,7 +12,7 @@ import Purchases
 
 struct CardCaruselElementView: View {
     let rotation: Angle
-    let user: Discover
+    let user: Game
     @Binding var showIndicator: Bool
     var onRefresh: (() -> Void)?
     
