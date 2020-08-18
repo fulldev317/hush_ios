@@ -22,6 +22,8 @@ class UserProfileViewModel: UserProfileViewModeled {
     @Published var mode: UserProfileMode = .photo
     @Published var userId: String = ""
     @Published var name: String = ""
+    @Published var online: String = ""
+    @Published var verfied: String = ""
     @Published var profilePhoto: String = ""
     @Published var address: String = ""
     @Published var bio: String = ""
@@ -48,6 +50,8 @@ class UserProfileViewModel: UserProfileViewModeled {
             userInfo = user!
         }
         userId = userInfo.id ?? "1"
+        verfied = userInfo.verified ?? "0"
+        online = userInfo.online ?? "0"
         name = userInfo.name ?? "Jane"
         address = userInfo.address ?? "London, UK"
         bio = userInfo.bio ?? "I'm Jain, is 20 years old."
@@ -175,7 +179,9 @@ class UserProfileViewModel: UserProfileViewModeled {
                     result(reason_list)
                 }
             } else {
-                result(["1","2","3"])
+                result(["User is Harassing me or abusive",
+                        "User is Selling services",
+                        "User is spamming me"])
             }
         }
     }

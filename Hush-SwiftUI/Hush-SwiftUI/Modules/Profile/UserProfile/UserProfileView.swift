@@ -158,8 +158,12 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                     Spacer()
                     
                     VStack(spacing: 14) {
-                        Circle().fill(Color(0x6FCF97)).square(22)
-                        Image("verified_user_badge")
+                        if self.viewModel.online == "1" {
+                            Circle().fill(Color(0x6FCF97)).square(22)
+                        }
+                        if self.viewModel.verfied == "1" {
+                            Image("verified_user_badge")
+                        }
                     }.padding(.vertical)
                     .padding(.trailing, 23)
                     .offset(x: 0, y: 4)
@@ -184,19 +188,19 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         }
                         .itemSpacing(30)
                         .padding(0)
-                        .overlay(Button(action: {
-                            self.shouldReport.toggle()
-                            self.reportSheet = .main
-                        }) {
-                            Image("3dot")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 16)
-                                .padding(.horizontal, 23)
-                        }, alignment: .topTrailing)
+                        
                     }
                     
-                    self.overlay
+                    self.overlay.overlay(Button(action: {
+                        self.shouldReport.toggle()
+                        self.reportSheet = .main
+                    }) {
+                        Image("3dot")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, 23)
+                    }, alignment: .topTrailing)
                     
                     VStack(spacing: 0) {
                         Spacer()

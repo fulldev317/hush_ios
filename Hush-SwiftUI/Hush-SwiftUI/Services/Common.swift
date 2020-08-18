@@ -192,6 +192,10 @@ class Common: NSObject {
         if (names.count > 1) {
             return false
         }
+        if Int(name) != nil {
+            return false
+        }
+        
         var num_cnt = 0
         for i in 0..<name.count {
             let c: Character = name[name.index(name.startIndex, offsetBy: i)]
