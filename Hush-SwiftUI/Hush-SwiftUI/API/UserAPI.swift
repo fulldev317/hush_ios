@@ -794,9 +794,9 @@ class UserAPI: BaseAPI {
     func update_gender(gender: String, completion: @escaping ( _ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!
-        let query = userId + "," + gender;
         let parameters: Parameters = ["action": "updateGender",
-                                      "query": query]
+                                      "uid": userId,
+                                      "s_gender": gender]
         
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in

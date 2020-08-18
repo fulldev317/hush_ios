@@ -20,9 +20,13 @@ protocol DiscoveryViewModeled: ObservableObject {
     
     //var discoveries: [(name: String, age: Int, image: String, liked: Bool)] { get set }
     var discoveries: [Discover] { get set }
+    var matches: [Discover] { get set }
+    var visitedmes: [Discover] { get set }
+    var mylikes: [Discover] { get set }
+    var likemes: [Discover] { get set }
     var settingsViewModel: Settings { get set }
     var isShowingIndicator: Bool { get set }
-
+    var page_num: Int { get set }
     func discovery(_ i: Int, _ j: Int) -> Discover
     func like(_ i: Int, _ j: Int)
     func loadDiscover(page: Int, result: @escaping (Bool) -> Void)

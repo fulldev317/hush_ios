@@ -26,14 +26,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @State var currentViewIndex: Int = 0
     @State private var selectedIndex: Int = 0
     @State private var selectedUser: User = User()
-    @State private var page_num: Int = 0
     
     init(viewModel: ViewModel, showingSetting: Bool) {
         self.viewModel = viewModel
         self.viewModel.setSettingsModel()
         
         if !showingSetting {
-            self.viewModel.loadDiscover(page: page_num) { (result) in
+            self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
             }
         }
       
@@ -51,7 +50,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                             }
                             
                             self.currentViewIndex = 0
-                            self.viewModel.loadDiscover(page: self.page_num) { result in
+                            self.viewModel.loadDiscover(page: self.viewModel.page_num) { result in
 
                             }
                         }) {
@@ -169,32 +168,91 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 Spacer()
             }
             
-            if viewModel.discoveries.count > 0 {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: -20) {
-                        ForEach(0...(viewModel.discoveries.count / 2), id: \.self) {
-                            self.row(at: $0)
-                        }
-                    }.padding(.top, 10)
-                }.padding(.top, TAB_HEIGHT + 10)
-                .background(
-                    NavigationLink(
-                        destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)),
-                        isActive: $showUserProfile,
-                        label: EmptyView.init
-                    )
-                )
-                HushIndicator(showing: self.viewModel.isShowingIndicator)
-
-            } else {
-                VStack {
-                    
-                    Spacer()
-                    HushIndicator(showing: self.viewModel.isShowingIndicator)
-                    Spacer()
-
-                }
+            if currentViewIndex == 0 && viewModel.discoveries.count > 0 {
+                List {
+                    ForEach(0...(viewModel.discoveries.count / 2), id: \.self) { index in
+                        self.row(at: index).onAppear {
+                            if index == (self.viewModel.discoveries.count / 2) {
+                                if (self.viewModel.discoveries.count > 8) {
+                                    self.viewModel.page_num += 1
+                                    self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
+                                    }
+                                }
+                            }
+                        }.background(Color.black)
+                        .listRowBackground(Color.black)
+                    }
+                }.listStyle(DefaultListStyle())
+                .padding(.top, TAB_HEIGHT + 10)
+                    .padding(.leading, -15)
+                .background(Color.clear)
+                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
             }
+            
+            if currentViewIndex == 1 && viewModel.matches.count > 0 {
+                List {
+                    ForEach(0...(viewModel.matches.count / 2), id: \.self) { index in
+                        self.row(at: index)
+                        .background(Color.black)
+                        .listRowBackground(Color.black)
+                    }
+                }.listStyle(DefaultListStyle())
+                .padding(.top, TAB_HEIGHT + 10)
+                    .padding(.leading, -15)
+                .background(Color.clear)
+                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+            }
+            
+            if currentViewIndex == 2 && viewModel.visitedmes.count > 0 {
+                List {
+                    ForEach(0...(viewModel.visitedmes.count / 2), id: \.self) { index in
+                        self.row(at: index)
+                        .background(Color.black)
+                        .listRowBackground(Color.black)
+                    }
+                }.listStyle(DefaultListStyle())
+                .padding(.top, TAB_HEIGHT + 10)
+                    .padding(.leading, -15)
+                .background(Color.clear)
+                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+            }
+            
+            if currentViewIndex == 3 && viewModel.mylikes.count > 0 {
+                List {
+                    ForEach(0...(viewModel.mylikes.count / 2), id: \.self) { index in
+                        self.row(at: index)
+                        .background(Color.black)
+                        .listRowBackground(Color.black)
+                    }
+                }.listStyle(DefaultListStyle())
+                .padding(.top, TAB_HEIGHT + 10)
+                    .padding(.leading, -15)
+                .background(Color.clear)
+                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+            }
+            
+            if currentViewIndex == 5 && viewModel.likemes.count > 0 {
+                List {
+                    ForEach(0...(viewModel.likemes.count / 2), id: \.self) { index in
+                        self.row(at: index)
+                        .background(Color.black)
+                        .listRowBackground(Color.black)
+                    }
+                }.listStyle(DefaultListStyle())
+                .padding(.top, TAB_HEIGHT + 10)
+                    .padding(.leading, -15)
+                .background(Color.clear)
+                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+            }
+            
+            NavigationLink(
+                destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser)),
+                isActive: $showUserProfile,
+                label: EmptyView.init
+            )
+            
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
+            
         }
     }
      

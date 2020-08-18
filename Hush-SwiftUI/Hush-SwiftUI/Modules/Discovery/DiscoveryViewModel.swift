@@ -9,11 +9,18 @@
 import SwiftUI
 import Combine
 
-class DiscoveryViewModel: DiscoveryViewModeled {
+class DiscoveryViewModel: DiscoveryViewModeled {    
 
     // MARK: - Properties
     @Published var discoveries: [Discover] = []
+    @Published var matches: [Discover] = []
+    @Published var visitedmes: [Discover] = []
+    @Published var mylikes: [Discover] = []
+    @Published var likemes: [Discover] = []
+
     @Published var isShowingIndicator: Bool = false
+    var page_num = 0
+    
     var settingsViewModel = DiscoveriesSettingsViewModel()
     
     init() {
@@ -98,14 +105,14 @@ class DiscoveryViewModel: DiscoveryViewModeled {
        
         MatchesAPI.shared.matches( completion: { (matchList, error) in
             self.isShowingIndicator = false
-            self.discoveries.removeAll()
+            self.matches.removeAll()
            
             if error == nil {
                 if let matchList = matchList {
                     for match in matchList {
                         if let match = match {
                             let discover: Discover = Discover(match: match)
-                            self.discoveries.append(discover)
+                            self.matches.append(discover)
                         }
                    }
                }
@@ -120,14 +127,14 @@ class DiscoveryViewModel: DiscoveryViewModeled {
         self.isShowingIndicator = true
         MatchesAPI.shared.my_likes(completion: { (matchList, error) in
             self.isShowingIndicator = false
-            self.discoveries.removeAll()
+            self.mylikes.removeAll()
            
             if error == nil {
                 if let matchList = matchList {
                     for match in matchList {
                         if let match = match {
                         let discover: Discover = Discover(match: match)
-                            self.discoveries.append(discover)
+                            self.mylikes.append(discover)
                         }
                    }
                }
@@ -142,14 +149,14 @@ class DiscoveryViewModel: DiscoveryViewModeled {
         self.isShowingIndicator = true
         MatchesAPI.shared.visited_me(completion: { (matchList, error) in
             self.isShowingIndicator = false
-            self.discoveries.removeAll()
+            self.visitedmes.removeAll()
            
             if error == nil {
                 if let matchList = matchList {
                     for match in matchList {
                         if let match = match {
                         let discover: Discover = Discover(match: match)
-                            self.discoveries.append(discover)
+                            self.visitedmes.append(discover)
                         }
                    }
                }
@@ -164,14 +171,14 @@ class DiscoveryViewModel: DiscoveryViewModeled {
         self.isShowingIndicator = true
         MatchesAPI.shared.likes_me(completion: { (matchList, error) in
             self.isShowingIndicator = false
-            self.discoveries.removeAll()
+            self.likemes.removeAll()
            
             if error == nil {
                 if let matchList = matchList {
                     for match in matchList {
                         if let match = match {
                         let discover: Discover = Discover(match: match)
-                            self.discoveries.append(discover)
+                            self.likemes.append(discover)
                         }
                    }
                }
