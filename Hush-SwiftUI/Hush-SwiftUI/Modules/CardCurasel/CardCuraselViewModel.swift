@@ -20,11 +20,13 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     @Published var name: String = "Alex"
     @Published var age: String = "32"
     @Published var address: String = "London, UK"
-    @Published var discoveries: [Discover] = []
+    @Published var games: [Game] = []
     @Published var isBlock: Bool = false
     
     init() {
-
+        self.loadGame { (result) in
+            
+        }
     }
     
     func userLike(userID: String, like: String) {
@@ -35,21 +37,20 @@ class CardCuraselViewModel: CardCuraselViewModeled {
         }
     }
     
-    func loadDiscover(result: @escaping (Bool) -> Void) {
+    func loadGame(result: @escaping (Bool) -> Void) {
        
         self.isShowingIndicator = true
-        AuthAPI.shared.meet(uid2: "0", uid3: "0") { (userList, error) in
+        AuthAPI.shared.game { (userList, error) in
             self.isShowingIndicator = false
-            self.discoveries.removeAll()
-            //self.photos.removeAll()
+            self.games.removeAll()
             
             if error == nil {
                if let userList = userList {
                     for user in userList {
-                        if self.discoveries.count == 8 {
-                            break;
-                        }
-                        self.discoveries.append(user!)
+//                        if self.games.count == 8 {
+//                            break;
+//                        }
+                        self.games.append(user!)
 
                     }
                }

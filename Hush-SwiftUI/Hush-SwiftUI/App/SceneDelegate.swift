@@ -210,6 +210,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         Common.setPremium(false)
                     }
                 }
+                
+                Common.setLoadPhotoBooth(photobooth: false)
             }
         }
     }

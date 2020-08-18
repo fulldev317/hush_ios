@@ -25,10 +25,10 @@ protocol DiscoveryViewModeled: ObservableObject {
 
     func discovery(_ i: Int, _ j: Int) -> Discover
     func like(_ i: Int, _ j: Int)
-    func loadDiscover(result: @escaping (Bool) -> Void)
+    func loadDiscover(page: Int, result: @escaping (Bool) -> Void)
     func loadMatches(result: @escaping (Bool) -> Void)
     func loadMyLikes(result: @escaping (Bool) -> Void)
     func loadVisitedMe(result: @escaping (Bool) -> Void)
     func loadLikesMe(result: @escaping (Bool) -> Void)
-
+    func setSettingsModel()
 }

@@ -60,176 +60,18 @@ class MyProfileViewModel: MyProfileViewModeled {
     private var cancellable3: AnyCancellable?
     
     init() {
-             
         let user = Common.userInfo()
-
-        initPhotoData(user: user)
-
         if let userId = user.id {
-            updatePremium(userId: userId)
-        }
-        
-        basicsViewModel.username = user.name ?? ""
-        
-       
-        if let verified = user.verified {
-            if verified == "1" {
-                basicsViewModel.isVerified = "Yes"
-            } else {
-                basicsViewModel.isVerified = "No"
+            self.isShowingIndicator = true
+            AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
+                self.isShowingIndicator = false
+                if error == nil {
+                     if let user = user {
+                        Common.setUserInfo(user)
+                        self.setPageData(user: user)
+                     }
+                 }
             }
-        } else {
-            basicsViewModel.isVerified = "No"
-        }
-
-        basicsViewModel.age = user.age ?? ""
-        basicsViewModel.bio = user.bio ?? ""
-        basicsViewModel.language = user.language ?? ""
-        basicsViewModel.matches = String(user.totalMatches ?? 0)
-        basicsViewModel.visitedMe = user.totalVisits ?? "0"
-        basicsViewModel.likesMe = user.totalFans ?? "0"
-        basicsViewModel.myLikes = user.totalMyLikes ?? "0"
-        basicsViewModel.noti_matches = user.notifications?.matchMe.inapp == "1"
-        basicsViewModel.noti_likeMe = user.notifications?.fan.inapp == "1"
-        basicsViewModel.noti_messages = user.notifications?.message.inapp == "1"
-        basicsViewModel.noti_nearby = user.notifications?.nearMe.inapp == "1"
-        
-        cancellable0 = basicsViewModel.$noti_matches.sink(receiveCompletion: { (completion) in
-        }) { (value) in
-            if (value != self.basicsViewModel.noti_matches) {
-                var user = Common.userInfo()
-                user.notifications?.matchMe.inapp = value ? "1" : "0"
-                Common.setUserInfo(user)
-                self.updateNotification(notification_type: "match_me", toogled: value)
-            }
-        }
-        
-        cancellable1 = basicsViewModel.$noti_likeMe.sink(receiveCompletion: { (completion) in
-        }) { (value) in
-            if (value != self.basicsViewModel.noti_likeMe) {
-                var user = Common.userInfo()
-                user.notifications?.fan.inapp = value ? "1" : "0"
-                Common.setUserInfo(user)
-                self.updateNotification(notification_type: "fan", toogled: value)
-            }
-        }
-        
-        cancellable2 = basicsViewModel.$noti_messages.sink(receiveCompletion: { (completion) in
-        }) { (value) in
-            if (value != self.basicsViewModel.noti_messages) {
-                var user = Common.userInfo()
-                user.notifications?.message.inapp = value ? "1" : "0"
-                Common.setUserInfo(user)
-                self.updateNotification(notification_type: "message", toogled: value)
-            }
-        }
-        
-        cancellable3 = basicsViewModel.$noti_nearby.sink(receiveCompletion: { (completion) in
-        }) { (value) in
-            if (value != self.basicsViewModel.noti_nearby) {
-                var user = Common.userInfo()
-                user.notifications?.message.inapp = value ? "1" : "0"
-                Common.setUserInfo(user)
-                self.updateNotification(notification_type: "near_me", toogled: value)
-            }
-        }
-        
-        switch Int(user.gender ?? "1") {
-        case 1:
-            basicsViewModel.gender = Gender.male
-            break
-        case 2:
-            basicsViewModel.gender = Gender.female
-            break
-        case 3:
-            basicsViewModel.gender = Gender.lesbian
-            break
-        case 4:
-            basicsViewModel.gender = Gender.gay
-            break
-        default:
-            basicsViewModel.gender = Gender.male
-        }
-        
-        switch Int(user.looking ?? "1") {
-        case 1:
-            basicsViewModel.looking = Gender.male
-            break
-        case 2:
-            basicsViewModel.looking = Gender.female
-            break
-        case 3:
-            basicsViewModel.looking = Gender.lesbian
-            break
-        case 4:
-            basicsViewModel.looking = Gender.gay
-            break
-        default:
-            basicsViewModel.looking = Gender.male
-        }
-        
-        var s_question: Question?
-        var live_question: Question?
-        if let questions = user.questions {
-            for question in questions {
-                if question.id == "2" {
-                    s_question = question
-                }
-                if question.id == "7" {
-                    live_question = question
-                }
-            }
-        }
-        
-        if (s_question != nil) {
-            if s_question?.userAnswer == "" {
-                basicsViewModel.sexuality = Sex.gay
-            } else {
-                switch Int(s_question?.userAnswer ?? "1") {
-                case 1:
-                    basicsViewModel.sexuality = Sex.gay
-                    break
-                case 2:
-                    basicsViewModel.sexuality = Sex.open
-                    break
-                case 3:
-                    basicsViewModel.sexuality = Sex.straight
-                    break
-                case 4:
-                    basicsViewModel.sexuality = Sex.bisexual
-                    break
-                default:
-                    basicsViewModel.sexuality = Sex.gay
-                }
-                
-            }
-        } else {
-            basicsViewModel.sexuality = Sex.gay
-        }
-        
-        if (live_question != nil) {
-            if live_question?.userAnswer == "" {
-                basicsViewModel.living = Living.alone
-            } else {
-                switch Int(live_question?.userAnswer ?? "1") {
-                case 1:
-                    basicsViewModel.living = Living.alone
-                    break
-                case 2:
-                    basicsViewModel.living = Living.parent
-                    break
-                case 3:
-                    basicsViewModel.living = Living.partner
-                    break
-                case 4:
-                    basicsViewModel.living = Living.student
-                    break
-                default:
-                    basicsViewModel.living = Living.alone
-                }
-            }
-        } else {
-            basicsViewModel.living = Living.alone
         }
 //
 //        if let looking = user.looking {
@@ -257,24 +99,183 @@ class MyProfileViewModel: MyProfileViewModeled {
 //        }
     }
     
-    func updatePremium(userId: String) {
-        AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
-            if error == nil {
-                if let user = user {
-                    if let premium = user.premium {
-                        if premium == "1" {
-                            Common.setPremium(true)
-                            self.premium = "Yes"
-                        } else {
-                            Common.setPremium(false)
-                            self.premium = "Activate"
-                        }
-                    }
-                }
-            }
-        }
+    func setPageData(user: User) {
+
+         initPhotoData(user: user)
+
+         basicsViewModel.username = user.name ?? ""
+         
+        
+         if let verified = user.verified {
+             if verified == "1" {
+                 basicsViewModel.isVerified = "Yes"
+             } else {
+                 basicsViewModel.isVerified = "No"
+             }
+         } else {
+             basicsViewModel.isVerified = "No"
+         }
+
+         basicsViewModel.age = user.age ?? ""
+         basicsViewModel.bio = user.bio ?? ""
+         basicsViewModel.language = user.language ?? ""
+         basicsViewModel.matches = String(user.totalMatches ?? 0)
+         basicsViewModel.visitedMe = user.totalVisits ?? "0"
+         basicsViewModel.likesMe = user.totalFans ?? "0"
+         basicsViewModel.myLikes = user.totalMyLikes ?? "0"
+         basicsViewModel.noti_matches = user.notifications?.matchMe.inapp == "1"
+         basicsViewModel.noti_likeMe = user.notifications?.fan.inapp == "1"
+         basicsViewModel.noti_messages = user.notifications?.message.inapp == "1"
+         basicsViewModel.noti_nearby = user.notifications?.nearMe.inapp == "1"
+         
+         cancellable0 = basicsViewModel.$noti_matches.sink(receiveCompletion: { (completion) in
+         }) { (value) in
+             if (value != self.basicsViewModel.noti_matches) {
+                 var user = Common.userInfo()
+                 user.notifications?.matchMe.inapp = value ? "1" : "0"
+                 Common.setUserInfo(user)
+                 self.updateNotification(notification_type: "match_me", toogled: value)
+             }
+         }
+         
+         cancellable1 = basicsViewModel.$noti_likeMe.sink(receiveCompletion: { (completion) in
+         }) { (value) in
+             if (value != self.basicsViewModel.noti_likeMe) {
+                 var user = Common.userInfo()
+                 user.notifications?.fan.inapp = value ? "1" : "0"
+                 Common.setUserInfo(user)
+                 self.updateNotification(notification_type: "fan", toogled: value)
+             }
+         }
+         
+         cancellable2 = basicsViewModel.$noti_messages.sink(receiveCompletion: { (completion) in
+         }) { (value) in
+             if (value != self.basicsViewModel.noti_messages) {
+                 var user = Common.userInfo()
+                 user.notifications?.message.inapp = value ? "1" : "0"
+                 Common.setUserInfo(user)
+                 self.updateNotification(notification_type: "message", toogled: value)
+             }
+         }
+         
+         cancellable3 = basicsViewModel.$noti_nearby.sink(receiveCompletion: { (completion) in
+         }) { (value) in
+             if (value != self.basicsViewModel.noti_nearby) {
+                 var user = Common.userInfo()
+                 user.notifications?.message.inapp = value ? "1" : "0"
+                 Common.setUserInfo(user)
+                 self.updateNotification(notification_type: "near_me", toogled: value)
+             }
+         }
+         
+         switch Int(user.gender ?? "1") {
+         case 1:
+             basicsViewModel.gender = Gender.male
+             break
+         case 2:
+             basicsViewModel.gender = Gender.female
+             break
+         case 3:
+             basicsViewModel.gender = Gender.lesbian
+             break
+         case 4:
+             basicsViewModel.gender = Gender.gay
+             break
+         default:
+             basicsViewModel.gender = Gender.male
+         }
+         
+         switch Int(user.looking ?? "1") {
+         case 1:
+             basicsViewModel.looking = Gender.male
+             break
+         case 2:
+             basicsViewModel.looking = Gender.female
+             break
+         case 3:
+             basicsViewModel.looking = Gender.lesbian
+             break
+         case 4:
+             basicsViewModel.looking = Gender.gay
+             break
+         default:
+             basicsViewModel.looking = Gender.male
+         }
+         
+         var s_question: Question?
+         var live_question: Question?
+         if let questions = user.questions {
+             for question in questions {
+                 if question.id == "2" {
+                     s_question = question
+                 }
+                 if question.id == "7" {
+                     live_question = question
+                 }
+             }
+         }
+         
+         if (s_question != nil) {
+             if s_question?.userAnswer == "" {
+                 basicsViewModel.sexuality = Sex.gay
+             } else {
+                 switch Int(s_question?.userAnswer ?? "1") {
+                 case 1:
+                     basicsViewModel.sexuality = Sex.gay
+                     break
+                 case 2:
+                     basicsViewModel.sexuality = Sex.open
+                     break
+                 case 3:
+                     basicsViewModel.sexuality = Sex.straight
+                     break
+                 case 4:
+                     basicsViewModel.sexuality = Sex.bisexual
+                     break
+                 default:
+                     basicsViewModel.sexuality = Sex.gay
+                 }
+                 
+             }
+         } else {
+             basicsViewModel.sexuality = Sex.gay
+         }
+         
+         if (live_question != nil) {
+             if live_question?.userAnswer == "" {
+                 basicsViewModel.living = Living.alone
+             } else {
+                 switch Int(live_question?.userAnswer ?? "1") {
+                 case 1:
+                     basicsViewModel.living = Living.alone
+                     break
+                 case 2:
+                     basicsViewModel.living = Living.parent
+                     break
+                 case 3:
+                     basicsViewModel.living = Living.partner
+                     break
+                 case 4:
+                     basicsViewModel.living = Living.student
+                     break
+                 default:
+                     basicsViewModel.living = Living.alone
+                 }
+             }
+         } else {
+             basicsViewModel.living = Living.alone
+         }
+         
+         if let premium = user.premium {
+             if premium == "1" {
+                 Common.setPremium(true)
+                 self.premium = "Yes"
+             } else {
+                 Common.setPremium(false)
+                 self.premium = "Activate"
+             }
+         }
     }
-    
     func updateName(name: String) {
         UserAPI.shared.update_name(name: name) { (error) in
             if error == nil {
@@ -414,6 +415,7 @@ class MyProfileViewModel: MyProfileViewModeled {
     }
     
     func logout(result: @escaping (Bool, String) -> Void) {
+        Common.setPremium(false)
         AuthAPI.shared.logout { (error) in
             if let error = error {
                 result(false, error.message)
@@ -582,10 +584,10 @@ extension MyProfileViewModel {
 
 class BioViewMode: ObservableObject {
     
-    @Published var username: String = "username"
+    @Published var username: String = ""
     @Published var isPremium = "Yes"
     @Published var isVerified = "No"
-    @Published var age = "21"
+    @Published var age = ""
     @Published var gender = Gender.male
     @Published var looking = Gender.female
     @Published var sexuality = Sex.gay

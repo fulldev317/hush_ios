@@ -31,10 +31,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-      
-        self.viewModel.loadDiscover { (result) in
-            
-        }
     }
 
     private func movePercent(_ translation: CGSize) -> CGFloat {
@@ -60,9 +56,10 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             } else {
 
                 if percent > 1 {
-                    self.animateLike()
+                    self.animateLike(like: true)
                 } else if percent < -1 {
-                    self.animateClose()
+                    self.animateLike(like: false)
+                    //self.animateClose()
                 }
             }
         }.updating($opacity) { value, opacity, _ in
@@ -92,23 +89,47 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         return result
     }
     
-    private func animateLike() {
+    private func animateLike(like: Bool) {
 
-        withAnimation(.default) {
-            let size:CGSize = self.translation
-            self.translation = CGSize(width: size.width + SCREEN_WIDTH, height: size.height + 100)
-            self.overlay_opacity = 1.0
+        if (like) {
+            withAnimation(.default) {
+                let size:CGSize = self.translation
+                self.translation = CGSize(width: size.width + SCREEN_WIDTH, height: size.height + 100)
+                self.overlay_opacity = 1.0
+            }
+        } else {
+            withAnimation(.default) {
+                let size:CGSize = self.translation
+                self.translation = CGSize(width: size.width - SCREEN_WIDTH, height: size.height + 100)
+                self.overlay_opacity = 1.0
+            }
         }
         
+        let index = self.getLastIndex(self.cardIndex) - 1
+        let user_index = (2 * self.cardIndex - index + 3) % self.viewModel.games.count
+        let user = self.viewModel.games[user_index]
+        self.viewModel.userLike(userID: user.id ?? "1", like: like ? "1" : "0")
+
+        var reload = false
+        if (self.cardIndex == self.viewModel.games.count - 1) {
+            self.viewModel.games.removeAll()
+            reload = true
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.translation = .zero
             withAnimation(.default) {
-                let index = self.getLastIndex(self.cardIndex) - 1
-                let user_index = (2 * self.cardIndex - index + 3) % self.viewModel.discoveries.count
-                let user = self.viewModel.discoveries[user_index]
-                self.viewModel.userLike(userID: user.id ?? "1", like: "1")
                 self.cardIndex += 1
-                self.overlay_opacity = 0.0               
+                self.overlay_opacity = 0.0
+                
+                if (reload == true) {
+                    self.viewModel.isShowingIndicator = true
+                    self.viewModel.loadGame { (result) in
+                        self.viewModel.isShowingIndicator = false
+                        if (result) {
+                            self.cardIndex = 0
+                        }
+                    }
+                }
             }
         }
     }
@@ -126,8 +147,8 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
 
            withAnimation(.default) {
                 let index = self.getLastIndex(self.cardIndex) - 1
-                let user_index = (2 * self.cardIndex - index + 3) % self.viewModel.discoveries.count
-                let user = self.viewModel.discoveries[user_index]
+                let user_index = (2 * self.cardIndex - index + 3) % self.viewModel.games.count
+                let user = self.viewModel.games[user_index]
                 self.viewModel.userLike(userID: user.id ?? "1", like: "0")
 
                 self.cardIndex += 1
@@ -152,8 +173,16 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 Spacer()
                     
                 ZStack {
-                    ForEach((cardIndex..<self.getLastIndex(cardIndex)), id: \.self) { index in
-                        self.caruselElement(index)
+                    if (viewModel.games.count > 0) {
+                        ForEach((cardIndex..<self.getLastIndex(cardIndex)), id: \.self) { index in
+                            self.caruselElement(index)
+                        }
+                    } else {
+//                        if (!self.viewModel.isShowingIndicator) {
+//                            Text("No More profiles to show")
+//                            .font(.medium(24))
+//                            .foregroundColor(.hOrange)
+//                        }
                     }
 
                 }.frame(width: SCREEN_WIDTH)
@@ -205,7 +234,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     }
     
     private func getLastIndex(_ index: Int) -> Int {
-        let retIndex = index + (viewModel.discoveries.count > 3 ? 4 : viewModel.discoveries.count)
+        let retIndex = index + (viewModel.games.count > 3 ? 4 : viewModel.games.count)
         return retIndex
    }
     
@@ -238,9 +267,9 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         CardCaruselElementView(rotation: .degrees(
                                 //index.isMultiple(of: 2) ? -5 : 5),
                                     self.getDegree(index)),
-                               user: viewModel.discoveries[(2 * self.cardIndex - index + 3) % viewModel.discoveries.count], showIndicator: $viewModel.isShowingIndicator)
+                               user: viewModel.games[(2 * self.cardIndex - index + 3) % viewModel.games.count], showIndicator: $viewModel.isShowingIndicator)
         {
-            self.viewModel.loadDiscover { (result) in
+            self.viewModel.loadGame { (result) in
                 
             }
         }
