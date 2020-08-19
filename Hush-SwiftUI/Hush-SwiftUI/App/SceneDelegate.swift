@@ -153,7 +153,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self.window?.rootViewController = UIHostingController(rootView:
                         NavigationView {
                             SplashView()
-                                .hostModalPresenter()
+                                //.hostModalPresenter()
                                 .edgesIgnoringSafeArea(.all)
                                 .withoutBar()
                         }

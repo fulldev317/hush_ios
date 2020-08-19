@@ -18,7 +18,6 @@ struct SplashView: View, AuthAppScreens {
         ZStack {
             VStack {
                 logo()
-                    .opacity(app.showSignupButtons ? 0.3 : 1)
                     .padding(.top, 55)
                 Spacer()
             }
@@ -27,21 +26,9 @@ struct SplashView: View, AuthAppScreens {
 
             }
             
-            VStack(spacing: 28) {
-                
-                Spacer()
-                
-               
-                
-            }.padding(.bottom, 20)
-            
-           
-            
             HushIndicator(showing: self.isShowing)
             
-        }.background(background(name: "back1"))
-        .withoutBar()
-
+        }.withoutBar().background(background(name: "back1"))
     }
 }
 
@@ -49,6 +36,6 @@ struct SplashView: View, AuthAppScreens {
 
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
-        SplashView()
+        SplashView().withoutBar()
     }
 }
