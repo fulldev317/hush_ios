@@ -101,7 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-        
+                      
         let isLoggedIn = UserDefault(.isLoggedIn, default: false)
         
         if (isLoggedIn.wrappedValue) {
