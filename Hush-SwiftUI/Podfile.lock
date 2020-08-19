@@ -16,6 +16,7 @@ PODS:
     - pop (~> 1.0)
   - pop (1.0.12)
   - Purchases (3.4.0)
+  - PushNotifications (3.0.4)
   - SDWebImage (5.8.3):
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - FLEX
   - Koloda
   - Purchases (= 3.4.0)
+  - PushNotifications
   - SDWebImageSwiftUI
   - SwiftUIPager (~> 1.4.0)
   - SwiftyJSON (from `https://github.com/tattn/SwiftyJSON.git`, branch `hotfix-xcode12`)
@@ -45,6 +47,7 @@ SPEC REPOS:
     - Koloda
     - pop
     - Purchases
+    - PushNotifications
     - SDWebImage
     - SDWebImageSwiftUI
     - SwiftUIPager
@@ -68,11 +71,12 @@ SPEC CHECKSUMS:
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   Purchases: b8cac232e403ca51541a425a65992b902cecc044
+  PushNotifications: 6e3d148e5e129af9d4a9279b288c934f9a7f9066
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SDWebImageSwiftUI: 43687ffe232ddd33fe0659498b7ca9884fdd6b35
   SwiftUIPager: 8c35b0120651962612046a211c2d2ffa291b4c3e
   SwiftyJSON: f0574c07d8ca1644050db687067209e3033a89a0
 
-PODFILE CHECKSUM: c3b7f9d0e8d272f3161453152cb6ba60b8aeba5d
+PODFILE CHECKSUM: 625bf86da3a571598d3456759d9f38231a767f46
 
 COCOAPODS: 1.9.3
