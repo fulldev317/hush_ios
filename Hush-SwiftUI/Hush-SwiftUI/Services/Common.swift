@@ -100,6 +100,62 @@ class Common: NSObject {
         UserDefaults.standard.set(photobooth, forKey: "photobooth")
     }
     
+    static func getLowerAge() -> Double {
+        if let user = _user {
+            if let sAge = user.sAge {
+                let ages:[String] = sAge.components(separatedBy: ",")
+                if (ages.count > 2) {
+                    let s_age = ages[0]
+                    var d_s_age = Double(s_age)!
+                    d_s_age = d_s_age - 18
+                    d_s_age = d_s_age / (99 - 18)
+                    
+                    if (d_s_age > 1) {
+                        d_s_age = 1
+                    }
+                    return d_s_age
+                }
+            }
+        }
+        return 0
+    }
+    
+    static func getUpperAge() -> Double {
+        if let user = _user {
+            if let sAge = user.sAge {
+                let ages:[String] = sAge.components(separatedBy: ",")
+                if (ages.count > 2) {
+                    let e_age = ages[1]
+                    var d_e_age = Double(e_age)!
+                    d_e_age = d_e_age - 18
+                    d_e_age = d_e_age / (99 - 18)
+                    
+                    if (d_e_age > 1) {
+                        d_e_age = 1
+                    }
+                    return d_e_age
+                }
+            }
+        }
+        return 0
+    }
+    
+    static func getDistance() -> Double {
+        if let user = _user {
+            if let sRadius = user.sRadius {
+                var d_radius = Double(sRadius)!
+                d_radius = d_radius / 1.6
+                d_radius = d_radius - 10
+                d_radius = d_radius / 80
+                if d_radius > 1 {
+                   d_radius = 1
+                }
+                return d_radius
+            }
+        }
+        return 0.5
+    }
+    
     static func handleErrorMessage(_ message: String) -> String {
         var errMsg = ""
         if message.contains("Reg city") {
