@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import Purchases
 import PushNotifications
+import BackgroundTasks
 
 let pushNotifications = PushNotifications.shared
 
@@ -32,9 +33,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // pusher notification
         pushNotifications.start(instanceId: "6db18817-a55f-4c38-bd3c-0fd827fa2888")
         pushNotifications.registerForRemoteNotifications()
-        try? pushNotifications.addDeviceInterest(interest: "hello")
+        //try? pushNotifications.addDeviceInterest(interest: "hello")
+        
+        let tokenProvider = BeamsTokenProvider(authURL: "https://www.hushdating.app/beam/auth") { () -> AuthData in
+            let sessionToken = "E9AF1A15E2F1369770BCCE93A8B8EEC46A41ABE2617E43DC17F5337603A239D8"
+            let headers = ["Authorization": "Bearer \(sessionToken)"] // Headers your auth endpoint needs
+            let queryParams: [String: String] = [:] // URL query params your auth endpoint needs
+            return AuthData(headers: headers, queryParams: queryParams)
+        }
+        
+        let deviceUUID: String = UIDevice.current.identifierForVendor!.uuidString
+
+        pushNotifications.setUserId("123456789", tokenProvider: tokenProvider, completion: { error in
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+            print("Successfully authenticated with Pusher Beams")
+        })
+//        do {
+//            let request = BGAppRefreshTaskRequest(identifier: "com.hinder.app")
+//            request.earliestBeginDate = Calendar.current.date(byAdding: .second, value: 5, to: Date())
+//            try BGTaskScheduler.shared.submit(request)
+//
+//            print("Submitted task request")
+//        } catch {
+//            print("Failed to submit BGTask")
+//        }
+        
+        //BGAppRefreshTask
         
         return true
+    }
+    
+    func handleAppRefresh(task: BGTaskScheduler) {
+        
     }
 
     // MARK: UISceneSession Lifecycle
@@ -43,9 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pushNotifications.registerDeviceToken(deviceToken)
     }
     
+
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        pushNotifications.handleNotification(userInfo: userInfo)
+//    }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        pushNotifications.handleNotification(userInfo: userInfo)
+        
     }
+    
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.

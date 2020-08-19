@@ -26,6 +26,7 @@ enum HushTabs: Int, CaseIterable, Identifiable {
 struct TabBarView<Content: View>: View {
     @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @Binding var selectedTab: HushTabs
+    @State var isChatUnread = false
     let content: Content
     
     init(selectedTab: Binding<HushTabs>, @ViewBuilder content: () -> Content) {
@@ -46,6 +47,8 @@ struct TabBarView<Content: View>: View {
                         tab.image
                             .renderingMode(.template)
                             .foregroundColor(tab == self.selectedTab ? .hOrange : Color(0x8E8786))
+                            .overlay(Circle().fill(Color.green).frame(width: 15, height: 15).opacity(tab == HushTabs.chats ? self.isChatUnread ? 1.0 : 0.0 : 0.0)
+                                ,alignment: .bottomTrailing)
                         Spacer()
                     }
                 }.offset(x: 0, y: 3)
