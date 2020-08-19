@@ -140,7 +140,6 @@
 		5370FFF2249A795D00ABB64C /* SignInWithFBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */; };
 		5375541424A4EE2F009A13AE /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375541324A4EE2E009A13AE /* Discover.swift */; };
 		53852894249D0C7F00804980 /* HushIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53852893249D0C7F00804980 /* HushIndicator.swift */; };
-		5928440924EAF6B0008A5B7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5928440824EAF6B0008A5B7A /* GoogleService-Info.plist */; };
 		5956EBFB24D45E10007443C0 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956EBFA24D45E10007443C0 /* Language.swift */; };
 		5956EBFD24D49A31007443C0 /* HushScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956EBFC24D49A31007443C0 /* HushScrollView.swift */; };
 		595C7E6024C9F2400094D7A0 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C7E5F24C9F2400094D7A0 /* Story.swift */; };
@@ -345,7 +344,6 @@
 		5370FFF1249A795D00ABB64C /* SignInWithFBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithFBView.swift; sourceTree = "<group>"; };
 		5375541324A4EE2E009A13AE /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		53852893249D0C7F00804980 /* HushIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushIndicator.swift; sourceTree = "<group>"; };
-		5928440824EAF6B0008A5B7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5956EBFA24D45E10007443C0 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		5956EBFC24D49A31007443C0 /* HushScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HushScrollView.swift; sourceTree = "<group>"; };
 		595C7E5F24C9F2400094D7A0 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
@@ -518,7 +516,6 @@
 				154B26A32431C28B00265C76 /* App */,
 				154B26A22431C27500265C76 /* Resources */,
 				154B26922431BF6600265C76 /* MainView.swift */,
-				5928440824EAF6B0008A5B7A /* GoogleService-Info.plist */,
 			);
 			path = "Hush-SwiftUI";
 			sourceTree = "<group>";
@@ -1190,7 +1187,6 @@
 				154B26982431BF6800265C76 /* Preview Assets.xcassets in Resources */,
 				157930872435B7A000EE428F /* editImageVc_mainFilterCell.xib in Resources */,
 				154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */,
-				5928440924EAF6B0008A5B7A /* GoogleService-Info.plist in Resources */,
 				154B26952431BF6800265C76 /* Assets.xcassets in Resources */,
 				15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */,
 				157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */,
