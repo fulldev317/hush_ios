@@ -9,6 +9,9 @@
 import UIKit
 import FBSDKCoreKit
 import Purchases
+import PushNotifications
+
+let pushNotifications = PushNotifications.shared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,14 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Purchases.debugLogsEnabled = true
         Purchases.configure(withAPIKey: "dOgiuWrnvfyvWYRkKZVpXPDwFgUzCfvO")
-        
-        FirebaseApp.configure()
+                
+        // pusher notification
+        pushNotifications.start(instanceId: "6db18817-a55f-4c38-bd3c-0fd827fa2888")
+        pushNotifications.registerForRemoteNotifications()
+        try? pushNotifications.addDeviceInterest(interest: "hello")
         
         return true
     }
 
     // MARK: UISceneSession Lifecycle
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        pushNotifications.registerDeviceToken(deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        pushNotifications.handleNotification(userInfo: userInfo)
+    }
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
