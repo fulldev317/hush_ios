@@ -32,6 +32,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         self.viewModel.setSettingsModel()
         
         if !showingSetting {
+            self.viewModel.page_num = 0
             self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
             }
         }

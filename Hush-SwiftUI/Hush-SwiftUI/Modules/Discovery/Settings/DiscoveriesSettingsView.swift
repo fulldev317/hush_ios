@@ -17,21 +17,21 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     @EnvironmentObject private var app: App
     @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @Environment(\.colorScheme) var colorScheme
-    @State private var firstSliderValue = 0.0
+    @State private var firstSliderValue = Common.getDistance()
     @State private var selectedSliderValue = 0.0
 
     @State private var secondSliderFalue = 0.0
     @State private var isToggle = true
     @State var showLocation: Bool = false
-    @State private var ageSliderLower = 0.0
-    @State private var ageSliderUpper = 1.0
+    @State var ageSliderLower = Common.getLowerAge()
+    @State var ageSliderUpper = Common.getUpperAge()
     
     private var lowerAge: String {
-        String(Int(18 + (99 - 18) * ageSliderLower))
+        return String(Int(18 + (99 - 18) * ageSliderLower))
     }
     
     private var upperAge: String {
-        String(Int(18 + (99 - 18) * ageSliderUpper))
+        return String(Int(18 + (99 - 18) * ageSliderUpper))
     }
     
     init(viewModel: ViewModel) {
@@ -40,7 +40,6 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             $0.isExclusiveTouch = true
         }
         self.viewModel.location = Common.addressInfo()
-        self.$firstSliderValue.wrappedValue = Common.maxRangeInfo()
         
     }
     
