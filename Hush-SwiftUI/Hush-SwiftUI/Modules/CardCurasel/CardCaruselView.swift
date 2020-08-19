@@ -197,7 +197,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     self.shouldAnimate = true
                 }
             }
-            HushIndicator(showing: self.viewModel.isShowingIndicator).padding(.top, 70)
+            HushIndicator(showing: self.viewModel.isShowingIndicator).padding(.top, 50)
         }
     }
     
