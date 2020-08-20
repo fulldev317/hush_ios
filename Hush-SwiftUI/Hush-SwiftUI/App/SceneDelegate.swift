@@ -230,7 +230,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 //self.setPusherId(userId: user.id!)
                 Common.setCurrentTab(tab: HushTabs.carusel)
-
                 Common.setUnreadChatEnabled(enabled: false)
                 Common.setLoadPhotoBooth(photobooth: false)
             }
