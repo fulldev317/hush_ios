@@ -86,6 +86,22 @@ class Common: NSObject {
         UserDefaults.standard.set(enabled, forKey: "unread_chat_enabled")
     }
     
+    static func notificationType() -> String {
+        return UserDefaults.standard.string(forKey: "notification_type") ?? "none"
+    }
+    
+    static func setNotificationType(type: String) {
+        UserDefaults.standard.set(type, forKey: "notification_type")
+    }
+    
+    static func notificationValue() -> String {
+        return UserDefaults.standard.string(forKey: "notification_value") ?? ""
+    }
+    
+    static func setNotificationValue(value: String) {
+        UserDefaults.standard.set(value, forKey: "notification_value")
+    }
+    
     static func unreadChatEnabled() -> Bool {
         let enabled: Bool = UserDefaults.standard.bool(forKey: "unread_chat_enabled")
         return enabled

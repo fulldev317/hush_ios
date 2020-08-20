@@ -16,6 +16,7 @@ class App: ObservableObject {
             notlogged = !logedIn
         }
     }
+    @Published var currentTab = Common.currentTab()
     @Published var resetPasswordPage = false
     @Published var unreadChat = false
     @Published var loadingData = false 

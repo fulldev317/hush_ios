@@ -15,6 +15,9 @@ protocol CardCuraselViewModeled: ObservableObject {
     var message: String { get set }
     var isBlock: Bool { get set }
     var isShowingIndicator: Bool { get set }
+    var showUserProfile: Bool { get set }
+    var showUpgrade: Bool { get set }
+    var selectedUser: User { get set}
     //var photos: [String] { get set }
     var name: String { get set }
     var age: String { get set }

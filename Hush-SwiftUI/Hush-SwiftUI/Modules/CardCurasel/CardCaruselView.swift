@@ -22,15 +22,37 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     @State private var shouldClose = false
     @State private var shouldAnimate = false
     @State private var overlay_opacity: Double = 0
-
+    @State var showUserProfile = false
     @State var isShowing: Bool = false
-    
+
     private var degreeIndex = 0
     private var showClose: Bool { translation.width < 0 }
     private var showHeart: Bool { translation.width > 0 }
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
+        
+        let nType = Common.notificationType()
+        if nType == "like" || nType == "match" {
+            Common.setNotificationType(type: "none")
+            if Common.premium() {
+                let nValue = Common.notificationValue()
+                self.gotoUserProfilePage(userID: nValue)
+            } else {
+                self.viewModel.showUpgrade = true
+            }
+        }
+    }
+    
+    func gotoUserProfilePage(userID: String) {
+        AuthAPI.shared.cuser(userId: userID) { (user, error) in
+            if error == nil {
+                if let user = user {
+                    self.viewModel.selectedUser = user
+                    self.viewModel.showUserProfile = true
+                }
+            }
+        }
     }
 
     private func movePercent(_ translation: CGSize) -> CGFloat {
@@ -177,12 +199,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                         ForEach((cardIndex..<self.getLastIndex(cardIndex)), id: \.self) { index in
                             self.caruselElement(index)
                         }
-                    } else {
-//                        if (!self.viewModel.isShowingIndicator) {
-//                            Text("No More profiles to show")
-//                            .font(.medium(24))
-//                            .foregroundColor(.hOrange)
-//                        }
                     }
 
                 }.frame(width: SCREEN_WIDTH)
@@ -198,7 +214,24 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 }
             }
             HushIndicator(showing: self.viewModel.isShowingIndicator).padding(.top, 50)
-        }
+            
+        }.background(
+            NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: viewModel.selectedUser))
+               .withoutBar(), isActive: self.$viewModel.showUserProfile) {
+                   Spacer()
+               }.buttonStyle(PlainButtonStyle())
+        ).background(
+            NavigationLink(
+                destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
+                    if Common.premium() {
+                        let nValue = Common.notificationValue()
+                        self.gotoUserProfilePage(userID: nValue)
+                    }
+                }),
+                isActive: self.$viewModel.showUpgrade,
+                label: EmptyView.init
+            )
+        )
     }
     
     private func getDegree(_ index: Int ) -> Double {

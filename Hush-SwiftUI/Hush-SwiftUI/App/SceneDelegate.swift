@@ -49,32 +49,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var pub1: AnyCancellable!
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-
         if userActivity.activityType ==  NSUserActivityTypeBrowsingWeb {
             if let url = userActivity.webpageURL {
                 let urlString = url.absoluteString
                 if (urlString == "https://hushdating.app/reset-password") {
                     self.app.resetPasswordPage = true
                 }
-                 
              }
          }
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
+        let nType = Common.notificationType()
+        if (nType == "chat") {
+            self.app.currentTab = HushTabs.chats
+            Common.setCurrentTab(tab: HushTabs.chats)
+            Common.setUnreadChatEnabled(enabled: true)
+            Common.setNotificationType(type: "none")
+        } else if (nType == "like" || nType == "match") {
+            self.app.currentTab = HushTabs.carusel
+            Common.setCurrentTab(tab: HushTabs.carusel)
+        }
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        (UIApplication.shared.delegate as! AppDelegate).scheduleUnreadChatfetcher()
+        //(UIApplication.shared.delegate as! AppDelegate).scheduleUnreadChatfetcher()
     }
-    
-//    private func registerBackgroundTaks() {
-//
-//        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.hinder.unreadchat", using: nil) { task in
-//        //This task is cast with processing request (BGProcessingTask)
-//            self.handleImageFetcherTask(task: task as! BGProcessingTask)
-//        }
-//    }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -107,14 +107,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
 
             if let userActivity = connectionOptions.userActivities.first {
-
                 //self.scene(scene, continue: userActivity)
                if let url = userActivity.webpageURL {
                    let urlString = url.absoluteString
                    if (urlString == "https://hushdating.app/reset-password") {
                        self.app.resetPasswordPage.toggle()
                    }
-
                 }
             }
         }
@@ -219,7 +217,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let currentUser = UserDefault(.currentUser, default: "")
                 currentUser.wrappedValue = jsonString
                 
-                Common.setCurrentTab(tab: HushTabs.carusel)
                 self.app.loadingData = true
                 self.app.logedIn = true
                 
@@ -232,6 +229,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
                 
                 //self.setPusherId(userId: user.id!)
+                Common.setCurrentTab(tab: HushTabs.carusel)
+
                 Common.setUnreadChatEnabled(enabled: false)
                 Common.setLoadPhotoBooth(photobooth: false)
             }
