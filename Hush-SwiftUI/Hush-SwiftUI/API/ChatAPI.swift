@@ -47,6 +47,41 @@ class ChatAPI: BaseAPI {
         }
     }
     
+    func unread_message_count(completion: @escaping (_ count: Int?, _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "unreadMessageCount",
+                                      "id": userId]
+        
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        var count: Int?
+                        if (json["error"].int == 0) {
+                            error = nil
+                            count = json["unreadMessageCount"].intValue
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(count, error)
+                    case .failure:
+                        print("API CALL FAILED")
+                        completion(nil, APIError(404, "Server Connection Failed"))
+
+                    }
+                } catch {
+                    completion(nil, APIError(404, "Server Connection Failed"))
+                }
+            }
+        }
+    }
+    
     func get_chat(completion: @escaping (_ matches: [ChatMember?]?, _ error: APIError?) -> Void) {
      
          let user = Common.userInfo()

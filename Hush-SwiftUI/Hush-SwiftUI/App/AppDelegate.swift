@@ -34,57 +34,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pushNotifications.start(instanceId: "6db18817-a55f-4c38-bd3c-0fd827fa2888")
         pushNotifications.registerForRemoteNotifications()
         //try? pushNotifications.addDeviceInterest(interest: "hello")
-        
-        let tokenProvider = BeamsTokenProvider(authURL: "https://www.hushdating.app/beam/auth") { () -> AuthData in
-            let sessionToken = "E9AF1A15E2F1369770BCCE93A8B8EEC46A41ABE2617E43DC17F5337603A239D8"
-            let headers = ["Authorization": "Bearer \(sessionToken)"] // Headers your auth endpoint needs
-            let queryParams: [String: String] = [:] // URL query params your auth endpoint needs
-            return AuthData(headers: headers, queryParams: queryParams)
-        }
-        
-        let deviceUUID: String = UIDevice.current.identifierForVendor!.uuidString
+                
+        registerBackgroundTaks()
 
-        pushNotifications.setUserId("123456789", tokenProvider: tokenProvider, completion: { error in
-            guard error == nil else {
-                print(error.debugDescription)
-                return
-            }
-            print("Successfully authenticated with Pusher Beams")
-        })
-//        do {
-//            let request = BGAppRefreshTaskRequest(identifier: "com.hinder.app")
-//            request.earliestBeginDate = Calendar.current.date(byAdding: .second, value: 5, to: Date())
-//            try BGTaskScheduler.shared.submit(request)
-//
-//            print("Submitted task request")
-//        } catch {
-//            print("Failed to submit BGTask")
-//        }
-        
-        //BGAppRefreshTask
-        
         return true
     }
     
-    func handleAppRefresh(task: BGTaskScheduler) {
-        
-    }
-
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         pushNotifications.registerDeviceToken(deviceToken)
     }
     
-
 //    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 //        pushNotifications.handleNotification(userInfo: userInfo)
 //    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                if let body = alert["body"] as? String {
+                   //Do stuff
+                    let params = body.components(separatedBy: ",")
+                    let action = params[0]
+                    if (action == "chat") {
+                        
+                    }
+                }
+            }
+        }
     }
     
+    private func registerBackgroundTaks() {
+
+           BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.hinder.unreadchat", using: nil) { task in
+           //This task is cast with processing request (BGProcessingTask)
+               self.handleUnreadChatFetcherTask(task: task as! BGProcessingTask)
+           }
+       }
+       
+       func cancelAllPendingBGTask() {
+           BGTaskScheduler.shared.cancelAllTaskRequests()
+       }
+       
+       func scheduleUnreadChatfetcher() {
+           let request = BGAppRefreshTaskRequest(identifier: "com.hinder.unreadchat")
+           //request.requiresNetworkConnectivity = true // Need to true if your task need to network process. Defaults to false.
+           //request.requiresExternalPower = false
+           //If we keep requiredExternalPower = true then it required device is connected to external power.
+
+           request.earliestBeginDate = Date(timeIntervalSinceNow: 30) // fetch Image Count after 1 minute.
+           //Note :: EarliestBeginDate should not be set to too far into the future.
+           do {
+               try BGTaskScheduler.shared.submit(request)
+           } catch {
+               print("Could not schedule image fetch: \(error)")
+           }
+       }
+       
+       func handleUnreadChatFetcherTask(task: BGProcessingTask) {
+           print("background task---------", Date())
+           scheduleUnreadChatfetcher()
+       }
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.

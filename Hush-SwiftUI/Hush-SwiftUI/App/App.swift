@@ -17,6 +17,7 @@ class App: ObservableObject {
         }
     }
     @Published var resetPasswordPage = false
+    @Published var unreadChat = false
     @Published var loadingData = false 
     @Published var showPremium = false
     @Published var onProfileEditing = false
@@ -30,7 +31,6 @@ class App: ObservableObject {
     @Published var isShowingSetting = false    
     @Published var languageList: [Language] = []
     @Published var languageNames: [String] = []
-
    // let profile = MyProfileViewModel()
     let discovery = DiscoveryViewModel()
     let stories = StoriesViewModel()
