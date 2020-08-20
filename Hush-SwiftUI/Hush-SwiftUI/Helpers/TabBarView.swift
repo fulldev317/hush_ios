@@ -77,20 +77,6 @@ struct TabBarView<Content: View>: View {
             .frame(height: 70)
             .background(Color.black.edgesIgnoringSafeArea(.all))
         }.background(Color.black.edgesIgnoringSafeArea(.all))
-//        .onReceive(self.timer) { input in
-//            ChatAPI.shared.unread_message_count { (count, error) in
-//                if (error == nil) {
-//                    if let count = count {
-//                        self.app.unreadChat = true
-//                        //Common.setUnreadChatEnabled(enabled: true)
-//                        if count > 0 {
-//                            //Common.setUnreadChatEnabled(enabled: true)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        .withoutBar()
     }
 }
 
