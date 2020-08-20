@@ -29,7 +29,8 @@ struct TabBarView<Content: View>: View {
     @Binding var selectedTab: HushTabs
     @State var isChatUnread = false
     let content: Content
-    
+    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+
     init(selectedTab: Binding<HushTabs>, @ViewBuilder content: () -> Content) {
         _selectedTab = selectedTab
         self.content = content()
@@ -45,11 +46,31 @@ struct TabBarView<Content: View>: View {
                         self.partialSheetManager.closePartialSheet()
                     }) {
                         Spacer()
-                        tab.image
-                            .renderingMode(.template)
-                            .foregroundColor(tab == self.selectedTab ? .hOrange : Color(0x8E8786))
-                            .overlay(Circle().fill(Color.green).frame(width: 15, height: 15).opacity(tab == HushTabs.chats ? self.app.unreadChat ? 1.0 : 0.0 : 0.0)
-                                ,alignment: .bottomTrailing)
+                        if tab == HushTabs.chats {
+                            ZStack {
+                                tab.image
+                                .renderingMode(.template)
+                                .foregroundColor(tab == self.selectedTab ? .hOrange : Color(0x8E8786))
+                                .overlay(Circle().fill(Color.green).frame(width: 15, height: 15).opacity( Common.unreadChatEnabled() ? 1.0 : 0.0) ,alignment: .bottomTrailing)
+                                .onReceive(self.timer) { input in
+                                    ChatAPI.shared.unread_message_count { (count, error) in
+                                        if (error == nil) {
+                                            if let count = count {
+                                                Common.setUnreadChatEnabled(enabled: true)
+                                                if count > 0 {
+                                                    Common.setUnreadChatEnabled(enabled: true)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        } else {
+                            tab.image
+                                .renderingMode(.template)
+                                .foregroundColor(tab == self.selectedTab ? .hOrange : Color(0x8E8786))
+                        }
                         Spacer()
                     }
                 }.offset(x: 0, y: 3)
@@ -57,6 +78,19 @@ struct TabBarView<Content: View>: View {
             .frame(height: 70)
             .background(Color.black.edgesIgnoringSafeArea(.all))
         }.background(Color.black.edgesIgnoringSafeArea(.all))
+//        .onReceive(self.timer) { input in
+//            ChatAPI.shared.unread_message_count { (count, error) in
+//                if (error == nil) {
+//                    if let count = count {
+//                        self.app.unreadChat = true
+//                        //Common.setUnreadChatEnabled(enabled: true)
+//                        if count > 0 {
+//                            //Common.setUnreadChatEnabled(enabled: true)
+//                        }
+//                    }
+//                }
+//            }
+//        }
 //        .withoutBar()
     }
 }
