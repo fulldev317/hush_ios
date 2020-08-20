@@ -232,6 +232,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
                 
                 //self.setPusherId(userId: user.id!)
+                Common.setUnreadChatEnabled(enabled: false)
                 Common.setLoadPhotoBooth(photobooth: false)
             }
         }

@@ -21,7 +21,6 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     @State var currentTab = Common.currentTab()
     @ObservedObject var isFirstLaunch = UserDefault(.isFirstLaunch, default: true)
     @State private var selectMessagesFilter = false
-    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
 
     init(viewModel model: ViewModel) {
         viewModel = model
@@ -104,17 +103,6 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 self.app.stories.settingsViewModel.closeAPISelectorCompletion = self.showStoriesSettings
             }
             .overlay(self.photoBoothOverlay)
-            .onReceive(self.timer) { input in
-                ChatAPI.shared.unread_message_count { (count, error) in
-                    if (error == nil) {
-                        if let count = count {
-                            if count > 0 {
-                                self.app.unreadChat = true
-                            }
-                        }
-                    }
-                }
-            }
             .withoutBar()
         }
     }

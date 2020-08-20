@@ -82,6 +82,15 @@ class Common: NSObject {
         return _block ?? false
     }
     
+    static func setUnreadChatEnabled(enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: "unread_chat_enabled")
+    }
+    
+    static func unreadChatEnabled() -> Bool {
+        let enabled: Bool = UserDefaults.standard.bool(forKey: "unread_chat_enabled")
+        return enabled
+    }
+    
     static func setCurrentTab(tab: HushTabs) {
         let tabValue = tab.rawValue
         UserDefaults.standard.set(tabValue, forKey: "current_tab")

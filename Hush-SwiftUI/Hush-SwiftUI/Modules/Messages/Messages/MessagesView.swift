@@ -43,7 +43,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
         self.viewModel = viewModel
         self.viewModel.getChat { result in
             if (result == true) {
-                
+                UIApplication.shared.applicationIconBadgeNumber = 0
             }
         }
         
