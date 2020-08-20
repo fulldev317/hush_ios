@@ -22,7 +22,10 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     @Published var address: String = "London, UK"
     @Published var games: [Game] = []
     @Published var isBlock: Bool = false
-    
+    @Published var showUserProfile: Bool = false
+    @Published var showUpgrade: Bool = false
+    @Published var selectedUser: User = User()
+
     init() {
         self.loadGame { (result) in
             

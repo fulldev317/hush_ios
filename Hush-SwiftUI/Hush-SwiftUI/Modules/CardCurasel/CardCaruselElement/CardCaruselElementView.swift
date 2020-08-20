@@ -53,22 +53,16 @@ struct CardCaruselElementView: View {
         .overlay(overlay.rotationEffect(rotation), alignment: .bottom)
         .rotationEffect(-rotation)
         .onTapGesture {
-            //self.showIndicator = true
             self.gotoUserProfilePage()
         }
-        .tapGesture(
-            
-            toggls: $showUserProfile)
     }
     
     func gotoUserProfilePage() {
         if let userID = self.user.id {
             AuthAPI.shared.cuser(userId: userID) { (user, error) in
-                //self.showIndicator = false
                 UserAPI.shared.add_visit(toUserID: userID) { (error) in
-                    
+
                 }
-                
                 if error == nil {
                     self.selectedUser = user!
                     self.showUserProfile.toggle()
