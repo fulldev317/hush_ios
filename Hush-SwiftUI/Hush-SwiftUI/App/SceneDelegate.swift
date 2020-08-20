@@ -59,18 +59,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          }
     }
     
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        let nType = Common.notificationType()
-        if (nType == "chat") {
-            self.app.currentTab = HushTabs.chats
-            Common.setCurrentTab(tab: HushTabs.chats)
-            Common.setUnreadChatEnabled(enabled: true)
-            Common.setNotificationType(type: "none")
-        } else if (nType == "like" || nType == "match") {
-            self.app.currentTab = HushTabs.carusel
-            Common.setCurrentTab(tab: HushTabs.carusel)
-        }
-    }
+//    func sceneWillEnterForeground(_ scene: UIScene) {
+//        let nType = Common.notificationType()
+//        if (nType == "chat") {
+//            self.app.currentTab = HushTabs.chats
+//            Common.setCurrentTab(tab: HushTabs.chats)
+//            Common.setUnreadChatEnabled(enabled: true)
+//            Common.setNotificationType(type: "none")
+//        } else if (nType == "like" || nType == "match") {
+//            self.app.currentTab = HushTabs.carusel
+//            Common.setCurrentTab(tab: HushTabs.carusel)
+//        }
+//    }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
         //(UIApplication.shared.delegate as! AppDelegate).scheduleUnreadChatfetcher()
@@ -227,9 +227,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         Common.setPremium(false)
                     }
                 }
-                
+                if let s_gender = user.sGender {
+                    Common.setSGenderString(gender: s_gender)
+                }
                 //self.setPusherId(userId: user.id!)
-                Common.setCurrentTab(tab: HushTabs.carusel)
+                //Common.setCurrentTab(tab: HushTabs.carusel)
                 Common.setUnreadChatEnabled(enabled: false)
                 Common.setLoadPhotoBooth(photobooth: false)
             }

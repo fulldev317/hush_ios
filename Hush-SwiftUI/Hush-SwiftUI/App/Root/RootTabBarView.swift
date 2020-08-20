@@ -18,7 +18,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     @EnvironmentObject var modalPresenterManager: ModalPresenterManager
     
-    //@State var currentTab = Common.currentTab()
+    @State var currentTab = HushTabs.carusel
     @ObservedObject var isFirstLaunch = UserDefault(.isFirstLaunch, default: true)
     @State private var selectMessagesFilter = false
 
@@ -31,50 +31,50 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     var body: some View {
         GeometryReader { proxy in
-            TabBarView(selectedTab: self.$app.currentTab) {
+            TabBarView(selectedTab: self.$currentTab) {
                 ZStack {
-                    if self.app.currentTab == .chats {
-                        self.messages().zIndex(self.app.currentTab == .chats ? 1 : 0)
+                    if self.currentTab == .chats {
+                        self.messages().zIndex(self.currentTab == .chats ? 1 : 0)
                     } else {
                         ZStack {
                            Spacer()
                         }
                     }
                     
-                    if self.app.currentTab == .discoveries {
+                    if self.currentTab == .discoveries {
                         NavigationView {
                             self.discovery().withoutBar()
-                        }.zIndex(self.app.currentTab == .discoveries ? 1 : 0)
+                        }.zIndex(self.currentTab == .discoveries ? 1 : 0)
                     } else {
                         ZStack {
                             Spacer()
                         }
                     }
                     
-                    if self.app.currentTab == .stories {
+                    if self.currentTab == .stories {
                         NavigationView {
                             self.stories().withoutBar()
-                        }.zIndex(self.app.currentTab == .stories ? 1 : 0)
+                        }.zIndex(self.currentTab == .stories ? 1 : 0)
                     } else {
                         ZStack {
                             Spacer()
                         }
                     }
                     
-                    if self.app.currentTab == .carusel {
+                    if self.currentTab == .carusel {
                         NavigationView {
                             CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
-                        }.zIndex(self.app.currentTab == .carusel ? 1 : 0)
+                        }.zIndex(self.currentTab == .carusel ? 1 : 0)
                     } else {
                         ZStack {
                             Spacer()
                         }
                     }
                     
-                    if self.app.currentTab == .profile {
+                    if self.currentTab == .profile {
                         NavigationView {
                             MyProfileView(viewModel: MyProfileViewModel()).withoutBar()
-                        }.zIndex(self.app.currentTab == .profile ? 1 : 0)
+                        }.zIndex(self.currentTab == .profile ? 1 : 0)
                     }
                 }
             }.frame(width: proxy.size.width, height: proxy.size.height)
@@ -92,7 +92,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     var photoBoothOverlay: some View {
         Group {
-            if isFirstLaunch.wrappedValue && app.currentTab == .carusel {
+            if isFirstLaunch.wrappedValue && self.currentTab == .carusel {
                 CardCaruselTutorialView()
                     .onTapGesture { self.isFirstLaunch.wrappedValue.toggle() }
             }

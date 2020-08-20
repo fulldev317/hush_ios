@@ -36,8 +36,11 @@ class LoginWithEmailViewModel: LoginWithEmailViewModeled {
                 isLoggedIn.wrappedValue = true
                 
                 Common.setUserInfo(user)
-                Common.setCurrentTab(tab: HushTabs.carusel)
-                
+                //Common.setCurrentTab(tab: HushTabs.carusel)
+                if let s_gender = user.sGender {
+                    Common.setSGenderString(gender: s_gender)
+                }
+
                 let jsonData = try! JSONEncoder().encode(user)
                 let jsonString = String(data:jsonData, encoding: .utf8)!
                 

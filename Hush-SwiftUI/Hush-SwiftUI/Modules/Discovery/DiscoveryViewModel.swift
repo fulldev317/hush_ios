@@ -30,7 +30,7 @@ class DiscoveryViewModel: DiscoveryViewModeled {
     func setSettingsModel() {
         let user: User = Common.userInfo()
                
-        switch Int(user.gender ?? "1") {
+        switch Int(user.sGender ?? "1") {
         case 1:
            settingsViewModel.gender = Gender.male
            break
