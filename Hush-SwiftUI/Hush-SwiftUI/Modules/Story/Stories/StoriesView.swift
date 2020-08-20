@@ -79,7 +79,6 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                                             .onTapGesture {
                                                 self.handleTap(i, j)
                                         }
-                                        Text("123")
                                     }
                                 }
                             }

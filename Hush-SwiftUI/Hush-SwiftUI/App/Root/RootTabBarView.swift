@@ -71,18 +71,6 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                         }
                     }
                     
-//                    NavigationView {
-//                        if self.currentTab == .carusel {
-//                            CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
-//                        } else {
-//                            VStack {
-//                                Spacer()
-//                            }
-//                        }
-//                    }.zIndex(self.currentTab == .carusel ? 1 : 0)
-                    
-                    
-                    
                     if self.app.currentTab == .profile {
                         NavigationView {
                             MyProfileView(viewModel: MyProfileViewModel()).withoutBar()
@@ -140,14 +128,21 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     Text("User stories near you").foregroundColor(.white).font(.thin())
                 }.padding(.leading, 25)
                 Spacer()
-                HapticButton(action: self.showStoriesSettings) {
+                HapticButton(action: self.showDiscoverySettings) {
                     Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
                 }
             }
             
             StoriesView(viewModel: StoriesViewModel(), showingSetting: self.app.isShowingSetting)
-        }.addPartialSheet()
+        }.withoutBar()
+        .addPartialSheet()
         .background(Color.black.edgesIgnoringSafeArea(.all))
+        .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
+            UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
+                self.app.discovery.settingsViewModel.setGender(gender: gender)
+            }
+        } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
+        
     }
     
     func discovery() -> some View {
@@ -168,13 +163,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
             UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
-                //self.app.discovery.settingsViewModel.gender = gender
                 self.app.discovery.settingsViewModel.setGender(gender: gender)
-//                AuthAPI.shared.update_gender(gender: gender.rawValue) { (error) in
-//                    var user = Common.userInfo()
-//                    user.gender = Common.getGenderIntValue(gender.rawValue)
-//                    Common.setUserInfo(user)
-//                }
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         .addPartialSheet()
