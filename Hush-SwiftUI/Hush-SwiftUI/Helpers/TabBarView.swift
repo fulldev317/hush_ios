@@ -56,7 +56,6 @@ struct TabBarView<Content: View>: View {
                                     ChatAPI.shared.unread_message_count { (count, error) in
                                         if (error == nil) {
                                             if let count = count {
-                                                Common.setUnreadChatEnabled(enabled: true)
                                                 if count > 0 {
                                                     Common.setUnreadChatEnabled(enabled: true)
                                                 }

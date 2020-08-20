@@ -150,6 +150,7 @@
 		596B6CAF24E29916003E3473 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596B6CAE24E29916003E3473 /* StoreKit.framework */; };
 		597A3FC724CA22FF00958B68 /* MatchesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A3FC624CA22FF00958B68 /* MatchesAPI.swift */; };
 		597E15A924EBCF5000C44CCA /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E15A824EBCF5000C44CCA /* Game.swift */; };
+		598350CA24EEDA8E0083FDDA /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598350C924EEDA8E0083FDDA /* Stories.swift */; };
 		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
 		59B7AF1024D8B1ED00F1CA6A /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B7AF0F24D8B1ED00F1CA6A /* LoginResponse.swift */; };
@@ -354,6 +355,7 @@
 		596B6CAE24E29916003E3473 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		597A3FC624CA22FF00958B68 /* MatchesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesAPI.swift; sourceTree = "<group>"; };
 		597E15A824EBCF5000C44CCA /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		598350C924EEDA8E0083FDDA /* Stories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
 		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
 		59B7AF0F24D8B1ED00F1CA6A /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 				73D44AF5247FB3DB00FB01BA /* APIError.swift */,
 				598FE48E24CB670B00029C3A /* MessageItem.swift */,
 				595C7E5F24C9F2400094D7A0 /* Story.swift */,
+				598350C924EEDA8E0083FDDA /* Stories.swift */,
 				73E7C159247FC10A0077F5E1 /* Match.swift */,
 				73D44AF1247FAD7100FB01BA /* Photo.swift */,
 				73D44AF3247FAE2700FB01BA /* Notifications.swift */,
@@ -1272,6 +1275,7 @@
 				536E78332492200400B6CCFF /* Common.swift in Sources */,
 				0E13EBD924805627003E0959 /* FaceDetectionViewController.swift in Sources */,
 				1546B42924331E7400180D77 /* SignUpViewModeled.swift in Sources */,
+				598350CA24EEDA8E0083FDDA /* Stories.swift in Sources */,
 				89559FFD246AB95300223FB7 /* StoryViewModel.swift in Sources */,
 				53852894249D0C7F00804980 /* HushIndicator.swift in Sources */,
 				155E3004243B1E93001D886D /* MessageDetailView.swift in Sources */,

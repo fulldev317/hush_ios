@@ -12,7 +12,9 @@ import Combine
 class StoriesViewModel: StoriesViewModeled {
     @Published var isShowingIndicator: Bool = false
     let settingsViewModel = StoriesSettingsViewModel()
-    @Published var storyList: [Story] = []
+    @Published var storyList: [Stories] = []
+    @Published var myStoryList: [Story] = []
+
     @Published var selectedStoryIndex: Int = 0
 
     func uploadImage(userImage: UIImage, result: @escaping ( NSDictionary?, APIError?) -> Void)
@@ -38,18 +40,38 @@ class StoriesViewModel: StoriesViewModeled {
         }
     }
     
-    func viewStory(result: @escaping ( Bool ) -> Void)
+    func viewStories(result: @escaping ( Bool ) -> Void)
     {
         self.storyList.removeAll()
-        let addStory = Story(id: "", sid: "", src: "", uid: "", title: "", stype: "", url: "", credits: "", review: "", icon: "", duration: 0, date: "", purchased: 0, liked: false)
+        let addStory = Stories(id: "", profile_photo: "", profile_photo_big: "", city: "", country: "", address: "", age: "", fadeDelay: 0, video: 0, name: "", status: 0, story: "")
         self.storyList.append(addStory)
         
-        StoryAPI.shared.view_story() { (stories, error) in
+        StoryAPI.shared.view_stories() { (stories, error) in
             if error == nil {
                 if let stories = stories {
                     for story in stories {
                         if let story = story {
                             self.storyList.append(story)
+                        }
+                    }
+                }
+                result(true)
+            } else {
+                result(false)
+            }
+        }
+    }
+    
+    func viewStory(userId: String, result: @escaping ( Bool ) -> Void)
+    {
+        myStoryList.removeAll()
+        
+        StoryAPI.shared.view_story(userId: userId) { (stories, error) in
+            if error == nil {
+                if let stories = stories {
+                    for story in stories {
+                        if let story = story {
+                            self.myStoryList.append(story)
                         }
                     }
                 }
