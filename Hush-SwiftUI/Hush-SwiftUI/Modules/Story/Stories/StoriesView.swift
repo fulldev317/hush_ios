@@ -50,7 +50,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
            
         if !showingSetting {
             self.viewModel.isShowingIndicator = true
-            self.viewModel.viewStory { (result) in
+            self.viewModel.viewStories { (result) in
                 viewModel.isShowingIndicator = false
             }
        }
@@ -66,12 +66,12 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                             ForEach(0..<3, id: \.self) { j in
                                 HStack(spacing: -10) {
                                     if (i * 3 + j < self.viewModel.storyList.count) {
-                                        UserStoryCard(username: self.viewModel.storyList[i * 3 + j].title ?? "",
+                                        UserStoryCard(username: self.viewModel.storyList[i * 3 + j].name ?? "",
                                                       isMyStory: i == 0 && j == 0,
                                                       isFirstStory: self.userStories.isEmpty,
                                                       storyImage: self.userStories.last,
-                                                      imagePath: self.viewModel.storyList[i * 3 + j].url,
-                                                      iconPath: self.viewModel.storyList[i * 3 + j].icon)
+                                                      imagePath: self.viewModel.storyList[i * 3 + j].story,
+                                                      iconPath: self.viewModel.storyList[i * 3 + j].profile_photo)
                                             .frame(width: SCREEN_WIDTH / 3, height: SCREEN_WIDTH / 3 + 20)
                                             .rotationEffect(.degrees((i * 3 + j).isMultiple(of: 2) ? 0 : 5), anchor: .center)
                                             .zIndex(j == 1 ? 3 : 0)
@@ -79,6 +79,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                                             .onTapGesture {
                                                 self.handleTap(i, j)
                                         }
+                                        Text("123")
                                     }
                                 }
                             }
@@ -88,14 +89,15 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                             .padding(.leading, -20)
                     }
                 }.padding(.top, 22)
-            }.background(
+            }
+            .background(
                 NavigationLink(
-                    destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.storyList, index: self.viewModel.selectedStoryIndex) , isNewStory: false).environmentObject(self.app).withoutBar(),
+                    destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.myStoryList, index: self.viewModel.selectedStoryIndex) , isNewStory: false).environmentObject(self.app).withoutBar(),
                     isActive: $showsUserProfile,
                     label: EmptyView.init
                 ).onDisappear(perform: {
                     self.viewModel.isShowingIndicator = true
-                    self.viewModel.viewStory { (result) in
+                    self.viewModel.viewStories { (result) in
                         self.viewModel.isShowingIndicator = false
                     }
                 })
@@ -129,12 +131,21 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
             showStoryPicker()
         } else {
             self.viewModel.selectedStoryIndex = i * 3 + j
-            showStory()
+            let stories = self.viewModel.storyList[self.viewModel.selectedStoryIndex]
+            if let userId = stories.id {
+                self.viewModel.selectedStoryIndex = 0
+                showStory(userId: userId)
+            }
         }
     }
     
-    func showStory() {
-        self.showsUserProfile = true
+    func showStory(userId: String) {
+        self.viewModel.viewStory(userId: userId) { (result) in
+            if (result) {
+                self.showsUserProfile = true
+            }
+        }
+        
         //self.tapGesture(toggls: self.$showsUserProfile)
 //        modalPresenterManager.present(style: .overFullScreen) {
 //            StoryView(viewModel: StoryViewModel()).environmentObject(self.app)
@@ -149,16 +160,13 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
                 let imageThumb = dic!["thumb"] as! String
                 self.viewModel.uploadStory(imagePath: imagePath, imageThumb: imageThumb) { (stories, error) in
                     self.viewModel.isShowingIndicator = false
-                    self.viewModel.storyList.removeAll()
-                    for story in stories! {
-                        self.viewModel.storyList.append(story!)
+                    if let stories = stories {
+                        self.viewModel.selectedStoryIndex = stories.count - 1
                     }
-                    self.viewModel.selectedStoryIndex = self.viewModel.storyList.count - 1
-                    self.showStory()
-                    
-//                            modalPresenterManager.present(style: .overFullScreen) {
-//                                StoryView(viewModel: MyStoryViewModel(userStories, isLastPick: lastPick), isNewStory: true)
-//                            }
+                    let user = Common.userInfo()
+                    if let userId = user.id {
+                        self.showStory(userId: userId)
+                    }
                 }
             } else {
                 self.viewModel.isShowingIndicator = false
