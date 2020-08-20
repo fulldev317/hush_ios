@@ -85,13 +85,13 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
         let gender_index = Common.getGenderIndexValue(gender.title)
         
         var user = Common.userInfo()
-        user.gender = gender_index
+        user.sGender = gender_index
         Common.setUserInfo(user)
         
         UserAPI.shared.update_gender(gender: gender_index) { ( error) in
             if (error == nil) {
                 var user = Common.userInfo()
-                user.gender = gender_index
+                user.sGender = gender_index
                 Common.setUserInfo(user)
             }
         }

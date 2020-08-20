@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerPushNotification()
 
         Common.setNotificationType(type: "none")
-        
+        //Common.setCurrentTab(tab: .carusel)
+
         return true
     }
     
@@ -62,21 +63,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let data = userInfo["data"] as? String {
-            let params = data.components(separatedBy: ",")
-            if params.count > 0 {
-                let action = params[0]
-                if (action == "chat") {
-                    Common.setNotificationType(type: "chat")
-                } else if (action == "like") {
-                    Common.setNotificationType(type: "like")
-                    if (params.count > 1) {
-                        Common.setNotificationValue(value: params[1])
-                    }
-                } else if (action == "like") {
-                    Common.setNotificationType(type: "match")
-                    if (params.count > 1) {
-                        Common.setNotificationValue(value: params[1])
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                if let data = alert["data"] as? String {
+                    let params = data.components(separatedBy: ",")
+                    if params.count > 0 {
+                        let action = params[0]
+                        if (action == "chat") {
+                            Common.setNotificationType(type: "chat")
+                        } else if (action == "like") {
+                            Common.setNotificationType(type: "like")
+                            if (params.count > 1) {
+                                Common.setNotificationValue(value: params[1])
+                            }
+                        } else if (action == "like") {
+                            Common.setNotificationType(type: "match")
+                            if (params.count > 1) {
+                                Common.setNotificationValue(value: params[1])
+                            }
+                        }
                     }
                 }
             }

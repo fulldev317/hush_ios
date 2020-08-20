@@ -43,9 +43,9 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         self.getLocation { (location) in
             if (location.count > 0) {
                 self.location = location
+                self.getGeoCode(address: location)
             }
         }
-               
     }
     
     // MARK: - Properties
@@ -74,8 +74,6 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     @Published var editingLocation: Bool = false
     
     func updateMessage() {
-        
-        
     }
     
     func signup(birth: String, result: @escaping (Bool) -> Void) {
@@ -113,7 +111,10 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
                 
                 Common.setUserInfo(user)
                 Common.setAddressInfo(user.address ?? "")
-                Common.setCurrentTab(tab: HushTabs.carusel)
+                if let s_gender = user.sGender {
+                    Common.setSGenderString(gender: s_gender)
+                }
+                //Common.setCurrentTab(tab: HushTabs.carusel)
                 
                 let jsonData = try! JSONEncoder().encode(user)
                 let jsonString = String(data:jsonData, encoding: .utf8)!

@@ -222,6 +222,32 @@ class Common: NSObject {
         return errMsg
     }
     
+    static func setSGenderString(gender: String) {
+        UserDefaults.standard.set(gender, forKey: "user_s_gender")
+    }
+    
+    static func sgenderString() -> Gender {
+        var nGender = Gender.male
+        let gender = UserDefaults.standard.string(forKey: "user_s_gender")
+        switch gender {
+        case "1":
+            nGender = Gender.male
+            break
+        case "2":
+            nGender = Gender.female
+            break
+        case "3":
+            nGender = Gender.gay
+            break
+        case "4":
+            nGender = Gender.lesbian
+            break
+        default:
+            nGender = Gender.male
+        }
+        return nGender
+    }
+    
     static func getGenderIndexValue(_ gender: String) -> String {
         var nGender = "1"
         switch gender.lowercased() {
