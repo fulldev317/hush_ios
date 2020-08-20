@@ -128,7 +128,7 @@
 	<false/>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>com.hinder.app</string>
+		<string>com.hinder.unreadchat</string>
 	</array>
 </dict>
 </plist>

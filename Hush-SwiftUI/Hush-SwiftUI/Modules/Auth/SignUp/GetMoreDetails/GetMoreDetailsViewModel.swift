@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import PushNotifications
 
 class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
     
@@ -112,6 +113,7 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
                 
                 Common.setUserInfo(user)
                 Common.setAddressInfo(user.address ?? "")
+                Common.setCurrentTab(tab: HushTabs.carusel)
                 
                 let jsonData = try! JSONEncoder().encode(user)
                 let jsonString = String(data:jsonData, encoding: .utf8)!
@@ -119,6 +121,8 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
                 let currentUser = UserDefault(.currentUser, default: "")
                 currentUser.wrappedValue = jsonString
 
+                self.setPusherId(userId: user.id!)
+                
                 result(true)
             }
         }
@@ -144,5 +148,21 @@ class GetMoreDetailsViewModel: GetMoreDetailsViewModeled {
         }
     }
     
+    func setPusherId(userId: String) {
+        let tokenProvider = BeamsTokenProvider(authURL: "https://www.hushdating.app/requests/appapi.php") { () -> AuthData in
+            let sessionToken = "E9AF1A15E2F1369770BCCE93A8B8EEC46A41ABE2617E43DC17F5337603A239D8"
+            let headers = ["Authorization": "Bearer \(sessionToken)"] // Headers your auth endpoint needs
+            let queryParams: [String: String] = ["action":"getBeamsToken", "uid":userId] // URL query params your auth endpoint needs
+            return AuthData(headers: headers, queryParams: queryParams)
+        }
+        
+        pushNotifications.setUserId(userId, tokenProvider: tokenProvider, completion: { error in
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+            print("Successfully authenticated with Pusher Beams")
+        })
+    }
     
 }

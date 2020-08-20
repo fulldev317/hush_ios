@@ -82,6 +82,33 @@ class Common: NSObject {
         return _block ?? false
     }
     
+    static func setCurrentTab(tab: HushTabs) {
+        let tabValue = tab.rawValue
+        UserDefaults.standard.set(tabValue, forKey: "current_tab")
+    }
+
+    static func currentTab() -> HushTabs {
+        let tab: Int? = UserDefaults.standard.integer(forKey: "current_tab")
+        if tab == nil {
+            return HushTabs.carusel
+        }
+        switch(tab) {
+        case 0:
+            return HushTabs.discoveries
+        case 1:
+            return HushTabs.stories
+        case 2:
+            return HushTabs.carusel
+        case 3:
+            return HushTabs.chats
+        case 4:
+            return HushTabs.profile
+        default:
+            return HushTabs.carusel
+        }
+        
+    }
+    
     static func setPremium(_ premium: Bool) {
         UserDefaults.standard.set(premium, forKey: "premium")
     }
@@ -156,6 +183,7 @@ class Common: NSObject {
         return 0.5
     }
     
+
     static func handleErrorMessage(_ message: String) -> String {
         var errMsg = ""
         if message.contains("Reg city") {

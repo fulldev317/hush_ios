@@ -9,6 +9,8 @@
 import UIKit
 import SwiftUI
 import PartialSheet
+import BackgroundTasks
+import PushNotifications
 
 extension UINavigationController {
     
@@ -59,6 +61,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          }
     }
     
+    func sceneWillEnterForeground(_ scene: UIScene) {
+    }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        (UIApplication.shared.delegate as! AppDelegate).scheduleUnreadChatfetcher()
+    }
+    
+//    private func registerBackgroundTaks() {
+//
+//        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.hinder.unreadchat", using: nil) { task in
+//        //This task is cast with processing request (BGProcessingTask)
+//            self.handleImageFetcherTask(task: task as! BGProcessingTask)
+//        }
+//    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         if let userID = UserDefaults.standard.object(forKey: "userId") as? String {
@@ -101,7 +118,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-                      
+              
+        //registerBackgroundTaks()
+
         let isLoggedIn = UserDefault(.isLoggedIn, default: false)
         
         if (isLoggedIn.wrappedValue) {
@@ -200,6 +219,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let currentUser = UserDefault(.currentUser, default: "")
                 currentUser.wrappedValue = jsonString
                 
+                Common.setCurrentTab(tab: HushTabs.carusel)
                 self.app.loadingData = true
                 self.app.logedIn = true
                 
@@ -211,9 +231,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                 }
                 
+                //self.setPusherId(userId: user.id!)
                 Common.setLoadPhotoBooth(photobooth: false)
             }
         }
+    }
+    
+    func setPusherId(userId: String) {
+        let tokenProvider = BeamsTokenProvider(authURL: "https://www.hushdating.app/requests/appapi.php") { () -> AuthData in
+            let sessionToken = "E9AF1A15E2F1369770BCCE93A8B8EEC46A41ABE2617E43DC17F5337603A239D8"
+            let headers = ["Authorization": "Bearer \(sessionToken)"] // Headers your auth endpoint needs
+            let queryParams: [String: String] = ["action":"getBeamsToken", "uid":userId] // URL query params your auth endpoint needs
+            return AuthData(headers: headers, queryParams: queryParams)
+        }
+        
+        pushNotifications.setUserId(userId, tokenProvider: tokenProvider, completion: { error in
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+            print("Successfully authenticated with Pusher Beams")
+        })
     }
     
     func load_langauge() {
