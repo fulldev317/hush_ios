@@ -44,6 +44,7 @@ struct TabBarView<Content: View>: View {
                     Button(action: {
                         self.selectedTab = tab
                         self.partialSheetManager.closePartialSheet()
+                        self.app.isShowingSetting = false
                     }) {
                         Spacer()
                         if tab == HushTabs.chats {

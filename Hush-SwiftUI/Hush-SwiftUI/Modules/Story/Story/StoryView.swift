@@ -12,9 +12,9 @@ import SDWebImageSwiftUI
 struct StoryView<ViewModel: StoryViewModeled>: View {
     @ObservedObject var viewModel: ViewModel
     var isNewStory = false
-
+    
     @State private var keyboardHeight: CGFloat = 0
-    @State private var showReport = false
+    @State private var showEdit = false
     @State private var likedStory = false
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var modalPresenterManager: ModalPresenterManager
@@ -105,10 +105,10 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                 Spacer()
                 
                 VStack {
-                    if viewModel.canReport {
+                    if self.viewModel.isMyStory {
                         HStack {
                             Spacer()
-                            Button(action: { self.showReport.toggle() }) {
+                            Button(action: { self.showEdit.toggle() }) {
                                 Image(systemName: "ellipsis")
                                     .font(.largeTitle)
                                     .foregroundColor(.white)
@@ -156,10 +156,12 @@ struct StoryView<ViewModel: StoryViewModeled>: View {
                 )
             )
             
-        }.actionSheet(isPresented: $showReport) {
-            ActionSheet(title: Text("Report an issue"), message: nil, buttons: [
-                .default(Text("Block User"), action: self.viewModel.blockUser),
-                .default(Text("Report Profile"), action: self.viewModel.reportProfile),
+            HushIndicator(showing: self.viewModel.isShowingIndicator)
+            
+        }.actionSheet(isPresented: $showEdit) {
+            ActionSheet(title: Text("Your Story"), message: nil, buttons: [
+                .default(Text("Delete from story"), action: self.viewModel.deleteStory),
+                .default(Text("Make Primary Image"), action: self.viewModel.makePrimaryImage),
                 .cancel()
             ])
         }.gesture(dragToClose)

@@ -19,6 +19,7 @@ var _block: Bool?
 var _premium: Bool?
 var _isMessageLoaded: Bool? = false
 var _chatMessage: [HushMessage]?
+var _isStoryUpdate: Bool? = false
 let ISiPhone11 = SCREEN_HEIGHT >= 896
 let ISiPhoneX = SCREEN_HEIGHT >= 812
 let ISiPhonePlus = SCREEN_WIDTH == 414
@@ -105,6 +106,14 @@ class Common: NSObject {
     static func unreadChatEnabled() -> Bool {
         let enabled: Bool = UserDefaults.standard.bool(forKey: "unread_chat_enabled")
         return enabled
+    }
+    
+    static func setStoryUpdate(update: Bool) {
+        _isStoryUpdate = update
+    }
+    
+    static func storyUpdated() -> Bool {
+        return _isStoryUpdate ?? false
     }
     
     static func setCurrentTab(tab: HushTabs) {

@@ -232,8 +232,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
                 //self.setPusherId(userId: user.id!)
                 //Common.setCurrentTab(tab: HushTabs.carusel)
-                Common.setUnreadChatEnabled(enabled: false)
+                
                 Common.setLoadPhotoBooth(photobooth: false)
+                
+                Common.setUnreadChatEnabled(enabled: false)
+                if let unreadMessageCnt = user.unreadMessagesCount {
+                    let count = Int(unreadMessageCnt) ?? 0
+                    if (count > 0) {
+                        Common.setUnreadChatEnabled(enabled: true)
+                    }
+                }
             }
         }
     }

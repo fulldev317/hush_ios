@@ -142,9 +142,8 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     
     private func viewForImageMessage(_ message: HushMessage) -> some View {
         guard case let .image(imageMessage) = message else { fatalError() }
-        return ContentImageMessageView(image: imageMessage.image, time: message.createdAt, isCurrentUser: true, shouldShowDate: self.messageShouldShowDate(message))
-            .rotationEffect(.degrees(180))
-            .padding(message.userID == "SELF" ? .trailing : .leading, 70)
+        return ContentImageMessageView(image: imageMessage.image, time: message.createdAt, isCurrentUser: message.userID == "SELF", shouldShowDate: self.messageShouldShowDate(message))
+            .padding(message.userID == "SELF" ? .trailing : .leading, 20)
         
     }
     

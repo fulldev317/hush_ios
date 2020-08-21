@@ -9,6 +9,14 @@
 import SwiftUI
 
 class MyStoryViewModel: StoryViewModeled {
+    func deleteStory() {
+        <#code#>
+    }
+    
+    func makePrimaryImage() {
+        <#code#>
+    }
+    
     
     
     @Published var currentStoryIndex: Int = 0

@@ -11,6 +11,10 @@ import SwiftUI
 protocol StoryViewModeled: ObservableObject {
     var currentStoryIndex: Int { get set }
     var storyMessage: String { get set }
+    var isShowingIndicator: Bool { get set }
+    var userId: String { get set }
+    var isMyStory: Bool { get set }
+
     var stories: [Story] { get }
     var canSendMessages: Bool { get }
     var canReport: Bool { get }
@@ -21,8 +25,8 @@ protocol StoryViewModeled: ObservableObject {
     func getStoryTime() -> String
     
     func showNext()
-    func blockUser()
-    func reportProfile()
+    func deleteStory()
+    func makePrimaryImage()
 }
 
 extension StoryViewModeled {
@@ -36,6 +40,4 @@ extension StoryViewModeled {
 }
 
 extension StoryViewModeled {
-    func blockUser() {}
-    func reportProfile() {}
 }
