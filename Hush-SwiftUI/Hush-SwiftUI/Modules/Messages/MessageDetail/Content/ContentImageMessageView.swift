@@ -18,25 +18,32 @@ struct ContentImageMessageView: View {
     @Environment(\.deviceScale) private var deviceScale
     
     var body: some View {
-        VStack (alignment: isCurrentUser ? .trailing : .leading, spacing: 4) {
-            if shouldShowDate {
-                HStack {
-                    if !isCurrentUser {
-                        Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
-                    } else {
-                        (Text(getTime()) + Text(" | Delivered")).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+        HStack {
+            if isCurrentUser {
+                Spacer()
+            }
+            VStack (alignment: isCurrentUser ? .trailing : .leading, spacing: 4) {
+                if shouldShowDate {
+                    HStack {
+                        if !isCurrentUser {
+                            Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+                        } else {
+                            (Text(getTime()) + Text(" | Delivered")).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+                        }
                     }
                 }
+                WebImage(url: URL(string: image))
+                .resizable()
+                .placeholder {
+                    Image("placeholder_s")
+                }
+                .background(Color.white)
+                .frame(width: 150 * deviceScale, height: 150 * deviceScale)
             }
-            
-            WebImage(url: URL(string: image))
-            .resizable()
-            .placeholder {
-                Image("placeholder_l")
+            if !isCurrentUser {
+                Spacer()
             }
-            .background(Color.white)
-            .frame(width: 150 * deviceScale, height: 150 * deviceScale)
-        }.background(Color.black)
+        }
     }
     
     private func getTime() -> String {
