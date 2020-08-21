@@ -1569,7 +1569,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Hush-SwiftUI/Hush-SwiftUI.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = NFJ48WPQ9S;
 				ENABLE_PREVIEWS = YES;
@@ -1584,6 +1584,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Objc",
@@ -1673,7 +1674,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Hush-SwiftUI/Hush-SwiftUI.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Hush-SwiftUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = NFJ48WPQ9S;
 				ENABLE_PREVIEWS = YES;
@@ -1688,6 +1689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Objc",
