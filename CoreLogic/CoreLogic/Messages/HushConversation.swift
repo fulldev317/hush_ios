@@ -24,7 +24,7 @@ struct HushTextMessage: Hashable, Equatable, HushMessageProtocol {
 struct HushImageMessage: Hashable, Equatable, HushMessageProtocol {
     var id: String = UUID().uuidString
     var userID: String
-    var image: UIImage
+    var image: String
     var time: Date = Date()
 }
 

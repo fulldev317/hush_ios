@@ -44,7 +44,8 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     @EnvironmentObject var app: App
     private let imagePicker = DVImagePicker()
     @State private var showsUserProfile = false
-
+    @State var isUpdate = false
+    
     init(viewModel: ViewModel, showingSetting: Bool) {
         self.viewModel = viewModel
            
@@ -91,15 +92,26 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
             }
             .background(
                 NavigationLink(
-                    destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.myStoryList, index: self.viewModel.selectedStoryIndex) , isNewStory: false).environmentObject(self.app).withoutBar(),
+                    destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.myStoryList, index: self.viewModel.selectedStoryIndex), isNewStory: false).environmentObject(self.app)
+                        .withoutBar()
+                        .onDisappear(perform: {
+                            if (Common.storyUpdated()) {
+                                Common.setStoryUpdate(update: false)
+                                self.viewModel.isShowingIndicator = true
+                                self.viewModel.viewStories { (result) in
+                                    self.viewModel.isShowingIndicator = false
+                                }
+                            }
+                        }),
                     isActive: $showsUserProfile,
                     label: EmptyView.init
-                ).onDisappear(perform: {
-                    self.viewModel.isShowingIndicator = true
-                    self.viewModel.viewStories { (result) in
-                        self.viewModel.isShowingIndicator = false
-                    }
-                })
+                )
+//                    .onDisappear(perform: {
+//                    self.viewModel.isShowingIndicator = true
+//                    self.viewModel.viewStories { (result) in
+//                        self.viewModel.isShowingIndicator = false
+//                    }
+//                })
             )
             
             HushIndicator(showing: self.viewModel.isShowingIndicator)

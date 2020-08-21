@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ContentImageMessageView: View {
-    let image: UIImage
+    let image: String
     let time: Date
     let isCurrentUser: Bool
     let shouldShowDate: Bool
@@ -17,24 +18,25 @@ struct ContentImageMessageView: View {
     @Environment(\.deviceScale) private var deviceScale
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 146 * deviceScale, height: 183 * deviceScale)
-                    .clipped()
-            }.padding(.trailing, 28 * deviceScale)
-            
+        VStack (alignment: isCurrentUser ? .trailing : .leading, spacing: 4) {
             if shouldShowDate {
-                if !isCurrentUser {
-                    Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
-                } else {
-                    (Text(getTime()) + Text(" | Delivered")).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+                HStack {
+                    if !isCurrentUser {
+                        Text(getTime()).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+                    } else {
+                        (Text(getTime()) + Text(" | Delivered")).font(.regular(13)).foregroundColor(Color(0xB9BFCA))
+                    }
                 }
             }
-        }
+            
+            WebImage(url: URL(string: image))
+            .resizable()
+            .placeholder {
+                Image("placeholder_l")
+            }
+            .background(Color.white)
+            .frame(width: 150 * deviceScale, height: 150 * deviceScale)
+        }.background(Color.black)
     }
     
     private func getTime() -> String {
@@ -49,6 +51,6 @@ struct ContentImageMessageView: View {
 
 struct ContentImageMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentImageMessageView(image: UIImage(named: "story1")!, time: Date(), isCurrentUser: true, shouldShowDate: true)
+        ContentImageMessageView(image: "https://www.hushdating.app/assets/sources/uploads/thumb_5f3bd624e621b_image1.jpg", time: Date(), isCurrentUser: false, shouldShowDate: true)
     }
 }

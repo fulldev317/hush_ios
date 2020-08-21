@@ -42,9 +42,9 @@ class MessageDetailViewModel: MessageDetailViewModeled {
             if error == nil {
                 if let messageList = messageList {
                     for message in messageList {
-                        if (message != nil) {
+                        if let message = message {
 
-                            let strDate = message!.timestamp!
+                            let strDate = message.timestamp!
                             var date = Date()
                             if strDate.count > 0 {
                                 let dateFormatter = DateFormatter()
@@ -52,11 +52,11 @@ class MessageDetailViewModel: MessageDetailViewModeled {
                                 date = dateFormatter.date(from:strDate)!
                             }
                             
-                            if message!.type == "text" {
-                                let hushMessage: HushTextMessage = HushTextMessage(id: message!.id!, userID: message!.isMe! ? "SELF" : "DEF", text: message!.body!, time: date)
+                            if message.type == "text" {
+                                let hushMessage: HushTextMessage = HushTextMessage(id: message.id!, userID: message.isMe! ? "SELF" : "DEF", text: message.body!, time: date)
                                 self.chatMessages.append(.text(hushMessage))
                             } else {
-                                let hushMessage = HushImageMessage(id: message!.id!, userID: message!.isMe! ? "SELF" : "DEF", image: UIImage(named: message!.body!)!, time: date)
+                                let hushMessage = HushImageMessage(id: message.id!, userID: message.isMe! ? "SELF" : "DEF", image: message.body!, time: date)
                                 self.chatMessages.append(.image(hushMessage))
                             }
                         }
@@ -94,8 +94,15 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     }
     
     func sendImage(_ image: UIImage) {
-        let message = HushImageMessage(userID: "SELF", image: image)
-        conversation.sendMessage(.image(message))
-        changed.toggle()
+        let lastMessage = self.chatMessages.last
+        var last_id: Int = 0
+        if (lastMessage != nil) {
+            last_id = Int(lastMessage!.id)! + 1
+        }
+        let message = HushImageMessage(id: String(last_id), userID: "SELF", image: "https://www.hushdating.app/assets/sources/uploads/thumb_5f3bd624e621b_image1.jpg")
+        self.chatMessages.append(.image(message))
+        Common.setChatMessage(message: self.chatMessages)
+        changed = true
+        
     }
 }
