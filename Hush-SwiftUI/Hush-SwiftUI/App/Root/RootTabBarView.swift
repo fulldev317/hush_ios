@@ -33,6 +33,13 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         GeometryReader { proxy in
             TabBarView(selectedTab: self.$currentTab) {
                 ZStack {
+                    
+                    if self.currentTab == .chats {
+                        Color.clear.onAppear {
+                            pushNotifications.registerForRemoteNotifications()
+                        }
+                    }
+                    
                     if self.currentTab == .chats {
                         self.messages().zIndex(self.currentTab == .chats ? 1 : 0)
                     } else {
@@ -63,7 +70,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     
                     if self.currentTab == .carusel {
                         NavigationView {
-                            CardCaruselView(viewModel: CardCuraselViewModel()).withoutBar()
+                            self.carousel().withoutBar()
                         }.zIndex(self.currentTab == .carusel ? 1 : 0)
                     } else {
                         ZStack {
@@ -169,6 +176,29 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         .addPartialSheet()
     }
     
+    func carousel() -> some View {
+        VStack {
+            HStack {
+                Text("PhotoBooth").foregroundColor(.hOrange).font(.ultraLight(48))
+                Spacer()
+                HapticButton(action: self.showDiscoverySettings) {
+                    Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
+                }
+            }.padding(.leading, 25).padding(.top, -10)
+            
+            CardCaruselView(viewModel: CardCuraselViewModel(), showingSetting: self.app.isShowingSetting)
+
+        }.frame(width: SCREEN_WIDTH)
+        .withoutBar()
+        .background(Color.black.edgesIgnoringSafeArea(.all))
+        .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
+            UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
+                self.app.discovery.settingsViewModel.setGender(gender: gender)
+            }
+        } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
+        .addPartialSheet()
+    }
+    
     func matches() -> some View {
         VStack {
             HStack {
@@ -196,6 +226,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
     
     func showDiscoverySettings() {
         self.app.isShowingSetting = true
+        self.app.discovery.setSettingsModel()
         partialSheetManager.showPartialSheet {
             DiscoveriesSettingsView(viewModel: self.app.discovery.settingsViewModel)
         }

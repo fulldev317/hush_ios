@@ -26,9 +26,30 @@ class CardCuraselViewModel: CardCuraselViewModeled {
     @Published var showUpgrade: Bool = false
     @Published var selectedUser: User = User()
 
+    var settingsViewModel = DiscoveriesSettingsViewModel()
+
     init() {
-        self.loadGame { (result) in
-            
+       
+    }
+    
+    func setSettingsModel() {
+        let user: User = Common.userInfo()
+               
+        switch Int(user.sGender ?? "1") {
+        case 1:
+           settingsViewModel.gender = Gender.male
+           break
+        case 2:
+           settingsViewModel.gender = Gender.female
+           break
+        case 3:
+           settingsViewModel.gender = Gender.lesbian
+           break
+        case 4:
+           settingsViewModel.gender = Gender.gay
+           break
+        default:
+           settingsViewModel.gender = Gender.male
         }
     }
     

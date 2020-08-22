@@ -36,11 +36,18 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     func userChat(result: @escaping (Bool) -> Void) {
 
         ChatAPI.shared.user_chat(to_user_id: self.peerId) { (messageList, error) in
-            self.chatMessages.removeAll()
-            Common.setChatMessage(message: [])
+           
             
             if error == nil {
                 if let messageList = messageList {
+                    
+                    if messageList.count < self.chatMessages.count {
+                        result(true)
+                        return
+                    }
+                    
+                    self.chatMessages.removeAll()
+                    Common.setChatMessage(message: [])
                     for message in messageList {
                         if let message = message {
 
@@ -94,15 +101,33 @@ class MessageDetailViewModel: MessageDetailViewModeled {
     }
     
     func sendImage(_ image: UIImage) {
-        let lastMessage = self.chatMessages.last
-        var last_id: Int = 0
-        if (lastMessage != nil) {
-            last_id = Int(lastMessage!.id)! + 1
-        }
-        let message = HushImageMessage(id: String(last_id), userID: "SELF", image: "https://www.hushdating.app/assets/sources/uploads/thumb_5f3bd624e621b_image1.jpg")
-        self.chatMessages.append(.image(message))
-        Common.setChatMessage(message: self.chatMessages)
-        changed = true
         
+        self.isShowingIndicator = true
+
+        UserAPI.shared.upload_image(image: image) { (dic, error) in
+            self.isShowingIndicator = false
+
+            if error == nil {
+                let imagePath = dic!["path"] as! String
+                //let imageThumb = dic!["thumb"] as! String
+                
+                let lastMessage = self.chatMessages.last
+                var last_id: Int = 0
+                if (lastMessage != nil) {
+                    last_id = Int(lastMessage!.id)! + 1
+                }
+                let message = HushImageMessage(id: String(last_id), userID: "SELF", image: imagePath)
+                self.chatMessages.append(.image(message))
+                Common.setChatMessage(message: self.chatMessages)
+                self.changed = true
+                
+                ChatAPI.shared.sendMessage(to_user_id: self.peerId, message: imagePath, type: "image") { (error) in
+                    self.changed = false
+                    if error == nil {
+                        
+                    }
+                }
+            }
+        }
     }
 }

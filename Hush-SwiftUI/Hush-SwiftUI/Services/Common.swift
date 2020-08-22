@@ -161,6 +161,23 @@ class Common: NSObject {
         UserDefaults.standard.set(photobooth, forKey: "photobooth")
     }
     
+    static func getSGender() -> Gender {
+        let user: User = Common.userInfo()
+
+        switch Int(user.sGender ?? "1") {
+        case 1:
+           return Gender.male
+        case 2:
+           return Gender.female
+        case 3:
+           return Gender.lesbian
+        case 4:
+           return Gender.gay
+           break
+        default:
+           return Gender.male
+        }
+    }
     static func getLowerAge() -> Double {
         if let user = _user {
             if let sAge = user.sAge {
