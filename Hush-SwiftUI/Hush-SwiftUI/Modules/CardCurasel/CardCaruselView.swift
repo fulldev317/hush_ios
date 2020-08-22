@@ -11,7 +11,7 @@ import SwiftUI
 struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     
     // MARK: - Properties
-    
+
     @ObservedObject var viewModel: ViewModel
     
     @GestureState private var opacity: Double = 0
@@ -29,18 +29,23 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     private var showClose: Bool { translation.width < 0 }
     private var showHeart: Bool { translation.width > 0 }
     
-    init(viewModel: ViewModel) {
+    init(viewModel: ViewModel, showingSetting: Bool) {
         self.viewModel = viewModel
-        
-        let nType = Common.notificationType()
-        if nType == "like" || nType == "match" {
-            Common.setNotificationType(type: "none")
-            if Common.premium() {
-                let nValue = Common.notificationValue()
-                self.gotoUserProfilePage(userID: nValue)
-            } else {
-                self.viewModel.showUpgrade = true
+
+        if !showingSetting {
+            self.viewModel.loadGame { (result) in
+                
             }
+//            let nType = Common.notificationType()
+//            if nType == "like" || nType == "match" {
+//                Common.setNotificationType(type: "none")
+//                if Common.premium() {
+//                    let nValue = Common.notificationValue()
+//                    self.gotoUserProfilePage(userID: nValue)
+//                } else {
+//                    self.viewModel.showUpgrade = true
+//                }
+//            }
         }
     }
     
@@ -184,15 +189,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text("PhotoBooth")
-                        .font(.ultraLight(48))
-                        .foregroundColor(.hOrange)
-                        
-                }.padding(.leading, 25)
-                    .frame(height: 65)
-                    
-                Spacer()
                     
                 ZStack {
                     if (viewModel.games.count > 0) {
@@ -203,7 +199,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
 
                 }.frame(width: SCREEN_WIDTH)
                 .padding(.bottom, ISiPhoneX ? 20 : 0)
-                .padding(.top, ISiPhoneX ? 30 : 20)
+                .padding(.top, ISiPhoneX ? 20 : 0)
                 
                 Spacer()
 
@@ -213,7 +209,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     self.shouldAnimate = true
                 }
             }
-            HushIndicator(showing: self.viewModel.isShowingIndicator).padding(.top, 50)
+            HushIndicator(showing: self.viewModel.isShowingIndicator).padding(.top, -20)
             
         }.background(
             NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: viewModel.selectedUser))
@@ -302,9 +298,9 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                                     self.getDegree(index)),
                                user: viewModel.games[(2 * self.cardIndex - index + 3) % viewModel.games.count], showIndicator: $viewModel.isShowingIndicator)
         {
-            self.viewModel.loadGame { (result) in
-                
-            }
+//            self.viewModel.loadGame { (result) in
+//                
+//            }
         }
         .offset(index == self.getLastIndex(self.cardIndex) - 1 ? self.translation : .zero)
         .offset(x: 0, y: self.getOffset(index))
@@ -339,7 +335,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
 struct CardCuraselView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CardCaruselView(viewModel: CardCuraselViewModel())
+            CardCaruselView(viewModel: CardCuraselViewModel(), showingSetting: false)
                 .withoutBar()
                 .previewDevice(.init(rawValue: "iPhone SE 1"))
         }

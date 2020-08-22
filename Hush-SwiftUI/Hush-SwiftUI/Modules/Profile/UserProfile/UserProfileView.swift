@@ -50,6 +50,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     @State var goToMessage = false
     @State var showUpgrade = false
     @State var profileTapped = false
+    @State var heartOpacity = 1.0
+
     @ObservedObject var viewModel: ViewModel
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var app: App
@@ -225,12 +227,16 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                     let like = self.viewModel.isFan ? "0" : "1"
                                     self.viewModel.userLike(like: like)
                                     self.viewModel.isFan.toggle()
+                                    self.heartOpacity = 0.0
+                                    withAnimation(.easeInOut) {
+                                        self.heartOpacity = 1.0
+                                    }
                                     
                                 }) {
                                     Image("profile_heart")
                                         .renderingMode(.template)
                                         .foregroundColor(self.viewModel.isFan ? .red : .white)
-                                }
+                                }.opacity(self.heartOpacity)
                                 
                                 HapticButton(action: {
                                     if (Common.premium()) {
@@ -312,11 +318,15 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         let like = self.viewModel.isFan ? "0" : "1"
                         self.viewModel.userLike(like: like)
                         self.viewModel.isFan.toggle()
+                        self.heartOpacity = 0.0
+                        withAnimation(.easeInOut) {
+                            self.heartOpacity = 1.0
+                        }
                     }) {
                         Image("profile_heart")
                             .renderingMode(.template)
                             .foregroundColor(self.viewModel.isFan ? .red : .white)
-                    }
+                    }.opacity(self.heartOpacity)
                     
                     HapticButton(action: self.viewModel.switchMode
                         //{
@@ -395,11 +405,18 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                         )
                                     
                                 }
-                                HapticButton(action: {}) {
+                                HapticButton(action: {
+                                    self.viewModel.userLike(like: "1")
+                                    self.viewModel.isFan = true
+                                    self.heartOpacity = 0.0
+                                    withAnimation(.easeInOut) {
+                                        self.heartOpacity = 1.0
+                                    }
+                                }) {
                                     Image("heart_profile_icon")
                                     .aspectRatio(.fit)
                                         .frame(width: 25, height: 25)
-                                        .foregroundColor(.hOrange)
+                                        .foregroundColor( .hOrange)
                                     .padding(20)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 32.5)

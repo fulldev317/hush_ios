@@ -84,12 +84,18 @@ class StoryAPI: BaseAPI {
                             for index in 0 ..< json_stories.count {
                                 let story = json_stories[json_stories.count - index - 1]
                                 let jsonData = try! story.rawData()
-                                var story_data = try! JSONDecoder().decode(Story.self, from: jsonData)
-                                story_data.liked = false
-                                if let review: String = story_data.review {
-                                    if review.lowercased() != "yes" {
-                                        storyList.append(story_data)
+                                do {
+                                    var story_data = try JSONDecoder().decode(Story.self, from: jsonData)
+                                    story_data.liked = false
+                                    if let review: String = story_data.review {
+                                        if review.lowercased() != "yes" {
+                                            storyList.append(story_data)
+                                        }
                                     }
+                                } catch {
+                                    let error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                                    completion( nil, error)
+                                    return
                                 }
                             }
                         }
@@ -134,9 +140,15 @@ class StoryAPI: BaseAPI {
                             for index in 0 ..< json_stories.count {
                                 let story = json_stories[index]
                                 let jsonData = try! story.rawData()
-                                var story_data = try! JSONDecoder().decode(Stories.self, from: jsonData)
-                                story_data.liked = false
-                                storyList.append(story_data)
+                                do {
+                                    var story_data = try JSONDecoder().decode(Stories.self, from: jsonData)
+                                    story_data.liked = false
+                                    storyList.append(story_data)
+                                } catch {
+                                    let error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                                    completion( nil, error)
+                                    return
+                                }
                             }
                         }
                     } else {

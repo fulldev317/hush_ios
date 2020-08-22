@@ -12,6 +12,7 @@ struct User: Codable {
 
     init() {
         id = "0"
+        sGender = "1"
     }
     init(match: Match) {
         id = match.id
@@ -46,7 +47,7 @@ struct User: Codable {
     var myLikes: String?
     var totalLikes: Int?
     var totalFans: String?
-    var likesPercentage: Int?
+    //var likesPercentage: Int?
     var galleria: [Gallery]? //TODO
     var total_likes: String? //TODO repeated?
     var extended: Extended?
@@ -131,7 +132,7 @@ struct User: Codable {
         case totalNoLikers = "total_nolikers"
         case myLikes = "mylikes"
         case totalLikes
-        case likesPercentage = "likes_percentage"
+        //case likesPercentage = "likes_percentage"
         case galleria
         case total_likes
         case extended

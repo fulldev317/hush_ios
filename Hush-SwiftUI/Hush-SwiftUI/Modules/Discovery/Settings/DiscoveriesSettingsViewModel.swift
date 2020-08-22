@@ -13,7 +13,7 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
     
     // MARK: - Properties
 
-    @Published var gender = Gender.male
+    @Published var gender = Common.getSGender()
     @Published var message = "Hellow World!"
     @Published var dragFlag: Bool = true
     @Published var location: String = "Los Angles, FA, US"
