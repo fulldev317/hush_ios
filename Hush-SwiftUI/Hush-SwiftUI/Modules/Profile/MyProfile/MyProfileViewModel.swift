@@ -10,10 +10,12 @@ import SwiftUI
 import Combine
 import AVFoundation
 import Photos
+import PushNotifications
 
 class MyProfileViewModel: MyProfileViewModeled {
     
     // MARK: - Properties
+    let pushNotifications = PushNotifications.shared
 
     @Published var message = "Hellow World!"
     @Published var basicsViewModel: BioViewMode = BioViewMode()
@@ -415,7 +417,12 @@ class MyProfileViewModel: MyProfileViewModeled {
     }
     
     func logout(result: @escaping (Bool, String) -> Void) {
+        
+        pushNotifications.clearAllState {
+        }
+        
         Common.setPremium(false)
+        
         AuthAPI.shared.logout { (error) in
             if let error = error {
                 result(false, error.message)
