@@ -31,16 +31,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Purchases.configure(withAPIKey: "dOgiuWrnvfyvWYRkKZVpXPDwFgUzCfvO")
         let deviceUUID: String = UIDevice.current.identifierForVendor!.uuidString
         Purchases.configure(withAPIKey: "dOgiuWrnvfyvWYRkKZVpXPDwFgUzCfvO", appUserID: deviceUUID)
+        
+        
         // pusher notification
         pushNotifications.start(instanceId: "6db18817-a55f-4c38-bd3c-0fd827fa2888")
-        //pushNotifications.registerForRemoteNotifications()
+        pushNotifications.registerForRemoteNotifications()
         //try? pushNotifications.addDeviceInterest(interest: "hello")
                 
         //registerBackgroundTaks()
 
         //registerPushNotification()
 
-        Common.setNotificationType(type: "none")
+        //Common.setNotificationType(type: "none")
         //Common.setCurrentTab(tab: .carusel)
 
         return true

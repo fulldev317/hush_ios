@@ -189,11 +189,16 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
     func showStoryPicker() {
         let viewStory = UIAlertAction(title: "View Story", style: .default) { _ in
             //self.showMyStory(lastPick: false)
-            
+            self.viewModel.selectedStoryIndex = 0
+            let user = Common.userInfo()
+            if let userId = user.id {
+                self.showStory(userId: userId)
+            }
         }
+        
         let uploadStory = UIAlertAction(title: "Upload Story", style: .default) { _ in self.pickStory() }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        viewStory.isEnabled = !userStories.isEmpty
+        //viewStory.isEnabled = !userStories.isEmpty
         let alert = TextAlert(style: .actionSheet, title: "Your Story Options", message: nil, actions: [
             viewStory,
             uploadStory,
