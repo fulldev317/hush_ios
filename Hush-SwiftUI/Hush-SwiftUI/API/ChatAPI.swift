@@ -104,15 +104,21 @@ class ChatAPI: BaseAPI {
 
                             let json_matches = json["matches"]
 
-                             if (json_matches.count > 0) {
-                                 for index in 0 ..< json_matches.count {
-                                     let member = json_matches[index]
-                                     let jsonData = try! member.rawData()
-                                     var member_data = try! JSONDecoder().decode(ChatMember.self, from: jsonData)
-                                     member_data.liked = false
-                                     memberList.append(member_data)
-                                 }
-                             }
+                            if (json_matches.count > 0) {
+                                for index in 0 ..< json_matches.count {
+                                    let member = json_matches[index]
+                                    do {
+                                        let jsonData = try member.rawData()
+                                        var member_data = try JSONDecoder().decode(ChatMember.self, from: jsonData)
+                                        member_data.liked = false
+                                        memberList.append(member_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
+                                    }
+                                }
+                            }
                         } else {
                             error = APIError(json["error"].intValue, json["error_m"].stringValue)
                         }
@@ -158,9 +164,15 @@ class ChatAPI: BaseAPI {
                             if (json_matches.count > 0) {
                                 for index in 0 ..< json_matches.count {
                                     let member = json_matches[index]
-                                    let jsonData = try! member.rawData()
-                                    let member_data = try! JSONDecoder().decode(ChatMessage.self, from: jsonData)
-                                    memberList.append(member_data)
+                                    do {
+                                        let jsonData = try member.rawData()
+                                        let member_data = try JSONDecoder().decode(ChatMessage.self, from: jsonData)
+                                        memberList.append(member_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
+                                    }
                                 }
                             }
                         } else {

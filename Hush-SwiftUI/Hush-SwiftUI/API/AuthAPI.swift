@@ -34,8 +34,14 @@ class AuthAPI: BaseAPI {
                         
                         if json["error"].int == 0 {
                             let json_user = json["user"]
-                            let jsonData = try! json_user.rawData()
-                            user = try! JSONDecoder().decode(User.self, from: jsonData)
+                            do {
+                                let jsonData = try json_user.rawData()
+                                user = try JSONDecoder().decode(User.self, from: jsonData)
+                                completion(user, error)
+                            } catch {
+                                let error = APIError(404, "Server Connection Failed")
+                                completion(nil, error)
+                            }
                         } else {
                             let error_json: JSON = json["error_m"]
                             if let aryError: [JSON] = error_json.array {
@@ -45,10 +51,9 @@ class AuthAPI: BaseAPI {
                                 let error_m = error_json.stringValue
                                 error = APIError(json["error"].intValue, error_m)
                             }
+                            completion(user, error)
                         }
-                        completion(user, error)
                         break
-                    
                     case .failure:
                         let error = APIError(404, "Server Connection Failed")
                         completion(nil, error)
@@ -183,8 +188,8 @@ class AuthAPI: BaseAPI {
                         var error: APIError?
                         if json["error"].int == 0 {
                             let json_user = json["user"]
-                            let jsonData = try! json_user.rawData()
                             do {
+                                let jsonData = try json_user.rawData()
                                 user = try JSONDecoder().decode(User.self, from: jsonData)
                                 completion(user, error)
                             } catch {
@@ -240,8 +245,8 @@ class AuthAPI: BaseAPI {
                         var error: APIError?
                         if json["error"].int == 0 {
                             let json_user = json["user"]
-                            let jsonData = try! json_user.rawData()
                             do {
+                                let jsonData = try json_user.rawData()
                                 user = try JSONDecoder().decode(User.self, from: jsonData)
                                 completion(user, error)
                             } catch {
@@ -379,15 +384,22 @@ class AuthAPI: BaseAPI {
 
                             for index in 0 ..< json_users.count - 1 {
                                 let user = json_users[index]
-                                let jsonData = try! user.rawData()
-                                let user_data = try! JSONDecoder().decode(User.self, from: jsonData)
-                                userList.append(user_data)
+                                do {
+                                    let jsonData = try user.rawData()
+                                    let user_data = try JSONDecoder().decode(User.self, from: jsonData)
+                                    userList.append(user_data)
+                                    completion(userList, error)
+
+                                } catch {
+                                    let error = APIError(404, "Server Connection Failed")
+                                    completion(nil, error)
+                                }
                             }
 
                         } else {
                             error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                            completion(userList, error)
                         }
-                        completion(userList, error)
                     case .failure:
                         let error = APIError(404, "Server Connection Failed")
                         completion(nil, error)
@@ -429,18 +441,27 @@ class AuthAPI: BaseAPI {
                             if (json_users.count > 0) {
                                 for index in 0 ..< json_users.count {
                                     let user = json_users[index]
-                                    let jsonData = try! user.rawData()
-                                    var user_data = try! JSONDecoder().decode(Discover.self, from: jsonData)
-                                    if let fan = user_data.fan {
-                                        user_data.liked = fan == 1
+                                    do {
+                                        let jsonData = try user.rawData()
+                                        var user_data = try JSONDecoder().decode(Discover.self, from: jsonData)
+                                        if let fan = user_data.fan {
+                                            user_data.liked = fan == 1
+                                        }
+                                        userList.append(user_data)
+                                        completion(userList, error)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
                                     }
-                                    userList.append(user_data)
                                 }
+                            } else {
+                                let error = APIError(404, "Server Connection Failed")
+                                completion(nil, error)
                             }
                        } else {
-                           error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                            completion(userList, error)
                        }
-                       completion(userList, error)
                     case .failure:
                        let error = APIError(404, "Server Connection Failed")
                        completion(nil, error)
@@ -481,12 +502,18 @@ class AuthAPI: BaseAPI {
                             if (json_users.count > 0) {
                                 for index in 0 ..< json_users.count {
                                     let user = json_users[index]
-                                    let jsonData = try! user.rawData()
-                                    var user_data = try! JSONDecoder().decode(Game.self, from: jsonData)
-                                    if let fan = user_data.isFan {
-                                        user_data.liked = fan == 1
+                                    do {
+                                        let jsonData = try user.rawData()
+                                        var user_data = try JSONDecoder().decode(Game.self, from: jsonData)
+                                        if let fan = user_data.isFan {
+                                            user_data.liked = fan == 1
+                                        }
+                                        userList.append(user_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
                                     }
-                                    userList.append(user_data)
                                 }
                             }
                        } else {
@@ -526,8 +553,14 @@ class AuthAPI: BaseAPI {
                         var error: APIError?
                         if json["error"].int == 0 {
                             let json_user = json["user"]
-                            let jsonData = try! json_user.rawData()
-                            user = try! JSONDecoder().decode(User.self, from: jsonData)
+                            do {
+                                let jsonData = try json_user.rawData()
+                                user = try JSONDecoder().decode(User.self, from: jsonData)
+                            } catch {
+                                let error = APIError(404, "Server Connection Failed")
+                                completion(nil, error)
+                                break
+                            }
                         } else {
                             error = APIError(json["error"].intValue, json["error_m"].stringValue)
                         }
@@ -568,8 +601,14 @@ class AuthAPI: BaseAPI {
                         var error: APIError?
                         if json["error"].int == 0 {
                             let json_user = json["user"]
-                            let jsonData = try! json_user.rawData()
-                            user = try! JSONDecoder().decode(User.self, from: jsonData)
+                            do {
+                                let jsonData = try json_user.rawData()
+                                user = try JSONDecoder().decode(User.self, from: jsonData)
+                            } catch {
+                                let error = APIError(404, "Server Connection Failed")
+                                completion(nil, error)
+                                break
+                            }
                         } else {
                             error = APIError(json["error"].intValue, json["error_m"].stringValue)
                         }
@@ -604,8 +643,14 @@ class AuthAPI: BaseAPI {
                         var error: APIError?
                         if json["error"].int == 0 {
                             let json_user = json["user"]
-                            let jsonData = try! json_user.rawData()
-                            user = try! JSONDecoder().decode(User.self, from: jsonData)
+                            do {
+                                let jsonData = try json_user.rawData()
+                                user = try JSONDecoder().decode(User.self, from: jsonData)
+                            } catch {
+                                let error = APIError(404, "Server Connection Failed")
+                                completion(nil, error)
+                                break
+                            }
                         } else {
                             error = APIError(json["error"].intValue, json["error_m"].stringValue)
                         }
