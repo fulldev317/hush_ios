@@ -267,26 +267,26 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                 self.selectedIndex = i * 2 + j
                                 let discover = self.viewModel.discoveries[self.selectedIndex]
                                 if let userId = discover.id {
-                                
+
                                     self.viewModel.isShowingIndicator = true
-                                    
+
                                     AuthAPI.shared.cuser(userId: userId) { (user, error) in
                                         self.viewModel.isShowingIndicator = false
                                         if error == nil {
-                                            
+
                                             UserAPI.shared.add_visit(toUserID: userId) { (error) in
                                             }
-                                            
+
                                             self.selectedUser = user!
                                             self.showUserProfile = true
                                         }
                                     }
                                 }
-                        }
+                            }
                     } else {
                         Spacer()
                     }
-                }
+                }.buttonStyle(PlainButtonStyle())
             }
         }.zIndex(Double(100 - i))
     }

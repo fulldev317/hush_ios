@@ -42,9 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         //registerPushNotification()
 
-        //Common.setNotificationType(type: "none")
-        //Common.setCurrentTab(tab: .carusel)
-
         return true
     }
     
