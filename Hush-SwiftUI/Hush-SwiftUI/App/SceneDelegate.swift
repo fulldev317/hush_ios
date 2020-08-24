@@ -59,7 +59,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          }
     }
     
-//    func sceneWillEnterForeground(_ scene: UIScene) {
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        
+        let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+        
+        if (isLoggedIn.wrappedValue) {
+            let user = Common.userInfo()
+            if let userId = user.id {
+                AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
+                    if error == nil {
+                        if let user = user {
+                            if let premium = user.premium {
+                                if premium == "1" {
+                                    Common.setPremium(true)
+                                } else {
+                                    Common.setPremium(false)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 //        let nType = Common.notificationType()
 //        if (nType == "chat") {
 //            self.app.currentTab = HushTabs.chats
@@ -70,7 +91,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            self.app.currentTab = HushTabs.carusel
 //            Common.setCurrentTab(tab: HushTabs.carusel)
 //        }
-//    }
+    }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
         //(UIApplication.shared.delegate as! AppDelegate).scheduleUnreadChatfetcher()
@@ -231,8 +252,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     Common.setSGenderString(gender: s_gender)
                 }
                 //self.setPusherId(userId: user.id!)
-                
-                Common.setLoadPhotoBooth(photobooth: false)
                 
                 Common.setUnreadChatEnabled(enabled: false)
            }

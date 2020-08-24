@@ -152,15 +152,6 @@ class Common: NSObject {
         return premium ?? false
     }
     
-    static func loadPhotoBooth() -> Bool {
-        let photobooth: Bool? = UserDefaults.standard.bool(forKey: "photobooth")
-        return photobooth ?? false
-    }
-    
-    static func setLoadPhotoBooth(photobooth: Bool) {
-        UserDefaults.standard.set(photobooth, forKey: "photobooth")
-    }
-    
     static func getSGender() -> Gender {
         let user: User = Common.userInfo()
 
