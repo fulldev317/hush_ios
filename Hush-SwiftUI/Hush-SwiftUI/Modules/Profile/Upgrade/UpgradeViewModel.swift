@@ -40,7 +40,7 @@ class UpgradeViewModel: UpgradeViewModeled {
     
     var uiMessageElements: [UpgradeUIItem<AnyView>] {
         [
-        UpgradeUIItem(title: "Connect with Wendy", content: profile_image(0)),
+        UpgradeUIItem(title: "Connect with Wendy", content: image(0)),
         UpgradeUIItem(title: "Unlimited Messaging", content: image(3)),
         UpgradeUIItem(title: "Access More Filters", content: image(2)),
         //UpgradeUIItem(title: "Photo Booth Rewinds", content: image(4)),
@@ -153,7 +153,7 @@ class UpgradeViewModel: UpgradeViewModeled {
     }
     
     private func image(_ index: Int) -> AnyView {
-        AnyView(Image("swipe\(index)").aspectRatio(.fit))
+        AnyView(Image("swipe\(index)").aspectRatio(.fit).padding(.horizontal, 10))
     }
     
     private func profile_image(_ index: Int) -> AnyView {

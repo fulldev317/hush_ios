@@ -43,13 +43,13 @@ struct CardCaruselElementView: View {
                     .placeholder {
                       Image("placeholder_l")
                     }
-                    .background(Color.white)
-                    .frame(width: (ISiPhoneX ? 420 : 320) * deviceScale, height: (ISiPhoneX ? 400 : 320) * deviceScale)
-                    .padding(.top, 30 * deviceScale)
+                    .background(Color.black)
+                    .frame(width: (ISiPhoneX ? 460 : 420) * deviceScale, height: (ISiPhoneX ? 450 : 395) * deviceScale)
+                .padding(.top, ISiPhoneX ? 30 * deviceScale : 20 * deviceScale)
 
                 Spacer()
             }
-        }.frame(width: (ISiPhoneX ? 511 : 361) * deviceScale, height: (ISiPhoneX ? 550 : 470) * deviceScale)
+        }.frame(width: (ISiPhoneX ? 550 : 460) * deviceScale, height: (ISiPhoneX ? 590 : 505) * deviceScale)
         .overlay(overlay.rotationEffect(rotation), alignment: .bottom)
         .rotationEffect(-rotation)
         .onTapGesture {
@@ -71,6 +71,50 @@ struct CardCaruselElementView: View {
         }
     }
     
+    func getDescLeading(degree: Double) -> CGFloat {
+        if (degree >= 0) {
+            return 20
+        }
+        return 20
+    }
+    
+    func getDescBottom(degree: Double) -> CGFloat {
+        
+        if (degree >= 0) {
+            return -30
+        }
+        return 0
+    }
+    
+    func getDescTop(degree: Double) -> CGFloat {
+        
+        if (degree < 0) {
+            return -50
+        }
+        return 0
+    }
+    
+    func getIconTrailing(degree: Double) -> CGFloat {
+        if (degree >= 0) {
+            return 20
+        }
+        return 20
+    }
+    
+    func getIconBottom(degree: Double) -> CGFloat {
+        if (degree >= 0) {
+            return 10
+        }
+        return -10
+    }
+    
+    func getIconTop(degree: Double) -> CGFloat {
+        if (degree >= 0) {
+            return -10
+        }
+        return 0
+    }
+    
     var overlay: some View {
         VStack {
             Spacer()
@@ -84,7 +128,9 @@ struct CardCaruselElementView: View {
                     Text(user.city ?? "LosAngels, US").font(.thin(ISiPhoneX ? 16 : 14)).foregroundColor(Color.black)
                     Circle().fill(Color(0x6FCF97)).square(15)
                         .padding(.top, 4)
-                }.padding(.leading, ISiPhoneX ? 0 : rotation.degrees > 0 ? 20 : -10 )
+                }.padding(.leading, getDescLeading(degree: rotation.degrees))
+                    .padding(.bottom, getDescBottom(degree: rotation.degrees))
+                .padding(.top, getDescTop(degree: rotation.degrees))
                 
                 Spacer()
                 
@@ -152,23 +198,44 @@ struct CardCaruselElementView: View {
                             self.gotoUserProfilePage()
                         }
                     }.buttonStyle(PlainButtonStyle())
-                }.padding(.bottom, 10).padding(.trailing, ISiPhoneX ? 0 : 15)
-            }.padding(.bottom, rotation.degrees > 0 ? 0: 10)
-                .padding(.leading, 15)
-                .padding(.trailing, rotation.degrees > 0 ? -10: 15)
+                }.padding(.bottom, 10).padding(.trailing, 30)
+                
+            }.padding(.top, getIconTop(degree: rotation.degrees))
+            .padding(.bottom, getIconBottom(degree: rotation.degrees))
+            .padding(.leading, getIconTrailing(degree: rotation.degrees))
             
-        }.padding(.horizontal, ISiPhoneX ? 70 * deviceScale : 0)
+        }.padding(.horizontal, ISiPhoneX ? 40 : 0)
         .padding(.vertical)
     }
     
     
 }
-//
-//struct CardCaruselElement_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        CardCaruselElementView(rotation: .degrees(-5), user: Discover())
-//            .previewEnvironment()
-//            .padding()
-//    }
-//}
+
+struct CardCaruselElement_Previews: PreviewProvider {
+    static var previews: some View {
+
+         Group {
+            NavigationView {
+                CardCaruselElementView(rotation: .degrees(5), user: Game(), showIndicator: .constant(false))
+                .previewEnvironment()
+                .padding()
+                .background(Color.black)
+            }.previewDevice(.init(rawValue: "iPhone 8"))
+            
+            NavigationView {
+                CardCaruselElementView(rotation: .degrees(5), user: Game(), showIndicator: .constant(false))
+                .previewEnvironment()
+                .padding()
+                .background(Color.black)
+            }.previewDevice(.init(rawValue: "iPhone X"))
+            
+//            NavigationView {
+//                CardCaruselElementView(rotation: .degrees(5), user: Game(), showIndicator: .constant(false))
+//                .previewEnvironment()
+//                .padding()
+//                .background(Color.black)
+//            }.previewDevice(.init(rawValue: "iPhone 11"))
+        }
+        
+    }
+}
