@@ -363,6 +363,18 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
                 }
                 
+                tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
+                    var selectedLooking = $0.lowercased()
+                    if (selectedLooking == "") {
+                        selectedLooking = "female"
+                    }
+                    if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
+                    {
+                        self.viewModel.updateLooking(gender: selectedLooking)
+                    }
+                    self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
+                }
+                
 //                tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
 //                    var selectedLooking = $0.lowercased()
 //                    if (selectedLooking == "") {
@@ -370,24 +382,24 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
 //                    }
 //                    if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
 //                    {
-//                        self.viewModel.updateGender(gender: selectedGender)
+//                        self.viewModel.updateLooking(gender: selectedLooking)
 //                    }
-//                    self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
+//                    self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
 //                }
-                
-                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
-                    var selectedSex: String = $0.lowercased()
-                    if (selectedSex == "") {
-                        selectedSex = "gay"
-                    } else {
-                        selectedSex = Sex.typeForTitle(title: selectedSex)
-                    }
-                    if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
-                    {
-                        self.viewModel.updateSex(sex: selectedSex)
-                    }
-                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
-                }
+                                
+//                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
+//                    var selectedSex: String = $0.lowercased()
+//                    if (selectedSex == "") {
+//                        selectedSex = "gay"
+//                    } else {
+//                        selectedSex = Sex.typeForTitle(title: selectedSex)
+//                    }
+//                    if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
+//                    {
+//                        self.viewModel.updateSex(sex: selectedSex)
+//                    }
+//                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
+//                }
                 
                 tablePickerRow("Living", selected: viewModel.basicsViewModel.living.title, titles: Living.allTitles) {
                     var selectedLiving = $0.lowercased()
@@ -499,7 +511,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
                 tableRow("Privacy Policy") {
-                    iOSApp.open(URL(string: "https://google.com")!)
+                    iOSApp.open(URL(string: "http://appsmallptint.com")!)
                 }
 //                tableRow("Privacy Policy") {
 //                    iOSApp.open(URL(string: "https://google.com")!)

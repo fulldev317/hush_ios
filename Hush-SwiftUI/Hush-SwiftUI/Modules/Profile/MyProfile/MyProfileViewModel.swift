@@ -379,10 +379,24 @@ class MyProfileViewModel: MyProfileViewModeled {
        
         let gender_index = Common.getGenderIndexValue(gender)
 
-        UserAPI.shared.update_gender(gender: gender_index) { ( error) in
+        UserAPI.shared.update_user_gender(gender: gender_index) { ( error) in
             if (error == nil) {
                 var user = Common.userInfo()
                 user.gender = gender_index
+                Common.setUserInfo(user)
+            }
+        }
+    }
+    
+    func updateLooking(gender: String) {
+       
+        let gender_index = Common.getGenderIndexValue(gender)
+
+        UserAPI.shared.update_gender(gender: gender_index) { ( error) in
+            if (error == nil) {
+                var user = Common.userInfo()
+                user.looking = gender_index
+                user.sGender = gender_index
                 Common.setUserInfo(user)
             }
         }

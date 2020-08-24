@@ -48,7 +48,7 @@ struct ImagesCarusel<Content: View>: View {
                 }
             }.padding(.top, 20)
             Spacer()
-        }.frame(width: 400, height: 254)
+        }.frame(width: 320, height: 254)
     }
 }
 
