@@ -28,33 +28,44 @@ class StoryAPI: BaseAPI {
         let request = AF.request(belloo_endpoint, method: .post, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    var storyList: [Story?] = []
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        var storyList: [Story?] = []
 
-                    if (json["story"].intValue > 0) {
-                        let json_stories = json["stories"]
+                        if (json["story"].intValue > 0) {
+                            let json_stories = json["stories"]
 
-                        if (json_stories.count > 0) {
-                            for index in 0 ..< json_stories.count {
-                                let story = json_stories[index]
-                                let jsonData = try! story.rawData()
-                                var story_data = try! JSONDecoder().decode(Story.self, from: jsonData)
-                                story_data.liked = false
-                                storyList.append(story_data)
+                            if (json_stories.count > 0) {
+                                for index in 0 ..< json_stories.count {
+                                    let story = json_stories[index]
+                                    do {
+                                        let jsonData = try story.rawData()
+                                        var story_data = try JSONDecoder().decode(Story.self, from: jsonData)
+                                        story_data.liked = false
+                                        storyList.append(story_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
+                                    }
+                                }
                             }
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
                         }
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        completion(storyList, error)
+                    case .failure:
+                       let error = APIError(404, "Server Connection Failed")
+                       completion(nil, error)
+                       print("API CALL FAILED")
                     }
-                    completion(storyList, error)
-                case .failure:
-                   let error = APIError(404, "Server Connection Failed")
-                   completion(nil, error)
-                   print("API CALL FAILED")
+                } catch {
+                    let error = APIError(404, "Server Connection Failed")
+                    completion(nil, error)
                 }
             } else {
                 let error = APIError(404, "Server Connection Failed")
@@ -71,43 +82,48 @@ class StoryAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    var storyList: [Story?] = []
-                    if (json["error"].int == 0) {
-                        let json_stories = json["stories"]
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        var storyList: [Story?] = []
+                        if (json["error"].int == 0) {
+                            let json_stories = json["stories"]
 
-                        if (json_stories.count > 0) {
-                            for index in 0 ..< json_stories.count {
-                                let story = json_stories[json_stories.count - index - 1]
-                                let jsonData = try! story.rawData()
-                                do {
-                                    var story_data = try JSONDecoder().decode(Story.self, from: jsonData)
-                                    story_data.liked = false
-                                    if let review: String = story_data.review {
-                                        if review.lowercased() != "yes" {
-                                            storyList.append(story_data)
+                            if (json_stories.count > 0) {
+                                for index in 0 ..< json_stories.count {
+                                    let story = json_stories[json_stories.count - index - 1]
+                                    do {
+                                        let jsonData = try story.rawData()
+                                        var story_data = try JSONDecoder().decode(Story.self, from: jsonData)
+                                        story_data.liked = false
+                                        if let review: String = story_data.review {
+                                            if review.lowercased() != "yes" {
+                                                storyList.append(story_data)
+                                            }
                                         }
+                                    } catch {
+                                        let error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                                        completion( nil, error)
+                                        return
                                     }
-                                } catch {
-                                    let error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                                    completion( nil, error)
-                                    return
                                 }
                             }
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
                         }
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
 
-                    completion(storyList, error)
-                case .failure:
+                        completion(storyList, error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
                     let error = APIError(404, "Server Connection Failed")
                     completion(nil, error)
-                    print("API CALL FAILED")
                 }
             } else {
                 let error = APIError(404, "Server Connection Failed")
@@ -127,39 +143,44 @@ class StoryAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    var storyList: [Stories?] = []
-                    if (json["error"].int == 0) {
-                        let json_stories = json["stories"]
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        var storyList: [Stories?] = []
+                        if (json["error"].int == 0) {
+                            let json_stories = json["stories"]
 
-                        if (json_stories.count > 0) {
-                            for index in 0 ..< json_stories.count {
-                                let story = json_stories[index]
-                                let jsonData = try! story.rawData()
-                                do {
-                                    var story_data = try JSONDecoder().decode(Stories.self, from: jsonData)
-                                    story_data.liked = false
-                                    storyList.append(story_data)
-                                } catch {
-                                    let error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                                    completion( nil, error)
-                                    return
+                            if (json_stories.count > 0) {
+                                for index in 0 ..< json_stories.count {
+                                    let story = json_stories[index]
+                                    do {
+                                        let jsonData = try story.rawData()
+                                        var story_data = try JSONDecoder().decode(Stories.self, from: jsonData)
+                                        story_data.liked = false
+                                        storyList.append(story_data)
+                                    } catch {
+                                        let error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                                        completion( nil, error)
+                                        return
+                                    }
                                 }
                             }
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
                         }
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                    }
 
-                    completion(storyList, error)
-                case .failure:
+                        completion(storyList, error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(nil, error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
                     let error = APIError(404, "Server Connection Failed")
                     completion(nil, error)
-                    print("API CALL FAILED")
                 }
             } else {
                 let error = APIError(404, "Server Connection Failed")
@@ -176,21 +197,26 @@ class StoryAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if (json["error"].int == 0) {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if (json["error"].int == 0) {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion( error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion( error)
-                case .failure:
+                } catch {
                     let error = APIError(404, "Server Connection Failed")
                     completion(error)
-                    print("API CALL FAILED")
                 }
             } else {
                 let error = APIError(404, "Server Connection Failed")
@@ -207,21 +233,26 @@ class StoryAPI: BaseAPI {
         let request = AF.request(endpoint, parameters: parameters)
         request.responseJSON { (response) in
             if let data = response.data {
-                let json = try! JSON(data: data)
-                
-                switch response.result {
-                case .success(_):
-                    var error: APIError?
-                    if (json["error"].int == 0) {
-                        error = nil
-                    } else {
-                        error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if (json["error"].int == 0) {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion( error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
                     }
-                    completion( error)
-                case .failure:
+                } catch {
                     let error = APIError(404, "Server Connection Failed")
                     completion(error)
-                    print("API CALL FAILED")
                 }
             } else {
                 let error = APIError(404, "Server Connection Failed")

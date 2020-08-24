@@ -37,13 +37,19 @@ class MatchesAPI: BaseAPI {
 
                             let json_matches = json["matches"]
 
-                             if (json_matches.count > 0) {
-                                 for index in 0 ..< json_matches.count {
-                                     let match = json_matches[index]
-                                     let jsonData = try! match.rawData()
-                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                     match_data.liked = false
-                                     matchList.append(match_data)
+                            if (json_matches.count > 0) {
+                                for index in 0 ..< json_matches.count {
+                                    let match = json_matches[index]
+                                    do {
+                                         let jsonData = try match.rawData()
+                                         var match_data = try JSONDecoder().decode(Match.self, from: jsonData)
+                                         match_data.liked = false
+                                         matchList.append(match_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
+                                    }
                                  }
                              }
                         } else {
@@ -91,10 +97,16 @@ class MatchesAPI: BaseAPI {
                              if (json_matches.count > 0) {
                                  for index in 0 ..< json_matches.count {
                                      let match = json_matches[index]
-                                     let jsonData = try! match.rawData()
-                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                     match_data.liked = false
-                                     matchList.append(match_data)
+                                    do {
+                                         let jsonData = try match.rawData()
+                                         var match_data = try JSONDecoder().decode(Match.self, from: jsonData)
+                                         match_data.liked = false
+                                         matchList.append(match_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
+                                    }
                                  }
                              }
                         } else {
@@ -142,10 +154,16 @@ class MatchesAPI: BaseAPI {
                              if (json_matches.count > 0) {
                                  for index in 0 ..< json_matches.count {
                                      let match = json_matches[index]
-                                     let jsonData = try! match.rawData()
-                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                     match_data.liked = false
-                                     matchList.append(match_data)
+                                    do {
+                                         let jsonData = try match.rawData()
+                                         var match_data = try JSONDecoder().decode(Match.self, from: jsonData)
+                                         match_data.liked = false
+                                         matchList.append(match_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
+                                    }
                                  }
                              }
                         } else {
@@ -193,10 +211,16 @@ class MatchesAPI: BaseAPI {
                              if (json_matches.count > 0) {
                                  for index in 0 ..< json_matches.count {
                                      let match = json_matches[index]
-                                     let jsonData = try! match.rawData()
-                                     var match_data = try! JSONDecoder().decode(Match.self, from: jsonData)
-                                     match_data.liked = true
-                                     matchList.append(match_data)
+                                    do {
+                                        let jsonData = try match.rawData()
+                                        var match_data = try JSONDecoder().decode(Match.self, from: jsonData)
+                                        match_data.liked = true
+                                        matchList.append(match_data)
+                                    } catch {
+                                        let error = APIError(404, "Server Connection Failed")
+                                        completion(nil, error)
+                                        break
+                                    }
                                  }
                              }
                         } else {
