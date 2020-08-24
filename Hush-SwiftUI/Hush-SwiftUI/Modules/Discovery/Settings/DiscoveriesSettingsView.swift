@@ -21,7 +21,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     @State private var selectedSliderValue = 0.0
 
     @State private var secondSliderFalue = 0.0
-    @State private var isToggle = true
+    @State private var isToggle = Common.filterOnline()
     @State var showLocation: Bool = false
     @State var ageSliderLower = Common.getLowerAge()
     @State var ageSliderUpper = Common.getUpperAge()
@@ -53,6 +53,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                 Text("Filter").font(.bold(24))
                 Spacer()
                 Button(action: {
+                    Common.setFilterOnine(filter: self.isToggle)
                     self.app.isShowingSetting = false
                     self.partialSheetManager.closePartialSheet()
                 }) {

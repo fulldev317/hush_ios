@@ -164,11 +164,20 @@ class Common: NSObject {
            return Gender.lesbian
         case 4:
            return Gender.gay
-           break
         default:
            return Gender.male
         }
     }
+    
+    static func filterOnline() -> Bool {
+        let online = UserDefaults.standard.bool(forKey: "filter_online")
+        return online
+    }
+    
+    static func setFilterOnine(filter: Bool) {
+        UserDefaults.standard.set(filter, forKey: "filter_online")
+    }
+    
     static func getLowerAge() -> Double {
         if let user = _user {
             if let sAge = user.sAge {
