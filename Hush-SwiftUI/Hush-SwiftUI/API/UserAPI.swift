@@ -827,4 +827,39 @@ class UserAPI: BaseAPI {
         }
     }
     
+    func update_user_gender(gender: String, completion: @escaping ( _ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let query = userId + "," + gender
+        let parameters: Parameters = ["action": "updateUserGender",
+                                      "query": query]
+        
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
+                    completion(APIError(404, "Server Connection Failed"))
+                }
+            } else {
+               completion(APIError(404, "Server Connection Failed"))
+            }
+        }
+    }
 }
