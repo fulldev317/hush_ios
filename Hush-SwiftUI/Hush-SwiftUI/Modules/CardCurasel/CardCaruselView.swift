@@ -198,8 +198,8 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                     }
 
                 }.frame(width: SCREEN_WIDTH)
-                .padding(.bottom, ISiPhoneX ? 20 : 0)
-                .padding(.top, ISiPhoneX ? 20 : 0)
+                .padding(.bottom, ISiPhoneX ? 30 : 10)
+                .padding(.top, ISiPhoneX ? 50 : 35)
                 
                 Spacer()
 
@@ -227,7 +227,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 isActive: self.$viewModel.showUpgrade,
                 label: EmptyView.init
             )
-        )
+        ).padding(.top, ISiPhoneX ? -30 : -35)
     }
     
     private func getDegree(_ index: Int ) -> Double {

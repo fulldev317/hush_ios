@@ -92,7 +92,7 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
             }
             .background(
                 NavigationLink(
-                    destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.myStoryList, index: self.viewModel.selectedStoryIndex), isNewStory: false).environmentObject(self.app)
+                    destination: StoryView(viewModel: StoryViewModel(stories: self.viewModel.myStoryList, index: self.viewModel.selectedStoryIndex), isNewStory: false)
                         .withoutBar()
                         .onDisappear(perform: {
                             if (Common.storyUpdated()) {
@@ -221,21 +221,14 @@ struct StoriesView<ViewModel: StoriesViewModeled>: View, HeaderedScreen {
 
 struct StoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        RootTabBarView_Previews.previews
+//        RootTabBarView_Previews.previews
 //        StoryView(username: "Username", isMyStory: false)
 //            .frame(width: 124, height: 148)
 //            .padding(50)
 //            .previewLayout(.sizeThatFits)
-//        Group {
-//            NavigationView {
-//                StoriesView(viewModel: StoriesViewModel())
-//            }
-//            NavigationView {
-//                StoriesView(viewModel: StoriesViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone 8"))
-//            NavigationView {
-//                StoriesView(viewModel: StoriesViewModel())
-//            }.previewDevice(.init(rawValue: "iPhone XS Max"))
-//        }
+       
+        NavigationView {
+            StoriesView(viewModel: StoriesViewModel(), showingSetting: false)
+        }
     }
 }
