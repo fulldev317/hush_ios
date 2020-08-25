@@ -347,40 +347,6 @@ class UserAPI: BaseAPI {
 //            }
 //        }
     
-    
-    func unreadMessageCount(completion: @escaping (_ unreadMessages: Int?, _ error: APIError?) -> Void) {
-        let userId: String = "user_id"
-        let parameters: Parameters = ["action": "unreadMessageCount",
-                                      "id": userId]
-        
-        let request = AF.request(endpoint, parameters: parameters)
-        request.responseJSON { (response) in
-            if let data = response.data {
-                do {
-                    let json = try JSON(data: data)
-                    
-                    switch response.result {
-                    case .success(_):
-                        var unreadMessages: Int?
-                        var error: APIError?
-                        if json["error"].int == 0 {
-                            unreadMessages = Int(json["unreadMessageCount"].string ?? "0") ?? 0
-                        } else {
-                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                        }
-                        completion(unreadMessages, error)
-                    case .failure:
-                        print("API CALL FAILED")
-                    }
-                } catch {
-                    completion(nil, APIError(404, "Server Connection Failed"))
-                }
-            } else {
-                completion(nil, APIError(404, "Server Connection Failed"))
-            }
-        }
-    }
-    
     func add_image(path: String, thumb: String, completion: @escaping (_ imageID: String?, _ error: APIError?) -> Void) {
         let user = Common.userInfo()
         let userId = user.id!
