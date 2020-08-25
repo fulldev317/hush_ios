@@ -41,7 +41,6 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        Common.setUnreadChatEnabled(enabled: false)
         self.viewModel.getChat { result in
             if (result == true) {
                 UIApplication.shared.applicationIconBadgeNumber = 0

@@ -66,6 +66,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if (isLoggedIn.wrappedValue) {
             let user = Common.userInfo()
             if let userId = user.id {
+                if userId == "0" {
+                    return
+                }
                 AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
                     if error == nil {
                         if let user = user {
@@ -251,9 +254,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if let s_gender = user.sGender {
                     Common.setSGenderString(gender: s_gender)
                 }
-                //self.setPusherId(userId: user.id!)
                 
-                Common.setUnreadChatEnabled(enabled: false)
+                //self.setPusherId(userId: user.id!)
            }
         }
     }

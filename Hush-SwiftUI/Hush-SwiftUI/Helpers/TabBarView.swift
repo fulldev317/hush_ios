@@ -29,11 +29,25 @@ struct TabBarView<Content: View>: View {
     @Binding var selectedTab: HushTabs
     @State var isChatUnread = false
     let content: Content
-    //let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
     init(selectedTab: Binding<HushTabs>, @ViewBuilder content: () -> Content) {
         _selectedTab = selectedTab
         self.content = content()
+        
+        ChatAPI.shared.unread_message_count { (count, error) in
+            if error == nil {
+                if let count = count {
+                    if count > 0 {
+                    } else {
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func setChatUnRead(enabled: Bool) {
+        
     }
     
     var body: some View {
@@ -52,19 +66,7 @@ struct TabBarView<Content: View>: View {
                                 tab.image
                                 .renderingMode(.template)
                                 .foregroundColor(tab == self.selectedTab ? .hOrange : Color(0x8E8786))
-                                .overlay(Circle().fill(Color.green).frame(width: 15, height: 15).opacity( Common.unreadChatEnabled() ? 1.0 : 0.0) ,alignment: .bottomTrailing)
-//                                .onReceive(self.timer) { input in
-//                                    ChatAPI.shared.unread_message_count { (count, error) in
-//                                        if (error == nil) {
-//                                            if let count = count {
-//                                                if count > 0 {
-//                                                    Common.setUnreadChatEnabled(enabled: true)
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                }
-                                
+                                    .overlay(Circle().fill(Color.green).frame(width: 15, height: 15).opacity( self.isChatUnread ? 1.0 : 0.0) ,alignment: .bottomTrailing)
                             }
                         } else {
                             tab.image

@@ -35,9 +35,9 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                 ZStack {
                     
                     if self.currentTab == .chats {
-                        Color.clear.onAppear {
-                            pushNotifications.registerForRemoteNotifications()
-                        }
+//                        Color.clear.onAppear {
+//                            pushNotifications.registerForRemoteNotifications()
+//                        }
                     }
                     
                     if self.currentTab == .chats {

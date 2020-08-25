@@ -190,17 +190,17 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                     }
                                     .background(Color.white)
                                     .frame(width: self.imageWidth, height: self.imageHeight - 20)
-                                    .padding(.top, ISiPhoneX ? 30 : 20)
+                                    .padding(.top, ISiPhone11 ? 30 * self.deviceScale : ISiPhoneX ? 30 : 20)
                                     
 
                                     //.scaledToFill()
                                     //.frame(width: pr.size.width, height: pr.size.height)
                                 }
-                                    .rotationEffect(.degrees(-3))
+                                    .rotationEffect(.degrees(3))
                                 .padding(.top, ISiPhoneX ? 140 : 80)
                             //}
                         }
-                        .itemSpacing(30)
+                        .itemSpacing(ISiPhone11 ? 200 : ISiPhoneX ? 180 : 110)
                         .padding(0)
                         
                     }
