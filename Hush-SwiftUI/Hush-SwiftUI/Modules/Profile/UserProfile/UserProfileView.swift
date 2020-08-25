@@ -60,7 +60,13 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     @State var reportReasonButton: [ActionSheet.Button] = []
     enum ReportSheet { case main, reason }
     @State var reportSheet: ReportSheet = .main
-
+    @State private var rectSize: CGSize = .zero
+    
+    private let imageScale: CGFloat = 450 / 511
+    private let deviceScale = SCREEN_WIDTH / 411
+    
+    private let imageHeight = SCREEN_HEIGHT - 100
+    private let imageWidth = (SCREEN_HEIGHT - 100)
     // MARK: - Lifecycle
     
     var body: some View {
@@ -124,10 +130,6 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
         
                 return ActionSheet(title: Text("Report reason"), message: nil, buttons: self.reportReasonButton)
             }
-    //        .actionSheet(isPresented: $shouldReportReason) {
-    //
-    //            ActionSheet(title: Text("Report reason"), message: nil, buttons: self.reportReasonButton)
-    //        }
             .background(NavigationLink(
                 destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
                     if (Common.premium()) {
@@ -175,18 +177,28 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                 ZStack {
                     if self.viewModel.photoUrls.count > 0 {
                         Pager(page: self.$currentPage, data: self.viewModel.photoUrls) { img in
-                            GeometryReader { pr in
-                                
-                                WebImage(url: URL(string: img))
-                                .resizable()
-                                .placeholder {
-                                    Image("placeholder_l")
-                                }
-                                .background(Color.white)
-                                .scaledToFill()
-                                .frame(width: pr.size.width, height: pr.size.height)
+                            //GeometryReader { pr in
+                                ZStack {
+                                    Rectangle()
+                                    .fill(Color.white)
+                                        .frame(width: self.imageWidth , height: self.imageHeight )
+                                    
+                                    WebImage(url: URL(string: img))
+                                    .resizable()
+                                    .placeholder {
+                                        Image("placeholder_l")
+                                    }
+                                    .background(Color.white)
+                                    .frame(width: self.imageWidth, height: self.imageHeight - 20)
+                                    .padding(.top, ISiPhoneX ? 30 : 20)
+                                    
 
-                            }
+                                    //.scaledToFill()
+                                    //.frame(width: pr.size.width, height: pr.size.height)
+                                }
+                                    .rotationEffect(.degrees(-3))
+                                .padding(.top, ISiPhoneX ? 140 : 80)
+                            //}
                         }
                         .itemSpacing(30)
                         .padding(0)
@@ -200,9 +212,9 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                         Image("3dot")
                             .font(.largeTitle)
                             .foregroundColor(.white)
-                            .padding(.vertical, 16)
+                            .padding(.vertical, 36)
                             .padding(.horizontal, 23)
-                    }, alignment: .topTrailing)
+                    }, alignment: .bottomTrailing)
                     
                     VStack(spacing: 0) {
                         Spacer()
@@ -280,9 +292,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
     
     var overlay: some View {
         ZStack {
-            //LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .center).contentShape(Zero())
             LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: UnitPoint(x: 0.0, y: 1.0), endPoint: UnitPoint(x: 0.0, y: 0.8)).contentShape(Zero())
-            LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 0.2)).contentShape(Zero())
+            //LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 0.2)).contentShape(Zero())
         }
     }
     
@@ -494,9 +505,8 @@ struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             UserProfileView(viewModel: UserProfileViewModel(user: nil))
-                .previewEnvironment()
-                .hostModalPresenter()
                 .withoutBar()
+                .previewDevice(.init(rawValue: "iPhone 8"))
         }
     }
 }

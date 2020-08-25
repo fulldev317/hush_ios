@@ -15,6 +15,7 @@ class UserProfileViewModel: UserProfileViewModeled {
     
     @Published var isShowingIndicator: Bool = false
     @Published var photoUrls: [String] = []
+    //@Published var photoUrls: [String] = ["https://www.hushdating.app/assets/sources/uploads/thumb_5f3a03c18aed7_image1.jpg"]
     @Published var unlockedPhotos: Set<Int> = []
     @Published var storyUrls: [String] = []
     @Published var unlockedStories: Set<Int> = []
