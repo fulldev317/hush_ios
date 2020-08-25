@@ -48,8 +48,6 @@ class StoryAPI: BaseAPI {
                                         story_data.liked = false
                                         storyList.append(story_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                 }
@@ -105,9 +103,7 @@ class StoryAPI: BaseAPI {
                                             }
                                         }
                                     } catch {
-                                        let error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                                        completion( nil, error)
-                                        return
+                                        break
                                     }
                                 }
                             }
@@ -162,9 +158,7 @@ class StoryAPI: BaseAPI {
                                         story_data.liked = false
                                         storyList.append(story_data)
                                     } catch {
-                                        let error = APIError(json["error"].intValue, json["error_m"].stringValue)
-                                        completion( nil, error)
-                                        return
+                                        break
                                     }
                                 }
                             }

@@ -199,30 +199,30 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         .addPartialSheet()
     }
     
-    func matches() -> some View {
-        VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Matches").foregroundColor(.hOrange).font(.ultraLight(48))
-                    Text("Location").foregroundColor(.white).font(.thin())
-                }
-                Spacer()
-                HapticButton(action: self.showDiscoverySettings) {
-                    Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
-                }
-            }.padding(.leading, 25)
-            
-            DiscoveryView(viewModel:  self.app.discovery, showingSetting: self.app.isShowingSetting)
-        }.frame(width: SCREEN_WIDTH)
-        .withoutBar()
-        .background(Color.black.edgesIgnoringSafeArea(.all))
-        .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
-            UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
-                //self.app.discovery.settingsViewModel.gender = gender
-            }
-        } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
-        .addPartialSheet()
-    }
+//    func matches() -> some View {
+//        VStack {
+//            HStack {
+//                VStack(alignment: .leading, spacing: 0) {
+//                    Text("Matches").foregroundColor(.hOrange).font(.ultraLight(48))
+//                    Text("Location").foregroundColor(.white).font(.thin())
+//                }
+//                Spacer()
+//                HapticButton(action: self.showDiscoverySettings) {
+//                    Image("settings_icon").resizable().frame(width: 25, height: 25).padding(30)
+//                }
+//            }.padding(.leading, 25)
+//
+//            DiscoveryView(viewModel:  self.app.discovery, showingSetting: self.app.isShowingSetting)
+//        }.frame(width: SCREEN_WIDTH)
+//        .withoutBar()
+//        .background(Color.black.edgesIgnoringSafeArea(.all))
+//        .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
+//            UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
+//                //self.app.discovery.settingsViewModel.gender = gender
+//            }
+//        } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
+//        .addPartialSheet()
+//    }
     
     func showDiscoverySettings() {
         self.app.isShowingSetting = true

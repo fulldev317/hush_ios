@@ -85,11 +85,14 @@ class DiscoveryViewModel: DiscoveryViewModeled {
             }
             if error == nil {
                 if let userList = userList {
+                    var newData: [Discover] = []
+                    
                     for user in userList {
                         if let user = user {
-                           self.discoveries.append(user)
+                            newData.append(user)
                         }
                     }
+                    self.discoveries.append(contentsOf: newData)
                 }
                 result(true)
             } else {

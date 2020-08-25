@@ -196,7 +196,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                     //.scaledToFill()
                                     //.frame(width: pr.size.width, height: pr.size.height)
                                 }
-                                    .rotationEffect(.degrees(3))
+                                    .rotationEffect(.degrees(-3))
                                 .padding(.top, ISiPhoneX ? 140 : 80)
                             //}
                         }

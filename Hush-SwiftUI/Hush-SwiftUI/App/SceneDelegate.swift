@@ -61,29 +61,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func sceneWillEnterForeground(_ scene: UIScene) {
         
-        let isLoggedIn = UserDefault(.isLoggedIn, default: false)
-        
-        if (isLoggedIn.wrappedValue) {
-            let user = Common.userInfo()
-            if let userId = user.id {
-                if userId == "0" {
-                    return
-                }
-                AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
-                    if error == nil {
-                        if let user = user {
-                            if let premium = user.premium {
-                                if premium == "1" {
-                                    Common.setPremium(true)
-                                } else {
-                                    Common.setPremium(false)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//        let isLoggedIn = UserDefault(.isLoggedIn, default: false)
+//        
+//        if (isLoggedIn.wrappedValue) {
+//            let user = Common.userInfo()
+//            if let userId = user.id {
+//                if userId == "0" {
+//                    return
+//                }
+//                AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
+//                    if error == nil {
+//                        if let user = user {
+//                            if let premium = user.premium {
+//                                if premium == "1" {
+//                                    Common.setPremium(true)
+//                                } else {
+//                                    Common.setPremium(false)
+//                                }
+//                            }
+//                            
+////                            Common.setUnreadChatEnabled(enabled: false)
+//
+////                            if let unreadCnt = user.unreadMessagesCount {
+////                                if let count = Int(unreadCnt) {
+////                                    if count > 0 {
+////                                        Common.setUnreadChatEnabled(enabled: true)
+////                                    }
+////                                }
+////                            }
+//                        
+//                        }
+//                    }
+//                }
+//            }
+//        }
 //        let nType = Common.notificationType()
 //        if (nType == "chat") {
 //            self.app.currentTab = HushTabs.chats
@@ -255,6 +266,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     Common.setSGenderString(gender: s_gender)
                 }
                 
+                Common.setUnreadChatEnabled(enabled: false)
+
+//                if let unreadCnt = user.unreadMessagesCount {
+//                    if let count = Int(unreadCnt) {
+//                        if count > 0 {
+//                            Common.setUnreadChatEnabled(enabled: true)
+//                        }
+//                    }
+//                }
                 //self.setPusherId(userId: user.id!)
            }
         }

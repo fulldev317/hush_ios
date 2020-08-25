@@ -46,8 +46,6 @@ class MatchesAPI: BaseAPI {
                                          match_data.liked = false
                                          matchList.append(match_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                  }
@@ -103,8 +101,6 @@ class MatchesAPI: BaseAPI {
                                          match_data.liked = false
                                          matchList.append(match_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                  }
@@ -160,8 +156,6 @@ class MatchesAPI: BaseAPI {
                                          match_data.liked = false
                                          matchList.append(match_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                  }
@@ -217,8 +211,6 @@ class MatchesAPI: BaseAPI {
                                         match_data.liked = true
                                         matchList.append(match_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                  }

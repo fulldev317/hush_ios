@@ -33,17 +33,6 @@ struct TabBarView<Content: View>: View {
     init(selectedTab: Binding<HushTabs>, @ViewBuilder content: () -> Content) {
         _selectedTab = selectedTab
         self.content = content()
-        
-        ChatAPI.shared.unread_message_count { (count, error) in
-            if error == nil {
-                if let count = count {
-                    if count > 0 {
-                    } else {
-                        
-                    }
-                }
-            }
-        }
     }
     
     func setChatUnRead(enabled: Bool) {
@@ -66,7 +55,7 @@ struct TabBarView<Content: View>: View {
                                 tab.image
                                 .renderingMode(.template)
                                 .foregroundColor(tab == self.selectedTab ? .hOrange : Color(0x8E8786))
-                                    .overlay(Circle().fill(Color.green).frame(width: 15, height: 15).opacity( self.isChatUnread ? 1.0 : 0.0) ,alignment: .bottomTrailing)
+                                    .overlay(Circle().fill(Color.green).frame(width: 15, height: 15).opacity( self.$isChatUnread.wrappedValue ? 1.0 : 0.0), alignment: .bottomTrailing)
                             }
                         } else {
                             tab.image

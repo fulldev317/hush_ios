@@ -34,6 +34,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         if !showingSetting {
             self.viewModel.page_num = 0
             self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
+                if (result) {
+                    
+                }
             }
         }
       
@@ -177,6 +180,9 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                 if (self.viewModel.discoveries.count > 8) {
                                     self.viewModel.page_num += 1
                                     self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
+                                        if (result) {
+                                            
+                                        }
                                     }
                                 }
                             }
@@ -286,7 +292,8 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                     } else {
                         Spacer()
                     }
-                }.buttonStyle(PlainButtonStyle())
+                }
+                .buttonStyle(PlainButtonStyle())
             }
         }.zIndex(Double(100 - i))
     }
