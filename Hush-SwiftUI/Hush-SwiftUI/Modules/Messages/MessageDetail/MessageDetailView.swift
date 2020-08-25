@@ -25,6 +25,8 @@ struct MessageDetailView<ViewModel: MessageDetailViewModeled>: View, HeaderedScr
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
         
+        Common.setUnreadChatEnabled(enabled: false)
+        
         if (Common.messageLoaded()) {
 
             self.viewModel.isShowingIndicator = true

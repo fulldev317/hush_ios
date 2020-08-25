@@ -197,8 +197,6 @@ class UserAPI: BaseAPI {
                                         let user_data = try JSONDecoder().decode(Language.self, from: jsonData)
                                         languageList.append(user_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                 }

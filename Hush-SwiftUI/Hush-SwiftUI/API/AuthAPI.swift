@@ -388,13 +388,11 @@ class AuthAPI: BaseAPI {
                                     let jsonData = try user.rawData()
                                     let user_data = try JSONDecoder().decode(User.self, from: jsonData)
                                     userList.append(user_data)
-                                    completion(userList, error)
-
                                 } catch {
-                                    let error = APIError(404, "Server Connection Failed")
-                                    completion(nil, error)
+                                    break
                                 }
                             }
+                            completion(userList, error)
 
                         } else {
                             error = APIError(json["error"].intValue, json["error_m"].stringValue)
@@ -448,12 +446,11 @@ class AuthAPI: BaseAPI {
                                             user_data.liked = fan == 1
                                         }
                                         userList.append(user_data)
-                                        completion(userList, error)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
+                                        break
                                     }
                                 }
+                                completion(userList, error)
                             } else {
                                 let error = APIError(404, "Server Connection Failed")
                                 completion(nil, error)
@@ -510,8 +507,6 @@ class AuthAPI: BaseAPI {
                                         }
                                         userList.append(user_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                 }

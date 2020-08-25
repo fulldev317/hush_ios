@@ -83,6 +83,11 @@ class Common: NSObject {
         return _block ?? false
     }
     
+    static func unreadChatEnabled() -> Bool {
+        let enabled: Bool = UserDefaults.standard.bool(forKey: "unread_chat_enabled")
+        return enabled
+    }
+    
     static func setUnreadChatEnabled(enabled: Bool) {
         UserDefaults.standard.set(enabled, forKey: "unread_chat_enabled")
     }
@@ -101,11 +106,6 @@ class Common: NSObject {
     
     static func setNotificationValue(value: String) {
         UserDefaults.standard.set(value, forKey: "notification_value")
-    }
-    
-    static func unreadChatEnabled() -> Bool {
-        let enabled: Bool = UserDefaults.standard.bool(forKey: "unread_chat_enabled")
-        return enabled
     }
     
     static func setStoryUpdate(update: Bool) {

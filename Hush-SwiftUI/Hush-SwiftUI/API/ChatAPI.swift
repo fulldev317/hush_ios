@@ -113,8 +113,6 @@ class ChatAPI: BaseAPI {
                                         member_data.liked = false
                                         memberList.append(member_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                 }
@@ -169,8 +167,6 @@ class ChatAPI: BaseAPI {
                                         let member_data = try JSONDecoder().decode(ChatMessage.self, from: jsonData)
                                         memberList.append(member_data)
                                     } catch {
-                                        let error = APIError(404, "Server Connection Failed")
-                                        completion(nil, error)
                                         break
                                     }
                                 }
