@@ -43,13 +43,13 @@ struct CardCaruselElementView: View {
                     .placeholder {
                       Image("placeholder_l")
                     }
-                    .background(Color.black)
-                    .frame(width: (ISiPhoneX ? 460 : 420) * deviceScale, height: (ISiPhoneX ? 450 : 395) * deviceScale)
+                    .background(Color.white)
+                .frame(width: (ISiPhoneX ? 460 : 420) * deviceScale, height: (ISiPhone11 ? 480 : ISiPhoneX ? 450 : 395) * deviceScale)
                 .padding(.top, ISiPhoneX ? 30 * deviceScale : 20 * deviceScale)
 
                 Spacer()
             }
-        }.frame(width: (ISiPhoneX ? 550 : 460) * deviceScale, height: (ISiPhoneX ? 590 : 505) * deviceScale)
+        }.frame(width: (ISiPhoneX ? 550 : 460) * deviceScale, height: (ISiPhone11 ? 620 : ISiPhoneX ? 590 : 505) * deviceScale)
         .overlay(overlay.rotationEffect(rotation), alignment: .bottom)
         .rotationEffect(-rotation)
         .onTapGesture {
