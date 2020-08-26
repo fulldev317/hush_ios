@@ -22,6 +22,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
     @State private var shouldClose = false
     @State private var shouldAnimate = false
     @State private var overlay_opacity: Double = 0
+    @State private var overlay_icon_opacity: Double = 0
     @State var showUserProfile = false
     @State var isShowing: Bool = false
 
@@ -36,16 +37,6 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             self.viewModel.loadGame { (result) in
                 
             }
-//            let nType = Common.notificationType()
-//            if nType == "like" || nType == "match" {
-//                Common.setNotificationType(type: "none")
-//                if Common.premium() {
-//                    let nValue = Common.notificationValue()
-//                    self.gotoUserProfilePage(userID: nValue)
-//                } else {
-//                    self.viewModel.showUpgrade = true
-//                }
-//            }
         }
     }
     
@@ -68,31 +59,29 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         DragGesture().onChanged { value in
             withAnimation(.linear) {
                 self.translation = value.translation
+                self.overlay_icon_opacity = 1
             }
         }.onEnded { value in
+            self.overlay_icon_opacity = 0
             
             let percent = self.movePercent(value.translation)
             if -1 <= percent && percent <= 1 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-
                     withAnimation(.default) {
                         self.translation = .zero
                         self.overlay_opacity = 0.0
                     }
                 }
             } else {
-
                 if percent > 1 {
                     self.animateLike(like: true)
                 } else if percent < -1 {
                     self.animateLike(like: false)
-                    //self.animateClose()
                 }
             }
         }.updating($opacity) { value, opacity, _ in
             withAnimation(.linear) {
-                //opacity = abs(Double(self.movePercent(value.translation))) * 0.4
-                self.overlay_opacity = abs(Double(self.movePercent(value.translation))) * 0.4
+                //self.overlay_opacity = abs(Double(self.movePercent(value.translation))) * 0.4
             }
         }
 //        .updating($degrees) { value, degrees, _ in
@@ -204,6 +193,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 Spacer()
 
             }.overlay(overlay)
+            .overlay(overlay_icon)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.shouldAnimate = true
@@ -328,6 +318,21 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 }
             }
         }.opacity(overlay_opacity)
+    }
+    
+    private var overlay_icon: some View {
+        ZStack {
+            HStack {
+                if showClose {
+                    Image("close_icon").aspectRatio(.fit).frame(width: 75, height: 75)
+                    Spacer()
+                }
+                if showHeart {
+                    Spacer()
+                    Image("heart_icon").aspectRatio(.fit).frame(width: 100, height: 100)
+                }
+            }
+        }.opacity(overlay_icon_opacity)
     }
     
 }
