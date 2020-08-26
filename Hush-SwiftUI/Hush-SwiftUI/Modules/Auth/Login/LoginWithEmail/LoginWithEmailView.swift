@@ -79,7 +79,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
             }.keyboardAdaptive()
                 .padding(.top, keyboardHeight > 0 ? -150 : 0)
             
-            onBackButton(mode).padding(.top, keyboardHeight > 0 ? -100 : 0)
+            onBackButton(mode).padding(.top, 0)
             
             HushIndicator(showing: self.isShowing)
             
