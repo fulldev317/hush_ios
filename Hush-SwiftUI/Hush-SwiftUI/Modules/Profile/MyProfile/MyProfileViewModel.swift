@@ -103,35 +103,35 @@ class MyProfileViewModel: MyProfileViewModeled {
     
     func setPageData(user: User) {
 
-         initPhotoData(user: user)
+        initPhotoData(user: user)
 
-         basicsViewModel.username = user.name ?? ""
-         
-        
-         if let verified = user.verified {
-             if verified == "1" {
-                 basicsViewModel.isVerified = "Yes"
-             } else {
-                 basicsViewModel.isVerified = "No"
-             }
-         } else {
-             basicsViewModel.isVerified = "No"
-         }
+        basicsViewModel.username = user.name ?? ""
 
-         basicsViewModel.age = user.age ?? ""
-         basicsViewModel.bio = user.bio ?? ""
-         basicsViewModel.language = user.language ?? ""
-         basicsViewModel.matches = String(user.totalMatches ?? 0)
-         basicsViewModel.visitedMe = user.totalVisits ?? "0"
-         basicsViewModel.likesMe = user.totalFans ?? "0"
-         basicsViewModel.myLikes = user.totalMyLikes ?? "0"
-         basicsViewModel.noti_matches = user.notifications?.matchMe.inapp == "1"
-         basicsViewModel.noti_likeMe = user.notifications?.fan.inapp == "1"
-         basicsViewModel.noti_messages = user.notifications?.message.inapp == "1"
-         basicsViewModel.noti_nearby = user.notifications?.nearMe.inapp == "1"
+        if let verified = user.verified {
+            if verified == "1" {
+                basicsViewModel.isVerified = "Yes"
+            } else {
+                basicsViewModel.isVerified = "No"
+            }
+        } else {
+            basicsViewModel.isVerified = "No"
+        }
+
+        basicsViewModel.age = user.age ?? ""
+        basicsViewModel.bio = user.bio ?? ""
+        basicsViewModel.language = user.language ?? ""
+        basicsViewModel.matches = String(user.totalMatches ?? 0)
+        basicsViewModel.visitedMe = user.totalVisits ?? "0"
+        basicsViewModel.location = user.address ?? "Londin, UK"
+        basicsViewModel.likesMe = user.totalFans ?? "0"
+        basicsViewModel.myLikes = user.totalMyLikes ?? "0"
+        basicsViewModel.noti_matches = user.notifications?.matchMe.inapp == "1"
+        basicsViewModel.noti_likeMe = user.notifications?.fan.inapp == "1"
+        basicsViewModel.noti_messages = user.notifications?.message.inapp == "1"
+        basicsViewModel.noti_nearby = user.notifications?.nearMe.inapp == "1"
          
-         cancellable0 = basicsViewModel.$noti_matches.sink(receiveCompletion: { (completion) in
-         }) { (value) in
+        cancellable0 = basicsViewModel.$noti_matches.sink(receiveCompletion: { (completion) in
+        }) { (value) in
              if (value != self.basicsViewModel.noti_matches) {
                  var user = Common.userInfo()
                  user.notifications?.matchMe.inapp = value ? "1" : "0"
@@ -606,15 +606,16 @@ extension MyProfileViewModel {
 class BioViewMode: ObservableObject {
     
     @Published var username: String = ""
-    @Published var isPremium = "Yes"
-    @Published var isVerified = "No"
+    @Published var isPremium = ""
+    @Published var isVerified = ""
     @Published var age = ""
     @Published var gender = Gender.male
     @Published var looking = Gender.female
+    @Published var location = ""
     @Published var sexuality = Sex.gay
     @Published var living = Living.alone
-    @Published var bio = "Hi, I'm Jack, 18 years old and I'm from London, Unite Kindom"
-    @Published var language = "English"
+    @Published var bio = ""
+    @Published var language = ""
     @Published var matches = "0"
     @Published var visitedMe = "0"
     @Published var likesMe = "0"

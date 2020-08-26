@@ -80,7 +80,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     
                     if self.currentTab == .profile {
                         NavigationView {
-                            MyProfileView(viewModel: MyProfileViewModel()).withoutBar()
+                            MyProfileView(viewModel: MyProfileViewModel()).withoutBar().addPartialSheet()
                         }.zIndex(self.currentTab == .profile ? 1 : 0)
                     }
                 }
