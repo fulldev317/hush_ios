@@ -46,7 +46,7 @@ struct PhotoCard<Content: View>: View {
                 .placeholder {
                   cardWidth > 120 ? Image("placeholder_b") : Image("placeholder_s")
                 }
-                .blur(radius: blured ? (cardWidth - imgSide) / 3 : 0)
+                .blur(radius: blured ? 20 : 0)
                 .frame(width: imgSide, height: imgSide)
                 .padding([.leading, .top, .trailing], (cardWidth - imgSide) / 2)
                 
