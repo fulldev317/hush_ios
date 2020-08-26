@@ -19,7 +19,7 @@ class App: ObservableObject {
     //@Published var currentTab = Common.currentTab()
     @Published var resetPasswordPage = false
     @Published var unreadChat = false
-    @Published var loadingData = false 
+    @Published var loadingData = false
     @Published var showPremium = false
     @Published var onProfileEditing = false
     @Published var notlogged = true

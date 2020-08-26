@@ -13,6 +13,7 @@ import Purchases
 struct MatchView<ViewModel: MatchViewModeled>: View {
     
     // MARK: - Properties
+    @EnvironmentObject private var app: App
     @ObservedObject var viewModel: ViewModel
     let title: String
     let match_type: String
@@ -82,7 +83,7 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                     )
                     .background(
                         NavigationLink(
-                            destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: true)).withoutBar().onDisappear(perform: {
+                            destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar().onDisappear(perform: {
                                 if (Common.premium()) {
                                     self.showsUserProfile.toggle()
                                 }
@@ -136,7 +137,8 @@ struct MatchView<ViewModel: MatchViewModeled>: View {
                             Common.setPremium(true)
                             self.showsUserProfile.toggle()
                         } else {
-                            self.showUpgrade.toggle()
+                            Common.setPremiumType(isUser: true)
+                            self.app.showPremium.toggle()
                         }
                     }
                 }

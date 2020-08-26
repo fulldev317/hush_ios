@@ -155,6 +155,15 @@ class Common: NSObject {
         return premium ?? false
     }
     
+    static func setPremiumType(isUser: Bool) {
+        UserDefaults.standard.set(isUser, forKey: "premium_type")
+    }
+    
+    static func premiumType() -> Bool {
+        let premium: Bool? = UserDefaults.standard.bool(forKey: "premium_type")
+        return premium ?? false
+    }
+    
     static func getSGender() -> Gender {
         let user: User = Common.userInfo()
 

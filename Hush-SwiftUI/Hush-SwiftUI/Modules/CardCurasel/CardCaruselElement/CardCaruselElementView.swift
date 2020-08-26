@@ -161,7 +161,7 @@ struct CardCaruselElementView: View {
                                             Common.setMessageLoaded(loaded: true)
                                             self.showMessages = true
                                         } else {
-                                            //self.showUpgrade.toggle()
+                                            Common.setPremiumType(isUser: false)
                                             self.app.showPremium.toggle()
                                         }
                                     }
@@ -169,20 +169,7 @@ struct CardCaruselElementView: View {
                         }
                     }.padding(.bottom, 10)
                 }
-                
-                if (self.$showUpgrade.wrappedValue) {
-                    NavigationLink(
-                        destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
-                            if (Common.premium()) {
-                                Common.setMessageLoaded(loaded: true)
-                                self.showMessages = true
-                            }
-                        }),
-                        isActive: self.$showUpgrade,
-                        label: EmptyView.init
-                    )
-                }
-                
+                                
                 VStack {
                     NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: selectedUser))
                         .withoutBar()

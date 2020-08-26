@@ -69,19 +69,6 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         isActive: $viewModel.canGoToAR,
                         label: EmptyView.init)
                     
-                    if (self.$showUpgrade.wrappedValue) {
-                        NavigationLink(
-                            destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
-                                if (Common.premium()) {
-                                    self.viewModel.basicsViewModel.isPremium = "Yes"
-                                } else {
-                                    self.viewModel.basicsViewModel.isPremium = "Activate"
-                                }
-                            }),
-                            isActive: self.$showUpgrade,
-                            label: EmptyView.init
-                        )
-                    }
                 }
             }.background(Color.hBlack.edgesIgnoringSafeArea(.all))
             
@@ -209,6 +196,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     var premiumButton: some View {
         HapticButton(action: {
+            Common.setPremiumType(isUser: true)
             self.app.showPremium.toggle()
         }) {
             ZStack(alignment: .leading) {

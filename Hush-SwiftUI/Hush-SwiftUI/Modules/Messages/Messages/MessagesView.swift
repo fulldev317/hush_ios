@@ -85,6 +85,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                                             }
                                         }
                                     } else {
+                                        Common.setPremiumType(isUser: false)
                                         self.app.showPremium.toggle()
                                     }
                                     UIApplication.shared.endEditing()

@@ -87,7 +87,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
             }.frame(width: proxy.size.width, height: proxy.size.height)
             .accentColor(.hOrange)
             .sheet(isPresented: self.$app.showPremium) {
-                UpgradeView(viewModel: UpgradeViewModel(isMatched: true))
+                UpgradeView(viewModel: UpgradeViewModel())
             }.onAppear {
                 //self.app.discovery.settingsViewModel.closeAPISelectorCompletion = self.showDiscoverySettings
                 self.app.stories.settingsViewModel.closeAPISelectorCompletion = self.showStoriesSettings
