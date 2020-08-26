@@ -131,7 +131,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                 return ActionSheet(title: Text("Report reason"), message: nil, buttons: self.reportReasonButton)
             }
             .background(NavigationLink(
-                destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
+                destination: UpgradeView(viewModel: UpgradeViewModel()).withoutBar().onDisappear(perform: {
                     if (Common.premium()) {
                         Common.setMessageLoaded(loaded: true)
                         self.goToMessage.toggle()
@@ -264,7 +264,8 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                                 Common.setMessageLoaded(loaded: true)
                                                 self.goToMessage.toggle()
                                             } else {
-                                                self.showUpgrade.toggle()
+                                                Common.setPremiumType(isUser: false)
+                                                self.app.showPremium.toggle()
                                             }
                                         }
                                     }

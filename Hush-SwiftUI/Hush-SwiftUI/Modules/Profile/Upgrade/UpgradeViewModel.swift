@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 import Purchases
+import SDWebImageSwiftUI
 
 class UpgradeViewModel: UpgradeViewModeled {
     
@@ -22,14 +23,14 @@ class UpgradeViewModel: UpgradeViewModeled {
     @Published var threeMonth = true
     @Published var showAlert = false
     
-    var isMatchPremium = false
+    var isUserPremium = false
     
     var offering: Purchases.Offering? = nil
 
-    var uiMatchElements: [UpgradeUIItem<AnyView>] {
+    var uiUserElements: [UpgradeUIItem<AnyView>] {
         [
         //UpgradeUIItem(title: "Reveal New Friends", content: image(1)),
-        UpgradeUIItem(title: "Unlimited Messaging", content: image(3)),
+        UpgradeUIItem(title: "Unlimited Messaging", content: profile_image()),
         UpgradeUIItem(title: "Access More Filters", content: image(2)),
         //UpgradeUIItem(title: "Photo Booth Rewinds", content: image(4)),
         UpgradeUIItem(title: "See Who Liked You?", content: image(5)),
@@ -50,9 +51,9 @@ class UpgradeViewModel: UpgradeViewModeled {
         ]
     }
         
-    init(isMatched: Bool) {
+    init() {
         
-        self.isMatchPremium = isMatched
+        self.isUserPremium = true //Common.premiumType()
         
         self.showingIndicator = true
         Purchases.shared.offerings { (offerings, error) in
@@ -80,8 +81,8 @@ class UpgradeViewModel: UpgradeViewModeled {
     }
     
     func getElements() -> [UpgradeUIItem<AnyView>] {
-        if (isMatchPremium) {
-            return uiMatchElements
+        if (isUserPremium) {
+            return uiUserElements
         }
         return uiMessageElements
     }
@@ -154,6 +155,30 @@ class UpgradeViewModel: UpgradeViewModeled {
     
     private func image(_ index: Int) -> AnyView {
         AnyView(Image("swipe\(index)").aspectRatio(.fit).padding(.horizontal, 10))
+    }
+    
+    private func profile_image() -> AnyView {
+        let user = Common.userInfo()
+        var image_url = ""
+        if let photos = user.photos {
+            let photo = photos[0]
+            image_url = photo.photo
+        }
+        return AnyView(
+            ZStack {
+                
+                WebImage(url: URL(string: "https://www.hushdating.app/assets/sources/uploads/thumb_5f3bd5cfcef4c_image1.jpg"))
+                .resizable()
+                .placeholder {
+                    Image("placeholder_s")
+                }
+                .background(Color.white)
+                .frame(width: 120, height: 135)
+                .rotationEffect(.degrees(5))
+                
+                Image("swipe0").aspectRatio(.fit).padding(.horizontal, 10)
+            }
+        )
     }
     
     private func profile_image(_ index: Int) -> AnyView {

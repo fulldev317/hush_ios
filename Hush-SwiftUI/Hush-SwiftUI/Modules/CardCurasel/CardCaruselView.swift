@@ -188,7 +188,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
 
                 }.frame(width: SCREEN_WIDTH)
                 .padding(.bottom, ISiPhoneX ? 30 : 0)
-                .padding(.top, ISiPhoneX ? 50 : 35)
+                .padding(.top, ISiPhoneX ? 35 : 35)
                 
                 Spacer()
 
@@ -200,19 +200,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
                 }
             }
             HushIndicator(showing: self.viewModel.isShowingIndicator).padding(.top, -20)
-            
-//            NavigationLink(
-//                destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false))
-//                    .withoutBar()
-//                    .onDisappear(perform: {
-//                    if Common.premium() {
-//                        let nValue = Common.notificationValue()
-//                        self.gotoUserProfilePage(userID: nValue)
-//                    }
-//                }),
-//                isActive: self.$viewModel.showUpgrade,
-//                label: EmptyView.init
-//            )
+
         }.background(
             NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: viewModel.selectedUser))
                .withoutBar(), isActive: self.$viewModel.showUserProfile) {
