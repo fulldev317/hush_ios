@@ -186,14 +186,18 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                                     }
                                 }
                             }
-                        }.background(Color.black)
+                        }.background(Color.clear)
+                            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                         .listRowBackground(Color.black)
+                            .padding(.top, index == 0 ? 0 : -20)
                     }
                 }.listStyle(DefaultListStyle())
-                .padding(.top, TAB_HEIGHT + 10)
+                .padding(.top, TAB_HEIGHT + 20)
                     .padding(.leading, -15)
                 .background(Color.clear)
-                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+                .appearenceModifier(path: \UITableView.backgroundColor, value: .clear)
+                    .appearenceModifier(path: \UITableView.separatorStyle, value: .none)
+                
             }
             
             if currentViewIndex == 1 && viewModel.matches.count > 0 {
@@ -295,7 +299,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
                 }
                 .buttonStyle(PlainButtonStyle())
             }
-        }.zIndex(Double(100 - i))
+        }.zIndex(Double(1000 - i))
     }
     
     func polaroidCard(_ i: Int, _ j: Int) -> some View {
