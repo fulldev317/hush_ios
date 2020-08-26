@@ -197,7 +197,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                     //.frame(width: pr.size.width, height: pr.size.height)
                                 }
                                     .rotationEffect(.degrees(-3))
-                                .padding(.top, ISiPhoneX ? 140 : 80)
+                                .padding(.top, ISiPhoneX ? 140 : 50)
                             //}
                         }
                         .itemSpacing(ISiPhone11 ? 200 : ISiPhoneX ? 180 : 110)
@@ -407,9 +407,9 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 }) {
                                     Image("msg_profile_icon")
                                         .aspectRatio(.fit)
-                                        .frame(width: 25, height: 25)
+                                        .frame(width: 30, height: 30)
                                         .foregroundColor(.hOrange)
-                                        .padding(20)
+                                        .padding(18)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 32.5)
                                                 .stroke(Color.hOrange, lineWidth: 3)
@@ -418,7 +418,7 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 }
                                 HapticButton(action: {
                                     self.viewModel.userLike(like: "1")
-                                    self.viewModel.isFan = true
+                                    self.viewModel.isFan = !self.viewModel.isFan
                                     self.heartOpacity = 0.0
                                     withAnimation(.easeInOut) {
                                         self.heartOpacity = 1.0
@@ -426,12 +426,12 @@ struct UserProfileView<ViewModel: UserProfileViewModeled>: View, HeaderedScreen 
                                 }) {
                                     Image("heart_profile_icon")
                                     .aspectRatio(.fit)
-                                        .frame(width: 25, height: 25)
-                                        .foregroundColor( .hOrange)
-                                    .padding(20)
+                                        .frame(width: 35, height: 35)
+                                        .foregroundColor(self.viewModel.isFan ? .red : .hOrange)
+                                    .padding(15)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 32.5)
-                                            .stroke(Color.hOrange, lineWidth: 3)
+                                            .stroke(self.viewModel.isFan ? .red : Color.hOrange, lineWidth: 3)
                                     )
                                 }
                                 Spacer()
