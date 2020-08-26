@@ -30,7 +30,7 @@ extension AuthAppScreens {
         Image(name)
             .resizable()
             .frame(width: UIScreen.main.bounds.width)
-            .overlay(Color.black.opacity(0.4))
+            .overlay(Color.black.opacity(0.6))
             .edgesIgnoringSafeArea(.all)
             .background(Color.black)
 //        ZStack {
