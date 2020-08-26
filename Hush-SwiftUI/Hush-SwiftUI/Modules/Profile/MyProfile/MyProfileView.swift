@@ -530,7 +530,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .font(.regular(28))
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
-                tableRow("Privacy Policy") {
+                tableRow("Privacy & Terms") {
                     iOSApp.open(URL(string: "http://appsmallptint.com")!)
                 }
 //                tableRow("Privacy Policy") {
