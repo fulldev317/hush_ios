@@ -161,7 +161,8 @@ struct CardCaruselElementView: View {
                                             Common.setMessageLoaded(loaded: true)
                                             self.showMessages = true
                                         } else {
-                                            self.showUpgrade.toggle()
+                                            //self.showUpgrade.toggle()
+                                            self.app.showPremium.toggle()
                                         }
                                     }
                                 }
@@ -204,7 +205,7 @@ struct CardCaruselElementView: View {
             .padding(.bottom, getIconBottom(degree: rotation.degrees))
             .padding(.leading, getIconTrailing(degree: rotation.degrees))
             
-        }.padding(.horizontal, ISiPhoneX ? 40 : 0)
+        }.padding(.horizontal, ISiPhone11 ? 60 : ISiPhoneX ? 40 : 0)
         .padding(.vertical)
     }
     

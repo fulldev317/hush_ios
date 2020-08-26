@@ -201,22 +201,23 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             }
             HushIndicator(showing: self.viewModel.isShowingIndicator).padding(.top, -20)
             
+//            NavigationLink(
+//                destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false))
+//                    .withoutBar()
+//                    .onDisappear(perform: {
+//                    if Common.premium() {
+//                        let nValue = Common.notificationValue()
+//                        self.gotoUserProfilePage(userID: nValue)
+//                    }
+//                }),
+//                isActive: self.$viewModel.showUpgrade,
+//                label: EmptyView.init
+//            )
         }.background(
             NavigationLink(destination: UserProfileView(viewModel: UserProfileViewModel(user: viewModel.selectedUser))
                .withoutBar(), isActive: self.$viewModel.showUserProfile) {
                    Spacer()
                }.buttonStyle(PlainButtonStyle())
-        ).background(
-            NavigationLink(
-                destination: UpgradeView(viewModel: UpgradeViewModel(isMatched: false)).withoutBar().onDisappear(perform: {
-                    if Common.premium() {
-                        let nValue = Common.notificationValue()
-                        self.gotoUserProfilePage(userID: nValue)
-                    }
-                }),
-                isActive: self.$viewModel.showUpgrade,
-                label: EmptyView.init
-            )
         ).padding(.top, ISiPhoneX ? -30 : -35)
     }
     

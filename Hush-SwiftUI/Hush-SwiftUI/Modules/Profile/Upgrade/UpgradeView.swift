@@ -61,6 +61,7 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                                 Text("$14,99").font(.regular(ISiPhone5 ? 14 : 18))
                                     .padding(.trailing, 80)
                             }.padding(.leading, 15)
+                            .environment(\.colorScheme, .light)
                         }.opacity(self.viewModel.oneWeek ? 1.0 : 0.6)
                         
                         ZStack {
@@ -85,6 +86,7 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                                 Text("$29,49").font(.light(ISiPhone5 ? 14 : 18))
                                     .padding(.trailing, 80)
                             }.padding(.leading, 15)
+                            .environment(\.colorScheme, .light)
                         }.opacity(self.viewModel.oneMonth ? 1.0 : 0.6)
                         ZStack {
                             Rectangle().foregroundColor(.hOrange).frame(height: 50)
@@ -118,6 +120,7 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                                 Text("$47,99 ").font(.light(ISiPhone5 ? 14 : 18))
                                     .padding(.trailing, 80)
                             }.padding(.leading, 15)
+                            .environment(\.colorScheme, .light)
                         }.opacity(self.viewModel.threeMonth ? 1.0 : 0.6)
                         ZStack {
                             Rectangle().foregroundColor(Color(0x27AE60)).frame(height: 50)
@@ -126,6 +129,10 @@ struct UpgradeView<ViewModel: UpgradeViewModeled>: View {
                                 .font(.bold())
                                 .foregroundColor(.white)
                         }.padding(.top, 10).padding(.bottom, 20)
+                        .onTapGesture {
+                            Common.setPremium(true)
+                            self.mode.wrappedValue.dismiss()
+                        }
                         Text("Payment will be charged to your iTunes Account at confirmation of purchase. Subscriptions automatically renewunless auto-renew is turned off at least 24 hours before the end of the current period. Account will be charged for renewal within 24 hours prior to the end of the current period. Account will be charged for renewal with 24 hours prior to the end of the current periodand identify the cost of renewal. Subscriptions may be managed by the user and auto renewal may be turned off by going to the users Account Settings after purchase. Any unused portion of a free trial period if offered will be forfeit when the user purchases a subscription to that publication where applicable.")
                             .kerning(-0.36)
                             .foregroundColor(.white)
