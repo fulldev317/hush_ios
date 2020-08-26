@@ -24,19 +24,17 @@ struct SignUpView<ViewModel: SignUpViewModeled>: View, AuthAppScreens {
         
         ZStack {
             VStack {
-                
                 Image(self.backImages[self.image_index])
                 .resizable()
                 .frame(width: SCREEN_WIDTH, height:SCREEN_HEIGHT)
                 .background(Color.black)
                 .opacity(image_opacity)
-                
             }
             
             VStack {
                 logo()
                     .opacity(showSignupButtons ? 0.3 : 1)
-                    .padding(.top, showSignupButtons ? -100 : 55)
+                    .padding(.top, 55)
                 Spacer()
             }
             

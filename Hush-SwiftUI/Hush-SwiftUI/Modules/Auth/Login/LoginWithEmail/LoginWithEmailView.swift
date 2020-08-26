@@ -29,7 +29,7 @@ struct LoginWithEmailView<ViewModel: LoginWithEmailViewModeled>: View, AuthAppSc
                 Spacer()
                 logo().opacity(keyboardHeight > 0 ? 0.3 : 1)
                 Spacer()
-                Spacer()
+                
                 Text("Log in with email")
                     .font(.thin(22))
                     .foregroundColor(.white)

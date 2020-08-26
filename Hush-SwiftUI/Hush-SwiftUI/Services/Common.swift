@@ -116,9 +116,12 @@ class Common: NSObject {
         return _isStoryUpdate ?? false
     }
     
-    static func setCurrentTab(tab: HushTabs) {
-        let tabValue = tab.rawValue
-        UserDefaults.standard.set(tabValue, forKey: "current_tab")
+    static func deviceToken() -> Data? {
+        var data: Data?
+        if let strToken = UserDefaults.standard.string(forKey: "device_token") {
+            data = Data(strToken.utf8)
+        }
+        return data
     }
 
     static func currentTab() -> HushTabs {

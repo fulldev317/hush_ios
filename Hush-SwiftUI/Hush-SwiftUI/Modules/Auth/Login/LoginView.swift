@@ -30,7 +30,15 @@ struct LoginView<ViewModel: LoginViewModeled>: View, AuthAppScreens {
                 Spacer()
                 logo()
                 Spacer()
-                Spacer()
+                
+                VStack {
+                    Text("Login")
+                        .foregroundColor(.white)
+                        .font(.medium(24))
+                    Image("arrowDown_icon").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18)
+                }.padding(.bottom, 10)
+                    .opacity(0.5)
+                
                 buttons().padding(.bottom, 30)
                 signupButton()
             }

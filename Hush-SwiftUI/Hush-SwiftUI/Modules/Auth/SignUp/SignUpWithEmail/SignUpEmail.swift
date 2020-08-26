@@ -18,27 +18,25 @@ struct SignUpEmail<ViewModel: SignUpEmailViewModeled>: View, AuthAppScreens {
 
     var body: some View {
         ZStack {
+            onBackButton(self.mode)
+            
             GeometryReader { proxy in
                 ZStack {
-                        
-                        self.body(with: proxy)
-                            .frame(minHeight: proxy.size.height)
-                }
-            }.offset(x: 0, y: -keyboardHeight)
-            onBackButton(self.mode)
-                .offset(x: 0, y: -keyboardHeight)
+                    self.body(with: proxy)
+                        .frame(minHeight: proxy.size.height)
+                }.offset(x: 0, y: -self.keyboardHeight)
+            }.observeKeyboardHeight($keyboardHeight, withAnimation: .default)
+            
             NavigationLink(destination:
                 AddPhotosView(viewModel: AddPhotosViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password)).withoutBar(),
-//                GetMoreDetailsView(viewModel: GetMoreDetailsViewModel(name: viewModel.name, username: viewModel.username, email: viewModel.email, password: viewModel.password, image: UIImage())).withoutBar(),
                 isActive: $viewModel.showAddPhotoScreen, label: { Text("") })
+            
             NavigationLink(destination: LoginView(viewModel: LoginViewModel(), showSignupButtons: .constant(false)), isActive: $viewModel.showLoginScreen) {
-                Text("")
-            }
+                Text("")}
             
             HushIndicator(showing: self.isShowing)
             
         }.withoutBar().background(background(name: "back1"))
-        .observeKeyboardHeight($keyboardHeight, withAnimation: .default)
     }
     
     private func body(with proxy: GeometryProxy) -> some View {
