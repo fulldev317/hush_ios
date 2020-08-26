@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 extension View {
     var centred: some View {
@@ -24,6 +25,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
+    @EnvironmentObject private var partialSheetManager: PartialSheetManager
     @State var showMatchesView = false
     @State var showVisitedMeView = false
     @State var showLikesMeView = false
@@ -315,92 +317,109 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 .foregroundColor(Color(0x4F4F4F))
             VStack(spacing: 25) {
                 //tableRow("User Name", value: $viewModel.basicsViewModel.username)
-                tableRow("User Name", value: $viewModel.basicsViewModel.username) {
-                    let name = self.$viewModel.basicsViewModel.username.wrappedValue
-                    if Common.userNameValid(name: name) {
-                        UserAPI.shared.update_name(name: name) { (error) in
-                            
-                        }
-                    } else {
-                        self.showAlert.toggle()
-                        self.alertMessage = "User Name is invalid"
-                    }
-                }
-                tableFixedRow("Premium User", value: $viewModel.premium, onCommit: {
-                    if !Common.premium() {
-                        self.showUpgrade.toggle()
-                    }
-                })
-                //tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
-                tableFixedRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
-                tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
-                    let now = Date()
-                    let calendar = Calendar.current
-                    let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
-                    let age = ageComponents.year!
-                    
-                    if (age == 0) {
-                        return
-                    }
-                    
-                    let strAge = "\(age)"
-                    
-                    if (strAge != self.$viewModel.basicsViewModel.age.wrappedValue) {
-                        self.viewModel.updateAge(age: strAge)
-                    }
-                    self.$viewModel.basicsViewModel.age.wrappedValue = strAge
-                }
-                
-                tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
-                    var selectedGender = $0.lowercased()
-                    if (selectedGender == "") {
-                        selectedGender = "male"
-                    }
-                    if (selectedGender != self.$viewModel.basicsViewModel.gender.wrappedValue.rawValue)
-                    {
-                        self.viewModel.updateGender(gender: selectedGender)
-                    }
-                    self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
-                }
-                
-                tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
-                    var selectedLooking = $0.lowercased()
-                    if (selectedLooking == "") {
-                        selectedLooking = "female"
-                    }
-                    if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
-                    {
-                        self.viewModel.updateLooking(gender: selectedLooking)
-                    }
-                    self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
-                }
-                
-//                tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
-//                    var selectedLooking = $0.lowercased()
-//                    if (selectedLooking == "") {
-//                        selectedLooking = "female"
-//                    }
-//                    if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
-//                    {
-//                        self.viewModel.updateLooking(gender: selectedLooking)
-//                    }
-//                    self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
-//                }
+                    tableRow("User Name", value: $viewModel.basicsViewModel.username) {
+                        let name = self.$viewModel.basicsViewModel.username.wrappedValue
+                        if Common.userNameValid(name: name) {
+                            UserAPI.shared.update_name(name: name) { (error) in
                                 
-//                tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
-//                    var selectedSex: String = $0.lowercased()
-//                    if (selectedSex == "") {
-//                        selectedSex = "gay"
-//                    } else {
-//                        selectedSex = Sex.typeForTitle(title: selectedSex)
-//                    }
-//                    if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
-//                    {
-//                        self.viewModel.updateSex(sex: selectedSex)
-//                    }
-//                    self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
-//                }
-                
+                            }
+                        } else {
+                            self.showAlert.toggle()
+                            self.alertMessage = "User Name is invalid"
+                        }
+                    }
+                    tableFixedRow("Premium User", value: $viewModel.premium, onCommit: {
+                        if !Common.premium() {
+                            self.showUpgrade.toggle()
+                        }
+                    })
+                    //tableFixedRow("Premium User", value: $viewModel.basicsViewModel.isPremium)
+                    tableFixedRow("Verified?", value: $viewModel.basicsViewModel.isVerified)
+                    tablePickerRow("Age", selected: viewModel.basicsViewModel.age) { birthday in
+                        let now = Date()
+                        let calendar = Calendar.current
+                        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+                        let age = ageComponents.year!
+                        
+                        if (age == 0) {
+                            return
+                        }
+                        
+                        let strAge = "\(age)"
+                        
+                        if (strAge != self.$viewModel.basicsViewModel.age.wrappedValue) {
+                            self.viewModel.updateAge(age: strAge)
+                        }
+                        self.$viewModel.basicsViewModel.age.wrappedValue = strAge
+                    }
+                    
+                Group {
+                    tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
+                        var selectedGender = $0.lowercased()
+                        if (selectedGender == "") {
+                            selectedGender = "male"
+                        }
+                        if (selectedGender != self.$viewModel.basicsViewModel.gender.wrappedValue.rawValue)
+                        {
+                            self.viewModel.updateGender(gender: selectedGender)
+                        }
+                        self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
+                    }
+                    
+                    tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
+                        var selectedSex: String = $0.lowercased()
+                        if (selectedSex == "") {
+                            selectedSex = "gay"
+                        } else {
+                            selectedSex = Sex.typeForTitle(title: selectedSex)
+                        }
+                        if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
+                        {
+                            self.viewModel.updateSex(sex: selectedSex)
+                        }
+                        self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
+                    }
+    
+                    tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
+                        var selectedLooking = $0.lowercased()
+                        if (selectedLooking == "") {
+                            selectedLooking = "female"
+                        }
+                        if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
+                        {
+                            self.viewModel.updateLooking(gender: selectedLooking)
+                        }
+                        self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
+                    }
+                    
+                    tableFixedRow("Location", value: $viewModel.basicsViewModel.location, onCommit: {
+                        self.partialSheetManager.showPartialSheet {
+                            TextQuerySelectorView(provider: SelectLocationAPI(query: "") { newLocation in
+                                
+                                if let result = newLocation {
+                                    
+                                    AuthAPI.shared.get_geocode(address: result) { (lat, lng) in
+                                        AuthAPI.shared.update_location(address: result, lat: lat!, lng: lng!) { (error) in
+                                        
+                                            self.$viewModel.basicsViewModel.location.wrappedValue = result
+                                            var user = Common.userInfo()
+                                            user.address = result
+                                            user.latitude = lat
+                                            user.longitude = lng
+                                            Common.setUserInfo(user)
+                                            
+                                            Common.setAddressInfo(result)
+                                            
+                                            self.partialSheetManager.closePartialSheet()
+                                        }
+                                    }
+                                }
+                                
+                            })
+                        }
+                    })
+                }
+                                    
                 tablePickerRow("Living", selected: viewModel.basicsViewModel.living.title, titles: Living.allTitles) {
                     var selectedLiving = $0.lowercased()
                     if (selectedLiving == "") {
@@ -416,6 +435,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 }
                 
                 tableRow("Bio", value: nil)
+                
                 if app.onProfileEditing {
                     
                     MultilineTextField("Bio", text: $viewModel.basicsViewModel.bio, height: $height) {
@@ -457,6 +477,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     self.$viewModel.basicsViewModel.language.wrappedValue = selectedLanguage
                 }
+                
                 //tableRow("Language", value: $viewModel.basicsViewModel.language)
             }
         }.padding(.horizontal, 36)
@@ -466,7 +487,6 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 self.showAlert = false
             }))
         }
-
     }
     
     
