@@ -36,6 +36,7 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     @EnvironmentObject private var app: App
     @ObservedObject var viewModel: ViewModel
     @State private var selectedMessage: HushConversation?
+    @State private var openUpgradePage = false
     @State private var keyboardPresented: Bool = false
     @State private var keyboardHeight: CGFloat = 0
 
@@ -54,13 +55,12 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
     @ViewBuilder
     var body: some View {
         ZStack {
-            if selectedMessage != nil {
+            if Common.premium() && selectedMessage != nil {
                 NavigationLink(destination: MessageDetailView(viewModel: MessageDetailViewModel(MessageItem(user_id: selectedMessage!.id, name: selectedMessage!.username, image: selectedMessage!.imageURL, online: selectedMessage!.online)))
                     .withoutBar()
                     .onDisappear { self.selectedMessage = nil }, isActive: .constant(true), label: EmptyView.init)
             }
-            
-            
+                        
             VStack(spacing: 0) {
                 TextField("Search...", text: $viewModel.searchQuery)
                     .textFieldStyle(SearchTextFieldStyle())
@@ -76,12 +76,16 @@ struct MessagesView<ViewModel: MessagesViewModeled>: View, HeaderedScreen {
                                 .listRowInsets(.init())
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    Common.setMessageLoaded(loaded: true)
                                     self.selectedMessage = message
-                                    ChatAPI.shared.message_read(to_user_id: message.id) { (error) in
-                                        if (error == nil) {
-                                            
+                                    if Common.premium() == true {
+                                        Common.setMessageLoaded(loaded: true)
+                                        ChatAPI.shared.message_read(to_user_id: message.id) { (error) in
+                                            if (error == nil) {
+                                                
+                                            }
                                         }
+                                    } else {
+                                        self.app.showPremium.toggle()
                                     }
                                     UIApplication.shared.endEditing()
                                 }

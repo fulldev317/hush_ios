@@ -397,7 +397,6 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                             TextQuerySelectorView(provider: SelectLocationAPI(query: "") { newLocation in
                                 
                                 if let result = newLocation {
-                                    
                                     AuthAPI.shared.get_geocode(address: result) { (lat, lng) in
                                         AuthAPI.shared.update_location(address: result, lat: lat!, lng: lng!) { (error) in
                                         
@@ -407,14 +406,13 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                                             user.latitude = lat
                                             user.longitude = lng
                                             Common.setUserInfo(user)
-                                            
                                             Common.setAddressInfo(result)
-                                            
                                             self.partialSheetManager.closePartialSheet()
                                         }
                                     }
+                                } else {
+                                    self.partialSheetManager.closePartialSheet()
                                 }
-                                
                             })
                         }
                     })
