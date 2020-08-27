@@ -382,6 +382,18 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
                     }
                     
+//                    tableMultiPickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
+//                        var selectedLooking = $0.lowercased()
+//                        if (selectedLooking == "") {
+//                            selectedLooking = "female"
+//                        }
+//                        if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
+//                        {
+//                            self.viewModel.updateLooking(gender: selectedLooking)
+//                        }
+//                        self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
+//                    }
+                    
                     tableFixedRow("Location", value: $viewModel.basicsViewModel.location, onCommit: {
                         self.partialSheetManager.showPartialSheet {
                             TextQuerySelectorView(provider: SelectLocationAPI(query: "") { newLocation in
@@ -637,6 +649,19 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                 PickerTextField(title: selected, titles: titles, picked: picked)
                 
             } else {
+                Text(selected).font(.regular(17)).foregroundColor(.white)
+            }
+        }
+    }
+    
+    private func tableMultiPickerRow(_ title: String, selected: String, titles: [String], picked: @escaping (String) -> Void) -> some View {
+        HStack {
+           
+            if app.onProfileEditing {
+                HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+            } else {
+                Text(title).font(.regular(17)).foregroundColor(.white)
+                Spacer()
                 Text(selected).font(.regular(17)).foregroundColor(.white)
             }
         }
