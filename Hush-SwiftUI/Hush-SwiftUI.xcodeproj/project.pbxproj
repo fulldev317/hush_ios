@@ -983,9 +983,9 @@
 		59D8979D24F8001600782144 /* ChangeAppIcon */ = {
 			isa = PBXGroup;
 			children = (
-				59D8979E24F8001600782144 /* ChangeAppIconModeled.swift */,
-				59D8979F24F8001600782144 /* ChangeAppIconModel.swift */,
 				59D897A024F8001600782144 /* ChangeAppIconView.swift */,
+				59D8979F24F8001600782144 /* ChangeAppIconModel.swift */,
+				59D8979E24F8001600782144 /* ChangeAppIconModeled.swift */,
 			);
 			name = ChangeAppIcon;
 			path = "Hush-SwiftUI/Modules/Profile/ChangeAppIcon";

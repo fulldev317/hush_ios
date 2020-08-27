@@ -53,12 +53,20 @@ class CardCuraselViewModel: CardCuraselViewModeled {
         }
     }
     
-    func userLike(userID: String, like: String) {
-//        UserAPI.shared.game_like(toUserID: userID, like: like) { (error) in
-//            if (error == nil) {
-//
-//            }
-//        }
+    func userMatch(userID: String) {
+        UserAPI.shared.send_match_notification(toUserID: userID) { (error) in
+            if (error == nil) {
+
+            }
+        }
+    }
+    
+    func userDislike(userID: String) {
+        UserAPI.shared.game_like(toUserID: userID, like: "0") { (error) in
+            if (error == nil) {
+
+            }
+        }
     }
     
     func loadGame(result: @escaping (Bool) -> Void) {
