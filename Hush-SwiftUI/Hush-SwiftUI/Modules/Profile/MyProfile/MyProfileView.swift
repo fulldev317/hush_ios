@@ -26,6 +26,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     @EnvironmentObject private var partialSheetManager: PartialSheetManager
+    @State var showChangeAppIcon = false
     @State var showMatchesView = false
     @State var showVisitedMeView = false
     @State var showLikesMeView = false
@@ -94,6 +95,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
             profileBasics
             if !app.onProfileEditing {
                 notifications.animation(.spring())
+                change_icon.animation(.spring())
                 legal.animation(.spring())
             }
         }.padding(.vertical, 10 + SafeAreaInsets.bottom)
@@ -506,6 +508,31 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         .padding(.top, 20)
     }
     
+    
+    var change_icon: some View {
+            
+            VStack(alignment: .leading, spacing: 25) {
+                Text("Icon")
+                    .font(.regular(28))
+                    .foregroundColor(Color(0x4F4F4F))
+                VStack(spacing: 25) {
+                    tableRow("Change Icon Style") {
+                        self.showChangeAppIcon.toggle()
+                    }.background(
+                        NavigationLink(
+                            destination: ChangeAppIconView(viewModel: ChangeAppIconModel()).environmentObject(self.app).withoutBar(),
+                            isActive: $showChangeAppIcon,
+                            label: EmptyView.init
+                        )
+                    )
+   
+                }
+            }
+            .padding(.leading, 36)
+            .padding(.trailing, 25)
+            .padding(.top, 20)
+
+        }
     
     // MARK: - Legal
     

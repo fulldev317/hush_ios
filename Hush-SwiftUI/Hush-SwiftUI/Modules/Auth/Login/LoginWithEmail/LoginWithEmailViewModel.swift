@@ -47,7 +47,7 @@ class LoginWithEmailViewModel: LoginWithEmailViewModeled {
                 let currentUser = UserDefault(.currentUser, default: "")
                 currentUser.wrappedValue = jsonString
 
-                self.setPusherId(userId: user.id!)
+                //self.setPusherId(userId: user.id!)
 
                 self.goToLogin.toggle()
 
