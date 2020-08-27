@@ -31,7 +31,9 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     @Published var selectedIndex: Int = -1
     @Published var premium: String = "Activate"
-    
+    @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
+    @Published var selectedLookingFors: Set<Int> = []
+
     @Published var selectedImage: UIImage? = UIImage() {
         didSet {
             if (selectedImage != nil) {

@@ -633,6 +633,8 @@
 				8993D7A124686884002E636D /* ViewModifiers */,
 				896DDEFB2464955A00AC0F95 /* Preferences */,
 				155E2FF7243B0FF1001D886D /* AsyncImage */,
+				894BBF02246AE83400F62F7C /* TextQuerySelectorView */,
+				89C77B2A2465F1E500705899 /* Sliders */,
 				15D53C8E243DB4EC00D62B26 /* UDProperty.swift */,
 				1546B42E2433316C00180D77 /* DVImagePicker.swift */,
 				154B26AA2431CB5A00265C76 /* HapticButton.swift */,
@@ -657,8 +659,6 @@
 				53852893249D0C7F00804980 /* HushIndicator.swift */,
 				5370FFEE249A6ACC00ABB64C /* LocationPickerField.swift */,
 				5956EBFC24D49A31007443C0 /* HushScrollView.swift */,
-				894BBF02246AE83400F62F7C /* TextQuerySelectorView */,
-				89C77B2A2465F1E500705899 /* Sliders */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
