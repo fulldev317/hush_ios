@@ -59,7 +59,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          }
     }
     
+    func getAlternateIconNames(){
+            if let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? [String: Any],
+                let alternateIcons = icons["CFBundleAlternateIcons"] as? [String: Any]
+            {
+                     
+                 for (_, value) in alternateIcons{
+
+                     guard let iconList = value as? Dictionary<String,Any> else{return}
+                     guard let iconFiles = iconList["CFBundleIconFiles"] as? [String]
+                         else{return}
+                         
+                     guard let icon = iconFiles.first else{return}
+                     print("-----icon_name = ", icon)
+        
+                 }
+                
+                
+            }
+    }
     func sceneWillEnterForeground(_ scene: UIScene) {
+        self.getAlternateIconNames()
         
 //        let isLoggedIn = UserDefault(.isLoggedIn, default: false)
 //        
@@ -236,6 +256,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func auto_login(userId: String) {
+                
         AuthAPI.shared.get_user_data(userId: userId) { (user, error) in
             if error != nil {
                 self.app.loadingData = false

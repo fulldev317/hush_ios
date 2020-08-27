@@ -2,6 +2,66 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>AppIcon</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>AppIcon2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Icon2</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+            <key>AppIcon3</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Icon3</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon4</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Icon4</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon5</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Icon5</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon6</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Icon6</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+		</dict>
+	</dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>com.hinder.unreadchat</string>
