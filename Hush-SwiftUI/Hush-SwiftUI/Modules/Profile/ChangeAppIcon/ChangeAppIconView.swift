@@ -66,8 +66,31 @@ struct ChangeAppIconView<ViewModel: ChangeAppIconModeled>: View {
             guard UIApplication.shared.supportsAlternateIcons else {
               return
             }
-            
-            UIApplication.shared.setAlternateIconName("Icon-2") { error in
+            var image_name: String? = nil
+            switch (index) {
+            case 1:
+                image_name = nil
+                break
+            case 2:
+                image_name = "AppIcon2"
+                break
+            case 3:
+                image_name = "AppIcon3"
+                break
+            case 4:
+                image_name = "AppIcon4"
+                break
+            case 5:
+                image_name = "AppIcon5"
+                break
+            case 6:
+                image_name = "AppIcon6"
+                break
+            default:
+                image_name = nil
+            }
+           
+            UIApplication.shared.setAlternateIconName(image_name) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
