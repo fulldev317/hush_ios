@@ -216,9 +216,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } else {
                 self.window?.rootViewController = UIHostingController(rootView:
                     NavigationView {
-                        //SignUpView(viewModel: SignUpViewModel()).withoutBar()
+                        SignUpView(viewModel: SignUpViewModel()).withoutBar()
                         //SignUpEmail(viewModel: SignUpEmailViewModel()).withoutBar()
-                        UpgradeView(viewModel: UpgradeViewModel()).withoutBar()
+                        //UpgradeView(viewModel: UpgradeViewModel()).withoutBar()
                         //LoginView(viewModel: LoginViewModel(), showSignupButtons: .constant(false)).withoutBar()
                         //ForgotPasswordView(viewModel: ForgotPasswordViewModel()).withoutBar()
                         //ResetPasswordView(viewModel: ResetPasswordViewModel()).withoutBar()
@@ -276,7 +276,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                        }
 //                    }
 //                }
-                //self.setPusherId(userId: user.id!)
+                self.setPusherId(userId: user.id!)
            }
         }
     }

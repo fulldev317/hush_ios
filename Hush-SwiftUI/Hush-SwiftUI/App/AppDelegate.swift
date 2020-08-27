@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // pusher notification
         pushNotifications.start(instanceId: "6db18817-a55f-4c38-bd3c-0fd827fa2888")
-        pushNotifications.registerForRemoteNotifications()
+        //pushNotifications.registerForRemoteNotifications()
         //try? pushNotifications.addDeviceInterest(interest: "hello")
                 
         //registerBackgroundTaks()
@@ -55,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         pushNotifications.registerDeviceToken(deviceToken)
+        let user = Common.userInfo()
+        if let userId = user.id {
+            self.setPusherId(userId: userId)
+        }
         //Purchases.shared.setPushToken(deviceToken)
 
     }
@@ -150,5 +154,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             annotation: options[UIApplication.OpenURLOptionsKey.annotation]
         )
 
-    } 
+    }
+    
+    func setPusherId(userId: String) {
+        let tokenProvider = BeamsTokenProvider(authURL: "https://www.hushdating.app/requests/appapi.php") { () -> AuthData in
+            let sessionToken = "E9AF1A15E2F1369770BCCE93A8B8EEC46A41ABE2617E43DC17F5337603A239D8"
+            let headers = ["Authorization": "Bearer \(sessionToken)"] // Headers your auth endpoint needs
+            let queryParams: [String: String] = ["action":"getBeamsToken", "uid":userId] // URL query params your auth endpoint needs
+            return AuthData(headers: headers, queryParams: queryParams)
+        }
+        
+        pushNotifications.setUserId(userId, tokenProvider: tokenProvider, completion: { error in
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+            print("Successfully authenticated with Pusher Beams")
+        })
+    }
 }

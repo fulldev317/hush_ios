@@ -6,4 +6,8 @@
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+protocol ChangeAppIconModeled: ObservableObject {
+    
+}

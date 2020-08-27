@@ -154,6 +154,11 @@
 		598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FE48E24CB670B00029C3A /* MessageItem.swift */; };
 		599EAEC524C9A89C00DE4510 /* StoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599EAEC424C9A89C00DE4510 /* StoryAPI.swift */; };
 		59B7AF1024D8B1ED00F1CA6A /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B7AF0F24D8B1ED00F1CA6A /* LoginResponse.swift */; };
+		59D8979B24F7FFCC00782144 /* Icon-2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59D8979924F7FFCB00782144 /* Icon-2@3x.png */; };
+		59D8979C24F7FFCC00782144 /* Icon-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59D8979A24F7FFCB00782144 /* Icon-2@2x.png */; };
+		59D897A124F8001600782144 /* ChangeAppIconModeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D8979E24F8001600782144 /* ChangeAppIconModeled.swift */; };
+		59D897A224F8001600782144 /* ChangeAppIconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D8979F24F8001600782144 /* ChangeAppIconModel.swift */; };
+		59D897A324F8001600782144 /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D897A024F8001600782144 /* ChangeAppIconView.swift */; };
 		7391790C247F02A3002AF4A9 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790B247F02A3002AF4A9 /* AuthAPI.swift */; };
 		7391790E247F04C1002AF4A9 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790D247F04C1002AF4A9 /* BaseAPI.swift */; };
 		73917910247F0DCC002AF4A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391790F247F0DCC002AF4A9 /* UserAPI.swift */; };
@@ -358,6 +363,11 @@
 		598FE48E24CB670B00029C3A /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		599EAEC424C9A89C00DE4510 /* StoryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAPI.swift; sourceTree = "<group>"; };
 		59B7AF0F24D8B1ED00F1CA6A /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		59D8979924F7FFCB00782144 /* Icon-2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-2@3x.png"; sourceTree = "<group>"; };
+		59D8979A24F7FFCB00782144 /* Icon-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-2@2x.png"; sourceTree = "<group>"; };
+		59D8979E24F8001600782144 /* ChangeAppIconModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeAppIconModeled.swift; sourceTree = "<group>"; };
+		59D8979F24F8001600782144 /* ChangeAppIconModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeAppIconModel.swift; sourceTree = "<group>"; };
+		59D897A024F8001600782144 /* ChangeAppIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		5C6EE0D6D16A7A7BBEE2D07B /* Pods-Hush-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Hush-SwiftUI/Pods-Hush-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7391790B247F02A3002AF4A9 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		7391790D247F04C1002AF4A9 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
@@ -531,6 +541,8 @@
 		154B26A22431C27500265C76 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				59D8979A24F7FFCB00782144 /* Icon-2@2x.png */,
+				59D8979924F7FFCB00782144 /* Icon-2@3x.png */,
 				154B26B32431D25E00265C76 /* Fonts */,
 				154B26942431BF6800265C76 /* Assets.xcassets */,
 				154B26992431BF6800265C76 /* LaunchScreen.storyboard */,
@@ -869,6 +881,7 @@
 				15B890A8243EE9F300069804 /* UserProfile */,
 				15D53C83243C907400D62B26 /* Upgrade */,
 				15D53C7A243C65BE00D62B26 /* MyProfile */,
+				59D8979D24F8001600782144 /* ChangeAppIcon */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -947,6 +960,17 @@
 			);
 			path = LoginWithFB;
 			sourceTree = "<group>";
+		};
+		59D8979D24F8001600782144 /* ChangeAppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				59D8979E24F8001600782144 /* ChangeAppIconModeled.swift */,
+				59D8979F24F8001600782144 /* ChangeAppIconModel.swift */,
+				59D897A024F8001600782144 /* ChangeAppIconView.swift */,
+			);
+			name = ChangeAppIcon;
+			path = "Hush-SwiftUI/Modules/Profile/ChangeAppIcon";
+			sourceTree = SOURCE_ROOT;
 		};
 		7354C345247FA586007D6FA5 /* Models */ = {
 			isa = PBXGroup;
@@ -1187,11 +1211,13 @@
 				154B26982431BF6800265C76 /* Preview Assets.xcassets in Resources */,
 				157930872435B7A000EE428F /* editImageVc_mainFilterCell.xib in Resources */,
 				154B26B82431D56C00265C76 /* SF-Pro-Display-Regular.otf in Resources */,
+				59D8979B24F7FFCC00782144 /* Icon-2@3x.png in Resources */,
 				154B26952431BF6800265C76 /* Assets.xcassets in Resources */,
 				15E8CCE22431EE2500A92595 /* SF-Pro-Display-Light.otf in Resources */,
 				157930A32435D31D00EE428F /* SF-Pro-Display-Ultralight.otf in Resources */,
 				154B26B92431D56E00265C76 /* SF-Pro-Display-Medium.otf in Resources */,
 				1579307E2435B6B200EE428F /* OldFaceDetection.storyboard in Resources */,
+				59D8979C24F7FFCC00782144 /* Icon-2@2x.png in Resources */,
 				157930AF2435E68400EE428F /* SF-Pro-Display-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1362,6 +1388,7 @@
 				15B890AD243EEA1300069804 /* UserProfileViewModel.swift in Sources */,
 				15D53C74243C60C600D62B26 /* StickerView.swift in Sources */,
 				155E3011243B496D001D886D /* SendTextField.swift in Sources */,
+				59D897A324F8001600782144 /* ChangeAppIconView.swift in Sources */,
 				73D44AF4247FAE2700FB01BA /* Notifications.swift in Sources */,
 				89559FFB246AB94000223FB7 /* StoryViewModeled.swift in Sources */,
 				59645F6E24D064BF003D1167 /* ChatMessage.swift in Sources */,
@@ -1372,6 +1399,7 @@
 				1546B42724331DC400180D77 /* AddPhotosView.swift in Sources */,
 				89B551FF246D4A41004DC7C6 /* DeviceScale.swift in Sources */,
 				15B890AC243EEA1300069804 /* UserProfileView.swift in Sources */,
+				59D897A124F8001600782144 /* ChangeAppIconModeled.swift in Sources */,
 				8955A002246AD29400223FB7 /* StoriesSettingsView.swift in Sources */,
 				1546B42624331DC400180D77 /* AddPhotosViewModel.swift in Sources */,
 				536419DE248E693B002D7A4F /* MatchViewModel.swift in Sources */,
@@ -1422,6 +1450,7 @@
 				154B26AE2431CB8600265C76 /* Color+Ext.swift in Sources */,
 				8928ED7D246AEA32004D3073 /* StoriesSettingsViewModeled.swift in Sources */,
 				154B26B62431D2A400265C76 /* Font+Ext.swift in Sources */,
+				59D897A224F8001600782144 /* ChangeAppIconModel.swift in Sources */,
 				598FE48F24CB670B00029C3A /* MessageItem.swift in Sources */,
 				157930F72437324600EE428F /* CardCaruselView.swift in Sources */,
 				0E13EBD824805627003E0959 /* FaceDetectionViewModeled.swift in Sources */,

@@ -6,4 +6,7 @@
 //  Copyright © 2020 AppServices. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+class ChangeAppIconModel: ChangeAppIconModeled {
+}
