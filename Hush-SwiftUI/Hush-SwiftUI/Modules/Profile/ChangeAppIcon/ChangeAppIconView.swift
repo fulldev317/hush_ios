@@ -13,7 +13,7 @@ struct ChangeAppIconView<ViewModel: ChangeAppIconModeled>: View {
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     @Environment(\.presentationMode) var mode
-    @State var selectedIconIndex: Int = 1
+    @State var selectedIconIndex: Int = Common.appIconIndex()
     
     var body: some View {
         ZStack {
@@ -62,7 +62,7 @@ struct ChangeAppIconView<ViewModel: ChangeAppIconModeled>: View {
             
         }.onTapGesture {
             self.selectedIconIndex = index
-            
+            Common.setAppIconIndex(index: index)
             guard UIApplication.shared.supportsAlternateIcons else {
               return
             }

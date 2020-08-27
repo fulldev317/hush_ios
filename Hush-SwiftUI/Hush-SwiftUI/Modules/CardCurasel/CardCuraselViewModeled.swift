@@ -25,6 +25,7 @@ protocol CardCuraselViewModeled: ObservableObject {
     func loadGame(result: @escaping (Bool) -> Void)
     func updateMessage()
     func setSettingsModel()
-    func userLike(userID: String, like: String) 
+    func userMatch(userID: String)
+    func userDislike(userID: String)
 
 }

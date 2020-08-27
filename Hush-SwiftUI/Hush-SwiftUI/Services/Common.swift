@@ -83,6 +83,18 @@ class Common: NSObject {
         return _block ?? false
     }
     
+    static func appIconIndex() -> Int {
+        let index = UserDefaults.standard.integer(forKey: "app_icon_index")
+        if index == 0 {
+            return 1
+        }
+        return index
+    }
+    
+    static func setAppIconIndex(index: Int) {
+        UserDefaults.standard.set(index, forKey: "app_icon_index")
+    }
+    
     static func unreadChatEnabled() -> Bool {
         let enabled: Bool = UserDefaults.standard.bool(forKey: "unread_chat_enabled")
         return enabled

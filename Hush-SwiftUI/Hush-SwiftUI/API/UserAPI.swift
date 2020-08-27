@@ -460,6 +460,45 @@ class UserAPI: BaseAPI {
             }
         }
     }
+    
+    func send_match_notification(toUserID: String, completion: @escaping (_ error: APIError?) -> Void) {
+        let user = Common.userInfo()
+        let userId = user.id!
+        let parameters: Parameters = ["action": "sendMatchNotification",
+                                      "uid1": userId,
+                                      "uid2": toUserID]
+
+        let request = AF.request(endpoint, parameters: parameters)
+        request.responseJSON { (response) in
+            if let data = response.data {
+                do {
+                    let json = try JSON(data: data)
+                    
+                    switch response.result {
+                    case .success(_):
+                        var error: APIError?
+                        if json["error"].int == 0 {
+                            error = nil
+                        } else {
+                            error = APIError(json["error"].intValue, json["error_m"].stringValue)
+                        }
+                        completion(error)
+                    case .failure:
+                        let error = APIError(404, "Server Connection Failed")
+                        completion(error)
+                        print("API CALL FAILED")
+                    }
+                } catch {
+                    let error = APIError(404, "Server Connection Failed")
+                                           completion(error)
+                }
+            } else {
+                var error: APIError?
+                error = APIError(404, "connect failed")
+                completion(error)
+            }
+        }
+    }
 
     func add_visit(toUserID: String , completion: @escaping (_ error: APIError?) -> Void) {
         let user = Common.userInfo()

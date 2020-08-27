@@ -124,7 +124,12 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
         let index = self.getLastIndex(self.cardIndex) - 1
         let user_index = (2 * self.cardIndex - index + 3) % self.viewModel.games.count
         let user = self.viewModel.games[user_index]
-        self.viewModel.userLike(userID: user.id ?? "1", like: like ? "1" : "0")
+        
+        if like {
+            self.viewModel.userMatch(userID: user.id ?? "0")
+        } else {
+            self.viewModel.userDislike(userID: user.id ?? "0")
+        }
 
         var reload = false
         if (self.cardIndex == self.viewModel.games.count - 1) {
@@ -149,30 +154,7 @@ struct CardCaruselView<ViewModel: CardCuraselViewModeled>: View {
             }
         }
     }
-    
-    private func animateClose() {
         
-        withAnimation(.default) {
-           let size:CGSize = self.translation
-           self.translation = CGSize(width: size.width - SCREEN_WIDTH, height: size.height + 100)
-           self.overlay_opacity = 1.0
-       }
-       
-       DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-           self.translation = .zero
-
-           withAnimation(.default) {
-                let index = self.getLastIndex(self.cardIndex) - 1
-                let user_index = (2 * self.cardIndex - index + 3) % self.viewModel.games.count
-                let user = self.viewModel.games[user_index]
-                self.viewModel.userLike(userID: user.id ?? "1", like: "0")
-
-                self.cardIndex += 1
-                self.overlay_opacity = 0.0
-           }
-       }
-    }
-    
     // MARK: - Lifecycle
     
     var body: some View {
