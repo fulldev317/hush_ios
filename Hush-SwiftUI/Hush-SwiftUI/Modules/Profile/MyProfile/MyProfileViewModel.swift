@@ -15,6 +15,8 @@ import PushNotifications
 class MyProfileViewModel: MyProfileViewModeled {
     
     // MARK: - Properties
+    @EnvironmentObject var app: App
+
     let pushNotifications = PushNotifications.shared
 
     @Published var message = "Hellow World!"
@@ -33,7 +35,19 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var premium: String = "Activate"
     @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
     @Published var selectedLookingFors: Set<Int> = []
-
+    {
+        didSet {
+            if Common.profileEditing() {
+                var strLooking = ""
+                for looking in selectedLookingFors {
+                    strLooking = strLooking + Common.getGenderStringFromIndex(String(looking + 1)) + ","
+                }
+                strLooking = String(strLooking.dropLast())
+                self.basicsViewModel.lookingFor = strLooking
+                self.saveLookingFor()
+            }
+        }
+    }
     @Published var selectedImage: UIImage? = UIImage() {
         didSet {
             if (selectedImage != nil) {
@@ -279,7 +293,43 @@ class MyProfileViewModel: MyProfileViewModeled {
                  self.premium = "Activate"
              }
          }
+        setLookingUI()
     }
+    
+    func setLookingUI() {
+        let user = Common.userInfo()
+        if let sGender = user.sGender {
+            let lookings: [String] = sGender.components(separatedBy: ",")
+            var strLooking = ""
+            for looking in lookings {
+                if (looking.count > 0) {
+                    self.selectedLookingFors.insert(Int(looking)! - 1)
+                    strLooking = strLooking + Common.getGenderStringFromIndex(looking) + ", "
+                }
+            }
+            strLooking = String(strLooking.dropLast())
+            strLooking = String(strLooking.dropLast())
+            self.basicsViewModel.lookingFor = strLooking
+        }
+    }
+    
+    func saveLookingFor() {
+         var strLookingFor = ""
+         for selected in selectedLookingFors {
+             strLookingFor = strLookingFor + String(selected + 1) + ","
+         }
+         strLookingFor = String(strLookingFor.dropLast())
+         
+         var user = Common.userInfo()
+         user.sGender = strLookingFor
+         Common.setUserInfo(user)
+                
+         UserAPI.shared.update_gender(gender: strLookingFor) { ( error) in
+             if (error == nil) {
+             }
+         }
+    }
+    
     func updateName(name: String) {
         UserAPI.shared.update_name(name: name) { (error) in
             if error == nil {
@@ -613,6 +663,7 @@ class BioViewMode: ObservableObject {
     @Published var age = ""
     @Published var gender = Gender.male
     @Published var looking = Gender.female
+    @Published var lookingFor = ""
     @Published var location = ""
     @Published var sexuality = Sex.gay
     @Published var living = Living.alone

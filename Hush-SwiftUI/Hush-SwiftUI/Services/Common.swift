@@ -176,6 +176,15 @@ class Common: NSObject {
         return premium ?? false
     }
     
+    static func setProfileEditing(_ editing: Bool) {
+        UserDefaults.standard.set(editing, forKey: "profile_edit")
+    }
+    
+    static func profileEditing() -> Bool {
+        let editing: Bool? = UserDefaults.standard.bool(forKey: "profile_edit")
+        return editing ?? false
+    }
+    
     static func getSGender() -> Gender {
         let user: User = Common.userInfo()
 

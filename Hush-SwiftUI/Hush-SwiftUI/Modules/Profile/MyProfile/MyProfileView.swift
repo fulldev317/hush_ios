@@ -26,6 +26,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
     @ObservedObject var viewModel: ViewModel
     @EnvironmentObject var app: App
     @EnvironmentObject private var partialSheetManager: PartialSheetManager
+    
     @State var showChangeAppIcon = false
     @State var showMatchesView = false
     @State var showVisitedMeView = false
@@ -53,6 +54,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         HapticButton(action: {
                             withAnimation {
                                 self.app.onProfileEditing = !self.app.onProfileEditing
+                                Common.setProfileEditing(self.app.onProfileEditing)
                             }
                         }) {
                             Text(self.app.onProfileEditing ? "Done" : "Edit")
@@ -370,19 +372,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
                     }
     
-                    tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
-                        var selectedLooking = $0.lowercased()
-                        if (selectedLooking == "") {
-                            selectedLooking = "female"
-                        }
-                        if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
-                        {
-                            self.viewModel.updateLooking(gender: selectedLooking)
-                        }
-                        self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
-                    }
-                    
-//                    tableMultiPickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
+//                    tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
 //                        var selectedLooking = $0.lowercased()
 //                        if (selectedLooking == "") {
 //                            selectedLooking = "female"
@@ -393,6 +383,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
 //                        }
 //                        self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
 //                    }
+                    
+                    tableMultiPickerRow("Looking for", selected: viewModel.basicsViewModel.lookingFor, titles: Gender.allTitles)
                     
                     tableFixedRow("Location", value: $viewModel.basicsViewModel.location, onCommit: {
                         self.partialSheetManager.showPartialSheet {
@@ -654,11 +646,17 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }
     }
     
-    private func tableMultiPickerRow(_ title: String, selected: String, titles: [String], picked: @escaping (String) -> Void) -> some View {
+    private func tableMultiPickerRow(_ title: String, selected: String, titles: [String]) -> some View {
         HStack {
            
             if app.onProfileEditing {
-                HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+                VStack {
+                    HStack {
+                        Text(title).font(.regular(17)).foregroundColor(.white)
+                        Spacer()
+                    }
+                    HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+                }
             } else {
                 Text(title).font(.regular(17)).foregroundColor(.white)
                 Spacer()

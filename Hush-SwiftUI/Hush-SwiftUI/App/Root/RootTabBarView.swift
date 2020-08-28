@@ -146,7 +146,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
             UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
-                self.app.discovery.settingsViewModel.setGender(gender: gender)
+                //self.app.discovery.settingsViewModel.setGender(gender: gender)
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         
@@ -170,7 +170,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
             UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
-                self.app.discovery.settingsViewModel.setGender(gender: gender)
+                //self.app.discovery.settingsViewModel.setGender(gender: gender)
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         .addPartialSheet()
@@ -193,7 +193,7 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .alert(isPresented: $app.selectingGender, TextAlert(style: .actionSheet, title: nil, message: nil, actions: Gender.allCases.map { gender in
             UIAlertAction(toggling: $app.selectingGender, title: gender.title, style: .default) { _ in
-                self.app.discovery.settingsViewModel.setGender(gender: gender)
+                //self.app.discovery.settingsViewModel.setGender(gender: gender)
             }
         } + [UIAlertAction(toggling: $app.selectingGender, title: "Cancel", style: .cancel)]))
         .addPartialSheet()

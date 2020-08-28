@@ -92,22 +92,22 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
         message = "New Message"
     }
     
-    func setGender(gender: Gender) {
-        self.gender = gender
-        let gender_index = Common.getGenderIndexValue(gender.title)
-        
-        var user = Common.userInfo()
-        user.sGender = gender_index
-        Common.setUserInfo(user)
-        
-        UserAPI.shared.update_gender(gender: gender_index) { ( error) in
-            if (error == nil) {
-                var user = Common.userInfo()
-                user.sGender = gender_index
-                Common.setUserInfo(user)
-            }
-        }
-    }
+//    func setGender(gender: Gender) {
+//        self.gender = gender
+//        let gender_index = Common.getGenderIndexValue(gender.title)
+//
+//        var user = Common.userInfo()
+//        user.sGender = gender_index
+//        Common.setUserInfo(user)
+//
+//        UserAPI.shared.update_gender(gender: gender_index) { ( error) in
+//            if (error == nil) {
+//                var user = Common.userInfo()
+//                user.sGender = gender_index
+//                Common.setUserInfo(user)
+//            }
+//        }
+//    }
     
     func saveLookingFor() {
         var strLookingFor = ""

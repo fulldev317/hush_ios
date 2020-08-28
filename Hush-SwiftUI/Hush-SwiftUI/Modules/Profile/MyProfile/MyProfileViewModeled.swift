@@ -26,7 +26,6 @@ protocol MyProfileViewModeled: ObservableObject {
     var photoIDs: [String] { get set }
     var unlockedPhotos: Set<Int> { get set }
     var isShowingIndicator: Bool { get set }
-
     var pickerSourceType: UIImagePickerController.SourceType { get set }
     var isPermissionDenied: Bool { get set }
     var isPickerPresented: Bool { get set }
@@ -39,6 +38,7 @@ protocol MyProfileViewModeled: ObservableObject {
     func cameraRoll()
     func addPhoto()
     
+    func saveLookingFor()
     func updateMessage()
     func updateAge(age: String)
     func updateBio(bio: String)
