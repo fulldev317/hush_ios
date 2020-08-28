@@ -226,7 +226,7 @@ class Common: NSObject {
         if let user = _user {
             if let sAge = user.sAge {
                 let ages:[String] = sAge.components(separatedBy: ",")
-                if (ages.count > 2) {
+                if (ages.count >= 2) {
                     let e_age = ages[1]
                     var d_e_age = Double(e_age)!
                     d_e_age = d_e_age - 18
