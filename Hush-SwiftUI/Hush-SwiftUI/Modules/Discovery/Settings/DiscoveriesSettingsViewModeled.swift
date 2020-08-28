@@ -11,7 +11,7 @@ import Combine
 enum Gender: String, CaseIterable {
     case male
     case female
-    case lesbian
+    case couple
     case gay
     //case everyone
     
@@ -74,8 +74,11 @@ enum Living: String, CaseIterable {
 }
 
 protocol DiscoveriesSettingsViewModeled: ObservableObject {
+    var lookingFors: [String] { get set }
+    var selectedLookingFors: Set<Int> { get set }
     var gender: Gender { get set }
     var message: String { get set }
+    var looking: String { get set }
     var dragFlag: Bool { get set }
     var location: String { get set }
     var selectedDistance : Double { get set }
@@ -84,4 +87,6 @@ protocol DiscoveriesSettingsViewModeled: ObservableObject {
     var closeAPISelectorCompletion: (() -> Void)? { get set }
     
     func updateMessage()
+    func saveLookingFor()
+    func setLookingUI()
 }

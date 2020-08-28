@@ -13,4 +13,12 @@ extension String {
     func parseSpecialText() -> String {
         return self.replacingOccurrences(of: "&#039;", with: "'")
     }
+    
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }

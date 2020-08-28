@@ -25,7 +25,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
     @State var showLocation: Bool = false
     @State var ageSliderLower = Common.getLowerAge()
     @State var ageSliderUpper = Common.getUpperAge()
-    
+    @State var editGender: Bool = false
     private var lowerAge: String {
         return String(Int(18 + (99 - 18) * ageSliderLower))
     }
@@ -41,8 +41,8 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
         }
         self.viewModel.location = Common.addressInfo()
         
+        self.viewModel.setLookingUI()
     }
-    
     
     // MARK: - Lifecycle
     
@@ -53,6 +53,7 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                 Text("Filter").font(.bold(24))
                 Spacer()
                 Button(action: {
+                    self.viewModel.saveLookingFor()
                     Common.setFilterOnine(filter: self.isToggle)
                     self.app.isShowingSetting = false
                     self.partialSheetManager.closePartialSheet()
@@ -66,7 +67,6 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
                     
                     Spacer()
                     Text(self.viewModel.location)
-                    //Text(viewModel.location.components(separatedBy: .punctuationCharacters).first ?? String()).font(.light())
                     Spacer()
                     Button(action: {
                         self.partialSheetManager.showPartialSheet({
@@ -104,17 +104,29 @@ struct DiscoveriesSettingsView<ViewModel: DiscoveriesSettingsViewModeled>: View 
             }
             VStack {
                 HStack {
-                    Text("Gender").font(.light())
+                    Text("Looking For").font(.light())
                     Spacer()
-                    Text(self.viewModel.gender.title).font(.light())
-                    Spacer()
-                    Button(action: {
-                        self.app.selectingGender.toggle()
-                        
-                    }) {
-                        Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
-                    }
+//                    Text(self.viewModel.looking).font(.light())
+//                    Spacer()
+//                    Button(action: {
+//                        self.editGender = !self.editGender
+//                        if (self.editGender) {
+//                            self.viewModel.saveLookingFor()
+//                        }
+//                        //self.app.selectingGender.toggle()
+//
+//                    }) {
+//                        if (self.editGender) {
+//                            Text("Done").font(.light()).foregroundColor(Color(0x8E8786))
+//                        } else {
+//                            Text("Edit").font(.light()).foregroundColor(Color(0x8E8786))
+//                        }
+//                    }
                 }
+                //if (self.editGender) {
+                HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+                //}
+                
                 Rectangle().foregroundColor(Color(0xC6C6C8)).frame(height: 0.5)
             }
             VStack {

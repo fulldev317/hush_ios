@@ -43,7 +43,7 @@ class CardCuraselViewModel: CardCuraselViewModeled {
            settingsViewModel.gender = Gender.female
            break
         case 3:
-           settingsViewModel.gender = Gender.lesbian
+           settingsViewModel.gender = Gender.couple
            break
         case 4:
            settingsViewModel.gender = Gender.gay

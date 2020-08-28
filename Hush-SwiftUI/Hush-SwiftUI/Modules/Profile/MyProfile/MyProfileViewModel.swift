@@ -91,7 +91,7 @@ class MyProfileViewModel: MyProfileViewModeled {
 //                    basicsViewModel.sexuality = Gender.female
 //                    break
 //                case 2:
-//                    basicsViewModel.sexuality = Gender.lesbian
+//                    basicsViewModel.sexuality = Gender.couple
 //                    break
 //                case 3:
 //                    basicsViewModel.sexuality = Gender.gay
@@ -180,7 +180,7 @@ class MyProfileViewModel: MyProfileViewModeled {
              basicsViewModel.gender = Gender.female
              break
          case 3:
-             basicsViewModel.gender = Gender.lesbian
+             basicsViewModel.gender = Gender.couple
              break
          case 4:
              basicsViewModel.gender = Gender.gay
@@ -197,7 +197,7 @@ class MyProfileViewModel: MyProfileViewModeled {
              basicsViewModel.looking = Gender.female
              break
          case 3:
-             basicsViewModel.looking = Gender.lesbian
+             basicsViewModel.looking = Gender.couple
              break
          case 4:
              basicsViewModel.looking = Gender.gay
