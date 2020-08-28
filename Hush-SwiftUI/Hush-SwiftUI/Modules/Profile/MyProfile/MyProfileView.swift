@@ -346,17 +346,18 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                     }
                     
                 Group {
-                    tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
-                        var selectedGender = $0.lowercased()
-                        if (selectedGender == "") {
-                            selectedGender = "male"
-                        }
-                        if (selectedGender != self.$viewModel.basicsViewModel.gender.wrappedValue.rawValue)
-                        {
-                            self.viewModel.updateGender(gender: selectedGender)
-                        }
-                        self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
-                    }
+//                    tablePickerRow("Gender", selected: viewModel.basicsViewModel.gender.title, titles: Gender.allTitles) {
+//                        var selectedGender = $0.lowercased()
+//                        if (selectedGender == "") {
+//                            selectedGender = "male"
+//                        }
+//                        if (selectedGender != self.$viewModel.basicsViewModel.gender.wrappedValue.rawValue)
+//                        {
+//                            self.viewModel.updateGender(gender: selectedGender)
+//                        }
+//                        self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
+//                    }
+                    tableSingleSelectRow("Gender", selected: viewModel.basicsViewModel.gender.title)
                     
                     tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
                         var selectedSex: String = $0.lowercased()
@@ -371,20 +372,8 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         }
                         self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
                     }
-    
-//                    tablePickerRow("Looking for", selected: viewModel.basicsViewModel.looking.title, titles: Gender.allTitles) {
-//                        var selectedLooking = $0.lowercased()
-//                        if (selectedLooking == "") {
-//                            selectedLooking = "female"
-//                        }
-//                        if (selectedLooking != self.$viewModel.basicsViewModel.looking.wrappedValue.rawValue)
-//                        {
-//                            self.viewModel.updateLooking(gender: selectedLooking)
-//                        }
-//                        self.$viewModel.basicsViewModel.looking.wrappedValue = Gender(rawValue: selectedLooking)!
-//                    }
                     
-                    tableMultiPickerRow("Looking for", selected: viewModel.basicsViewModel.lookingFor, titles: Gender.allTitles)
+                    tableMultiSelectRow("Looking for", selected: viewModel.basicsViewModel.lookingFor)
                     
                     tableFixedRow("Location", value: $viewModel.basicsViewModel.location, onCommit: {
                         self.partialSheetManager.showPartialSheet {
@@ -646,16 +635,33 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }
     }
     
-    private func tableMultiPickerRow(_ title: String, selected: String, titles: [String]) -> some View {
+    private func tableMultiSelectRow(_ title: String, selected: String) -> some View {
         HStack {
-           
             if app.onProfileEditing {
                 VStack {
                     HStack {
                         Text(title).font(.regular(17)).foregroundColor(.white)
                         Spacer()
                     }
-                    HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.lookingFors)
+                    HSegmentedControl(selectedList: $viewModel.selectedLookingFors, list: viewModel.genderSelection)
+                }
+            } else {
+                Text(title).font(.regular(17)).foregroundColor(.white)
+                Spacer()
+                Text(selected).font(.regular(17)).foregroundColor(.white)
+            }
+        }
+    }
+    
+    private func tableSingleSelectRow(_ title: String, selected: String) -> some View {
+        HStack {
+            if app.onProfileEditing {
+                VStack {
+                    HStack {
+                        Text(title).font(.regular(17)).foregroundColor(.white)
+                        Spacer()
+                    }
+                    HSegmentedControl(selected: $viewModel.selectedGender, list: viewModel.genderSelection)
                 }
             } else {
                 Text(title).font(.regular(17)).foregroundColor(.white)

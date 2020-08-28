@@ -14,16 +14,6 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
     // MARK: - Properties
     @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
     @Published var selectedLookingFors: Set<Int> = []
-//        {
-//        didSet {
-//            var strLooking = ""
-//            for looking in selectedLookingFors {
-//                strLooking = strLooking + Common.getGenderStringFromIndex(String(looking + 1)) + ","
-//            }
-//            strLooking = String(strLooking.dropLast())
-//            self.looking = strLooking
-//        }
-//    }
     @Published var gender = Common.getSGender()
     @Published var looking = ""
     @Published var message = "Hellow World!"

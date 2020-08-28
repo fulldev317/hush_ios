@@ -33,7 +33,7 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     @Published var selectedIndex: Int = -1
     @Published var premium: String = "Activate"
-    @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
+    @Published var genderSelection: [String] = ["Males", "Females", "Couples", "Gays"]
     @Published var selectedLookingFors: Set<Int> = []
     {
         didSet {
@@ -45,6 +45,17 @@ class MyProfileViewModel: MyProfileViewModeled {
                 strLooking = String(strLooking.dropLast())
                 self.basicsViewModel.lookingFor = strLooking
                 self.saveLookingFor()
+            }
+        }
+    }
+    @Published var selectedGender: Int = 0
+    {
+        didSet {
+            if Common.profileEditing() {
+                var strGender = ""
+                strGender = Common.getGenderStringFromIndex(String(selectedGender + 1))
+                self.basicsViewModel.gender = Gender(rawValue: strGender.lowercased())!
+                self.updateGender(gender: strGender)
             }
         }
     }
@@ -293,7 +304,16 @@ class MyProfileViewModel: MyProfileViewModeled {
                  self.premium = "Activate"
              }
          }
+        
+        setGenderUI()
         setLookingUI()
+    }
+    
+    func setGenderUI() {
+        let user = Common.userInfo()
+        if let gender = user.gender {
+            self.selectedGender = Int(gender)! - 1
+        }
     }
     
     func setLookingUI() {
@@ -431,11 +451,13 @@ class MyProfileViewModel: MyProfileViewModeled {
        
         let gender_index = Common.getGenderIndexValue(gender)
 
+        var user = Common.userInfo()
+        user.gender = gender_index
+        Common.setUserInfo(user)
+        
         UserAPI.shared.update_user_gender(gender: gender_index) { ( error) in
             if (error == nil) {
-                var user = Common.userInfo()
-                user.gender = gender_index
-                Common.setUserInfo(user)
+                
             }
         }
     }
@@ -663,6 +685,7 @@ class BioViewMode: ObservableObject {
     @Published var age = ""
     @Published var gender = Gender.male
     @Published var looking = Gender.female
+    @Published var genderIndex = ""
     @Published var lookingFor = ""
     @Published var location = ""
     @Published var sexuality = Sex.gay
