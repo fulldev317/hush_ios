@@ -33,6 +33,7 @@ class MyProfileViewModel: MyProfileViewModeled {
     @Published var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     @Published var selectedIndex: Int = -1
     @Published var premium: String = "Activate"
+    @Published var sexSelection: [String] = ["Gay", "Open-Mind", "Straight", "Bisexual"]
     @Published var genderSelection: [String] = ["Males", "Females", "Couples", "Gays"]
     @Published var selectedLookingFors: Set<Int> = []
     {
@@ -45,6 +46,16 @@ class MyProfileViewModel: MyProfileViewModeled {
                 strLooking = String(strLooking.dropLast())
                 self.basicsViewModel.lookingFor = strLooking
                 self.saveLookingFor()
+            }
+        }
+    }
+    @Published var selectedSex: Int = 0
+    {
+        didSet {
+            if Common.profileEditing() {
+                let strSex = Sex.typeFromIndex(index: selectedSex + 1)
+                self.updateSex(sex: strSex)
+                self.basicsViewModel.sexuality = Sex(rawValue: strSex)!
             }
         }
     }
@@ -246,9 +257,11 @@ class MyProfileViewModel: MyProfileViewModeled {
          
          if (s_question != nil) {
              if s_question?.userAnswer == "" {
-                 basicsViewModel.sexuality = Sex.gay
+                basicsViewModel.sexuality = Sex.gay
+                selectedGender = 0
              } else {
-                 switch Int(s_question?.userAnswer ?? "1") {
+                selectedSex = Int(s_question?.userAnswer ?? "1")! - 1
+                 switch selectedSex {
                  case 1:
                      basicsViewModel.sexuality = Sex.gay
                      break
@@ -267,7 +280,8 @@ class MyProfileViewModel: MyProfileViewModeled {
                  
              }
          } else {
-             basicsViewModel.sexuality = Sex.gay
+            basicsViewModel.sexuality = Sex.gay
+            selectedSex = 0
          }
          
          if (live_question != nil) {

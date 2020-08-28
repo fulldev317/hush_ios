@@ -357,21 +357,23 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
 //                        }
 //                        self.$viewModel.basicsViewModel.gender.wrappedValue = Gender(rawValue: selectedGender)!
 //                    }
-                    tableSingleSelectRow("Gender", selected: viewModel.basicsViewModel.gender.title)
+                    tableSingleSelectRow("Gender", selectedString: viewModel.basicsViewModel.gender.title, selectedItem: $viewModel.selectedGender, list: viewModel.genderSelection)
                     
-                    tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
-                        var selectedSex: String = $0.lowercased()
-                        if (selectedSex == "") {
-                            selectedSex = "gay"
-                        } else {
-                            selectedSex = Sex.typeForTitle(title: selectedSex)
-                        }
-                        if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
-                        {
-                            self.viewModel.updateSex(sex: selectedSex)
-                        }
-                        self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
-                    }
+                    tableSingleSelectRow("Sexuality", selectedString: viewModel.basicsViewModel.sexuality.title, selectedItem: $viewModel.selectedSex, list: viewModel.sexSelection)
+                    
+//                    tablePickerRow("Sexuality", selected: viewModel.basicsViewModel.sexuality.title, titles: Sex.allTitles) {
+//                        var selectedSex: String = $0.lowercased()
+//                        if (selectedSex == "") {
+//                            selectedSex = "gay"
+//                        } else {
+//                            selectedSex = Sex.typeForTitle(title: selectedSex)
+//                        }
+//                        if (selectedSex != self.$viewModel.basicsViewModel.sexuality.wrappedValue.rawValue)
+//                        {
+//                            self.viewModel.updateSex(sex: selectedSex)
+//                        }
+//                        self.$viewModel.basicsViewModel.sexuality.wrappedValue = Sex(rawValue: selectedSex)!
+//                    }
                     
                     tableMultiSelectRow("Looking for", selected: viewModel.basicsViewModel.lookingFor)
                     
@@ -653,7 +655,7 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
         }
     }
     
-    private func tableSingleSelectRow(_ title: String, selected: String) -> some View {
+    private func tableSingleSelectRow(_ title: String, selectedString: String, selectedItem: Binding<Int>, list: [String]) -> some View {
         HStack {
             if app.onProfileEditing {
                 VStack {
@@ -661,12 +663,12 @@ struct MyProfileView<ViewModel: MyProfileViewModeled>: View, HeaderedScreen {
                         Text(title).font(.regular(17)).foregroundColor(.white)
                         Spacer()
                     }
-                    HSegmentedControl(selected: $viewModel.selectedGender, list: viewModel.genderSelection)
+                    HSegmentedControl(selected: selectedItem, list: list)
                 }
             } else {
                 Text(title).font(.regular(17)).foregroundColor(.white)
                 Spacer()
-                Text(selected).font(.regular(17)).foregroundColor(.white)
+                Text(selectedString).font(.regular(17)).foregroundColor(.white)
             }
         }
     }

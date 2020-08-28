@@ -79,6 +79,9 @@ struct RootTabBarView<ViewModel: RootTabBarViewModeled>: View, HeaderedScreen {
                     }
                     
                     if self.currentTab == .profile {
+                        Color.clear.onAppear {
+                            Common.setProfileEditing(false)
+                        }
                         NavigationView {
                             MyProfileView(viewModel: MyProfileViewModel()).withoutBar().addPartialSheet()
                         }.zIndex(self.currentTab == .profile ? 1 : 0)

@@ -225,59 +225,47 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
             }
             
             if currentViewIndex == 1 && viewModel.matches.count > 0 {
-                List {
-                    ForEach(0...(viewModel.matches.count / 2), id: \.self) { index in
-                        self.row(at: index)
-                        .background(Color.black)
-                        .listRowBackground(Color.black)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: -20) {
+                        ForEach(0...(self.viewModel.matches.count / 2), id: \.self) {
+                            self.row(at: $0)
+                        }
                     }
-                }.listStyle(DefaultListStyle())
-                .padding(.top, TAB_HEIGHT + 10)
-                    .padding(.leading, -15)
-                .background(Color.clear)
-                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+                }.padding(.top, TAB_HEIGHT + 10)
+                .padding(.leading, -15)
             }
             
             if currentViewIndex == 2 && viewModel.visitedmes.count > 0 {
-                List {
-                    ForEach(0...(viewModel.visitedmes.count / 2), id: \.self) { index in
-                        self.row(at: index)
-                        .background(Color.black)
-                        .listRowBackground(Color.black)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: -20) {
+                        ForEach(0...(self.viewModel.visitedmes.count / 2), id: \.self) {
+                            self.row(at: $0)
+                        }
                     }
-                }.listStyle(DefaultListStyle())
-                .padding(.top, TAB_HEIGHT + 10)
-                    .padding(.leading, -15)
-                .background(Color.clear)
-                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+                }.padding(.top, TAB_HEIGHT + 10)
+                .padding(.leading, -15)
             }
             
             if currentViewIndex == 3 && viewModel.mylikes.count > 0 {
-                List {
-                    ForEach(0...(viewModel.mylikes.count / 2), id: \.self) { index in
-                        self.row(at: index)
-                        .background(Color.black)
-                        .listRowBackground(Color.black)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: -20) {
+                        ForEach(0...(self.viewModel.mylikes.count / 2), id: \.self) {
+                            self.row(at: $0)
+                        }
                     }
-                }.listStyle(DefaultListStyle())
-                .padding(.top, TAB_HEIGHT + 10)
-                    .padding(.leading, -15)
-                .background(Color.clear)
-                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+                }.padding(.top, TAB_HEIGHT + 10)
+                .padding(.leading, -15)
             }
             
             if currentViewIndex == 5 && viewModel.likemes.count > 0 {
-                List {
-                    ForEach(0...(viewModel.likemes.count / 2), id: \.self) { index in
-                        self.row(at: index)
-                        .background(Color.black)
-                        .listRowBackground(Color.black)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: -20) {
+                        ForEach(0...(self.viewModel.likemes.count / 2), id: \.self) {
+                            self.row(at: $0)
+                        }
                     }
-                }.listStyle(DefaultListStyle())
-                .padding(.top, TAB_HEIGHT + 10)
-                    .padding(.leading, -15)
-                .background(Color.clear)
-                .appearenceModifier(path: \UITableView.backgroundColor, value: .black)
+                }.padding(.top, TAB_HEIGHT + 10)
+                .padding(.leading, -15)
             }
             
             NavigationLink(

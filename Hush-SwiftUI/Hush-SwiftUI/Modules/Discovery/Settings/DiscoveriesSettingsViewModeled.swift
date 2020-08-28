@@ -37,6 +37,26 @@ enum Sex: String, CaseIterable {
         }
         return title
     }
+    static func typeFromIndex(index: Int) -> String {
+        var strSex = "gay"
+        switch(index) {
+        case 1:
+            strSex = "gay"
+            break
+        case 2:
+            strSex = "open"
+            break
+        case 3:
+            strSex = "straight"
+            break
+        case 4:
+            strSex = "bisexual"
+            break
+        default:
+            strSex = "gay"
+        }
+        return strSex
+    }
     static let allTitles = allCases.map { $0.title }
 }
 
