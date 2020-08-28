@@ -20,8 +20,9 @@ protocol MyProfileViewModeled: ObservableObject {
     var photoDatas: [UIImage] { get set }
     var selectedIndex: Int { get set }
     var premium: String { get set}
-    var lookingFors: [String] { get set }
+    var genderSelection: [String] { get set }
     var selectedLookingFors: Set<Int> { get set }
+    var selectedGender: Int { get set }
     var photoUrls: [String] { get set }
     var photoIDs: [String] { get set }
     var unlockedPhotos: Set<Int> { get set }
