@@ -185,7 +185,7 @@ class Common: NSObject {
         case 2:
            return Gender.female
         case 3:
-           return Gender.lesbian
+           return Gender.couple
         case 4:
            return Gender.gay
         default:
@@ -290,7 +290,7 @@ class Common: NSObject {
             nGender = Gender.gay
             break
         case "4":
-            nGender = Gender.lesbian
+            nGender = Gender.couple
             break
         default:
             nGender = Gender.male
@@ -307,7 +307,7 @@ class Common: NSObject {
         case Gender.female.rawValue:
             nGender = "2"
             break
-        case Gender.lesbian.rawValue:
+        case Gender.couple.rawValue:
             nGender = "3"
             break
         case Gender.gay.rawValue:
@@ -317,6 +317,27 @@ class Common: NSObject {
             nGender = "1"
         }
         return nGender
+    }
+    
+    static func getGenderStringFromIndex(_ gender: String) -> String {
+        var nGender: String = Gender.male.rawValue
+        switch gender.lowercased() {
+        case "1":
+            nGender = Gender.male.rawValue
+            break
+        case "2":
+            nGender = Gender.female.rawValue
+            break
+        case "3":
+            nGender = Gender.couple.rawValue
+            break
+        case "4":
+            nGender = Gender.gay.rawValue
+            break
+        default:
+            nGender = Gender.male.rawValue
+        }
+        return nGender.capitalizingFirstLetter()
     }
     
     static func getSexIndexValue(_ sex: String) -> String {

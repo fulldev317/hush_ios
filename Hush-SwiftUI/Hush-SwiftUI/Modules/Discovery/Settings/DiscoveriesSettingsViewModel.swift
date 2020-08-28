@@ -12,8 +12,20 @@ import Combine
 class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
     
     // MARK: - Properties
-
+    @Published var lookingFors: [String] = ["Males", "Females", "Couples", "Gays"]
+    @Published var selectedLookingFors: Set<Int> = []
+//        {
+//        didSet {
+//            var strLooking = ""
+//            for looking in selectedLookingFors {
+//                strLooking = strLooking + Common.getGenderStringFromIndex(String(looking + 1)) + ","
+//            }
+//            strLooking = String(strLooking.dropLast())
+//            self.looking = strLooking
+//        }
+//    }
     @Published var gender = Common.getSGender()
+    @Published var looking = ""
     @Published var message = "Hellow World!"
     @Published var dragFlag: Bool = true
     @Published var location: String = "Los Angles, FA, US"
@@ -94,6 +106,42 @@ class DiscoveriesSettingsViewModel: DiscoveriesSettingsViewModeled {
                 user.sGender = gender_index
                 Common.setUserInfo(user)
             }
+        }
+    }
+    
+    func saveLookingFor() {
+        var strLookingFor = ""
+        for selected in selectedLookingFors {
+            strLookingFor = strLookingFor + String(selected + 1) + ","
+        }
+        strLookingFor = String(strLookingFor.dropLast())
+        
+        var user = Common.userInfo()
+        user.sGender = strLookingFor
+        Common.setUserInfo(user)
+        
+        setLookingUI()
+        
+        UserAPI.shared.update_gender(gender: strLookingFor) { ( error) in
+            if (error == nil) {
+            }
+        }
+    }
+    
+    func setLookingUI() {
+        let user = Common.userInfo()
+        if let sGender = user.sGender {
+            let lookings: [String] = sGender.components(separatedBy: ",")
+            var strLooking = ""
+            for looking in lookings {
+                if (looking.count > 0) {
+                    self.selectedLookingFors.insert(Int(looking)! - 1)
+                    strLooking = strLooking + Common.getGenderStringFromIndex(looking) + ", "
+                }
+            }
+            strLooking = String(strLooking.dropLast())
+            strLooking = String(strLooking.dropLast())
+            self.looking = strLooking
         }
     }
 }
