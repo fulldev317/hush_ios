@@ -166,8 +166,7 @@ class UpgradeViewModel: UpgradeViewModeled {
         }
         return AnyView(
             ZStack {
-                
-                WebImage(url: URL(string: "https://www.hushdating.app/assets/sources/uploads/thumb_5f3bd5cfcef4c_image1.jpg"))
+                WebImage(url: URL(string: image_url))
                 .resizable()
                 .placeholder {
                     Image("placeholder_s")
