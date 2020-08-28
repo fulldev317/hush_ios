@@ -26,6 +26,7 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
     @State var currentViewIndex: Int = 0
     @State private var selectedIndex: Int = 0
     @State private var selectedUser: User = User()
+    @State private var photo_count = 9
     
     init(viewModel: ViewModel, showingSetting: Bool) {
         self.viewModel = viewModel
@@ -173,30 +174,53 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
             }
             
             if currentViewIndex == 0 && viewModel.discoveries.count > 0 {
-                List {
-                    ForEach(0...(viewModel.discoveries.count / 2), id: \.self) { index in
-                        self.row(at: index).onAppear {
-                            if index == (self.viewModel.discoveries.count / 2) {
-                                if (self.viewModel.discoveries.count > 8) {
-                                    self.viewModel.page_num += 1
-                                    self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
-                                        if (result) {
-                                            
-                                        }
-                                    }
+                GeometryReader { g in
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: -20) {
+                            ForEach(0...(self.viewModel.discoveries.count / 2), id: \.self) {
+                                self.row(at: $0)
+                                .anchorPreference(key: OffsetKey.self, value: .top) {
+                                  g[$0].y
                                 }
                             }
-                        }.background(Color.clear)
-                            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        .listRowBackground(Color.black)
-                            .padding(.top, index == 0 ? 0 : -20)
-                    }
-                }.listStyle(DefaultListStyle())
-                .padding(.top, TAB_HEIGHT + 20)
+                        }
+                    }.padding(.top, TAB_HEIGHT + 10)
                     .padding(.leading, -15)
-                .background(Color.clear)
-                .appearenceModifier(path: \UITableView.backgroundColor, value: .clear)
-                    .appearenceModifier(path: \UITableView.separatorStyle, value: .none)
+                    .onPreferenceChange(OffsetKey.self) {
+                        if $0 < -600 - (SCREEN_WIDTH / 2 + 30) * CGFloat((self.viewModel.discoveries.count - self.photo_count) / 2) && (self.viewModel.page_num == (self.viewModel.discoveries.count / self.photo_count) - 1) {
+                            self.viewModel.page_num += 1
+                            self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
+                                if (result) {
+
+                                }
+                            }
+                        }
+                    }
+                }
+//                List {
+//                    ForEach(0...(viewModel.discoveries.count / 2), id: \.self) { index in
+//                        self.row(at: index).onAppear {
+//                            if index == (self.viewModel.discoveries.count / 2) {
+//                                if (self.viewModel.discoveries.count > 8) {
+//                                    self.viewModel.page_num += 1
+//                                    self.viewModel.loadDiscover(page: self.viewModel.page_num) { (result) in
+//                                        if (result) {
+//
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }.background(Color.clear)
+//                            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+//                        .listRowBackground(Color.black)
+//                            .padding(.top, index == 0 ? 0 : -20)
+//                    }
+//                }.listStyle(DefaultListStyle())
+//                .padding(.top, TAB_HEIGHT + 20)
+//                    .padding(.leading, -15)
+//                .background(Color.clear)
+//                .appearenceModifier(path: \UITableView.backgroundColor, value: .clear)
+//                    .appearenceModifier(path: \UITableView.separatorStyle, value: .none)
                 
             }
             
@@ -343,6 +367,13 @@ struct DiscoveryView<ViewModel: DiscoveryViewModeled>: View {
         .padding(.leading, self.leading(j))
         .padding(.trailing, self.trailing(j))
     }
+}
+
+struct OffsetKey: PreferenceKey {
+  static var defaultValue: CGFloat = 0
+  static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+    value = nextValue()
+  }
 }
 
 struct DiscoveryView_Previews: PreviewProvider {
